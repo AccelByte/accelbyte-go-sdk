@@ -20,6 +20,10 @@ import (
 // swagger:model RewardsRequest
 type RewardsRequest struct {
 
+	// origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet
+	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	Origin string `json:"origin,omitempty"`
+
 	// reward
 	// Required: true
 	Rewards []*PlatformReward `json:"rewards"`
@@ -33,6 +37,10 @@ type RewardsRequest struct {
 func (m *RewardsRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateOrigin(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRewards(formats); err != nil {
 		res = append(res, err)
 	}
@@ -44,6 +52,76 @@ func (m *RewardsRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var rewardsRequestTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		rewardsRequestTypeOriginPropEnum = append(rewardsRequestTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// RewardsRequestOriginPlaystation captures enum value "Playstation"
+	RewardsRequestOriginPlaystation string = "Playstation"
+
+	// RewardsRequestOriginXbox captures enum value "Xbox"
+	RewardsRequestOriginXbox string = "Xbox"
+
+	// RewardsRequestOriginSteam captures enum value "Steam"
+	RewardsRequestOriginSteam string = "Steam"
+
+	// RewardsRequestOriginEpic captures enum value "Epic"
+	RewardsRequestOriginEpic string = "Epic"
+
+	// RewardsRequestOriginStadia captures enum value "Stadia"
+	RewardsRequestOriginStadia string = "Stadia"
+
+	// RewardsRequestOriginIOS captures enum value "IOS"
+	RewardsRequestOriginIOS string = "IOS"
+
+	// RewardsRequestOriginGooglePlay captures enum value "GooglePlay"
+	RewardsRequestOriginGooglePlay string = "GooglePlay"
+
+	// RewardsRequestOriginTwitch captures enum value "Twitch"
+	RewardsRequestOriginTwitch string = "Twitch"
+
+	// RewardsRequestOriginNintendo captures enum value "Nintendo"
+	RewardsRequestOriginNintendo string = "Nintendo"
+
+	// RewardsRequestOriginSystem captures enum value "System"
+	RewardsRequestOriginSystem string = "System"
+
+	// RewardsRequestOriginOther captures enum value "Other"
+	RewardsRequestOriginOther string = "Other"
+)
+
+// prop value enum
+func (m *RewardsRequest) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, rewardsRequestTypeOriginPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *RewardsRequest) validateOrigin(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Origin) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateOriginEnum("origin", "body", m.Origin); err != nil {
+		return err
+	}
+
 	return nil
 }
 

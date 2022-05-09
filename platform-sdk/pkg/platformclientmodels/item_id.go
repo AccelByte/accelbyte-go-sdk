@@ -20,6 +20,9 @@ type ItemID struct {
 	// itemId
 	// Required: true
 	ItemID *string `json:"itemId"`
+
+	// sku
+	Sku string `json:"sku,omitempty"`
 }
 
 // Validate validates this item Id

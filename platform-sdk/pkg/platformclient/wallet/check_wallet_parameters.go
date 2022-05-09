@@ -71,6 +71,8 @@ type CheckWalletParams struct {
 
 	*/
 	Namespace string
+	/*Origin*/
+	Origin string
 	/*UserID
 	  userId
 
@@ -143,6 +145,17 @@ func (o *CheckWalletParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithOrigin adds the origin to the check wallet params
+func (o *CheckWalletParams) WithOrigin(origin string) *CheckWalletParams {
+	o.SetOrigin(origin)
+	return o
+}
+
+// SetOrigin adds the origin to the check wallet params
+func (o *CheckWalletParams) SetOrigin(origin string) {
+	o.Origin = origin
+}
+
 // WithUserID adds the userID to the check wallet params
 func (o *CheckWalletParams) WithUserID(userID string) *CheckWalletParams {
 	o.SetUserID(userID)
@@ -170,6 +183,15 @@ func (o *CheckWalletParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	// query param origin
+	qrOrigin := o.Origin
+	qOrigin := qrOrigin
+	if qOrigin != "" {
+		if err := r.SetQueryParam("origin", qOrigin); err != nil {
+			return err
+		}
 	}
 
 	// path param userId

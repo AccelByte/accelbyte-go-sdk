@@ -7,6 +7,7 @@ package platformclientmodels
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -19,9 +20,13 @@ import (
 // swagger:model WalletInfo
 type WalletInfo struct {
 
-	// balance
+	// total balance, include effective time-limited balance
 	// Required: true
 	Balance *int64 `json:"balance"`
+
+	// origin of balance
+	// Required: true
+	BalanceOrigin *string `json:"balanceOrigin"`
 
 	// created at
 	// Required: true
@@ -49,6 +54,15 @@ type WalletInfo struct {
 	// Enum: [ACTIVE INACTIVE]
 	Status *string `json:"status"`
 
+	// time-limited balances info
+	TimeLimitedBalances []*TimeLimitedBalance `json:"timeLimitedBalances"`
+
+	// total permanent balance
+	TotalPermanentBalance int64 `json:"totalPermanentBalance,omitempty"`
+
+	// total time limited balance
+	TotalTimeLimitedBalance int64 `json:"totalTimeLimitedBalance,omitempty"`
+
 	// updated at
 	// Required: true
 	// Format: date-time
@@ -64,6 +78,10 @@ func (m *WalletInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBalance(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBalanceOrigin(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -91,6 +109,10 @@ func (m *WalletInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTimeLimitedBalances(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -108,6 +130,15 @@ func (m *WalletInfo) Validate(formats strfmt.Registry) error {
 func (m *WalletInfo) validateBalance(formats strfmt.Registry) error {
 
 	if err := validate.Required("balance", "body", m.Balance); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WalletInfo) validateBalanceOrigin(formats strfmt.Registry) error {
+
+	if err := validate.Required("balanceOrigin", "body", m.BalanceOrigin); err != nil {
 		return err
 	}
 
@@ -201,6 +232,31 @@ func (m *WalletInfo) validateStatus(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WalletInfo) validateTimeLimitedBalances(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TimeLimitedBalances) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TimeLimitedBalances); i++ {
+		if swag.IsZero(m.TimeLimitedBalances[i]) { // not required
+			continue
+		}
+
+		if m.TimeLimitedBalances[i] != nil {
+			if err := m.TimeLimitedBalances[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("timeLimitedBalances" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -105,6 +105,35 @@ func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*pla
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCreateUserOrderShort instead
+func (o *OrderService) AdminCreateUserOrder(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := o.Client.Order.AdminCreateUserOrder(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: Use CountOfPurchasedItemShort instead
 func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
 	token, err := o.TokenRepository.GetToken()
@@ -439,6 +468,22 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) 
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (o *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+	}
+	created, err := o.Client.Order.AdminCreateUserOrderShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {

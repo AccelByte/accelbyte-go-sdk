@@ -7,6 +7,7 @@ package platformclientmodels
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -46,6 +47,9 @@ type WalletTransactionInfo struct {
 	// Reason of the transaction
 	Reason string `json:"reason,omitempty"`
 
+	// Transaction amount details
+	TransactionAmountDetails []*TransactionAmountDetails `json:"transactionAmountDetails"`
+
 	// Transaction updated time
 	// Required: true
 	// Format: date-time
@@ -59,10 +63,6 @@ type WalletTransactionInfo struct {
 	// Required: true
 	// Enum: [CREDIT PAYMENT DEBIT]
 	WalletAction *string `json:"walletAction"`
-
-	// wallet id
-	// Required: true
-	WalletID *string `json:"walletId"`
 }
 
 // Validate validates this wallet transaction info
@@ -89,6 +89,10 @@ func (m *WalletTransactionInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTransactionAmountDetails(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -98,10 +102,6 @@ func (m *WalletTransactionInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateWalletAction(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateWalletID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -155,6 +155,31 @@ func (m *WalletTransactionInfo) validateOperator(formats strfmt.Registry) error 
 
 	if err := validate.Required("operator", "body", m.Operator); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WalletTransactionInfo) validateTransactionAmountDetails(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TransactionAmountDetails) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TransactionAmountDetails); i++ {
+		if swag.IsZero(m.TransactionAmountDetails[i]) { // not required
+			continue
+		}
+
+		if m.TransactionAmountDetails[i] != nil {
+			if err := m.TransactionAmountDetails[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("transactionAmountDetails" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -222,15 +247,6 @@ func (m *WalletTransactionInfo) validateWalletAction(formats strfmt.Registry) er
 
 	// value enum
 	if err := m.validateWalletActionEnum("walletAction", "body", *m.WalletAction); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WalletTransactionInfo) validateWalletID(formats strfmt.Registry) error {
-
-	if err := validate.Required("walletId", "body", m.WalletID); err != nil {
 		return err
 	}
 

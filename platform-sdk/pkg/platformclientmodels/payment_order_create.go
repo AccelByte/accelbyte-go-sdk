@@ -56,6 +56,9 @@ type PaymentOrderCreate struct {
 	// TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox
 	OmitNotification bool `json:"omitNotification"`
 
+	// platform
+	Platform string `json:"platform,omitempty"`
+
 	// Price of order
 	// Required: true
 	Price *int32 `json:"price"`

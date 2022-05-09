@@ -104,6 +104,9 @@ type PaymentOrder struct {
 	// payment station Url
 	PaymentStationURL string `json:"paymentStationUrl,omitempty"`
 
+	// platform
+	Platform string `json:"platform,omitempty"`
+
 	// price
 	Price int32 `json:"price,omitempty"`
 

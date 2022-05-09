@@ -39,6 +39,10 @@ type ClientmodelClientCreationV3Request struct {
 	// Required: true
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
 
+	// client platform
+	// Required: true
+	ClientPlatform *string `json:"clientPlatform"`
+
 	// deletable
 	Deletable bool `json:"deletable"`
 
@@ -80,6 +84,10 @@ func (m *ClientmodelClientCreationV3Request) Validate(formats strfmt.Registry) e
 	}
 
 	if err := m.validateClientPermissions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientPlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -161,6 +169,15 @@ func (m *ClientmodelClientCreationV3Request) validateClientPermissions(formats s
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientCreationV3Request) validateClientPlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("clientPlatform", "body", m.ClientPlatform); err != nil {
+		return err
 	}
 
 	return nil

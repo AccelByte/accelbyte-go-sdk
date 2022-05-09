@@ -300,6 +300,17 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). default value: true&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPlatform&lt;/strong&gt;: available client platform (optional). default value: &#34;&#34;
+  			&lt;ul&gt;
+				&lt;li&gt;Playstation&lt;/li&gt;
+				&lt;li&gt;Xbox&lt;/li&gt;
+				&lt;li&gt;Steam&lt;/li&gt;
+				&lt;li&gt;Epic&lt;/li&gt;
+				&lt;li&gt;IOS&lt;/li&gt;
+				&lt;li&gt;GooglePlay&lt;/li&gt;
+				&lt;li&gt;Nintendo&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -912,6 +923,17 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). e.g. true&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPlatform&lt;/strong&gt; : available client platform (optional). default value: &#34;&#34;.
+  			&lt;ul&gt;
+				&lt;li&gt;Playstation&lt;/li&gt;
+				&lt;li&gt;Xbox&lt;/li&gt;
+				&lt;li&gt;Steam&lt;/li&gt;
+				&lt;li&gt;Epic&lt;/li&gt;
+				&lt;li&gt;IOS&lt;/li&gt;
+				&lt;li&gt;GooglePlay&lt;/li&gt;
+				&lt;li&gt;Nintendo&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */

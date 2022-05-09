@@ -1289,6 +1289,8 @@ func (a *Client) GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, a
 Required Scope: social
 
 Get all sessions in a channel.
+
+if party_id value empty/null, field will not show in response body.
 */
 func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllSessionsInChannelOK, *GetAllSessionsInChannelBadRequest, *GetAllSessionsInChannelUnauthorized, *GetAllSessionsInChannelForbidden, *GetAllSessionsInChannelNotFound, *GetAllSessionsInChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1397,6 +1399,8 @@ func (a *Client) GetAllSessionsInChannelShort(params *GetAllSessionsInChannelPar
 Required Scope: social
 
 Get session history detailed.
+
+if party_id value empty/null, field will not show in response body.
 */
 func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, *GetSessionHistoryDetailedBadRequest, *GetSessionHistoryDetailedUnauthorized, *GetSessionHistoryDetailedForbidden, *GetSessionHistoryDetailedNotFound, *GetSessionHistoryDetailedInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1937,6 +1941,8 @@ call this periodically as long as it has a session in queue to see
 if there are new players being matched to the session.
 
 Possible session statuses are &#34;sessionInQueue&#34;, &#34;sessionFull&#34;, and &#34;sessionTimeout&#34;.
+
+if party_id value empty/null, field will not show in response body.
 
 */
 func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, *QuerySessionHandlerBadRequest, *QuerySessionHandlerUnauthorized, *QuerySessionHandlerForbidden, *QuerySessionHandlerNotFound, *QuerySessionHandlerInternalServerError, error) {

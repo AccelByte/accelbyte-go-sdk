@@ -51,6 +51,8 @@ type ClientService interface {
 	FeatureItemShort(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, error)
 	GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
 	GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
+	GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error)
+	GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error)
 	GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, *GetItemNotFound, error)
 	GetItemShort(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, error)
 	GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, *GetItemByAppIDNotFound, error)
@@ -984,6 +986,85 @@ func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthIn
 	switch v := result.(type) {
 
 	case *GetAppOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetBulkItemIDBySkus gets multiple item Id by sku
+
+  This API is used to get an list of itemId by list of sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetBulkItemIDBySkusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getBulkItemIdBySkus",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/itemId/bySkus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBulkItemIDBySkusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetBulkItemIDBySkusOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetBulkItemIDBySkusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getBulkItemIdBySkus",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/itemId/bySkus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBulkItemIDBySkusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetBulkItemIDBySkusOK:
 		return v, nil
 
 	default:

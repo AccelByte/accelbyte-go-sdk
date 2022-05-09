@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ClientmodelClientUpdateV3Request clientmodel client update v3 request
@@ -30,6 +31,10 @@ type ClientmodelClientUpdateV3Request struct {
 	// client permissions
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
 
+	// client platform
+	// Required: true
+	ClientPlatform *string `json:"clientPlatform"`
+
 	// deletable
 	Deletable bool `json:"deletable"`
 
@@ -45,6 +50,10 @@ func (m *ClientmodelClientUpdateV3Request) Validate(formats strfmt.Registry) err
 	var res []error
 
 	if err := m.validateClientPermissions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientPlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -74,6 +83,15 @@ func (m *ClientmodelClientUpdateV3Request) validateClientPermissions(formats str
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientUpdateV3Request) validateClientPlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("clientPlatform", "body", m.ClientPlatform); err != nil {
+		return err
 	}
 
 	return nil

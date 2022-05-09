@@ -61,20 +61,20 @@ func NewListUserWalletTransactionsOK() *ListUserWalletTransactionsOK {
   successful operation
 */
 type ListUserWalletTransactionsOK struct {
-	Payload *platformclientmodels.WalletTransactionPagingSlicedResult
+	Payload *platformclientmodels.DetailedWalletTransactionPagingSlicedResult
 }
 
 func (o *ListUserWalletTransactionsOK) Error() string {
 	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsOK  %+v", 200, o.Payload)
 }
 
-func (o *ListUserWalletTransactionsOK) GetPayload() *platformclientmodels.WalletTransactionPagingSlicedResult {
+func (o *ListUserWalletTransactionsOK) GetPayload() *platformclientmodels.DetailedWalletTransactionPagingSlicedResult {
 	return o.Payload
 }
 
 func (o *ListUserWalletTransactionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(platformclientmodels.WalletTransactionPagingSlicedResult)
+	o.Payload = new(platformclientmodels.DetailedWalletTransactionPagingSlicedResult)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

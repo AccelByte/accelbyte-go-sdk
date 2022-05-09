@@ -64,6 +64,11 @@ for the list currencies operation typically these are written to a http.Request
 */
 type ListCurrenciesParams struct {
 
+	/*CurrencyType
+	  currencyType
+
+	*/
+	CurrencyType *string
 	/*Namespace
 	  Namespace
 
@@ -114,6 +119,17 @@ func (o *ListCurrenciesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCurrencyType adds the currencyType to the list currencies params
+func (o *ListCurrenciesParams) WithCurrencyType(currencyType *string) *ListCurrenciesParams {
+	o.SetCurrencyType(currencyType)
+	return o
+}
+
+// SetCurrencyType adds the currencyType to the list currencies params
+func (o *ListCurrenciesParams) SetCurrencyType(currencyType *string) {
+	o.CurrencyType = currencyType
+}
+
 // WithNamespace adds the namespace to the list currencies params
 func (o *ListCurrenciesParams) WithNamespace(namespace string) *ListCurrenciesParams {
 	o.SetNamespace(namespace)
@@ -132,6 +148,22 @@ func (o *ListCurrenciesParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.CurrencyType != nil {
+
+		// query param currencyType
+		var qrCurrencyType string
+		if o.CurrencyType != nil {
+			qrCurrencyType = *o.CurrencyType
+		}
+		qCurrencyType := qrCurrencyType
+		if qCurrencyType != "" {
+			if err := r.SetQueryParam("currencyType", qCurrencyType); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

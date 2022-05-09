@@ -41,6 +41,10 @@ type FulfillmentRequest struct {
 	// orderNo
 	OrderNo string `json:"orderNo,omitempty"`
 
+	// origin
+	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	Origin string `json:"origin,omitempty"`
+
 	// quantity
 	// Required: true
 	Quantity *int32 `json:"quantity"`
@@ -69,6 +73,10 @@ func (m *FulfillmentRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOrder(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOrigin(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -116,6 +124,76 @@ func (m *FulfillmentRequest) validateOrder(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var fulfillmentRequestTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		fulfillmentRequestTypeOriginPropEnum = append(fulfillmentRequestTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// FulfillmentRequestOriginPlaystation captures enum value "Playstation"
+	FulfillmentRequestOriginPlaystation string = "Playstation"
+
+	// FulfillmentRequestOriginXbox captures enum value "Xbox"
+	FulfillmentRequestOriginXbox string = "Xbox"
+
+	// FulfillmentRequestOriginSteam captures enum value "Steam"
+	FulfillmentRequestOriginSteam string = "Steam"
+
+	// FulfillmentRequestOriginEpic captures enum value "Epic"
+	FulfillmentRequestOriginEpic string = "Epic"
+
+	// FulfillmentRequestOriginStadia captures enum value "Stadia"
+	FulfillmentRequestOriginStadia string = "Stadia"
+
+	// FulfillmentRequestOriginIOS captures enum value "IOS"
+	FulfillmentRequestOriginIOS string = "IOS"
+
+	// FulfillmentRequestOriginGooglePlay captures enum value "GooglePlay"
+	FulfillmentRequestOriginGooglePlay string = "GooglePlay"
+
+	// FulfillmentRequestOriginTwitch captures enum value "Twitch"
+	FulfillmentRequestOriginTwitch string = "Twitch"
+
+	// FulfillmentRequestOriginNintendo captures enum value "Nintendo"
+	FulfillmentRequestOriginNintendo string = "Nintendo"
+
+	// FulfillmentRequestOriginSystem captures enum value "System"
+	FulfillmentRequestOriginSystem string = "System"
+
+	// FulfillmentRequestOriginOther captures enum value "Other"
+	FulfillmentRequestOriginOther string = "Other"
+)
+
+// prop value enum
+func (m *FulfillmentRequest) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, fulfillmentRequestTypeOriginPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *FulfillmentRequest) validateOrigin(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Origin) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateOriginEnum("origin", "body", m.Origin); err != nil {
+		return err
 	}
 
 	return nil

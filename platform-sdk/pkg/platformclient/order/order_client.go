@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminCreateUserOrder(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, *AdminCreateUserOrderBadRequest, *AdminCreateUserOrderForbidden, *AdminCreateUserOrderNotFound, *AdminCreateUserOrderConflict, *AdminCreateUserOrderUnprocessableEntity, error)
+	AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error)
 	CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
 	CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
 	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
@@ -73,6 +75,110 @@ type ClientService interface {
 	UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AdminCreateUserOrder admins create an order
+
+  Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;sandbox default value is &lt;b&gt;false&lt;/b&gt;&lt;/li&gt;&lt;li&gt;platform default value is &lt;b&gt;Other&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) AdminCreateUserOrder(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, *AdminCreateUserOrderBadRequest, *AdminCreateUserOrderForbidden, *AdminCreateUserOrderNotFound, *AdminCreateUserOrderConflict, *AdminCreateUserOrderUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminCreateUserOrder",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateUserOrderCreated:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminCreateUserOrderBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminCreateUserOrderForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminCreateUserOrderNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminCreateUserOrderConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminCreateUserOrderUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminCreateUserOrder",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateUserOrderCreated:
+		return v, nil
+	case *AdminCreateUserOrderBadRequest:
+		return nil, v
+	case *AdminCreateUserOrderForbidden:
+		return nil, v
+	case *AdminCreateUserOrderNotFound:
+		return nil, v
+	case *AdminCreateUserOrderConflict:
+		return nil, v
+	case *AdminCreateUserOrderUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

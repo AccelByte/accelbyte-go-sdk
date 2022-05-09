@@ -99,6 +99,11 @@ type QueryWalletsParams struct {
 	Namespace string
 	/*Offset*/
 	Offset *int32
+	/*Origin
+	  balance origin
+
+	*/
+	Origin *string
 	/*UserID
 	  userId
 
@@ -193,6 +198,17 @@ func (o *QueryWalletsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithOrigin adds the origin to the query wallets params
+func (o *QueryWalletsParams) WithOrigin(origin *string) *QueryWalletsParams {
+	o.SetOrigin(origin)
+	return o
+}
+
+// SetOrigin adds the origin to the query wallets params
+func (o *QueryWalletsParams) SetOrigin(origin *string) {
+	o.Origin = origin
+}
+
 // WithUserID adds the userID to the query wallets params
 func (o *QueryWalletsParams) WithUserID(userID *string) *QueryWalletsParams {
 	o.SetUserID(userID)
@@ -259,6 +275,22 @@ func (o *QueryWalletsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Origin != nil {
+
+		// query param origin
+		var qrOrigin string
+		if o.Origin != nil {
+			qrOrigin = *o.Origin
+		}
+		qOrigin := qrOrigin
+		if qOrigin != "" {
+			if err := r.SetQueryParam("origin", qOrigin); err != nil {
 				return err
 			}
 		}

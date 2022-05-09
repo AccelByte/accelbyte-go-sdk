@@ -327,6 +327,29 @@ func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFrom
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateSettingsShort instead
+func (s *SessionService) UpdateSettings(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.UpdateSettings(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetRecentPlayerShort instead
 func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
 	token, err := s.TokenRepository.GetToken()
@@ -564,6 +587,22 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
 	ok, err := s.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (s *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.UpdateSettingsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

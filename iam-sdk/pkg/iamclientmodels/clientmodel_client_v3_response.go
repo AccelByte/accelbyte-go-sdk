@@ -39,6 +39,10 @@ type ClientmodelClientV3Response struct {
 	// Required: true
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
 
+	// client platform
+	// Required: true
+	ClientPlatform *string `json:"clientPlatform"`
+
 	// created at
 	// Required: true
 	// Format: date-time
@@ -87,6 +91,10 @@ func (m *ClientmodelClientV3Response) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateClientPermissions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientPlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -176,6 +184,15 @@ func (m *ClientmodelClientV3Response) validateClientPermissions(formats strfmt.R
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientV3Response) validateClientPlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("clientPlatform", "body", m.ClientPlatform); err != nil {
+		return err
 	}
 
 	return nil

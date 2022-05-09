@@ -55,20 +55,20 @@ func NewPublicGetWalletOK() *PublicGetWalletOK {
   successful operation
 */
 type PublicGetWalletOK struct {
-	Payload *platformclientmodels.WalletInfo
+	Payload *platformclientmodels.PlatformWallet
 }
 
 func (o *PublicGetWalletOK) Error() string {
 	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}][%d] publicGetWalletOK  %+v", 200, o.Payload)
 }
 
-func (o *PublicGetWalletOK) GetPayload() *platformclientmodels.WalletInfo {
+func (o *PublicGetWalletOK) GetPayload() *platformclientmodels.PlatformWallet {
 	return o.Payload
 }
 
 func (o *PublicGetWalletOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(platformclientmodels.WalletInfo)
+	o.Payload = new(platformclientmodels.PlatformWallet)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

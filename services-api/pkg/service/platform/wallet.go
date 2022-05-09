@@ -20,6 +20,79 @@ type WalletService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetPlatformWalletConfigShort instead
+func (w *WalletService) GetPlatformWalletConfig(input *wallet.GetPlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	token, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.GetPlatformWalletConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use UpdatePlatformWalletConfigShort instead
+func (w *WalletService) UpdatePlatformWalletConfig(input *wallet.UpdatePlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	token, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.UpdatePlatformWalletConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use ResetPlatformWalletConfigShort instead
+func (w *WalletService) ResetPlatformWalletConfig(input *wallet.ResetPlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	token, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.ResetPlatformWalletConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use QueryUserCurrencyWalletsShort instead
+func (w *WalletService) QueryUserCurrencyWallets(input *wallet.QueryUserCurrencyWalletsParams) ([]*platformclientmodels.CurrencyWallet, error) {
+	token, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.QueryUserCurrencyWallets(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use ListUserCurrencyTransactionsShort instead
+func (w *WalletService) ListUserCurrencyTransactions(input *wallet.ListUserCurrencyTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	token, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := w.Client.Wallet.ListUserCurrencyTransactions(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use CheckWalletShort instead
 func (w *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
 	token, err := w.TokenRepository.GetToken()
@@ -64,7 +137,7 @@ func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (
 }
 
 // Deprecated: Use PayWithUserWalletShort instead
-func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	token, err := w.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -167,7 +240,7 @@ func (w *WalletService) EnableUserWallet(input *wallet.EnableUserWalletParams) e
 }
 
 // Deprecated: Use ListUserWalletTransactionsShort instead
-func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.DetailedWalletTransactionPagingSlicedResult, error) {
 	token, err := w.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -215,7 +288,7 @@ func (w *WalletService) GetWallet(input *wallet.GetWalletParams) (*platformclien
 }
 
 // Deprecated: Use PublicGetMyWalletShort instead
-func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	token, err := w.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -229,7 +302,7 @@ func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams)
 }
 
 // Deprecated: Use PublicGetWalletShort instead
-func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	token, err := w.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -249,6 +322,86 @@ func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicLis
 		return nil, err
 	}
 	ok, err := w.Client.Wallet.PublicListUserWalletTransactions(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) GetPlatformWalletConfigShort(input *wallet.GetPlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+	}
+	ok, err := w.Client.Wallet.GetPlatformWalletConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) UpdatePlatformWalletConfigShort(input *wallet.UpdatePlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+	}
+	ok, err := w.Client.Wallet.UpdatePlatformWalletConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) ResetPlatformWalletConfigShort(input *wallet.ResetPlatformWalletConfigParams) (*platformclientmodels.PlatformWalletConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+	}
+	ok, err := w.Client.Wallet.ResetPlatformWalletConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) QueryUserCurrencyWalletsShort(input *wallet.QueryUserCurrencyWalletsParams) ([]*platformclientmodels.CurrencyWallet, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+	}
+	ok, err := w.Client.Wallet.QueryUserCurrencyWalletsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUserCurrencyTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+	}
+	ok, err := w.Client.Wallet.ListUserCurrencyTransactionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -288,7 +441,7 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -368,7 +521,7 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 	return nil
 }
 
-func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.DetailedWalletTransactionPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -416,7 +569,7 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platform
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -432,7 +585,7 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

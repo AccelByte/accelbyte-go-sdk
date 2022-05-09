@@ -64,6 +64,11 @@ for the public list currencies operation typically these are written to a http.R
 */
 type PublicListCurrenciesParams struct {
 
+	/*CurrencyType
+	  currencyType
+
+	*/
+	CurrencyType *string
 	/*Namespace
 	  Namespace
 
@@ -114,6 +119,17 @@ func (o *PublicListCurrenciesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCurrencyType adds the currencyType to the public list currencies params
+func (o *PublicListCurrenciesParams) WithCurrencyType(currencyType *string) *PublicListCurrenciesParams {
+	o.SetCurrencyType(currencyType)
+	return o
+}
+
+// SetCurrencyType adds the currencyType to the public list currencies params
+func (o *PublicListCurrenciesParams) SetCurrencyType(currencyType *string) {
+	o.CurrencyType = currencyType
+}
+
 // WithNamespace adds the namespace to the public list currencies params
 func (o *PublicListCurrenciesParams) WithNamespace(namespace string) *PublicListCurrenciesParams {
 	o.SetNamespace(namespace)
@@ -132,6 +148,22 @@ func (o *PublicListCurrenciesParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.CurrencyType != nil {
+
+		// query param currencyType
+		var qrCurrencyType string
+		if o.CurrencyType != nil {
+			qrCurrencyType = *o.CurrencyType
+		}
+		qCurrencyType := qrCurrencyType
+		if qCurrencyType != "" {
+			if err := r.SetQueryParam("currencyType", qCurrencyType); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

@@ -139,7 +139,7 @@ type SearchChannelSpecificContentParams struct {
 	  content tag
 
 	*/
-	Tags *string
+	Tags []string
 	/*Type
 	  content type
 
@@ -306,13 +306,13 @@ func (o *SearchChannelSpecificContentParams) SetSubtype(subtype *string) {
 }
 
 // WithTags adds the tags to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) WithTags(tags *string) *SearchChannelSpecificContentParams {
+func (o *SearchChannelSpecificContentParams) WithTags(tags []string) *SearchChannelSpecificContentParams {
 	o.SetTags(tags)
 	return o
 }
 
 // SetTags adds the tags to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) SetTags(tags *string) {
+func (o *SearchChannelSpecificContentParams) SetTags(tags []string) {
 	o.Tags = tags
 }
 
@@ -484,20 +484,12 @@ func (o *SearchChannelSpecificContentParams) WriteToRequest(r runtime.ClientRequ
 
 	}
 
-	if o.Tags != nil {
+	valuesTags := o.Tags
 
-		// query param tags
-		var qrTags string
-		if o.Tags != nil {
-			qrTags = *o.Tags
-		}
-		qTags := qrTags
-		if qTags != "" {
-			if err := r.SetQueryParam("tags", qTags); err != nil {
-				return err
-			}
-		}
-
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	if o.Type != nil {

@@ -174,6 +174,20 @@ func (i *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetBulkItemIDBySkusShort instead
+func (i *ItemService) GetBulkItemIDBySkus(input *item.GetBulkItemIDBySkusParams) ([]*platformclientmodels.ItemID, error) {
+	token, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetBulkItemIDBySkus(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use BulkGetLocaleItemsShort instead
 func (i *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	token, err := i.TokenRepository.GetToken()
@@ -704,6 +718,22 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*pl
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
 	ok, err := i.Client.Item.GetItemIDBySkuShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (i *ItemService) GetBulkItemIDBySkusShort(input *item.GetBulkItemIDBySkusParams) ([]*platformclientmodels.ItemID, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.Item.GetBulkItemIDBySkusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

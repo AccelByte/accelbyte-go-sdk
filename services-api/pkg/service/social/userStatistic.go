@@ -71,6 +71,26 @@ func (u *UserStatisticService) BulkIncUserStatItemValue(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkFetchOrDefaultStatItemsShort instead
+func (u *UserStatisticService) BulkFetchOrDefaultStatItems(input *user_statistic.BulkFetchOrDefaultStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, unprocessableEntity, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItems(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use BulkResetUserStatItemShort instead
 func (u *UserStatisticService) BulkResetUserStatItem(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	token, err := u.TokenRepository.GetToken()
@@ -355,6 +375,29 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItems(input *user_statist
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicQueryUserStatItems1Short instead
+func (u *UserStatisticService) PublicQueryUserStatItems1(input *user_statistic.PublicQueryUserStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, unprocessableEntity, err := u.Client.UserStatistic.PublicQueryUserStatItems1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use PublicBulkIncUserStatItem1Short instead
 func (u *UserStatisticService) PublicBulkIncUserStatItem1(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	token, err := u.TokenRepository.GetToken()
@@ -532,6 +575,26 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkFetchOrDefaultStatItems1Short instead
+func (u *UserStatisticService) BulkFetchOrDefaultStatItems1(input *user_statistic.BulkFetchOrDefaultStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, unprocessableEntity, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItems1(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use BulkUpdateUserStatItemShort instead
 func (u *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	token, err := u.TokenRepository.GetToken()
@@ -632,6 +695,29 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1(input *user_statistic.Bul
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicQueryUserStatItems2Short instead
+func (u *UserStatisticService) PublicQueryUserStatItems2(input *user_statistic.PublicQueryUserStatItems2Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, unprocessableEntity, err := u.Client.UserStatistic.PublicQueryUserStatItems2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use BulkUpdateUserStatItem2Short instead
 func (u *UserStatisticService) BulkUpdateUserStatItem2(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	token, err := u.TokenRepository.GetToken()
@@ -716,6 +802,22 @@ func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statist
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItemValueShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (u *UserStatisticService) BulkFetchOrDefaultStatItemsShort(input *user_statistic.BulkFetchOrDefaultStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -979,6 +1081,22 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_st
 	return ok.GetPayload(), nil
 }
 
+func (u *UserStatisticService) PublicQueryUserStatItems1Short(input *user_statistic.PublicQueryUserStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserStatistic.PublicQueryUserStatItems1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -1123,6 +1241,22 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 	return ok.GetPayload(), nil
 }
 
+func (u *UserStatisticService) BulkFetchOrDefaultStatItems1Short(input *user_statistic.BulkFetchOrDefaultStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItems1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -1196,6 +1330,22 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statisti
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItem1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (u *UserStatisticService) PublicQueryUserStatItems2Short(input *user_statistic.PublicQueryUserStatItems2Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserStatistic.PublicQueryUserStatItems2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -35,6 +35,10 @@ type Client struct {
 type ClientService interface {
 	BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, *BulkCreateUserStatItemsUnprocessableEntity, error)
 	BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error)
+	BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, *BulkFetchOrDefaultStatItemsNotFound, *BulkFetchOrDefaultStatItemsUnprocessableEntity, error)
+	BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, error)
+	BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, *BulkFetchOrDefaultStatItems1NotFound, *BulkFetchOrDefaultStatItems1UnprocessableEntity, error)
+	BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, error)
 	BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, *BulkFetchStatItemsUnprocessableEntity, error)
 	BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, error)
 	BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, *BulkFetchStatItems1UnprocessableEntity, error)
@@ -95,6 +99,10 @@ type ClientService interface {
 	PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error)
 	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
 	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
+	PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, error)
+	PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error)
+	PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, error)
+	PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error)
 	ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, error)
 	ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error)
 	ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, error)
@@ -184,6 +192,190 @@ func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsPar
 	case *BulkCreateUserStatItemsOK:
 		return v, nil
 	case *BulkCreateUserStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  BulkFetchOrDefaultStatItems bulks fetch user stat item values
+
+  Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
+NOTE: If stat item does not exist, will return default value. Other detail info:
++ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
++ *Returns*: list of user&#39;s stat item values
+*/
+func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, *BulkFetchOrDefaultStatItemsNotFound, *BulkFetchOrDefaultStatItemsUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchOrDefaultStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchOrDefaultStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchOrDefaultStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchOrDefaultStatItemsOK:
+		return v, nil, nil, nil
+
+	case *BulkFetchOrDefaultStatItemsNotFound:
+		return nil, v, nil, nil
+
+	case *BulkFetchOrDefaultStatItemsUnprocessableEntity:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchOrDefaultStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchOrDefaultStatItems",
+		Method:             "GET",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchOrDefaultStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchOrDefaultStatItemsOK:
+		return v, nil
+	case *BulkFetchOrDefaultStatItemsNotFound:
+		return nil, v
+	case *BulkFetchOrDefaultStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  BulkFetchOrDefaultStatItems1 bulks fetch user stat item values
+
+  Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
+NOTE: If stat item does not exist, will return default value. Other detail info:
++ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
++ *Returns*: list of user&#39;s stat item values
+*/
+func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, *BulkFetchOrDefaultStatItems1NotFound, *BulkFetchOrDefaultStatItems1UnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchOrDefaultStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchOrDefaultStatItems_1",
+		Method:             "GET",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchOrDefaultStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchOrDefaultStatItems1OK:
+		return v, nil, nil, nil
+
+	case *BulkFetchOrDefaultStatItems1NotFound:
+		return nil, v, nil, nil
+
+	case *BulkFetchOrDefaultStatItems1UnprocessableEntity:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchOrDefaultStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchOrDefaultStatItems_1",
+		Method:             "GET",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchOrDefaultStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchOrDefaultStatItems1OK:
+		return v, nil
+	case *BulkFetchOrDefaultStatItems1NotFound:
+		return nil, v
+	case *BulkFetchOrDefaultStatItems1UnprocessableEntity:
 		return nil, v
 
 	default:
@@ -2835,6 +3027,194 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 
 	case *PublicQueryUserStatItemsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicQueryUserStatItems1 publics list user s stat items
+
+  Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserStatItems_1",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserStatItems1OK:
+		return v, nil, nil, nil, nil
+
+	case *PublicQueryUserStatItems1BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicQueryUserStatItems1NotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicQueryUserStatItems1UnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserStatItems_1",
+		Method:             "GET",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserStatItems1OK:
+		return v, nil
+	case *PublicQueryUserStatItems1BadRequest:
+		return nil, v
+	case *PublicQueryUserStatItems1NotFound:
+		return nil, v
+	case *PublicQueryUserStatItems1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicQueryUserStatItems2 publics list user s stat items
+
+  Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserStatItems2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserStatItems_2",
+		Method:             "GET",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserStatItems2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserStatItems2OK:
+		return v, nil, nil, nil, nil
+
+	case *PublicQueryUserStatItems2BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicQueryUserStatItems2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicQueryUserStatItems2UnprocessableEntity:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserStatItems2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserStatItems_2",
+		Method:             "GET",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserStatItems2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserStatItems2OK:
+		return v, nil
+	case *PublicQueryUserStatItems2BadRequest:
+		return nil, v
+	case *PublicQueryUserStatItems2NotFound:
+		return nil, v
+	case *PublicQueryUserStatItems2UnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

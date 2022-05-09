@@ -6,6 +6,8 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,10 @@ type PaymentRequest struct {
 	// Required: true
 	// Minimum: 0
 	Amount *int64 `json:"amount"`
+
+	// wallet platform, base on platform wallet rule to payment wallet
+	// Enum: [Playstation Xbox Steam Epic IOS GooglePlay Nintendo Other]
+	WalletPlatform string `json:"walletPlatform,omitempty"`
 }
 
 // Validate validates this payment request
@@ -28,6 +34,10 @@ func (m *PaymentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAmount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWalletPlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,6 +54,67 @@ func (m *PaymentRequest) validateAmount(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinimumInt("amount", "body", int64(*m.Amount), 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var paymentRequestTypeWalletPlatformPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","IOS","GooglePlay","Nintendo","Other"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		paymentRequestTypeWalletPlatformPropEnum = append(paymentRequestTypeWalletPlatformPropEnum, v)
+	}
+}
+
+const (
+
+	// PaymentRequestWalletPlatformPlaystation captures enum value "Playstation"
+	PaymentRequestWalletPlatformPlaystation string = "Playstation"
+
+	// PaymentRequestWalletPlatformXbox captures enum value "Xbox"
+	PaymentRequestWalletPlatformXbox string = "Xbox"
+
+	// PaymentRequestWalletPlatformSteam captures enum value "Steam"
+	PaymentRequestWalletPlatformSteam string = "Steam"
+
+	// PaymentRequestWalletPlatformEpic captures enum value "Epic"
+	PaymentRequestWalletPlatformEpic string = "Epic"
+
+	// PaymentRequestWalletPlatformIOS captures enum value "IOS"
+	PaymentRequestWalletPlatformIOS string = "IOS"
+
+	// PaymentRequestWalletPlatformGooglePlay captures enum value "GooglePlay"
+	PaymentRequestWalletPlatformGooglePlay string = "GooglePlay"
+
+	// PaymentRequestWalletPlatformNintendo captures enum value "Nintendo"
+	PaymentRequestWalletPlatformNintendo string = "Nintendo"
+
+	// PaymentRequestWalletPlatformOther captures enum value "Other"
+	PaymentRequestWalletPlatformOther string = "Other"
+)
+
+// prop value enum
+func (m *PaymentRequest) validateWalletPlatformEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, paymentRequestTypeWalletPlatformPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *PaymentRequest) validateWalletPlatform(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.WalletPlatform) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateWalletPlatformEnum("walletPlatform", "body", m.WalletPlatform); err != nil {
 		return err
 	}
 

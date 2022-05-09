@@ -67,20 +67,20 @@ func NewPayWithUserWalletOK() *PayWithUserWalletOK {
   successful operation
 */
 type PayWithUserWalletOK struct {
-	Payload *platformclientmodels.WalletInfo
+	Payload *platformclientmodels.PlatformWallet
 }
 
 func (o *PayWithUserWalletOK) Error() string {
 	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletOK  %+v", 200, o.Payload)
 }
 
-func (o *PayWithUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
+func (o *PayWithUserWalletOK) GetPayload() *platformclientmodels.PlatformWallet {
 	return o.Payload
 }
 
 func (o *PayWithUserWalletOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(platformclientmodels.WalletInfo)
+	o.Payload = new(platformclientmodels.PlatformWallet)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -63,6 +63,8 @@ type ClientService interface {
 	RemovePlayerFromSessionShort(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, error)
 	UpdateSession(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, *UpdateSessionBadRequest, *UpdateSessionNotFound, *UpdateSessionInternalServerError, error)
 	UpdateSessionShort(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, error)
+	UpdateSettings(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, *UpdateSettingsBadRequest, *UpdateSettingsNotFound, *UpdateSettingsInternalServerError, error)
+	UpdateSettingsShort(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1494,6 +1496,104 @@ func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtim
 	case *UpdateSessionNotFound:
 		return nil, v
 	case *UpdateSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateSettings updates settings
+
+  Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
+
+Required scope: social
+
+Update game session, used to update OtherSettings
+*/
+func (a *Client) UpdateSettings(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, *UpdateSettingsBadRequest, *UpdateSettingsNotFound, *UpdateSettingsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSettingsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateSettings",
+		Method:             "PUT",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSettingsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSettingsOK:
+		return v, nil, nil, nil, nil
+
+	case *UpdateSettingsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *UpdateSettingsNotFound:
+		return nil, nil, v, nil, nil
+
+	case *UpdateSettingsInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSettingsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateSettings",
+		Method:             "PUT",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSettingsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSettingsOK:
+		return v, nil
+	case *UpdateSettingsBadRequest:
+		return nil, v
+	case *UpdateSettingsNotFound:
+		return nil, v
+	case *UpdateSettingsInternalServerError:
 		return nil, v
 
 	default:

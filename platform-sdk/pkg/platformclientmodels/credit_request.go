@@ -24,6 +24,14 @@ type CreditRequest struct {
 	// Minimum: 1
 	Amount *int64 `json:"amount"`
 
+	// this amount expire time, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	// Format: date-time
+	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
+
+	// origin, balance origin decided on the type of wallet, default is System
+	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	Origin string `json:"origin,omitempty"`
+
 	// reason, max length is 127
 	Reason string `json:"reason,omitempty"`
 
@@ -37,6 +45,14 @@ func (m *CreditRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAmount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExpireAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOrigin(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,6 +73,89 @@ func (m *CreditRequest) validateAmount(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinimumInt("amount", "body", int64(*m.Amount), 1, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CreditRequest) validateExpireAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ExpireAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("expireAt", "body", "date-time", m.ExpireAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var creditRequestTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		creditRequestTypeOriginPropEnum = append(creditRequestTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// CreditRequestOriginPlaystation captures enum value "Playstation"
+	CreditRequestOriginPlaystation string = "Playstation"
+
+	// CreditRequestOriginXbox captures enum value "Xbox"
+	CreditRequestOriginXbox string = "Xbox"
+
+	// CreditRequestOriginSteam captures enum value "Steam"
+	CreditRequestOriginSteam string = "Steam"
+
+	// CreditRequestOriginEpic captures enum value "Epic"
+	CreditRequestOriginEpic string = "Epic"
+
+	// CreditRequestOriginStadia captures enum value "Stadia"
+	CreditRequestOriginStadia string = "Stadia"
+
+	// CreditRequestOriginIOS captures enum value "IOS"
+	CreditRequestOriginIOS string = "IOS"
+
+	// CreditRequestOriginGooglePlay captures enum value "GooglePlay"
+	CreditRequestOriginGooglePlay string = "GooglePlay"
+
+	// CreditRequestOriginTwitch captures enum value "Twitch"
+	CreditRequestOriginTwitch string = "Twitch"
+
+	// CreditRequestOriginNintendo captures enum value "Nintendo"
+	CreditRequestOriginNintendo string = "Nintendo"
+
+	// CreditRequestOriginSystem captures enum value "System"
+	CreditRequestOriginSystem string = "System"
+
+	// CreditRequestOriginOther captures enum value "Other"
+	CreditRequestOriginOther string = "Other"
+)
+
+// prop value enum
+func (m *CreditRequest) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, creditRequestTypeOriginPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *CreditRequest) validateOrigin(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Origin) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateOriginEnum("origin", "body", m.Origin); err != nil {
 		return err
 	}
 

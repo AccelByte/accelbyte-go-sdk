@@ -46,5 +46,6 @@ func getBody(body io.ReadCloser) io.ReadCloser {
 	if body == nil {
 		return NewStringBody("")
 	}
+
 	return body
 }

@@ -14,11 +14,10 @@ import (
 )
 
 var (
-	token           iamclientmodels.OauthmodelTokenResponseV3
-	ConfigRepo      ConfigRepositoryImplTest
-	anythingService AnyhingService
-	TestService     = &TestWrapperService{
-		Client:           anythingService,
+	token       iamclientmodels.OauthmodelTokenResponseV3
+	ConfigRepo  ConfigRepositoryImplTest
+	TestService = &TestWrapperService{
+		Client:           NewClientWithBasePath("0.0.0.0:8080", ""),
 		ConfigRepository: &ConfigRepositoryImplTest{},
 		TokenRepository:  &TokenRepositoryImplTest{},
 	}
@@ -38,7 +37,7 @@ type ConfigRepositoryImplTest struct {
 }
 
 type TestWrapperService struct {
-	Client           AnyhingService
+	Client           *AnythingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
 }

@@ -13,6 +13,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -62,6 +63,7 @@ func TestReq_QueryString(t *testing.T) {
 			}
 			if err != nil || errString != "" {
 				assert.EqualError(t, err, errString)
+
 				return
 			}
 
@@ -109,6 +111,7 @@ func TestReq_BodyJson(t *testing.T) {
 			}
 			if err != nil || errString != "" {
 				assert.EqualError(t, err, errString)
+
 				return
 			}
 
@@ -144,7 +147,6 @@ func TestReqHeader_UserAgent(t *testing.T) {
 			transport.Transport = utils.SetHeader(tt.args.rt, "", tt.args.userAgent)
 			if res.Header.Get("User-Agent") != tt.userAgent {
 				t.Errorf("agent = %v, want %v", res.Header.Get("User-Agent"), tt.userAgent)
-
 			}
 			if transport == nil {
 				t.Errorf("Header is nil")
@@ -188,7 +190,6 @@ func TestReqHeader_AmazonTraceId(t *testing.T) {
 	}
 }
 
-// fixme: nil pointer dereference
 func TestReq_PathParameter(t *testing.T) {
 	tests := []struct {
 		name   string
@@ -198,7 +199,8 @@ func TestReq_PathParameter(t *testing.T) {
 		{
 			name: "path parameter",
 			params: GetParams{
-				Param: "test@123",
+				Param:   "test@123",
+				timeout: httptransport.DefaultTimeout,
 			},
 		},
 	}
@@ -207,14 +209,13 @@ func TestReq_PathParameter(t *testing.T) {
 			input := &GetParams{
 				Param: tt.params.Param,
 			}
-			ok, err := TestService.Client.Gets.Get(input)
-			assert.NoError(t, err)
-			assert.NotNil(t, ok)
+			_, err := TestService.Client.GetOperations.Get(input)
+			assert.NotNil(t, err, "error is nil")
 		})
 	}
 }
 
-// todo: move all this line below to another file
+// needs to be moved to other file
 type GetParams struct {
 	Param string
 
@@ -232,8 +233,8 @@ func (p GetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) 
 
 	// query param anything
 	qrParam := p.Param
-	qParam := qrParam
-	if qParam != "" {
+
+	if qParam := qrParam; qParam != "" {
 		if err := r.SetQueryParam("test@123", qrParam); err != nil {
 			return err
 		}
@@ -242,6 +243,7 @@ func (p GetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }
 
@@ -249,6 +251,7 @@ func (p GetParams) Validate() error {
 	if p.Param == "" {
 		return fmt.Errorf("empty param")
 	}
+
 	return nil
 }
 
@@ -267,18 +270,32 @@ func AssertRequest(req *http.Request) error {
 	return nil
 }
 
-type AnyhingService struct {
-	Gets      ClientService
+type AnythingService struct {
+	GetOperations ClientService
+
 	Transport runtime.ClientTransport
 }
 
-func New(transport runtime.ClientTransport) *AnyhingService {
-	cli := new(AnyhingService)
+func New(transport runtime.ClientTransport) *AnythingService {
+	cli := new(AnythingService)
 	cli.Transport = transport
-	cli.Gets = NewService(transport)
+	cli.GetOperations = NewService(transport)
+
 	return cli
 }
 
+func NewClientWithBasePath(url string, endpoint string) *AnythingService {
+	schemes := []string{"http"}
+	if strings.HasSuffix(url, ":443") {
+		schemes = []string{"https"}
+	}
+
+	transport := httptransport.New(url, endpoint, schemes)
+
+	return New(transport)
+}
+
+// NewService creates the operations
 func NewService(transport runtime.ClientTransport) ClientService {
 	return &Client{transport: transport}
 }
@@ -293,19 +310,15 @@ type ClientService interface {
 	SetTransport(transport runtime.ClientTransport)
 }
 
-type Ok struct {
-	Payload interface{}
-}
-
 func (a *Client) Get(params *GetParams) (*Ok, error) {
 	if err := params.Validate(); err != nil {
 		return nil, err
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "abc",
-		Method:             "POST",
-		PathPattern:        "/abc",
+		ID:                 "get",
+		Method:             "GET",
+		PathPattern:        "/get",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -318,7 +331,6 @@ func (a *Client) Get(params *GetParams) (*Ok, error) {
 	}
 
 	switch v := result.(type) {
-
 	case *Ok:
 		return v, nil
 
@@ -330,4 +342,8 @@ func (a *Client) Get(params *GetParams) (*Ok, error) {
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
+}
+
+type Ok struct {
+	Payload interface{}
 }

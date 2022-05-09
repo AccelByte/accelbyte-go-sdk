@@ -57,7 +57,7 @@ func TestResp_Success200(t *testing.T) {
 			},
 			want: Response{Response: http.Response{
 				StatusCode: 200,
-				Body:       bodyBuffer200, // todo: change to binary
+				Body:       bodyBuffer200,
 			}},
 		},
 	}
@@ -130,7 +130,6 @@ func TestResp_Success204(t *testing.T) {
 	}
 }
 
-// todo: body text html
 func TestResp_StatusCodes(t *testing.T) {
 	type args struct {
 		err  error
@@ -215,5 +214,6 @@ func NewStructBody(i interface{}) io.ReadCloser {
 	if err := json.NewEncoder(b).Encode(i); err != nil {
 		panic(fmt.Sprintf("Failed to json.Encode structure %+v", i))
 	}
+
 	return ioutil.NopCloser(b)
 }

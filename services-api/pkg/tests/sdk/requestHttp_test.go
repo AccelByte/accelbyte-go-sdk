@@ -32,10 +32,14 @@ func TestHttpBinRequest_BodyJson(t *testing.T) {
 }
 
 func get(t *testing.T, url string) []byte {
+	t.Helper()
+
 	return req(t, url, "GET", nil)
 }
 
 func req(t *testing.T, url, method string, body []byte) []byte {
+	t.Helper()
+
 	cl := &http.Client{}
 
 	r, err := http.NewRequest(method, url, bytes.NewReader(body))
@@ -49,5 +53,6 @@ func req(t *testing.T, url, method string, body []byte) []byte {
 
 	b, err := ioutil.ReadAll(resp.Body)
 	require.Nil(t, err, "failed to read response body")
+
 	return b
 }

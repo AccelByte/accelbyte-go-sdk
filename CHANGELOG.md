@@ -1,3 +1,35 @@
+<a name="v0.18.0"></a>
+## [v0.18.0] - 2022-05-10
+
+### Chore
+- gitignore tap test results
+- **api:** regenerate all services for justice 3.22
+- **cli:** regenerate all cli for justice 3.22
+- **sh-unit-tests:** regenerate sh unit tests for justice 3.22
+- **spec:** update spec files for justice 3.22
+- **test:** move cli test shell scripts
+
+### Docs
+- update CHANGELOG.md for v0.18.0 release
+- update doc index
+- **index:** add example column
+
+### Feat
+- add type message websocket
+- **api:** add multiple auth info
+- **cli:** generate lobby websocket and standalone mode
+- **sh-unit-tests:** add lobby websocket
+- **test:** add lobby ws
+- **test:** add unit test for core operation
+- **test:** add json response body
+- **websocket:** establish connection for mock-server
+- **wrapper:** generate lobby message model
+- **wrapper:** generate lobby wrapper
+
+### Fix
+- **lint:** whitespaces and godox
+
+
 <a name="v0.17.0"></a>
 ## [v0.17.0] - 2022-04-26
 
@@ -580,6 +612,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.18.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.17.0...v0.18.0
 [v0.17.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.16.0...v0.17.0
 [v0.16.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.1...v0.16.0
 [v0.15.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.0...v0.15.1

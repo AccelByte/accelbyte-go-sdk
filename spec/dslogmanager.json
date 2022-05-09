@@ -764,6 +764,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "job_id": {
+          "type": "string"
+        },
         "last_update": {
           "format": "date-time",
           "type": "string",
@@ -826,6 +829,7 @@
         "image_version",
         "ip",
         "is_override_game_version",
+        "job_id",
         "last_update",
         "match_id",
         "mem_limit",

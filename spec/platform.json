@@ -153,6 +153,7 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [CREATE]",
@@ -166,6 +167,8 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:WALLET [READ]": "ADMIN:NAMESPACE:{namespace}:WALLET [READ]",
+        "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]",
         "ADMIN:ORDER [READ]": "ADMIN:ORDER [READ]",
         "ADMIN:PAYMENT [READ]": "ADMIN:PAYMENT [READ]",
         "ADMIN:PAYMENT:CONFIG [CREATE]": "ADMIN:PAYMENT:CONFIG [CREATE]",
@@ -1961,6 +1964,17 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "currencyType",
+            "enum": [
+              "REAL",
+              "VIRTUAL"
+            ],
+            "in": "query",
+            "name": "currencyType",
+            "required": false,
             "type": "string"
           }
         ],
@@ -4938,6 +4952,72 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/items/itemId/bySkus": {
+      "get": {
+        "description": "This API is used to get an list of itemId by list of sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getBulkItemIdBySkus",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "default is published store id",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "list of sku",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "sku",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ItemId"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get multiple itemId by sku",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/items/locale/byIds": {
       "get": {
         "description": "This API is used to bulk get locale items. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -7741,6 +7821,204 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:PAYMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get platform wallet config list.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: wallet info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getPlatformWalletConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Other",
+              "Playstation",
+              "Steam",
+              "Xbox"
+            ],
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformWalletConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get platform wallet config list",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update platform wallet config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: platform wallet config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePlatformWalletConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Other",
+              "Playstation",
+              "Steam",
+              "Xbox"
+            ],
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlatformWalletConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformWalletConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update platform wallet config",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config/reset": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Reset platform wallet config to default config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: platform wallet config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "resetPlatformWalletConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Other",
+              "Playstation",
+              "Steam",
+              "Xbox"
+            ],
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformWalletConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Reset platform wallet config",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG"
         }
       }
     },
@@ -11948,6 +12226,95 @@
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER"
         }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;sandbox default value is \u0026lt;b\u0026gt;false\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;platform default value is \u0026lt;b\u0026gt;Other\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created order\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "adminCreateUserOrder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AdminOrderCreate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/OrderInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20016\u003c/td\u003e\u003ctd\u003eaction is banned\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e36141\u003c/td\u003e\u003ctd\u003eCurrency [{currencyCode}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49147\u003c/td\u003e\u003ctd\u003ePublished season does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Create an order",
+        "tags": [
+          "Order"
+        ],
+        "x-authorization": {
+          "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER"
+        }
       }
     },
     "/platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem": {
@@ -13578,12 +13945,154 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/summary": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get user currency wallet summary.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: currency wallet summary\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryUserCurrencyWallets",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/CurrencyWallet"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user currency wallet summary",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "List user currency transactions ordered by create time desc.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: currency transaction info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "listUserCurrencyTransactions",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "currencyCode",
+            "in": "path",
+            "name": "currencyCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/WalletTransactionPagingSlicedResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35141\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List user currency transactions",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Check wallet whether it\u0026#39;s inactive.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Check wallet by balance origin and currency code whether it\u0026#39;s inactive.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkWallet",
         "parameters": [
           {
@@ -13603,6 +14112,25 @@
           {
             "in": "path",
             "name": "currencyCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Other",
+              "Playstation",
+              "Stadia",
+              "Steam",
+              "System",
+              "Twitch",
+              "Xbox"
+            ],
+            "in": "query",
+            "name": "origin",
             "required": true,
             "type": "string"
           }
@@ -13644,7 +14172,7 @@
             "authorization": []
           }
         ],
-        "summary": "Check wallet",
+        "summary": "Check wallet by balance origin and currency code",
         "tags": [
           "Wallet"
         ],
@@ -13659,7 +14187,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Credit a user wallet by currency code, if wallet not exists, it will create a new wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Credit a user wallet by currency code and balance origin, if wallet not exists, it will create a new wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "creditUserWallet",
         "parameters": [
           {
@@ -13725,7 +14253,7 @@
             "authorization": []
           }
         ],
-        "summary": "Credit a user wallet by currency code",
+        "summary": "Credit a user wallet by currency code and balance origin",
         "tags": [
           "Wallet"
         ],
@@ -13740,7 +14268,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Pay with user wallet by currency code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Pay with user wallet by currency code and client platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "payWithUserWallet",
         "parameters": [
           {
@@ -13779,7 +14307,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/WalletInfo"
+              "$ref": "#/definitions/PlatformWallet"
             }
           },
           "400": {
@@ -13806,7 +14334,7 @@
             "authorization": []
           }
         ],
-        "summary": "Pay with user wallet by currency code",
+        "summary": "Pay with user wallet by currency code and client platform",
         "tags": [
           "Wallet"
         ],
@@ -14171,7 +14699,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/WalletTransactionPagingSlicedResult"
+              "$ref": "#/definitions/DetailedWalletTransactionPagingSlicedResult"
             }
           },
           "404": {
@@ -14228,6 +14756,26 @@
             "description": "currencyCode",
             "in": "query",
             "name": "currencyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "balance origin",
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Other",
+              "Playstation",
+              "Stadia",
+              "Steam",
+              "System",
+              "Twitch",
+              "Xbox"
+            ],
+            "in": "query",
+            "name": "origin",
             "required": false,
             "type": "string"
           },
@@ -16789,6 +17337,17 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "currencyType",
+            "enum": [
+              "REAL",
+              "VIRTUAL"
+            ],
+            "in": "query",
+            "name": "currencyType",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -18633,7 +19192,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/WalletInfo"
+              "$ref": "#/definitions/PlatformWallet"
             }
           }
         },
@@ -21400,7 +21959,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/WalletInfo"
+              "$ref": "#/definitions/PlatformWallet"
             }
           }
         },
@@ -21430,7 +21989,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "List wallet transactions by currency code ordered by create time desc.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: wallet transaction info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List wallet transactions by currency code ordered by create time desc.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: currency transaction info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicListUserWalletTransactions",
         "parameters": [
           {
@@ -21511,6 +22070,80 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AdminOrderCreate": {
+      "properties": {
+        "currencyCode": {
+          "description": "currency code, should match currency code in item region data",
+          "type": "string"
+        },
+        "discountedPrice": {
+          "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ext": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "extra field to store external order information",
+          "type": "object"
+        },
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "language": {
+          "description": "language value from language tag, allowed format: en, en-US",
+          "type": "string"
+        },
+        "platform": {
+          "description": "platform",
+          "enum": [
+            "Playstation",
+            "Xbox",
+            "Steam",
+            "Epic",
+            "IOS",
+            "GooglePlay",
+            "Nintendo",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "price": {
+          "description": "Price of order, should match (item_price * quantity)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantity": {
+          "description": "Quantity of item, min is 1",
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": {
+          "description": "country value from ISO countries",
+          "type": "string"
+        },
+        "returnUrl": {
+          "description": "custom return url for real payment, user will be redirected to this url once payment is finished",
+          "type": "string"
+        },
+        "sandbox": {
+          "description": "sandbox",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "currencyCode",
+        "discountedPrice",
+        "itemId",
+        "price",
+        "quantity",
+        "region"
+      ],
       "type": "object"
     },
     "AdyenConfig": {
@@ -23411,6 +24044,29 @@
           "minimum": 1,
           "type": "integer"
         },
+        "expireAt": {
+          "description": "this amount expire time, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "origin": {
+          "description": "origin, balance origin decided on the type of wallet, default is System",
+          "enum": [
+            "Playstation",
+            "Xbox",
+            "Steam",
+            "Epic",
+            "Stadia",
+            "IOS",
+            "GooglePlay",
+            "Twitch",
+            "Nintendo",
+            "System",
+            "Other"
+          ],
+          "type": "string"
+        },
         "reason": {
           "description": "reason, max length is 127",
           "type": "string"
@@ -23622,6 +24278,56 @@
       },
       "type": "object"
     },
+    "CurrencyWallet": {
+      "properties": {
+        "balance": {
+          "description": "total balance, include time-limited balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
+        },
+        "currencySymbol": {
+          "description": "currency symbol",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "wallet namespace",
+          "type": "string"
+        },
+        "totalPermanentBalance": {
+          "description": "total permanent balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalTimeLimitedBalance": {
+          "description": "total time limited balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "userId": {
+          "description": "user id",
+          "type": "string"
+        },
+        "walletInfos": {
+          "description": "wallets balances info",
+          "items": {
+            "$ref": "#/definitions/WalletInfo"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "balance",
+        "currencyCode",
+        "currencySymbol",
+        "namespace",
+        "userId"
+      ],
+      "type": "object"
+    },
     "Customization": {
       "properties": {
         "settings": {
@@ -23685,6 +24391,94 @@
       },
       "required": [
         "amount"
+      ],
+      "type": "object"
+    },
+    "DetailedWalletTransactionInfo": {
+      "properties": {
+        "amount": {
+          "description": "Transaction amount, it is absolute value.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "balanceSource": {
+          "description": "The source of credit",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Transaction created time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "currencyCode": {
+          "description": "Transaction currency code",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Wallet namespace",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Operator userId or ClientId",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason of the transaction",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "Transaction updated time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "userId": {
+          "description": "Wallet owner's userId",
+          "type": "string"
+        },
+        "walletAction": {
+          "description": "Action type",
+          "enum": [
+            "CREDIT",
+            "PAYMENT",
+            "DEBIT"
+          ],
+          "type": "string"
+        },
+        "walletId": {
+          "description": "wallet id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "createdAt",
+        "currencyCode",
+        "namespace",
+        "operator",
+        "updatedAt",
+        "userId",
+        "walletAction",
+        "walletId"
+      ],
+      "type": "object"
+    },
+    "DetailedWalletTransactionPagingSlicedResult": {
+      "properties": {
+        "data": {
+          "description": "data",
+          "items": {
+            "$ref": "#/definitions/DetailedWalletTransactionInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      },
+      "required": [
+        "data"
       ],
       "type": "object"
     },
@@ -24304,6 +25098,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "platform": {
+          "description": "platform",
+          "type": "string"
+        },
         "price": {
           "description": "Price of order",
           "format": "int32",
@@ -24603,6 +25401,23 @@
         },
         "orderNo": {
           "description": "orderNo",
+          "type": "string"
+        },
+        "origin": {
+          "description": "origin",
+          "enum": [
+            "Playstation",
+            "Xbox",
+            "Steam",
+            "Epic",
+            "Stadia",
+            "IOS",
+            "GooglePlay",
+            "Twitch",
+            "Nintendo",
+            "System",
+            "Other"
+          ],
           "type": "string"
         },
         "quantity": {
@@ -25925,6 +26740,10 @@
       "properties": {
         "itemId": {
           "description": "itemId",
+          "type": "string"
+        },
+        "sku": {
+          "description": "sku",
           "type": "string"
         }
       },
@@ -28099,6 +28918,9 @@
         "paymentStationUrl": {
           "type": "string"
         },
+        "platform": {
+          "type": "string"
+        },
         "price": {
           "format": "int32",
           "type": "integer"
@@ -28328,6 +29150,10 @@
           "description": "TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox",
           "type": "boolean",
           "x-omitempty": false
+        },
+        "platform": {
+          "description": "platform",
+          "type": "string"
         },
         "price": {
           "description": "Price of order",
@@ -29119,6 +29945,20 @@
           "format": "int64",
           "minimum": 0,
           "type": "integer"
+        },
+        "walletPlatform": {
+          "description": "wallet platform, base on platform wallet rule to payment wallet",
+          "enum": [
+            "Playstation",
+            "Xbox",
+            "Steam",
+            "Epic",
+            "IOS",
+            "GooglePlay",
+            "Nintendo",
+            "Other"
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -29406,6 +30246,122 @@
         "grantDays",
         "itemId"
       ],
+      "type": "object"
+    },
+    "PlatformWallet": {
+      "properties": {
+        "balance": {
+          "description": "total balance, include effective time-limited balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
+        },
+        "currencySymbol": {
+          "description": "currency symbol",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "description": "platform wallet namespace",
+          "type": "string"
+        },
+        "userId": {
+          "description": "user id",
+          "type": "string"
+        },
+        "walletInfos": {
+          "description": "wallets balances info",
+          "items": {
+            "$ref": "#/definitions/WalletInfo"
+          },
+          "type": "array"
+        },
+        "walletStatus": {
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "balance",
+        "currencyCode",
+        "currencySymbol",
+        "namespace",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "PlatformWalletConfigInfo": {
+      "properties": {
+        "allowedBalanceOrigins": {
+          "description": "allowed balance origin, sorted list",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "description": "created at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "id": {
+          "description": "config id",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "platform": {
+          "description": "platform",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "updated at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "allowedBalanceOrigins",
+        "namespace",
+        "platform"
+      ],
+      "type": "object"
+    },
+    "PlatformWalletConfigUpdate": {
+      "description": "A DTO object for updating item API call.",
+      "properties": {
+        "allowedBalanceOrigins": {
+          "items": {
+            "enum": [
+              "Playstation",
+              "Xbox",
+              "Steam",
+              "Epic",
+              "Stadia",
+              "IOS",
+              "GooglePlay",
+              "Twitch",
+              "Nintendo",
+              "System",
+              "Other"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "PlayStationDLCSyncRequest": {
@@ -30292,6 +31248,23 @@
     "RewardsRequest": {
       "description": "A DTO object for rewards request API call.",
       "properties": {
+        "origin": {
+          "description": "origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet",
+          "enum": [
+            "Playstation",
+            "Xbox",
+            "Steam",
+            "Epic",
+            "Stadia",
+            "IOS",
+            "GooglePlay",
+            "Twitch",
+            "Nintendo",
+            "System",
+            "Other"
+          ],
+          "type": "string"
+        },
         "rewards": {
           "description": "reward",
           "items": {
@@ -31543,6 +32516,26 @@
       ],
       "type": "object"
     },
+    "Time-limited balance": {
+      "properties": {
+        "balance": {
+          "description": "balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "balanceSource": {
+          "description": "balance source",
+          "type": "string"
+        },
+        "expireAt": {
+          "description": "balance expire time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
     "TimedOwnership": {
       "properties": {
         "endDate": {
@@ -31889,6 +32882,21 @@
       },
       "type": "object"
     },
+    "TransactionAmountDetails": {
+      "properties": {
+        "amount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "walletId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TwitchIAPConfigInfo": {
       "properties": {
         "clientId": {
@@ -31975,9 +32983,13 @@
     "WalletInfo": {
       "properties": {
         "balance": {
-          "description": "balance",
+          "description": "total balance, include effective time-limited balance",
           "format": "int64",
           "type": "integer"
+        },
+        "balanceOrigin": {
+          "description": "origin of balance",
+          "type": "string"
         },
         "createdAt": {
           "description": "created at",
@@ -32009,6 +33021,23 @@
           ],
           "type": "string"
         },
+        "timeLimitedBalances": {
+          "description": "time-limited balances info",
+          "items": {
+            "$ref": "#/definitions/Time-limited balance"
+          },
+          "type": "array"
+        },
+        "totalPermanentBalance": {
+          "description": "total permanent balance",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalTimeLimitedBalance": {
+          "description": "total time limited balance",
+          "format": "int64",
+          "type": "integer"
+        },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
@@ -32022,6 +33051,7 @@
       },
       "required": [
         "balance",
+        "balanceOrigin",
         "createdAt",
         "currencyCode",
         "currencySymbol",
@@ -32084,6 +33114,13 @@
           "description": "Reason of the transaction",
           "type": "string"
         },
+        "transactionAmountDetails": {
+          "description": "Transaction amount details",
+          "items": {
+            "$ref": "#/definitions/TransactionAmountDetails"
+          },
+          "type": "array"
+        },
         "updatedAt": {
           "description": "Transaction updated time",
           "format": "date-time",
@@ -32102,10 +33139,6 @@
             "DEBIT"
           ],
           "type": "string"
-        },
-        "walletId": {
-          "description": "wallet id",
-          "type": "string"
         }
       },
       "required": [
@@ -32116,8 +33149,7 @@
         "operator",
         "updatedAt",
         "userId",
-        "walletAction",
-        "walletId"
+        "walletAction"
       ],
       "type": "object"
     },

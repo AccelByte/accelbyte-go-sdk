@@ -642,10 +642,14 @@
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "content tag",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "tags",
-            "type": "string"
+            "type": "array"
           },
           {
             "description": "filter only official contents (boolean)",
@@ -998,10 +1002,14 @@
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "content tag",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "tags",
-            "type": "string"
+            "type": "array"
           },
           {
             "description": "filter only official contents  (boolean)",
@@ -3803,10 +3811,14 @@
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "content tag",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "tags",
-            "type": "string"
+            "type": "array"
           },
           {
             "description": "filter only official contents (boolean)",
@@ -3928,10 +3940,14 @@
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "content tag",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "tags",
-            "type": "string"
+            "type": "array"
           },
           {
             "description": "filter only official contents (boolean)",

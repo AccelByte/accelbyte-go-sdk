@@ -548,7 +548,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [READ]\n\nRequired Scope: social\n\nQueries the specified session\u0026#39;s status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \u0026#34;sessionInQueue\u0026#34;, \u0026#34;sessionFull\u0026#34;, and \u0026#34;sessionTimeout\u0026#34;.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [READ]\n\nRequired Scope: social\n\nQueries the specified session\u0026#39;s status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \u0026#34;sessionInQueue\u0026#34;, \u0026#34;sessionFull\u0026#34;, and \u0026#34;sessionTimeout\u0026#34;.\n\nif party_id value empty/null, field will not show in response body.\n",
         "operationId": "QuerySessionHandler",
         "parameters": [
           {
@@ -1268,7 +1268,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all sessions in a channel.",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all sessions in a channel.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetAllSessionsInChannel",
         "parameters": [
           {
@@ -1742,7 +1742,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
           {

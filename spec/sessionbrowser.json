@@ -1056,6 +1056,83 @@
         ]
       }
     },
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nUpdate game session, used to update OtherSettings",
+        "operationId": "UpdateSettings",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateSettingsRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session updated",
+            "schema": {
+              "$ref": "#/definitions/models.SessionResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update settings",
+        "tags": [
+          "Session"
+        ]
+      }
+    },
     "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}": {
       "get": {
         "consumes": [
@@ -1938,6 +2015,9 @@
         "game_current_player",
         "game_max_player"
       ]
+    },
+    "models.UpdateSettingsRequest": {
+      "type": "object"
     },
     "response.Error": {
       "properties": {

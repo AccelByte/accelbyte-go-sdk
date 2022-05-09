@@ -1900,6 +1900,78 @@
         }
       }
     },
+    "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault": {
+      "get": {
+        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s stat item values",
+        "operationId": "bulkFetchOrDefaultStatItems",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "stat code",
+            "in": "query",
+            "name": "statCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "user ids",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "userIds",
+            "required": true,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for user stat item value"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12241\u003c/td\u003e\u003ctd\u003eStat [{statCode}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk fetch user stat item values",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
+        }
+      }
+    },
     "/social/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
@@ -3632,6 +3704,99 @@
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+      "get": {
+        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicQueryUserStatItems_1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "stat codes",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "statCodes",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for user stat item value"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12223\u003c/td\u003e\u003ctd\u003eInvalid stat codes in namespace [{namespace}]: [{statCodes}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12243\u003c/td\u003e\u003ctd\u003eStats cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Public list user's statItems",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
+        }
+      },
       "patch": {
         "consumes": [
           "application/json"
@@ -4313,6 +4478,85 @@
         }
       }
     },
+    "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault": {
+      "get": {
+        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s stat item values",
+        "operationId": "bulkFetchOrDefaultStatItems_1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "stat code",
+            "in": "query",
+            "name": "statCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "user ids",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "userIds",
+            "required": true,
+            "type": "array"
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for user stat item value"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12241\u003c/td\u003e\u003ctd\u003eStat [{statCode}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk fetch user stat item values",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
+        }
+      }
+    },
     "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "put": {
         "consumes": [
@@ -4728,6 +4972,106 @@
       }
     },
     "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+      "get": {
+        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicQueryUserStatItems_2",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "stat codes",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "statCodes",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for user stat item value"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12223\u003c/td\u003e\u003ctd\u003eInvalid stat codes in namespace [{namespace}]: [{statCodes}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12243\u003c/td\u003e\u003ctd\u003eStats cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Public list user's statItems",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
+        }
+      },
       "put": {
         "consumes": [
           "application/json"
@@ -4929,6 +5273,24 @@
       "required": [
         "statCode"
       ],
+      "type": "object"
+    },
+    "A DTO object for user stat item value": {
+      "properties": {
+        "profileId": {
+          "description": "profile id",
+          "type": "string"
+        },
+        "statCode": {
+          "description": "stat code",
+          "type": "string"
+        },
+        "value": {
+          "description": "current value",
+          "format": "double",
+          "type": "number"
+        }
+      },
       "type": "object"
     },
     "Attribute": {

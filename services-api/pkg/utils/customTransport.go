@@ -13,21 +13,21 @@ import (
 	logger "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/log"
 )
 
+type CustomTransport struct {
+	inner          http.RoundTripper
+	UserAgent      string
+	XAmazonTraceID string
+}
+
 func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.RoundTripper {
-	return &customTransport{
+	return &CustomTransport{
 		inner:          inner,
 		UserAgent:      userAgent,
 		XAmazonTraceID: xAmazonTraceID,
 	}
 }
 
-type customTransport struct {
-	inner          http.RoundTripper
-	UserAgent      string
-	XAmazonTraceID string
-}
-
-func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
+func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	r.Header.Add("User-Agent", c.UserAgent)
 	r.Header.Add("X-Amzn-Trace-Id", c.XAmazonTraceID)
 

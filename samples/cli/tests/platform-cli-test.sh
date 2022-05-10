@@ -35,18 +35,15 @@ eval_tap() {
   rm -f $4
 }
 
-MODULE='cmd'
-MODULE_PATH='../samples/cli'
-TEMP_TOKEN="/tmp/justice-sample-apps/userData"
-
 echo "TAP version 13"
 echo "1..330"
 
 #- 1 Login
-rm -f $TEMP_TOKEN \
-    && mkdir -p $(dirname $TEMP_TOKEN) \
-    && echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
-eval_tap 0 1 'Login # SKIP not tested' test.out
+samples/cli/sample-apps login \
+    -u 'admin' \
+    -p 'admin' \
+    > test.out 2>&1
+eval_tap $? 1 'Login' test.out
 
 if [ $EXIT_CODE -ne 0 ]; then
   echo "Bail out! Login failed."

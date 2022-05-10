@@ -188,6 +188,9 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
+# Go cache
+.cache/
+
 # TAP test results
 *.tap
 

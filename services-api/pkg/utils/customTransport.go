@@ -39,9 +39,9 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 		log.Println("Attempt: ", i+1)
 		resp, err := c.inner.RoundTrip(r)
 		if resp != nil && err == nil {
-			return c.inner.RoundTrip(r)
+			log.Printf("Retry error %v\n", resp)
 		}
-		log.Println("Retrying...")
+		log.Println("Retrying again...")
 	}
 
 	// enabling log

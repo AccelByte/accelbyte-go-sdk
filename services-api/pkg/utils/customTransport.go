@@ -5,9 +5,11 @@
 package utils
 
 import (
+	"context"
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/sirupsen/logrus"
 
@@ -35,14 +37,27 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	r.Header.Add("X-Amzn-Trace-Id", c.XAmazonTraceID)
 
 	// http retry
+	var (
+		duration time.Duration
+		ctx      context.Context
+		cancels  func()
+	)
+	if deadline, ok := r.Context().Deadline(); ok {
+		duration = time.Until(deadline)
+	}
 	for i := 0; i < c.nums; i++ {
+		if duration > 0 {
+			ctx, cancels = context.WithTimeout(context.Background(), duration)
+			r = r.WithContext(ctx)
+		}
 		log.Println("Attempt: ", i+1)
 		resp, err := c.inner.RoundTrip(r)
 		if resp != nil && err == nil {
-			log.Printf("Retry error %v\n", resp)
+			log.Printf("Retries error %v\n", resp)
 		}
 		log.Println("Retrying again...")
 	}
+	defer cancels()
 
 	// enabling log
 	if os.Getenv("ENABLE_LOG") == "true" {

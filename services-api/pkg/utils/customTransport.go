@@ -5,6 +5,7 @@
 package utils
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -17,6 +18,7 @@ type CustomTransport struct {
 	inner          http.RoundTripper
 	UserAgent      string
 	XAmazonTraceID string
+	nums           int
 }
 
 func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.RoundTripper {
@@ -24,12 +26,23 @@ func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.R
 		inner:          inner,
 		UserAgent:      userAgent,
 		XAmazonTraceID: xAmazonTraceID,
+		nums:           5,
 	}
 }
 
 func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	r.Header.Add("User-Agent", c.UserAgent)
 	r.Header.Add("X-Amzn-Trace-Id", c.XAmazonTraceID)
+
+	// http retry
+	for i := 0; i < c.nums; i++ {
+		log.Println("Attempt: ", i+1)
+		resp, err := c.inner.RoundTrip(r)
+		if resp != nil && err == nil {
+			return c.inner.RoundTrip(r)
+		}
+		log.Println("Retrying...")
+	}
 
 	// enabling log
 	if os.Getenv("ENABLE_LOG") == "true" {

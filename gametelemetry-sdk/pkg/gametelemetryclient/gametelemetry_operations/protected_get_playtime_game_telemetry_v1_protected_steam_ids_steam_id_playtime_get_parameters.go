@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,8 +67,9 @@ type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParam
 
 	/*Cookie*/
 	Cookie *string
-	/*Retries*/
-	Retries int
+	/*Retry*/
+	Retry       bool
+	RetryPolicy *utils.Retry
 	/*SteamID*/
 	SteamID string
 
@@ -127,14 +129,14 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 }
 
 // WithRetry
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) WithRetry(retry int) *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams {
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) WithRetry(retry bool) *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams {
 	o.SetRetry(retry)
 	return o
 }
 
 // SetRetry
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) SetRetry(retry int) {
-	o.Retries = retry
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) SetRetry(retry bool) {
+	o.Retry = retry
 }
 
 // WithSteamID adds the steamID to the protected get playtime game telemetry v1 protected steam ids steam Id playtime get params
@@ -165,8 +167,17 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 
 	}
 
-	if o.Retries != 0 {
+	if o.Retry != true {
 		// logic retry
+		utils.Retry{
+			Enabled:    false,
+			RetryCodes: nil,
+			MaxTries:   0,
+			Backoff:    nil,
+			Transport:  nil,
+			Verbose:    false,
+			Sleeper:    nil,
+		}
 	}
 
 	// path param steamId

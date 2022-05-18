@@ -56,7 +56,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	const (
 		startBackoff = 1 * time.Second
 		maxBackoff   = 5 * time.Second
-		maxTries     = 2
+		maxTries     = 5
 	)
 	var retryCodes = map[int]bool{
 		429: true, // rate limit reached
@@ -67,7 +67,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	}
 	transport.Transport = utils.Retry{
 		MaxTries:   maxTries,
-		Backoff:    utils.NewExponentialBackoff(startBackoff, maxBackoff),
+		Backoff:    utils.NewExponentialDelay(startBackoff, maxBackoff),
 		Transport:  transport.Transport,
 		RetryCodes: retryCodes,
 	}

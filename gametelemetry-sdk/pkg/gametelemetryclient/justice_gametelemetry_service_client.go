@@ -52,6 +52,26 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
+	// retry
+	const (
+		startBackoff = 1 * time.Second
+		maxBackoff   = 5 * time.Second
+		maxTries     = 2
+	)
+	var retryCodes = map[int]bool{
+		429: true, // rate limit reached
+		422: true, // unprocessableEntity
+		500: true, // internal server error
+		504: true, // gateway timeout error
+		408: true, // request timeout error
+	}
+	transport.Transport = utils.Retry{
+		MaxTries:   maxTries,
+		Backoff:    utils.NewExponentialBackoff(startBackoff, maxBackoff),
+		Transport:  transport.Transport,
+		RetryCodes: retryCodes,
+	}
+
 	// optional custom producers and consumer
 	transport.Producers["*/*"] = runtime.JSONProducer()
 	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()

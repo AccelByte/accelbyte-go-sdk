@@ -38,12 +38,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice gametelemetry service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeGametelemetryService {
-	return NewHTTPClientWithConfig(formats, nil, "", "")
+	return NewHTTPClientWithConfig(formats, nil, "", "", false)
 }
 
 // NewHTTPClientWithConfig creates a new justice gametelemetry service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string) *JusticeGametelemetryService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string, retry bool) *JusticeGametelemetryService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -53,22 +53,8 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
 	// retry
-	const (
-		startBackoff = 1 * time.Second
-		maxBackoff   = 5 * time.Second
-		maxTries     = 5
-	)
-	var retryCodes = map[int]bool{
-		422: true, // unprocessableEntity
-		500: true, // internal server error
-		504: true, // gateway timeout error
-		408: true, // request timeout error
-	}
-	transport.Transport = utils.Retry{
-		MaxTries:   maxTries,
-		Backoff:    utils.NewExponentialDelay(startBackoff, maxBackoff),
-		Transport:  transport.Transport,
-		RetryCodes: retryCodes,
+	if retry == true {
+		transport.Transport = utils.SetRetry(transport.Transport)
 	}
 
 	// optional custom producers and consumer

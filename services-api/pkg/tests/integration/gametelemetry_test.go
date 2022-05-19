@@ -53,33 +53,33 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 }
 
 // Protected Get Playtime
-func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
-	Init()
-
-	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		SteamID: "76561199259217491",
-	}
-	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
+//func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
+//	Init()
+//
+//	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
+//		SteamID: "76561199259217491",
+//	}
+//	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+//	if err != nil {
+//		assert.FailNow(t, err.Error())
+//	}
+//
+//	assert.Nil(t, err, "err should be nil")
+//	assert.NotNil(t, ok, "response should not be nil")
+//}
 
 // Protected Update Playtime
-func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
-	Init()
-
-	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
-		Playtime: "4",
-		SteamID:  "76561199259217491",
-	}
-	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	assert.Nil(t, err, "err should be nil")
-}
+//func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
+//	Init()
+//
+//	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
+//		Playtime: "4",
+//		SteamID:  "76561199259217491",
+//	}
+//	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+//	if err != nil {
+//		assert.FailNow(t, err.Error())
+//	}
+//
+//	assert.Nil(t, err, "err should be nil")
+//}

@@ -25,6 +25,10 @@ type ModelUserBaseInfo struct {
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
+	// platform user ids
+	// Required: true
+	PlatformUserIds map[string]string `json:"platformUserIds"`
+
 	// user Id
 	// Required: true
 	UserID *string `json:"userId"`
@@ -39,6 +43,10 @@ func (m *ModelUserBaseInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDisplayName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePlatformUserIds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,6 +74,11 @@ func (m *ModelUserBaseInfo) validateDisplayName(formats strfmt.Registry) error {
 	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
 		return err
 	}
+
+	return nil
+}
+
+func (m *ModelUserBaseInfo) validatePlatformUserIds(formats strfmt.Registry) error {
 
 	return nil
 }

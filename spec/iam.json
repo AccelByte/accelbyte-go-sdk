@@ -23694,6 +23694,12 @@
       ]
     },
     "model.UserBaseInfo": {
+      "required": [
+        "userId",
+        "displayName",
+        "avatarUrl",
+        "platformUserIds"
+      ],
       "properties": {
         "avatarUrl": {
           "type": "string"
@@ -23701,15 +23707,16 @@
         "displayName": {
           "type": "string"
         },
+        "platformUserIds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
         "userId": {
           "type": "string"
         }
-      },
-      "required": [
-        "avatarUrl",
-        "displayName",
-        "userId"
-      ]
+      }
     },
     "model.UserCreateFromInvitationRequestV3": {
       "properties": {

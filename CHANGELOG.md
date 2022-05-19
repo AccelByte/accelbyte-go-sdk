@@ -1,3 +1,14 @@
+<a name="v0.18.1"></a>
+## [v0.18.1] - 2022-05-19
+
+### Chore
+- **api:** regenerate iam service for the model user base info
+- **spec:** patching the model user base info
+- **test:** temporarily disable the game telemetry test
+
+### Docs
+- update CHANGELOG.md for v0.18.1 release
+
 <a name="v0.18.0"></a>
 ## [v0.18.0] - 2022-05-10
 
@@ -612,6 +623,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.18.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.0...v0.18.1
 [v0.18.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.17.0...v0.18.0
 [v0.17.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.16.0...v0.17.0
 [v0.16.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.1...v0.16.0

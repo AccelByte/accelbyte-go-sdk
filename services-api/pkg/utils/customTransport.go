@@ -19,7 +19,6 @@ type CustomTransport struct {
 	inner          http.RoundTripper
 	UserAgent      string
 	XAmazonTraceID string
-	Retries        int
 }
 
 func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.RoundTripper {
@@ -27,7 +26,6 @@ func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.R
 		inner:          inner,
 		UserAgent:      userAgent,
 		XAmazonTraceID: xAmazonTraceID,
-		Retries:        5,
 	}
 }
 
@@ -53,8 +51,8 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	return c.inner.RoundTrip(r)
 }
 
-// Delay interface
-type Delay interface {
+// Backoff interface
+type Backoff interface {
 	// Get delay's duration
 	Get(attempt uint) time.Duration
 }
@@ -66,7 +64,7 @@ type exponentialDelay struct {
 	Max time.Duration
 }
 
-func NewExponentialDelay(start time.Duration, max time.Duration) Delay {
+func NewExponentialDelay(start time.Duration, max time.Duration) Backoff {
 	return &exponentialDelay{Start: start, Max: max}
 }
 
@@ -86,17 +84,16 @@ type Retry struct {
 	Enabled    bool
 	RetryCodes map[int]bool
 	MaxTries   uint
-	Backoff    Delay
+	Backoff    Backoff
 	Transport  http.RoundTripper
 	Verbose    bool
-	// Testing parameter used to sleep after each try according to the backoff, defaults to time.Sleep
-	Sleeper func(duration time.Duration)
+	Sleeper    func(duration time.Duration)
 }
 
 func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 	var res *http.Response
 	var err error
-	if m.Enabled == true {
+	if m.Enabled == false {
 		sleep := m.Sleeper // Setup the sleep method for test
 		if sleep == nil {
 			sleep = time.Sleep

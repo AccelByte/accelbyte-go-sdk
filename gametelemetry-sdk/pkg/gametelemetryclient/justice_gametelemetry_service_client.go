@@ -59,7 +59,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 		maxTries     = 5
 	)
 	var retryCodes = map[int]bool{
-		429: true, // rate limit reached
 		422: true, // unprocessableEntity
 		500: true, // internal server error
 		504: true, // gateway timeout error

@@ -167,18 +167,10 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 
 	}
 
-	if o.Retry != true {
-		// logic retry
-		utils.Retry{
-			Enabled:    false,
-			RetryCodes: nil,
-			MaxTries:   0,
-			Backoff:    nil,
-			Transport:  nil,
-			Verbose:    false,
-			Sleeper:    nil,
-		}
-	}
+	//if o.Retry == true {
+	//	// logic retry
+	//	o.RetryPolicy = &utils.Retry{Enabled: true}
+	//}
 
 	// path param steamId
 	if err := r.SetPathParam("steamId", o.SteamID); err != nil {

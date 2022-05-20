@@ -197,3 +197,7 @@ modules.xml
 /samples/aws-lambda-functions/getUserStats/main
 /samples/cli/sample-apps
 /samples/title-service-matchmaking/test-client/sample-apps
+
+# MacOS
+.DS_Store
+.DS_Store?

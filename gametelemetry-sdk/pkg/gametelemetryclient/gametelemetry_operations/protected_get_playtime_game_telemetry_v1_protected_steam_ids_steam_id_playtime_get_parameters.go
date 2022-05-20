@@ -164,11 +164,5 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 		return errors.CompositeValidationError(res...)
 	}
 
-	if o.RetryPolicy != nil {
-		o.SetHTTPClient(&http.Client{
-			Transport: o.RetryPolicy,
-		})
-	}
-
 	return nil
 }

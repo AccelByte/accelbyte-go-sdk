@@ -162,10 +162,9 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	retryPolicy := input.RetryPolicy
-	if retryPolicy == nil {
-		retryPolicy = &utils.Retry{
-			MaxTries:   1,
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantDelay(0),
 			Transport:  g.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,

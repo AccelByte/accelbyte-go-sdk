@@ -5,10 +5,10 @@
 package integration_test
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
@@ -58,15 +58,7 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	Init()
 
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		SteamID: "765611992592174912",
-	}
-	input.RetryPolicy = &utils.Retry{
-		Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
-		MaxTries:  2,
-		Backoff:   utils.NewConstantDelay(0),
-		RetryCodes: map[int]bool{
-			422: true,
-		},
+		SteamID: "76561199259217491",
 	}
 
 	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
@@ -76,6 +68,28 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
+}
+
+// Protected Get Playtime with retry
+func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet_WithRetry(t *testing.T) {
+	Init()
+
+	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
+		SteamID: "765611992592174912",
+	}
+	input.RetryPolicy = &utils.Retry{
+		Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
+		MaxTries:  utils.MaxTries,
+		Backoff:   utils.NewConstantDelay(0),
+		RetryCodes: map[int]bool{
+			422: true,
+		},
+	}
+
+	_, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+	if err != nil {
+		assert.NotNil(t, err, "err should not be nil")
+	}
 }
 
 // Protected Update Playtime

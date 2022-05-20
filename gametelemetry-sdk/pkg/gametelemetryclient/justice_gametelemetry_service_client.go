@@ -10,8 +10,6 @@ package gametelemetryclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-	"reflect"
 	"strings"
 	"time"
 
@@ -54,9 +52,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
-	// retry
-	//transport.Transport = utils.SetRetry(transport.Transport, 0, nil)
-
 	// optional custom producers and consumer
 	transport.Producers["*/*"] = runtime.JSONProducer()
 	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
@@ -67,8 +62,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 
-	fmt.Printf("NewHTTPCLientWithConfig type: %v\n", reflect.TypeOf(transport))
-
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
@@ -77,9 +70,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 
 // New creates a new justice gametelemetry service client
 func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeGametelemetryService {
-
-	fmt.Printf("a New type: %v\n", reflect.TypeOf(transport))
-
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -90,8 +80,6 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.GametelemetryOperations = gametelemetry_operations.New(transport, formats)
 
-
-	fmt.Printf("b New type: %v\n", reflect.TypeOf(cli.Transport))
 	return cli
 }
 
@@ -152,7 +140,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeGametelemetryService struct {
 	GametelemetryOperations gametelemetry_operations.ClientService
 
-	Runtime *httptransport.Runtime
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

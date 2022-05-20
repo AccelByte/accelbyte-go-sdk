@@ -14,7 +14,7 @@ import (
 const (
 	StartBackoff = 1 * time.Second
 	MaxBackoff   = 5 * time.Second
-	maxTries     = 0
+	MaxTries     = 1
 )
 
 var RetryCodes = map[int]bool{
@@ -49,6 +49,7 @@ func (b *exponentialDelay) Get(attempt uint) time.Duration {
 			return b.Max
 		}
 	}
+
 	return d
 }
 
@@ -73,34 +74,6 @@ type Retry struct {
 	Sleeper    func(duration time.Duration)
 }
 
-func SetRetry(inner http.RoundTripper, maxTry uint, retryCode map[int]bool) http.RoundTripper {
-	if maxTry != 0 && retryCode != nil {
-		return OverrideDefaultRetry(inner, maxTry, retryCode)
-	} else if maxTry == 0 && retryCode == nil {
-		return SetDefaultRetry(inner)
-	} else {
-		return inner
-	}
-}
-
-func OverrideDefaultRetry(inner http.RoundTripper, customMaxTries uint, customRetryCodes map[int]bool) http.RoundTripper {
-	return &Retry{
-		MaxTries:   customMaxTries,
-		Backoff:    NewExponentialDelay(StartBackoff, MaxBackoff),
-		Transport:  inner,
-		RetryCodes: customRetryCodes,
-	}
-}
-
-func SetDefaultRetry(inner http.RoundTripper) http.RoundTripper {
-	return &Retry{
-		MaxTries:   maxTries,
-		Backoff:    NewExponentialDelay(StartBackoff, MaxBackoff),
-		Transport:  inner,
-		RetryCodes: RetryCodes,
-	}
-}
-
 func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 	var res *http.Response
 	var err error
@@ -115,7 +88,7 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 		// Do not try again if there was an error with the transport or the status code is not in the RetryCodes
 		a := err != nil
 		b := res == nil
-		c := m.RetryCodes[res.StatusCode] == false
+		c := !m.RetryCodes[res.StatusCode]
 		if a || b || c {
 			return res, err
 		}

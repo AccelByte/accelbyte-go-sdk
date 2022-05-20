@@ -5,7 +5,6 @@
 package sdk_test
 
 import (
-	"fmt"
 	"net/http"
 	"testing"
 	"time"
@@ -19,10 +18,9 @@ const (
 )
 
 var (
-	request               = http.Request{}
-	successRes            = http.Response{StatusCode: 200}
-	retryResWithoutHeader = http.Response{StatusCode: 429, Header: http.Header{}}
-	retryResErrWithRetry  = http.Response{StatusCode: 500, Header: http.Header{}}
+	request              = http.Request{}
+	successRes           = http.Response{StatusCode: 200}
+	retryResErrWithRetry = http.Response{StatusCode: 500, Header: http.Header{}}
 )
 
 func TestRetry_success(t *testing.T) {
@@ -86,49 +84,6 @@ func TestRetry_withRetryOnce(t *testing.T) {
 	assert.Equal(t, slept, int64(100))
 	assert.Equal(t, err, nil)
 	assert.Equal(t, *res, successRes)
-}
-
-func TestRetry_WithoutHeader(t *testing.T) {
-	calls := 0
-	slept := int64(0)
-	c := config{
-		transport: func(r *http.Request) (*http.Response, error) {
-			calls++
-			if calls == 3 {
-				return &successRes, nil
-			}
-			return &retryResWithoutHeader, nil
-		},
-		sleeper: func(duration time.Duration) {
-			slept += duration.Milliseconds()
-		},
-	}
-	res, err := c.getTestRetry().RoundTrip(&request)
-
-	assert.Equal(t, calls, 3)
-	assert.Equal(t, slept, int64(300))
-	assert.Equal(t, err, nil)
-	assert.Equal(t, *res, successRes)
-}
-
-func TestRetry_WithTransportError(t *testing.T) {
-	calls := 0
-	slept := int64(0)
-	c := config{
-		transport: func(r *http.Request) (*http.Response, error) {
-			calls++
-			return nil, fmt.Errorf("mock transport error")
-		},
-		sleeper: func(duration time.Duration) {
-			slept += duration.Milliseconds()
-		},
-	}
-	res, err := c.getTestRetry().RoundTrip(&request)
-
-	assert.Equal(t, calls, 1)
-	assert.Equal(t, slept, int64(0))
-	assert.True(t, err != nil)
-	assert.Equal(t, res, nil)
 }
 
 type transportWrapper struct {

@@ -167,15 +167,8 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 	}
 
 	if o.RetryPolicy != nil {
-		// logic retry
-		_ = &utils.Retry{
-			RetryCodes: o.RetryPolicy.RetryCodes,
-			MaxTries:   o.RetryPolicy.MaxTries,
-			Backoff:    o.RetryPolicy.Backoff,
-			Transport:  o.RetryPolicy.Transport,
-			Sleeper:    o.RetryPolicy.Sleeper,
-		}
-		utils.SetRetry(o.RetryPolicy, true)
+		// call the logic retry
+		utils.SetRetry(o.RetryPolicy, o.RetryPolicy.MaxTries, o.RetryPolicy.RetryCodes)
 	}
 
 	// path param steamId

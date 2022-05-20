@@ -65,7 +65,7 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 			RetryCodes: retryCodes,
 			MaxTries:   1,
 		},
-		SteamID: "765611992592174911",
+		SteamID: "765611992592174912",
 	}
 	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {

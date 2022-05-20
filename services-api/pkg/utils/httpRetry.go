@@ -17,11 +17,11 @@ const (
 	maxTries     = 2
 )
 
-var retryCodes = map[int]bool{
-	422: true, // un-processable entity
-	500: true, // internal server error
-	504: true, // gateway timeout error
-	408: true, // request timeout error
+var RetryCodes = map[int]bool{
+	422: false, // un-processable entity
+	500: true,  // internal server error
+	502: true,  // bad gateway
+	408: true,  // request timeout error
 }
 
 // Backoff interface
@@ -61,16 +61,31 @@ type Retry struct {
 	Sleeper    func(duration time.Duration)
 }
 
-func SetRetry(inner http.RoundTripper, enabled bool) http.RoundTripper {
-	if enabled == false {
-		return inner
+func SetRetry(inner http.RoundTripper, maxTry uint, retryCode map[int]bool) http.RoundTripper {
+	if maxTry != 0 && retryCode != nil {
+		return OverrideDefaultRetry(inner, maxTry, retryCode)
+	} else if maxTry == 0 && retryCode == nil {
+		return SetDefaultRetry(inner)
 	} else {
-		return &Retry{
-			MaxTries:   maxTries,
-			Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
-			Transport:  inner,
-			RetryCodes: retryCodes,
-		}
+		return inner
+	}
+}
+
+func OverrideDefaultRetry(inner http.RoundTripper, customMaxTries uint, customRetryCodes map[int]bool) http.RoundTripper {
+	return &Retry{
+		MaxTries:   customMaxTries,
+		Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
+		Transport:  inner,
+		RetryCodes: customRetryCodes,
+	}
+}
+
+func SetDefaultRetry(inner http.RoundTripper) http.RoundTripper {
+	return &Retry{
+		MaxTries:   maxTries,
+		Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
+		Transport:  inner,
+		RetryCodes: RetryCodes,
 	}
 }
 
@@ -85,7 +100,7 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 	for try := uint(0); try < m.MaxTries; try++ {
 		res, err = m.Transport.RoundTrip(req)
 		t := m.Backoff.Get(try) // time to wait for next retry
-		// Do not try again if there was an error with the transport or the status code is not in the retryCodes
+		// Do not try again if there was an error with the transport or the status code is not in the RetryCodes
 		if err != nil || res == nil || m.RetryCodes[res.StatusCode] == false {
 			return res, err
 		}
@@ -95,5 +110,6 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 			sleep(t)
 		}
 	}
+
 	return res, err
 }

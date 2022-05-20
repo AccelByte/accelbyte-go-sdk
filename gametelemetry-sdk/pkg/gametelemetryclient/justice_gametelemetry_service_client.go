@@ -53,7 +53,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
 	// retry
-	transport.Transport = utils.SetRetry(transport.Transport, true)
+	transport.Transport = utils.SetRetry(transport.Transport, 0, nil)
 
 	// optional custom producers and consumer
 	transport.Producers["*/*"] = runtime.JSONProducer()

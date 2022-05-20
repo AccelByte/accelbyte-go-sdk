@@ -127,17 +127,6 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 	o.Cookie = cookie
 }
 
-// WithRetry
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) WithRetry(retryPolicy *utils.Retry) *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams {
-	o.SetRetry(retryPolicy)
-	return o
-}
-
-// SetRetry
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) SetRetry(retryPolicy *utils.Retry) {
-	o.RetryPolicy = retryPolicy
-}
-
 // WithSteamID adds the steamID to the protected get playtime game telemetry v1 protected steam ids steam Id playtime get params
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) WithSteamID(steamID string) *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams {
 	o.SetSteamID(steamID)
@@ -166,11 +155,6 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 
 	}
 
-	if o.RetryPolicy != nil {
-		// call the logic retry
-		utils.SetRetry(o.RetryPolicy, o.RetryPolicy.MaxTries, o.RetryPolicy.RetryCodes)
-	}
-
 	// path param steamId
 	if err := r.SetPathParam("steamId", o.SteamID); err != nil {
 		return err
@@ -179,5 +163,12 @@ func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetP
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
+	if o.RetryPolicy != nil {
+		o.SetHTTPClient(&http.Client{
+			Transport: o.RetryPolicy,
+		})
+	}
+
 	return nil
 }

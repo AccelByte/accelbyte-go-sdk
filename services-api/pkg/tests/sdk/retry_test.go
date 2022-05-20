@@ -44,6 +44,13 @@ func TestRetry_success(t *testing.T) {
 }
 
 func TestRetry_withRetry(t *testing.T) {
+	// POST /configure-overwrite-response
+	// body: {
+	//   "enabled": true,
+	//   "overwrite": true,
+	//   "status": 500,
+	// }
+
 	calls := 0
 	slept := int64(0)
 	c := config{
@@ -61,6 +68,8 @@ func TestRetry_withRetry(t *testing.T) {
 	assert.Equal(t, slept, int64(600))
 	assert.Equal(t, err, nil)
 	assert.Equal(t, *res, retryResErrWithRetry)
+
+	// POST /reset-overwrite-response
 }
 
 func TestRetry_withRetryOnce(t *testing.T) {

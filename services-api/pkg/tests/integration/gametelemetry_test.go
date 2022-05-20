@@ -5,10 +5,10 @@
 package integration_test
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
@@ -57,16 +57,18 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
 	Init()
 
-	var retryCodes = map[int]bool{
-		422: true, // un-processable entity
-	}
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		RetryPolicy: &utils.Retry{
-			RetryCodes: retryCodes,
-			MaxTries:   1,
-		},
 		SteamID: "765611992592174912",
 	}
+	input.RetryPolicy = &utils.Retry{
+		Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
+		MaxTries:  2,
+		Backoff:   utils.NewConstantDelay(0),
+		RetryCodes: map[int]bool{
+			422: true,
+		},
+	}
+
 	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())

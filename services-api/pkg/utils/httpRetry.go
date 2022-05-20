@@ -12,16 +12,16 @@ import (
 )
 
 const (
-	startBackoff = 1 * time.Second
-	maxBackoff   = 5 * time.Second
-	maxTries     = 2
+	StartBackoff = 1 * time.Second
+	MaxBackoff   = 5 * time.Second
+	maxTries     = 0
 )
 
 var RetryCodes = map[int]bool{
-	422: false, // un-processable entity
-	500: true,  // internal server error
-	502: true,  // bad gateway
-	408: true,  // request timeout error
+	422: true, // un-processable entity
+	500: true, // internal server error
+	502: true, // bad gateway
+	408: true, // request timeout error
 }
 
 // Backoff interface
@@ -52,6 +52,18 @@ func (b *exponentialDelay) Get(attempt uint) time.Duration {
 	return d
 }
 
+type constantDelay struct {
+	Duration time.Duration
+}
+
+func NewConstantDelay(duration time.Duration) Backoff {
+	return &constantDelay{Duration: duration}
+}
+
+func (b *constantDelay) Get(attempt uint) time.Duration {
+	return b.Duration
+}
+
 // Retry struct with http.RoundTripper.
 type Retry struct {
 	RetryCodes map[int]bool
@@ -74,7 +86,7 @@ func SetRetry(inner http.RoundTripper, maxTry uint, retryCode map[int]bool) http
 func OverrideDefaultRetry(inner http.RoundTripper, customMaxTries uint, customRetryCodes map[int]bool) http.RoundTripper {
 	return &Retry{
 		MaxTries:   customMaxTries,
-		Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
+		Backoff:    NewExponentialDelay(StartBackoff, MaxBackoff),
 		Transport:  inner,
 		RetryCodes: customRetryCodes,
 	}
@@ -83,7 +95,7 @@ func OverrideDefaultRetry(inner http.RoundTripper, customMaxTries uint, customRe
 func SetDefaultRetry(inner http.RoundTripper) http.RoundTripper {
 	return &Retry{
 		MaxTries:   maxTries,
-		Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
+		Backoff:    NewExponentialDelay(StartBackoff, MaxBackoff),
 		Transport:  inner,
 		RetryCodes: RetryCodes,
 	}
@@ -97,11 +109,14 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 		sleep = time.Sleep
 	}
 	// Retry logic: Retry up to maxTries, wait exponentially long (using the backoff).
-	for try := uint(0); try < m.MaxTries; try++ {
+	for try := uint(0); try < m.MaxTries+1; try++ {
 		res, err = m.Transport.RoundTrip(req)
 		t := m.Backoff.Get(try) // time to wait for next retry
 		// Do not try again if there was an error with the transport or the status code is not in the RetryCodes
-		if err != nil || res == nil || m.RetryCodes[res.StatusCode] == false {
+		a := err != nil
+		b := res == nil
+		c := m.RetryCodes[res.StatusCode] == false
+		if a || b || c {
 			return res, err
 		}
 		logrus.Infof("Retrying attempt: %v", try)

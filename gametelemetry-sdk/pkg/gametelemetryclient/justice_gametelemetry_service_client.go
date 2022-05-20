@@ -10,6 +10,8 @@ package gametelemetryclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"reflect"
 	"strings"
 	"time"
 
@@ -53,7 +55,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
 	// retry
-	transport.Transport = utils.SetRetry(transport.Transport, 0, nil)
+	//transport.Transport = utils.SetRetry(transport.Transport, 0, nil)
 
 	// optional custom producers and consumer
 	transport.Producers["*/*"] = runtime.JSONProducer()
@@ -65,14 +67,19 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 
+	fmt.Printf("NewHTTPCLientWithConfig type: %v\n", reflect.TypeOf(transport))
+
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice gametelemetry service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeGametelemetryService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeGametelemetryService {
+
+	fmt.Printf("a New type: %v\n", reflect.TypeOf(transport))
+
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -80,7 +87,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeGam
 
 	cli := new(JusticeGametelemetryService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.GametelemetryOperations = gametelemetry_operations.New(transport, formats)
+
+
+	fmt.Printf("b New type: %v\n", reflect.TypeOf(cli.Transport))
 	return cli
 }
 
@@ -95,7 +106,7 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeGametelemetrySer
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -141,6 +152,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeGametelemetryService struct {
 	GametelemetryOperations gametelemetry_operations.ClientService
 
+	Runtime *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

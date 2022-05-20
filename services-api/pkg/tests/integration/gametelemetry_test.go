@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
@@ -56,8 +57,15 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
 	Init()
 
+	var retryCodes = map[int]bool{
+		422: true, // un-processable entity
+	}
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-		SteamID: "76561199259217491",
+		RetryPolicy: &utils.Retry{
+			RetryCodes: retryCodes,
+			MaxTries:   1,
+		},
+		SteamID: "765611992592174911",
 	}
 	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {
@@ -69,17 +77,17 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 }
 
 // Protected Update Playtime
-//func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
-//	Init()
-//
-//	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
-//		Playtime: "4",
-//		SteamID:  "76561199259217491",
-//	}
-//	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
-//	if err != nil {
-//		assert.FailNow(t, err.Error())
-//	}
-//
-//	assert.Nil(t, err, "err should be nil")
-//}
+func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
+	Init()
+
+	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
+		Playtime: "4",
+		SteamID:  "76561199259217491",
+	}
+	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	assert.Nil(t, err, "err should be nil")
+}

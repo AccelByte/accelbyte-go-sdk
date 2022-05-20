@@ -38,12 +38,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice gametelemetry service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeGametelemetryService {
-	return NewHTTPClientWithConfig(formats, nil, "", "", false)
+	return NewHTTPClientWithConfig(formats, nil, "", "")
 }
 
 // NewHTTPClientWithConfig creates a new justice gametelemetry service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string, retry bool) *JusticeGametelemetryService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string) *JusticeGametelemetryService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -53,9 +53,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
 	// retry
-	if retry == true {
-		transport.Transport = utils.SetRetry(transport.Transport)
-	}
+	transport.Transport = utils.SetRetry(transport.Transport, true)
 
 	// optional custom producers and consumer
 	transport.Producers["*/*"] = runtime.JSONProducer()

@@ -21,7 +21,6 @@ func NewGametelemetryClient(configRepository repository.ConfigRepository) *gamet
 		baseURL := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceID := utils.AmazonTraceIDGen()
 		userAgent := utils.UserAgentGen()
-		retry := utils.EnabledRetry(true)
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &gametelemetryclient.TransportConfig{
@@ -29,7 +28,7 @@ func NewGametelemetryClient(configRepository repository.ConfigRepository) *gamet
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID, retry)
+			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
 		} else {
 			gametelemetryClientInstance = gametelemetryclient.NewHTTPClient(nil)
 		}

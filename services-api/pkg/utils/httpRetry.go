@@ -5,7 +5,6 @@
 package utils
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -59,23 +58,26 @@ type Retry struct {
 	MaxTries   uint
 	Backoff    Backoff
 	Transport  http.RoundTripper
-	Verbose    bool
 	Sleeper    func(duration time.Duration)
 }
 
-func SetRetry(inner http.RoundTripper) http.RoundTripper {
-	return &Retry{
-		MaxTries:   maxTries,
-		Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
-		Transport:  inner,
-		RetryCodes: retryCodes,
+func SetRetry(inner http.RoundTripper, enabled bool) http.RoundTripper {
+	if enabled == false {
+		return inner
+	} else {
+		return &Retry{
+			MaxTries:   maxTries,
+			Backoff:    NewExponentialDelay(startBackoff, maxBackoff),
+			Transport:  inner,
+			RetryCodes: retryCodes,
+		}
 	}
 }
 
 func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 	var res *http.Response
 	var err error
-	sleep := m.Sleeper // Setup the sleep method for test
+	sleep := m.Sleeper
 	if sleep == nil {
 		sleep = time.Sleep
 	}
@@ -88,18 +90,10 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 			return res, err
 		}
 		logrus.Infof("Retrying attempt: %v", try)
-		// This is for test mainly
-		if m.Verbose {
-			fmt.Printf("Sleeping %v with code %v\n.", t, res.StatusCode)
-		}
 		// Wait and try again
 		if try != m.MaxTries-1 {
 			sleep(t)
 		}
 	}
 	return res, err
-}
-
-func EnabledRetry(enabled bool) bool {
-	return true
 }

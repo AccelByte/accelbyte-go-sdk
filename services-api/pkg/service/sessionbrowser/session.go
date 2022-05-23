@@ -8,6 +8,7 @@ package sessionbrowser
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
@@ -378,6 +379,15 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetTotalActiveSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -394,6 +404,15 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetActiveCustomGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -410,6 +429,15 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetActiveMatchmakingGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -426,6 +454,15 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.AdminGetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -442,6 +479,15 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.QuerySessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -458,6 +504,15 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -474,6 +529,15 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetSessionByUserIDsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -490,6 +554,15 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sess
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -506,6 +579,15 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.UpdateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -522,6 +604,15 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.DeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -538,6 +629,15 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*se
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.JoinSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -554,6 +654,15 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.DeleteSessionLocalDSShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -570,6 +679,15 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.AddPlayerToSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -586,6 +704,15 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -602,6 +729,15 @@ func (s *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.UpdateSettingsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -618,6 +754,15 @@ func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Session.GetRecentPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

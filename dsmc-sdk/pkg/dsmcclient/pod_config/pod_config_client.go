@@ -12,6 +12,7 @@ package pod_config
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -64,6 +65,10 @@ func (a *Client) CreatePodConfig(params *CreatePodConfigParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -167,6 +172,10 @@ func (a *Client) DeletePodConfig(params *DeletePodConfigParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -277,6 +286,10 @@ func (a *Client) GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllPodConfig",
 		Method:             "GET",
@@ -373,6 +386,10 @@ func (a *Client) GetPodConfig(params *GetPodConfigParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -476,6 +493,10 @@ func (a *Client) UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

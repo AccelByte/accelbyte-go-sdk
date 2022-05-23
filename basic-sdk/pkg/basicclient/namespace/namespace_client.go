@@ -12,6 +12,7 @@ package namespace
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -68,6 +69,10 @@ func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -174,6 +179,10 @@ func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNamespace",
 		Method:             "POST",
@@ -271,6 +280,10 @@ func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -377,6 +390,10 @@ func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespace",
 		Method:             "GET",
@@ -474,6 +491,10 @@ func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -575,6 +596,10 @@ func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.Cli
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaces",
 		Method:             "GET",
@@ -662,6 +687,10 @@ func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisher
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -763,6 +792,10 @@ func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetNamespaces",
 		Method:             "GET",
@@ -845,6 +878,10 @@ func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

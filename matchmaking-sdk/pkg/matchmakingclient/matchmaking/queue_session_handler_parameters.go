@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the queue session handler operation typically these are written to a http.Re
 */
 type QueueSessionHandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *matchmakingclientmodels.ModelsMatchmakingResult
 	/*Namespace
@@ -162,5 +165,6 @@ func (o *QueueSessionHandlerParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get user order grant operation typically these are written to a http.Req
 */
 type GetUserOrderGrantParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
 	/*OrderNo*/
@@ -174,5 +177,6 @@ func (o *GetUserOrderGrantParams) WriteToRequest(r runtime.ClientRequest, reg st
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -8,6 +8,7 @@ package social
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
@@ -198,6 +199,15 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.GetUserProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -214,6 +224,15 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.GetProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -230,6 +249,15 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicGetUserGameProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -246,6 +274,15 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicGetUserProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -262,6 +299,15 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GameProfile.PublicCreateProfileShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -278,6 +324,15 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicGetProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -294,6 +349,15 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicUpdateProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -310,6 +374,15 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GameProfile.PublicDeleteProfileShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -326,6 +399,15 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicGetProfileAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -342,6 +424,15 @@ func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GameProfile.PublicUpdateAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

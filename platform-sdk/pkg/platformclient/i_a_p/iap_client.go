@@ -12,6 +12,7 @@ package i_a_p
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -132,6 +133,10 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAppleIAPConfig",
 		Method:             "DELETE",
@@ -209,6 +214,10 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -290,6 +299,10 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGoogleIAPConfig",
 		Method:             "DELETE",
@@ -367,6 +380,10 @@ func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -448,6 +465,10 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlaystationIAPConfig",
 		Method:             "DELETE",
@@ -525,6 +546,10 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -606,6 +631,10 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSteamIAPConfig",
 		Method:             "DELETE",
@@ -683,6 +712,10 @@ func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -764,6 +797,10 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteXblAPConfig",
 		Method:             "DELETE",
@@ -843,6 +880,10 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppleIAPConfig",
 		Method:             "GET",
@@ -920,6 +961,10 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1006,6 +1051,10 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGoogleIAPConfig",
 		Method:             "GET",
@@ -1083,6 +1132,10 @@ func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1169,6 +1222,10 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlayStationIAPConfig",
 		Method:             "GET",
@@ -1246,6 +1303,10 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1327,6 +1388,10 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSteamIAPConfig",
 		Method:             "GET",
@@ -1406,6 +1471,10 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTwitchIAPConfig",
 		Method:             "GET",
@@ -1483,6 +1552,10 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1567,6 +1640,10 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1663,6 +1740,10 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicFulfillAppleIAPItem",
 		Method:             "PUT",
@@ -1755,6 +1836,10 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1851,6 +1936,10 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReconcilePlayStationStore",
 		Method:             "PUT",
@@ -1935,6 +2024,10 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryAllUserIAPOrders",
 		Method:             "GET",
@@ -2012,6 +2105,10 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2093,6 +2190,10 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncEpicGamesInventory",
 		Method:             "PUT",
@@ -2170,6 +2271,10 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2251,6 +2356,10 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamInventory",
 		Method:             "PUT",
@@ -2328,6 +2437,10 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2409,6 +2522,10 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncXboxInventory",
 		Method:             "PUT",
@@ -2486,6 +2603,10 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2567,6 +2688,10 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateEpicGamesIAPConfig",
 		Method:             "PUT",
@@ -2644,6 +2769,10 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2725,6 +2854,10 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleP12File",
 		Method:             "PUT",
@@ -2802,6 +2935,10 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2888,6 +3025,10 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePlaystationIAPConfig",
 		Method:             "PUT",
@@ -2965,6 +3106,10 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3046,6 +3191,10 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSteamIAPConfig",
 		Method:             "PUT",
@@ -3123,6 +3272,10 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3204,6 +3357,10 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXblBPCertFile",
 		Method:             "PUT",
@@ -3281,6 +3438,10 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the retrieve all users by policy version operation typically these are writt
 */
 type RetrieveAllUsersByPolicyVersionParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Keyword
 	  display name or email or username
 
@@ -259,5 +262,6 @@ func (o *RetrieveAllUsersByPolicyVersionParams) WriteToRequest(r runtime.ClientR
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

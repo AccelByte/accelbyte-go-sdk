@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the protected update playtime game telemetry v1 protected steam ids steam Id
 */
 type ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Cookie*/
 	Cookie *string
 	/*Playtime*/
@@ -178,5 +181,6 @@ func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeP
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

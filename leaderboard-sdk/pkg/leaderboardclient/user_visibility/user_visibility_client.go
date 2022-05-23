@@ -12,6 +12,7 @@ package user_visibility
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -58,6 +59,10 @@ func (a *Client) GetHiddenUsersV2(params *GetHiddenUsersV2Params, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -164,6 +169,10 @@ func (a *Client) GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserVisibilityStatusV2",
 		Method:             "GET",
@@ -268,6 +277,10 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboard
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SetUserLeaderboardVisibilityStatusV2",
 		Method:             "PUT",
@@ -370,6 +383,10 @@ func (a *Client) SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Para
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

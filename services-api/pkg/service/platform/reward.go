@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -221,6 +222,15 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -237,6 +247,15 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -253,6 +272,15 @@ func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Reward.ExportRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -269,6 +297,15 @@ func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Reward.ImportRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -285,6 +322,15 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.GetRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -301,6 +347,15 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -317,6 +372,15 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.DeleteRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -333,6 +397,15 @@ func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditi
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.CheckEventConditionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -349,6 +422,15 @@ func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.GetRewardByCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -365,6 +447,15 @@ func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.QueryRewards1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -381,6 +472,15 @@ func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platfo
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.GetReward1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

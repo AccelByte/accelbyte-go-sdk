@@ -12,6 +12,7 @@ package session
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -60,6 +61,10 @@ func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientA
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -181,6 +186,10 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateSession",
 		Method:             "POST",
@@ -294,6 +303,10 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

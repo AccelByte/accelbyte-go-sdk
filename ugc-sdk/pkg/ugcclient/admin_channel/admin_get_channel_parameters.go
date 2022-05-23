@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the admin get channel operation typically these are written to a http.Reques
 */
 type AdminGetChannelParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  number of content per page
 
@@ -247,5 +250,6 @@ func (o *AdminGetChannelParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

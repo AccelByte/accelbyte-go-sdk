@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the public query user entitlements by app type operation typically these are
 */
 type PublicQueryUserEntitlementsByAppTypeParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AppType*/
 	AppType string
 	/*Limit*/
@@ -257,5 +260,6 @@ func (o *PublicQueryUserEntitlementsByAppTypeParams) WriteToRequest(r runtime.Cl
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -56,6 +57,15 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibili
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -72,6 +82,15 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *e
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicIndirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the list cross namespace account link operation typically these are written 
 */
 type ListCrossNamespaceAccountLinkParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LinkingToken
 	  Access token of the targeted account
 
@@ -219,5 +222,6 @@ func (o *ListCrossNamespaceAccountLinkParams) WriteToRequest(r runtime.ClientReq
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

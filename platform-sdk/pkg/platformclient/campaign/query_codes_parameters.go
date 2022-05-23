@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -93,6 +94,8 @@ for the query codes operation typically these are written to a http.Request
 */
 type QueryCodesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly*/
 	ActiveOnly *bool
 	/*BatchNo*/
@@ -330,5 +333,6 @@ func (o *QueryCodesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

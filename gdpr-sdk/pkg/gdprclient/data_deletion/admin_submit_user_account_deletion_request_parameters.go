@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin submit user account deletion request operation typically these are
 */
 type AdminSubmitUserAccountDeletionRequestParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace
 	  namespace of the user
 
@@ -162,5 +165,6 @@ func (o *AdminSubmitUserAccountDeletionRequestParams) WriteToRequest(r runtime.C
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

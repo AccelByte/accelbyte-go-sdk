@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get leaderboard configurations public v2 operation typically these are w
 */
 type GetLeaderboardConfigurationsPublicV2Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  size of displayed data
 
@@ -206,5 +209,6 @@ func (o *GetLeaderboardConfigurationsPublicV2Params) WriteToRequest(r runtime.Cl
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

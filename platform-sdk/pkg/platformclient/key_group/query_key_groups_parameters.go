@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the query key groups operation typically these are written to a http.Request
 */
 type QueryKeyGroupsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit*/
 	Limit *int32
 	/*Name*/
@@ -275,5 +278,6 @@ func (o *QueryKeyGroupsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

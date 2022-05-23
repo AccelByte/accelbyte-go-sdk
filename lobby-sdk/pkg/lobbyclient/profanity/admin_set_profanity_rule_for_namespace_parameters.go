@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the admin set profanity rule for namespace operation typically these are wri
 */
 type AdminSetProfanityRuleForNamespaceParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body
 	  request
 
@@ -165,5 +168,6 @@ func (o *AdminSetProfanityRuleForNamespaceParams) WriteToRequest(r runtime.Clien
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

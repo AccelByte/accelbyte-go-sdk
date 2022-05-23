@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the retrieve eligibilities public indirect operation typically these are wri
 */
 type RetrieveEligibilitiesPublicIndirectParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ClientID
 	  Client Id
 
@@ -204,5 +207,6 @@ func (o *RetrieveEligibilitiesPublicIndirectParams) WriteToRequest(r runtime.Cli
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

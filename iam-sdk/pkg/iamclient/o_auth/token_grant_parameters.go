@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the token grant operation typically these are written to a http.Request
 */
 type TokenGrantParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*DeviceID
 	  DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9
 
@@ -407,5 +410,6 @@ func (o *TokenGrantParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin get user ban v3 operation typically these are written to a http.Re
 */
 type AdminGetUserBanV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly
 	  Filter ban based on the ban status. If you set this, only active ban returned
 
@@ -291,5 +294,6 @@ func (o *AdminGetUserBanV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

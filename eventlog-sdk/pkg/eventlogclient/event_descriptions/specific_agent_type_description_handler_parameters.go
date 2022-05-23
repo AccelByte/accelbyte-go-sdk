@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the specific agent type description handler operation typically these are wr
 */
 type SpecificAgentTypeDescriptionHandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AgentTypes
 	  Comma separated value of agent types
 
@@ -152,5 +155,6 @@ func (o *SpecificAgentTypeDescriptionHandlerParams) WriteToRequest(r runtime.Cli
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -8,6 +8,7 @@ package social
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
@@ -112,6 +113,15 @@ func (s *SlotConfigService) GetNamespaceSlotConfigShort(input *slot_config.GetNa
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.SlotConfig.GetNamespaceSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -128,6 +138,15 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfigShort(input *slot_config.Up
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.SlotConfig.UpdateNamespaceSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -144,6 +163,15 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfigShort(input *slot_config.De
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.SlotConfig.DeleteNamespaceSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -160,6 +188,15 @@ func (s *SlotConfigService) GetUserSlotConfigShort(input *slot_config.GetUserSlo
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.SlotConfig.GetUserSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -176,6 +213,15 @@ func (s *SlotConfigService) UpdateUserSlotConfigShort(input *slot_config.UpdateU
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.SlotConfig.UpdateUserSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -192,6 +238,15 @@ func (s *SlotConfigService) DeleteUserSlotConfigShort(input *slot_config.DeleteU
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.SlotConfig.DeleteUserSlotConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err

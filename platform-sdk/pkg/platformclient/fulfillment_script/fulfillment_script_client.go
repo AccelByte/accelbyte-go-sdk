@@ -12,6 +12,7 @@ package fulfillment_script
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -62,6 +63,10 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -148,6 +153,10 @@ func (a *Client) DeleteFulfillmentScript(params *DeleteFulfillmentScriptParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteFulfillmentScript",
 		Method:             "DELETE",
@@ -225,6 +234,10 @@ func (a *Client) GetFulfillmentScript(params *GetFulfillmentScriptParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -311,6 +324,10 @@ func (a *Client) ListFulfillmentScripts(params *ListFulfillmentScriptsParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listFulfillmentScripts",
 		Method:             "GET",
@@ -390,6 +407,10 @@ func (a *Client) TestFulfillmentScriptEval(params *TestFulfillmentScriptEvalPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testFulfillmentScriptEval",
 		Method:             "POST",
@@ -467,6 +488,10 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

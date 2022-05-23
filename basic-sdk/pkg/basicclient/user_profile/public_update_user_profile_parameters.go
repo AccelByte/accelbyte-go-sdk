@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the public update user profile operation typically these are written to a ht
 */
 type PublicUpdateUserProfileParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *basicclientmodels.UserProfileUpdate
 	/*Namespace
@@ -183,5 +186,6 @@ func (o *PublicUpdateUserProfileParams) WriteToRequest(r runtime.ClientRequest, 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

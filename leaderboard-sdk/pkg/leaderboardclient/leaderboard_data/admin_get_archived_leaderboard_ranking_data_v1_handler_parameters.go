@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin get archived leaderboard ranking data v1 handler operation typical
 */
 type AdminGetArchivedLeaderboardRankingDataV1HandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LeaderboardCodes
 	  list of leaderboard codes split by comma
 
@@ -198,5 +201,6 @@ func (o *AdminGetArchivedLeaderboardRankingDataV1HandlerParams) WriteToRequest(r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

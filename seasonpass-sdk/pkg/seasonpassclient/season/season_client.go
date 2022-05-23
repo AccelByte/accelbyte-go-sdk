@@ -12,6 +12,7 @@ package season
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -88,6 +89,10 @@ func (a *Client) CheckSeasonPurchasable(params *CheckSeasonPurchasableParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -184,6 +189,10 @@ func (a *Client) CloneSeason(params *CloneSeasonParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cloneSeason",
 		Method:             "POST",
@@ -276,6 +285,10 @@ func (a *Client) CreateSeason(params *CreateSeasonParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -372,6 +385,10 @@ func (a *Client) DeleteSeason(params *DeleteSeasonParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSeason",
 		Method:             "DELETE",
@@ -466,6 +483,10 @@ func (a *Client) ExistsAnyPassByPassCodes(params *ExistsAnyPassByPassCodesParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyPassByPassCodes",
 		Method:             "GET",
@@ -548,6 +569,10 @@ func (a *Client) GetCurrentSeason(params *GetCurrentSeasonParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -639,6 +664,10 @@ func (a *Client) GetCurrentUserSeasonProgression(params *GetCurrentUserSeasonPro
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrentUserSeasonProgression",
 		Method:             "GET",
@@ -726,6 +755,10 @@ func (a *Client) GetSeason(params *GetSeasonParams, authInfo runtime.ClientAuthI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -817,6 +850,10 @@ func (a *Client) GetUserParticipatedSeasons(params *GetUserParticipatedSeasonsPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserParticipatedSeasons",
 		Method:             "GET",
@@ -899,6 +936,10 @@ func (a *Client) GetUserSeason(params *GetUserSeasonParams, authInfo runtime.Cli
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -990,6 +1031,10 @@ func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCurrentSeason",
 		Method:             "GET",
@@ -1075,6 +1120,10 @@ func (a *Client) PublicGetCurrentUserSeason(params *PublicGetCurrentUserSeasonPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1166,6 +1215,10 @@ func (a *Client) PublicGetUserSeason(params *PublicGetUserSeasonParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSeason",
 		Method:             "GET",
@@ -1253,6 +1306,10 @@ func (a *Client) PublishSeason(params *PublishSeasonParams, authInfo runtime.Cli
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1349,6 +1406,10 @@ func (a *Client) QuerySeasons(params *QuerySeasonsParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "querySeasons",
 		Method:             "GET",
@@ -1433,6 +1494,10 @@ func (a *Client) ResetUserSeason(params *ResetUserSeasonParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserSeason",
 		Method:             "DELETE",
@@ -1515,6 +1580,10 @@ func (a *Client) RetireSeason(params *RetireSeasonParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1611,6 +1680,10 @@ func (a *Client) UnpublishSeason(params *UnpublishSeasonParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "unpublishSeason",
 		Method:             "PUT",
@@ -1703,6 +1776,10 @@ func (a *Client) UpdateSeason(params *UpdateSeasonParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

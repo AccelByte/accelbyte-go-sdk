@@ -12,6 +12,7 @@ package admin_group
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -72,6 +73,10 @@ func (a *Client) AdminCreateGroup(params *AdminCreateGroupParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -168,6 +173,10 @@ func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteGroup",
 		Method:             "DELETE",
@@ -260,6 +269,10 @@ func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -356,6 +369,10 @@ func (a *Client) AdminGetGroup(params *AdminGetGroupParams, authInfo runtime.Cli
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetGroup",
 		Method:             "GET",
@@ -448,6 +465,10 @@ func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -543,6 +564,10 @@ func (a *Client) AdminUpdateGroup(params *AdminUpdateGroupParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -644,6 +669,10 @@ func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteGroup",
 		Method:             "DELETE",
@@ -736,6 +765,10 @@ func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -832,6 +865,10 @@ func (a *Client) SingleAdminGetGroup(params *SingleAdminGetGroupParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetGroup",
 		Method:             "GET",
@@ -924,6 +961,10 @@ func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContents
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1019,6 +1060,10 @@ func (a *Client) SingleAdminUpdateGroup(params *SingleAdminUpdateGroupParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

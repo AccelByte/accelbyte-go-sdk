@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -161,6 +162,15 @@ func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -177,6 +187,15 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PodConfig.GetPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -193,6 +212,15 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := p.Client.PodConfig.CreatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -209,6 +237,15 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.PodConfig.DeletePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -225,6 +262,15 @@ func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

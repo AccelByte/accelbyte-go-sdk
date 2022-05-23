@@ -12,6 +12,7 @@ package terminated_servers
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -60,6 +61,10 @@ func (a *Client) CheckServerLogs(params *CheckServerLogsParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -155,6 +160,10 @@ func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadServerLogs",
 		Method:             "GET",
@@ -246,6 +255,10 @@ func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

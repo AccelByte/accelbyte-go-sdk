@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -257,6 +258,15 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configu
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Configuration.ListGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -273,6 +283,15 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *confi
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Configuration.CreateGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -289,6 +308,15 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *con
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Configuration.InitiateGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -305,6 +333,15 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configur
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Configuration.GetGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -321,6 +358,15 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configurat
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Configuration.DeleteGroupConfigurationV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -337,6 +383,15 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *confi
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Configuration.UpdateGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -353,6 +408,15 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(in
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -369,6 +433,15 @@ func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(in
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

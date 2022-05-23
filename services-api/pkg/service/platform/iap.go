@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -630,6 +631,15 @@ func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -646,6 +656,15 @@ func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfig
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -662,6 +681,15 @@ func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfig
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -678,6 +706,15 @@ func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -694,6 +731,15 @@ func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesI
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -710,6 +756,15 @@ func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesI
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -726,6 +781,15 @@ func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -742,6 +806,15 @@ func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -758,6 +831,15 @@ func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -774,6 +856,15 @@ func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FilePa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateGoogleP12FileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -790,6 +881,15 @@ func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -806,6 +906,15 @@ func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -822,6 +931,15 @@ func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -838,6 +956,15 @@ func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAP
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetPlayStationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -854,6 +981,15 @@ func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystat
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdatePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -870,6 +1006,15 @@ func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystat
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeletePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -886,6 +1031,15 @@ func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetStadiaIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -902,6 +1056,15 @@ func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteStadiaIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -918,6 +1081,15 @@ func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJS
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -934,6 +1106,15 @@ func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -950,6 +1131,15 @@ func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfig
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -966,6 +1156,15 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -982,6 +1181,15 @@ func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -998,6 +1206,15 @@ func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1014,6 +1231,15 @@ func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1030,6 +1256,15 @@ func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1046,6 +1281,15 @@ func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1062,6 +1306,15 @@ func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.DeleteXblAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1078,6 +1331,15 @@ func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFilePa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.UpdateXblBPCertFileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1094,6 +1356,15 @@ func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.QueryUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1110,6 +1381,15 @@ func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrde
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.QueryAllUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1126,6 +1406,15 @@ func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.MockFulfillIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1142,6 +1431,15 @@ func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAp
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.PublicFulfillAppleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1158,6 +1456,15 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.SyncEpicGamesInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1174,6 +1481,15 @@ func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillG
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1190,6 +1506,15 @@ func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicRec
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1206,6 +1531,15 @@ func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitleme
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.SyncStadiaEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1222,6 +1556,15 @@ func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.SyncSteamInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1238,6 +1581,15 @@ func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDrop
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Iap.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1254,6 +1606,15 @@ func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Iap.SyncXboxInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

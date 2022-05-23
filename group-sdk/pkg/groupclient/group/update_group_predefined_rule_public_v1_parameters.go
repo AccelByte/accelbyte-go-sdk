@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update group predefined rule public v1 operation typically these are wri
 */
 type UpdateGroupPredefinedRulePublicV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AllowedAction
 	  Allowed action, any available action in service
 
@@ -204,5 +207,6 @@ func (o *UpdateGroupPredefinedRulePublicV1Params) WriteToRequest(r runtime.Clien
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

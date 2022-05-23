@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update user point admin v1 operation typically these are written to a ht
 */
 type UpdateUserPointAdminV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *leaderboardclientmodels.ModelsUpdateUserPointAdminV1Request
 	/*LeaderboardCode
@@ -204,5 +207,6 @@ func (o *UpdateUserPointAdminV1Params) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

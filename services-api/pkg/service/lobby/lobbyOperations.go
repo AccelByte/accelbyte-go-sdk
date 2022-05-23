@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/lobby_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -109,6 +110,15 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_
 		}
 		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  l.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := l.Client.LobbyOperations.AdminUpdatePartyAttributesV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -125,6 +135,15 @@ func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.A
 		}
 		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  l.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := l.Client.LobbyOperations.AdminJoinPartyV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -141,6 +160,15 @@ func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.
 		}
 		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  l.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := l.Client.LobbyOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

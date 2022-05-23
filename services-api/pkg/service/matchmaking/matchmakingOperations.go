@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -87,6 +88,15 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmakin
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.MatchmakingOperations.GetHealthcheckInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -103,6 +113,15 @@ func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.MatchmakingOperations.HandlerV3HealthzShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -119,6 +138,15 @@ func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.MatchmakingOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -135,6 +163,15 @@ func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaki
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.MatchmakingOperations.VersionCheckHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err

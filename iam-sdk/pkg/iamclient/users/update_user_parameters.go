@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update user operation typically these are written to a http.Request
 */
 type UpdateUserParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body
 	  <ul><li>Country (Optional) <br> use ISO3166-1 alpha-2 two letter, e.g. US.</li><li>DisplayName (Optional) string </li><li>LanguageTag (Optional) use Language e.g. en / en-US </li></ul>
 
@@ -186,5 +189,6 @@ func (o *UpdateUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

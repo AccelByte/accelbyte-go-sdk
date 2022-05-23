@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the list admins v3 operation typically these are written to a http.Request
 */
 type ListAdminsV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*After
 	  The cursor that points to query data for the next page. Composite values consist of created_at and id, the value is base64 encoded
 
@@ -238,5 +241,6 @@ func (o *ListAdminsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

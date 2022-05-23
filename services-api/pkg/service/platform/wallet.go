@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -337,6 +338,15 @@ func (w *WalletService) GetPlatformWalletConfigShort(input *wallet.GetPlatformWa
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.GetPlatformWalletConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -353,6 +363,15 @@ func (w *WalletService) UpdatePlatformWalletConfigShort(input *wallet.UpdatePlat
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.UpdatePlatformWalletConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -369,6 +388,15 @@ func (w *WalletService) ResetPlatformWalletConfigShort(input *wallet.ResetPlatfo
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.ResetPlatformWalletConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -385,6 +413,15 @@ func (w *WalletService) QueryUserCurrencyWalletsShort(input *wallet.QueryUserCur
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.QueryUserCurrencyWalletsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -401,6 +438,15 @@ func (w *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.ListUserCurrencyTransactionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -417,6 +463,15 @@ func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error 
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := w.Client.Wallet.CheckWalletShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -433,6 +488,15 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.CreditUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -449,6 +513,15 @@ func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.PayWithUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -465,6 +538,15 @@ func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.GetUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -481,6 +563,15 @@ func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.DebitUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -497,6 +588,15 @@ func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := w.Client.Wallet.DisableUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -513,6 +613,15 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := w.Client.Wallet.EnableUserWalletShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -529,6 +638,15 @@ func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWa
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.ListUserWalletTransactionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -545,6 +663,15 @@ func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.QueryWalletsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -561,6 +688,15 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.GetWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -577,6 +713,15 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.PublicGetMyWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -593,6 +738,15 @@ func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.PublicGetWalletShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -609,6 +763,15 @@ func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  w.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := w.Client.Wallet.PublicListUserWalletTransactionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

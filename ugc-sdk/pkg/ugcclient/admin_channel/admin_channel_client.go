@@ -12,6 +12,7 @@ package admin_channel
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -64,6 +65,10 @@ func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -160,6 +165,10 @@ func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteChannel",
 		Method:             "DELETE",
@@ -254,6 +263,10 @@ func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetChannel",
 		Method:             "GET",
@@ -346,6 +359,10 @@ func (a *Client) AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -447,6 +464,10 @@ func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteChannel",
 		Method:             "DELETE",
@@ -541,6 +562,10 @@ func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetChannel",
 		Method:             "GET",
@@ -633,6 +658,10 @@ func (a *Client) SingleAdminUpdateChannel(params *SingleAdminUpdateChannelParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

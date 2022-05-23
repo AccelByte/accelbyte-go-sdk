@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update group configuration global rule admin v1 operation typically thes
 */
 type UpdateGroupConfigurationGlobalRuleAdminV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AllowedAction
 	  Allowed Action. The value should be any actions in the service
 
@@ -204,5 +207,6 @@ func (o *UpdateGroupConfigurationGlobalRuleAdminV1Params) WriteToRequest(r runti
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

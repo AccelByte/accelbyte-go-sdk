@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -138,6 +139,15 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FileUpload.GeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -154,6 +164,15 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FileUpload.GeneratedUserUploadContentURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -170,6 +189,15 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FileUpload.PublicGeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -186,6 +214,15 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -184,6 +185,15 @@ func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (st
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.AuthorizationShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
@@ -200,6 +210,15 @@ func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmode
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.GetJWKSShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -216,6 +235,15 @@ func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTo
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.PlatformTokenRequestHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -232,6 +260,15 @@ func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.OAuth.RevokeUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -248,6 +285,15 @@ func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListPar
 		}
 		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.GetRevocationListShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -264,6 +310,15 @@ func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.OAuth.RevokeTokenShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -280,6 +335,15 @@ func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.OAuth.RevokeAUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -296,6 +360,15 @@ func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamclie
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.TokenGrantShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -312,6 +385,15 @@ func (o *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams) (*iamcl
 		}
 		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth.VerifyTokenShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

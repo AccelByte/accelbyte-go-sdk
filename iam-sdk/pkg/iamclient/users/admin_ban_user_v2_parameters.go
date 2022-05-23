@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the admin ban user v2 operation typically these are written to a http.Reques
 */
 type AdminBanUserV2Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ModelBanCreateRequest
 	/*Namespace
@@ -183,5 +186,6 @@ func (o *AdminBanUserV2Params) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

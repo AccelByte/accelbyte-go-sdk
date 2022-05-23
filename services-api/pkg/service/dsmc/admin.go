@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -260,6 +261,15 @@ func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclie
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.ListServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -276,6 +286,15 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmccl
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.CountServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -292,6 +311,15 @@ func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailed
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.CountServerDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -308,6 +336,15 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.ListLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -324,6 +361,15 @@ func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Admin.DeleteLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -340,6 +386,15 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclient
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.GetServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -356,6 +411,15 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -372,6 +436,15 @@ func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*ds
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.GetServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -388,6 +461,15 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmccl
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.ListSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -404,6 +486,15 @@ func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmc
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Admin.CountSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -420,6 +511,15 @@ func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) erro
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Admin.DeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return err

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the public upgrade headless account with verification code v4 operation typi
 */
 type PublicUpgradeHeadlessAccountWithVerificationCodeV4Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4
 	/*Namespace
@@ -162,5 +165,6 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) WriteToReques
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

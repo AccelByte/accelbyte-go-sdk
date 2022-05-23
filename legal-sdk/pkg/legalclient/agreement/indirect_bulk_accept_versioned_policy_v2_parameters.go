@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the indirect bulk accept versioned policy v2 operation typically these are w
 */
 type IndirectBulkAcceptVersionedPolicyV2Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body []*legalclientmodels.AcceptAgreementRequest
 	/*ClientID
@@ -225,5 +228,6 @@ func (o *IndirectBulkAcceptVersionedPolicyV2Params) WriteToRequest(r runtime.Cli
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

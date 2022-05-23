@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -348,6 +349,15 @@ func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImagePar
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.ImageConfig.UpdateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -364,6 +374,15 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.ImageConfig.CreateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -380,6 +399,15 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.ImportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -396,6 +424,15 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.ImageConfig.CreateImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -412,6 +449,15 @@ func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParam
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.ListImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -428,6 +474,15 @@ func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImagePar
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.ImageConfig.DeleteImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -444,6 +499,15 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.ExportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -460,6 +524,15 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -476,6 +549,15 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.ImageConfig.DeleteImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -492,6 +574,15 @@ func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDet
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -508,6 +599,15 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.GetImagePatchesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -524,6 +624,15 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.GetImagePatchDetailShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -540,6 +649,15 @@ func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDet
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

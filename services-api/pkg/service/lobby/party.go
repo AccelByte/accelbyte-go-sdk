@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -147,6 +148,15 @@ func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Party.AdminGetPartyDataV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -163,6 +173,15 @@ func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Party.AdminGetUserPartyV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -179,6 +198,15 @@ func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyData
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Party.PublicGetPartyDataV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -195,6 +223,15 @@ func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Party.PublicUpdatePartyAttributesV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

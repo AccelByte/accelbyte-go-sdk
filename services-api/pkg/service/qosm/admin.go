@@ -10,6 +10,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -67,6 +68,15 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -83,6 +93,15 @@ func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Admin.SetServerAliasShort(input, authInfoWriter)
 	if err != nil {
 		return err

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin search users v2 operation typically these are written to a http.Re
 */
 type AdminSearchUsersV2Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*After
 	  The cursor that points to ID of first item in for the next page
 
@@ -423,5 +426,6 @@ func (o *AdminSearchUsersV2Params) WriteToRequest(r runtime.ClientRequest, reg s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

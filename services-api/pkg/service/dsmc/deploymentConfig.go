@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -398,6 +399,15 @@ func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.GetAllDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -414,6 +424,15 @@ func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.GetDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -430,6 +449,15 @@ func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DeploymentConfig.CreateDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -446,6 +474,15 @@ func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DeploymentConfig.DeleteDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -462,6 +499,15 @@ func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.UpdateDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -478,6 +524,15 @@ func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -494,6 +549,15 @@ func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -510,6 +574,15 @@ func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -526,6 +599,15 @@ func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -542,6 +624,15 @@ func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -558,6 +649,15 @@ func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploymen
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -574,6 +674,15 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deplo
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -590,6 +699,15 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deplo
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -606,6 +724,15 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deplo
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

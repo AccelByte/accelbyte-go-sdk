@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
@@ -146,6 +147,15 @@ func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFo
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicFollow.GetFollowedContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -162,6 +172,15 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicFollow.GetFollowedUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -178,6 +197,15 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -194,6 +222,15 @@ func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPu
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicFollow.GetPublicFollowersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -210,6 +247,15 @@ func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPu
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicFollow.GetPublicFollowingShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

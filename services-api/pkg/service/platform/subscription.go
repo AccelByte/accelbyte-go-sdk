@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -354,6 +355,15 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -370,6 +380,15 @@ func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscripti
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -386,6 +405,15 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -402,6 +430,15 @@ func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscrip
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -418,6 +455,15 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -434,6 +480,15 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(inp
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -450,6 +505,15 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -466,6 +530,15 @@ func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.De
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.Subscription.DeleteUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -482,6 +555,15 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -498,6 +580,15 @@ func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.G
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -514,6 +605,15 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -530,6 +630,15 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -546,6 +655,15 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -562,6 +680,15 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.Subscription.PublicSubscribeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -578,6 +705,15 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDSho
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -594,6 +730,15 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -610,6 +755,15 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -626,6 +780,15 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -642,6 +805,15 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(inp
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

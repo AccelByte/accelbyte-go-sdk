@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the bulk fetch or default stat items operation typically these are written t
 */
 type BulkFetchOrDefaultStatItemsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace
 	  namespace
 
@@ -191,5 +194,6 @@ func (o *BulkFetchOrDefaultStatItemsParams) WriteToRequest(r runtime.ClientReque
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

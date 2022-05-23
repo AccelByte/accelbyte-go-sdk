@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -280,6 +281,15 @@ func (p *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.AdminGetLobbyCCUShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -296,6 +306,15 @@ func (p *PlayerService) AdminGetAllPlayerSessionAttributeShort(input *player.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.AdminGetAllPlayerSessionAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -312,6 +331,15 @@ func (p *PlayerService) AdminSetPlayerSessionAttributeShort(input *player.AdminS
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Player.AdminSetPlayerSessionAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -328,6 +356,15 @@ func (p *PlayerService) AdminGetPlayerSessionAttributeShort(input *player.AdminG
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.AdminGetPlayerSessionAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -344,6 +381,15 @@ func (p *PlayerService) AdminGetPlayerBlockedPlayersV1Short(input *player.AdminG
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.AdminGetPlayerBlockedPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -360,6 +406,15 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.Admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.AdminGetPlayerBlockedByPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -376,6 +431,15 @@ func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBloc
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Player.AdminBulkBlockPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -392,6 +456,15 @@ func (p *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.Publi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.PublicGetPlayerBlockedPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -408,6 +481,15 @@ func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1Short(input *player.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Player.PublicGetPlayerBlockedByPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

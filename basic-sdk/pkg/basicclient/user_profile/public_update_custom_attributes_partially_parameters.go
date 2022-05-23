@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the public update custom attributes partially operation typically these are 
 */
 type PublicUpdateCustomAttributesPartiallyParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body map[string]interface{}
 	/*Namespace
@@ -181,5 +184,6 @@ func (o *PublicUpdateCustomAttributesPartiallyParams) WriteToRequest(r runtime.C
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

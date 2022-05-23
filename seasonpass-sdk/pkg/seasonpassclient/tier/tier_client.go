@@ -12,6 +12,7 @@ package tier
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -64,6 +65,10 @@ func (a *Client) CreateTier(params *CreateTierParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -165,6 +170,10 @@ func (a *Client) DeleteTier(params *DeleteTierParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTier",
 		Method:             "DELETE",
@@ -259,6 +268,10 @@ func (a *Client) GrantUserExp(params *GrantUserExpParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserExp",
 		Method:             "POST",
@@ -341,6 +354,10 @@ func (a *Client) GrantUserTier(params *GrantUserTierParams, authInfo runtime.Cli
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -432,6 +449,10 @@ func (a *Client) QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryTiers",
 		Method:             "GET",
@@ -519,6 +540,10 @@ func (a *Client) ReorderTier(params *ReorderTierParams, authInfo runtime.ClientA
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -618,6 +643,10 @@ func (a *Client) UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

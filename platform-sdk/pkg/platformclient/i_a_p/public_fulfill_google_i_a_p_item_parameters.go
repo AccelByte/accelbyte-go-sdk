@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the public fulfill google i a p item operation typically these are written t
 */
 type PublicFulfillGoogleIAPItemParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *platformclientmodels.GoogleIAPReceipt
 	/*Namespace*/
@@ -177,5 +180,6 @@ func (o *PublicFulfillGoogleIAPItemParams) WriteToRequest(r runtime.ClientReques
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

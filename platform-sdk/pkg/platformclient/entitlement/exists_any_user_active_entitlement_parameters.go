@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the exists any user active entitlement operation typically these are written
 */
 type ExistsAnyUserActiveEntitlementParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AppIds*/
 	AppIds []string
 	/*ItemIds*/
@@ -220,5 +223,6 @@ func (o *ExistsAnyUserActiveEntitlementParams) WriteToRequest(r runtime.ClientRe
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

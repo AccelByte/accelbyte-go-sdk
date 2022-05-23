@@ -12,6 +12,7 @@ package player
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -69,6 +70,10 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -171,6 +176,10 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllPlayerSessionAttribute",
 		Method:             "GET",
@@ -264,6 +273,10 @@ func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -371,6 +384,10 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerBlockedByPlayersV1",
 		Method:             "GET",
@@ -474,6 +491,10 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -581,6 +602,10 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerSessionAttribute",
 		Method:             "GET",
@@ -684,6 +709,10 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -792,6 +821,10 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPlayerBlockedByPlayersV1",
 		Method:             "GET",
@@ -896,6 +929,10 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -70,6 +71,15 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -86,6 +96,15 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams)
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserInfo.SyncUserInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -102,6 +121,15 @@ func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.Invalida
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfoWriter)
 	if err != nil {
 		return err

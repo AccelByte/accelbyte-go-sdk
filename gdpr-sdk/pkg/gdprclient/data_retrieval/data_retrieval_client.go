@@ -12,6 +12,7 @@ package data_retrieval
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -76,6 +77,10 @@ func (a *Client) AdminCancelUserPersonalDataRequest(params *AdminCancelUserPerso
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -177,6 +182,10 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGeneratePersonalDataURL",
 		Method:             "POST",
@@ -274,6 +283,10 @@ func (a *Client) AdminGetListPersonalDataRequest(params *AdminGetListPersonalDat
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -380,6 +393,10 @@ func (a *Client) AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetUserPersonalDataRequests",
 		Method:             "GET",
@@ -475,6 +492,10 @@ func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRequestDataRetrieval",
 		Method:             "POST",
@@ -568,6 +589,10 @@ func (a *Client) DeleteAdminEmailConfiguration(params *DeleteAdminEmailConfigura
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -675,6 +700,10 @@ func (a *Client) GetAdminEmailConfiguration(params *GetAdminEmailConfigurationPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAdminEmailConfiguration",
 		Method:             "GET",
@@ -762,6 +791,10 @@ func (a *Client) PublicCancelUserPersonalDataRequest(params *PublicCancelUserPer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -863,6 +896,10 @@ func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDat
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGeneratePersonalDataURL",
 		Method:             "POST",
@@ -962,6 +999,10 @@ func (a *Client) PublicGetUserPersonalDataRequests(params *PublicGetUserPersonal
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserPersonalDataRequests",
 		Method:             "GET",
@@ -1054,6 +1095,10 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1151,6 +1196,10 @@ func (a *Client) SaveAdminEmailConfiguration(params *SaveAdminEmailConfiguration
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SaveAdminEmailConfiguration",
 		Method:             "POST",
@@ -1243,6 +1292,10 @@ func (a *Client) UpdateAdminEmailConfiguration(params *UpdateAdminEmailConfigura
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

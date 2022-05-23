@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
@@ -211,6 +212,15 @@ func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymizat
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -227,6 +237,15 @@ func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymizat
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.AdminDeleteAllUserContentsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -243,6 +262,15 @@ func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.AdminDeleteAllUserGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -259,6 +287,15 @@ func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymizatio
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.AdminDeleteAllUserStatesShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -275,6 +312,15 @@ func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.De
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.DeleteAllUserChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -291,6 +337,15 @@ func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.D
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.DeleteAllUserContentsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -307,6 +362,15 @@ func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.Dele
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.DeleteAllUserGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -323,6 +387,15 @@ func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.Del
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Anonymization.DeleteAllUserStatesShort(input, authInfoWriter)
 	if err != nil {
 		return err

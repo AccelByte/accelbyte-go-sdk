@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin get namespace game telemetry v1 admin telemetrynamespace get opera
 */
 type AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Cookie*/
 	Cookie *string
 
@@ -142,5 +145,6 @@ func (o *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) Write
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

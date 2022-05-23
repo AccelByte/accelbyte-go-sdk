@@ -12,6 +12,7 @@ package key_group
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -64,6 +65,10 @@ func (a *Client) CreateKeyGroup(params *CreateKeyGroupParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -155,6 +160,10 @@ func (a *Client) GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroup",
 		Method:             "GET",
@@ -237,6 +246,10 @@ func (a *Client) GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -323,6 +336,10 @@ func (a *Client) ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listKeys",
 		Method:             "GET",
@@ -402,6 +419,10 @@ func (a *Client) QueryKeyGroups(params *QueryKeyGroupsParams, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryKeyGroups",
 		Method:             "GET",
@@ -479,6 +500,10 @@ func (a *Client) UpdateKeyGroup(params *UpdateKeyGroupParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -573,6 +598,10 @@ func (a *Client) UploadKeys(params *UploadKeysParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

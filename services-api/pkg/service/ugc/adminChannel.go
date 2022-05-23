@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
@@ -195,6 +196,15 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminChannel.SingleAdminGetChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -211,6 +221,15 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.AdminChannel.AdminCreateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -227,6 +246,15 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminChannel.SingleAdminUpdateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -243,6 +271,15 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminChannel.SingleAdminDeleteChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -259,6 +296,15 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminChannel.AdminGetChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -275,6 +321,15 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminChannel.AdminUpdateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -291,6 +346,15 @@ func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminChannel.AdminDeleteChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err

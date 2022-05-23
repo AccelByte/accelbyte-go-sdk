@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the retrieve all policy types operation typically these are written to a htt
 */
 type RetrieveAllPolicyTypesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  Limit
 
@@ -178,5 +181,6 @@ func (o *RetrieveAllPolicyTypesParams) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

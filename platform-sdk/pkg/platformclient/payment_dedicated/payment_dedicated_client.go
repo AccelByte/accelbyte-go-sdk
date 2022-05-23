@@ -12,6 +12,7 @@ package payment_dedicated
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -98,6 +99,10 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -236,6 +241,10 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundPaymentOrderByDedicated",
 		Method:             "PUT",
@@ -333,6 +342,10 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

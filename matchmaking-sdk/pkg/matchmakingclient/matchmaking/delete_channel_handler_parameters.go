@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete channel handler operation typically these are written to a http.R
 */
 type DeleteChannelHandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Channel
 	  channel to be deleted
 
@@ -162,5 +165,6 @@ func (o *DeleteChannelHandlerParams) WriteToRequest(r runtime.ClientRequest, reg
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

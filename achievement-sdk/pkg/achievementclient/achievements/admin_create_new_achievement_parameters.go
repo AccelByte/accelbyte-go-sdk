@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the admin create new achievement operation typically these are written to a 
 */
 type AdminCreateNewAchievementParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *achievementclientmodels.ModelsAchievementRequest
 	/*Namespace
@@ -162,5 +165,6 @@ func (o *AdminCreateNewAchievementParams) WriteToRequest(r runtime.ClientRequest
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

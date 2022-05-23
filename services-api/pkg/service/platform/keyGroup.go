@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -153,6 +154,15 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -169,6 +179,15 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -185,6 +204,15 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -201,6 +229,15 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -217,6 +254,15 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -233,6 +279,15 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platf
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.ListKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -249,6 +304,15 @@ func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*p
 		}
 		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  k.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := k.Client.KeyGroup.UploadKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

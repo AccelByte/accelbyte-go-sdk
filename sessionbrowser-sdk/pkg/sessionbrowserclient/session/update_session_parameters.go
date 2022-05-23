@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update session operation typically these are written to a http.Request
 */
 type UpdateSessionParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *sessionbrowserclientmodels.ModelsUpdateSessionRequest
 	/*Namespace
@@ -183,5 +186,6 @@ func (o *UpdateSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

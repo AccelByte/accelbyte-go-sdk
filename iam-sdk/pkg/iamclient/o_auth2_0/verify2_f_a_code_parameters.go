@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the verify2 f a code operation typically these are written to a http.Request
 */
 type Verify2FACodeParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Code
 	  code
 
@@ -221,5 +224,6 @@ func (o *Verify2FACodeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

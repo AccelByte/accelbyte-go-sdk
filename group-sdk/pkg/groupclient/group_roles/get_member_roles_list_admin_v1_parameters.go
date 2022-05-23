@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get member roles list admin v1 operation typically these are written to 
 */
 type GetMemberRolesListAdminV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  size of displayed data
 
@@ -206,5 +209,6 @@ func (o *GetMemberRolesListAdminV1Params) WriteToRequest(r runtime.ClientRequest
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

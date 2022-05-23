@@ -12,6 +12,7 @@ package payment
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -68,6 +69,10 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -162,6 +167,10 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -268,6 +277,10 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrder",
 		Method:             "GET",
@@ -350,6 +363,10 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -436,6 +453,10 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listExtOrderNoByExtTxId",
 		Method:             "GET",
@@ -513,6 +534,10 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -594,6 +619,10 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentOrders",
 		Method:             "GET",
@@ -671,6 +700,10 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -765,6 +798,10 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

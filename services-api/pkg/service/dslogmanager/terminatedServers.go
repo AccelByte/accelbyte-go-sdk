@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -91,6 +92,15 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -107,6 +117,15 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := t.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -123,6 +142,15 @@ func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_server
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

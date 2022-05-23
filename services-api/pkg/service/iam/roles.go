@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -1258,6 +1259,15 @@ func (r *RolesService) GetRolesShort(input *roles.GetRolesParams) ([]*iamclientm
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.GetRolesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1274,6 +1284,15 @@ func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams) (*iamclien
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := r.Client.Roles.CreateRoleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1290,6 +1309,15 @@ func (r *RolesService) GetRoleShort(input *roles.GetRoleParams) (*iamclientmodel
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.GetRoleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1306,6 +1334,15 @@ func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams) (*iamclien
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.UpdateRoleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1322,6 +1359,15 @@ func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.DeleteRoleShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1338,6 +1384,15 @@ func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.GetRoleAdminStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1354,6 +1409,15 @@ func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.SetRoleAsAdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1370,6 +1434,15 @@ func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.RemoveRoleAdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1386,6 +1459,15 @@ func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.GetRoleManagersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1402,6 +1484,15 @@ func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AddRoleManagersShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1418,6 +1509,15 @@ func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.RemoveRoleManagersShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1434,6 +1534,15 @@ func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.GetRoleMembersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1450,6 +1559,15 @@ func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AddRoleMembersShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1466,6 +1584,15 @@ func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.RemoveRoleMembersShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1482,6 +1609,15 @@ func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermiss
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.UpdateRolePermissionsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1498,6 +1634,15 @@ func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AddRolePermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1514,6 +1659,15 @@ func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissi
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.DeleteRolePermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1530,6 +1684,15 @@ func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRolesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1546,6 +1709,15 @@ func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := r.Client.Roles.AdminCreateRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1562,6 +1734,15 @@ func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1578,6 +1759,15 @@ func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminDeleteRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1594,6 +1784,15 @@ func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminUpdateRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1610,6 +1809,15 @@ func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleA
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRoleAdminStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1626,6 +1834,15 @@ func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdat
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminUpdateAdminRoleStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1642,6 +1859,15 @@ func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleA
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminRemoveRoleAdminV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1658,6 +1884,15 @@ func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleMana
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRoleManagersV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1674,6 +1909,15 @@ func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleMana
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminAddRoleManagersV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1690,6 +1934,15 @@ func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRo
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminRemoveRoleManagersV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1706,6 +1959,15 @@ func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembe
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRoleMembersV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1722,6 +1984,15 @@ func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembe
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminAddRoleMembersV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1738,6 +2009,15 @@ func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRol
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminRemoveRoleMembersV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1754,6 +2034,15 @@ func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdat
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminUpdateRolePermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1770,6 +2059,15 @@ func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRoleP
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminAddRolePermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1786,6 +2084,15 @@ func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDelet
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminDeleteRolePermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1802,6 +2109,15 @@ func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDelete
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminDeleteRolePermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1818,6 +2134,15 @@ func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.PublicGetRolesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1834,6 +2159,15 @@ func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.PublicGetRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1850,6 +2184,15 @@ func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRolesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1866,6 +2209,15 @@ func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := r.Client.Roles.AdminCreateRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1882,6 +2234,15 @@ func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminGetRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1898,6 +2259,15 @@ func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminDeleteRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1914,6 +2284,15 @@ func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminUpdateRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1930,6 +2309,15 @@ func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdat
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminUpdateRolePermissionsV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1946,6 +2334,15 @@ func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRoleP
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminAddRolePermissionsV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1962,6 +2359,15 @@ func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDelet
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminDeleteRolePermissionsV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1978,6 +2384,15 @@ func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssig
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Roles.AdminListAssignedUsersV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1994,6 +2409,15 @@ func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := r.Client.Roles.AdminAssignUserToRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -2010,6 +2434,15 @@ func (r *RolesService) AdminRevokeUserFromRoleV4Short(input *roles.AdminRevokeUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Roles.AdminRevokeUserFromRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return err

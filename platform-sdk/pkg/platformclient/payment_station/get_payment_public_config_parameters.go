@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the get payment public config operation typically these are written to a htt
 */
 type GetPaymentPublicConfigParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
 	/*PaymentProvider*/
@@ -224,5 +227,6 @@ func (o *GetPaymentPublicConfigParams) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

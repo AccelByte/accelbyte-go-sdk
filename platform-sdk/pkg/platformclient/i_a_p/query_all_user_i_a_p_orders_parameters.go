@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the query all user i a p orders operation typically these are written to a h
 */
 type QueryAllUserIAPOrdersParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
 	/*UserID*/
@@ -156,5 +159,6 @@ func (o *QueryAllUserIAPOrdersParams) WriteToRequest(r runtime.ClientRequest, re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

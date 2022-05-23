@@ -70,11 +70,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice cloudsave service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeCloudsaveService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeCloudsaveService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -82,12 +82,14 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeClo
 
 	cli := new(JusticeCloudsaveService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.AdminConcurrentRecord = admin_concurrent_record.New(transport, formats)
 	cli.AdminGameRecord = admin_game_record.New(transport, formats)
 	cli.AdminPlayerRecord = admin_player_record.New(transport, formats)
 	cli.ConcurrentRecord = concurrent_record.New(transport, formats)
 	cli.PublicGameRecord = public_game_record.New(transport, formats)
 	cli.PublicPlayerRecord = public_player_record.New(transport, formats)
+
 	return cli
 }
 
@@ -102,7 +104,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeCloudsaveService
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -158,6 +161,7 @@ type JusticeCloudsaveService struct {
 
 	PublicPlayerRecord public_player_record.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

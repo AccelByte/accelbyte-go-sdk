@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the admin put player public record concurrent handler v1 operation typically
 */
 type AdminPutPlayerPublicRecordConcurrentHandlerV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsAdminConcurrentRecordRequest
 	/*Key
@@ -204,5 +207,6 @@ func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1Params) WriteToRequest(r r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -12,6 +12,7 @@ package slot_config
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -62,6 +63,10 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -143,6 +148,10 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSlotConfig",
 		Method:             "DELETE",
@@ -220,6 +229,10 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -301,6 +314,10 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSlotConfig",
 		Method:             "GET",
@@ -380,6 +397,10 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespaceSlotConfig",
 		Method:             "PUT",
@@ -457,6 +478,10 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

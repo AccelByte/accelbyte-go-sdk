@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin get user personal data requests operation typically these are writ
 */
 type AdminGetUserPersonalDataRequestsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -227,5 +230,6 @@ func (o *AdminGetUserPersonalDataRequestsParams) WriteToRequest(r runtime.Client
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

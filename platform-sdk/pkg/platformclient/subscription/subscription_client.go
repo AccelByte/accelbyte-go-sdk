@@ -12,6 +12,7 @@ package subscription
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -88,6 +89,10 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -179,6 +184,10 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
@@ -258,6 +267,10 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSubscription",
 		Method:             "DELETE",
@@ -335,6 +348,10 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -421,6 +438,10 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionActivities",
 		Method:             "GET",
@@ -500,6 +521,10 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionBillingHistories",
 		Method:             "GET",
@@ -577,6 +602,10 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -661,6 +690,10 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -762,6 +795,10 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "processUserSubscriptionNotification",
 		Method:             "POST",
@@ -844,6 +881,10 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -933,6 +974,10 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1029,6 +1074,10 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
@@ -1106,6 +1155,10 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1192,6 +1245,10 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSubscriptionBillingHistories",
 		Method:             "GET",
@@ -1271,6 +1328,10 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserSubscriptions",
 		Method:             "GET",
@@ -1348,6 +1409,10 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1454,6 +1519,10 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "querySubscriptions",
 		Method:             "GET",
@@ -1533,6 +1602,10 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserSubscriptions",
 		Method:             "GET",
@@ -1610,6 +1683,10 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

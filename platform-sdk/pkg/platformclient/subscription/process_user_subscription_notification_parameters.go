@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the process user subscription notification operation typically these are wri
 */
 type ProcessUserSubscriptionNotificationParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *platformclientmodels.TradeNotification
 	/*Namespace*/
@@ -195,5 +198,6 @@ func (o *ProcessUserSubscriptionNotificationParams) WriteToRequest(r runtime.Cli
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

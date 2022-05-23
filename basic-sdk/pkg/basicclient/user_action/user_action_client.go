@@ -12,6 +12,7 @@ package user_action
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -64,6 +65,10 @@ func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -165,6 +170,10 @@ func (a *Client) GetActions(params *GetActionsParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getActions",
 		Method:             "GET",
@@ -257,6 +266,10 @@ func (a *Client) GetBannedUsers(params *GetBannedUsersParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -358,6 +371,10 @@ func (a *Client) GetUserStatus(params *GetUserStatusParams, authInfo runtime.Cli
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatus",
 		Method:             "GET",
@@ -457,6 +474,10 @@ func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReportUser",
 		Method:             "POST",
@@ -546,6 +567,10 @@ func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reportUser",
 		Method:             "POST",
@@ -628,6 +653,10 @@ func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

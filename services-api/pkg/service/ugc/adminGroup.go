@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
@@ -287,6 +288,15 @@ func (a *AdminGroupService) SingleAdminGetAllGroupsShort(input *admin_group.Sing
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.SingleAdminGetAllGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -303,6 +313,15 @@ func (a *AdminGroupService) AdminCreateGroupShort(input *admin_group.AdminCreate
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.AdminGroup.AdminCreateGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -319,6 +338,15 @@ func (a *AdminGroupService) SingleAdminGetGroupShort(input *admin_group.SingleAd
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.SingleAdminGetGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -335,6 +363,15 @@ func (a *AdminGroupService) SingleAdminUpdateGroupShort(input *admin_group.Singl
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.SingleAdminUpdateGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -351,6 +388,15 @@ func (a *AdminGroupService) SingleAdminDeleteGroupShort(input *admin_group.Singl
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminGroup.SingleAdminDeleteGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -367,6 +413,15 @@ func (a *AdminGroupService) SingleAdminGetGroupContentsShort(input *admin_group.
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.SingleAdminGetGroupContentsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -383,6 +438,15 @@ func (a *AdminGroupService) AdminGetAllGroupsShort(input *admin_group.AdminGetAl
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.AdminGetAllGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -399,6 +463,15 @@ func (a *AdminGroupService) AdminGetGroupShort(input *admin_group.AdminGetGroupP
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.AdminGetGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -415,6 +488,15 @@ func (a *AdminGroupService) AdminUpdateGroupShort(input *admin_group.AdminUpdate
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.AdminUpdateGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -431,6 +513,15 @@ func (a *AdminGroupService) AdminDeleteGroupShort(input *admin_group.AdminDelete
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminGroup.AdminDeleteGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -447,6 +538,15 @@ func (a *AdminGroupService) AdminGetGroupContentsShort(input *admin_group.AdminG
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminGroup.AdminGetGroupContentsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

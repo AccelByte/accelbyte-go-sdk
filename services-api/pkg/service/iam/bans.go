@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -148,6 +149,15 @@ func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamclien
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.GetBansTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -164,6 +174,15 @@ func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.GetListBanReasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -180,6 +199,15 @@ func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Para
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.AdminGetBansTypeV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -196,6 +224,15 @@ func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanRe
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.AdminGetListBanReasonV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -212,6 +249,15 @@ func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsers
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.AdminGetBannedUsersV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -228,6 +274,15 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetB
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.Bans.AdminGetBansTypeWithNamespaceV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

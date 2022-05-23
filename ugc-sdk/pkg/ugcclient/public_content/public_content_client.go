@@ -12,6 +12,7 @@ package public_content
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -82,6 +83,10 @@ func (a *Client) CreateContentDirect(params *CreateContentDirectParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -181,6 +186,10 @@ func (a *Client) CreateContentS3(params *CreateContentS3Params, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateContentS3",
 		Method:             "POST",
@@ -273,6 +282,10 @@ func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.Cli
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -368,6 +381,10 @@ func (a *Client) DeleteContentScreenshot(params *DeleteContentScreenshotParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -469,6 +486,10 @@ func (a *Client) DownloadContentByShareCode(params *DownloadContentByShareCodePa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DownloadContentByShareCode",
 		Method:             "GET",
@@ -563,6 +584,10 @@ func (a *Client) PublicDownloadContentByContentID(params *PublicDownloadContentB
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicDownloadContentByContentID",
 		Method:             "GET",
@@ -655,6 +680,10 @@ func (a *Client) PublicDownloadContentPreview(params *PublicDownloadContentPrevi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -752,6 +781,10 @@ func (a *Client) PublicGetContentBulk(params *PublicGetContentBulkParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetContentBulk",
 		Method:             "POST",
@@ -844,6 +877,10 @@ func (a *Client) PublicGetUserContent(params *PublicGetUserContentParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -940,6 +977,10 @@ func (a *Client) PublicSearchContent(params *PublicSearchContentParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicSearchContent",
 		Method:             "GET",
@@ -1032,6 +1073,10 @@ func (a *Client) SearchChannelSpecificContent(params *SearchChannelSpecificConte
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1128,6 +1173,10 @@ func (a *Client) UpdateContentDirect(params *UpdateContentDirectParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1232,6 +1281,10 @@ func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateContentS3",
 		Method:             "PUT",
@@ -1331,6 +1384,10 @@ func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1436,6 +1493,10 @@ func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

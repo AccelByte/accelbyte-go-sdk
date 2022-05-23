@@ -10,6 +10,7 @@ import (
 	"io"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
@@ -166,6 +167,15 @@ func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlo
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.GetUserNamespaceSlotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -182,6 +192,15 @@ func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.GetSlotDataShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
@@ -198,6 +217,15 @@ func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.PublicGetUserNamespaceSlotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -214,6 +242,15 @@ func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreat
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.Slot.PublicCreateUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -230,6 +267,15 @@ func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.PublicGetSlotDataShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
@@ -246,6 +292,15 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdat
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.PublicUpdateUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -262,6 +317,15 @@ func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDelet
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.Slot.PublicDeleteUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -278,6 +342,15 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.Slot.PublicUpdateUserNamespaceSlotMetadataShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -12,6 +12,7 @@ package deployment_config
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -82,6 +83,10 @@ func (a *Client) CreateDeployment(params *CreateDeploymentParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -185,6 +190,10 @@ func (a *Client) CreateDeploymentOverride(params *CreateDeploymentOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -295,6 +304,10 @@ func (a *Client) CreateOverrideRegionOverride(params *CreateOverrideRegionOverri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateOverrideRegionOverride",
 		Method:             "POST",
@@ -401,6 +414,10 @@ func (a *Client) CreateRootRegionOverride(params *CreateRootRegionOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -511,6 +528,10 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteDeployment",
 		Method:             "DELETE",
@@ -612,6 +633,10 @@ func (a *Client) DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -717,6 +742,10 @@ func (a *Client) DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteOverrideRegionOverride",
 		Method:             "DELETE",
@@ -818,6 +847,10 @@ func (a *Client) DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -923,6 +956,10 @@ func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllDeployment",
 		Method:             "GET",
@@ -1019,6 +1056,10 @@ func (a *Client) GetDeployment(params *GetDeploymentParams, authInfo runtime.Cli
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1124,6 +1165,10 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateDeployment",
 		Method:             "PATCH",
@@ -1225,6 +1270,10 @@ func (a *Client) UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1330,6 +1379,10 @@ func (a *Client) UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateOverrideRegionOverride",
 		Method:             "PATCH",
@@ -1431,6 +1484,10 @@ func (a *Client) UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

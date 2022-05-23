@@ -12,6 +12,7 @@ package payment_config
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -120,6 +121,10 @@ func (a *Client) CreatePaymentProviderConfig(params *CreatePaymentProviderConfig
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentProviderConfig",
 		Method:             "POST",
@@ -214,6 +219,10 @@ func (a *Client) DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debugMatchedPaymentMerchantConfig",
 		Method:             "GET",
@@ -296,6 +305,10 @@ func (a *Client) DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentPr
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -382,6 +395,10 @@ func (a *Client) DeletePaymentProviderConfig(params *DeletePaymentProviderConfig
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePaymentProviderConfig",
 		Method:             "DELETE",
@@ -466,6 +483,10 @@ func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvide
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregatePaymentProviders",
 		Method:             "GET",
@@ -543,6 +564,10 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -629,6 +654,10 @@ func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentTaxConfig",
 		Method:             "GET",
@@ -706,6 +735,10 @@ func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -787,6 +820,10 @@ func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentProviderConfig",
 		Method:             "GET",
@@ -866,6 +903,10 @@ func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAdyenConfig",
 		Method:             "POST",
@@ -943,6 +984,10 @@ func (a *Client) TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1029,6 +1074,10 @@ func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAliPayConfig",
 		Method:             "POST",
@@ -1106,6 +1155,10 @@ func (a *Client) TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1192,6 +1245,10 @@ func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testCheckoutConfig",
 		Method:             "POST",
@@ -1269,6 +1326,10 @@ func (a *Client) TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1355,6 +1416,10 @@ func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testPayPalConfig",
 		Method:             "POST",
@@ -1432,6 +1497,10 @@ func (a *Client) TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1518,6 +1587,10 @@ func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testStripeConfig",
 		Method:             "POST",
@@ -1595,6 +1668,10 @@ func (a *Client) TestStripeConfigByID(params *TestStripeConfigByIDParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1681,6 +1758,10 @@ func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testWxPayConfig",
 		Method:             "POST",
@@ -1758,6 +1839,10 @@ func (a *Client) TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1844,6 +1929,10 @@ func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testXsollaConfig",
 		Method:             "POST",
@@ -1921,6 +2010,10 @@ func (a *Client) TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2007,6 +2100,10 @@ func (a *Client) UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAdyenConfig",
 		Method:             "PUT",
@@ -2089,6 +2186,10 @@ func (a *Client) UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2175,6 +2276,10 @@ func (a *Client) UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCheckoutConfig",
 		Method:             "PUT",
@@ -2259,6 +2364,10 @@ func (a *Client) UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePayPalConfig",
 		Method:             "PUT",
@@ -2341,6 +2450,10 @@ func (a *Client) UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfig
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2442,6 +2555,10 @@ func (a *Client) UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentTaxConfig",
 		Method:             "PUT",
@@ -2531,6 +2648,10 @@ func (a *Client) UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStripeConfig",
 		Method:             "PUT",
@@ -2613,6 +2734,10 @@ func (a *Client) UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2699,6 +2824,10 @@ func (a *Client) UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWxPayConfigCert",
 		Method:             "PUT",
@@ -2783,6 +2912,10 @@ func (a *Client) UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXsollaConfig",
 		Method:             "PUT",
@@ -2865,6 +2998,10 @@ func (a *Client) UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

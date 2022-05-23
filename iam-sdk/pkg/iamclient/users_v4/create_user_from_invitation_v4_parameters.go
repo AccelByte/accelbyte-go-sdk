@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the create user from invitation v4 operation typically these are written to 
 */
 type CreateUserFromInvitationV4Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ModelUserCreateFromInvitationRequestV4
 	/*InvitationID
@@ -183,5 +186,6 @@ func (o *CreateUserFromInvitationV4Params) WriteToRequest(r runtime.ClientReques
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

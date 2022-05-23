@@ -12,6 +12,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -78,6 +79,10 @@ func (a *Client) AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoW
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -186,6 +191,10 @@ func (a *Client) ClearCache(params *ClearCacheParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -309,6 +318,10 @@ func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateConfig",
 		Method:             "POST",
@@ -414,6 +427,10 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteConfig",
 		Method:             "DELETE",
@@ -515,6 +532,10 @@ func (a *Client) DeletePort(params *DeletePortParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -620,6 +641,10 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetConfig",
 		Method:             "GET",
@@ -716,6 +741,10 @@ func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -880,6 +909,10 @@ func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SaveConfig",
 		Method:             "POST",
@@ -1007,6 +1040,10 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateConfig",
 		Method:             "PATCH",
@@ -1108,6 +1145,10 @@ func (a *Client) UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1214,6 +1255,10 @@ func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportConfigV1",
 		Method:             "GET",
@@ -1318,6 +1363,10 @@ func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

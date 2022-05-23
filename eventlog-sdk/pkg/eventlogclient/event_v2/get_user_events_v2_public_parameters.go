@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get user events v2 public operation typically these are written to a htt
 */
 type GetUserEventsV2PublicParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EndDate
 	  Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC
 
@@ -323,5 +326,6 @@ func (o *GetUserEventsV2PublicParams) WriteToRequest(r runtime.ClientRequest, re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

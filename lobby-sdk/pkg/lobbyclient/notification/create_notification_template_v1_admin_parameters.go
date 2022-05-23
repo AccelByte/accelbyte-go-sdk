@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the create notification template v1 admin operation typically these are writ
 */
 type CreateNotificationTemplateV1AdminParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body
 	  create template input
 
@@ -165,5 +168,6 @@ func (o *CreateNotificationTemplateV1AdminParams) WriteToRequest(r runtime.Clien
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

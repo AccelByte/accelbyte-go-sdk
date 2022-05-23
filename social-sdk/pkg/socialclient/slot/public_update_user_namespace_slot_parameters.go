@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the public update user namespace slot operation typically these are written 
 */
 type PublicUpdateUserNamespaceSlotParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Checksum
 	  File checksum
 
@@ -330,5 +333,6 @@ func (o *PublicUpdateUserNamespaceSlotParams) WriteToRequest(r runtime.ClientReq
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

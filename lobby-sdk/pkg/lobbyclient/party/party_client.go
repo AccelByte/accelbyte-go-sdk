@@ -12,6 +12,7 @@ package party
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -59,6 +60,10 @@ func (a *Client) AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -164,6 +169,10 @@ func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -272,6 +281,10 @@ func (a *Client) PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPartyDataV1",
 		Method:             "GET",
@@ -375,6 +388,10 @@ func (a *Client) PublicUpdatePartyAttributesV1(params *PublicUpdatePartyAttribut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

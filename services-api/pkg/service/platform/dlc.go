@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -169,6 +170,15 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.Dlc.GetDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -185,6 +195,15 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.Dlc.UpdateDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -201,6 +220,15 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.Dlc.DeleteDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -217,6 +245,15 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.Dlc.GetPlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -233,6 +270,15 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.Dlc.UpdatePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -249,6 +295,15 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -265,6 +320,15 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -281,6 +345,15 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.Dlc.SyncSteamDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -297,6 +370,15 @@ func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.Dlc.SyncXboxDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err

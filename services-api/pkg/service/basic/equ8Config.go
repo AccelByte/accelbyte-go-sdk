@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -82,6 +83,15 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams)
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.EqU8Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -98,6 +108,15 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := e.Client.EqU8Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -114,6 +133,15 @@ func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigP
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.EqU8Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

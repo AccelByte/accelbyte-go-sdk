@@ -12,6 +12,7 @@ package user_info
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -56,6 +57,10 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -137,6 +142,10 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "invalidateUserInfoCache",
 		Method:             "DELETE",
@@ -214,6 +223,10 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

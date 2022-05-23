@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin get roles v3 operation typically these are written to a http.Reque
 */
 type AdminGetRolesV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*After
 	  The cursor that points to query data for the next page
 
@@ -251,5 +254,6 @@ func (o *AdminGetRolesV3Params) WriteToRequest(r runtime.ClientRequest, reg strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

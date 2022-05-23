@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin search user v3 operation typically these are written to a http.Req
 */
 type AdminSearchUserV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*By
 	  Search by given attribute, possible values are emailAddress, displayName, username, and thirdPartyPlatform
 
@@ -398,5 +401,6 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

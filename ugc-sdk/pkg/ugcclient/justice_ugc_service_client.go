@@ -79,11 +79,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice ugc service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeUgcService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeUgcService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -91,6 +91,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeUgc
 
 	cli := new(JusticeUgcService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.AdminChannel = admin_channel.New(transport, formats)
 	cli.AdminContent = admin_content.New(transport, formats)
 	cli.AdminGroup = admin_group.New(transport, formats)
@@ -106,6 +107,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeUgc
 	cli.PublicLike = public_like.New(transport, formats)
 	cli.PublicTag = public_tag.New(transport, formats)
 	cli.PublicType = public_type.New(transport, formats)
+
 	return cli
 }
 
@@ -120,7 +122,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeUgcService {
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -194,6 +197,7 @@ type JusticeUgcService struct {
 
 	PublicType public_type.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

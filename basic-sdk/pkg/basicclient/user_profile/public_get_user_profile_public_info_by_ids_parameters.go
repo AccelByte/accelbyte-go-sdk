@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the public get user profile public info by ids operation typically these are
 */
 type PublicGetUserProfilePublicInfoByIdsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace
 	  namespace, only accept alphabet and numeric
 
@@ -166,5 +169,6 @@ func (o *PublicGetUserProfilePublicInfoByIdsParams) WriteToRequest(r runtime.Cli
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

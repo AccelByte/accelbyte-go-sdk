@@ -94,6 +94,7 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeGametelemetrySer
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
+
 	return New(transport, transport, strfmt.Default)
 }
 

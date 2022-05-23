@@ -12,6 +12,7 @@ package leaderboard_data
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -91,6 +92,10 @@ func (a *Client) AdminGetArchivedLeaderboardRankingDataV1Handler(params *AdminGe
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -200,6 +205,10 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArc
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateArchivedLeaderboardRankingDataV1Handler",
 		Method:             "POST",
@@ -304,6 +313,10 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -411,6 +424,10 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderbo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllTimeLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -503,6 +520,10 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV2(params *GetAllTimeLeaderbo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -608,6 +629,10 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1Handler(params *GetArchivedL
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -716,6 +741,10 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1(params *GetCurrentMont
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentMonthLeaderboardRankingAdminV1",
 		Method:             "GET",
@@ -820,6 +849,10 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMon
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentMonthLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -914,6 +947,10 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1(params *GetCurrentSea
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1020,6 +1057,10 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentSeasonLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -1114,6 +1155,10 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekL
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1220,6 +1265,10 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeek
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentWeekLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -1314,6 +1363,10 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1(params *GetTodayLeaderboardRa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1420,6 +1473,10 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardR
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetTodayLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -1518,6 +1575,10 @@ func (a *Client) DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1625,6 +1686,10 @@ func (a *Client) DeleteUserRankingPublicV1(params *DeleteUserRankingPublicV1Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingPublicV1",
 		Method:             "DELETE",
@@ -1730,6 +1795,10 @@ func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingsAdminV1",
 		Method:             "DELETE",
@@ -1831,6 +1900,10 @@ func (a *Client) GetUserRankingAdminV1(params *GetUserRankingAdminV1Params, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserRankingAdminV1",
 		Method:             "GET",
@@ -1928,6 +2001,10 @@ func (a *Client) GetUserRankingPublicV1(params *GetUserRankingPublicV1Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2033,6 +2110,10 @@ func (a *Client) UpdateUserPointAdminV1(params *UpdateUserPointAdminV1Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

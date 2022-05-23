@@ -12,6 +12,7 @@ package base_legal_policies
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -62,6 +63,10 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -153,6 +158,10 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "partialUpdatePolicy",
 		Method:             "PATCH",
@@ -237,6 +246,10 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllLegalPolicies",
 		Method:             "GET",
@@ -316,6 +329,10 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllPolicyTypes",
 		Method:             "GET",
@@ -393,6 +410,10 @@ func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -477,6 +498,10 @@ func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

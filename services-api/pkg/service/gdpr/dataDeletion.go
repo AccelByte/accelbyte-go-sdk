@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -219,6 +220,15 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataDeletion.AdminGetListDeletionDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -235,6 +245,15 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataDeletion.AdminGetUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -251,6 +270,15 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DataDeletion.AdminSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -267,6 +295,15 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataDeletion.AdminCancelUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -283,6 +320,15 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DataDeletion.PublicSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -299,6 +345,15 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataDeletion.PublicCancelUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -315,6 +370,15 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *dat
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataDeletion.PublicGetUserAccountDeletionStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

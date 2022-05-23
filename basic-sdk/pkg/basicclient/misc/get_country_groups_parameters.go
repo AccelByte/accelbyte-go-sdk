@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get country groups operation typically these are written to a http.Reque
 */
 type GetCountryGroupsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*GroupCode
 	  groupCode, only accept alphabet and whitespace
 
@@ -173,5 +176,6 @@ func (o *GetCountryGroupsParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -12,6 +12,7 @@ package matchmaking
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -100,6 +101,10 @@ func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannel
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -208,6 +213,10 @@ func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -332,6 +341,10 @@ func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateChannelHandler",
 		Method:             "POST",
@@ -444,6 +457,10 @@ func (a *Client) DeleteChannelHandler(params *DeleteChannelHandlerParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteChannelHandler",
 		Method:             "DELETE",
@@ -540,6 +557,10 @@ func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -648,6 +669,10 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -767,6 +792,10 @@ func (a *Client) DequeueSessionHandler(params *DequeueSessionHandlerParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DequeueSessionHandler",
 		Method:             "POST",
@@ -877,6 +906,10 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ExportChannels",
 		Method:             "GET",
@@ -974,6 +1007,10 @@ func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1084,6 +1121,10 @@ func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllPartyInAllChannel",
 		Method:             "GET",
@@ -1190,6 +1231,10 @@ func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1302,6 +1347,10 @@ func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllSessionsInChannel",
 		Method:             "GET",
@@ -1412,6 +1461,10 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetSessionHistoryDetailed",
 		Method:             "GET",
@@ -1520,6 +1573,10 @@ func (a *Client) GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannel
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1635,6 +1692,10 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ImportChannels",
 		Method:             "POST",
@@ -1733,6 +1794,10 @@ func (a *Client) PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingC
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1838,6 +1903,10 @@ func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchm
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1953,6 +2022,10 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2074,6 +2147,10 @@ func (a *Client) QueueSessionHandler(params *QueueSessionHandlerParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QueueSessionHandler",
 		Method:             "POST",
@@ -2175,6 +2252,10 @@ func (a *Client) SearchSessions(params *SearchSessionsParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2284,6 +2365,10 @@ func (a *Client) SearchSessionsV2(params *SearchSessionsV2Params, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2397,6 +2482,10 @@ func (a *Client) StoreMatchResults(params *StoreMatchResultsParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "StoreMatchResults",
 		Method:             "POST",
@@ -2500,6 +2589,10 @@ func (a *Client) UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -12,6 +12,7 @@ package group_roles
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -76,6 +77,10 @@ func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -178,6 +183,10 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -284,6 +293,10 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -398,6 +411,10 @@ func (a *Client) GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMemberRolesListAdminV1",
 		Method:             "GET",
@@ -500,6 +517,10 @@ func (a *Client) GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Pa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMemberRolesListPublicV1",
 		Method:             "GET",
@@ -600,6 +621,10 @@ func (a *Client) GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Pa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -707,6 +732,10 @@ func (a *Client) UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -821,6 +850,10 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateMemberRolePermissionAdminV1",
 		Method:             "PUT",
@@ -925,6 +958,10 @@ func (a *Client) UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

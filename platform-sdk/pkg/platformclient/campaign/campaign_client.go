@@ -12,6 +12,7 @@ package campaign
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -80,6 +81,10 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -176,6 +181,10 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkDisableCodes",
 		Method:             "PUT",
@@ -255,6 +264,10 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkEnableCodes",
 		Method:             "PUT",
@@ -332,6 +345,10 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -423,6 +440,10 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCodes",
 		Method:             "POST",
@@ -512,6 +533,10 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableCode",
 		Method:             "PUT",
@@ -596,6 +621,10 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "download",
 		Method:             "GET",
@@ -673,6 +702,10 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -759,6 +792,10 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaign",
 		Method:             "GET",
@@ -843,6 +880,10 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaignDynamic",
 		Method:             "GET",
@@ -925,6 +966,10 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1016,6 +1061,10 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCampaigns",
 		Method:             "GET",
@@ -1093,6 +1142,10 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1174,6 +1227,10 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRedeemHistory",
 		Method:             "GET",
@@ -1251,6 +1308,10 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

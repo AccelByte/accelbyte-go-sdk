@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the public get user ban operation typically these are written to a http.Requ
 */
 type PublicGetUserBanParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly
 	  Filter ban to only returns the active one
 
@@ -195,5 +198,6 @@ func (o *PublicGetUserBanParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

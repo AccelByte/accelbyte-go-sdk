@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get hidden users v2 operation typically these are written to a http.Requ
 */
 type GetHiddenUsersV2Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LeaderboardCode
 	  Leaderboard Code
 
@@ -227,5 +230,6 @@ func (o *GetHiddenUsersV2Params) WriteToRequest(r runtime.ClientRequest, reg str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

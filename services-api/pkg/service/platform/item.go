@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -605,6 +606,15 @@ func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.SyncInGameItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -621,6 +631,15 @@ func (i *ItemService) CreateItemShort(input *item.CreateItemParams) (*platformcl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := i.Client.Item.CreateItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -637,6 +656,15 @@ func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetItemByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -653,6 +681,15 @@ func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platformcl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.QueryItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -669,6 +706,15 @@ func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsBy
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.ListBasicItemsByFeaturesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -685,6 +731,15 @@ func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platfo
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetItemBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -701,6 +756,15 @@ func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetLocaleItemBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -717,6 +781,15 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetItemIDBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -733,6 +806,15 @@ func (i *ItemService) GetBulkItemIDBySkusShort(input *item.GetBulkItemIDBySkusPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetBulkItemIDBySkusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -749,6 +831,15 @@ func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.BulkGetLocaleItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -765,6 +856,15 @@ func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.SearchItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -781,6 +881,15 @@ func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorize
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.QueryUncategorizedItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -797,6 +906,15 @@ func (i *ItemService) GetItemShort(input *item.GetItemParams) (*platformclientmo
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -813,6 +931,15 @@ func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platformcl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.UpdateItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -829,6 +956,15 @@ func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Item.DeleteItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -845,6 +981,15 @@ func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.AcquireItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -861,6 +1006,15 @@ func (i *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmode
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetAppShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -877,6 +1031,15 @@ func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformclie
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.UpdateAppShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -893,6 +1056,15 @@ func (i *ItemService) DisableItemShort(input *item.DisableItemParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.DisableItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -909,6 +1081,15 @@ func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetItemDynamicDataShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -925,6 +1106,15 @@ func (i *ItemService) EnableItemShort(input *item.EnableItemParams) (*platformcl
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.EnableItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -941,6 +1131,15 @@ func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.FeatureItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -957,6 +1156,15 @@ func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*plat
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.DefeatureItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -973,6 +1181,15 @@ func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*plat
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.Item.GetLocaleItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -989,6 +1206,15 @@ func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.Item.ReturnItemShort(input, authInfoWriter)
 	if err != nil {
 		return err

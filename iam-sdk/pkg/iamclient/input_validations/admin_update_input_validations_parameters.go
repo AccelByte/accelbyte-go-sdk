@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the admin update input validations operation typically these are written to 
 */
 type AdminUpdateInputValidationsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body []*iamclientmodels.ModelInputValidationUpdatePayload
 
@@ -141,5 +144,6 @@ func (o *AdminUpdateInputValidationsParams) WriteToRequest(r runtime.ClientReque
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get event by event ID handler operation typically these are written to a
 */
 type GetEventByEventIDHandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EndDate
 	  Ending date. e.g. 2015-03-20T12:27:06.351Z
 
@@ -270,5 +273,6 @@ func (o *GetEventByEventIDHandlerParams) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the upgrade headless account operation typically these are written to a http
 */
 type UpgradeHeadlessAccountParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ModelUpgradeHeadlessAccountRequest
 	/*Namespace
@@ -183,5 +186,6 @@ func (o *UpgradeHeadlessAccountParams) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

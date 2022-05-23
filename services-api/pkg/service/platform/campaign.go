@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -286,6 +287,15 @@ func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.QueryCampaignsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -302,6 +312,15 @@ func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Campaign.CreateCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -318,6 +337,15 @@ func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.GetCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -334,6 +362,15 @@ func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.UpdateCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -350,6 +387,15 @@ func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDyn
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.GetCampaignDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -366,6 +412,15 @@ func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.QueryCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -382,6 +437,15 @@ func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Campaign.CreateCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -398,6 +462,15 @@ func (c *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Campaign.DownloadShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -414,6 +487,15 @@ func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodes
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.BulkDisableCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -430,6 +512,15 @@ func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.BulkEnableCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -446,6 +537,15 @@ func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHis
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.QueryRedeemHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -462,6 +562,15 @@ func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platform
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.GetCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -478,6 +587,15 @@ func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.DisableCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -494,6 +612,15 @@ func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*pl
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.EnableCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -510,6 +637,15 @@ func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRede
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Campaign.ApplyUserRedemptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

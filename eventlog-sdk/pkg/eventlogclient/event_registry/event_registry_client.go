@@ -12,6 +12,7 @@ package event_registry
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -62,6 +63,10 @@ func (a *Client) GetRegisteredEventIDHandler(params *GetRegisteredEventIDHandler
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -168,6 +173,10 @@ func (a *Client) GetRegisteredEventsByEventTypeHandler(params *GetRegisteredEven
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRegisteredEventsByEventTypeHandler",
 		Method:             "GET",
@@ -272,6 +281,10 @@ func (a *Client) GetRegisteredEventsHandler(params *GetRegisteredEventsHandlerPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRegisteredEventsHandler",
 		Method:             "GET",
@@ -364,6 +377,10 @@ func (a *Client) RegisterEventHandler(params *RegisterEventHandlerParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -470,6 +487,10 @@ func (a *Client) UnregisterEventIDHandler(params *UnregisterEventIDHandlerParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UnregisterEventIDHandler",
 		Method:             "DELETE",
@@ -567,6 +588,10 @@ func (a *Client) UpdateEventRegistryHandler(params *UpdateEventRegistryHandlerPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -186,6 +187,15 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -202,6 +212,15 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*se
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := r.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -218,6 +237,15 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpa
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.GetRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -234,6 +262,15 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) erro
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := r.Client.Reward.DeleteRewardShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -250,6 +287,15 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*se
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -266,6 +312,15 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.PublicClaimUserRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -282,6 +337,15 @@ func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulk
 		}
 		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  r.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := r.Client.Reward.PublicBulkClaimUserRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

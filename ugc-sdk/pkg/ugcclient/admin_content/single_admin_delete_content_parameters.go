@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the single admin delete content operation typically these are written to a h
 */
 type SingleAdminDeleteContentParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ChannelID
 	  channel ID
 
@@ -183,5 +186,6 @@ func (o *SingleAdminDeleteContentParams) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -63,6 +64,10 @@ func NewAdminGetBansTypeV3ParamsWithHTTPClient(client *http.Client) *AdminGetBan
 for the admin get bans type v3 operation typically these are written to a http.Request
 */
 type AdminGetBansTypeV3Params struct {
+
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
+
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
@@ -118,5 +123,6 @@ func (o *AdminGetBansTypeV3Params) WriteToRequest(r runtime.ClientRequest, reg s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

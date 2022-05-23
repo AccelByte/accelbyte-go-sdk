@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -341,6 +342,15 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Friends.GetUserFriendsUpdatedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -357,6 +367,15 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Friends.GetUserIncomingFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -373,6 +392,15 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Friends.GetUserOutgoingFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -389,6 +417,15 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.UserRequestFriendShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -405,6 +442,15 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.UserAcceptFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -421,6 +467,15 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.UserCancelFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -437,6 +492,15 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.UserRejectFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -453,6 +517,15 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Friends.UserGetFriendshipStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -469,6 +542,15 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.UserUnfriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -485,6 +567,15 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Friends.AddFriendsWithoutConfirmationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -501,6 +592,15 @@ func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Friends.GetListOfFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

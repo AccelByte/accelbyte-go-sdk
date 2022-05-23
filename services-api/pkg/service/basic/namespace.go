@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -256,6 +257,15 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.GetNamespacesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -272,6 +282,15 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := n.Client.Namespace.CreateNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -288,6 +307,15 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.GetNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -304,6 +332,15 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.DeleteNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -320,6 +357,15 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.UpdateNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -336,6 +382,15 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.GetNamespacePublisherShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -352,6 +407,15 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.ChangeNamespaceStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -368,6 +432,15 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.PublicGetNamespacesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -384,6 +457,15 @@ func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Namespace.PublicGetNamespacePublisherShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

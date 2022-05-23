@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the platform token grant v3 operation typically these are written to a http.
 */
 type PlatformTokenGrantV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ClientID
 	  Client ID, only accept UUID version 4 without hyphen
 
@@ -237,5 +240,6 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

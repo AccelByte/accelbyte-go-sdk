@@ -12,6 +12,7 @@ package user_statistic
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -130,6 +131,10 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkCreateUserStatItems",
 		Method:             "POST",
@@ -215,6 +220,10 @@ func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItems
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -309,6 +318,10 @@ func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItem
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchOrDefaultStatItems_1",
 		Method:             "GET",
@@ -401,6 +414,10 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems",
 		Method:             "GET",
@@ -488,6 +505,10 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems_1",
 		Method:             "GET",
@@ -570,6 +591,10 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -656,6 +681,10 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue",
 		Method:             "PATCH",
@@ -738,6 +767,10 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -824,6 +857,10 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue_2",
 		Method:             "PATCH",
@@ -906,6 +943,10 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -997,6 +1038,10 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem",
 		Method:             "PUT",
@@ -1084,6 +1129,10 @@ func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValues
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItemValues",
 		Method:             "PUT",
@@ -1169,6 +1218,10 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1260,6 +1313,10 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_2",
 		Method:             "PUT",
@@ -1345,6 +1402,10 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1443,6 +1504,10 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem",
 		Method:             "PUT",
@@ -1536,6 +1601,10 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItemV2",
 		Method:             "PUT",
@@ -1627,6 +1696,10 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1725,6 +1798,10 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_2",
 		Method:             "PUT",
@@ -1807,6 +1884,10 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1896,6 +1977,10 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1990,6 +2075,10 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2089,6 +2178,10 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_2",
 		Method:             "DELETE",
@@ -2183,6 +2276,10 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatItems",
 		Method:             "GET",
@@ -2260,6 +2357,10 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2356,6 +2457,10 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkCreateUserStatItems",
 		Method:             "POST",
@@ -2438,6 +2543,10 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2524,6 +2633,10 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItemValue",
 		Method:             "PATCH",
@@ -2608,6 +2721,10 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem_1",
 		Method:             "PUT",
@@ -2690,6 +2807,10 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2779,6 +2900,10 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2875,6 +3000,10 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItemValue",
 		Method:             "PATCH",
@@ -2969,6 +3098,10 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
@@ -3046,6 +3179,10 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3140,6 +3277,10 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3241,6 +3382,10 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue",
 		Method:             "PUT",
@@ -3333,6 +3478,10 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3434,6 +3583,10 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3545,6 +3698,10 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

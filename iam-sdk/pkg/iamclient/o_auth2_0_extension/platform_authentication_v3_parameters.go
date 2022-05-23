@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the platform authentication v3 operation typically these are written to a ht
 */
 type PlatformAuthenticationV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Code
 	  The authorization code from 3rd party OAuth server
 
@@ -550,5 +553,6 @@ func (o *PlatformAuthenticationV3Params) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -12,6 +12,7 @@ package file_upload
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -58,6 +59,10 @@ func (a *Client) GeneratedUploadURL(params *GeneratedUploadURLParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -157,6 +162,10 @@ func (a *Client) GeneratedUserUploadContentURL(params *GeneratedUserUploadConten
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -263,6 +272,10 @@ func (a *Client) PublicGeneratedUploadURL(params *PublicGeneratedUploadURLParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUploadUrl",
 		Method:             "POST",
@@ -360,6 +373,10 @@ func (a *Client) PublicGeneratedUserUploadContentURL(params *PublicGeneratedUser
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

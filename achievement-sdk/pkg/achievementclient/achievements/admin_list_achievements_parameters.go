@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -93,6 +94,8 @@ for the admin list achievements operation typically these are written to a http.
 */
 type AdminListAchievementsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -266,5 +269,6 @@ func (o *AdminListAchievementsParams) WriteToRequest(r runtime.ClientRequest, re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

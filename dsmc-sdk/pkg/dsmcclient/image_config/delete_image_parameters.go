@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete image operation typically these are written to a http.Request
 */
 type DeleteImageParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ImageURI
 	  registry image URI that will be deleted
 
@@ -191,5 +194,6 @@ func (o *DeleteImageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

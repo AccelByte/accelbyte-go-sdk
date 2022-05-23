@@ -12,6 +12,7 @@ package group
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -92,6 +93,10 @@ func (a *Client) CreateNewGroupPublicV1(params *CreateNewGroupPublicV1Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -199,6 +204,10 @@ func (a *Client) DeleteGroupAdminV1(params *DeleteGroupAdminV1Params, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -311,6 +320,10 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1(params *DeleteGroupPredefined
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupPredefinedRulePublicV1",
 		Method:             "DELETE",
@@ -421,6 +434,10 @@ func (a *Client) DeleteGroupPublicV1(params *DeleteGroupPublicV1Params, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupPublicV1",
 		Method:             "DELETE",
@@ -528,6 +545,10 @@ func (a *Client) GetGroupListAdminV1(params *GetGroupListAdminV1Params, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupListAdminV1",
 		Method:             "GET",
@@ -630,6 +651,10 @@ func (a *Client) GetGroupListPublicV1(params *GetGroupListPublicV1Params, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupListPublicV1",
 		Method:             "GET",
@@ -730,6 +755,10 @@ func (a *Client) GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -837,6 +866,10 @@ func (a *Client) GetSingleGroupPublicV1(params *GetSingleGroupPublicV1Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -949,6 +982,10 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1(params *UpdateGroupCustomAt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupCustomAttributesPublicV1",
 		Method:             "PUT",
@@ -1056,6 +1093,10 @@ func (a *Client) UpdateGroupCustomRulePublicV1(params *UpdateGroupCustomRulePubl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1169,6 +1210,10 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefined
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupPredefinedRulePublicV1",
 		Method:             "PUT",
@@ -1278,6 +1323,10 @@ func (a *Client) UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePatchSingleGroupPublicV1",
 		Method:             "PATCH",
@@ -1385,6 +1434,10 @@ func (a *Client) UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

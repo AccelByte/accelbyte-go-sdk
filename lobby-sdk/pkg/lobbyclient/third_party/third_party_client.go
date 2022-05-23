@@ -12,6 +12,7 @@ package third_party
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -59,6 +60,10 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -161,6 +166,10 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteThirdPartyConfig",
 		Method:             "DELETE",
@@ -261,6 +270,10 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetThirdPartyConfig",
 		Method:             "GET",
@@ -359,6 +372,10 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

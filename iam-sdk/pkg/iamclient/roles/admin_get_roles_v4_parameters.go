@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin get roles v4 operation typically these are written to a http.Reque
 */
 type AdminGetRolesV4Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AdminRole
 	  - true if the expected result should only returns records with adminRole = true
 	          - false if the expected result should only returns records with adminRole = false
@@ -253,5 +256,6 @@ func (o *AdminGetRolesV4Params) WriteToRequest(r runtime.ClientRequest, reg strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

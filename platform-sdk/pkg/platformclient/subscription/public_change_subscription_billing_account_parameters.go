@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the public change subscription billing account operation typically these are
 */
 type PublicChangeSubscriptionBillingAccountParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
 	/*SubscriptionID*/
@@ -174,5 +177,6 @@ func (o *PublicChangeSubscriptionBillingAccountParams) WriteToRequest(r runtime.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

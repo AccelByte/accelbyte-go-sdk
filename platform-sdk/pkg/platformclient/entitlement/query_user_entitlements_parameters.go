@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -93,6 +94,8 @@ for the query user entitlements operation typically these are written to a http.
 */
 type QueryUserEntitlementsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly*/
 	ActiveOnly *bool
 	/*AppType*/
@@ -380,5 +383,6 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

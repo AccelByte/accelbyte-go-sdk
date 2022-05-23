@@ -65,10 +65,10 @@ for the protected get playtime game telemetry v1 protected steam ids steam Id pl
 */
 type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams struct {
 
-	/*Cookie*/
-	Cookie *string
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Cookie*/
+	Cookie *string
 	/*SteamID*/
 	SteamID string
 

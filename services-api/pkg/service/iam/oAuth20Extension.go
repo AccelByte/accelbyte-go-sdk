@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -99,6 +100,15 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_ext
 		}
 		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
@@ -128,6 +138,15 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_ext
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth20Extension.GetCountryLocationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -144,6 +163,15 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.OAuth20Extension.LogoutShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -160,6 +188,15 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err

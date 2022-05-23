@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin delete role permissions v4 operation typically these are written t
 */
 type AdminDeleteRolePermissionsV4Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body []string
 	/*RoleID
@@ -160,5 +163,6 @@ func (o *AdminDeleteRolePermissionsV4Params) WriteToRequest(r runtime.ClientRequ
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

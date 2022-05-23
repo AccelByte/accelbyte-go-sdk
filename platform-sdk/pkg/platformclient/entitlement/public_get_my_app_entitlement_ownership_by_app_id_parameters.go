@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the public get my app entitlement ownership by app Id operation typically th
 */
 type PublicGetMyAppEntitlementOwnershipByAppIDParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*AppID*/
 	AppID string
 	/*Namespace*/
@@ -160,5 +163,6 @@ func (o *PublicGetMyAppEntitlementOwnershipByAppIDParams) WriteToRequest(r runti
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

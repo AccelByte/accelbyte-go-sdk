@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the update wx pay config cert operation typically these are written to a htt
 */
 type UpdateWxPayConfigCertParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*File*/
 	File runtime.NamedReadCloser
 	/*ID*/
@@ -164,5 +167,6 @@ func (o *UpdateWxPayConfigCertParams) WriteToRequest(r runtime.ClientRequest, re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

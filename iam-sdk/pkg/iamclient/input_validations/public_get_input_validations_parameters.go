@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the public get input validations operation typically these are written to a 
 */
 type PublicGetInputValidationsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*DefaultOnEmpty
 	  default true, will return default language if languageCode is empty or language not available
 
@@ -197,5 +200,6 @@ func (o *PublicGetInputValidationsParams) WriteToRequest(r runtime.ClientRequest
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

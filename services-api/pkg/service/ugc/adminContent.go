@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
@@ -463,6 +464,15 @@ func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.AdminContent.AdminUploadContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -479,6 +489,15 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.AdminContent.AdminUploadContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -495,6 +514,15 @@ func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_conte
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.SingleAdminUpdateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -511,6 +539,15 @@ func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminSearchChannelSpecificContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -527,6 +564,15 @@ func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.SingleAdminUpdateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -543,6 +589,15 @@ func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminContent.SingleAdminDeleteContentShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -559,6 +614,15 @@ func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.Si
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.SingleAdminGetContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -575,6 +639,15 @@ func (a *AdminContentService) AdminSearchContentShort(input *admin_content.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminSearchContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -591,6 +664,15 @@ func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminGetSpecificContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -607,6 +689,15 @@ func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_cont
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminDownloadContentPreviewShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -623,6 +714,15 @@ func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.A
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminUpdateScreenshotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -639,6 +739,15 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.AdminContent.AdminUploadContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -655,6 +764,15 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminContent.AdminDeleteContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -671,6 +789,15 @@ func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminUpdateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -687,6 +814,15 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminUpdateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -703,6 +839,15 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.AdminContent.AdminDeleteContentShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -719,6 +864,15 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminGetContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -735,6 +889,15 @@ func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.AdminContent.AdminHideUserContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

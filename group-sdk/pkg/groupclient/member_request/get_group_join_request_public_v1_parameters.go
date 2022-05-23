@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get group join request public v1 operation typically these are written t
 */
 type GetGroupJoinRequestPublicV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*GroupID
 	  Group ID
 
@@ -227,5 +230,6 @@ func (o *GetGroupJoinRequestPublicV1Params) WriteToRequest(r runtime.ClientReque
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

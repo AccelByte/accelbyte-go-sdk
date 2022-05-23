@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -93,6 +94,8 @@ for the get user subscription activities operation typically these are written t
 */
 type GetUserSubscriptionActivitiesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ExcludeSystem*/
 	ExcludeSystem *bool
 	/*Limit*/
@@ -301,5 +304,6 @@ func (o *GetUserSubscriptionActivitiesParams) WriteToRequest(r runtime.ClientReq
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

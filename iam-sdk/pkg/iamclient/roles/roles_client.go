@@ -12,6 +12,7 @@ package roles
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -151,6 +152,10 @@ func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddRoleManagers",
 		Method:             "POST",
@@ -252,6 +257,10 @@ func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -382,6 +391,10 @@ func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddRolePermission",
 		Method:             "POST",
@@ -480,6 +493,10 @@ func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -586,6 +603,10 @@ func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -720,6 +741,10 @@ func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAddRolePermissionsV3",
 		Method:             "POST",
@@ -847,6 +872,10 @@ func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAddRolePermissionsV4",
 		Method:             "POST",
@@ -951,6 +980,10 @@ func (a *Client) AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1073,6 +1106,10 @@ func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateRoleV3",
 		Method:             "POST",
@@ -1175,6 +1212,10 @@ func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateRoleV4",
 		Method:             "POST",
@@ -1267,6 +1308,10 @@ func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1373,6 +1418,10 @@ func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissions
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteRolePermissionsV3",
 		Method:             "DELETE",
@@ -1468,6 +1517,10 @@ func (a *Client) AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissions
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteRolePermissionsV4",
 		Method:             "DELETE",
@@ -1560,6 +1613,10 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1675,6 +1732,10 @@ func (a *Client) AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteRoleV4",
 		Method:             "DELETE",
@@ -1781,6 +1842,10 @@ func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRoleAdminStatusV3",
 		Method:             "GET",
@@ -1880,6 +1945,10 @@ func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1984,6 +2053,10 @@ func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRoleMembersV3",
 		Method:             "GET",
@@ -2081,6 +2154,10 @@ func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2184,6 +2261,10 @@ func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRoleV4",
 		Method:             "GET",
@@ -2283,6 +2364,10 @@ func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRolesV3",
 		Method:             "GET",
@@ -2377,6 +2462,10 @@ func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2476,6 +2565,10 @@ func (a *Client) AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListAssignedUsersV4",
 		Method:             "GET",
@@ -2573,6 +2666,10 @@ func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2680,6 +2777,10 @@ func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRemoveRoleManagersV3",
 		Method:             "DELETE",
@@ -2779,6 +2880,10 @@ func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2888,6 +2993,10 @@ func (a *Client) AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRevokeUserFromRoleV4",
 		Method:             "DELETE",
@@ -2988,6 +3097,10 @@ func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatus
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3122,6 +3235,10 @@ func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissions
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateRolePermissionsV3",
 		Method:             "PUT",
@@ -3249,6 +3366,10 @@ func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissions
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateRolePermissionsV4",
 		Method:             "PUT",
@@ -3353,6 +3474,10 @@ func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3462,6 +3587,10 @@ func (a *Client) AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateRoleV4",
 		Method:             "PATCH",
@@ -3567,6 +3696,10 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateRole",
 		Method:             "POST",
@@ -3663,6 +3796,10 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteRole",
 		Method:             "DELETE",
@@ -3757,6 +3894,10 @@ func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3858,6 +3999,10 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRole",
 		Method:             "GET",
@@ -3951,6 +4096,10 @@ func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4053,6 +4202,10 @@ func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRoleManagers",
 		Method:             "GET",
@@ -4151,6 +4304,10 @@ func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4252,6 +4409,10 @@ func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRoles",
 		Method:             "GET",
@@ -4339,6 +4500,10 @@ func (a *Client) PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4430,6 +4595,10 @@ func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetRolesV3",
 		Method:             "GET",
@@ -4514,6 +4683,10 @@ func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4616,6 +4789,10 @@ func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4721,6 +4898,10 @@ func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo run
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RemoveRoleMembers",
 		Method:             "DELETE",
@@ -4824,6 +5005,10 @@ func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.C
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SetRoleAsAdmin",
 		Method:             "POST",
@@ -4923,6 +5108,10 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5051,6 +5240,10 @@ func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

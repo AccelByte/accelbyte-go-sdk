@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -160,6 +161,15 @@ func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangeP
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Agreement.ChangePreferenceConsentShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -176,6 +186,15 @@ func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Retr
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Agreement.RetrieveAcceptedAgreementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -192,6 +211,15 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Agreement.RetrieveAllUsersByPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -208,6 +236,15 @@ func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.Change
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Agreement.ChangePreferenceConsent1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -224,6 +261,15 @@ func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVer
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Agreement.AcceptVersionedPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -240,6 +286,15 @@ func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.Retrie
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Agreement.RetrieveAgreementsPublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -256,6 +311,15 @@ func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkA
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.Agreement.BulkAcceptVersionedPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -272,6 +336,15 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agree
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicyV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -288,6 +361,15 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreem
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicy1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

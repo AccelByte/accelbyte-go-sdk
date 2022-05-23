@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the users presence handler v1 operation typically these are written to a htt
 */
 type UsersPresenceHandlerV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*CountOnly
 	  return only number of players for each availability status
 
@@ -199,5 +202,6 @@ func (o *UsersPresenceHandlerV1Params) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -89,11 +89,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice platform service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePlatformService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticePlatformService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -101,6 +101,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 
 	cli := new(JusticePlatformService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.Campaign = campaign.New(transport, formats)
 	cli.CatalogChanges = catalog_changes.New(transport, formats)
@@ -126,6 +127,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli.Subscription = subscription.New(transport, formats)
 	cli.Ticket = ticket.New(transport, formats)
 	cli.Wallet = wallet.New(transport, formats)
+
 	return cli
 }
 
@@ -140,7 +142,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticePlatformService 
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -234,6 +237,7 @@ type JusticePlatformService struct {
 
 	Wallet wallet.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete leaderboard configuration admin v1 operation typically these are 
 */
 type DeleteLeaderboardConfigurationAdminV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LeaderboardCode
 	  human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48
 
@@ -162,5 +165,6 @@ func (o *DeleteLeaderboardConfigurationAdminV1Params) WriteToRequest(r runtime.C
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -677,6 +678,15 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -693,6 +703,15 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := m.Client.Matchmaking.CreateChannelHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -709,6 +728,15 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.DeleteChannelHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -725,6 +753,15 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.StoreMatchResultsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -741,6 +778,15 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.QueueSessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -757,6 +803,15 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.DequeueSessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -773,6 +828,15 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.QuerySessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -789,6 +853,15 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetAllPartyInAllChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -805,6 +878,15 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.BulkGetSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -821,6 +903,15 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -837,6 +928,15 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.ImportChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -853,6 +953,15 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -869,6 +978,15 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.UpdateMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -885,6 +1003,15 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetAllPartyInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -901,6 +1028,15 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetAllSessionsInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -917,6 +1053,15 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -933,6 +1078,15 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.DeleteSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -949,6 +1103,15 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -965,6 +1128,15 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.SearchSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -981,6 +1153,15 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.GetSessionHistoryDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -997,6 +1178,15 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1013,6 +1203,15 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1029,6 +1228,15 @@ func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSess
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Matchmaking.SearchSessionsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

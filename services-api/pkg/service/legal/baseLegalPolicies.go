@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -127,6 +128,15 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_leg
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.BaseLegalPolicies.RetrieveAllLegalPoliciesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -143,6 +153,15 @@ func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := b.Client.BaseLegalPolicies.CreatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -159,6 +178,15 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_p
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.BaseLegalPolicies.RetrieveSinglePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -175,6 +203,15 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_po
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.BaseLegalPolicies.PartialUpdatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -191,6 +228,15 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.BaseLegalPolicies.RetrievePolicyCountryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -207,6 +253,15 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal
 		}
 		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  b.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := b.Client.BaseLegalPolicies.RetrieveAllPolicyTypesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

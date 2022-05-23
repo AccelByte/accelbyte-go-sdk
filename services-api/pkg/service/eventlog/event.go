@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -286,6 +287,15 @@ func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNa
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByNamespaceHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -302,6 +312,15 @@ func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := e.Client.Event.PostEventHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -318,6 +337,15 @@ func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEven
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -334,6 +362,15 @@ func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEv
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -350,6 +387,15 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByEventTypeAndEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -366,6 +412,15 @@ func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserI
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByUserIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -382,6 +437,15 @@ func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEv
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByUserIDAndEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -398,6 +462,15 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.Get
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByUserIDAndEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -414,6 +487,15 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *even
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

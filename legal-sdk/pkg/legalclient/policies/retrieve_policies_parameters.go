@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the retrieve policies operation typically these are written to a http.Reques
 */
 type RetrievePoliciesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*CountryCode
 	  Country Code
 
@@ -141,5 +144,6 @@ func (o *RetrievePoliciesParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

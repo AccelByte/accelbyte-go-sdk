@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the retrieve single localized policy version 1 operation typically these are
 */
 type RetrieveSingleLocalizedPolicyVersion1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LocalizedPolicyVersionID
 	  Localized Policy Version Id
 
@@ -141,5 +144,6 @@ func (o *RetrieveSingleLocalizedPolicyVersion1Params) WriteToRequest(r runtime.C
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

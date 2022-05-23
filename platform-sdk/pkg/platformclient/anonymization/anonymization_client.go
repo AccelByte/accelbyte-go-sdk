@@ -12,6 +12,7 @@ package anonymization
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -66,6 +67,10 @@ func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo run
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -147,6 +152,10 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeEntitlement",
 		Method:             "DELETE",
@@ -224,6 +233,10 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -305,6 +318,10 @@ func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeIntegration",
 		Method:             "DELETE",
@@ -382,6 +399,10 @@ func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -463,6 +484,10 @@ func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizePayment",
 		Method:             "DELETE",
@@ -542,6 +567,10 @@ func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeSubscription",
 		Method:             "DELETE",
@@ -619,6 +648,10 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get reward by code operation typically these are written to a http.Reque
 */
 type GetRewardByCodeParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
 	/*RewardCode*/
@@ -160,5 +163,6 @@ func (o *GetRewardByCodeParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

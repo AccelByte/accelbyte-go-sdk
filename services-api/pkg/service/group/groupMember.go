@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -391,6 +392,15 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.GetGroupMembersListAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -407,6 +417,15 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -423,6 +442,15 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.RejectGroupInvitationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -439,6 +467,15 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := g.Client.GroupMember.JoinGroupV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -455,6 +492,15 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.C
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.CancelGroupJoinRequestV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -471,6 +517,15 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.GetGroupMembersListPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -487,6 +542,15 @@ func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGr
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.LeaveGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -503,6 +567,15 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.GetUserGroupInformationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -519,6 +592,15 @@ func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.Invite
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.InviteGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -535,6 +617,15 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -551,6 +642,15 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -567,6 +667,15 @@ func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.Ki
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupMember.KickGroupMemberPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

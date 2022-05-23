@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -125,6 +126,15 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Ticket.GetTicketDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -141,6 +151,15 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := t.Client.Ticket.DecreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -157,6 +176,15 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -173,6 +201,15 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -189,6 +226,15 @@ func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Ticket.AcquireUserTicketShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

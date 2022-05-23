@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the delete user permission operation typically these are written to a http.R
 */
 type DeleteUserPermissionParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Action
 	  Action (1..15)
 
@@ -205,5 +208,6 @@ func (o *DeleteUserPermissionParams) WriteToRequest(r runtime.ClientRequest, reg
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

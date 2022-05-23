@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin get user by email address v3 operation typically these are written
 */
 type AdminGetUserByEmailAddressV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EmailAddress
 	  Email Address, should follow OWASP email format
 
@@ -173,5 +176,6 @@ func (o *AdminGetUserByEmailAddressV3Params) WriteToRequest(r runtime.ClientRequ
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

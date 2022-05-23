@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the send party freeform notification v1 admin operation typically these are 
 */
 type SendPartyFreeformNotificationV1AdminParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body
 	  notification content
 
@@ -186,5 +189,6 @@ func (o *SendPartyFreeformNotificationV1AdminParams) WriteToRequest(r runtime.Cl
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

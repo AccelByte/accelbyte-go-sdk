@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the login s s o client operation typically these are written to a http.Reque
 */
 type LoginSSOClientParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Payload
 	  Key value payload received from SSO client, if any, and must be escaped
 
@@ -173,5 +176,6 @@ func (o *LoginSSOClientParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

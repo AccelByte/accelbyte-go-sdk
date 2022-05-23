@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -143,6 +144,15 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.ListCurrenciesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -159,6 +169,15 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.CreateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -175,6 +194,15 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.UpdateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -191,6 +219,15 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.DeleteCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -207,6 +244,15 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -223,6 +269,15 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

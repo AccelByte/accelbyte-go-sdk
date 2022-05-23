@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the batch download server logs operation typically these are written to a ht
 */
 type BatchDownloadServerLogsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *dslogmanagerclientmodels.ModelsBatchDownloadLogsRequest
 
@@ -141,5 +144,6 @@ func (o *BatchDownloadServerLogsParams) WriteToRequest(r runtime.ClientRequest, 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

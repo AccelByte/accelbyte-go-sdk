@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the enable user ban operation typically these are written to a http.Request
 */
 type EnableUserBanParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*BanID
 	  Ban ID
 
@@ -183,5 +186,6 @@ func (o *EnableUserBanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

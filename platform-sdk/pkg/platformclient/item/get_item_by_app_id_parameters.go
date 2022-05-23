@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the get item by app Id operation typically these are written to a http.Reque
 */
 type GetItemByAppIDParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly*/
 	ActiveOnly *bool
 	/*AppID*/
@@ -234,5 +237,6 @@ func (o *GetItemByAppIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

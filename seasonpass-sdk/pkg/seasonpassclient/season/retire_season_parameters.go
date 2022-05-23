@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the retire season operation typically these are written to a http.Request
 */
 type RetireSeasonParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Force*/
 	Force *bool
 	/*Namespace*/
@@ -198,5 +201,6 @@ func (o *RetireSeasonParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

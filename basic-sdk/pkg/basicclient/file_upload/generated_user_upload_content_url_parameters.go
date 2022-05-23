@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the generated user upload content Url operation typically these are written 
 */
 type GeneratedUserUploadContentURLParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*FileType
 	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp
 
@@ -187,5 +190,6 @@ func (o *GeneratedUserUploadContentURLParams) WriteToRequest(r runtime.ClientReq
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -12,6 +12,7 @@ package anonymization
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -66,6 +67,10 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -162,6 +167,10 @@ func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteAllUserContents",
 		Method:             "DELETE",
@@ -254,6 +263,10 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -350,6 +363,10 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteAllUserStates",
 		Method:             "DELETE",
@@ -442,6 +459,10 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -538,6 +559,10 @@ func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, auth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteAllUserContents",
 		Method:             "DELETE",
@@ -632,6 +657,10 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteAllUserGroup",
 		Method:             "DELETE",
@@ -724,6 +753,10 @@ func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

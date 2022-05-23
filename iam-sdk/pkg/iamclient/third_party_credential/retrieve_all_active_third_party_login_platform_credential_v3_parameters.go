@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the retrieve all active third party login platform credential v3 operation t
 */
 type RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -141,5 +144,6 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) WriteToRequ
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

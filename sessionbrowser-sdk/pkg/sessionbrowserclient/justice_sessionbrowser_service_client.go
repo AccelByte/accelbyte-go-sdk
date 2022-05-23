@@ -65,11 +65,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice sessionbrowser service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeSessionbrowserService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeSessionbrowserService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -77,7 +77,9 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeSes
 
 	cli := new(JusticeSessionbrowserService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.Session = session.New(transport, formats)
+
 	return cli
 }
 
@@ -92,7 +94,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeSessionbrowserSe
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -138,6 +141,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeSessionbrowserService struct {
 	Session session.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

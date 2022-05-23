@@ -67,11 +67,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice dslogmanager service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeDslogmanagerService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeDslogmanagerService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -79,9 +79,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeDsl
 
 	cli := new(JusticeDslogmanagerService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.AllTerminatedServers = all_terminated_servers.New(transport, formats)
 	cli.DslogmanagerOperations = dslogmanager_operations.New(transport, formats)
 	cli.TerminatedServers = terminated_servers.New(transport, formats)
+
 	return cli
 }
 
@@ -96,7 +98,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeDslogmanagerServ
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -146,6 +149,7 @@ type JusticeDslogmanagerService struct {
 
 	TerminatedServers terminated_servers.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

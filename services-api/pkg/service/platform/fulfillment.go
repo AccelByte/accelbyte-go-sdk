@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -134,6 +135,15 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Fulfillment.QueryFulfillmentHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -150,6 +160,15 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Fulfillment.FulfillItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -166,6 +185,15 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Fulfillment.RedeemCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -182,6 +210,15 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.Fulfillment.FulfillRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -198,6 +235,15 @@ func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRede
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.Fulfillment.PublicRedeemCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

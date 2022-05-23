@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get item dynamic data operation typically these are written to a http.Re
 */
 type GetItemDynamicDataParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ItemID*/
 	ItemID string
 	/*Namespace*/
@@ -156,5 +159,6 @@ func (o *GetItemDynamicDataParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

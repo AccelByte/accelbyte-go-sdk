@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the get template slug localizations template v1 admin operation typically th
 */
 type GetTemplateSlugLocalizationsTemplateV1AdminParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*After
 	  last language code of previous page
 
@@ -259,5 +262,6 @@ func (o *GetTemplateSlugLocalizationsTemplateV1AdminParams) WriteToRequest(r run
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

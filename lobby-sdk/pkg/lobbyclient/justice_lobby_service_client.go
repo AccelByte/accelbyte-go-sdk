@@ -74,11 +74,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice lobby service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLobbyService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeLobbyService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -86,6 +86,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLob
 
 	cli := new(JusticeLobbyService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.Chat = chat.New(transport, formats)
 	cli.Config = config.New(transport, formats)
 	cli.Friends = friends.New(transport, formats)
@@ -96,6 +97,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLob
 	cli.Presence = presence.New(transport, formats)
 	cli.Profanity = profanity.New(transport, formats)
 	cli.ThirdParty = third_party.New(transport, formats)
+
 	return cli
 }
 
@@ -110,7 +112,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeLobbyService {
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -174,6 +177,7 @@ type JusticeLobbyService struct {
 
 	ThirdParty third_party.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

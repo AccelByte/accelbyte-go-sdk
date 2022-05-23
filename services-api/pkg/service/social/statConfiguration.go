@@ -8,6 +8,7 @@ package social
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
@@ -172,6 +173,15 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.StatConfiguration.GetStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -188,6 +198,15 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := s.Client.StatConfiguration.CreateStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -204,6 +223,15 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -220,6 +248,15 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.StatConfiguration.ImportStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -236,6 +273,15 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.StatConfiguration.QueryStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -252,6 +298,15 @@ func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetSta
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.StatConfiguration.GetStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -268,6 +323,15 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := s.Client.StatConfiguration.DeleteStatShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -284,6 +348,15 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := s.Client.StatConfiguration.UpdateStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -300,6 +373,15 @@ func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.Cr
 		}
 		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := s.Client.StatConfiguration.CreateStat1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

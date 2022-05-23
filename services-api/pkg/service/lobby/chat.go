@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -115,6 +116,15 @@ func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Chat.PersonalChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -131,6 +141,15 @@ func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Chat.AdminChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -147,6 +166,15 @@ func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersona
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Chat.GetPersonalChatHistoryV1PublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

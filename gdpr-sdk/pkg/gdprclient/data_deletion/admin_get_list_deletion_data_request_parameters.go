@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the admin get list deletion data request operation typically these are writt
 */
 type AdminGetListDeletionDataRequestParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*After
 	  The day in UTC format to get deletion request list after that. format : YYYY-MM-DD
 
@@ -302,5 +305,6 @@ func (o *AdminGetListDeletionDataRequestParams) WriteToRequest(r runtime.ClientR
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

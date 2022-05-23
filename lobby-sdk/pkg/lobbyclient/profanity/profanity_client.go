@@ -12,6 +12,7 @@ package profanity
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -77,6 +78,10 @@ func (a *Client) AdminAddProfanityFilterIntoList(params *AdminAddProfanityFilter
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -184,6 +189,10 @@ func (a *Client) AdminAddProfanityFilters(params *AdminAddProfanityFiltersParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminAddProfanityFilters",
 		Method:             "POST",
@@ -287,6 +296,10 @@ func (a *Client) AdminCreateProfanityList(params *AdminCreateProfanityListParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -394,6 +407,10 @@ func (a *Client) AdminDebugProfanityFilters(params *AdminDebugProfanityFiltersPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDebugProfanityFilters",
 		Method:             "POST",
@@ -497,6 +514,10 @@ func (a *Client) AdminDeleteProfanityFilter(params *AdminDeleteProfanityFilterPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -604,6 +625,10 @@ func (a *Client) AdminDeleteProfanityList(params *AdminDeleteProfanityListParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteProfanityList",
 		Method:             "DELETE",
@@ -707,6 +732,10 @@ func (a *Client) AdminGetProfanityListFiltersV1(params *AdminGetProfanityListFil
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -814,6 +843,10 @@ func (a *Client) AdminGetProfanityLists(params *AdminGetProfanityListsParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityLists",
 		Method:             "GET",
@@ -917,6 +950,10 @@ func (a *Client) AdminGetProfanityRule(params *AdminGetProfanityRuleParams, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1024,6 +1061,10 @@ func (a *Client) AdminImportProfanityFiltersFromFile(params *AdminImportProfanit
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminImportProfanityFiltersFromFile",
 		Method:             "POST",
@@ -1127,6 +1168,10 @@ func (a *Client) AdminSetProfanityRuleForNamespace(params *AdminSetProfanityRule
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1234,6 +1279,10 @@ func (a *Client) AdminUpdateProfanityList(params *AdminUpdateProfanityListParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateProfanityList",
 		Method:             "POST",
@@ -1337,6 +1386,10 @@ func (a *Client) AdminVerifyMessageProfanityResponse(params *AdminVerifyMessageP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -550,6 +551,15 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIdsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -566,6 +576,15 @@ func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.GetUserProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -582,6 +601,15 @@ func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdateUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -598,6 +626,15 @@ func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.DeleteUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -614,6 +651,15 @@ func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.GetCustomAttributesInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -630,6 +676,15 @@ func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_pr
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdateCustomAttributesPartiallyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -646,6 +701,15 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_pro
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.GetPrivateCustomAttributesInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -662,6 +726,15 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartiallyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -678,6 +751,15 @@ func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.Up
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdateUserProfileStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -703,6 +785,15 @@ func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProf
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.GetMyProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -719,6 +810,15 @@ func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyPr
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdateMyProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -735,6 +835,15 @@ func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyPr
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UserProfile.CreateMyProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -751,6 +860,15 @@ func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeP
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.GetMyZipCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -767,6 +885,15 @@ func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZi
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.UpdateMyZipCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -783,6 +910,15 @@ func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.P
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -799,6 +935,15 @@ func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.Pu
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.PublicUpdateUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -815,6 +960,15 @@ func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.Pu
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UserProfile.PublicCreateUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -831,6 +985,15 @@ func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_prof
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -847,6 +1010,15 @@ func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *u
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartiallyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -872,6 +1044,15 @@ func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_prof
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserProfile.PublicUpdateUserProfileStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

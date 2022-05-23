@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -87,6 +88,8 @@ for the update stripe config operation typically these are written to a http.Req
 */
 type UpdateStripeConfigParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *platformclientmodels.StripeConfig
 	/*ID*/
@@ -238,5 +241,6 @@ func (o *UpdateStripeConfigParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

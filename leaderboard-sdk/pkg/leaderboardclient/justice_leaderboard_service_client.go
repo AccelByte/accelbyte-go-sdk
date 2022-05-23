@@ -68,11 +68,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice leaderboard service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLeaderboardService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeLeaderboardService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -80,10 +80,12 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLea
 
 	cli := new(JusticeLeaderboardService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.LeaderboardConfiguration = leaderboard_configuration.New(transport, formats)
 	cli.LeaderboardData = leaderboard_data.New(transport, formats)
 	cli.UserData = user_data.New(transport, formats)
 	cli.UserVisibility = user_visibility.New(transport, formats)
+
 	return cli
 }
 
@@ -98,7 +100,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeLeaderboardServi
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -150,6 +153,7 @@ type JusticeLeaderboardService struct {
 
 	UserVisibility user_visibility.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

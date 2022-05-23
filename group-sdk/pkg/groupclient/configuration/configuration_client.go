@@ -12,6 +12,7 @@ package configuration
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -76,6 +77,10 @@ func (a *Client) CreateGroupConfigurationAdminV1(params *CreateGroupConfiguratio
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -185,6 +190,10 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1(params *DeleteGroupCo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupConfigurationGlobalRuleAdminV1",
 		Method:             "DELETE",
@@ -292,6 +301,10 @@ func (a *Client) DeleteGroupConfigurationV1(params *DeleteGroupConfigurationV1Pa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupConfigurationV1",
 		Method:             "DELETE",
@@ -397,6 +410,10 @@ func (a *Client) GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdmin
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -513,6 +530,10 @@ func (a *Client) InitiateGroupConfigurationAdminV1(params *InitiateGroupConfigur
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "initiateGroupConfigurationAdminV1",
 		Method:             "POST",
@@ -613,6 +634,10 @@ func (a *Client) ListGroupConfigurationAdminV1(params *ListGroupConfigurationAdm
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -722,6 +747,10 @@ func (a *Client) UpdateGroupConfigurationAdminV1(params *UpdateGroupConfiguratio
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupConfigurationAdminV1",
 		Method:             "PATCH",
@@ -827,6 +856,10 @@ func (a *Client) UpdateGroupConfigurationGlobalRuleAdminV1(params *UpdateGroupCo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

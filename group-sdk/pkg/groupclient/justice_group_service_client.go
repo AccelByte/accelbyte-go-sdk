@@ -69,11 +69,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice group service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeGroupService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeGroupService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -81,11 +81,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeGro
 
 	cli := new(JusticeGroupService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.Configuration = configuration.New(transport, formats)
 	cli.Group = group.New(transport, formats)
 	cli.GroupMember = group_member.New(transport, formats)
 	cli.GroupRoles = group_roles.New(transport, formats)
 	cli.MemberRequest = member_request.New(transport, formats)
+
 	return cli
 }
 
@@ -100,7 +102,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeGroupService {
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -154,6 +157,7 @@ type JusticeGroupService struct {
 
 	MemberRequest member_request.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

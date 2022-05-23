@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -77,6 +78,8 @@ for the list all terminated servers operation typically these are written to a h
 */
 type ListAllTerminatedServersParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Deployment
 	  deployment of the game
 
@@ -581,5 +584,6 @@ func (o *ListAllTerminatedServersParams) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

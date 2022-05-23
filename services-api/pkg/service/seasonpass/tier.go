@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/tier"
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -186,6 +187,15 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpass
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Tier.QueryTiersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -202,6 +212,15 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpa
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := t.Client.Tier.CreateTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -218,6 +237,15 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpass
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Tier.UpdateTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -234,6 +262,15 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := t.Client.Tier.DeleteTierShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -250,6 +287,15 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpa
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Tier.ReorderTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -266,6 +312,15 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*season
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Tier.GrantUserExpShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -282,6 +337,15 @@ func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seas
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.Tier.GrantUserTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

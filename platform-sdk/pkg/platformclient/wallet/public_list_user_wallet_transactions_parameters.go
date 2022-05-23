@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the public list user wallet transactions operation typically these are writt
 */
 type PublicListUserWalletTransactionsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*CurrencyCode
 	  currencyCode
 
@@ -262,5 +265,6 @@ func (o *PublicListUserWalletTransactionsParams) WriteToRequest(r runtime.Client
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

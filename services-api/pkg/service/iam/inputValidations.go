@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -114,6 +115,15 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.InputValidations.AdminGetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -130,6 +140,15 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.InputValidations.AdminUpdateInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -146,6 +165,15 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := i.Client.InputValidations.AdminResetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -162,6 +190,15 @@ func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_va
 		}
 		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  i.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := i.Client.InputValidations.PublicGetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

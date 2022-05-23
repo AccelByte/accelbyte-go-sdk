@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the update localization template operation typically these are written to a 
 */
 type UpdateLocalizationTemplateParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *lobbyclientmodels.ModelUpdateTemplateRequest
 	/*Namespace
@@ -204,5 +207,6 @@ func (o *UpdateLocalizationTemplateParams) WriteToRequest(r runtime.ClientReques
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the public normalize payment return Url operation typically these are writte
 */
 type PublicNormalizePaymentReturnURLParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*PayerID
 	  PayPal payer id
 
@@ -575,5 +578,6 @@ func (o *PublicNormalizePaymentReturnURLParams) WriteToRequest(r runtime.ClientR
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

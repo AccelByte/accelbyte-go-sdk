@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -121,6 +122,15 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FulfillmentScript.ListFulfillmentScriptsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -137,6 +147,15 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FulfillmentScript.TestFulfillmentScriptEvalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -153,6 +172,15 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FulfillmentScript.GetFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -169,6 +197,15 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := f.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -185,6 +222,15 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := f.Client.FulfillmentScript.DeleteFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -201,6 +247,15 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillme
 		}
 		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  f.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := f.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

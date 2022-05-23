@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get all sessions in channel operation typically these are written to a h
 */
 type GetAllSessionsInChannelParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ChannelName
 	  channel name, accept snake_case, lowercase, and numeric
 
@@ -162,5 +165,6 @@ func (o *GetAllSessionsInChannelParams) WriteToRequest(r runtime.ClientRequest, 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the public send verification code v3 operation typically these are written t
 */
 type PublicSendVerificationCodeV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ModelSendVerificationCodeRequestV3
 	/*Namespace
@@ -162,5 +165,6 @@ func (o *PublicSendVerificationCodeV3Params) WriteToRequest(r runtime.ClientRequ
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

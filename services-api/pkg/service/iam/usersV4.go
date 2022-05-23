@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -1121,6 +1122,15 @@ func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminB
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminBulkCheckValidUserIDV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1137,6 +1147,15 @@ func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminUpdateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1153,6 +1172,15 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1169,6 +1197,15 @@ func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisable
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminDisableUserMFAV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1185,6 +1222,15 @@ func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUser
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminListUserRolesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1201,6 +1247,15 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateU
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminUpdateUserRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1217,6 +1272,15 @@ func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRol
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminAddUserRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1233,6 +1297,15 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveU
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminRemoveUserRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1249,6 +1322,15 @@ func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyU
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminUpdateMyUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1265,6 +1347,15 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.Admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminDisableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1281,6 +1372,15 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminEnableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1297,6 +1397,15 @@ func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminGenerateMyAuthenticatorKeyV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1313,6 +1422,15 @@ func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMy
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminGetMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1329,6 +1447,15 @@ func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminGenerateMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1345,6 +1472,15 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminD
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminDisableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1361,6 +1497,15 @@ func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminDownloadMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1377,6 +1522,15 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEn
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminEnableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1393,6 +1547,15 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGe
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.AdminGetMyEnabledFactorsV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1409,6 +1572,15 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMa
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.AdminMakeFactorMyDefaultV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1425,6 +1597,15 @@ func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UsersV4.AdminInviteUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1441,6 +1622,15 @@ func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreat
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UsersV4.PublicCreateTestUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1457,6 +1647,15 @@ func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUse
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UsersV4.PublicCreateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1473,6 +1672,15 @@ func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateU
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := u.Client.UsersV4.CreateUserFromInvitationV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1489,6 +1697,15 @@ func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUse
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicUpdateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1505,6 +1722,15 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicUpdateUserEmailAddressV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1521,6 +1747,15 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1537,6 +1772,15 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1553,6 +1797,15 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.Pub
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicDisableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1569,6 +1822,15 @@ func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicEnableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1585,6 +1847,15 @@ func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicGenerateMyAuthenticatorKeyV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1601,6 +1872,15 @@ func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGet
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicGetMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1617,6 +1897,15 @@ func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicGenerateMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1633,6 +1922,15 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.Publi
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicDisableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1649,6 +1947,15 @@ func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicDownloadMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1665,6 +1972,15 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicEnableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1681,6 +1997,15 @@ func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicRemoveTrustedDeviceV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1697,6 +2022,15 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UsersV4.PublicGetMyEnabledFactorsV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1713,6 +2047,15 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Public
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UsersV4.PublicMakeFactorMyDefaultV4Short(input, authInfoWriter)
 	if err != nil {
 		return err

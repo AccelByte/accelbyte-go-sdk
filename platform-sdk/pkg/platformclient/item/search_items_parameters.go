@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -93,6 +94,8 @@ for the search items operation typically these are written to a http.Request
 */
 type SearchItemsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ActiveOnly*/
 	ActiveOnly *bool
 	/*Keyword*/
@@ -336,5 +339,6 @@ func (o *SearchItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

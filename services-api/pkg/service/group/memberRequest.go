@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -80,6 +81,15 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_re
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.MemberRequest.GetGroupJoinRequestPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -96,6 +106,15 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *mem
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.MemberRequest.GetGroupInvitationRequestPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

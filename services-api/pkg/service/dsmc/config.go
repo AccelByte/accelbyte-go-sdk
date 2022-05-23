@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -328,6 +329,15 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmccl
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.ListConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -344,6 +354,15 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Config.SaveConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -360,6 +379,15 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclie
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -376,6 +404,15 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*ds
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Config.CreateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -392,6 +429,15 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) erro
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -408,6 +454,15 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*ds
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -424,6 +479,15 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Config.ClearCacheShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -440,6 +504,15 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmo
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Config.AddPortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -456,6 +529,15 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmccl
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.DeletePortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -472,6 +554,15 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmccl
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.UpdatePortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -488,6 +579,15 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.ExportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -504,6 +604,15 @@ func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Config.ImportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

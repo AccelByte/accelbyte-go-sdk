@@ -12,6 +12,7 @@ package group_member
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -77,6 +78,10 @@ func (a *Client) CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -194,6 +199,10 @@ func (a *Client) JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "JoinGroupV1",
 		Method:             "POST",
@@ -303,6 +312,10 @@ func (a *Client) AcceptGroupInvitationPublicV1(params *AcceptGroupInvitationPubl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -420,6 +433,10 @@ func (a *Client) AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acceptGroupJoinRequestPublicV1",
 		Method:             "POST",
@@ -532,6 +549,10 @@ func (a *Client) GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Pa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupMembersListAdminV1",
 		Method:             "GET",
@@ -637,6 +658,10 @@ func (a *Client) GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -751,6 +776,10 @@ func (a *Client) GetUserGroupInformationPublicV1(params *GetUserGroupInformation
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -868,6 +897,10 @@ func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "inviteGroupPublicV1",
 		Method:             "POST",
@@ -982,6 +1015,10 @@ func (a *Client) KickGroupMemberPublicV1(params *KickGroupMemberPublicV1Params, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "kickGroupMemberPublicV1",
 		Method:             "POST",
@@ -1090,6 +1127,10 @@ func (a *Client) LeaveGroupPublicV1(params *LeaveGroupPublicV1Params, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "leaveGroupPublicV1",
 		Method:             "POST",
@@ -1196,6 +1237,10 @@ func (a *Client) RejectGroupInvitationPublicV1(params *RejectGroupInvitationPubl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1311,6 +1356,10 @@ func (a *Client) RejectGroupJoinRequestPublicV1(params *RejectGroupJoinRequestPu
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -8,6 +8,7 @@ package social
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
@@ -769,6 +770,15 @@ func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.Bul
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkFetchStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -785,6 +795,15 @@ func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.Bu
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -801,6 +820,15 @@ func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statist
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -817,6 +845,15 @@ func (u *UserStatisticService) BulkFetchOrDefaultStatItemsShort(input *user_stat
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -833,6 +870,15 @@ func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkResetUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -849,6 +895,15 @@ func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.GetUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -865,6 +920,15 @@ func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statisti
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkCreateUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -881,6 +945,15 @@ func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.B
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItem1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -897,6 +970,15 @@ func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statis
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItemValue1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -913,6 +995,15 @@ func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkResetUserStatItem1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -929,6 +1020,15 @@ func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.Cre
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserStatistic.CreateUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -945,6 +1045,15 @@ func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.De
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserStatistic.DeleteUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -961,6 +1070,15 @@ func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.I
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.IncUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -977,6 +1095,15 @@ func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.ResetUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -993,6 +1120,15 @@ func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.Bu
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkFetchStatItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1009,6 +1145,15 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statis
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicBulkIncUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1025,6 +1170,15 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_s
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicBulkIncUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1041,6 +1195,15 @@ func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkResetUserStatItem2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1057,6 +1220,15 @@ func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statist
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicQueryUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1073,6 +1245,15 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_st
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicBulkCreateUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1089,6 +1270,15 @@ func (u *UserStatisticService) PublicQueryUserStatItems1Short(input *user_statis
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicQueryUserStatItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1105,6 +1295,15 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_stati
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicBulkIncUserStatItem1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1121,6 +1320,15 @@ func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statis
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkIncUserStatItemValue2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1137,6 +1345,15 @@ func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkResetUserStatItem3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1153,6 +1370,15 @@ func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statist
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserStatistic.PublicCreateUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1169,6 +1395,15 @@ func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.D
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserStatistic.DeleteUserStatItems1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1185,6 +1420,15 @@ func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicIncUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1201,6 +1445,15 @@ func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_stati
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicIncUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1217,6 +1470,15 @@ func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statisti
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.ResetUserStatItemValue1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1233,6 +1495,15 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItemV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1249,6 +1520,15 @@ func (u *UserStatisticService) BulkFetchOrDefaultStatItems1Short(input *user_sta
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkFetchOrDefaultStatItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1265,6 +1545,15 @@ func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1281,6 +1570,15 @@ func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_stat
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkResetUserStatItemValuesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1297,6 +1595,15 @@ func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.D
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := u.Client.UserStatistic.DeleteUserStatItems2Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1313,6 +1620,15 @@ func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statisti
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.UpdateUserStatItemValueShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1329,6 +1645,15 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statisti
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItem1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1345,6 +1670,15 @@ func (u *UserStatisticService) PublicQueryUserStatItems2Short(input *user_statis
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.PublicQueryUserStatItems2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1361,6 +1695,15 @@ func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statisti
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItem2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1377,6 +1720,15 @@ func (u *UserStatisticService) UpdateUserStatItemValue1Short(input *user_statist
 		}
 		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := u.Client.UserStatistic.UpdateUserStatItemValue1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete user ranking admin v1 operation typically these are written to a 
 */
 type DeleteUserRankingAdminV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*LeaderboardCode
 	  the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48
 
@@ -183,5 +186,6 @@ func (o *DeleteUserRankingAdminV1Params) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

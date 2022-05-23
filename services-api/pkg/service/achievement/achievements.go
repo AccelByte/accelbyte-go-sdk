@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -377,6 +378,15 @@ func (a *AchievementsService) AdminListAchievementsShort(input *achievements.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.AdminListAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -393,6 +403,15 @@ func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := a.Client.Achievements.AdminCreateNewAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -409,6 +428,15 @@ func (a *AchievementsService) ExportAchievementsShort(input *achievements.Export
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.ExportAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -425,6 +453,15 @@ func (a *AchievementsService) ImportAchievementsShort(input *achievements.Import
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.ImportAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -441,6 +478,15 @@ func (a *AchievementsService) AdminGetAchievementShort(input *achievements.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.AdminGetAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -457,6 +503,15 @@ func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.Ad
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.AdminUpdateAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -473,6 +528,15 @@ func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.Ad
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Achievements.AdminDeleteAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -489,6 +553,15 @@ func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achiev
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Achievements.AdminUpdateAchievementListOrderShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -505,6 +578,15 @@ func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.AdminListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -521,6 +603,15 @@ func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.Ad
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Achievements.AdminUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -537,6 +628,15 @@ func (a *AchievementsService) PublicListAchievementsShort(input *achievements.Pu
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.PublicListAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -553,6 +653,15 @@ func (a *AchievementsService) PublicGetAchievementShort(input *achievements.Publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.PublicGetAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -569,6 +678,15 @@ func (a *AchievementsService) PublicListUserAchievementsShort(input *achievement
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := a.Client.Achievements.PublicListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -585,6 +703,15 @@ func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.P
 		}
 		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := a.Client.Achievements.PublicUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err

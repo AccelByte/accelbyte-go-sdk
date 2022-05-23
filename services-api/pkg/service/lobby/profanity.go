@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -405,6 +406,15 @@ func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminDebugProfanityFiltersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -421,6 +431,15 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminGetProfanityListFiltersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -437,6 +456,15 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminAddProfanityFilterIntoListShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -453,6 +481,15 @@ func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminA
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminAddProfanityFiltersShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -469,6 +506,15 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profa
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminImportProfanityFiltersFromFileShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -485,6 +531,15 @@ func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Admi
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminDeleteProfanityFilterShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -501,6 +556,15 @@ func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGet
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminGetProfanityListsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -517,6 +581,15 @@ func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminC
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminCreateProfanityListShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -533,6 +606,15 @@ func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminU
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminUpdateProfanityListShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -549,6 +631,15 @@ func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminD
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminDeleteProfanityListShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -565,6 +656,15 @@ func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetP
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminGetProfanityRuleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -581,6 +681,15 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profani
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.Profanity.AdminSetProfanityRuleForNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -597,6 +706,15 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profa
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.Profanity.AdminVerifyMessageProfanityResponseShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

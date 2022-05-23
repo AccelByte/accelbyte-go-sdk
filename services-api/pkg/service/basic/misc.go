@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -241,6 +242,15 @@ func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams) ([]*basi
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Misc.GetCountriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -257,6 +267,15 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Misc.GetCountryGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -273,6 +292,15 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := m.Client.Misc.AddCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -289,6 +317,15 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Misc.UpdateCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -305,6 +342,15 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := m.Client.Misc.DeleteCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -321,6 +367,15 @@ func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[str
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Misc.GetLanguagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -337,6 +392,15 @@ func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]strin
 		}
 		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := m.Client.Misc.GetTimeZonesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

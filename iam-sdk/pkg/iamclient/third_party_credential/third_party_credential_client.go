@@ -12,6 +12,7 @@ package third_party_credential
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -78,6 +79,10 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -179,6 +184,10 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteThirdPartyLoginPlatformCredentialV3",
 		Method:             "DELETE",
@@ -278,6 +287,10 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyL
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -384,6 +397,10 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(para
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
 		Method:             "GET",
@@ -481,6 +498,10 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -582,6 +603,10 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllThirdPartyLoginPlatformCredentialV3",
 		Method:             "GET",
@@ -679,6 +704,10 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -790,6 +819,10 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateThirdPartyLoginPlatformCredentialV3",
 		Method:             "PATCH",
@@ -894,6 +927,10 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyL
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

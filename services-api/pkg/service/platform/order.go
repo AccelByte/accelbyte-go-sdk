@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -398,6 +399,15 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platfo
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.QueryOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -414,6 +424,15 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.GetOrderStatisticsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -430,6 +449,15 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclie
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.GetOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -446,6 +474,15 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platfo
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.RefundOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -462,6 +499,15 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) 
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.QueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -478,6 +524,15 @@ func (o *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrd
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := o.Client.Order.AdminCreateUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -494,6 +549,15 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.CountOfPurchasedItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -510,6 +574,15 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*plat
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.GetUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -526,6 +599,15 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.UpdateUserOrderStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -542,6 +624,15 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.FulfillUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -558,6 +649,15 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.GetUserOrderGrantShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -574,6 +674,15 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.GetUserOrderHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -590,6 +699,15 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.Order.ProcessUserOrderNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -606,6 +724,15 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -622,6 +749,15 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.PublicQueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -638,6 +774,15 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := o.Client.Order.PublicCreateUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -654,6 +799,15 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.PublicGetUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -670,6 +824,15 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.PublicCancelUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -686,6 +849,15 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := o.Client.Order.PublicGetUserOrderHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -702,6 +874,15 @@ func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDo
 		}
 		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := o.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter)
 	if err != nil {
 		return err

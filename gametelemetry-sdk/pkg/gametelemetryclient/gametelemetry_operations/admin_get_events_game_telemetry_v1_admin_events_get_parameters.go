@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the admin get events game telemetry v1 admin events get operation typically 
 */
 type AdminGetEventsGameTelemetryV1AdminEventsGetParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Cookie*/
 	Cookie *string
 	/*Namespace*/
@@ -164,5 +167,6 @@ func (o *AdminGetEventsGameTelemetryV1AdminEventsGetParams) WriteToRequest(r run
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
@@ -385,6 +386,15 @@ func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.SearchChannelSpecificContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -401,6 +411,15 @@ func (p *PublicContentService) PublicSearchContentShort(input *public_content.Pu
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.PublicSearchContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -417,6 +436,15 @@ func (p *PublicContentService) PublicGetContentBulkShort(input *public_content.P
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.PublicGetContentBulkShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -433,6 +461,15 @@ func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_con
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.DownloadContentByShareCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -449,6 +486,15 @@ func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *publ
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.PublicDownloadContentByContentIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -465,6 +511,15 @@ func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.PublicDownloadContentPreviewShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -481,6 +536,15 @@ func (p *PublicContentService) CreateContentDirectShort(input *public_content.Cr
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := p.Client.PublicContent.CreateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -497,6 +561,15 @@ func (p *PublicContentService) CreateContentS3Short(input *public_content.Create
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := p.Client.PublicContent.CreateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -513,6 +586,15 @@ func (p *PublicContentService) UpdateContentS3Short(input *public_content.Update
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.UpdateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -529,6 +611,15 @@ func (p *PublicContentService) UpdateContentDirectShort(input *public_content.Up
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.UpdateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -545,6 +636,15 @@ func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteCo
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.PublicContent.DeleteContentShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -561,6 +661,15 @@ func (p *PublicContentService) PublicGetUserContentShort(input *public_content.P
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.PublicGetUserContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -577,6 +686,15 @@ func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.Upda
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PublicContent.UpdateScreenshotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -593,6 +711,15 @@ func (p *PublicContentService) UploadContentScreenshotShort(input *public_conten
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := p.Client.PublicContent.UploadContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -609,6 +736,15 @@ func (p *PublicContentService) DeleteContentScreenshotShort(input *public_conten
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.PublicContent.DeleteContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return err

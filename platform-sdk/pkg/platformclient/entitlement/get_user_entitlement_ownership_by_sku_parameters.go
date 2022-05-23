@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get user entitlement ownership by sku operation typically these are writ
 */
 type GetUserEntitlementOwnershipBySkuParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EntitlementClazz*/
 	EntitlementClazz *string
 	/*Namespace*/
@@ -207,5 +210,6 @@ func (o *GetUserEntitlementOwnershipBySkuParams) WriteToRequest(r runtime.Client
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

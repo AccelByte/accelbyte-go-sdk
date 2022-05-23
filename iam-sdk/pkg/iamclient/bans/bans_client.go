@@ -12,6 +12,7 @@ package bans
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -63,6 +64,10 @@ func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, auth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -155,6 +160,10 @@ func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo r
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetBansTypeV3",
 		Method:             "GET",
@@ -243,6 +252,10 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -336,6 +349,10 @@ func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListBanReasonV3",
 		Method:             "GET",
@@ -427,6 +444,10 @@ func (a *Client) GetBansType(params *GetBansTypeParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetBansType",
 		Method:             "GET",
@@ -516,6 +537,10 @@ func (a *Client) GetListBanReason(params *GetListBanReasonParams, authInfo runti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -348,6 +349,15 @@ func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retri
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -364,6 +374,15 @@ func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_re
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -380,6 +399,15 @@ func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retr
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -396,6 +424,15 @@ func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_re
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -412,6 +449,15 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -428,6 +474,15 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -444,6 +499,15 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -460,6 +524,15 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -476,6 +549,15 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_ret
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -492,6 +574,15 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -508,6 +599,15 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -524,6 +624,15 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -540,6 +649,15 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_re
 		}
 		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

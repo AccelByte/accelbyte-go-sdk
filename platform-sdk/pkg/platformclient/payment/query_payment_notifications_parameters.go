@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -85,6 +86,8 @@ for the query payment notifications operation typically these are written to a h
 */
 type QueryPaymentNotificationsParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EndDate
 	  allowed format: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z
 
@@ -426,5 +429,6 @@ func (o *QueryPaymentNotificationsParams) WriteToRequest(r runtime.ClientRequest
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

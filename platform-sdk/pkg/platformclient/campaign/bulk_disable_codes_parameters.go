@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -65,6 +66,8 @@ for the bulk disable codes operation typically these are written to a http.Reque
 */
 type BulkDisableCodesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*BatchNo
 	  if not present will match all except 0
 
@@ -189,5 +192,6 @@ func (o *BulkDisableCodesParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

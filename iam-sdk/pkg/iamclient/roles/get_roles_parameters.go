@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get roles operation typically these are written to a http.Request
 */
 type GetRolesParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*IsWildcard
 	      - true if the expected result should only returns records with wildcard = true
 	  - false if the expected result should only returns records with wildcard = false
@@ -155,5 +158,6 @@ func (o *GetRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

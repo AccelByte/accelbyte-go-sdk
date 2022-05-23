@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -615,6 +616,15 @@ func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEnti
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.QueryEntitlementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -631,6 +641,15 @@ func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitleme
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -647,6 +666,15 @@ func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Query
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.QueryUserEntitlementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -663,6 +691,15 @@ func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantU
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := e.Client.Entitlement.GrantUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -679,6 +716,15 @@ func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlemen
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserAppEntitlementByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -695,6 +741,15 @@ func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlem
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.QueryUserEntitlementsByAppTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -711,6 +766,15 @@ func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -727,6 +791,15 @@ func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.Get
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -743,6 +816,15 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlem
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -759,6 +841,15 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input 
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementByItemIdsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -775,6 +866,15 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *e
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -791,6 +891,15 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *ent
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -807,6 +916,15 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitl
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -823,6 +941,15 @@ func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Revo
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.RevokeUserEntitlementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -839,6 +966,15 @@ func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserE
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -855,6 +991,15 @@ func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Updat
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.UpdateUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -871,6 +1016,15 @@ func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Cons
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.ConsumeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -887,6 +1041,15 @@ func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.Disa
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.DisableUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -903,6 +1066,15 @@ func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.Enabl
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.EnableUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -919,6 +1091,15 @@ func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.GetUserEntitlementHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -935,6 +1116,15 @@ func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Revok
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.RevokeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -951,6 +1141,15 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *enti
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicExistsAnyMyActiveEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -967,6 +1166,15 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(inpu
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetMyAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -983,6 +1191,15 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input 
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -999,6 +1216,15 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *en
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1015,6 +1241,15 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *enti
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetEntitlementOwnershipTokenShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1031,6 +1266,15 @@ func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1047,6 +1291,15 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *enti
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1063,6 +1316,15 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *en
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsByAppTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1079,6 +1341,15 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitl
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserEntitlementByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1095,6 +1366,15 @@ func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitleme
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserEntitlementBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1111,6 +1391,15 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *en
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicExistsAnyUserActiveEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1127,6 +1416,15 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(in
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1143,6 +1441,15 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(inpu
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1159,6 +1466,15 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1175,6 +1491,15 @@ func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.Pu
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicGetUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1191,6 +1516,15 @@ func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlemen
 		}
 		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  e.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := e.Client.Entitlement.PublicConsumeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -527,6 +528,15 @@ func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*ia
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.GetClientsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -543,6 +553,15 @@ func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Clients.CreateClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -559,6 +578,15 @@ func (c *ClientsService) GetClientShort(input *clients.GetClientParams) (*iamcli
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.GetClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -575,6 +603,15 @@ func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.UpdateClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -591,6 +628,15 @@ func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams) er
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.DeleteClientShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -607,6 +653,15 @@ func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClient
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.UpdateClientPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -623,6 +678,15 @@ func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermis
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.AddClientPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -639,6 +703,15 @@ func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClient
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.DeleteClientPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -655,6 +728,15 @@ func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecr
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.UpdateClientSecretShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -671,6 +753,15 @@ func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyN
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -687,6 +778,15 @@ func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClien
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -703,6 +803,15 @@ func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClien
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.DeleteClientByNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -719,6 +828,15 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -735,6 +853,15 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -751,6 +878,15 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.Ad
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -767,6 +903,15 @@ func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClie
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.AdminDeleteClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -783,6 +928,15 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -799,6 +953,15 @@ func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -815,6 +978,15 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -831,6 +1003,15 @@ func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.Admin
 		}
 		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err

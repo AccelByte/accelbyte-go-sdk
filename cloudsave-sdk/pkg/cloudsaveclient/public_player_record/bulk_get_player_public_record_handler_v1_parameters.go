@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the bulk get player public record handler v1 operation typically these are w
 */
 type BulkGetPlayerPublicRecordHandlerV1Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkUserIDsRequest
 	/*Key
@@ -183,5 +186,6 @@ func (o *BulkGetPlayerPublicRecordHandlerV1Params) WriteToRequest(r runtime.Clie
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

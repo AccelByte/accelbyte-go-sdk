@@ -112,6 +112,15 @@ func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEvent
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -129,6 +138,15 @@ func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTe
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -146,6 +164,15 @@ func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Prote
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GametelemetryOperations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -188,6 +215,15 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GametelemetryOperations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, authInfoWriter)
 	if err != nil {
 		return err

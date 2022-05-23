@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete session in channel operation typically these are written to a htt
 */
 type DeleteSessionInChannelParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*ChannelName
 	  channel name, accept snake_case, lowercase, and numeric
 
@@ -183,5 +186,6 @@ func (o *DeleteSessionInChannelParams) WriteToRequest(r runtime.ClientRequest, r
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

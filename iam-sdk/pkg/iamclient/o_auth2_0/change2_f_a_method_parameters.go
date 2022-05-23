@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the change2 f a method operation typically these are written to a http.Reque
 */
 type Change2FAMethodParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Factor
 	  factor
 
@@ -170,5 +173,6 @@ func (o *Change2FAMethodParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

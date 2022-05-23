@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the delete root region override operation typically these are written to a h
 */
 type DeleteRootRegionOverrideParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Deployment
 	  deployment name
 
@@ -183,5 +186,6 @@ func (o *DeleteRootRegionOverrideParams) WriteToRequest(r runtime.ClientRequest,
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

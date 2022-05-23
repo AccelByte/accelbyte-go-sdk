@@ -12,6 +12,7 @@ package event_descriptions
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -68,6 +69,10 @@ func (a *Client) AgentTypeDescriptionHandler(params *AgentTypeDescriptionHandler
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -147,6 +152,10 @@ func (a *Client) EventIDDescriptionHandler(params *EventIDDescriptionHandlerPara
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EventIDDescriptionHandler",
 		Method:             "GET",
@@ -222,6 +231,10 @@ func (a *Client) EventLevelDescriptionHandler(params *EventLevelDescriptionHandl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -301,6 +314,10 @@ func (a *Client) EventTypeDescriptionHandler(params *EventTypeDescriptionHandler
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EventTypeDescriptionHandler",
 		Method:             "GET",
@@ -376,6 +393,10 @@ func (a *Client) SpecificAgentTypeDescriptionHandler(params *SpecificAgentTypeDe
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -465,6 +486,10 @@ func (a *Client) SpecificEventIDDescriptionHandler(params *SpecificEventIDDescri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SpecificEventIDDescriptionHandler",
 		Method:             "GET",
@@ -550,6 +575,10 @@ func (a *Client) SpecificEventLevelDescriptionHandler(params *SpecificEventLevel
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -639,6 +668,10 @@ func (a *Client) SpecificEventTypeDescriptionHandler(params *SpecificEventTypeDe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SpecificEventTypeDescriptionHandler",
 		Method:             "GET",
@@ -726,6 +759,10 @@ func (a *Client) SpecificUXDescriptionHandler(params *SpecificUXDescriptionHandl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SpecificUXDescriptionHandler",
 		Method:             "GET",
@@ -811,6 +848,10 @@ func (a *Client) UXNameDescriptionHandler(params *UXNameDescriptionHandlerParams
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -132,6 +133,15 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.Adm
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.ThirdParty.AdminGetThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -148,6 +158,15 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -164,6 +183,15 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := t.Client.ThirdParty.AdminCreateThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -180,6 +208,15 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.
 		}
 		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  t.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	noContent, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return "", err

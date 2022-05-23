@@ -12,6 +12,7 @@ package notification
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -131,6 +132,10 @@ func (a *Client) CreateNotificationTemplateV1Admin(params *CreateNotificationTem
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNotificationTemplateV1Admin",
 		Method:             "POST",
@@ -239,6 +244,10 @@ func (a *Client) CreateNotificationTopicV1Admin(params *CreateNotificationTopicV
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNotificationTopicV1Admin",
 		Method:             "POST",
@@ -335,6 +344,10 @@ func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.C
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -439,6 +452,10 @@ func (a *Client) CreateTopic(params *CreateTopicParams, authInfo runtime.ClientA
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createTopic",
 		Method:             "POST",
@@ -538,6 +555,10 @@ func (a *Client) DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificatio
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -643,6 +664,10 @@ func (a *Client) DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNotificationTopicV1Admin",
 		Method:             "DELETE",
@@ -741,6 +766,10 @@ func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationPa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -844,6 +873,10 @@ func (a *Client) DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocaliz
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTemplateLocalizationV1Admin",
 		Method:             "DELETE",
@@ -942,6 +975,10 @@ func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo r
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1046,6 +1083,10 @@ func (a *Client) DeleteTopicByTopicName(params *DeleteTopicByTopicNameParams, au
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTopicByTopicName",
 		Method:             "DELETE",
@@ -1144,6 +1185,10 @@ func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1246,6 +1291,10 @@ func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUser
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "freeFormNotificationByUserID",
 		Method:             "POST",
@@ -1345,6 +1394,10 @@ func (a *Client) GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTe
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1453,6 +1506,10 @@ func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopic
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllNotificationTopicsV1Admin",
 		Method:             "GET",
@@ -1553,6 +1610,10 @@ func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGameTemplate",
 		Method:             "GET",
@@ -1651,6 +1712,10 @@ func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1754,6 +1819,10 @@ func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1Admin
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNotificationTopicV1Admin",
 		Method:             "GET",
@@ -1855,6 +1924,10 @@ func (a *Client) GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateL
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSingleTemplateLocalizationV1Admin",
 		Method:             "GET",
@@ -1953,6 +2026,10 @@ func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2056,6 +2133,10 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplate
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTemplateSlugLocalizationsTemplateV1Admin",
 		Method:             "GET",
@@ -2156,6 +2237,10 @@ func (a *Client) GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTopicByNamespace",
 		Method:             "GET",
@@ -2254,6 +2339,10 @@ func (a *Client) GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2359,6 +2448,10 @@ func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "notificationWithTemplate",
 		Method:             "POST",
@@ -2462,6 +2555,10 @@ func (a *Client) NotificationWithTemplateByUserID(params *NotificationWithTempla
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "notificationWithTemplateByUserID",
 		Method:             "POST",
@@ -2560,6 +2657,10 @@ func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2663,6 +2764,10 @@ func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocal
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publishTemplateLocalizationV1Admin",
 		Method:             "POST",
@@ -2764,6 +2869,10 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultip
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendMultipleUsersFreeformNotificationV1Admin",
 		Method:             "POST",
@@ -2857,6 +2966,10 @@ func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformN
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2962,6 +3075,10 @@ func (a *Client) SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplate
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendPartyTemplatedNotificationV1Admin",
 		Method:             "POST",
@@ -3061,6 +3178,10 @@ func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecifi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3167,6 +3288,10 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecif
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendSpecificUserTemplatedNotificationV1Admin",
 		Method:             "POST",
@@ -3266,6 +3391,10 @@ func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformN
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3372,6 +3501,10 @@ func (a *Client) SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplate
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendUsersTemplatedNotificationV1Admin",
 		Method:             "POST",
@@ -3470,6 +3603,10 @@ func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplatePa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3573,6 +3710,10 @@ func (a *Client) UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3681,6 +3822,10 @@ func (a *Client) UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocaliz
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTemplateLocalizationV1Admin",
 		Method:             "PUT",
@@ -3786,6 +3931,10 @@ func (a *Client) UpdateTopicByTopicName(params *UpdateTopicByTopicNameParams, au
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

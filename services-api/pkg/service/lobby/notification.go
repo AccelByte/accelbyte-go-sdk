@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -996,6 +997,15 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1012,6 +1022,15 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1028,6 +1047,15 @@ func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *n
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendPartyFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1044,6 +1072,15 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendPartyTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1060,6 +1097,15 @@ func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *not
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetAllNotificationTemplatesV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1076,6 +1122,15 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.CreateNotificationTemplateV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1092,6 +1147,15 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendUsersTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1108,6 +1172,15 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1124,6 +1197,15 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteNotificationTemplateSlugV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1140,6 +1222,15 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *n
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetSingleTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1156,6 +1247,15 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.UpdateTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1172,6 +1272,15 @@ func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *noti
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1188,6 +1297,15 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.PublishTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1204,6 +1322,15 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetAllNotificationTopicsV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1220,6 +1347,15 @@ func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notific
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.CreateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1236,6 +1372,15 @@ func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notificati
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1252,6 +1397,15 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.UpdateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1268,6 +1422,15 @@ func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notific
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1284,6 +1447,15 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(i
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1300,6 +1472,15 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1316,6 +1497,15 @@ func (n *NotificationService) FreeFormNotificationShort(input *notification.Free
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.FreeFormNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1332,6 +1522,15 @@ func (n *NotificationService) NotificationWithTemplateShort(input *notification.
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.NotificationWithTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1348,6 +1547,15 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetGameTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1364,6 +1572,15 @@ func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemp
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.CreateTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1380,6 +1597,15 @@ func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTe
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetSlugTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1396,6 +1622,15 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteTemplateSlugShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1412,6 +1647,15 @@ func (n *NotificationService) GetLocalizationTemplateShort(input *notification.G
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetLocalizationTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1428,6 +1672,15 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.UpdateLocalizationTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1444,6 +1697,15 @@ func (n *NotificationService) DeleteTemplateLocalizationShort(input *notificatio
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteTemplateLocalizationShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1460,6 +1722,15 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.PublishTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1476,6 +1747,15 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetTopicByNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1492,6 +1772,15 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.CreateTopicShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1508,6 +1797,15 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := n.Client.Notification.GetTopicByTopicNameShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1524,6 +1822,15 @@ func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.Up
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.UpdateTopicByTopicNameShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1540,6 +1847,15 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.DeleteTopicByTopicNameShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1556,6 +1872,15 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.FreeFormNotificationByUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1572,6 +1897,15 @@ func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notif
 		}
 		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  n.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := n.Client.Notification.NotificationWithTemplateByUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return err

@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the specific event level description handler operation typically these are w
 */
 type SpecificEventLevelDescriptionHandlerParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*EventLevels
 	  Comma separated value of event levels
 
@@ -152,5 +155,6 @@ func (o *SpecificEventLevelDescriptionHandlerParams) WriteToRequest(r runtime.Cl
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

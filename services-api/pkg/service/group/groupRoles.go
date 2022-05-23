@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -283,6 +284,15 @@ func (g *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.GetMemberRolesListAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -299,6 +309,15 @@ func (g *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.Crea
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	created, err := g.Client.GroupRoles.CreateMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -315,6 +334,15 @@ func (g *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles.G
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.GetSingleMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -331,6 +359,15 @@ func (g *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.Dele
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := g.Client.GroupRoles.DeleteMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -347,6 +384,15 @@ func (g *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.Upda
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.UpdateMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -363,6 +409,15 @@ func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *group_
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.UpdateMemberRolePermissionAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -379,6 +434,15 @@ func (g *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles.G
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.GetMemberRolesListPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -395,6 +459,15 @@ func (g *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.UpdateMemberRolePublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -411,6 +484,15 @@ func (g *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.Del
 		}
 		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  g.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := g.Client.GroupRoles.DeleteMemberRolePublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
@@ -591,6 +592,15 @@ func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestAdyenConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -607,6 +617,15 @@ func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestA
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestAliPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -623,6 +642,15 @@ func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.Tes
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestCheckoutConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -639,6 +667,15 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *pay
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -655,6 +692,15 @@ func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestP
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestPayPalConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -671,6 +717,15 @@ func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestS
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestStripeConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -687,6 +742,15 @@ func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWx
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestWxPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -703,6 +767,15 @@ func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestX
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestXsollaConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -719,6 +792,15 @@ func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_conf
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -735,6 +817,15 @@ func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.Upda
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateAdyenConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -751,6 +842,15 @@ func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.Te
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestAdyenConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -767,6 +867,15 @@ func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateAliPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -783,6 +892,15 @@ func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.T
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestAliPayConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -799,6 +917,15 @@ func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.U
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateCheckoutConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -815,6 +942,15 @@ func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -831,6 +967,15 @@ func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdatePayPalConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -847,6 +992,15 @@ func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.T
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestPayPalConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -863,6 +1017,15 @@ func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateStripeConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -879,6 +1042,15 @@ func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.T
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestStripeConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -895,6 +1067,15 @@ func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.Upda
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -911,6 +1092,15 @@ func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigCertShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -927,6 +1117,15 @@ func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.Te
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestWxPayConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -943,6 +1142,15 @@ func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.Upd
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateXsollaConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -959,6 +1167,15 @@ func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.T
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.TestXsollaConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -975,6 +1192,15 @@ func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.U
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdateXsollaUIConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -991,6 +1217,15 @@ func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_co
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.QueryPaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1007,6 +1242,15 @@ func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.CreatePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1023,6 +1267,15 @@ func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.GetAggregatePaymentProvidersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1039,6 +1292,15 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *pay
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1055,6 +1317,15 @@ func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_co
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.GetSpecialPaymentProvidersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1071,6 +1342,15 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdatePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1087,6 +1367,15 @@ func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_c
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	_, err := p.Client.PaymentConfig.DeletePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -1103,6 +1392,15 @@ func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.Ge
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.GetPaymentTaxConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
@@ -1119,6 +1417,15 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config
 		}
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
 	ok, err := p.Client.PaymentConfig.UpdatePaymentTaxConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err

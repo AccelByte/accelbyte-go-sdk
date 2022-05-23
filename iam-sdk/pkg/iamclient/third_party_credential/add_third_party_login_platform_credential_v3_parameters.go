@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -66,6 +67,8 @@ for the add third party login platform credential v3 operation typically these a
 */
 type AddThirdPartyLoginPlatformCredentialV3Params struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ModelThirdPartyLoginPlatformCredentialRequest
 	/*Namespace
@@ -183,5 +186,6 @@ func (o *AddThirdPartyLoginPlatformCredentialV3Params) WriteToRequest(r runtime.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

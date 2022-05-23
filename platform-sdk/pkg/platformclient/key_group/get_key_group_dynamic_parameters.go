@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
@@ -64,6 +65,8 @@ for the get key group dynamic operation typically these are written to a http.Re
 */
 type GetKeyGroupDynamicParams struct {
 
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
 	/*KeyGroupID*/
 	KeyGroupID string
 	/*Namespace*/
@@ -156,5 +159,6 @@ func (o *GetKeyGroupDynamicParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+
 	return nil
 }

@@ -12,6 +12,7 @@ package s_s_o_s_a_m_l_2_0
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -57,6 +58,10 @@ func (a *Client) PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateS
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

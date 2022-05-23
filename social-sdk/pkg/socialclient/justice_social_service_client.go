@@ -70,11 +70,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
 
-	return New(transport, formats)
+	return New(transport, transport, formats)
 }
 
 // New creates a new justice social service client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeSocialService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, formats strfmt.Registry) *JusticeSocialService {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
@@ -82,12 +82,14 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeSoc
 
 	cli := new(JusticeSocialService)
 	cli.Transport = transport
+	cli.Runtime = runtime
 	cli.GameProfile = game_profile.New(transport, formats)
 	cli.GlobalStatistic = global_statistic.New(transport, formats)
 	cli.Slot = slot.New(transport, formats)
 	cli.SlotConfig = slot_config.New(transport, formats)
 	cli.StatConfiguration = stat_configuration.New(transport, formats)
 	cli.UserStatistic = user_statistic.New(transport, formats)
+
 	return cli
 }
 
@@ -102,7 +104,8 @@ func NewClientWithBasePath(url string, endpoint string) *JusticeSocialService {
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
-	return New(transport, strfmt.Default)
+
+	return New(transport, transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -158,6 +161,7 @@ type JusticeSocialService struct {
 
 	UserStatistic user_statistic.ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 

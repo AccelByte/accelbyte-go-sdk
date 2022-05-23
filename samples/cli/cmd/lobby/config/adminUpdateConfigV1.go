@@ -53,8 +53,8 @@ var AdminUpdateConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateConfigV1Cmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateConfigV1Cmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("body")
-	AdminUpdateConfigV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUpdateConfigV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("namespace")
 }

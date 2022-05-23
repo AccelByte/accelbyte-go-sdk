@@ -43,6 +43,6 @@ var PublicGetTimeZonesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetTimeZonesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetTimeZonesCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetTimeZonesCmd.MarkFlagRequired("namespace")
 }

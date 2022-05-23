@@ -43,8 +43,8 @@ var SingleAdminDeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminDeleteGroupCmd.Flags().StringP("groupId", "", "", "Group id")
+	SingleAdminDeleteGroupCmd.Flags().String("groupId", "", "Group id")
 	_ = SingleAdminDeleteGroupCmd.MarkFlagRequired("groupId")
-	SingleAdminDeleteGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SingleAdminDeleteGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = SingleAdminDeleteGroupCmd.MarkFlagRequired("namespace")
 }

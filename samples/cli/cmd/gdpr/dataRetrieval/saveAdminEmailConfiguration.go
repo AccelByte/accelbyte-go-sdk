@@ -50,8 +50,8 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	SaveAdminEmailConfigurationCmd.Flags().StringP("body", "", "", "Body")
+	SaveAdminEmailConfigurationCmd.Flags().String("body", "", "Body")
 	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	SaveAdminEmailConfigurationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SaveAdminEmailConfigurationCmd.Flags().String("namespace", "", "Namespace")
 	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

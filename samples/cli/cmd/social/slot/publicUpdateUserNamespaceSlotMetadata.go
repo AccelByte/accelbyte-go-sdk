@@ -57,11 +57,11 @@ var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("body", "", "", "Body")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().String("body", "", "Body")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("namespace")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("slotId", "", "", "Slot id")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().String("slotId", "", "Slot id")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("slotId")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("userId", "", "", "User id")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().String("userId", "", "User id")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("userId")
 }

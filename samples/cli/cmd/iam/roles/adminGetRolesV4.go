@@ -49,8 +49,8 @@ var AdminGetRolesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRolesV4Cmd.Flags().BoolP("adminRole", "", false, "Admin role")
-	AdminGetRolesV4Cmd.Flags().BoolP("isWildcard", "", false, "Is wildcard")
-	AdminGetRolesV4Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetRolesV4Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetRolesV4Cmd.Flags().Bool("adminRole", false, "Admin role")
+	AdminGetRolesV4Cmd.Flags().Bool("isWildcard", false, "Is wildcard")
+	AdminGetRolesV4Cmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetRolesV4Cmd.Flags().Int64("offset", 0, "Offset")
 }

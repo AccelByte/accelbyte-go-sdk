@@ -53,7 +53,7 @@ var CreateKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	CreateKeyGroupCmd.Flags().StringP("body", "", "", "Body")
-	CreateKeyGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateKeyGroupCmd.Flags().String("body", "", "Body")
+	CreateKeyGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateKeyGroupCmd.MarkFlagRequired("namespace")
 }

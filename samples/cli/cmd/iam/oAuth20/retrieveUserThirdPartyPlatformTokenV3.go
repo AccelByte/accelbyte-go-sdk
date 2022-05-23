@@ -55,10 +55,10 @@ var RetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("namespace")
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("platformId")
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("userId", "", "", "User id")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().String("userId", "", "User id")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("userId")
 }

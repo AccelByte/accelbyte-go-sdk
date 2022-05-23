@@ -53,10 +53,10 @@ var AdminAddClientPermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminAddClientPermissionsV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("body")
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("clientId", "", "", "Client id")
+	AdminAddClientPermissionsV3Cmd.Flags().String("clientId", "", "Client id")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("clientId")
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminAddClientPermissionsV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("namespace")
 }

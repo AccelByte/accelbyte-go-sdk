@@ -66,9 +66,9 @@ var PublicExistsAnyMyActiveEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicExistsAnyMyActiveEntitlementCmd.MarkFlagRequired("namespace")
-	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("appIds", "", "", "App ids")
-	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("itemIds", "", "", "Item ids")
-	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("skus", "", "", "Skus")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().String("appIds", "", "App ids")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().String("itemIds", "", "Item ids")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().String("skus", "", "Skus")
 }

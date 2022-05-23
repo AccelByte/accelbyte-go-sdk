@@ -53,7 +53,7 @@ var PublicGetPaymentUrlCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPaymentUrlCmd.Flags().StringP("body", "", "", "Body")
-	PublicGetPaymentUrlCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetPaymentUrlCmd.Flags().String("body", "", "Body")
+	PublicGetPaymentUrlCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetPaymentUrlCmd.MarkFlagRequired("namespace")
 }

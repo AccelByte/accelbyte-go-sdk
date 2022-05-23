@@ -51,5 +51,5 @@ var CreateNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	CreateNamespaceCmd.Flags().StringP("body", "", "", "Body")
+	CreateNamespaceCmd.Flags().String("body", "", "Body")
 }

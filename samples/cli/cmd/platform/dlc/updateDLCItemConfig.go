@@ -53,7 +53,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateDLCItemConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateDLCItemConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateDLCItemConfigCmd.Flags().String("body", "", "Body")
+	UpdateDLCItemConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

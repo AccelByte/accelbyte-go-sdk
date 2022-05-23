@@ -57,11 +57,11 @@ var GrantDaysToSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	GrantDaysToSubscriptionCmd.Flags().StringP("body", "", "", "Body")
-	GrantDaysToSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GrantDaysToSubscriptionCmd.Flags().String("body", "", "Body")
+	GrantDaysToSubscriptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("namespace")
-	GrantDaysToSubscriptionCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	GrantDaysToSubscriptionCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	GrantDaysToSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
+	GrantDaysToSubscriptionCmd.Flags().String("userId", "", "User id")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("userId")
 }

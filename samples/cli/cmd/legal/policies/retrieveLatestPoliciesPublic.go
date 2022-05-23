@@ -51,10 +51,10 @@ var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetrieveLatestPoliciesPublicCmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveLatestPoliciesPublicCmd.MarkFlagRequired("namespace")
-	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "", false, "Always include default")
-	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "", "", "Policy type")
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "", "", "Tags")
+	RetrieveLatestPoliciesPublicCmd.Flags().Bool("alwaysIncludeDefault", false, "Always include default")
+	RetrieveLatestPoliciesPublicCmd.Flags().Bool("defaultOnEmpty", false, "Default on empty")
+	RetrieveLatestPoliciesPublicCmd.Flags().String("policyType", "", "Policy type")
+	RetrieveLatestPoliciesPublicCmd.Flags().String("tags", "", "Tags")
 }

@@ -55,10 +55,10 @@ var JoinSessionCmd = &cobra.Command{
 }
 
 func init() {
-	JoinSessionCmd.Flags().StringP("body", "", "", "Body")
+	JoinSessionCmd.Flags().String("body", "", "Body")
 	_ = JoinSessionCmd.MarkFlagRequired("body")
-	JoinSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	JoinSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = JoinSessionCmd.MarkFlagRequired("namespace")
-	JoinSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
+	JoinSessionCmd.Flags().String("sessionID", "", "Session ID")
 	_ = JoinSessionCmd.MarkFlagRequired("sessionID")
 }

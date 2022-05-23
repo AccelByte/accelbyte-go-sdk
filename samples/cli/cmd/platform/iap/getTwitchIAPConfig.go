@@ -43,6 +43,6 @@ var GetTwitchIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetTwitchIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetTwitchIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetTwitchIAPConfigCmd.MarkFlagRequired("namespace")
 }

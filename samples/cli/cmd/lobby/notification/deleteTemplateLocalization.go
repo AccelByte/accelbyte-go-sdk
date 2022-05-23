@@ -45,10 +45,10 @@ var DeleteTemplateLocalizationCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTemplateLocalizationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteTemplateLocalizationCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("namespace")
-	DeleteTemplateLocalizationCmd.Flags().StringP("templateLanguage", "", "", "Template language")
+	DeleteTemplateLocalizationCmd.Flags().String("templateLanguage", "", "Template language")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateLanguage")
-	DeleteTemplateLocalizationCmd.Flags().StringP("templateSlug", "", "", "Template slug")
+	DeleteTemplateLocalizationCmd.Flags().String("templateSlug", "", "Template slug")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateSlug")
 }

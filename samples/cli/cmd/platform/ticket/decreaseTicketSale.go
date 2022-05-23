@@ -53,9 +53,9 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 }
 
 func init() {
-	DecreaseTicketSaleCmd.Flags().StringP("body", "", "", "Body")
-	DecreaseTicketSaleCmd.Flags().StringP("boothName", "", "", "Booth name")
+	DecreaseTicketSaleCmd.Flags().String("body", "", "Body")
+	DecreaseTicketSaleCmd.Flags().String("boothName", "", "Booth name")
 	_ = DecreaseTicketSaleCmd.MarkFlagRequired("boothName")
-	DecreaseTicketSaleCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DecreaseTicketSaleCmd.Flags().String("namespace", "", "Namespace")
 	_ = DecreaseTicketSaleCmd.MarkFlagRequired("namespace")
 }

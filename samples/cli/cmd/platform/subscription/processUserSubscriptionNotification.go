@@ -55,11 +55,11 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("body", "", "", "Body")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ProcessUserSubscriptionNotificationCmd.Flags().String("body", "", "Body")
+	ProcessUserSubscriptionNotificationCmd.Flags().String("namespace", "", "Namespace")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	ProcessUserSubscriptionNotificationCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("subscriptionId")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("userId", "", "", "User id")
+	ProcessUserSubscriptionNotificationCmd.Flags().String("userId", "", "User id")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("userId")
 }

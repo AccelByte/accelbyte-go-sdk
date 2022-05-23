@@ -57,12 +57,12 @@ var UpdateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "", "", "Body")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().String("body", "", "Body")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("body")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "", "", "Allowed action")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().String("allowedAction", "", "Allowed action")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().String("groupId", "", "Group id")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

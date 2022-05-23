@@ -51,11 +51,11 @@ var PublicGetItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetItemBySkuCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetItemBySkuCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetItemBySkuCmd.MarkFlagRequired("namespace")
-	PublicGetItemBySkuCmd.Flags().StringP("language", "", "", "Language")
-	PublicGetItemBySkuCmd.Flags().StringP("region", "", "", "Region")
-	PublicGetItemBySkuCmd.Flags().StringP("storeId", "", "", "Store id")
-	PublicGetItemBySkuCmd.Flags().StringP("sku", "", "", "Sku")
+	PublicGetItemBySkuCmd.Flags().String("language", "", "Language")
+	PublicGetItemBySkuCmd.Flags().String("region", "", "Region")
+	PublicGetItemBySkuCmd.Flags().String("storeId", "", "Store id")
+	PublicGetItemBySkuCmd.Flags().String("sku", "", "Sku")
 	_ = PublicGetItemBySkuCmd.MarkFlagRequired("sku")
 }

@@ -53,7 +53,7 @@ var UpdateAppleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAppleIAPConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateAppleIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateAppleIAPConfigCmd.Flags().String("body", "", "Body")
+	UpdateAppleIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateAppleIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -53,10 +53,10 @@ var AdminUpdateProfanityListCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateProfanityListCmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateProfanityListCmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("body")
-	AdminUpdateProfanityListCmd.Flags().StringP("list", "", "", "List")
+	AdminUpdateProfanityListCmd.Flags().String("list", "", "List")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("list")
-	AdminUpdateProfanityListCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUpdateProfanityListCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("namespace")
 }

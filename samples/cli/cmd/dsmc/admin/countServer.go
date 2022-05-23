@@ -43,6 +43,6 @@ var CountServerCmd = &cobra.Command{
 }
 
 func init() {
-	CountServerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CountServerCmd.Flags().String("namespace", "", "Namespace")
 	_ = CountServerCmd.MarkFlagRequired("namespace")
 }

@@ -47,10 +47,10 @@ var PublicGetUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserEntitlementCmd.Flags().StringP("entitlementId", "", "", "Entitlement id")
+	PublicGetUserEntitlementCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = PublicGetUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	PublicGetUserEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserEntitlementCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserEntitlementCmd.MarkFlagRequired("namespace")
-	PublicGetUserEntitlementCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserEntitlementCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserEntitlementCmd.MarkFlagRequired("userId")
 }

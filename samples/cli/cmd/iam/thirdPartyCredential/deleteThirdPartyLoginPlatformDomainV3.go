@@ -53,10 +53,10 @@ var DeleteThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().StringP("body", "", "", "Body")
+	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().String("body", "", "Body")
 	_ = DeleteThirdPartyLoginPlatformDomainV3Cmd.MarkFlagRequired("body")
-	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteThirdPartyLoginPlatformDomainV3Cmd.MarkFlagRequired("namespace")
-	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	DeleteThirdPartyLoginPlatformDomainV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = DeleteThirdPartyLoginPlatformDomainV3Cmd.MarkFlagRequired("platformId")
 }

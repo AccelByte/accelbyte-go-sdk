@@ -51,8 +51,8 @@ var PublicUserVerificationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUserVerificationV3Cmd.Flags().StringP("body", "", "", "Body")
+	PublicUserVerificationV3Cmd.Flags().String("body", "", "Body")
 	_ = PublicUserVerificationV3Cmd.MarkFlagRequired("body")
-	PublicUserVerificationV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicUserVerificationV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicUserVerificationV3Cmd.MarkFlagRequired("namespace")
 }

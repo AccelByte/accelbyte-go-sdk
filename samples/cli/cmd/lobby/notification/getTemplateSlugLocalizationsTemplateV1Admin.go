@@ -51,11 +51,11 @@ var GetTemplateSlugLocalizationsTemplateV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("namespace")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("templateSlug", "", "", "Template slug")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().String("templateSlug", "", "Template slug")
 	_ = GetTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("templateSlug")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("after", "", "0", "After")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("before", "", "0", "Before")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().String("after", "0", "After")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().String("before", "0", "Before")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64("limit", 20, "Limit")
 }

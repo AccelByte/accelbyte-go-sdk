@@ -49,6 +49,6 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	BatchDownloadServerLogsCmd.Flags().StringP("body", "", "", "Body")
+	BatchDownloadServerLogsCmd.Flags().String("body", "", "Body")
 	_ = BatchDownloadServerLogsCmd.MarkFlagRequired("body")
 }

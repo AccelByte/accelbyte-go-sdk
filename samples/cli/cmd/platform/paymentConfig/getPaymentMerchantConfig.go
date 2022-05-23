@@ -43,6 +43,6 @@ var GetPaymentMerchantConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentMerchantConfigCmd.Flags().StringP("id", "", "", "Id")
+	GetPaymentMerchantConfigCmd.Flags().String("id", "", "Id")
 	_ = GetPaymentMerchantConfigCmd.MarkFlagRequired("id")
 }

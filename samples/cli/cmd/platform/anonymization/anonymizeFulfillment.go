@@ -43,8 +43,8 @@ var AnonymizeFulfillmentCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeFulfillmentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AnonymizeFulfillmentCmd.Flags().String("namespace", "", "Namespace")
 	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("namespace")
-	AnonymizeFulfillmentCmd.Flags().StringP("userId", "", "", "User id")
+	AnonymizeFulfillmentCmd.Flags().String("userId", "", "User id")
 	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("userId")
 }

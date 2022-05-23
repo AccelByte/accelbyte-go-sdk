@@ -51,8 +51,8 @@ var PublicSendVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicSendVerificationCodeV3Cmd.Flags().StringP("body", "", "", "Body")
+	PublicSendVerificationCodeV3Cmd.Flags().String("body", "", "Body")
 	_ = PublicSendVerificationCodeV3Cmd.MarkFlagRequired("body")
-	PublicSendVerificationCodeV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicSendVerificationCodeV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSendVerificationCodeV3Cmd.MarkFlagRequired("namespace")
 }

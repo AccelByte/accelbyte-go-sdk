@@ -55,8 +55,8 @@ var UpdateXsollaConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXsollaConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateXsollaConfigCmd.Flags().StringP("id", "", "", "Id")
+	UpdateXsollaConfigCmd.Flags().String("body", "", "Body")
+	UpdateXsollaConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateXsollaConfigCmd.MarkFlagRequired("id")
-	UpdateXsollaConfigCmd.Flags().BoolP("validate", "", false, "Validate")
+	UpdateXsollaConfigCmd.Flags().Bool("validate", false, "Validate")
 }

@@ -57,12 +57,12 @@ var CreateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	CreateContentDirectCmd.Flags().StringP("body", "", "", "Body")
+	CreateContentDirectCmd.Flags().String("body", "", "Body")
 	_ = CreateContentDirectCmd.MarkFlagRequired("body")
-	CreateContentDirectCmd.Flags().StringP("channelId", "", "", "Channel id")
+	CreateContentDirectCmd.Flags().String("channelId", "", "Channel id")
 	_ = CreateContentDirectCmd.MarkFlagRequired("channelId")
-	CreateContentDirectCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateContentDirectCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateContentDirectCmd.MarkFlagRequired("namespace")
-	CreateContentDirectCmd.Flags().StringP("userId", "", "", "User id")
+	CreateContentDirectCmd.Flags().String("userId", "", "User id")
 	_ = CreateContentDirectCmd.MarkFlagRequired("userId")
 }

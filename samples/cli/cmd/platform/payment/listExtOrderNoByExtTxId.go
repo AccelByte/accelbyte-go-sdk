@@ -45,8 +45,8 @@ var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
 }
 
 func init() {
-	ListExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListExtOrderNoByExtTxIdCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("namespace")
-	ListExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "", "", "Ext tx id")
+	ListExtOrderNoByExtTxIdCmd.Flags().String("extTxId", "", "Ext tx id")
 	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("extTxId")
 }

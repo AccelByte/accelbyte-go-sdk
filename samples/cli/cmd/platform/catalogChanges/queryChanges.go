@@ -63,17 +63,17 @@ var QueryChangesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryChangesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryChangesCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryChangesCmd.MarkFlagRequired("namespace")
-	QueryChangesCmd.Flags().StringP("storeId", "", "", "Store id")
+	QueryChangesCmd.Flags().String("storeId", "", "Store id")
 	_ = QueryChangesCmd.MarkFlagRequired("storeId")
-	QueryChangesCmd.Flags().StringP("action", "", "-1", "Action")
-	QueryChangesCmd.Flags().StringP("itemType", "", "", "Item type")
-	QueryChangesCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryChangesCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryChangesCmd.Flags().StringP("sortBy", "", "", "Sort by")
-	QueryChangesCmd.Flags().StringP("status", "", "", "Status")
-	QueryChangesCmd.Flags().StringP("type", "", "", "Type")
-	QueryChangesCmd.Flags().StringP("updatedAtEnd", "", "", "Updated at end")
-	QueryChangesCmd.Flags().StringP("updatedAtStart", "", "", "Updated at start")
+	QueryChangesCmd.Flags().String("action", "-1", "Action")
+	QueryChangesCmd.Flags().String("itemType", "", "Item type")
+	QueryChangesCmd.Flags().Int32("limit", 20, "Limit")
+	QueryChangesCmd.Flags().Int32("offset", 0, "Offset")
+	QueryChangesCmd.Flags().String("sortBy", "", "Sort by")
+	QueryChangesCmd.Flags().String("status", "", "Status")
+	QueryChangesCmd.Flags().String("type", "", "Type")
+	QueryChangesCmd.Flags().String("updatedAtEnd", "", "Updated at end")
+	QueryChangesCmd.Flags().String("updatedAtStart", "", "Updated at start")
 }

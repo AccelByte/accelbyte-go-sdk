@@ -47,10 +47,10 @@ var GetUserSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserSubscriptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("namespace")
-	GetUserSubscriptionCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	GetUserSubscriptionCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	GetUserSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserSubscriptionCmd.Flags().String("userId", "", "User id")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("userId")
 }

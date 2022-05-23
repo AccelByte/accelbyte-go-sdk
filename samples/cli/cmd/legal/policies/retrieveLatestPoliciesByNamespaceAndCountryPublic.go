@@ -53,12 +53,12 @@ var RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "", "", "Country code")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().String("countryCode", "", "Country code")
 	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("countryCode")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("namespace")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "", false, "Always include default")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "", "", "Policy type")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "", "", "Tags")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().Bool("alwaysIncludeDefault", false, "Always include default")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().Bool("defaultOnEmpty", false, "Default on empty")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().String("policyType", "", "Policy type")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().String("tags", "", "Tags")
 }

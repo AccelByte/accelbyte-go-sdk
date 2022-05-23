@@ -49,9 +49,9 @@ var GetTopicByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetTopicByNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetTopicByNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetTopicByNamespaceCmd.MarkFlagRequired("namespace")
-	GetTopicByNamespaceCmd.Flags().StringP("after", "", "0", "After")
-	GetTopicByNamespaceCmd.Flags().StringP("before", "", "0", "Before")
-	GetTopicByNamespaceCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetTopicByNamespaceCmd.Flags().String("after", "0", "After")
+	GetTopicByNamespaceCmd.Flags().String("before", "0", "Before")
+	GetTopicByNamespaceCmd.Flags().Int64("limit", 20, "Limit")
 }

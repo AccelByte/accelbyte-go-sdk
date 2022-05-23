@@ -43,7 +43,7 @@ var PublicRemoveTrustedDeviceV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicRemoveTrustedDeviceV4Cmd.Flags().StringP("cookie", "", "", "Cookie")
-	PublicRemoveTrustedDeviceV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicRemoveTrustedDeviceV4Cmd.Flags().String("cookie", "", "Cookie")
+	PublicRemoveTrustedDeviceV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicRemoveTrustedDeviceV4Cmd.MarkFlagRequired("namespace")
 }

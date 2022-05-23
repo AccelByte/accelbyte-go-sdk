@@ -49,10 +49,10 @@ var GetItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemBySkuCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetItemBySkuCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetItemBySkuCmd.MarkFlagRequired("namespace")
-	GetItemBySkuCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	GetItemBySkuCmd.Flags().StringP("storeId", "", "", "Store id")
-	GetItemBySkuCmd.Flags().StringP("sku", "", "", "Sku")
+	GetItemBySkuCmd.Flags().Bool("activeOnly", false, "Active only")
+	GetItemBySkuCmd.Flags().String("storeId", "", "Store id")
+	GetItemBySkuCmd.Flags().String("sku", "", "Sku")
 	_ = GetItemBySkuCmd.MarkFlagRequired("sku")
 }

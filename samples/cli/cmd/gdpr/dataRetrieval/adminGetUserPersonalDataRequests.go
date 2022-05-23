@@ -49,10 +49,10 @@ var AdminGetUserPersonalDataRequestsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetUserPersonalDataRequestsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
-	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetUserPersonalDataRequestsCmd.Flags().String("userId", "", "User id")
 	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
-	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64("offset", 0, "Offset")
 }

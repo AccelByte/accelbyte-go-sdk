@@ -51,6 +51,6 @@ var AdminImportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminImportConfigV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminImportConfigV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminImportConfigV1Cmd.MarkFlagRequired("namespace")
 }

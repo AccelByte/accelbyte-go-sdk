@@ -59,13 +59,13 @@ var PublicUpdateAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateAttributeCmd.Flags().StringP("body", "", "", "Body")
-	PublicUpdateAttributeCmd.Flags().StringP("attributeName", "", "", "Attribute name")
+	PublicUpdateAttributeCmd.Flags().String("body", "", "Body")
+	PublicUpdateAttributeCmd.Flags().String("attributeName", "", "Attribute name")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("attributeName")
-	PublicUpdateAttributeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicUpdateAttributeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("namespace")
-	PublicUpdateAttributeCmd.Flags().StringP("profileId", "", "", "Profile id")
+	PublicUpdateAttributeCmd.Flags().String("profileId", "", "Profile id")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("profileId")
-	PublicUpdateAttributeCmd.Flags().StringP("userId", "", "", "User id")
+	PublicUpdateAttributeCmd.Flags().String("userId", "", "User id")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("userId")
 }

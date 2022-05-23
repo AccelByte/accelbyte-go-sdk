@@ -55,10 +55,10 @@ var DisableUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserBanCmd.Flags().StringP("banId", "", "", "Ban id")
+	DisableUserBanCmd.Flags().String("banId", "", "Ban id")
 	_ = DisableUserBanCmd.MarkFlagRequired("banId")
-	DisableUserBanCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DisableUserBanCmd.Flags().String("namespace", "", "Namespace")
 	_ = DisableUserBanCmd.MarkFlagRequired("namespace")
-	DisableUserBanCmd.Flags().StringP("userId", "", "", "User id")
+	DisableUserBanCmd.Flags().String("userId", "", "User id")
 	_ = DisableUserBanCmd.MarkFlagRequired("userId")
 }

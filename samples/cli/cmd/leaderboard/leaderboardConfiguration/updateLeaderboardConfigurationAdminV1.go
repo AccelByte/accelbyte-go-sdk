@@ -55,10 +55,10 @@ var UpdateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "", "", "Body")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().String("body", "", "Body")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

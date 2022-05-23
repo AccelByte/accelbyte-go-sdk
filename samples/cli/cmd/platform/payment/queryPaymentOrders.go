@@ -53,11 +53,11 @@ var QueryPaymentOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentOrdersCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryPaymentOrdersCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryPaymentOrdersCmd.MarkFlagRequired("namespace")
-	QueryPaymentOrdersCmd.Flags().StringP("channel", "", "", "Channel")
-	QueryPaymentOrdersCmd.Flags().StringP("extTxId", "", "", "Ext tx id")
-	QueryPaymentOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryPaymentOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryPaymentOrdersCmd.Flags().StringP("status", "", "", "Status")
+	QueryPaymentOrdersCmd.Flags().String("channel", "", "Channel")
+	QueryPaymentOrdersCmd.Flags().String("extTxId", "", "Ext tx id")
+	QueryPaymentOrdersCmd.Flags().Int32("limit", 20, "Limit")
+	QueryPaymentOrdersCmd.Flags().Int32("offset", 0, "Offset")
+	QueryPaymentOrdersCmd.Flags().String("status", "", "Status")
 }

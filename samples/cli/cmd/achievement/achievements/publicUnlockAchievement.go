@@ -45,10 +45,10 @@ var PublicUnlockAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUnlockAchievementCmd.Flags().StringP("achievementCode", "", "", "Achievement code")
+	PublicUnlockAchievementCmd.Flags().String("achievementCode", "", "Achievement code")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("achievementCode")
-	PublicUnlockAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicUnlockAchievementCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("namespace")
-	PublicUnlockAchievementCmd.Flags().StringP("userId", "", "", "User id")
+	PublicUnlockAchievementCmd.Flags().String("userId", "", "User id")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("userId")
 }

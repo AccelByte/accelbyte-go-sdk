@@ -55,10 +55,10 @@ var UpdateSessionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSessionCmd.Flags().StringP("body", "", "", "Body")
+	UpdateSessionCmd.Flags().String("body", "", "Body")
 	_ = UpdateSessionCmd.MarkFlagRequired("body")
-	UpdateSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSessionCmd.MarkFlagRequired("namespace")
-	UpdateSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
+	UpdateSessionCmd.Flags().String("sessionID", "", "Session ID")
 	_ = UpdateSessionCmd.MarkFlagRequired("sessionID")
 }

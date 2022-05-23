@@ -49,10 +49,10 @@ var QueryStatsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryStatsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryStatsCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryStatsCmd.MarkFlagRequired("namespace")
-	QueryStatsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryStatsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryStatsCmd.Flags().StringP("keyword", "", "", "Keyword")
+	QueryStatsCmd.Flags().Int32("limit", 20, "Limit")
+	QueryStatsCmd.Flags().Int32("offset", 0, "Offset")
+	QueryStatsCmd.Flags().String("keyword", "", "Keyword")
 	_ = QueryStatsCmd.MarkFlagRequired("keyword")
 }

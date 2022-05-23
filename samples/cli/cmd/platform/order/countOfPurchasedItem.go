@@ -47,10 +47,10 @@ var CountOfPurchasedItemCmd = &cobra.Command{
 }
 
 func init() {
-	CountOfPurchasedItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CountOfPurchasedItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("namespace")
-	CountOfPurchasedItemCmd.Flags().StringP("userId", "", "", "User id")
+	CountOfPurchasedItemCmd.Flags().String("userId", "", "User id")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("userId")
-	CountOfPurchasedItemCmd.Flags().StringP("itemId", "", "", "Item id")
+	CountOfPurchasedItemCmd.Flags().String("itemId", "", "Item id")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("itemId")
 }

@@ -53,8 +53,8 @@ var PublicGetContentBulkCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetContentBulkCmd.Flags().StringP("body", "", "", "Body")
+	PublicGetContentBulkCmd.Flags().String("body", "", "Body")
 	_ = PublicGetContentBulkCmd.MarkFlagRequired("body")
-	PublicGetContentBulkCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetContentBulkCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetContentBulkCmd.MarkFlagRequired("namespace")
 }

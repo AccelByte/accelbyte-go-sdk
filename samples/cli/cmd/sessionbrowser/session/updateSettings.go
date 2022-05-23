@@ -55,10 +55,10 @@ var UpdateSettingsCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSettingsCmd.Flags().StringP("body", "", "", "Body")
+	UpdateSettingsCmd.Flags().String("body", "", "Body")
 	_ = UpdateSettingsCmd.MarkFlagRequired("body")
-	UpdateSettingsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateSettingsCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSettingsCmd.MarkFlagRequired("namespace")
-	UpdateSettingsCmd.Flags().StringP("sessionID", "", "", "Session ID")
+	UpdateSettingsCmd.Flags().String("sessionID", "", "Session ID")
 	_ = UpdateSettingsCmd.MarkFlagRequired("sessionID")
 }

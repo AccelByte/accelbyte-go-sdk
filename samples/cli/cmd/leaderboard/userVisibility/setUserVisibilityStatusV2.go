@@ -55,10 +55,10 @@ var SetUserVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	SetUserVisibilityStatusV2Cmd.Flags().StringP("body", "", "", "Body")
+	SetUserVisibilityStatusV2Cmd.Flags().String("body", "", "Body")
 	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	SetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	SetUserVisibilityStatusV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	SetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "", "", "User id")
+	SetUserVisibilityStatusV2Cmd.Flags().String("userId", "", "User id")
 	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

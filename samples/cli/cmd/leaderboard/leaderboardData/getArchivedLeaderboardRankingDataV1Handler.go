@@ -49,11 +49,11 @@ var GetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCode")
-	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
-	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "", "", "Slug")
-	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "", "", "Leaderboard codes")
+	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("slug", "", "Slug")
+	GetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("leaderboardCodes", "", "Leaderboard codes")
 	_ = GetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
 }

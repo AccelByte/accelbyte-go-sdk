@@ -53,7 +53,7 @@ var CreateCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCurrencyCmd.Flags().StringP("body", "", "", "Body")
-	CreateCurrencyCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateCurrencyCmd.Flags().String("body", "", "Body")
+	CreateCurrencyCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCurrencyCmd.MarkFlagRequired("namespace")
 }

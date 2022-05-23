@@ -43,8 +43,8 @@ var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteNotificationTemplateSlugV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("namespace")
-	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("templateSlug", "", "", "Template slug")
+	DeleteNotificationTemplateSlugV1AdminCmd.Flags().String("templateSlug", "", "Template slug")
 	_ = DeleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("templateSlug")
 }

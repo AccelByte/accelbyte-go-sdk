@@ -55,10 +55,10 @@ var UpdateMemberRolePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("body", "", "", "Body")
+	UpdateMemberRolePublicV1Cmd.Flags().String("body", "", "Body")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "", "", "Member role id")
+	UpdateMemberRolePublicV1Cmd.Flags().String("memberRoleId", "", "Member role id")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateMemberRolePublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

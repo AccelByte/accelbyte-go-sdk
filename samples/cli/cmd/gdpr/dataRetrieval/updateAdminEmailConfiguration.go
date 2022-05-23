@@ -50,8 +50,8 @@ var UpdateAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAdminEmailConfigurationCmd.Flags().StringP("body", "", "", "Body")
+	UpdateAdminEmailConfigurationCmd.Flags().String("body", "", "Body")
 	_ = UpdateAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	UpdateAdminEmailConfigurationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateAdminEmailConfigurationCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

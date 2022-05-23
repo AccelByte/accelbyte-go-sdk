@@ -43,6 +43,6 @@ var TestXsollaConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestXsollaConfigByIdCmd.Flags().StringP("id", "", "", "Id")
+	TestXsollaConfigByIdCmd.Flags().String("id", "", "Id")
 	_ = TestXsollaConfigByIdCmd.MarkFlagRequired("id")
 }

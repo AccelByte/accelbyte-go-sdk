@@ -41,6 +41,6 @@ var DeleteFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteFulfillmentScriptCmd.Flags().StringP("id", "", "", "Id")
+	DeleteFulfillmentScriptCmd.Flags().String("id", "", "Id")
 	_ = DeleteFulfillmentScriptCmd.MarkFlagRequired("id")
 }

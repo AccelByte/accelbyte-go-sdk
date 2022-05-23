@@ -45,8 +45,8 @@ var PublicGetCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCountryAgeRestrictionCmd.Flags().StringP("countryCode", "", "", "Country code")
+	PublicGetCountryAgeRestrictionCmd.Flags().String("countryCode", "", "Country code")
 	_ = PublicGetCountryAgeRestrictionCmd.MarkFlagRequired("countryCode")
-	PublicGetCountryAgeRestrictionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetCountryAgeRestrictionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

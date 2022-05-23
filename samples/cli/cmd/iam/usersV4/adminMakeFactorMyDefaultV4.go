@@ -49,6 +49,6 @@ var AdminMakeFactorMyDefaultV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminMakeFactorMyDefaultV4Cmd.Flags().StringP("factor", "", "", "Factor")
+	AdminMakeFactorMyDefaultV4Cmd.Flags().String("factor", "", "Factor")
 	_ = AdminMakeFactorMyDefaultV4Cmd.MarkFlagRequired("factor")
 }

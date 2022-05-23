@@ -55,10 +55,10 @@ var CreatePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePodConfigCmd.Flags().StringP("body", "", "", "Body")
+	CreatePodConfigCmd.Flags().String("body", "", "Body")
 	_ = CreatePodConfigCmd.MarkFlagRequired("body")
-	CreatePodConfigCmd.Flags().StringP("name", "", "", "Name")
+	CreatePodConfigCmd.Flags().String("name", "", "Name")
 	_ = CreatePodConfigCmd.MarkFlagRequired("name")
-	CreatePodConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreatePodConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreatePodConfigCmd.MarkFlagRequired("namespace")
 }

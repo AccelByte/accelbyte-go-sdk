@@ -43,8 +43,8 @@ var AdminDeleteAllUserGroupCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAllUserGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminDeleteAllUserGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDeleteAllUserGroupCmd.MarkFlagRequired("namespace")
-	AdminDeleteAllUserGroupCmd.Flags().StringP("userId", "", "", "User id")
+	AdminDeleteAllUserGroupCmd.Flags().String("userId", "", "User id")
 	_ = AdminDeleteAllUserGroupCmd.MarkFlagRequired("userId")
 }

@@ -61,12 +61,12 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	QueryEventStreamHandlerCmd.Flags().StringP("body", "", "", "Body")
+	QueryEventStreamHandlerCmd.Flags().String("body", "", "Body")
 	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("body")
-	QueryEventStreamHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryEventStreamHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("namespace")
-	QueryEventStreamHandlerCmd.Flags().StringP("endDate", "", "", "End date")
-	QueryEventStreamHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
-	QueryEventStreamHandlerCmd.Flags().Int64P("pageSize", "", 1, "Page size")
-	QueryEventStreamHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
+	QueryEventStreamHandlerCmd.Flags().String("endDate", "", "End date")
+	QueryEventStreamHandlerCmd.Flags().Int64("offset", 0, "Offset")
+	QueryEventStreamHandlerCmd.Flags().Int64("pageSize", 1, "Page size")
+	QueryEventStreamHandlerCmd.Flags().String("startDate", "", "Start date")
 }

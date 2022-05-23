@@ -45,8 +45,8 @@ var PublicGetUnpaidPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUnpaidPaymentOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("namespace")
-	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
+	PublicGetUnpaidPaymentOrderCmd.Flags().String("paymentOrderNo", "", "Payment order no")
 	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

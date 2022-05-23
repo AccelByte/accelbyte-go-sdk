@@ -41,6 +41,6 @@ var DeleteDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDLCItemConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteDLCItemConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

@@ -55,10 +55,10 @@ var UpgradeHeadlessAccountCmd = &cobra.Command{
 }
 
 func init() {
-	UpgradeHeadlessAccountCmd.Flags().StringP("body", "", "", "Body")
+	UpgradeHeadlessAccountCmd.Flags().String("body", "", "Body")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("body")
-	UpgradeHeadlessAccountCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpgradeHeadlessAccountCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("namespace")
-	UpgradeHeadlessAccountCmd.Flags().StringP("userId", "", "", "User id")
+	UpgradeHeadlessAccountCmd.Flags().String("userId", "", "User id")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("userId")
 }

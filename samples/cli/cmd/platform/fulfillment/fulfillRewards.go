@@ -53,9 +53,9 @@ var FulfillRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillRewardsCmd.Flags().StringP("body", "", "", "Body")
-	FulfillRewardsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	FulfillRewardsCmd.Flags().String("body", "", "Body")
+	FulfillRewardsCmd.Flags().String("namespace", "", "Namespace")
 	_ = FulfillRewardsCmd.MarkFlagRequired("namespace")
-	FulfillRewardsCmd.Flags().StringP("userId", "", "", "User id")
+	FulfillRewardsCmd.Flags().String("userId", "", "User id")
 	_ = FulfillRewardsCmd.MarkFlagRequired("userId")
 }

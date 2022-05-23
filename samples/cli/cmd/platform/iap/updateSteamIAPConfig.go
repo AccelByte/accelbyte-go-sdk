@@ -53,7 +53,7 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSteamIAPConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateSteamIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateSteamIAPConfigCmd.Flags().String("body", "", "Body")
+	UpdateSteamIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

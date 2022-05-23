@@ -45,9 +45,9 @@ var DownloadCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadCmd.Flags().StringP("campaignId", "", "", "Campaign id")
+	DownloadCmd.Flags().String("campaignId", "", "Campaign id")
 	_ = DownloadCmd.MarkFlagRequired("campaignId")
-	DownloadCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DownloadCmd.Flags().String("namespace", "", "Namespace")
 	_ = DownloadCmd.MarkFlagRequired("namespace")
-	DownloadCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
+	DownloadCmd.Flags().Int32("batchNo", 0, "Batch no")
 }

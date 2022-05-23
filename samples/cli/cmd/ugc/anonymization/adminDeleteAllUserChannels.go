@@ -43,8 +43,8 @@ var AdminDeleteAllUserChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAllUserChannelsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminDeleteAllUserChannelsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDeleteAllUserChannelsCmd.MarkFlagRequired("namespace")
-	AdminDeleteAllUserChannelsCmd.Flags().StringP("userId", "", "", "User id")
+	AdminDeleteAllUserChannelsCmd.Flags().String("userId", "", "User id")
 	_ = AdminDeleteAllUserChannelsCmd.MarkFlagRequired("userId")
 }

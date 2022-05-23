@@ -59,7 +59,7 @@ var ImportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ImportConfigV1Cmd.Flags().StringP("file", "", "", "File")
-	ImportConfigV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	ImportConfigV1Cmd.Flags().String("file", "", "File")
+	ImportConfigV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportConfigV1Cmd.MarkFlagRequired("namespace")
 }

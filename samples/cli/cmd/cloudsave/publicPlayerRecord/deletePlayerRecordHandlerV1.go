@@ -45,10 +45,10 @@ var DeletePlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeletePlayerRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	DeletePlayerRecordHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = DeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	DeletePlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeletePlayerRecordHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	DeletePlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", "", "User id")
+	DeletePlayerRecordHandlerV1Cmd.Flags().String("userId", "", "User id")
 	_ = DeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

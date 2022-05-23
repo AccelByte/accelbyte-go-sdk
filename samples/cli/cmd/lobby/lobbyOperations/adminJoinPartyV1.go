@@ -45,10 +45,10 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminJoinPartyV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminJoinPartyV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminJoinPartyV1Cmd.MarkFlagRequired("namespace")
-	AdminJoinPartyV1Cmd.Flags().StringP("partyId", "", "", "Party id")
+	AdminJoinPartyV1Cmd.Flags().String("partyId", "", "Party id")
 	_ = AdminJoinPartyV1Cmd.MarkFlagRequired("partyId")
-	AdminJoinPartyV1Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminJoinPartyV1Cmd.Flags().String("userId", "", "User id")
 	_ = AdminJoinPartyV1Cmd.MarkFlagRequired("userId")
 }

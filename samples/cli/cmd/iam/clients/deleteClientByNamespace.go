@@ -43,8 +43,8 @@ var DeleteClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteClientByNamespaceCmd.Flags().StringP("clientId", "", "", "Client id")
+	DeleteClientByNamespaceCmd.Flags().String("clientId", "", "Client id")
 	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("clientId")
-	DeleteClientByNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteClientByNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

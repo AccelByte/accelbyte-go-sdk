@@ -51,8 +51,8 @@ var AdminRevokeUserFromRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminRevokeUserFromRoleV4Cmd.Flags().StringP("body", "", "", "Body")
+	AdminRevokeUserFromRoleV4Cmd.Flags().String("body", "", "Body")
 	_ = AdminRevokeUserFromRoleV4Cmd.MarkFlagRequired("body")
-	AdminRevokeUserFromRoleV4Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminRevokeUserFromRoleV4Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminRevokeUserFromRoleV4Cmd.MarkFlagRequired("roleId")
 }

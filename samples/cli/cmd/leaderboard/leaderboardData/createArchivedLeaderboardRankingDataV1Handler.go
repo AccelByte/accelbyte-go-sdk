@@ -51,8 +51,8 @@ var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "", "", "Body")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("body", "", "Body")
 	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("body")
-	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
 }

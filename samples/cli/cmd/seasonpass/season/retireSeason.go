@@ -47,9 +47,9 @@ var RetireSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	RetireSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetireSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = RetireSeasonCmd.MarkFlagRequired("namespace")
-	RetireSeasonCmd.Flags().StringP("seasonId", "", "", "Season id")
+	RetireSeasonCmd.Flags().String("seasonId", "", "Season id")
 	_ = RetireSeasonCmd.MarkFlagRequired("seasonId")
-	RetireSeasonCmd.Flags().BoolP("force", "", false, "Force")
+	RetireSeasonCmd.Flags().Bool("force", false, "Force")
 }

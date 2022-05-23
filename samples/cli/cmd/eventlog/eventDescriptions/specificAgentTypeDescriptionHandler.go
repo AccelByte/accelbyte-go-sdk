@@ -43,5 +43,5 @@ var SpecificAgentTypeDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificAgentTypeDescriptionHandlerCmd.Flags().StringP("agentTypes", "", "", "Agent types")
+	SpecificAgentTypeDescriptionHandlerCmd.Flags().String("agentTypes", "", "Agent types")
 }

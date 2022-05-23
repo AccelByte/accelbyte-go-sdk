@@ -51,8 +51,8 @@ var CreateTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	CreateTemplateCmd.Flags().StringP("body", "", "", "Body")
+	CreateTemplateCmd.Flags().String("body", "", "Body")
 	_ = CreateTemplateCmd.MarkFlagRequired("body")
-	CreateTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateTemplateCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateTemplateCmd.MarkFlagRequired("namespace")
 }

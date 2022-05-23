@@ -53,8 +53,8 @@ var CreateClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	CreateClientByNamespaceCmd.Flags().StringP("body", "", "", "Body")
+	CreateClientByNamespaceCmd.Flags().String("body", "", "Body")
 	_ = CreateClientByNamespaceCmd.MarkFlagRequired("body")
-	CreateClientByNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateClientByNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

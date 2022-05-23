@@ -51,8 +51,8 @@ var PublicForgotPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicForgotPasswordV3Cmd.Flags().StringP("body", "", "", "Body")
+	PublicForgotPasswordV3Cmd.Flags().String("body", "", "Body")
 	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("body")
-	PublicForgotPasswordV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicForgotPasswordV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("namespace")
 }

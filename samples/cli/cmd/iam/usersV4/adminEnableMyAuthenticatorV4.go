@@ -49,5 +49,5 @@ var AdminEnableMyAuthenticatorV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminEnableMyAuthenticatorV4Cmd.Flags().StringP("code", "", "", "Code")
+	AdminEnableMyAuthenticatorV4Cmd.Flags().String("code", "", "Code")
 }

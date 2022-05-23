@@ -45,8 +45,8 @@ var GetCustomAttributesInfoCmd = &cobra.Command{
 }
 
 func init() {
-	GetCustomAttributesInfoCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCustomAttributesInfoCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCustomAttributesInfoCmd.MarkFlagRequired("namespace")
-	GetCustomAttributesInfoCmd.Flags().StringP("userId", "", "", "User id")
+	GetCustomAttributesInfoCmd.Flags().String("userId", "", "User id")
 	_ = GetCustomAttributesInfoCmd.MarkFlagRequired("userId")
 }

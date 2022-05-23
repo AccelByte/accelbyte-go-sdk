@@ -45,8 +45,8 @@ var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("clientId", "", "", "Client id")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().String("clientId", "", "Client id")
 	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("clientId")
-	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("namespace")
 }

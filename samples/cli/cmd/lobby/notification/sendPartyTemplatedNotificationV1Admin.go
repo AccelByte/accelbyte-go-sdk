@@ -53,10 +53,10 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "", "", "Body")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().String("body", "", "Body")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "", "", "Party id")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().String("partyId", "", "Party id")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

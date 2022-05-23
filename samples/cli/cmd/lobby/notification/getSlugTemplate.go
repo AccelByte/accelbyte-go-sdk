@@ -51,11 +51,11 @@ var GetSlugTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetSlugTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetSlugTemplateCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetSlugTemplateCmd.MarkFlagRequired("namespace")
-	GetSlugTemplateCmd.Flags().StringP("templateSlug", "", "", "Template slug")
+	GetSlugTemplateCmd.Flags().String("templateSlug", "", "Template slug")
 	_ = GetSlugTemplateCmd.MarkFlagRequired("templateSlug")
-	GetSlugTemplateCmd.Flags().StringP("after", "", "0", "After")
-	GetSlugTemplateCmd.Flags().StringP("before", "", "0", "Before")
-	GetSlugTemplateCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetSlugTemplateCmd.Flags().String("after", "0", "After")
+	GetSlugTemplateCmd.Flags().String("before", "0", "Before")
+	GetSlugTemplateCmd.Flags().Int64("limit", 20, "Limit")
 }

@@ -55,9 +55,9 @@ var UpdateCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCampaignCmd.Flags().StringP("body", "", "", "Body")
-	UpdateCampaignCmd.Flags().StringP("campaignId", "", "", "Campaign id")
+	UpdateCampaignCmd.Flags().String("body", "", "Body")
+	UpdateCampaignCmd.Flags().String("campaignId", "", "Campaign id")
 	_ = UpdateCampaignCmd.MarkFlagRequired("campaignId")
-	UpdateCampaignCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateCampaignCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateCampaignCmd.MarkFlagRequired("namespace")
 }

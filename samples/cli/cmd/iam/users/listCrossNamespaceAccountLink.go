@@ -55,11 +55,11 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 }
 
 func init() {
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "", "", "Platform id")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "", "", "Linking token")
+	ListCrossNamespaceAccountLinkCmd.Flags().String("platformId", "", "Platform id")
+	ListCrossNamespaceAccountLinkCmd.Flags().String("linkingToken", "", "Linking token")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("linkingToken")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListCrossNamespaceAccountLinkCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("namespace")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "", "", "User id")
+	ListCrossNamespaceAccountLinkCmd.Flags().String("userId", "", "User id")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("userId")
 }

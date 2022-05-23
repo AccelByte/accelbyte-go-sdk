@@ -49,10 +49,10 @@ var PublicGetChildCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetChildCategoriesCmd.Flags().StringP("categoryPath", "", "", "Category path")
+	PublicGetChildCategoriesCmd.Flags().String("categoryPath", "", "Category path")
 	_ = PublicGetChildCategoriesCmd.MarkFlagRequired("categoryPath")
-	PublicGetChildCategoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetChildCategoriesCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetChildCategoriesCmd.MarkFlagRequired("namespace")
-	PublicGetChildCategoriesCmd.Flags().StringP("language", "", "", "Language")
-	PublicGetChildCategoriesCmd.Flags().StringP("storeId", "", "", "Store id")
+	PublicGetChildCategoriesCmd.Flags().String("language", "", "Language")
+	PublicGetChildCategoriesCmd.Flags().String("storeId", "", "Store id")
 }

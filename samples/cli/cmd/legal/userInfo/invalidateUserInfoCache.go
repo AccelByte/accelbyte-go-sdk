@@ -41,5 +41,5 @@ var InvalidateUserInfoCacheCmd = &cobra.Command{
 }
 
 func init() {
-	InvalidateUserInfoCacheCmd.Flags().StringP("namespace", "", "", "Namespace")
+	InvalidateUserInfoCacheCmd.Flags().String("namespace", "", "Namespace")
 }

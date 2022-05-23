@@ -55,11 +55,11 @@ var PublicDeletePlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platformNamespace", "", "", "Platform namespace")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicDeletePlatformLinkV2Cmd.Flags().String("platformNamespace", "", "Platform namespace")
+	PublicDeletePlatformLinkV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	PublicDeletePlatformLinkV2Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("userId", "", "", "User id")
+	PublicDeletePlatformLinkV2Cmd.Flags().String("userId", "", "User id")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

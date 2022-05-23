@@ -45,8 +45,8 @@ var GetUserStatusCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserStatusCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserStatusCmd.MarkFlagRequired("namespace")
-	GetUserStatusCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserStatusCmd.Flags().String("userId", "", "User id")
 	_ = GetUserStatusCmd.MarkFlagRequired("userId")
 }

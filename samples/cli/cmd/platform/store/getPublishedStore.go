@@ -43,6 +43,6 @@ var GetPublishedStoreCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublishedStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetPublishedStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetPublishedStoreCmd.MarkFlagRequired("namespace")
 }

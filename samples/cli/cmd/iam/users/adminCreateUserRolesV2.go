@@ -52,10 +52,10 @@ var AdminCreateUserRolesV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateUserRolesV2Cmd.Flags().StringP("body", "", "", "Body")
+	AdminCreateUserRolesV2Cmd.Flags().String("body", "", "Body")
 	_ = AdminCreateUserRolesV2Cmd.MarkFlagRequired("body")
-	AdminCreateUserRolesV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminCreateUserRolesV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminCreateUserRolesV2Cmd.MarkFlagRequired("namespace")
-	AdminCreateUserRolesV2Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminCreateUserRolesV2Cmd.Flags().String("userId", "", "User id")
 	_ = AdminCreateUserRolesV2Cmd.MarkFlagRequired("userId")
 }

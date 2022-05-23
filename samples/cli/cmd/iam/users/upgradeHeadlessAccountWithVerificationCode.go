@@ -55,10 +55,10 @@ var UpgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("body", "", "", "Body")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().String("body", "", "Body")
 	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("body")
-	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("namespace")
-	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("userId", "", "", "User id")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().String("userId", "", "User id")
 	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("userId")
 }

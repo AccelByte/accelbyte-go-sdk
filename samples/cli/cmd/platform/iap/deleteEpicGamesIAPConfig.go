@@ -41,6 +41,6 @@ var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteEpicGamesIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteEpicGamesIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

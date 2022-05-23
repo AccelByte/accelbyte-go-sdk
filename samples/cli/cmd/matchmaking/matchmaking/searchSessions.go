@@ -57,15 +57,15 @@ var SearchSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	SearchSessionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SearchSessionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = SearchSessionsCmd.MarkFlagRequired("namespace")
-	SearchSessionsCmd.Flags().StringP("channel", "", "", "Channel")
-	SearchSessionsCmd.Flags().BoolP("deleted", "", false, "Deleted")
-	SearchSessionsCmd.Flags().StringP("matchID", "", "", "Match ID")
-	SearchSessionsCmd.Flags().StringP("partyID", "", "", "Party ID")
-	SearchSessionsCmd.Flags().StringP("userID", "", "", "User ID")
-	SearchSessionsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	SearchSessionsCmd.Flags().String("channel", "", "Channel")
+	SearchSessionsCmd.Flags().Bool("deleted", false, "Deleted")
+	SearchSessionsCmd.Flags().String("matchID", "", "Match ID")
+	SearchSessionsCmd.Flags().String("partyID", "", "Party ID")
+	SearchSessionsCmd.Flags().String("userID", "", "User ID")
+	SearchSessionsCmd.Flags().Int64("limit", 20, "Limit")
 	_ = SearchSessionsCmd.MarkFlagRequired("limit")
-	SearchSessionsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	SearchSessionsCmd.Flags().Int64("offset", 0, "Offset")
 	_ = SearchSessionsCmd.MarkFlagRequired("offset")
 }

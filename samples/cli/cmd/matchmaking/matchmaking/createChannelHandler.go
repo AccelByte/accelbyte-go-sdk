@@ -53,8 +53,8 @@ var CreateChannelHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	CreateChannelHandlerCmd.Flags().StringP("body", "", "", "Body")
+	CreateChannelHandlerCmd.Flags().String("body", "", "Body")
 	_ = CreateChannelHandlerCmd.MarkFlagRequired("body")
-	CreateChannelHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateChannelHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateChannelHandlerCmd.MarkFlagRequired("namespace")
 }

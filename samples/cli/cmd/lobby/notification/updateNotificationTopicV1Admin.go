@@ -53,10 +53,10 @@ var UpdateNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("body", "", "", "Body")
+	UpdateNotificationTopicV1AdminCmd.Flags().String("body", "", "Body")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("body")
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateNotificationTopicV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", "", "Topic name")
+	UpdateNotificationTopicV1AdminCmd.Flags().String("topicName", "", "Topic name")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

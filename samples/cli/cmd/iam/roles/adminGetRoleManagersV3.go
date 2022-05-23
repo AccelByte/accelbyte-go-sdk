@@ -49,9 +49,9 @@ var AdminGetRoleManagersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleManagersV3Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminGetRoleManagersV3Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminGetRoleManagersV3Cmd.MarkFlagRequired("roleId")
-	AdminGetRoleManagersV3Cmd.Flags().StringP("after", "", "0", "After")
-	AdminGetRoleManagersV3Cmd.Flags().StringP("before", "", "0", "Before")
-	AdminGetRoleManagersV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetRoleManagersV3Cmd.Flags().String("after", "0", "After")
+	AdminGetRoleManagersV3Cmd.Flags().String("before", "0", "Before")
+	AdminGetRoleManagersV3Cmd.Flags().Int64("limit", 20, "Limit")
 }

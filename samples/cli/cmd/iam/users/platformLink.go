@@ -55,12 +55,12 @@ var PlatformLinkCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformLinkCmd.Flags().StringP("ticket", "", "", "Ticket")
+	PlatformLinkCmd.Flags().String("ticket", "", "Ticket")
 	_ = PlatformLinkCmd.MarkFlagRequired("ticket")
-	PlatformLinkCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PlatformLinkCmd.Flags().String("namespace", "", "Namespace")
 	_ = PlatformLinkCmd.MarkFlagRequired("namespace")
-	PlatformLinkCmd.Flags().StringP("platformId", "", "", "Platform id")
+	PlatformLinkCmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformLinkCmd.MarkFlagRequired("platformId")
-	PlatformLinkCmd.Flags().StringP("userId", "", "", "User id")
+	PlatformLinkCmd.Flags().String("userId", "", "User id")
 	_ = PlatformLinkCmd.MarkFlagRequired("userId")
 }

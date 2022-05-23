@@ -41,6 +41,6 @@ var AdminResetInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminResetInputValidationsCmd.Flags().StringP("field", "", "", "Field")
+	AdminResetInputValidationsCmd.Flags().String("field", "", "Field")
 	_ = AdminResetInputValidationsCmd.MarkFlagRequired("field")
 }

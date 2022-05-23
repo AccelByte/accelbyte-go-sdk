@@ -43,6 +43,6 @@ var GetActionsCmd = &cobra.Command{
 }
 
 func init() {
-	GetActionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetActionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetActionsCmd.MarkFlagRequired("namespace")
 }

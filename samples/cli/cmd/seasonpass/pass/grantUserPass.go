@@ -55,9 +55,9 @@ var GrantUserPassCmd = &cobra.Command{
 }
 
 func init() {
-	GrantUserPassCmd.Flags().StringP("body", "", "", "Body")
-	GrantUserPassCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GrantUserPassCmd.Flags().String("body", "", "Body")
+	GrantUserPassCmd.Flags().String("namespace", "", "Namespace")
 	_ = GrantUserPassCmd.MarkFlagRequired("namespace")
-	GrantUserPassCmd.Flags().StringP("userId", "", "", "User id")
+	GrantUserPassCmd.Flags().String("userId", "", "User id")
 	_ = GrantUserPassCmd.MarkFlagRequired("userId")
 }

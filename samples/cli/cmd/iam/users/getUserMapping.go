@@ -47,10 +47,10 @@ var GetUserMappingCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserMappingCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserMappingCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserMappingCmd.MarkFlagRequired("namespace")
-	GetUserMappingCmd.Flags().StringP("targetNamespace", "", "", "Target namespace")
+	GetUserMappingCmd.Flags().String("targetNamespace", "", "Target namespace")
 	_ = GetUserMappingCmd.MarkFlagRequired("targetNamespace")
-	GetUserMappingCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserMappingCmd.Flags().String("userId", "", "User id")
 	_ = GetUserMappingCmd.MarkFlagRequired("userId")
 }

@@ -43,8 +43,8 @@ var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("namespace")
-	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().String("userId", "", "User id")
 	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("userId")
 }

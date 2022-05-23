@@ -61,16 +61,16 @@ var AdminSearchUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchUsersV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminSearchUsersV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("namespace")
-	AdminSearchUsersV2Cmd.Flags().StringP("after", "", "0", "After")
-	AdminSearchUsersV2Cmd.Flags().StringP("before", "", "0", "Before")
-	AdminSearchUsersV2Cmd.Flags().StringP("displayName", "", "", "Display name")
-	AdminSearchUsersV2Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminSearchUsersV2Cmd.Flags().StringP("loginId", "", "", "Login id")
-	AdminSearchUsersV2Cmd.Flags().StringP("platformUserId", "", "", "Platform user id")
-	AdminSearchUsersV2Cmd.Flags().StringP("roleId", "", "", "Role id")
-	AdminSearchUsersV2Cmd.Flags().StringP("userId", "", "", "User id")
-	AdminSearchUsersV2Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	AdminSearchUsersV2Cmd.Flags().String("after", "0", "After")
+	AdminSearchUsersV2Cmd.Flags().String("before", "0", "Before")
+	AdminSearchUsersV2Cmd.Flags().String("displayName", "", "Display name")
+	AdminSearchUsersV2Cmd.Flags().Int64("limit", 20, "Limit")
+	AdminSearchUsersV2Cmd.Flags().String("loginId", "", "Login id")
+	AdminSearchUsersV2Cmd.Flags().String("platformUserId", "", "Platform user id")
+	AdminSearchUsersV2Cmd.Flags().String("roleId", "", "Role id")
+	AdminSearchUsersV2Cmd.Flags().String("userId", "", "User id")
+	AdminSearchUsersV2Cmd.Flags().String("platformId", "", "Platform id")
 	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("platformId")
 }

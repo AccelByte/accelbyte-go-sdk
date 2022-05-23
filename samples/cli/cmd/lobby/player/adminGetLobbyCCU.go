@@ -43,6 +43,6 @@ var AdminGetLobbyCCUCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetLobbyCCUCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetLobbyCCUCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetLobbyCCUCmd.MarkFlagRequired("namespace")
 }

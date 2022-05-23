@@ -55,12 +55,12 @@ var AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
+	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("body", "", "Body")
 	_ = AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
-	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("userId", "", "User id")
 	_ = AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
 }

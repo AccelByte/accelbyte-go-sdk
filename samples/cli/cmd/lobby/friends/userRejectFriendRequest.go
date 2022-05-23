@@ -51,8 +51,8 @@ var UserRejectFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserRejectFriendRequestCmd.Flags().StringP("body", "", "", "Body")
+	UserRejectFriendRequestCmd.Flags().String("body", "", "Body")
 	_ = UserRejectFriendRequestCmd.MarkFlagRequired("body")
-	UserRejectFriendRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UserRejectFriendRequestCmd.Flags().String("namespace", "", "Namespace")
 	_ = UserRejectFriendRequestCmd.MarkFlagRequired("namespace")
 }

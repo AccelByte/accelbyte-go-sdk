@@ -47,9 +47,9 @@ var PublicGetUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserBanCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserBanCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserBanCmd.MarkFlagRequired("namespace")
-	PublicGetUserBanCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserBanCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserBanCmd.MarkFlagRequired("userId")
-	PublicGetUserBanCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	PublicGetUserBanCmd.Flags().Bool("activeOnly", false, "Active only")
 }

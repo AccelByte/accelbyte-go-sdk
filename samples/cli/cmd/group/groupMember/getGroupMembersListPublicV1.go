@@ -51,11 +51,11 @@ var GetGroupMembersListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupMembersListPublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
+	GetGroupMembersListPublicV1Cmd.Flags().String("groupId", "", "Group id")
 	_ = GetGroupMembersListPublicV1Cmd.MarkFlagRequired("groupId")
-	GetGroupMembersListPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetGroupMembersListPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetGroupMembersListPublicV1Cmd.MarkFlagRequired("namespace")
-	GetGroupMembersListPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetGroupMembersListPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
-	GetGroupMembersListPublicV1Cmd.Flags().StringP("order", "", "", "Order")
+	GetGroupMembersListPublicV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetGroupMembersListPublicV1Cmd.Flags().Int64("offset", 0, "Offset")
+	GetGroupMembersListPublicV1Cmd.Flags().String("order", "", "Order")
 }

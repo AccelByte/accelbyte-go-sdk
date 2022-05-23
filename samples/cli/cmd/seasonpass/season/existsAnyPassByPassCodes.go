@@ -54,9 +54,9 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 }
 
 func init() {
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ExistsAnyPassByPassCodesCmd.Flags().String("namespace", "", "Namespace")
 	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("namespace")
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("userId", "", "", "User id")
+	ExistsAnyPassByPassCodesCmd.Flags().String("userId", "", "User id")
 	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("userId")
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("passCodes", "", "", "Pass codes")
+	ExistsAnyPassByPassCodesCmd.Flags().String("passCodes", "", "Pass codes")
 }

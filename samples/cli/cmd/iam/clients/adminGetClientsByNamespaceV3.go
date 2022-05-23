@@ -47,8 +47,8 @@ var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetClientsByNamespaceV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetClientsByNamespaceV3Cmd.MarkFlagRequired("namespace")
-	AdminGetClientsByNamespaceV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetClientsByNamespaceV3Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetClientsByNamespaceV3Cmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetClientsByNamespaceV3Cmd.Flags().Int64("offset", 0, "Offset")
 }

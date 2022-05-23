@@ -47,7 +47,7 @@ var RetrievePolicyVersionsCmd = &cobra.Command{
 }
 
 func init() {
-	RetrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "", "", "Base policy id")
-	RetrievePolicyVersionsCmd.Flags().StringP("localeId", "", "", "Locale id")
-	RetrievePolicyVersionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetrievePolicyVersionsCmd.Flags().String("basePolicyId", "", "Base policy id")
+	RetrievePolicyVersionsCmd.Flags().String("localeId", "", "Locale id")
+	RetrievePolicyVersionsCmd.Flags().String("namespace", "", "Namespace")
 }

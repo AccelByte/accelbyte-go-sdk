@@ -55,10 +55,10 @@ var DeleteMemberRolePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("body", "", "", "Body")
+	DeleteMemberRolePublicV1Cmd.Flags().String("body", "", "Body")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "", "", "Member role id")
+	DeleteMemberRolePublicV1Cmd.Flags().String("memberRoleId", "", "Member role id")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteMemberRolePublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

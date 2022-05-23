@@ -53,8 +53,8 @@ var AdminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("body")
-	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
 }

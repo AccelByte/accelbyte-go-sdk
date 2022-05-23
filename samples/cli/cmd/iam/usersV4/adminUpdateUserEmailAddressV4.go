@@ -53,10 +53,10 @@ var AdminUpdateUserEmailAddressV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("body")
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("namespace")
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().String("userId", "", "User id")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("userId")
 }

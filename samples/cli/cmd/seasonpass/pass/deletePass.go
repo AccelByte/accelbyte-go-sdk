@@ -45,10 +45,10 @@ var DeletePassCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePassCmd.Flags().StringP("code", "", "", "Code")
+	DeletePassCmd.Flags().String("code", "", "Code")
 	_ = DeletePassCmd.MarkFlagRequired("code")
-	DeletePassCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeletePassCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeletePassCmd.MarkFlagRequired("namespace")
-	DeletePassCmd.Flags().StringP("seasonId", "", "", "Season id")
+	DeletePassCmd.Flags().String("seasonId", "", "Season id")
 	_ = DeletePassCmd.MarkFlagRequired("seasonId")
 }

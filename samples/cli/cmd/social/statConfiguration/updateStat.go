@@ -55,9 +55,9 @@ var UpdateStatCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStatCmd.Flags().StringP("body", "", "", "Body")
-	UpdateStatCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateStatCmd.Flags().String("body", "", "Body")
+	UpdateStatCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateStatCmd.MarkFlagRequired("namespace")
-	UpdateStatCmd.Flags().StringP("statCode", "", "", "Stat code")
+	UpdateStatCmd.Flags().String("statCode", "", "Stat code")
 	_ = UpdateStatCmd.MarkFlagRequired("statCode")
 }

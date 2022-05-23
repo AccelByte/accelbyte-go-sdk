@@ -41,6 +41,6 @@ var DeleteXblAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteXblAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteXblAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteXblAPConfigCmd.MarkFlagRequired("namespace")
 }

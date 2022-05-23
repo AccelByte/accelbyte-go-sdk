@@ -53,10 +53,10 @@ var PutGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().String("body", "", "Body")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 }

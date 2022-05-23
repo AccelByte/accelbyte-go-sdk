@@ -45,10 +45,10 @@ var PublishTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	PublishTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublishTemplateCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublishTemplateCmd.MarkFlagRequired("namespace")
-	PublishTemplateCmd.Flags().StringP("templateLanguage", "", "", "Template language")
+	PublishTemplateCmd.Flags().String("templateLanguage", "", "Template language")
 	_ = PublishTemplateCmd.MarkFlagRequired("templateLanguage")
-	PublishTemplateCmd.Flags().StringP("templateSlug", "", "", "Template slug")
+	PublishTemplateCmd.Flags().String("templateSlug", "", "Template slug")
 	_ = PublishTemplateCmd.MarkFlagRequired("templateSlug")
 }

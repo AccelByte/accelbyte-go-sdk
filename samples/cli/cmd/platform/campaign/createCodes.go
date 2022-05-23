@@ -55,9 +55,9 @@ var CreateCodesCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCodesCmd.Flags().StringP("body", "", "", "Body")
-	CreateCodesCmd.Flags().StringP("campaignId", "", "", "Campaign id")
+	CreateCodesCmd.Flags().String("body", "", "Body")
+	CreateCodesCmd.Flags().String("campaignId", "", "Campaign id")
 	_ = CreateCodesCmd.MarkFlagRequired("campaignId")
-	CreateCodesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateCodesCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCodesCmd.MarkFlagRequired("namespace")
 }

@@ -45,10 +45,10 @@ var DeleteImageCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteImageCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteImageCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteImageCmd.MarkFlagRequired("namespace")
-	DeleteImageCmd.Flags().StringP("imageURI", "", "", "Image URI")
+	DeleteImageCmd.Flags().String("imageURI", "", "Image URI")
 	_ = DeleteImageCmd.MarkFlagRequired("imageURI")
-	DeleteImageCmd.Flags().StringP("version", "", "", "Version")
+	DeleteImageCmd.Flags().String("version", "", "Version")
 	_ = DeleteImageCmd.MarkFlagRequired("version")
 }

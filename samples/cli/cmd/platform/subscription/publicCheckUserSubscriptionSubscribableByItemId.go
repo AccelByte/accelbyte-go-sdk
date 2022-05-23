@@ -47,10 +47,10 @@ var PublicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "", "", "User id")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().String("userId", "", "User id")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "", "", "Item id")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().String("itemId", "", "Item id")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
 }

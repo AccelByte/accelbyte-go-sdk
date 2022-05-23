@@ -47,12 +47,12 @@ var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteUserPermissionV3Cmd.Flags().Int64P("action", "", -1, "Action")
+	AdminDeleteUserPermissionV3Cmd.Flags().Int64("action", -1, "Action")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("action")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminDeleteUserPermissionV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("namespace")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("resource", "", "", "Resource")
+	AdminDeleteUserPermissionV3Cmd.Flags().String("resource", "", "Resource")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("resource")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminDeleteUserPermissionV3Cmd.Flags().String("userId", "", "User id")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("userId")
 }

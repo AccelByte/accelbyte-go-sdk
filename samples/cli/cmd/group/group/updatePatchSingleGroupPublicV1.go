@@ -55,10 +55,10 @@ var UpdatePatchSingleGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "", "", "Body")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().String("body", "", "Body")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("body")
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().String("groupId", "", "Group id")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

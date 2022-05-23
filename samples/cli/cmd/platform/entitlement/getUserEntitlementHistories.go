@@ -47,10 +47,10 @@ var GetUserEntitlementHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserEntitlementHistoriesCmd.Flags().StringP("entitlementId", "", "", "Entitlement id")
+	GetUserEntitlementHistoriesCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("entitlementId")
-	GetUserEntitlementHistoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserEntitlementHistoriesCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("namespace")
-	GetUserEntitlementHistoriesCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserEntitlementHistoriesCmd.Flags().String("userId", "", "User id")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("userId")
 }

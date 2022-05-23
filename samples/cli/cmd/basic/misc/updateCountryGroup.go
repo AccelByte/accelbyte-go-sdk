@@ -55,9 +55,9 @@ var UpdateCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCountryGroupCmd.Flags().StringP("body", "", "", "Body")
-	UpdateCountryGroupCmd.Flags().StringP("countryGroupCode", "", "", "Country group code")
+	UpdateCountryGroupCmd.Flags().String("body", "", "Body")
+	UpdateCountryGroupCmd.Flags().String("countryGroupCode", "", "Country group code")
 	_ = UpdateCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	UpdateCountryGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateCountryGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateCountryGroupCmd.MarkFlagRequired("namespace")
 }

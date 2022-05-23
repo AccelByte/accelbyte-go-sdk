@@ -45,8 +45,8 @@ var GetCurrencySummaryCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrencySummaryCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	GetCurrencySummaryCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = GetCurrencySummaryCmd.MarkFlagRequired("currencyCode")
-	GetCurrencySummaryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCurrencySummaryCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCurrencySummaryCmd.MarkFlagRequired("namespace")
 }

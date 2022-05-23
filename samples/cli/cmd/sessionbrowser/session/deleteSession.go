@@ -45,8 +45,8 @@ var DeleteSessionCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteSessionCmd.MarkFlagRequired("namespace")
-	DeleteSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
+	DeleteSessionCmd.Flags().String("sessionID", "", "Session ID")
 	_ = DeleteSessionCmd.MarkFlagRequired("sessionID")
 }

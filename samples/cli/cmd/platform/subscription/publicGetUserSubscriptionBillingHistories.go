@@ -53,13 +53,13 @@ var PublicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "", false, "Exclude free")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "", 20, "Limit")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Bool("excludeFree", false, "Exclude free")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32("limit", 20, "Limit")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32("offset", 0, "Offset")
 }

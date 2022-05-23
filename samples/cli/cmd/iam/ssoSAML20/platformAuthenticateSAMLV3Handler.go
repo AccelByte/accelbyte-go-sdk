@@ -55,10 +55,10 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "", "", "Platform id")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("platformId")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "", "", "Code")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "", "", "Error")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "", "", "State")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().String("code", "", "Code")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().String("error", "", "Error")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().String("state", "", "State")
 	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("state")
 }

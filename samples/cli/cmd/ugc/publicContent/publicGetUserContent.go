@@ -49,10 +49,10 @@ var PublicGetUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserContentCmd.MarkFlagRequired("namespace")
-	PublicGetUserContentCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserContentCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserContentCmd.MarkFlagRequired("userId")
-	PublicGetUserContentCmd.Flags().Int64P("limit", "", 20, "Limit")
-	PublicGetUserContentCmd.Flags().Int64P("offset", "", 0, "Offset")
+	PublicGetUserContentCmd.Flags().Int64("limit", 20, "Limit")
+	PublicGetUserContentCmd.Flags().Int64("offset", 0, "Offset")
 }

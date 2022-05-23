@@ -53,7 +53,7 @@ var UpdatePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlaystationIAPConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdatePlaystationIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdatePlaystationIAPConfigCmd.Flags().String("body", "", "Body")
+	UpdatePlaystationIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

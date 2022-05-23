@@ -53,8 +53,8 @@ var AdminCreateNewAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateNewAchievementCmd.Flags().StringP("body", "", "", "Body")
+	AdminCreateNewAchievementCmd.Flags().String("body", "", "Body")
 	_ = AdminCreateNewAchievementCmd.MarkFlagRequired("body")
-	AdminCreateNewAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminCreateNewAchievementCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminCreateNewAchievementCmd.MarkFlagRequired("namespace")
 }

@@ -53,10 +53,10 @@ var AdminSetPlayerSessionAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSetPlayerSessionAttributeCmd.Flags().StringP("body", "", "", "Body")
+	AdminSetPlayerSessionAttributeCmd.Flags().String("body", "", "Body")
 	_ = AdminSetPlayerSessionAttributeCmd.MarkFlagRequired("body")
-	AdminSetPlayerSessionAttributeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminSetPlayerSessionAttributeCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminSetPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	AdminSetPlayerSessionAttributeCmd.Flags().StringP("userId", "", "", "User id")
+	AdminSetPlayerSessionAttributeCmd.Flags().String("userId", "", "User id")
 	_ = AdminSetPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

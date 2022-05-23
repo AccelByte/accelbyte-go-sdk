@@ -53,8 +53,8 @@ var UpdateMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "", "", "User zip code update")
+	UpdateMyZipCodeCmd.Flags().String("userZipCodeUpdate", "", "User zip code update")
 	_ = UpdateMyZipCodeCmd.MarkFlagRequired("userZipCodeUpdate")
-	UpdateMyZipCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateMyZipCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateMyZipCodeCmd.MarkFlagRequired("namespace")
 }

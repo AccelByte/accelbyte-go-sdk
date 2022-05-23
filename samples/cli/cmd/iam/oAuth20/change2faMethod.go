@@ -51,8 +51,8 @@ var Change2faMethodCmd = &cobra.Command{
 }
 
 func init() {
-	Change2faMethodCmd.Flags().StringP("factor", "", "", "Factor")
+	Change2faMethodCmd.Flags().String("factor", "", "Factor")
 	_ = Change2faMethodCmd.MarkFlagRequired("factor")
-	Change2faMethodCmd.Flags().StringP("mfaToken", "", "", "Mfa token")
+	Change2faMethodCmd.Flags().String("mfaToken", "", "Mfa token")
 	_ = Change2faMethodCmd.MarkFlagRequired("mfaToken")
 }

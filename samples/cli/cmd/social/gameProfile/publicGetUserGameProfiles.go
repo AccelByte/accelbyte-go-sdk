@@ -52,8 +52,8 @@ var PublicGetUserGameProfilesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserGameProfilesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserGameProfilesCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("namespace")
-	PublicGetUserGameProfilesCmd.Flags().StringP("userIds", "", "", "User ids")
+	PublicGetUserGameProfilesCmd.Flags().String("userIds", "", "User ids")
 	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("userIds")
 }

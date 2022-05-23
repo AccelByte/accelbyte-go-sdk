@@ -43,6 +43,6 @@ var AdminGetProfanityListsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetProfanityListsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetProfanityListsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetProfanityListsCmd.MarkFlagRequired("namespace")
 }

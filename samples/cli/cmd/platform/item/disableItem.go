@@ -47,10 +47,10 @@ var DisableItemCmd = &cobra.Command{
 }
 
 func init() {
-	DisableItemCmd.Flags().StringP("itemId", "", "", "Item id")
+	DisableItemCmd.Flags().String("itemId", "", "Item id")
 	_ = DisableItemCmd.MarkFlagRequired("itemId")
-	DisableItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DisableItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = DisableItemCmd.MarkFlagRequired("namespace")
-	DisableItemCmd.Flags().StringP("storeId", "", "", "Store id")
+	DisableItemCmd.Flags().String("storeId", "", "Store id")
 	_ = DisableItemCmd.MarkFlagRequired("storeId")
 }

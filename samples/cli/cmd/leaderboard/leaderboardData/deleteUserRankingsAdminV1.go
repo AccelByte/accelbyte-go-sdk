@@ -52,10 +52,10 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteUserRankingsAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("userId", "", "", "User id")
+	DeleteUserRankingsAdminV1Cmd.Flags().String("userId", "", "User id")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("userId")
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	DeleteUserRankingsAdminV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("leaderboardCode")
 }

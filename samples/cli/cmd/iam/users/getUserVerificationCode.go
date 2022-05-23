@@ -45,8 +45,8 @@ var GetUserVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserVerificationCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserVerificationCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserVerificationCodeCmd.MarkFlagRequired("namespace")
-	GetUserVerificationCodeCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserVerificationCodeCmd.Flags().String("userId", "", "User id")
 	_ = GetUserVerificationCodeCmd.MarkFlagRequired("userId")
 }

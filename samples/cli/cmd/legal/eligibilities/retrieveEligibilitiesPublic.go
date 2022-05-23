@@ -43,6 +43,6 @@ var RetrieveEligibilitiesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RetrieveEligibilitiesPublicCmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveEligibilitiesPublicCmd.MarkFlagRequired("namespace")
 }

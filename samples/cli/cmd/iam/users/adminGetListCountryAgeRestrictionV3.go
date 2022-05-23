@@ -43,6 +43,6 @@ var AdminGetListCountryAgeRestrictionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetListCountryAgeRestrictionV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetListCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
 }

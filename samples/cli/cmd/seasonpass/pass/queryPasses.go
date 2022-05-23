@@ -45,8 +45,8 @@ var QueryPassesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPassesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryPassesCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryPassesCmd.MarkFlagRequired("namespace")
-	QueryPassesCmd.Flags().StringP("seasonId", "", "", "Season id")
+	QueryPassesCmd.Flags().String("seasonId", "", "Season id")
 	_ = QueryPassesCmd.MarkFlagRequired("seasonId")
 }

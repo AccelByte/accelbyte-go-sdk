@@ -53,10 +53,10 @@ var SendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("body", "", "", "Body")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().String("body", "", "Body")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("userId", "", "", "User id")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().String("userId", "", "User id")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("userId")
 }

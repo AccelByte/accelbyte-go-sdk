@@ -45,10 +45,10 @@ var CheckUserAvailabilityCmd = &cobra.Command{
 }
 
 func init() {
-	CheckUserAvailabilityCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CheckUserAvailabilityCmd.Flags().String("namespace", "", "Namespace")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("namespace")
-	CheckUserAvailabilityCmd.Flags().StringP("field", "", "", "Field")
+	CheckUserAvailabilityCmd.Flags().String("field", "", "Field")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("field")
-	CheckUserAvailabilityCmd.Flags().StringP("query", "", "", "Query")
+	CheckUserAvailabilityCmd.Flags().String("query", "", "Query")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("query")
 }

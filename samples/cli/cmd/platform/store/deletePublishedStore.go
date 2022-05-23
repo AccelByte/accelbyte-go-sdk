@@ -43,6 +43,6 @@ var DeletePublishedStoreCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePublishedStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeletePublishedStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeletePublishedStoreCmd.MarkFlagRequired("namespace")
 }

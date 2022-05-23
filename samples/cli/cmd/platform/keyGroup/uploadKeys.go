@@ -61,9 +61,9 @@ var UploadKeysCmd = &cobra.Command{
 }
 
 func init() {
-	UploadKeysCmd.Flags().StringP("file", "", "", "File")
-	UploadKeysCmd.Flags().StringP("keyGroupId", "", "", "Key group id")
+	UploadKeysCmd.Flags().String("file", "", "File")
+	UploadKeysCmd.Flags().String("keyGroupId", "", "Key group id")
 	_ = UploadKeysCmd.MarkFlagRequired("keyGroupId")
-	UploadKeysCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UploadKeysCmd.Flags().String("namespace", "", "Namespace")
 	_ = UploadKeysCmd.MarkFlagRequired("namespace")
 }

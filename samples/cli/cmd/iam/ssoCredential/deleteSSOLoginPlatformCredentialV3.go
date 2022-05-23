@@ -43,8 +43,8 @@ var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

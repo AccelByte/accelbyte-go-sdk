@@ -47,8 +47,8 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicSearchUserV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSearchUserV3Cmd.MarkFlagRequired("namespace")
-	PublicSearchUserV3Cmd.Flags().StringP("by", "", "", "By")
-	PublicSearchUserV3Cmd.Flags().StringP("query", "", "", "Query")
+	PublicSearchUserV3Cmd.Flags().String("by", "", "By")
+	PublicSearchUserV3Cmd.Flags().String("query", "", "Query")
 }

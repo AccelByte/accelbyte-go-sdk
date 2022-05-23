@@ -49,8 +49,8 @@ var QueryPaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentProviderConfigCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryPaymentProviderConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
-	QueryPaymentProviderConfigCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryPaymentProviderConfigCmd.Flags().StringP("region", "", "", "Region")
+	QueryPaymentProviderConfigCmd.Flags().Int32("limit", 20, "Limit")
+	QueryPaymentProviderConfigCmd.Flags().String("namespace", "", "Namespace")
+	QueryPaymentProviderConfigCmd.Flags().Int32("offset", 0, "Offset")
+	QueryPaymentProviderConfigCmd.Flags().String("region", "", "Region")
 }

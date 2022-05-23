@@ -41,6 +41,6 @@ var SetDefaultPolicy1Cmd = &cobra.Command{
 }
 
 func init() {
-	SetDefaultPolicy1Cmd.Flags().StringP("policyId", "", "", "Policy id")
+	SetDefaultPolicy1Cmd.Flags().String("policyId", "", "Policy id")
 	_ = SetDefaultPolicy1Cmd.MarkFlagRequired("policyId")
 }

@@ -43,6 +43,6 @@ var GetClientsbyNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetClientsbyNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetClientsbyNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetClientsbyNamespaceCmd.MarkFlagRequired("namespace")
 }

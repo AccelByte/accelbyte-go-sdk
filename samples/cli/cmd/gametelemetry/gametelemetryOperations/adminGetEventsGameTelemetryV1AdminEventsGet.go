@@ -43,7 +43,7 @@ var AdminGetEventsGameTelemetryV1AdminEventsGetCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetEventsGameTelemetryV1AdminEventsGetCmd.Flags().StringP("cookie", "", "", "Cookie")
-	AdminGetEventsGameTelemetryV1AdminEventsGetCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetEventsGameTelemetryV1AdminEventsGetCmd.Flags().String("cookie", "", "Cookie")
+	AdminGetEventsGameTelemetryV1AdminEventsGetCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetEventsGameTelemetryV1AdminEventsGetCmd.MarkFlagRequired("namespace")
 }

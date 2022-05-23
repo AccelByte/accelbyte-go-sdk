@@ -45,10 +45,10 @@ var AddUserRoleCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserRoleCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AddUserRoleCmd.Flags().String("namespace", "", "Namespace")
 	_ = AddUserRoleCmd.MarkFlagRequired("namespace")
-	AddUserRoleCmd.Flags().StringP("roleId", "", "", "Role id")
+	AddUserRoleCmd.Flags().String("roleId", "", "Role id")
 	_ = AddUserRoleCmd.MarkFlagRequired("roleId")
-	AddUserRoleCmd.Flags().StringP("userId", "", "", "User id")
+	AddUserRoleCmd.Flags().String("userId", "", "User id")
 	_ = AddUserRoleCmd.MarkFlagRequired("userId")
 }

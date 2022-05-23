@@ -45,7 +45,7 @@ var BulkGetSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetSessionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	BulkGetSessionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkGetSessionsCmd.MarkFlagRequired("namespace")
-	BulkGetSessionsCmd.Flags().StringP("matchIDs", "", "", "Match I ds")
+	BulkGetSessionsCmd.Flags().String("matchIDs", "", "Match I ds")
 }

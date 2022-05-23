@@ -45,7 +45,7 @@ var PublicGetCurrentSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCurrentSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetCurrentSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetCurrentSeasonCmd.MarkFlagRequired("namespace")
-	PublicGetCurrentSeasonCmd.Flags().StringP("language", "", "", "Language")
+	PublicGetCurrentSeasonCmd.Flags().String("language", "", "Language")
 }

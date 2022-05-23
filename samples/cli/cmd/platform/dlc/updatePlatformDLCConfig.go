@@ -53,7 +53,7 @@ var UpdatePlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlatformDLCConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdatePlatformDLCConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdatePlatformDLCConfigCmd.Flags().String("body", "", "Body")
+	UpdatePlatformDLCConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

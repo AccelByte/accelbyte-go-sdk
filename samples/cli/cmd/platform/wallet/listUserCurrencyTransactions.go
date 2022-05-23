@@ -51,12 +51,12 @@ var ListUserCurrencyTransactionsCmd = &cobra.Command{
 }
 
 func init() {
-	ListUserCurrencyTransactionsCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	ListUserCurrencyTransactionsCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("currencyCode")
-	ListUserCurrencyTransactionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListUserCurrencyTransactionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("namespace")
-	ListUserCurrencyTransactionsCmd.Flags().StringP("userId", "", "", "User id")
+	ListUserCurrencyTransactionsCmd.Flags().String("userId", "", "User id")
 	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("userId")
-	ListUserCurrencyTransactionsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	ListUserCurrencyTransactionsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	ListUserCurrencyTransactionsCmd.Flags().Int32("limit", 20, "Limit")
+	ListUserCurrencyTransactionsCmd.Flags().Int32("offset", 0, "Offset")
 }

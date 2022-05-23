@@ -51,8 +51,8 @@ var AdminAddRoleMembersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddRoleMembersV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminAddRoleMembersV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminAddRoleMembersV3Cmd.MarkFlagRequired("body")
-	AdminAddRoleMembersV3Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminAddRoleMembersV3Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminAddRoleMembersV3Cmd.MarkFlagRequired("roleId")
 }

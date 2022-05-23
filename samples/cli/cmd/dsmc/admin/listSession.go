@@ -51,10 +51,10 @@ var ListSessionCmd = &cobra.Command{
 }
 
 func init() {
-	ListSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListSessionCmd.MarkFlagRequired("namespace")
-	ListSessionCmd.Flags().Int64P("count", "", 1, "Count")
-	ListSessionCmd.Flags().Int64P("offset", "", 0, "Offset")
-	ListSessionCmd.Flags().StringP("region", "", "", "Region")
-	ListSessionCmd.Flags().BoolP("withServer", "", false, "With server")
+	ListSessionCmd.Flags().Int64("count", 1, "Count")
+	ListSessionCmd.Flags().Int64("offset", 0, "Offset")
+	ListSessionCmd.Flags().String("region", "", "Region")
+	ListSessionCmd.Flags().Bool("withServer", false, "With server")
 }

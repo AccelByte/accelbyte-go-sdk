@@ -41,6 +41,6 @@ var PublicDisableMyAuthenticatorV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicDisableMyAuthenticatorV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicDisableMyAuthenticatorV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDisableMyAuthenticatorV4Cmd.MarkFlagRequired("namespace")
 }

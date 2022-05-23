@@ -53,8 +53,8 @@ var CreateNewGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateNewGroupPublicV1Cmd.Flags().StringP("body", "", "", "Body")
+	CreateNewGroupPublicV1Cmd.Flags().String("body", "", "Body")
 	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("body")
-	CreateNewGroupPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateNewGroupPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

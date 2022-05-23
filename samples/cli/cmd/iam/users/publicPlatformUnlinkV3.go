@@ -53,10 +53,10 @@ var PublicPlatformUnlinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicPlatformUnlinkV3Cmd.Flags().StringP("body", "", "", "Body")
+	PublicPlatformUnlinkV3Cmd.Flags().String("body", "", "Body")
 	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("body")
-	PublicPlatformUnlinkV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicPlatformUnlinkV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("namespace")
-	PublicPlatformUnlinkV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	PublicPlatformUnlinkV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("platformId")
 }

@@ -51,8 +51,8 @@ var PublicVerifyRegistrationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicVerifyRegistrationCodeCmd.Flags().StringP("body", "", "", "Body")
+	PublicVerifyRegistrationCodeCmd.Flags().String("body", "", "Body")
 	_ = PublicVerifyRegistrationCodeCmd.MarkFlagRequired("body")
-	PublicVerifyRegistrationCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicVerifyRegistrationCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicVerifyRegistrationCodeCmd.MarkFlagRequired("namespace")
 }

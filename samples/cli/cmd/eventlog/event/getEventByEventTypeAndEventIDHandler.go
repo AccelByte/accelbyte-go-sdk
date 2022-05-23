@@ -55,17 +55,17 @@ var GetEventByEventTypeAndEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventId", "", 0, "Event id")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64("eventId", 0, "Event id")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventId")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventType", "", 0, "Event type")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64("eventType", 0, "Event type")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventType")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("endDate", "", "", "End date")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Int64("offset", 0, "Offset")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().String("endDate", "", "End date")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Int64P("pageSize", "", 1, "Page size")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Int64("pageSize", 1, "Page size")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().String("startDate", "", "Start date")
 	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("startDate")
 }

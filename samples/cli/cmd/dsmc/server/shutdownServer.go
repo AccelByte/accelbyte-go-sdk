@@ -51,8 +51,8 @@ var ShutdownServerCmd = &cobra.Command{
 }
 
 func init() {
-	ShutdownServerCmd.Flags().StringP("body", "", "", "Body")
+	ShutdownServerCmd.Flags().String("body", "", "Body")
 	_ = ShutdownServerCmd.MarkFlagRequired("body")
-	ShutdownServerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ShutdownServerCmd.Flags().String("namespace", "", "Namespace")
 	_ = ShutdownServerCmd.MarkFlagRequired("namespace")
 }

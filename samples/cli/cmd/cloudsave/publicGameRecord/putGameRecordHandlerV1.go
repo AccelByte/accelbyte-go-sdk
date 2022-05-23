@@ -53,10 +53,10 @@ var PutGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PutGameRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
+	PutGameRecordHandlerV1Cmd.Flags().String("body", "", "Body")
 	_ = PutGameRecordHandlerV1Cmd.MarkFlagRequired("body")
-	PutGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	PutGameRecordHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = PutGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	PutGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PutGameRecordHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PutGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

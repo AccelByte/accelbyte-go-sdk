@@ -43,6 +43,6 @@ var AdminGetThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetThirdPartyConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetThirdPartyConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

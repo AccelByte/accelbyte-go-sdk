@@ -45,8 +45,8 @@ var GetSessionHistoryDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	GetSessionHistoryDetailedCmd.Flags().StringP("matchID", "", "", "Match ID")
+	GetSessionHistoryDetailedCmd.Flags().String("matchID", "", "Match ID")
 	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("matchID")
-	GetSessionHistoryDetailedCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetSessionHistoryDetailedCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("namespace")
 }

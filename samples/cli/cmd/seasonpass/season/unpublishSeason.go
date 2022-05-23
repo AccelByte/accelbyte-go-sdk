@@ -47,9 +47,9 @@ var UnpublishSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	UnpublishSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UnpublishSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = UnpublishSeasonCmd.MarkFlagRequired("namespace")
-	UnpublishSeasonCmd.Flags().StringP("seasonId", "", "", "Season id")
+	UnpublishSeasonCmd.Flags().String("seasonId", "", "Season id")
 	_ = UnpublishSeasonCmd.MarkFlagRequired("seasonId")
-	UnpublishSeasonCmd.Flags().BoolP("force", "", false, "Force")
+	UnpublishSeasonCmd.Flags().Bool("force", false, "Force")
 }

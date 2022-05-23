@@ -55,9 +55,9 @@ var CreateCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCategoryCmd.Flags().StringP("body", "", "", "Body")
-	CreateCategoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateCategoryCmd.Flags().String("body", "", "Body")
+	CreateCategoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCategoryCmd.MarkFlagRequired("namespace")
-	CreateCategoryCmd.Flags().StringP("storeId", "", "", "Store id")
+	CreateCategoryCmd.Flags().String("storeId", "", "Store id")
 	_ = CreateCategoryCmd.MarkFlagRequired("storeId")
 }

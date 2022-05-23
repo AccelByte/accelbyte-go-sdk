@@ -45,8 +45,8 @@ var PublicCreateJusticeUserCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateJusticeUserCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCreateJusticeUserCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCreateJusticeUserCmd.MarkFlagRequired("namespace")
-	PublicCreateJusticeUserCmd.Flags().StringP("targetNamespace", "", "", "Target namespace")
+	PublicCreateJusticeUserCmd.Flags().String("targetNamespace", "", "Target namespace")
 	_ = PublicCreateJusticeUserCmd.MarkFlagRequired("targetNamespace")
 }

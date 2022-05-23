@@ -41,6 +41,6 @@ var RemoveRoleAdminCmd = &cobra.Command{
 }
 
 func init() {
-	RemoveRoleAdminCmd.Flags().StringP("roleId", "", "", "Role id")
+	RemoveRoleAdminCmd.Flags().String("roleId", "", "Role id")
 	_ = RemoveRoleAdminCmd.MarkFlagRequired("roleId")
 }

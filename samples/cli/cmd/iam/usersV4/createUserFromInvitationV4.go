@@ -55,10 +55,10 @@ var CreateUserFromInvitationV4Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserFromInvitationV4Cmd.Flags().StringP("body", "", "", "Body")
+	CreateUserFromInvitationV4Cmd.Flags().String("body", "", "Body")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("body")
-	CreateUserFromInvitationV4Cmd.Flags().StringP("invitationId", "", "", "Invitation id")
+	CreateUserFromInvitationV4Cmd.Flags().String("invitationId", "", "Invitation id")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("invitationId")
-	CreateUserFromInvitationV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateUserFromInvitationV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("namespace")
 }

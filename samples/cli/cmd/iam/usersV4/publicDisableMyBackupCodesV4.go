@@ -41,6 +41,6 @@ var PublicDisableMyBackupCodesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicDisableMyBackupCodesV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicDisableMyBackupCodesV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDisableMyBackupCodesV4Cmd.MarkFlagRequired("namespace")
 }

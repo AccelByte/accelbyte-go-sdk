@@ -55,9 +55,9 @@ var SyncEpicGamesInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncEpicGamesInventoryCmd.Flags().StringP("body", "", "", "Body")
-	SyncEpicGamesInventoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SyncEpicGamesInventoryCmd.Flags().String("body", "", "Body")
+	SyncEpicGamesInventoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("namespace")
-	SyncEpicGamesInventoryCmd.Flags().StringP("userId", "", "", "User id")
+	SyncEpicGamesInventoryCmd.Flags().String("userId", "", "User id")
 	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("userId")
 }

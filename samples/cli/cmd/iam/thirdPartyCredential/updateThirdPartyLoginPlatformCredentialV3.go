@@ -55,10 +55,10 @@ var UpdateThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "", "", "Body")
+	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().String("body", "", "Body")
 	_ = UpdateThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("body")
-	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	UpdateThirdPartyLoginPlatformCredentialV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = UpdateThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

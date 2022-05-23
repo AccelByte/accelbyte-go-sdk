@@ -45,8 +45,8 @@ var RejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "", "", "User id")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().String("userId", "", "User id")
 	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
 }

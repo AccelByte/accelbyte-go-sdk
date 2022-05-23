@@ -45,7 +45,7 @@ var ListCategoriesBasicCmd = &cobra.Command{
 }
 
 func init() {
-	ListCategoriesBasicCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListCategoriesBasicCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListCategoriesBasicCmd.MarkFlagRequired("namespace")
-	ListCategoriesBasicCmd.Flags().StringP("storeId", "", "", "Store id")
+	ListCategoriesBasicCmd.Flags().String("storeId", "", "Store id")
 }

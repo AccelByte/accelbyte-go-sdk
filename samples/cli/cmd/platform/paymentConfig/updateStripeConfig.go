@@ -57,9 +57,9 @@ var UpdateStripeConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStripeConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateStripeConfigCmd.Flags().StringP("id", "", "", "Id")
+	UpdateStripeConfigCmd.Flags().String("body", "", "Body")
+	UpdateStripeConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateStripeConfigCmd.MarkFlagRequired("id")
-	UpdateStripeConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
-	UpdateStripeConfigCmd.Flags().BoolP("validate", "", false, "Validate")
+	UpdateStripeConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
+	UpdateStripeConfigCmd.Flags().Bool("validate", false, "Validate")
 }

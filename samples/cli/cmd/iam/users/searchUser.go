@@ -45,7 +45,7 @@ var SearchUserCmd = &cobra.Command{
 }
 
 func init() {
-	SearchUserCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SearchUserCmd.Flags().String("namespace", "", "Namespace")
 	_ = SearchUserCmd.MarkFlagRequired("namespace")
-	SearchUserCmd.Flags().StringP("query", "", "", "Query")
+	SearchUserCmd.Flags().String("query", "", "Query")
 }

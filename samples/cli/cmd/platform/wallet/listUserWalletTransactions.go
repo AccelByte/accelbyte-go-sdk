@@ -51,12 +51,12 @@ var ListUserWalletTransactionsCmd = &cobra.Command{
 }
 
 func init() {
-	ListUserWalletTransactionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListUserWalletTransactionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("namespace")
-	ListUserWalletTransactionsCmd.Flags().StringP("userId", "", "", "User id")
+	ListUserWalletTransactionsCmd.Flags().String("userId", "", "User id")
 	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("userId")
-	ListUserWalletTransactionsCmd.Flags().StringP("walletId", "", "", "Wallet id")
+	ListUserWalletTransactionsCmd.Flags().String("walletId", "", "Wallet id")
 	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("walletId")
-	ListUserWalletTransactionsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	ListUserWalletTransactionsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	ListUserWalletTransactionsCmd.Flags().Int32("limit", 20, "Limit")
+	ListUserWalletTransactionsCmd.Flags().Int32("offset", 0, "Offset")
 }

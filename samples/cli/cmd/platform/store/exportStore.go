@@ -43,8 +43,8 @@ var ExportStoreCmd = &cobra.Command{
 }
 
 func init() {
-	ExportStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ExportStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = ExportStoreCmd.MarkFlagRequired("namespace")
-	ExportStoreCmd.Flags().StringP("storeId", "", "", "Store id")
+	ExportStoreCmd.Flags().String("storeId", "", "Store id")
 	_ = ExportStoreCmd.MarkFlagRequired("storeId")
 }

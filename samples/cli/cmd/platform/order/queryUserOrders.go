@@ -53,12 +53,12 @@ var QueryUserOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserOrdersCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryUserOrdersCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryUserOrdersCmd.MarkFlagRequired("namespace")
-	QueryUserOrdersCmd.Flags().StringP("userId", "", "", "User id")
+	QueryUserOrdersCmd.Flags().String("userId", "", "User id")
 	_ = QueryUserOrdersCmd.MarkFlagRequired("userId")
-	QueryUserOrdersCmd.Flags().StringP("itemId", "", "", "Item id")
-	QueryUserOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryUserOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryUserOrdersCmd.Flags().StringP("status", "", "", "Status")
+	QueryUserOrdersCmd.Flags().String("itemId", "", "Item id")
+	QueryUserOrdersCmd.Flags().Int32("limit", 20, "Limit")
+	QueryUserOrdersCmd.Flags().Int32("offset", 0, "Offset")
+	QueryUserOrdersCmd.Flags().String("status", "", "Status")
 }

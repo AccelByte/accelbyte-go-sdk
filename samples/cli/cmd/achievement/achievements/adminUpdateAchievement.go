@@ -55,10 +55,10 @@ var AdminUpdateAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAchievementCmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateAchievementCmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("body")
-	AdminUpdateAchievementCmd.Flags().StringP("achievementCode", "", "", "Achievement code")
+	AdminUpdateAchievementCmd.Flags().String("achievementCode", "", "Achievement code")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminUpdateAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUpdateAchievementCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("namespace")
 }

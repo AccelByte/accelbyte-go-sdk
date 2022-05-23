@@ -53,9 +53,9 @@ var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("body", "", "", "Body")
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicSyncPsnDlcInventoryCmd.Flags().String("body", "", "Body")
+	PublicSyncPsnDlcInventoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("namespace")
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "", "", "User id")
+	PublicSyncPsnDlcInventoryCmd.Flags().String("userId", "", "User id")
 	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("userId")
 }

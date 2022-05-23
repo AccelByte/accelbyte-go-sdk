@@ -43,8 +43,8 @@ var DownloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadServerLogsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DownloadServerLogsCmd.Flags().String("namespace", "", "Namespace")
 	_ = DownloadServerLogsCmd.MarkFlagRequired("namespace")
-	DownloadServerLogsCmd.Flags().StringP("podName", "", "", "Pod name")
+	DownloadServerLogsCmd.Flags().String("podName", "", "Pod name")
 	_ = DownloadServerLogsCmd.MarkFlagRequired("podName")
 }

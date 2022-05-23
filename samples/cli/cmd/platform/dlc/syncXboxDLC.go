@@ -53,9 +53,9 @@ var SyncXboxDLCCmd = &cobra.Command{
 }
 
 func init() {
-	SyncXboxDLCCmd.Flags().StringP("body", "", "", "Body")
-	SyncXboxDLCCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SyncXboxDLCCmd.Flags().String("body", "", "Body")
+	SyncXboxDLCCmd.Flags().String("namespace", "", "Namespace")
 	_ = SyncXboxDLCCmd.MarkFlagRequired("namespace")
-	SyncXboxDLCCmd.Flags().StringP("userId", "", "", "User id")
+	SyncXboxDLCCmd.Flags().String("userId", "", "User id")
 	_ = SyncXboxDLCCmd.MarkFlagRequired("userId")
 }

@@ -61,8 +61,8 @@ var ImportAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportAchievementsCmd.Flags().StringP("file", "", "", "File")
-	ImportAchievementsCmd.Flags().StringP("strategy", "", "", "Strategy")
-	ImportAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ImportAchievementsCmd.Flags().String("file", "", "File")
+	ImportAchievementsCmd.Flags().String("strategy", "", "Strategy")
+	ImportAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportAchievementsCmd.MarkFlagRequired("namespace")
 }

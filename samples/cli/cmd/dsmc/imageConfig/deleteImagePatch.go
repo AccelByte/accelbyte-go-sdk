@@ -47,12 +47,12 @@ var DeleteImagePatchCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteImagePatchCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteImagePatchCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteImagePatchCmd.MarkFlagRequired("namespace")
-	DeleteImagePatchCmd.Flags().StringP("imageURI", "", "", "Image URI")
+	DeleteImagePatchCmd.Flags().String("imageURI", "", "Image URI")
 	_ = DeleteImagePatchCmd.MarkFlagRequired("imageURI")
-	DeleteImagePatchCmd.Flags().StringP("version", "", "", "Version")
+	DeleteImagePatchCmd.Flags().String("version", "", "Version")
 	_ = DeleteImagePatchCmd.MarkFlagRequired("version")
-	DeleteImagePatchCmd.Flags().StringP("versionPatch", "", "", "Version patch")
+	DeleteImagePatchCmd.Flags().String("versionPatch", "", "Version patch")
 	_ = DeleteImagePatchCmd.MarkFlagRequired("versionPatch")
 }

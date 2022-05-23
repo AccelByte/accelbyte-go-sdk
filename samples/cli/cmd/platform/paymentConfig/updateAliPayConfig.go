@@ -57,9 +57,9 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAliPayConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateAliPayConfigCmd.Flags().StringP("id", "", "", "Id")
+	UpdateAliPayConfigCmd.Flags().String("body", "", "Body")
+	UpdateAliPayConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateAliPayConfigCmd.MarkFlagRequired("id")
-	UpdateAliPayConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
-	UpdateAliPayConfigCmd.Flags().BoolP("validate", "", false, "Validate")
+	UpdateAliPayConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
+	UpdateAliPayConfigCmd.Flags().Bool("validate", false, "Validate")
 }

@@ -49,10 +49,10 @@ var GetAllTimeLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

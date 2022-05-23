@@ -53,11 +53,11 @@ var QueryUncategorizedItemsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUncategorizedItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryUncategorizedItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryUncategorizedItemsCmd.MarkFlagRequired("namespace")
-	QueryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	QueryUncategorizedItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryUncategorizedItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryUncategorizedItemsCmd.Flags().StringP("sortBy", "", "", "Sort by")
-	QueryUncategorizedItemsCmd.Flags().StringP("storeId", "", "", "Store id")
+	QueryUncategorizedItemsCmd.Flags().Bool("activeOnly", false, "Active only")
+	QueryUncategorizedItemsCmd.Flags().Int32("limit", 20, "Limit")
+	QueryUncategorizedItemsCmd.Flags().Int32("offset", 0, "Offset")
+	QueryUncategorizedItemsCmd.Flags().String("sortBy", "", "Sort by")
+	QueryUncategorizedItemsCmd.Flags().String("storeId", "", "Store id")
 }

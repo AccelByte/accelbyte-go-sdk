@@ -53,8 +53,8 @@ var PublicBulkGetUsersCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkGetUsersCmd.Flags().StringP("body", "", "", "Body")
+	PublicBulkGetUsersCmd.Flags().String("body", "", "Body")
 	_ = PublicBulkGetUsersCmd.MarkFlagRequired("body")
-	PublicBulkGetUsersCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicBulkGetUsersCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicBulkGetUsersCmd.MarkFlagRequired("namespace")
 }

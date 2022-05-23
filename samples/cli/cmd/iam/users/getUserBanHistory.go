@@ -45,8 +45,8 @@ var GetUserBanHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserBanHistoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserBanHistoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserBanHistoryCmd.MarkFlagRequired("namespace")
-	GetUserBanHistoryCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserBanHistoryCmd.Flags().String("userId", "", "User id")
 	_ = GetUserBanHistoryCmd.MarkFlagRequired("userId")
 }

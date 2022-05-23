@@ -45,8 +45,8 @@ var DeleteCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteCurrencyCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	DeleteCurrencyCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = DeleteCurrencyCmd.MarkFlagRequired("currencyCode")
-	DeleteCurrencyCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteCurrencyCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteCurrencyCmd.MarkFlagRequired("namespace")
 }

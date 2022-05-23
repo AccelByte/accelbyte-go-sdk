@@ -49,10 +49,10 @@ var GetTodayLeaderboardRankingPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetTodayLeaderboardRankingPublicV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetTodayLeaderboardRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetTodayLeaderboardRankingPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetTodayLeaderboardRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	GetTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetTodayLeaderboardRankingPublicV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetTodayLeaderboardRankingPublicV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

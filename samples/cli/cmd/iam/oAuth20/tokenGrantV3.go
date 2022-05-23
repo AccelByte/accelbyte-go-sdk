@@ -70,15 +70,15 @@ var TokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantV3Cmd.Flags().StringP("deviceId", "", "", "Device id")
-	TokenGrantV3Cmd.Flags().StringP("clientId", "", "", "Client id")
-	TokenGrantV3Cmd.Flags().StringP("code", "", "", "Code")
-	TokenGrantV3Cmd.Flags().StringP("codeVerifier", "", "", "Code verifier")
-	TokenGrantV3Cmd.Flags().BoolP("extendExp", "", false, "Extend exp")
-	TokenGrantV3Cmd.Flags().StringP("password", "", "", "Password")
-	TokenGrantV3Cmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
-	TokenGrantV3Cmd.Flags().StringP("refreshToken", "", "", "Refresh token")
-	TokenGrantV3Cmd.Flags().StringP("username", "", "", "Username")
-	TokenGrantV3Cmd.Flags().StringP("grantType", "", "", "Grant type")
+	TokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
+	TokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
+	TokenGrantV3Cmd.Flags().String("code", "", "Code")
+	TokenGrantV3Cmd.Flags().String("codeVerifier", "", "Code verifier")
+	TokenGrantV3Cmd.Flags().Bool("extendExp", false, "Extend exp")
+	TokenGrantV3Cmd.Flags().String("password", "", "Password")
+	TokenGrantV3Cmd.Flags().String("redirectUri", "", "Redirect uri")
+	TokenGrantV3Cmd.Flags().String("refreshToken", "", "Refresh token")
+	TokenGrantV3Cmd.Flags().String("username", "", "Username")
+	TokenGrantV3Cmd.Flags().String("grantType", "", "Grant type")
 	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

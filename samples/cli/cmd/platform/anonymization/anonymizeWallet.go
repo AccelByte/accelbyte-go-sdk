@@ -43,8 +43,8 @@ var AnonymizeWalletCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeWalletCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AnonymizeWalletCmd.Flags().String("namespace", "", "Namespace")
 	_ = AnonymizeWalletCmd.MarkFlagRequired("namespace")
-	AnonymizeWalletCmd.Flags().StringP("userId", "", "", "User id")
+	AnonymizeWalletCmd.Flags().String("userId", "", "User id")
 	_ = AnonymizeWalletCmd.MarkFlagRequired("userId")
 }

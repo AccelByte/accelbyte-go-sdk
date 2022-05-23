@@ -43,6 +43,6 @@ var AdminGetConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetConfigV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetConfigV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetConfigV1Cmd.MarkFlagRequired("namespace")
 }

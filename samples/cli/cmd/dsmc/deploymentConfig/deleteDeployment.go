@@ -43,8 +43,8 @@ var DeleteDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDeploymentCmd.Flags().StringP("deployment", "", "", "Deployment")
+	DeleteDeploymentCmd.Flags().String("deployment", "", "Deployment")
 	_ = DeleteDeploymentCmd.MarkFlagRequired("deployment")
-	DeleteDeploymentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteDeploymentCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteDeploymentCmd.MarkFlagRequired("namespace")
 }

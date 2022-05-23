@@ -47,9 +47,9 @@ var GetDescendantCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetDescendantCategoriesCmd.Flags().StringP("categoryPath", "", "", "Category path")
+	GetDescendantCategoriesCmd.Flags().String("categoryPath", "", "Category path")
 	_ = GetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
-	GetDescendantCategoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetDescendantCategoriesCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetDescendantCategoriesCmd.MarkFlagRequired("namespace")
-	GetDescendantCategoriesCmd.Flags().StringP("storeId", "", "", "Store id")
+	GetDescendantCategoriesCmd.Flags().String("storeId", "", "Store id")
 }

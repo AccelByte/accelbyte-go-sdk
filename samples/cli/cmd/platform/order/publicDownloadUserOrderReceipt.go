@@ -45,10 +45,10 @@ var PublicDownloadUserOrderReceiptCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicDownloadUserOrderReceiptCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("namespace")
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("orderNo", "", "", "Order no")
+	PublicDownloadUserOrderReceiptCmd.Flags().String("orderNo", "", "Order no")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("orderNo")
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("userId", "", "", "User id")
+	PublicDownloadUserOrderReceiptCmd.Flags().String("userId", "", "User id")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("userId")
 }

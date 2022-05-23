@@ -43,6 +43,6 @@ var ListStoresCmd = &cobra.Command{
 }
 
 func init() {
-	ListStoresCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListStoresCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListStoresCmd.MarkFlagRequired("namespace")
 }

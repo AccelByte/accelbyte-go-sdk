@@ -55,9 +55,9 @@ var PublicReconcilePlayStationStoreCmd = &cobra.Command{
 }
 
 func init() {
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("body", "", "", "Body")
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicReconcilePlayStationStoreCmd.Flags().String("body", "", "Body")
+	PublicReconcilePlayStationStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("namespace")
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("userId", "", "", "User id")
+	PublicReconcilePlayStationStoreCmd.Flags().String("userId", "", "User id")
 	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("userId")
 }

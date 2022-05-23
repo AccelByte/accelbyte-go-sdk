@@ -55,9 +55,9 @@ var GrantUserTierCmd = &cobra.Command{
 }
 
 func init() {
-	GrantUserTierCmd.Flags().StringP("body", "", "", "Body")
-	GrantUserTierCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GrantUserTierCmd.Flags().String("body", "", "Body")
+	GrantUserTierCmd.Flags().String("namespace", "", "Namespace")
 	_ = GrantUserTierCmd.MarkFlagRequired("namespace")
-	GrantUserTierCmd.Flags().StringP("userId", "", "", "User id")
+	GrantUserTierCmd.Flags().String("userId", "", "User id")
 	_ = GrantUserTierCmd.MarkFlagRequired("userId")
 }

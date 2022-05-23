@@ -49,6 +49,6 @@ var AdminUpdateInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateInputValidationsCmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateInputValidationsCmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateInputValidationsCmd.MarkFlagRequired("body")
 }

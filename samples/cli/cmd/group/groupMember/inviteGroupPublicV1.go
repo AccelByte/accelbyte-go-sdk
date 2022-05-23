@@ -45,8 +45,8 @@ var InviteGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	InviteGroupPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	InviteGroupPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("namespace")
-	InviteGroupPublicV1Cmd.Flags().StringP("userId", "", "", "User id")
+	InviteGroupPublicV1Cmd.Flags().String("userId", "", "User id")
 	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("userId")
 }

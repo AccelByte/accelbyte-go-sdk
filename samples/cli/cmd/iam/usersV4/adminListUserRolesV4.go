@@ -45,8 +45,8 @@ var AdminListUserRolesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUserRolesV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminListUserRolesV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("namespace")
-	AdminListUserRolesV4Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminListUserRolesV4Cmd.Flags().String("userId", "", "User id")
 	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("userId")
 }

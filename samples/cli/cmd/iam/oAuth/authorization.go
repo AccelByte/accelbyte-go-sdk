@@ -61,14 +61,14 @@ var AuthorizationCmd = &cobra.Command{
 }
 
 func init() {
-	AuthorizationCmd.Flags().StringP("login", "", "", "Login")
-	AuthorizationCmd.Flags().StringP("password", "", "", "Password")
-	AuthorizationCmd.Flags().StringP("scope", "", "", "Scope")
-	AuthorizationCmd.Flags().StringP("state", "", "", "State")
-	AuthorizationCmd.Flags().StringP("clientId", "", "", "Client id")
+	AuthorizationCmd.Flags().String("login", "", "Login")
+	AuthorizationCmd.Flags().String("password", "", "Password")
+	AuthorizationCmd.Flags().String("scope", "", "Scope")
+	AuthorizationCmd.Flags().String("state", "", "State")
+	AuthorizationCmd.Flags().String("clientId", "", "Client id")
 	_ = AuthorizationCmd.MarkFlagRequired("client_id")
-	AuthorizationCmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
+	AuthorizationCmd.Flags().String("redirectUri", "", "Redirect uri")
 	_ = AuthorizationCmd.MarkFlagRequired("redirect_uri")
-	AuthorizationCmd.Flags().StringP("responseType", "", "", "Response type")
+	AuthorizationCmd.Flags().String("responseType", "", "Response type")
 	_ = AuthorizationCmd.MarkFlagRequired("response_type")
 }

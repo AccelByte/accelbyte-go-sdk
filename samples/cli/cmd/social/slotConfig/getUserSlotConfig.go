@@ -45,8 +45,8 @@ var GetUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserSlotConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserSlotConfigCmd.MarkFlagRequired("namespace")
-	GetUserSlotConfigCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserSlotConfigCmd.Flags().String("userId", "", "User id")
 	_ = GetUserSlotConfigCmd.MarkFlagRequired("userId")
 }

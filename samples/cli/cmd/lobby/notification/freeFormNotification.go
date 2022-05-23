@@ -51,8 +51,8 @@ var FreeFormNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	FreeFormNotificationCmd.Flags().StringP("body", "", "", "Body")
+	FreeFormNotificationCmd.Flags().String("body", "", "Body")
 	_ = FreeFormNotificationCmd.MarkFlagRequired("body")
-	FreeFormNotificationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	FreeFormNotificationCmd.Flags().String("namespace", "", "Namespace")
 	_ = FreeFormNotificationCmd.MarkFlagRequired("namespace")
 }

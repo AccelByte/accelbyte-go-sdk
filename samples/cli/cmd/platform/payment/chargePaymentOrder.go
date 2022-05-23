@@ -55,9 +55,9 @@ var ChargePaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	ChargePaymentOrderCmd.Flags().StringP("body", "", "", "Body")
-	ChargePaymentOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ChargePaymentOrderCmd.Flags().String("body", "", "Body")
+	ChargePaymentOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = ChargePaymentOrderCmd.MarkFlagRequired("namespace")
-	ChargePaymentOrderCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
+	ChargePaymentOrderCmd.Flags().String("paymentOrderNo", "", "Payment order no")
 	_ = ChargePaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

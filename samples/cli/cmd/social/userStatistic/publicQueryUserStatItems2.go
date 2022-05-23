@@ -63,11 +63,11 @@ var PublicQueryUserStatItems2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserStatItems2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicQueryUserStatItems2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicQueryUserStatItems2Cmd.MarkFlagRequired("namespace")
-	PublicQueryUserStatItems2Cmd.Flags().StringP("userId", "", "", "User id")
+	PublicQueryUserStatItems2Cmd.Flags().String("userId", "", "User id")
 	_ = PublicQueryUserStatItems2Cmd.MarkFlagRequired("userId")
-	PublicQueryUserStatItems2Cmd.Flags().StringP("additionalKey", "", "", "Additional key")
-	PublicQueryUserStatItems2Cmd.Flags().StringP("statCodes", "", "", "Stat codes")
-	PublicQueryUserStatItems2Cmd.Flags().StringP("tags", "", "", "Tags")
+	PublicQueryUserStatItems2Cmd.Flags().String("additionalKey", "", "Additional key")
+	PublicQueryUserStatItems2Cmd.Flags().String("statCodes", "", "Stat codes")
+	PublicQueryUserStatItems2Cmd.Flags().String("tags", "", "Tags")
 }

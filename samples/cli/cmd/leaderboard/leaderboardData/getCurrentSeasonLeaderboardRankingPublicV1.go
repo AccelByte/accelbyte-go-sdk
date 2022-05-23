@@ -49,10 +49,10 @@ var GetCurrentSeasonLeaderboardRankingPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetCurrentSeasonLeaderboardRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCurrentSeasonLeaderboardRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetCurrentSeasonLeaderboardRankingPublicV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

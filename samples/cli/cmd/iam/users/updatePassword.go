@@ -53,10 +53,10 @@ var UpdatePasswordCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePasswordCmd.Flags().StringP("body", "", "", "Body")
+	UpdatePasswordCmd.Flags().String("body", "", "Body")
 	_ = UpdatePasswordCmd.MarkFlagRequired("body")
-	UpdatePasswordCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdatePasswordCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePasswordCmd.MarkFlagRequired("namespace")
-	UpdatePasswordCmd.Flags().StringP("userId", "", "", "User id")
+	UpdatePasswordCmd.Flags().String("userId", "", "User id")
 	_ = UpdatePasswordCmd.MarkFlagRequired("userId")
 }

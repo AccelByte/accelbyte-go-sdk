@@ -53,7 +53,7 @@ var CreateStoreCmd = &cobra.Command{
 }
 
 func init() {
-	CreateStoreCmd.Flags().StringP("body", "", "", "Body")
-	CreateStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateStoreCmd.Flags().String("body", "", "Body")
+	CreateStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateStoreCmd.MarkFlagRequired("namespace")
 }

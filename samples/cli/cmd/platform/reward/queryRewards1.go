@@ -51,10 +51,10 @@ var QueryRewards1Cmd = &cobra.Command{
 }
 
 func init() {
-	QueryRewards1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryRewards1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryRewards1Cmd.MarkFlagRequired("namespace")
-	QueryRewards1Cmd.Flags().StringP("eventTopic", "", "", "Event topic")
-	QueryRewards1Cmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryRewards1Cmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryRewards1Cmd.Flags().StringP("sortBy", "", "", "Sort by")
+	QueryRewards1Cmd.Flags().String("eventTopic", "", "Event topic")
+	QueryRewards1Cmd.Flags().Int32("limit", 20, "Limit")
+	QueryRewards1Cmd.Flags().Int32("offset", 0, "Offset")
+	QueryRewards1Cmd.Flags().String("sortBy", "", "Sort by")
 }

@@ -53,7 +53,7 @@ var CreateRewardCmd = &cobra.Command{
 }
 
 func init() {
-	CreateRewardCmd.Flags().StringP("body", "", "", "Body")
-	CreateRewardCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateRewardCmd.Flags().String("body", "", "Body")
+	CreateRewardCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateRewardCmd.MarkFlagRequired("namespace")
 }

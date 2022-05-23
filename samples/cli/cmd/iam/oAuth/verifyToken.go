@@ -52,6 +52,6 @@ var VerifyTokenCmd = &cobra.Command{
 }
 
 func init() {
-	VerifyTokenCmd.Flags().StringP("token", "", "", "Token")
+	VerifyTokenCmd.Flags().String("token", "", "Token")
 	_ = VerifyTokenCmd.MarkFlagRequired("token")
 }

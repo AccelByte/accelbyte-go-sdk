@@ -55,9 +55,9 @@ var PublicClaimUserRewardCmd = &cobra.Command{
 }
 
 func init() {
-	PublicClaimUserRewardCmd.Flags().StringP("body", "", "", "Body")
-	PublicClaimUserRewardCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicClaimUserRewardCmd.Flags().String("body", "", "Body")
+	PublicClaimUserRewardCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicClaimUserRewardCmd.MarkFlagRequired("namespace")
-	PublicClaimUserRewardCmd.Flags().StringP("userId", "", "", "User id")
+	PublicClaimUserRewardCmd.Flags().String("userId", "", "User id")
 	_ = PublicClaimUserRewardCmd.MarkFlagRequired("userId")
 }

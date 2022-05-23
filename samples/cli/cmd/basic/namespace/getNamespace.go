@@ -45,7 +45,7 @@ var GetNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetNamespaceCmd.MarkFlagRequired("namespace")
-	GetNamespaceCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetNamespaceCmd.Flags().Bool("activeOnly", false, "Active only")
 }

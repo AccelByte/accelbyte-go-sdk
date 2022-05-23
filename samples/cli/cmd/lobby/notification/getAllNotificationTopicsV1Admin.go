@@ -49,9 +49,9 @@ var GetAllNotificationTopicsV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetAllNotificationTopicsV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAllNotificationTopicsV1AdminCmd.MarkFlagRequired("namespace")
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("after", "", "0", "After")
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("before", "", "0", "Before")
-	GetAllNotificationTopicsV1AdminCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetAllNotificationTopicsV1AdminCmd.Flags().String("after", "0", "After")
+	GetAllNotificationTopicsV1AdminCmd.Flags().String("before", "0", "Before")
+	GetAllNotificationTopicsV1AdminCmd.Flags().Int64("limit", 20, "Limit")
 }

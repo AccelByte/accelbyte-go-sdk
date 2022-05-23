@@ -53,9 +53,9 @@ var MockFulfillIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	MockFulfillIAPItemCmd.Flags().StringP("body", "", "", "Body")
-	MockFulfillIAPItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	MockFulfillIAPItemCmd.Flags().String("body", "", "Body")
+	MockFulfillIAPItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = MockFulfillIAPItemCmd.MarkFlagRequired("namespace")
-	MockFulfillIAPItemCmd.Flags().StringP("userId", "", "", "User id")
+	MockFulfillIAPItemCmd.Flags().String("userId", "", "User id")
 	_ = MockFulfillIAPItemCmd.MarkFlagRequired("userId")
 }

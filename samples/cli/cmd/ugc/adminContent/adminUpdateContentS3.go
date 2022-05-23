@@ -59,14 +59,14 @@ var AdminUpdateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateContentS3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateContentS3Cmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateContentS3Cmd.MarkFlagRequired("body")
-	AdminUpdateContentS3Cmd.Flags().StringP("channelId", "", "", "Channel id")
+	AdminUpdateContentS3Cmd.Flags().String("channelId", "", "Channel id")
 	_ = AdminUpdateContentS3Cmd.MarkFlagRequired("channelId")
-	AdminUpdateContentS3Cmd.Flags().StringP("contentId", "", "", "Content id")
+	AdminUpdateContentS3Cmd.Flags().String("contentId", "", "Content id")
 	_ = AdminUpdateContentS3Cmd.MarkFlagRequired("contentId")
-	AdminUpdateContentS3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUpdateContentS3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUpdateContentS3Cmd.MarkFlagRequired("namespace")
-	AdminUpdateContentS3Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminUpdateContentS3Cmd.Flags().String("userId", "", "User id")
 	_ = AdminUpdateContentS3Cmd.MarkFlagRequired("userId")
 }

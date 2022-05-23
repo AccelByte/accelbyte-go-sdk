@@ -45,9 +45,9 @@ var DeleteItemCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteItemCmd.Flags().StringP("itemId", "", "", "Item id")
+	DeleteItemCmd.Flags().String("itemId", "", "Item id")
 	_ = DeleteItemCmd.MarkFlagRequired("itemId")
-	DeleteItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteItemCmd.MarkFlagRequired("namespace")
-	DeleteItemCmd.Flags().StringP("storeId", "", "", "Store id")
+	DeleteItemCmd.Flags().String("storeId", "", "Store id")
 }

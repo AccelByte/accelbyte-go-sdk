@@ -47,12 +47,12 @@ var DeleteUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserPermissionCmd.Flags().Int64P("action", "", -1, "Action")
+	DeleteUserPermissionCmd.Flags().Int64("action", -1, "Action")
 	_ = DeleteUserPermissionCmd.MarkFlagRequired("action")
-	DeleteUserPermissionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteUserPermissionCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteUserPermissionCmd.MarkFlagRequired("namespace")
-	DeleteUserPermissionCmd.Flags().StringP("resource", "", "", "Resource")
+	DeleteUserPermissionCmd.Flags().String("resource", "", "Resource")
 	_ = DeleteUserPermissionCmd.MarkFlagRequired("resource")
-	DeleteUserPermissionCmd.Flags().StringP("userId", "", "", "User id")
+	DeleteUserPermissionCmd.Flags().String("userId", "", "User id")
 	_ = DeleteUserPermissionCmd.MarkFlagRequired("userId")
 }

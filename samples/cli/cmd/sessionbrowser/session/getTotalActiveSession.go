@@ -45,7 +45,7 @@ var GetTotalActiveSessionCmd = &cobra.Command{
 }
 
 func init() {
-	GetTotalActiveSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetTotalActiveSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetTotalActiveSessionCmd.MarkFlagRequired("namespace")
-	GetTotalActiveSessionCmd.Flags().StringP("sessionType", "", "", "Session type")
+	GetTotalActiveSessionCmd.Flags().String("sessionType", "", "Session type")
 }

@@ -45,8 +45,8 @@ var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserNamespaceSlotsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("namespace")
-	PublicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserNamespaceSlotsCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("userId")
 }

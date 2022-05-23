@@ -53,8 +53,8 @@ var AdminBulkCheckValidUserIDV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminBulkCheckValidUserIDV4Cmd.Flags().StringP("body", "", "", "Body")
+	AdminBulkCheckValidUserIDV4Cmd.Flags().String("body", "", "Body")
 	_ = AdminBulkCheckValidUserIDV4Cmd.MarkFlagRequired("body")
-	AdminBulkCheckValidUserIDV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminBulkCheckValidUserIDV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminBulkCheckValidUserIDV4Cmd.MarkFlagRequired("namespace")
 }

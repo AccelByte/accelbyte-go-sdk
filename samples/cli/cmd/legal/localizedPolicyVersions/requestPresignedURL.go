@@ -53,7 +53,7 @@ var RequestPresignedURLCmd = &cobra.Command{
 }
 
 func init() {
-	RequestPresignedURLCmd.Flags().StringP("body", "", "", "Body")
-	RequestPresignedURLCmd.Flags().StringP("localizedPolicyVersionId", "", "", "Localized policy version id")
+	RequestPresignedURLCmd.Flags().String("body", "", "Body")
+	RequestPresignedURLCmd.Flags().String("localizedPolicyVersionId", "", "Localized policy version id")
 	_ = RequestPresignedURLCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

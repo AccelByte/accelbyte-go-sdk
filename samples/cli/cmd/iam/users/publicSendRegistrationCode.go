@@ -51,8 +51,8 @@ var PublicSendRegistrationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSendRegistrationCodeCmd.Flags().StringP("body", "", "", "Body")
+	PublicSendRegistrationCodeCmd.Flags().String("body", "", "Body")
 	_ = PublicSendRegistrationCodeCmd.MarkFlagRequired("body")
-	PublicSendRegistrationCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicSendRegistrationCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSendRegistrationCodeCmd.MarkFlagRequired("namespace")
 }

@@ -41,6 +41,6 @@ var DeleteTwitchIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTwitchIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteTwitchIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteTwitchIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -52,6 +52,6 @@ var TokenIntrospectionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenIntrospectionV3Cmd.Flags().StringP("token", "", "", "Token")
+	TokenIntrospectionV3Cmd.Flags().String("token", "", "Token")
 	_ = TokenIntrospectionV3Cmd.MarkFlagRequired("token")
 }

@@ -51,8 +51,8 @@ var NotificationWithTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	NotificationWithTemplateCmd.Flags().StringP("body", "", "", "Body")
+	NotificationWithTemplateCmd.Flags().String("body", "", "Body")
 	_ = NotificationWithTemplateCmd.MarkFlagRequired("body")
-	NotificationWithTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
+	NotificationWithTemplateCmd.Flags().String("namespace", "", "Namespace")
 	_ = NotificationWithTemplateCmd.MarkFlagRequired("namespace")
 }

@@ -53,9 +53,9 @@ var PublicReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	PublicReportUserCmd.Flags().StringP("body", "", "", "Body")
-	PublicReportUserCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicReportUserCmd.Flags().String("body", "", "Body")
+	PublicReportUserCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicReportUserCmd.MarkFlagRequired("namespace")
-	PublicReportUserCmd.Flags().StringP("userId", "", "", "User id")
+	PublicReportUserCmd.Flags().String("userId", "", "User id")
 	_ = PublicReportUserCmd.MarkFlagRequired("userId")
 }

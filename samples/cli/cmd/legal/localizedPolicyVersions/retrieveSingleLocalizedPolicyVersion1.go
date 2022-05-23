@@ -43,6 +43,6 @@ var RetrieveSingleLocalizedPolicyVersion1Cmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSingleLocalizedPolicyVersion1Cmd.Flags().StringP("localizedPolicyVersionId", "", "", "Localized policy version id")
+	RetrieveSingleLocalizedPolicyVersion1Cmd.Flags().String("localizedPolicyVersionId", "", "Localized policy version id")
 	_ = RetrieveSingleLocalizedPolicyVersion1Cmd.MarkFlagRequired("localizedPolicyVersionId")
 }

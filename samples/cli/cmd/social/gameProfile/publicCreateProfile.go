@@ -53,9 +53,9 @@ var PublicCreateProfileCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateProfileCmd.Flags().StringP("body", "", "", "Body")
-	PublicCreateProfileCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCreateProfileCmd.Flags().String("body", "", "Body")
+	PublicCreateProfileCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCreateProfileCmd.MarkFlagRequired("namespace")
-	PublicCreateProfileCmd.Flags().StringP("userId", "", "", "User id")
+	PublicCreateProfileCmd.Flags().String("userId", "", "User id")
 	_ = PublicCreateProfileCmd.MarkFlagRequired("userId")
 }

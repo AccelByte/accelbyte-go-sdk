@@ -51,8 +51,8 @@ var UpdateClientPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateClientPermissionCmd.Flags().StringP("body", "", "", "Body")
+	UpdateClientPermissionCmd.Flags().String("body", "", "Body")
 	_ = UpdateClientPermissionCmd.MarkFlagRequired("body")
-	UpdateClientPermissionCmd.Flags().StringP("clientId", "", "", "Client id")
+	UpdateClientPermissionCmd.Flags().String("clientId", "", "Client id")
 	_ = UpdateClientPermissionCmd.MarkFlagRequired("clientId")
 }

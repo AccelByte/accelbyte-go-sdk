@@ -49,6 +49,6 @@ var RevokeTokenCmd = &cobra.Command{
 }
 
 func init() {
-	RevokeTokenCmd.Flags().StringP("token", "", "", "Token")
+	RevokeTokenCmd.Flags().String("token", "", "Token")
 	_ = RevokeTokenCmd.MarkFlagRequired("token")
 }

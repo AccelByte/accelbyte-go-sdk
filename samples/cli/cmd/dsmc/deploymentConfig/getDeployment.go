@@ -45,8 +45,8 @@ var GetDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	GetDeploymentCmd.Flags().StringP("deployment", "", "", "Deployment")
+	GetDeploymentCmd.Flags().String("deployment", "", "Deployment")
 	_ = GetDeploymentCmd.MarkFlagRequired("deployment")
-	GetDeploymentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetDeploymentCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetDeploymentCmd.MarkFlagRequired("namespace")
 }

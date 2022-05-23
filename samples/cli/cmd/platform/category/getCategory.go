@@ -47,9 +47,9 @@ var GetCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetCategoryCmd.Flags().StringP("categoryPath", "", "", "Category path")
+	GetCategoryCmd.Flags().String("categoryPath", "", "Category path")
 	_ = GetCategoryCmd.MarkFlagRequired("categoryPath")
-	GetCategoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCategoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCategoryCmd.MarkFlagRequired("namespace")
-	GetCategoryCmd.Flags().StringP("storeId", "", "", "Store id")
+	GetCategoryCmd.Flags().String("storeId", "", "Store id")
 }

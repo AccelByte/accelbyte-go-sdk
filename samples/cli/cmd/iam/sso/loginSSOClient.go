@@ -43,7 +43,7 @@ var LoginSSOClientCmd = &cobra.Command{
 }
 
 func init() {
-	LoginSSOClientCmd.Flags().StringP("platformId", "", "", "Platform id")
+	LoginSSOClientCmd.Flags().String("platformId", "", "Platform id")
 	_ = LoginSSOClientCmd.MarkFlagRequired("platformId")
-	LoginSSOClientCmd.Flags().StringP("payload", "", "", "Payload")
+	LoginSSOClientCmd.Flags().String("payload", "", "Payload")
 }

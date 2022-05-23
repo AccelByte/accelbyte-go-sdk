@@ -47,8 +47,8 @@ var SingleAdminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SingleAdminGetContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = SingleAdminGetContentCmd.MarkFlagRequired("namespace")
-	SingleAdminGetContentCmd.Flags().Int64P("limit", "", 20, "Limit")
-	SingleAdminGetContentCmd.Flags().Int64P("offset", "", 0, "Offset")
+	SingleAdminGetContentCmd.Flags().Int64("limit", 20, "Limit")
+	SingleAdminGetContentCmd.Flags().Int64("offset", 0, "Offset")
 }

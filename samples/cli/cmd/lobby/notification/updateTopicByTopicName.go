@@ -53,10 +53,10 @@ var UpdateTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateTopicByTopicNameCmd.Flags().StringP("body", "", "", "Body")
+	UpdateTopicByTopicNameCmd.Flags().String("body", "", "Body")
 	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("body")
-	UpdateTopicByTopicNameCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateTopicByTopicNameCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	UpdateTopicByTopicNameCmd.Flags().StringP("topic", "", "", "Topic")
+	UpdateTopicByTopicNameCmd.Flags().String("topic", "", "Topic")
 	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

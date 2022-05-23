@@ -43,5 +43,5 @@ var PublicGetNamespacesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetNamespacesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	PublicGetNamespacesCmd.Flags().Bool("activeOnly", false, "Active only")
 }

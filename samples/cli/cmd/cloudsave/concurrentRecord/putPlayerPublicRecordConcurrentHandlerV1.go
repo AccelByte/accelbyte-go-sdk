@@ -55,12 +55,12 @@ var PutPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("body", "", "Body")
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
-	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("userId", "", "", "User id")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("userId", "", "User id")
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
 }

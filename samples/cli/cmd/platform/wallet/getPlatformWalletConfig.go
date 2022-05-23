@@ -45,8 +45,8 @@ var GetPlatformWalletConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPlatformWalletConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetPlatformWalletConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetPlatformWalletConfigCmd.MarkFlagRequired("namespace")
-	GetPlatformWalletConfigCmd.Flags().StringP("platform", "", "", "Platform")
+	GetPlatformWalletConfigCmd.Flags().String("platform", "", "Platform")
 	_ = GetPlatformWalletConfigCmd.MarkFlagRequired("platform")
 }

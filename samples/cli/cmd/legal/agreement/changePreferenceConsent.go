@@ -53,9 +53,9 @@ var ChangePreferenceConsentCmd = &cobra.Command{
 }
 
 func init() {
-	ChangePreferenceConsentCmd.Flags().StringP("body", "", "", "Body")
-	ChangePreferenceConsentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ChangePreferenceConsentCmd.Flags().String("body", "", "Body")
+	ChangePreferenceConsentCmd.Flags().String("namespace", "", "Namespace")
 	_ = ChangePreferenceConsentCmd.MarkFlagRequired("namespace")
-	ChangePreferenceConsentCmd.Flags().StringP("userId", "", "", "User id")
+	ChangePreferenceConsentCmd.Flags().String("userId", "", "User id")
 	_ = ChangePreferenceConsentCmd.MarkFlagRequired("userId")
 }

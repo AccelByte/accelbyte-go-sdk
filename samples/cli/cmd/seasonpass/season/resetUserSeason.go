@@ -43,8 +43,8 @@ var ResetUserSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	ResetUserSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ResetUserSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = ResetUserSeasonCmd.MarkFlagRequired("namespace")
-	ResetUserSeasonCmd.Flags().StringP("userId", "", "", "User id")
+	ResetUserSeasonCmd.Flags().String("userId", "", "User id")
 	_ = ResetUserSeasonCmd.MarkFlagRequired("userId")
 }

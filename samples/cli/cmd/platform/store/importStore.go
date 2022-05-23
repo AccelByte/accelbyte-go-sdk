@@ -61,8 +61,8 @@ var ImportStoreCmd = &cobra.Command{
 }
 
 func init() {
-	ImportStoreCmd.Flags().StringP("file", "", "", "File")
-	ImportStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ImportStoreCmd.Flags().String("file", "", "File")
+	ImportStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportStoreCmd.MarkFlagRequired("namespace")
-	ImportStoreCmd.Flags().StringP("storeId", "", "", "Store id")
+	ImportStoreCmd.Flags().String("storeId", "", "Store id")
 }

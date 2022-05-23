@@ -49,12 +49,12 @@ var FeatureItemCmd = &cobra.Command{
 }
 
 func init() {
-	FeatureItemCmd.Flags().StringP("feature", "", "", "Feature")
+	FeatureItemCmd.Flags().String("feature", "", "Feature")
 	_ = FeatureItemCmd.MarkFlagRequired("feature")
-	FeatureItemCmd.Flags().StringP("itemId", "", "", "Item id")
+	FeatureItemCmd.Flags().String("itemId", "", "Item id")
 	_ = FeatureItemCmd.MarkFlagRequired("itemId")
-	FeatureItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	FeatureItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = FeatureItemCmd.MarkFlagRequired("namespace")
-	FeatureItemCmd.Flags().StringP("storeId", "", "", "Store id")
+	FeatureItemCmd.Flags().String("storeId", "", "Store id")
 	_ = FeatureItemCmd.MarkFlagRequired("storeId")
 }

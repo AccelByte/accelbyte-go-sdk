@@ -45,8 +45,8 @@ var PublicBulkClaimUserRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkClaimUserRewardsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicBulkClaimUserRewardsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicBulkClaimUserRewardsCmd.MarkFlagRequired("namespace")
-	PublicBulkClaimUserRewardsCmd.Flags().StringP("userId", "", "", "User id")
+	PublicBulkClaimUserRewardsCmd.Flags().String("userId", "", "User id")
 	_ = PublicBulkClaimUserRewardsCmd.MarkFlagRequired("userId")
 }

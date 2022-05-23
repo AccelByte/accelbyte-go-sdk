@@ -51,8 +51,8 @@ var PublicMakeFactorMyDefaultV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicMakeFactorMyDefaultV4Cmd.Flags().StringP("factor", "", "", "Factor")
+	PublicMakeFactorMyDefaultV4Cmd.Flags().String("factor", "", "Factor")
 	_ = PublicMakeFactorMyDefaultV4Cmd.MarkFlagRequired("factor")
-	PublicMakeFactorMyDefaultV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicMakeFactorMyDefaultV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicMakeFactorMyDefaultV4Cmd.MarkFlagRequired("namespace")
 }

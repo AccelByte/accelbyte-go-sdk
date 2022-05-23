@@ -45,7 +45,7 @@ var RetrieveAllPolicyTypesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAllPolicyTypesCmd.Flags().Int32P("offset", "", 0, "Offset")
-	RetrieveAllPolicyTypesCmd.Flags().Int32P("limit", "", 20, "Limit")
+	RetrieveAllPolicyTypesCmd.Flags().Int32("offset", 0, "Offset")
+	RetrieveAllPolicyTypesCmd.Flags().Int32("limit", 20, "Limit")
 	_ = RetrieveAllPolicyTypesCmd.MarkFlagRequired("limit")
 }

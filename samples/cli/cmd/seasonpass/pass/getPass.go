@@ -47,10 +47,10 @@ var GetPassCmd = &cobra.Command{
 }
 
 func init() {
-	GetPassCmd.Flags().StringP("code", "", "", "Code")
+	GetPassCmd.Flags().String("code", "", "Code")
 	_ = GetPassCmd.MarkFlagRequired("code")
-	GetPassCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetPassCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetPassCmd.MarkFlagRequired("namespace")
-	GetPassCmd.Flags().StringP("seasonId", "", "", "Season id")
+	GetPassCmd.Flags().String("seasonId", "", "Season id")
 	_ = GetPassCmd.MarkFlagRequired("seasonId")
 }

@@ -45,8 +45,8 @@ var AdminGetPlayerBlockedPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetPlayerBlockedPlayersV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetPlayerBlockedPlayersV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetPlayerBlockedPlayersV1Cmd.MarkFlagRequired("namespace")
-	AdminGetPlayerBlockedPlayersV1Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetPlayerBlockedPlayersV1Cmd.Flags().String("userId", "", "User id")
 	_ = AdminGetPlayerBlockedPlayersV1Cmd.MarkFlagRequired("userId")
 }

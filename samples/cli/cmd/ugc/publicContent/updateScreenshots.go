@@ -57,12 +57,12 @@ var UpdateScreenshotsCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateScreenshotsCmd.Flags().StringP("body", "", "", "Body")
+	UpdateScreenshotsCmd.Flags().String("body", "", "Body")
 	_ = UpdateScreenshotsCmd.MarkFlagRequired("body")
-	UpdateScreenshotsCmd.Flags().StringP("contentId", "", "", "Content id")
+	UpdateScreenshotsCmd.Flags().String("contentId", "", "Content id")
 	_ = UpdateScreenshotsCmd.MarkFlagRequired("contentId")
-	UpdateScreenshotsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateScreenshotsCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateScreenshotsCmd.MarkFlagRequired("namespace")
-	UpdateScreenshotsCmd.Flags().StringP("userId", "", "", "User id")
+	UpdateScreenshotsCmd.Flags().String("userId", "", "User id")
 	_ = UpdateScreenshotsCmd.MarkFlagRequired("userId")
 }

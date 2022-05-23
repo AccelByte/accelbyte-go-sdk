@@ -55,9 +55,9 @@ var CloneSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	CloneSeasonCmd.Flags().StringP("body", "", "", "Body")
-	CloneSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CloneSeasonCmd.Flags().String("body", "", "Body")
+	CloneSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = CloneSeasonCmd.MarkFlagRequired("namespace")
-	CloneSeasonCmd.Flags().StringP("seasonId", "", "", "Season id")
+	CloneSeasonCmd.Flags().String("seasonId", "", "Season id")
 	_ = CloneSeasonCmd.MarkFlagRequired("seasonId")
 }

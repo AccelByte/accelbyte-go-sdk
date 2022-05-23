@@ -55,10 +55,10 @@ var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("body", "", "", "Body")
+	AddSSOLoginPlatformCredentialCmd.Flags().String("body", "", "Body")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("body")
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AddSSOLoginPlatformCredentialCmd.Flags().String("namespace", "", "Namespace")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "", "", "Platform id")
+	AddSSOLoginPlatformCredentialCmd.Flags().String("platformId", "", "Platform id")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

@@ -43,8 +43,8 @@ var AdminDeleteTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminDeleteTypeCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDeleteTypeCmd.MarkFlagRequired("namespace")
-	AdminDeleteTypeCmd.Flags().StringP("typeId", "", "", "Type id")
+	AdminDeleteTypeCmd.Flags().String("typeId", "", "Type id")
 	_ = AdminDeleteTypeCmd.MarkFlagRequired("typeId")
 }

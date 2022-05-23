@@ -57,11 +57,11 @@ var ReorderTierCmd = &cobra.Command{
 }
 
 func init() {
-	ReorderTierCmd.Flags().StringP("body", "", "", "Body")
-	ReorderTierCmd.Flags().StringP("id", "", "", "Id")
+	ReorderTierCmd.Flags().String("body", "", "Body")
+	ReorderTierCmd.Flags().String("id", "", "Id")
 	_ = ReorderTierCmd.MarkFlagRequired("id")
-	ReorderTierCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ReorderTierCmd.Flags().String("namespace", "", "Namespace")
 	_ = ReorderTierCmd.MarkFlagRequired("namespace")
-	ReorderTierCmd.Flags().StringP("seasonId", "", "", "Season id")
+	ReorderTierCmd.Flags().String("seasonId", "", "Season id")
 	_ = ReorderTierCmd.MarkFlagRequired("seasonId")
 }

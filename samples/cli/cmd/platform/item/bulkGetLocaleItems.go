@@ -53,12 +53,12 @@ var BulkGetLocaleItemsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetLocaleItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	BulkGetLocaleItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("namespace")
-	BulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	BulkGetLocaleItemsCmd.Flags().StringP("language", "", "", "Language")
-	BulkGetLocaleItemsCmd.Flags().StringP("region", "", "", "Region")
-	BulkGetLocaleItemsCmd.Flags().StringP("storeId", "", "", "Store id")
-	BulkGetLocaleItemsCmd.Flags().StringP("itemIds", "", "", "Item ids")
+	BulkGetLocaleItemsCmd.Flags().Bool("activeOnly", false, "Active only")
+	BulkGetLocaleItemsCmd.Flags().String("language", "", "Language")
+	BulkGetLocaleItemsCmd.Flags().String("region", "", "Region")
+	BulkGetLocaleItemsCmd.Flags().String("storeId", "", "Store id")
+	BulkGetLocaleItemsCmd.Flags().String("itemIds", "", "Item ids")
 	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("itemIds")
 }

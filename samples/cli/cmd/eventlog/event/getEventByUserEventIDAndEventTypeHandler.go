@@ -57,19 +57,19 @@ var GetEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "", 0, "Event id")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64("eventId", 0, "Event id")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventId")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "", 0, "Event type")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64("eventType", 0, "Event type")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "", "", "User id")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().String("userId", "", "User id")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "", "", "End date")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64("offset", 0, "Offset")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().String("endDate", "", "End date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64P("pageSize", "", 1, "Page size")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64("pageSize", 1, "Page size")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().String("startDate", "", "Start date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

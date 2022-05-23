@@ -51,8 +51,8 @@ var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("body", "", "", "Body")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().String("body", "", "Body")
 	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("body")
-	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("namespace")
 }

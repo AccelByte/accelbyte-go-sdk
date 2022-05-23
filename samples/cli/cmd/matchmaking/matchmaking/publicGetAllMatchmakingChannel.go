@@ -43,6 +43,6 @@ var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAllMatchmakingChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetAllMatchmakingChannelCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetAllMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

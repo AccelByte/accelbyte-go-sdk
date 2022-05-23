@@ -43,6 +43,6 @@ var GetClientCmd = &cobra.Command{
 }
 
 func init() {
-	GetClientCmd.Flags().StringP("clientId", "", "", "Client id")
+	GetClientCmd.Flags().String("clientId", "", "Client id")
 	_ = GetClientCmd.MarkFlagRequired("clientId")
 }

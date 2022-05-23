@@ -47,10 +47,10 @@ var PublicGetUserAppEntitlementByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserAppEntitlementByAppIdCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetUserAppEntitlementByAppIdCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserAppEntitlementByAppIdCmd.MarkFlagRequired("namespace")
-	PublicGetUserAppEntitlementByAppIdCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetUserAppEntitlementByAppIdCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserAppEntitlementByAppIdCmd.MarkFlagRequired("userId")
-	PublicGetUserAppEntitlementByAppIdCmd.Flags().StringP("appId", "", "", "App id")
+	PublicGetUserAppEntitlementByAppIdCmd.Flags().String("appId", "", "App id")
 	_ = PublicGetUserAppEntitlementByAppIdCmd.MarkFlagRequired("appId")
 }

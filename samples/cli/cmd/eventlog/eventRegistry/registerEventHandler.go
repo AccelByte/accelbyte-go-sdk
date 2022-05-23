@@ -49,6 +49,6 @@ var RegisterEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	RegisterEventHandlerCmd.Flags().StringP("body", "", "", "Body")
+	RegisterEventHandlerCmd.Flags().String("body", "", "Body")
 	_ = RegisterEventHandlerCmd.MarkFlagRequired("body")
 }

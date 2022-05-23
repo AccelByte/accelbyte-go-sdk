@@ -45,10 +45,10 @@ var DeleteTierCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTierCmd.Flags().StringP("id", "", "", "Id")
+	DeleteTierCmd.Flags().String("id", "", "Id")
 	_ = DeleteTierCmd.MarkFlagRequired("id")
-	DeleteTierCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteTierCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteTierCmd.MarkFlagRequired("namespace")
-	DeleteTierCmd.Flags().StringP("seasonId", "", "", "Season id")
+	DeleteTierCmd.Flags().String("seasonId", "", "Season id")
 	_ = DeleteTierCmd.MarkFlagRequired("seasonId")
 }

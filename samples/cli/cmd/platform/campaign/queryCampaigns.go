@@ -51,10 +51,10 @@ var QueryCampaignsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryCampaignsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryCampaignsCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryCampaignsCmd.MarkFlagRequired("namespace")
-	QueryCampaignsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryCampaignsCmd.Flags().StringP("name", "", "", "Name")
-	QueryCampaignsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryCampaignsCmd.Flags().StringP("tag", "", "", "Tag")
+	QueryCampaignsCmd.Flags().Int32("limit", 20, "Limit")
+	QueryCampaignsCmd.Flags().String("name", "", "Name")
+	QueryCampaignsCmd.Flags().Int32("offset", 0, "Offset")
+	QueryCampaignsCmd.Flags().String("tag", "", "Tag")
 }

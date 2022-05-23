@@ -43,7 +43,7 @@ var PublishPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	PublishPolicyVersionCmd.Flags().StringP("policyVersionId", "", "", "Policy version id")
+	PublishPolicyVersionCmd.Flags().String("policyVersionId", "", "Policy version id")
 	_ = PublishPolicyVersionCmd.MarkFlagRequired("policyVersionId")
-	PublishPolicyVersionCmd.Flags().BoolP("shouldNotify", "", false, "Should notify")
+	PublishPolicyVersionCmd.Flags().Bool("shouldNotify", false, "Should notify")
 }

@@ -49,9 +49,9 @@ var ListAdminsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	ListAdminsV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListAdminsV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = ListAdminsV3Cmd.MarkFlagRequired("namespace")
-	ListAdminsV3Cmd.Flags().StringP("after", "", "0", "After")
-	ListAdminsV3Cmd.Flags().StringP("before", "", "0", "Before")
-	ListAdminsV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	ListAdminsV3Cmd.Flags().String("after", "0", "After")
+	ListAdminsV3Cmd.Flags().String("before", "0", "Before")
+	ListAdminsV3Cmd.Flags().Int64("limit", 20, "Limit")
 }

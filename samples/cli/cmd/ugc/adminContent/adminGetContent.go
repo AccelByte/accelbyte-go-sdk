@@ -49,10 +49,10 @@ var AdminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetContentCmd.MarkFlagRequired("namespace")
-	AdminGetContentCmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetContentCmd.Flags().String("userId", "", "User id")
 	_ = AdminGetContentCmd.MarkFlagRequired("userId")
-	AdminGetContentCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetContentCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetContentCmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetContentCmd.Flags().Int64("offset", 0, "Offset")
 }

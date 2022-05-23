@@ -49,9 +49,9 @@ var AdminListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminListAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminListAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminListAchievementsCmd.MarkFlagRequired("namespace")
-	AdminListAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminListAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
-	AdminListAchievementsCmd.Flags().StringP("sortBy", "", "", "Sort by")
+	AdminListAchievementsCmd.Flags().Int64("limit", 20, "Limit")
+	AdminListAchievementsCmd.Flags().Int64("offset", 0, "Offset")
+	AdminListAchievementsCmd.Flags().String("sortBy", "", "Sort by")
 }

@@ -53,7 +53,7 @@ var CreateLocalizedPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	CreateLocalizedPolicyVersionCmd.Flags().StringP("body", "", "", "Body")
-	CreateLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "", "", "Policy version id")
+	CreateLocalizedPolicyVersionCmd.Flags().String("body", "", "Body")
+	CreateLocalizedPolicyVersionCmd.Flags().String("policyVersionId", "", "Policy version id")
 	_ = CreateLocalizedPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

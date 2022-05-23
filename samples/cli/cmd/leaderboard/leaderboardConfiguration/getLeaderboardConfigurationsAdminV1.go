@@ -51,10 +51,10 @@ var GetLeaderboardConfigurationsAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationsAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetLeaderboardConfigurationsAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetLeaderboardConfigurationsAdminV1Cmd.MarkFlagRequired("namespace")
-	GetLeaderboardConfigurationsAdminV1Cmd.Flags().BoolP("isArchived", "", false, "Is archived")
-	GetLeaderboardConfigurationsAdminV1Cmd.Flags().BoolP("isDeleted", "", false, "Is deleted")
-	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Bool("isArchived", false, "Is archived")
+	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Bool("isDeleted", false, "Is deleted")
+	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetLeaderboardConfigurationsAdminV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

@@ -41,5 +41,5 @@ var AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd = &cobra.Comma
 }
 
 func init() {
-	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd.Flags().StringP("cookie", "", "", "Cookie")
+	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd.Flags().String("cookie", "", "Cookie")
 }

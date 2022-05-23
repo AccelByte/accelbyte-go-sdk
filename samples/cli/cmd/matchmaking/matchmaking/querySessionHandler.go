@@ -45,8 +45,8 @@ var QuerySessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySessionHandlerCmd.Flags().StringP("matchID", "", "", "Match ID")
+	QuerySessionHandlerCmd.Flags().String("matchID", "", "Match ID")
 	_ = QuerySessionHandlerCmd.MarkFlagRequired("matchID")
-	QuerySessionHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QuerySessionHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = QuerySessionHandlerCmd.MarkFlagRequired("namespace")
 }

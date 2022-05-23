@@ -43,6 +43,6 @@ var GetDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetDLCItemConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetDLCItemConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

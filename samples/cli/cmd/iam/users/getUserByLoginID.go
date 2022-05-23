@@ -45,7 +45,7 @@ var GetUserByLoginIDCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserByLoginIDCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserByLoginIDCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserByLoginIDCmd.MarkFlagRequired("namespace")
-	GetUserByLoginIDCmd.Flags().StringP("loginId", "", "", "Login id")
+	GetUserByLoginIDCmd.Flags().String("loginId", "", "Login id")
 }

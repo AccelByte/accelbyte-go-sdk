@@ -49,10 +49,10 @@ var GetUserParticipatedSeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserParticipatedSeasonsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserParticipatedSeasonsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("namespace")
-	GetUserParticipatedSeasonsCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserParticipatedSeasonsCmd.Flags().String("userId", "", "User id")
 	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("userId")
-	GetUserParticipatedSeasonsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	GetUserParticipatedSeasonsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	GetUserParticipatedSeasonsCmd.Flags().Int32("limit", 20, "Limit")
+	GetUserParticipatedSeasonsCmd.Flags().Int32("offset", 0, "Offset")
 }

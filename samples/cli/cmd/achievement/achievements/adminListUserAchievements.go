@@ -51,11 +51,11 @@ var AdminListUserAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUserAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminListUserAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminListUserAchievementsCmd.MarkFlagRequired("namespace")
-	AdminListUserAchievementsCmd.Flags().StringP("userId", "", "", "User id")
+	AdminListUserAchievementsCmd.Flags().String("userId", "", "User id")
 	_ = AdminListUserAchievementsCmd.MarkFlagRequired("userId")
-	AdminListUserAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminListUserAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
-	AdminListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "", false, "Prefer unlocked")
+	AdminListUserAchievementsCmd.Flags().Int64("limit", 20, "Limit")
+	AdminListUserAchievementsCmd.Flags().Int64("offset", 0, "Offset")
+	AdminListUserAchievementsCmd.Flags().Bool("preferUnlocked", false, "Prefer unlocked")
 }

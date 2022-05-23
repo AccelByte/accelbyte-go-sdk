@@ -52,8 +52,8 @@ var ForgotPasswordCmd = &cobra.Command{
 }
 
 func init() {
-	ForgotPasswordCmd.Flags().StringP("body", "", "", "Body")
+	ForgotPasswordCmd.Flags().String("body", "", "Body")
 	_ = ForgotPasswordCmd.MarkFlagRequired("body")
-	ForgotPasswordCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ForgotPasswordCmd.Flags().String("namespace", "", "Namespace")
 	_ = ForgotPasswordCmd.MarkFlagRequired("namespace")
 }

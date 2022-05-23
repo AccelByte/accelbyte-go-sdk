@@ -45,10 +45,10 @@ var SingleAdminDeleteContentCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminDeleteContentCmd.Flags().StringP("channelId", "", "", "Channel id")
+	SingleAdminDeleteContentCmd.Flags().String("channelId", "", "Channel id")
 	_ = SingleAdminDeleteContentCmd.MarkFlagRequired("channelId")
-	SingleAdminDeleteContentCmd.Flags().StringP("contentId", "", "", "Content id")
+	SingleAdminDeleteContentCmd.Flags().String("contentId", "", "Content id")
 	_ = SingleAdminDeleteContentCmd.MarkFlagRequired("contentId")
-	SingleAdminDeleteContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SingleAdminDeleteContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = SingleAdminDeleteContentCmd.MarkFlagRequired("namespace")
 }

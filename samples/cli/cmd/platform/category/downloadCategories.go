@@ -47,8 +47,8 @@ var DownloadCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadCategoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DownloadCategoriesCmd.Flags().String("namespace", "", "Namespace")
 	_ = DownloadCategoriesCmd.MarkFlagRequired("namespace")
-	DownloadCategoriesCmd.Flags().StringP("language", "", "", "Language")
-	DownloadCategoriesCmd.Flags().StringP("storeId", "", "", "Store id")
+	DownloadCategoriesCmd.Flags().String("language", "", "Language")
+	DownloadCategoriesCmd.Flags().String("storeId", "", "Store id")
 }

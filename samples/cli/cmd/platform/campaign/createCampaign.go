@@ -53,7 +53,7 @@ var CreateCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCampaignCmd.Flags().StringP("body", "", "", "Body")
-	CreateCampaignCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateCampaignCmd.Flags().String("body", "", "Body")
+	CreateCampaignCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCampaignCmd.MarkFlagRequired("namespace")
 }

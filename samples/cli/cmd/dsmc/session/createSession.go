@@ -53,8 +53,8 @@ var CreateSessionCmd = &cobra.Command{
 }
 
 func init() {
-	CreateSessionCmd.Flags().StringP("body", "", "", "Body")
+	CreateSessionCmd.Flags().String("body", "", "Body")
 	_ = CreateSessionCmd.MarkFlagRequired("body")
-	CreateSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateSessionCmd.MarkFlagRequired("namespace")
 }

@@ -53,9 +53,9 @@ var SyncTwitchDropsEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	SyncTwitchDropsEntitlementCmd.Flags().StringP("body", "", "", "Body")
-	SyncTwitchDropsEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SyncTwitchDropsEntitlementCmd.Flags().String("body", "", "Body")
+	SyncTwitchDropsEntitlementCmd.Flags().String("namespace", "", "Namespace")
 	_ = SyncTwitchDropsEntitlementCmd.MarkFlagRequired("namespace")
-	SyncTwitchDropsEntitlementCmd.Flags().StringP("userId", "", "", "User id")
+	SyncTwitchDropsEntitlementCmd.Flags().String("userId", "", "User id")
 	_ = SyncTwitchDropsEntitlementCmd.MarkFlagRequired("userId")
 }

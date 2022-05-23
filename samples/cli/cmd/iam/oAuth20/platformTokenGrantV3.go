@@ -58,9 +58,9 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenGrantV3Cmd.Flags().StringP("clientId", "", "", "Client id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("deviceId", "", "", "Device id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("platformToken", "", "", "Platform token")
-	PlatformTokenGrantV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	PlatformTokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
+	PlatformTokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
+	PlatformTokenGrantV3Cmd.Flags().String("platformToken", "", "Platform token")
+	PlatformTokenGrantV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformTokenGrantV3Cmd.MarkFlagRequired("platformId")
 }

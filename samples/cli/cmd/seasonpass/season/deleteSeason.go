@@ -43,8 +43,8 @@ var DeleteSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteSeasonCmd.MarkFlagRequired("namespace")
-	DeleteSeasonCmd.Flags().StringP("seasonId", "", "", "Season id")
+	DeleteSeasonCmd.Flags().String("seasonId", "", "Season id")
 	_ = DeleteSeasonCmd.MarkFlagRequired("seasonId")
 }

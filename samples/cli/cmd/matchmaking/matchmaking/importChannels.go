@@ -61,8 +61,8 @@ var ImportChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportChannelsCmd.Flags().StringP("file", "", "", "File")
-	ImportChannelsCmd.Flags().StringP("strategy", "", "", "Strategy")
-	ImportChannelsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ImportChannelsCmd.Flags().String("file", "", "File")
+	ImportChannelsCmd.Flags().String("strategy", "", "Strategy")
+	ImportChannelsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportChannelsCmd.MarkFlagRequired("namespace")
 }

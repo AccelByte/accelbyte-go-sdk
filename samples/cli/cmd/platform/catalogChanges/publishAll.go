@@ -45,8 +45,8 @@ var PublishAllCmd = &cobra.Command{
 }
 
 func init() {
-	PublishAllCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublishAllCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublishAllCmd.MarkFlagRequired("namespace")
-	PublishAllCmd.Flags().StringP("storeId", "", "", "Store id")
+	PublishAllCmd.Flags().String("storeId", "", "Store id")
 	_ = PublishAllCmd.MarkFlagRequired("storeId")
 }

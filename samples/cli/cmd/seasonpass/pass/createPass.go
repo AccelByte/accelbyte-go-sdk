@@ -55,9 +55,9 @@ var CreatePassCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePassCmd.Flags().StringP("body", "", "", "Body")
-	CreatePassCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreatePassCmd.Flags().String("body", "", "Body")
+	CreatePassCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreatePassCmd.MarkFlagRequired("namespace")
-	CreatePassCmd.Flags().StringP("seasonId", "", "", "Season id")
+	CreatePassCmd.Flags().String("seasonId", "", "Season id")
 	_ = CreatePassCmd.MarkFlagRequired("seasonId")
 }

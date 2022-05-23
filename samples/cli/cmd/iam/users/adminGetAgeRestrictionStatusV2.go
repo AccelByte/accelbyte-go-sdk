@@ -43,6 +43,6 @@ var AdminGetAgeRestrictionStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetAgeRestrictionStatusV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetAgeRestrictionStatusV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetAgeRestrictionStatusV2Cmd.MarkFlagRequired("namespace")
 }

@@ -41,6 +41,6 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	UnregisterEventIDHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
+	UnregisterEventIDHandlerCmd.Flags().String("eventId", "0", "Event id")
 	_ = UnregisterEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

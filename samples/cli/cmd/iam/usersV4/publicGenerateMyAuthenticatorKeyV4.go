@@ -43,6 +43,6 @@ var PublicGenerateMyAuthenticatorKeyV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGenerateMyAuthenticatorKeyV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGenerateMyAuthenticatorKeyV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGenerateMyAuthenticatorKeyV4Cmd.MarkFlagRequired("namespace")
 }

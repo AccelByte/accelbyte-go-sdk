@@ -51,6 +51,6 @@ var AdminCreateRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateRoleV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminCreateRoleV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminCreateRoleV3Cmd.MarkFlagRequired("body")
 }

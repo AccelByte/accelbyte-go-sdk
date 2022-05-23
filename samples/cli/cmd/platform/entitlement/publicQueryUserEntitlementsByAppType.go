@@ -51,12 +51,12 @@ var PublicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("namespace")
-	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "", "", "User id")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().String("userId", "", "User id")
 	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("userId")
-	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "", 20, "Limit")
-	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "", 0, "Offset")
-	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "", "", "App type")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32("limit", 20, "Limit")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32("offset", 0, "Offset")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().String("appType", "", "App type")
 	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("appType")
 }

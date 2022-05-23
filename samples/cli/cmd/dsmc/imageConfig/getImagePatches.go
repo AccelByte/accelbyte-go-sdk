@@ -45,8 +45,8 @@ var GetImagePatchesCmd = &cobra.Command{
 }
 
 func init() {
-	GetImagePatchesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetImagePatchesCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetImagePatchesCmd.MarkFlagRequired("namespace")
-	GetImagePatchesCmd.Flags().StringP("version", "", "", "Version")
+	GetImagePatchesCmd.Flags().String("version", "", "Version")
 	_ = GetImagePatchesCmd.MarkFlagRequired("version")
 }

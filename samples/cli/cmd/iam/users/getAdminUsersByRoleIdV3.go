@@ -51,11 +51,11 @@ var GetAdminUsersByRoleIdV3Cmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminUsersByRoleIdV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetAdminUsersByRoleIdV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAdminUsersByRoleIdV3Cmd.MarkFlagRequired("namespace")
-	GetAdminUsersByRoleIdV3Cmd.Flags().StringP("roleId", "", "", "Role id")
+	GetAdminUsersByRoleIdV3Cmd.Flags().String("roleId", "", "Role id")
 	_ = GetAdminUsersByRoleIdV3Cmd.MarkFlagRequired("roleId")
-	GetAdminUsersByRoleIdV3Cmd.Flags().Int64P("after", "", 0, "After")
-	GetAdminUsersByRoleIdV3Cmd.Flags().Int64P("before", "", 0, "Before")
-	GetAdminUsersByRoleIdV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetAdminUsersByRoleIdV3Cmd.Flags().Int64("after", 0, "After")
+	GetAdminUsersByRoleIdV3Cmd.Flags().Int64("before", 0, "Before")
+	GetAdminUsersByRoleIdV3Cmd.Flags().Int64("limit", 20, "Limit")
 }

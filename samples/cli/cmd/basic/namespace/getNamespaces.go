@@ -43,5 +43,5 @@ var GetNamespacesCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespacesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetNamespacesCmd.Flags().Bool("activeOnly", false, "Active only")
 }

@@ -45,8 +45,8 @@ var RejectGroupInvitationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	RejectGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
+	RejectGroupInvitationPublicV1Cmd.Flags().String("groupId", "", "Group id")
 	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
-	RejectGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	RejectGroupInvitationPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
 }

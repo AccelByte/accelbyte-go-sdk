@@ -45,8 +45,8 @@ var GetGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
+	GetGameRecordHandlerV1Cmd.Flags().String("key", "", "Key")
 	_ = GetGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	GetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetGameRecordHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

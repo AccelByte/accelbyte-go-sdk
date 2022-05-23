@@ -47,11 +47,11 @@ var DeleteUserStatItems2Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserStatItems2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteUserStatItems2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("namespace")
-	DeleteUserStatItems2Cmd.Flags().StringP("statCode", "", "", "Stat code")
+	DeleteUserStatItems2Cmd.Flags().String("statCode", "", "Stat code")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("statCode")
-	DeleteUserStatItems2Cmd.Flags().StringP("userId", "", "", "User id")
+	DeleteUserStatItems2Cmd.Flags().String("userId", "", "User id")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("userId")
-	DeleteUserStatItems2Cmd.Flags().StringP("additionalKey", "", "", "Additional key")
+	DeleteUserStatItems2Cmd.Flags().String("additionalKey", "", "Additional key")
 }

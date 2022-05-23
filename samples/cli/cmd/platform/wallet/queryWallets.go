@@ -53,11 +53,11 @@ var QueryWalletsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryWalletsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryWalletsCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryWalletsCmd.MarkFlagRequired("namespace")
-	QueryWalletsCmd.Flags().StringP("currencyCode", "", "", "Currency code")
-	QueryWalletsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryWalletsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryWalletsCmd.Flags().StringP("origin", "", "", "Origin")
-	QueryWalletsCmd.Flags().StringP("userId", "", "", "User id")
+	QueryWalletsCmd.Flags().String("currencyCode", "", "Currency code")
+	QueryWalletsCmd.Flags().Int32("limit", 20, "Limit")
+	QueryWalletsCmd.Flags().Int32("offset", 0, "Offset")
+	QueryWalletsCmd.Flags().String("origin", "", "Origin")
+	QueryWalletsCmd.Flags().String("userId", "", "User id")
 }

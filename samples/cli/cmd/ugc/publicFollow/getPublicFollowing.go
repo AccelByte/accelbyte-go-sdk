@@ -49,10 +49,10 @@ var GetPublicFollowingCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublicFollowingCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetPublicFollowingCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetPublicFollowingCmd.MarkFlagRequired("namespace")
-	GetPublicFollowingCmd.Flags().StringP("userId", "", "", "User id")
+	GetPublicFollowingCmd.Flags().String("userId", "", "User id")
 	_ = GetPublicFollowingCmd.MarkFlagRequired("userId")
-	GetPublicFollowingCmd.Flags().StringP("limit", "", "20", "Limit")
-	GetPublicFollowingCmd.Flags().StringP("offset", "", "0", "Offset")
+	GetPublicFollowingCmd.Flags().String("limit", "20", "Limit")
+	GetPublicFollowingCmd.Flags().String("offset", "0", "Offset")
 }

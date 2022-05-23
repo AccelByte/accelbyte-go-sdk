@@ -51,8 +51,8 @@ var SendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("body", "", "", "Body")
+	SendUsersTemplatedNotificationV1AdminCmd.Flags().String("body", "", "Body")
 	_ = SendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	SendUsersTemplatedNotificationV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = SendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
 }

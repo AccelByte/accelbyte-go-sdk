@@ -43,5 +43,5 @@ var GetUserInfoStatusCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserInfoStatusCmd.Flags().StringP("namespaces", "", "", "Namespaces")
+	GetUserInfoStatusCmd.Flags().String("namespaces", "", "Namespaces")
 }

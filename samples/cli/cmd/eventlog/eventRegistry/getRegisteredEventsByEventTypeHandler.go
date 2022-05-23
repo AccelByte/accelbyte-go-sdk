@@ -43,6 +43,6 @@ var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRegisteredEventsByEventTypeHandlerCmd.Flags().StringP("eventType", "", "0", "Event type")
+	GetRegisteredEventsByEventTypeHandlerCmd.Flags().String("eventType", "0", "Event type")
 	_ = GetRegisteredEventsByEventTypeHandlerCmd.MarkFlagRequired("eventType")
 }

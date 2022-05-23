@@ -53,7 +53,7 @@ var UpdateXsollaUIConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXsollaUIConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateXsollaUIConfigCmd.Flags().StringP("id", "", "", "Id")
+	UpdateXsollaUIConfigCmd.Flags().String("body", "", "Body")
+	UpdateXsollaUIConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateXsollaUIConfigCmd.MarkFlagRequired("id")
 }

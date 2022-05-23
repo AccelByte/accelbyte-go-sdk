@@ -55,9 +55,9 @@ var PublicCreateUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateUserOrderCmd.Flags().StringP("body", "", "", "Body")
-	PublicCreateUserOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCreateUserOrderCmd.Flags().String("body", "", "Body")
+	PublicCreateUserOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCreateUserOrderCmd.MarkFlagRequired("namespace")
-	PublicCreateUserOrderCmd.Flags().StringP("userId", "", "", "User id")
+	PublicCreateUserOrderCmd.Flags().String("userId", "", "User id")
 	_ = PublicCreateUserOrderCmd.MarkFlagRequired("userId")
 }

@@ -43,6 +43,6 @@ var PublicGetMyEnabledFactorsV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetMyEnabledFactorsV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetMyEnabledFactorsV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetMyEnabledFactorsV4Cmd.MarkFlagRequired("namespace")
 }

@@ -45,7 +45,7 @@ var CountServerDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	CountServerDetailedCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CountServerDetailedCmd.Flags().String("namespace", "", "Namespace")
 	_ = CountServerDetailedCmd.MarkFlagRequired("namespace")
-	CountServerDetailedCmd.Flags().StringP("region", "", "", "Region")
+	CountServerDetailedCmd.Flags().String("region", "", "Region")
 }

@@ -55,10 +55,10 @@ var AdminUploadContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUploadContentDirectCmd.Flags().StringP("body", "", "", "Body")
+	AdminUploadContentDirectCmd.Flags().String("body", "", "Body")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("body")
-	AdminUploadContentDirectCmd.Flags().StringP("channelId", "", "", "Channel id")
+	AdminUploadContentDirectCmd.Flags().String("channelId", "", "Channel id")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("channelId")
-	AdminUploadContentDirectCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminUploadContentDirectCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("namespace")
 }

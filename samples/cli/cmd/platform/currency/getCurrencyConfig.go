@@ -45,8 +45,8 @@ var GetCurrencyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrencyConfigCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	GetCurrencyConfigCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = GetCurrencyConfigCmd.MarkFlagRequired("currencyCode")
-	GetCurrencyConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCurrencyConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCurrencyConfigCmd.MarkFlagRequired("namespace")
 }

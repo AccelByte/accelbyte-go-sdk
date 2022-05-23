@@ -55,9 +55,9 @@ var PlatformSubscribeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("body", "", "", "Body")
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PlatformSubscribeSubscriptionCmd.Flags().String("body", "", "Body")
+	PlatformSubscribeSubscriptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PlatformSubscribeSubscriptionCmd.MarkFlagRequired("namespace")
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
+	PlatformSubscribeSubscriptionCmd.Flags().String("userId", "", "User id")
 	_ = PlatformSubscribeSubscriptionCmd.MarkFlagRequired("userId")
 }

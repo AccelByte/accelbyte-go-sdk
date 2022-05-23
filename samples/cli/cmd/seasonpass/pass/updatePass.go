@@ -57,11 +57,11 @@ var UpdatePassCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePassCmd.Flags().StringP("body", "", "", "Body")
-	UpdatePassCmd.Flags().StringP("code", "", "", "Code")
+	UpdatePassCmd.Flags().String("body", "", "Body")
+	UpdatePassCmd.Flags().String("code", "", "Code")
 	_ = UpdatePassCmd.MarkFlagRequired("code")
-	UpdatePassCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdatePassCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePassCmd.MarkFlagRequired("namespace")
-	UpdatePassCmd.Flags().StringP("seasonId", "", "", "Season id")
+	UpdatePassCmd.Flags().String("seasonId", "", "Season id")
 	_ = UpdatePassCmd.MarkFlagRequired("seasonId")
 }

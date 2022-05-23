@@ -53,10 +53,10 @@ var AdminResetPasswordV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminResetPasswordV2Cmd.Flags().StringP("body", "", "", "Body")
+	AdminResetPasswordV2Cmd.Flags().String("body", "", "Body")
 	_ = AdminResetPasswordV2Cmd.MarkFlagRequired("body")
-	AdminResetPasswordV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminResetPasswordV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminResetPasswordV2Cmd.MarkFlagRequired("namespace")
-	AdminResetPasswordV2Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminResetPasswordV2Cmd.Flags().String("userId", "", "User id")
 	_ = AdminResetPasswordV2Cmd.MarkFlagRequired("userId")
 }

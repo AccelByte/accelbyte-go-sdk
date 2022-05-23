@@ -53,10 +53,10 @@ var FreeFormNotificationByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	FreeFormNotificationByUserIDCmd.Flags().StringP("body", "", "", "Body")
+	FreeFormNotificationByUserIDCmd.Flags().String("body", "", "Body")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("body")
-	FreeFormNotificationByUserIDCmd.Flags().StringP("namespace", "", "", "Namespace")
+	FreeFormNotificationByUserIDCmd.Flags().String("namespace", "", "Namespace")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("namespace")
-	FreeFormNotificationByUserIDCmd.Flags().StringP("userId", "", "", "User id")
+	FreeFormNotificationByUserIDCmd.Flags().String("userId", "", "User id")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("userId")
 }

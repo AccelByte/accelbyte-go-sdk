@@ -51,5 +51,5 @@ var UpdatePaymentTaxConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePaymentTaxConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdatePaymentTaxConfigCmd.Flags().String("body", "", "Body")
 }

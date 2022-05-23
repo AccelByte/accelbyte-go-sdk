@@ -43,8 +43,8 @@ var AdminDisableUserMFAV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDisableUserMFAV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminDisableUserMFAV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDisableUserMFAV4Cmd.MarkFlagRequired("namespace")
-	AdminDisableUserMFAV4Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminDisableUserMFAV4Cmd.Flags().String("userId", "", "User id")
 	_ = AdminDisableUserMFAV4Cmd.MarkFlagRequired("userId")
 }

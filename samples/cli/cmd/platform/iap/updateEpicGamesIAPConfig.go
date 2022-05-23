@@ -53,7 +53,7 @@ var UpdateEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateEpicGamesIAPConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateEpicGamesIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateEpicGamesIAPConfigCmd.Flags().String("body", "", "Body")
+	UpdateEpicGamesIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

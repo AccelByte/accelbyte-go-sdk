@@ -43,5 +43,5 @@ var SpecificEventTypeDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificEventTypeDescriptionHandlerCmd.Flags().StringP("eventTypes", "", "", "Event types")
+	SpecificEventTypeDescriptionHandlerCmd.Flags().String("eventTypes", "", "Event types")
 }

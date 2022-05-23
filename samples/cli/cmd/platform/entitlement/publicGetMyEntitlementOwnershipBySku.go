@@ -47,9 +47,9 @@ var PublicGetMyEntitlementOwnershipBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetMyEntitlementOwnershipBySkuCmd.MarkFlagRequired("namespace")
-	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("entitlementClazz", "", "", "Entitlement clazz")
-	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("sku", "", "", "Sku")
+	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().String("entitlementClazz", "", "Entitlement clazz")
+	PublicGetMyEntitlementOwnershipBySkuCmd.Flags().String("sku", "", "Sku")
 	_ = PublicGetMyEntitlementOwnershipBySkuCmd.MarkFlagRequired("sku")
 }

@@ -41,6 +41,6 @@ var DeleteGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGoogleIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteGoogleIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

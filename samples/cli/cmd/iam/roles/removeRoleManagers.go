@@ -51,8 +51,8 @@ var RemoveRoleManagersCmd = &cobra.Command{
 }
 
 func init() {
-	RemoveRoleManagersCmd.Flags().StringP("body", "", "", "Body")
+	RemoveRoleManagersCmd.Flags().String("body", "", "Body")
 	_ = RemoveRoleManagersCmd.MarkFlagRequired("body")
-	RemoveRoleManagersCmd.Flags().StringP("roleId", "", "", "Role id")
+	RemoveRoleManagersCmd.Flags().String("roleId", "", "Role id")
 	_ = RemoveRoleManagersCmd.MarkFlagRequired("roleId")
 }

@@ -49,10 +49,10 @@ var GetHiddenUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	GetHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetHiddenUsersV2Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("leaderboardCode")
-	GetHiddenUsersV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetHiddenUsersV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("namespace")
-	GetHiddenUsersV2Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetHiddenUsersV2Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetHiddenUsersV2Cmd.Flags().Int64("limit", 20, "Limit")
+	GetHiddenUsersV2Cmd.Flags().Int64("offset", 0, "Offset")
 }

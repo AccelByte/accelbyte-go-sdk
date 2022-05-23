@@ -45,8 +45,8 @@ var RecurringChargeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	RecurringChargeSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RecurringChargeSubscriptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("namespace")
-	RecurringChargeSubscriptionCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	RecurringChargeSubscriptionCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("subscriptionId")
 }

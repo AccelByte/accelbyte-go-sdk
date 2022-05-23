@@ -45,8 +45,8 @@ var AddDownloadCountCmd = &cobra.Command{
 }
 
 func init() {
-	AddDownloadCountCmd.Flags().StringP("contentId", "", "", "Content id")
+	AddDownloadCountCmd.Flags().String("contentId", "", "Content id")
 	_ = AddDownloadCountCmd.MarkFlagRequired("contentId")
-	AddDownloadCountCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AddDownloadCountCmd.Flags().String("namespace", "", "Namespace")
 	_ = AddDownloadCountCmd.MarkFlagRequired("namespace")
 }

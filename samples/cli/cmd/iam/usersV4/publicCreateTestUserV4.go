@@ -53,8 +53,8 @@ var PublicCreateTestUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateTestUserV4Cmd.Flags().StringP("body", "", "", "Body")
+	PublicCreateTestUserV4Cmd.Flags().String("body", "", "Body")
 	_ = PublicCreateTestUserV4Cmd.MarkFlagRequired("body")
-	PublicCreateTestUserV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCreateTestUserV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCreateTestUserV4Cmd.MarkFlagRequired("namespace")
 }

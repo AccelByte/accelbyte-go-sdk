@@ -53,6 +53,6 @@ var TestCheckoutConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestCheckoutConfigCmd.Flags().StringP("body", "", "", "Body")
-	TestCheckoutConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	TestCheckoutConfigCmd.Flags().String("body", "", "Body")
+	TestCheckoutConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

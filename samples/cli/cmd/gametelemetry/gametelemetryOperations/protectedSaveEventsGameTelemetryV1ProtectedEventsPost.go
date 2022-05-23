@@ -51,7 +51,7 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 }
 
 func init() {
-	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "", "", "Body")
+	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().String("body", "", "Body")
 	_ = ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.MarkFlagRequired("body")
-	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("cookie", "", "", "Cookie")
+	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().String("cookie", "", "Cookie")
 }

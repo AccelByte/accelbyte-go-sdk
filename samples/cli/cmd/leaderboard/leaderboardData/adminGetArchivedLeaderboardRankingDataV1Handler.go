@@ -47,9 +47,9 @@ var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "", "", "Slug")
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "", "", "Leaderboard codes")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("slug", "", "Slug")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().String("leaderboardCodes", "", "Leaderboard codes")
 	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
 }

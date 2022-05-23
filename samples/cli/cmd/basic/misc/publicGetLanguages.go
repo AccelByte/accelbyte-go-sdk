@@ -43,6 +43,6 @@ var PublicGetLanguagesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetLanguagesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetLanguagesCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetLanguagesCmd.MarkFlagRequired("namespace")
 }

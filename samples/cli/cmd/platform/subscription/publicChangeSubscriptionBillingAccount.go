@@ -47,10 +47,10 @@ var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
 }
 
 func init() {
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("namespace")
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().String("subscriptionId", "", "Subscription id")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("subscriptionId")
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("userId", "", "", "User id")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().String("userId", "", "User id")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("userId")
 }

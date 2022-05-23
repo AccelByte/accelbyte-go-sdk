@@ -41,6 +41,6 @@ var ClearCacheCmd = &cobra.Command{
 }
 
 func init() {
-	ClearCacheCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ClearCacheCmd.Flags().String("namespace", "", "Namespace")
 	_ = ClearCacheCmd.MarkFlagRequired("namespace")
 }

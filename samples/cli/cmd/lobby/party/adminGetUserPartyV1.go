@@ -45,8 +45,8 @@ var AdminGetUserPartyV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserPartyV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetUserPartyV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetUserPartyV1Cmd.MarkFlagRequired("namespace")
-	AdminGetUserPartyV1Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetUserPartyV1Cmd.Flags().String("userId", "", "User id")
 	_ = AdminGetUserPartyV1Cmd.MarkFlagRequired("userId")
 }

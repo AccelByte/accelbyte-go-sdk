@@ -54,8 +54,8 @@ var ListBasicItemsByFeaturesCmd = &cobra.Command{
 }
 
 func init() {
-	ListBasicItemsByFeaturesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListBasicItemsByFeaturesCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListBasicItemsByFeaturesCmd.MarkFlagRequired("namespace")
-	ListBasicItemsByFeaturesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	ListBasicItemsByFeaturesCmd.Flags().StringP("features", "", "", "Features")
+	ListBasicItemsByFeaturesCmd.Flags().Bool("activeOnly", false, "Active only")
+	ListBasicItemsByFeaturesCmd.Flags().String("features", "", "Features")
 }

@@ -49,8 +49,8 @@ var AdminGetRolesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRolesV3Cmd.Flags().StringP("after", "", "0", "After")
-	AdminGetRolesV3Cmd.Flags().StringP("before", "", "0", "Before")
-	AdminGetRolesV3Cmd.Flags().BoolP("isWildcard", "", false, "Is wildcard")
-	AdminGetRolesV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetRolesV3Cmd.Flags().String("after", "0", "After")
+	AdminGetRolesV3Cmd.Flags().String("before", "0", "Before")
+	AdminGetRolesV3Cmd.Flags().Bool("isWildcard", false, "Is wildcard")
+	AdminGetRolesV3Cmd.Flags().Int64("limit", 20, "Limit")
 }

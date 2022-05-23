@@ -51,13 +51,13 @@ var GetEventByNamespaceHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByNamespaceHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetEventByNamespaceHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByNamespaceHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
-	GetEventByNamespaceHandlerCmd.Flags().StringP("endDate", "", "", "End date")
+	GetEventByNamespaceHandlerCmd.Flags().Int64("offset", 0, "Offset")
+	GetEventByNamespaceHandlerCmd.Flags().String("endDate", "", "End date")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByNamespaceHandlerCmd.Flags().Int64P("pageSize", "", 1, "Page size")
+	GetEventByNamespaceHandlerCmd.Flags().Int64("pageSize", 1, "Page size")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByNamespaceHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
+	GetEventByNamespaceHandlerCmd.Flags().String("startDate", "", "Start date")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("startDate")
 }

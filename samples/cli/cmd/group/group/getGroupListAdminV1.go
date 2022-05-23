@@ -53,11 +53,11 @@ var GetGroupListAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupListAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetGroupListAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetGroupListAdminV1Cmd.MarkFlagRequired("namespace")
-	GetGroupListAdminV1Cmd.Flags().StringP("configurationCode", "", "", "Configuration code")
-	GetGroupListAdminV1Cmd.Flags().StringP("groupName", "", "", "Group name")
-	GetGroupListAdminV1Cmd.Flags().StringP("groupRegion", "", "", "Group region")
-	GetGroupListAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetGroupListAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetGroupListAdminV1Cmd.Flags().String("configurationCode", "", "Configuration code")
+	GetGroupListAdminV1Cmd.Flags().String("groupName", "", "Group name")
+	GetGroupListAdminV1Cmd.Flags().String("groupRegion", "", "Group region")
+	GetGroupListAdminV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetGroupListAdminV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

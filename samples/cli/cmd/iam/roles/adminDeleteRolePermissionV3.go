@@ -45,10 +45,10 @@ var AdminDeleteRolePermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteRolePermissionV3Cmd.Flags().Int64P("action", "", -1, "Action")
+	AdminDeleteRolePermissionV3Cmd.Flags().Int64("action", -1, "Action")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("action")
-	AdminDeleteRolePermissionV3Cmd.Flags().StringP("resource", "", "", "Resource")
+	AdminDeleteRolePermissionV3Cmd.Flags().String("resource", "", "Resource")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("resource")
-	AdminDeleteRolePermissionV3Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminDeleteRolePermissionV3Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("roleId")
 }

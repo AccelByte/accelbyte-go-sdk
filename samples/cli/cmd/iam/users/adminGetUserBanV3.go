@@ -53,12 +53,12 @@ var AdminGetUserBanV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserBanV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetUserBanV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserBanV3Cmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetUserBanV3Cmd.Flags().String("userId", "", "User id")
 	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("userId")
-	AdminGetUserBanV3Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	AdminGetUserBanV3Cmd.Flags().StringP("after", "", "0", "After")
-	AdminGetUserBanV3Cmd.Flags().StringP("before", "", "0", "Before")
-	AdminGetUserBanV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetUserBanV3Cmd.Flags().Bool("activeOnly", false, "Active only")
+	AdminGetUserBanV3Cmd.Flags().String("after", "0", "After")
+	AdminGetUserBanV3Cmd.Flags().String("before", "0", "Before")
+	AdminGetUserBanV3Cmd.Flags().Int64("limit", 20, "Limit")
 }

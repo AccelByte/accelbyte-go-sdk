@@ -59,14 +59,14 @@ var UpdateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateContentDirectCmd.Flags().StringP("body", "", "", "Body")
+	UpdateContentDirectCmd.Flags().String("body", "", "Body")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("body")
-	UpdateContentDirectCmd.Flags().StringP("channelId", "", "", "Channel id")
+	UpdateContentDirectCmd.Flags().String("channelId", "", "Channel id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("channelId")
-	UpdateContentDirectCmd.Flags().StringP("contentId", "", "", "Content id")
+	UpdateContentDirectCmd.Flags().String("contentId", "", "Content id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("contentId")
-	UpdateContentDirectCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateContentDirectCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("namespace")
-	UpdateContentDirectCmd.Flags().StringP("userId", "", "", "User id")
+	UpdateContentDirectCmd.Flags().String("userId", "", "User id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("userId")
 }

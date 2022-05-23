@@ -49,10 +49,10 @@ var GetCurrentMonthLeaderboardRankingPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
+	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().String("leaderboardCode", "", "Leaderboard code")
 	_ = GetCurrentMonthLeaderboardRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCurrentMonthLeaderboardRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().Int64("limit", 20, "Limit")
+	GetCurrentMonthLeaderboardRankingPublicV1Cmd.Flags().Int64("offset", 0, "Offset")
 }

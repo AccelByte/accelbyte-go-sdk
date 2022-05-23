@@ -53,10 +53,10 @@ var UserVerificationCmd = &cobra.Command{
 }
 
 func init() {
-	UserVerificationCmd.Flags().StringP("body", "", "", "Body")
+	UserVerificationCmd.Flags().String("body", "", "Body")
 	_ = UserVerificationCmd.MarkFlagRequired("body")
-	UserVerificationCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UserVerificationCmd.Flags().String("namespace", "", "Namespace")
 	_ = UserVerificationCmd.MarkFlagRequired("namespace")
-	UserVerificationCmd.Flags().StringP("userId", "", "", "User id")
+	UserVerificationCmd.Flags().String("userId", "", "User id")
 	_ = UserVerificationCmd.MarkFlagRequired("userId")
 }

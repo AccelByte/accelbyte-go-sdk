@@ -47,10 +47,10 @@ var RemovePlayerFromSessionCmd = &cobra.Command{
 }
 
 func init() {
-	RemovePlayerFromSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	RemovePlayerFromSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("namespace")
-	RemovePlayerFromSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
+	RemovePlayerFromSessionCmd.Flags().String("sessionID", "", "Session ID")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("sessionID")
-	RemovePlayerFromSessionCmd.Flags().StringP("userID", "", "", "User ID")
+	RemovePlayerFromSessionCmd.Flags().String("userID", "", "User ID")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("userID")
 }

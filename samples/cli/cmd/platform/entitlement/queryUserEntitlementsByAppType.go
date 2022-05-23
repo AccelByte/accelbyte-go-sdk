@@ -53,13 +53,13 @@ var QueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	QueryUserEntitlementsByAppTypeCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("namespace")
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "", "", "User id")
+	QueryUserEntitlementsByAppTypeCmd.Flags().String("userId", "", "User id")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("userId")
-	QueryUserEntitlementsByAppTypeCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "", "", "App type")
+	QueryUserEntitlementsByAppTypeCmd.Flags().Bool("activeOnly", false, "Active only")
+	QueryUserEntitlementsByAppTypeCmd.Flags().Int32("limit", 20, "Limit")
+	QueryUserEntitlementsByAppTypeCmd.Flags().Int32("offset", 0, "Offset")
+	QueryUserEntitlementsByAppTypeCmd.Flags().String("appType", "", "App type")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("appType")
 }

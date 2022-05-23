@@ -49,9 +49,9 @@ var AdminGetListPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListPersonalDataRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetListPersonalDataRequestCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetListPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	AdminGetListPersonalDataRequestCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetListPersonalDataRequestCmd.Flags().Int64P("offset", "", 0, "Offset")
-	AdminGetListPersonalDataRequestCmd.Flags().StringP("requestDate", "", "", "Request date")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64("offset", 0, "Offset")
+	AdminGetListPersonalDataRequestCmd.Flags().String("requestDate", "", "Request date")
 }

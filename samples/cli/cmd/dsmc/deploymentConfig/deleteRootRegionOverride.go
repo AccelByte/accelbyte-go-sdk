@@ -47,10 +47,10 @@ var DeleteRootRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteRootRegionOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
+	DeleteRootRegionOverrideCmd.Flags().String("deployment", "", "Deployment")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	DeleteRootRegionOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteRootRegionOverrideCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	DeleteRootRegionOverrideCmd.Flags().StringP("region", "", "", "Region")
+	DeleteRootRegionOverrideCmd.Flags().String("region", "", "Region")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("region")
 }

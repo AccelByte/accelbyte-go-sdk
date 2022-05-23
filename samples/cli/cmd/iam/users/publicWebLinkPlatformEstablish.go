@@ -53,10 +53,10 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 }
 
 func init() {
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicWebLinkPlatformEstablishCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("namespace")
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("platformId", "", "", "Platform id")
+	PublicWebLinkPlatformEstablishCmd.Flags().String("platformId", "", "Platform id")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("platformId")
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("state", "", "", "State")
+	PublicWebLinkPlatformEstablishCmd.Flags().String("state", "", "State")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("state")
 }

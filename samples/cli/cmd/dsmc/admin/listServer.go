@@ -49,9 +49,9 @@ var ListServerCmd = &cobra.Command{
 }
 
 func init() {
-	ListServerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListServerCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListServerCmd.MarkFlagRequired("namespace")
-	ListServerCmd.Flags().Int64P("count", "", 1, "Count")
-	ListServerCmd.Flags().Int64P("offset", "", 0, "Offset")
-	ListServerCmd.Flags().StringP("region", "", "", "Region")
+	ListServerCmd.Flags().Int64("count", 1, "Count")
+	ListServerCmd.Flags().Int64("offset", 0, "Offset")
+	ListServerCmd.Flags().String("region", "", "Region")
 }

@@ -45,8 +45,8 @@ var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "", "", "Member role id")
+	GetSingleMemberRoleAdminV1Cmd.Flags().String("memberRoleId", "", "Member role id")
 	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetSingleMemberRoleAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

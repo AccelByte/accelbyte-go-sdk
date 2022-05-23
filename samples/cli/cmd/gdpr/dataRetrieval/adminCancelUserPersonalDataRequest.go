@@ -45,10 +45,10 @@ var AdminCancelUserPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCancelUserPersonalDataRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminCancelUserPersonalDataRequestCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminCancelUserPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	AdminCancelUserPersonalDataRequestCmd.Flags().StringP("requestDate", "", "", "Request date")
+	AdminCancelUserPersonalDataRequestCmd.Flags().String("requestDate", "", "Request date")
 	_ = AdminCancelUserPersonalDataRequestCmd.MarkFlagRequired("requestDate")
-	AdminCancelUserPersonalDataRequestCmd.Flags().StringP("userId", "", "", "User id")
+	AdminCancelUserPersonalDataRequestCmd.Flags().String("userId", "", "User id")
 	_ = AdminCancelUserPersonalDataRequestCmd.MarkFlagRequired("userId")
 }

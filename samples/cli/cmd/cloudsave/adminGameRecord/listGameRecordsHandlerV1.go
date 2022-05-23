@@ -49,11 +49,11 @@ var ListGameRecordsHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ListGameRecordsHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	ListGameRecordsHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("namespace")
-	ListGameRecordsHandlerV1Cmd.Flags().StringP("query", "", "", "Query")
-	ListGameRecordsHandlerV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	ListGameRecordsHandlerV1Cmd.Flags().String("query", "", "Query")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64("limit", 20, "Limit")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("limit")
-	ListGameRecordsHandlerV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64("offset", 0, "Offset")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("offset")
 }

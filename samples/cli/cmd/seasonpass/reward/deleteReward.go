@@ -45,10 +45,10 @@ var DeleteRewardCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteRewardCmd.Flags().StringP("code", "", "", "Code")
+	DeleteRewardCmd.Flags().String("code", "", "Code")
 	_ = DeleteRewardCmd.MarkFlagRequired("code")
-	DeleteRewardCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteRewardCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteRewardCmd.MarkFlagRequired("namespace")
-	DeleteRewardCmd.Flags().StringP("seasonId", "", "", "Season id")
+	DeleteRewardCmd.Flags().String("seasonId", "", "Season id")
 	_ = DeleteRewardCmd.MarkFlagRequired("seasonId")
 }

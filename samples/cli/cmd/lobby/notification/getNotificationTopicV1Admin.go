@@ -45,8 +45,8 @@ var GetNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetNotificationTopicV1AdminCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	GetNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", "", "Topic name")
+	GetNotificationTopicV1AdminCmd.Flags().String("topicName", "", "Topic name")
 	_ = GetNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

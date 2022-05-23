@@ -45,10 +45,10 @@ var PublicDeleteProfileCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeleteProfileCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicDeleteProfileCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("namespace")
-	PublicDeleteProfileCmd.Flags().StringP("profileId", "", "", "Profile id")
+	PublicDeleteProfileCmd.Flags().String("profileId", "", "Profile id")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("profileId")
-	PublicDeleteProfileCmd.Flags().StringP("userId", "", "", "User id")
+	PublicDeleteProfileCmd.Flags().String("userId", "", "User id")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("userId")
 }

@@ -53,12 +53,12 @@ var GetUserSubscriptionActivitiesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserSubscriptionActivitiesCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("namespace")
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("userId", "", "", "User id")
+	GetUserSubscriptionActivitiesCmd.Flags().String("userId", "", "User id")
 	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("userId")
-	GetUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "", false, "Exclude system")
-	GetUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "", 20, "Limit")
-	GetUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "", 0, "Offset")
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
+	GetUserSubscriptionActivitiesCmd.Flags().Bool("excludeSystem", false, "Exclude system")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32("limit", 20, "Limit")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32("offset", 0, "Offset")
+	GetUserSubscriptionActivitiesCmd.Flags().String("subscriptionId", "", "Subscription id")
 }

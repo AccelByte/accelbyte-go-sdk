@@ -55,9 +55,9 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserPaymentOrderCmd.Flags().StringP("body", "", "", "Body")
-	CreateUserPaymentOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
+	CreateUserPaymentOrderCmd.Flags().String("body", "", "Body")
+	CreateUserPaymentOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("namespace")
-	CreateUserPaymentOrderCmd.Flags().StringP("userId", "", "", "User id")
+	CreateUserPaymentOrderCmd.Flags().String("userId", "", "User id")
 	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("userId")
 }

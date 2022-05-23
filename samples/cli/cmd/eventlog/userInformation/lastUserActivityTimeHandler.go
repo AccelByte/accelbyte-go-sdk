@@ -45,8 +45,8 @@ var LastUserActivityTimeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	LastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	LastUserActivityTimeHandlerCmd.Flags().String("namespace", "", "Namespace")
 	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("namespace")
-	LastUserActivityTimeHandlerCmd.Flags().StringP("userId", "", "", "User id")
+	LastUserActivityTimeHandlerCmd.Flags().String("userId", "", "User id")
 	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("userId")
 }

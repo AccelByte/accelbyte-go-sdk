@@ -45,7 +45,7 @@ var TestAdyenConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestAdyenConfigByIdCmd.Flags().StringP("id", "", "", "Id")
+	TestAdyenConfigByIdCmd.Flags().String("id", "", "Id")
 	_ = TestAdyenConfigByIdCmd.MarkFlagRequired("id")
-	TestAdyenConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	TestAdyenConfigByIdCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

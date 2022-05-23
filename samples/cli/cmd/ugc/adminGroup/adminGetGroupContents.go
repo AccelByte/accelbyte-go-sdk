@@ -51,12 +51,12 @@ var AdminGetGroupContentsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetGroupContentsCmd.Flags().StringP("groupId", "", "", "Group id")
+	AdminGetGroupContentsCmd.Flags().String("groupId", "", "Group id")
 	_ = AdminGetGroupContentsCmd.MarkFlagRequired("groupId")
-	AdminGetGroupContentsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetGroupContentsCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetGroupContentsCmd.MarkFlagRequired("namespace")
-	AdminGetGroupContentsCmd.Flags().StringP("userId", "", "", "User id")
+	AdminGetGroupContentsCmd.Flags().String("userId", "", "User id")
 	_ = AdminGetGroupContentsCmd.MarkFlagRequired("userId")
-	AdminGetGroupContentsCmd.Flags().Int64P("limit", "", 20, "Limit")
-	AdminGetGroupContentsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetGroupContentsCmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetGroupContentsCmd.Flags().Int64("offset", 0, "Offset")
 }

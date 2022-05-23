@@ -45,8 +45,8 @@ var PublicGetCurrentUserSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCurrentUserSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetCurrentUserSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetCurrentUserSeasonCmd.MarkFlagRequired("namespace")
-	PublicGetCurrentUserSeasonCmd.Flags().StringP("userId", "", "", "User id")
+	PublicGetCurrentUserSeasonCmd.Flags().String("userId", "", "User id")
 	_ = PublicGetCurrentUserSeasonCmd.MarkFlagRequired("userId")
 }

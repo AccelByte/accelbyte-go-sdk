@@ -49,9 +49,9 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetActiveMatchmakingGameSessionsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("matchId", "", "", "Match id")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("serverRegion", "", "", "Server region")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("sessionId", "", "", "Session id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().String("matchId", "", "Match id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().String("serverRegion", "", "Server region")
+	GetActiveMatchmakingGameSessionsCmd.Flags().String("sessionId", "", "Session id")
 }

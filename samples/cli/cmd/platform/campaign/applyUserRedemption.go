@@ -55,9 +55,9 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 }
 
 func init() {
-	ApplyUserRedemptionCmd.Flags().StringP("body", "", "", "Body")
-	ApplyUserRedemptionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ApplyUserRedemptionCmd.Flags().String("body", "", "Body")
+	ApplyUserRedemptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = ApplyUserRedemptionCmd.MarkFlagRequired("namespace")
-	ApplyUserRedemptionCmd.Flags().StringP("userId", "", "", "User id")
+	ApplyUserRedemptionCmd.Flags().String("userId", "", "User id")
 	_ = ApplyUserRedemptionCmd.MarkFlagRequired("userId")
 }

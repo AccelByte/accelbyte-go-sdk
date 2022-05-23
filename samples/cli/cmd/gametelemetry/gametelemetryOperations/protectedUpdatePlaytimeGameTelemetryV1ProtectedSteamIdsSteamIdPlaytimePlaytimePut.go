@@ -45,9 +45,9 @@ var ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlayti
 }
 
 func init() {
-	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("cookie", "", "", "Cookie")
-	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("playtime", "", "", "Playtime")
+	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().String("cookie", "", "Cookie")
+	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().String("playtime", "", "Playtime")
 	_ = ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.MarkFlagRequired("playtime")
-	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("steamId", "", "", "Steam id")
+	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().String("steamId", "", "Steam id")
 	_ = ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.MarkFlagRequired("steamId")
 }

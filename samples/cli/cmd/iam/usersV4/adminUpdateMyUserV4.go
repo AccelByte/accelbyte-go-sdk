@@ -51,6 +51,6 @@ var AdminUpdateMyUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateMyUserV4Cmd.Flags().StringP("body", "", "", "Body")
+	AdminUpdateMyUserV4Cmd.Flags().String("body", "", "Body")
 	_ = AdminUpdateMyUserV4Cmd.MarkFlagRequired("body")
 }

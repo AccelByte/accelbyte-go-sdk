@@ -47,9 +47,9 @@ var GetCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetCodeCmd.Flags().StringP("code", "", "", "Code")
+	GetCodeCmd.Flags().String("code", "", "Code")
 	_ = GetCodeCmd.MarkFlagRequired("code")
-	GetCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCodeCmd.MarkFlagRequired("namespace")
-	GetCodeCmd.Flags().BoolP("redeemable", "", false, "Redeemable")
+	GetCodeCmd.Flags().Bool("redeemable", false, "Redeemable")
 }

@@ -43,6 +43,6 @@ var ExportAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	ExportAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ExportAchievementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = ExportAchievementsCmd.MarkFlagRequired("namespace")
 }

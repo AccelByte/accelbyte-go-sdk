@@ -41,6 +41,6 @@ var DeletePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePaymentProviderConfigCmd.Flags().StringP("id", "", "", "Id")
+	DeletePaymentProviderConfigCmd.Flags().String("id", "", "Id")
 	_ = DeletePaymentProviderConfigCmd.MarkFlagRequired("id")
 }

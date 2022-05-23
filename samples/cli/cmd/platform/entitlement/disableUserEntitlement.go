@@ -47,10 +47,10 @@ var DisableUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserEntitlementCmd.Flags().StringP("entitlementId", "", "", "Entitlement id")
+	DisableUserEntitlementCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	DisableUserEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DisableUserEntitlementCmd.Flags().String("namespace", "", "Namespace")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("namespace")
-	DisableUserEntitlementCmd.Flags().StringP("userId", "", "", "User id")
+	DisableUserEntitlementCmd.Flags().String("userId", "", "User id")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("userId")
 }

@@ -43,8 +43,8 @@ var AnonymizeCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeCampaignCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AnonymizeCampaignCmd.Flags().String("namespace", "", "Namespace")
 	_ = AnonymizeCampaignCmd.MarkFlagRequired("namespace")
-	AnonymizeCampaignCmd.Flags().StringP("userId", "", "", "User id")
+	AnonymizeCampaignCmd.Flags().String("userId", "", "User id")
 	_ = AnonymizeCampaignCmd.MarkFlagRequired("userId")
 }

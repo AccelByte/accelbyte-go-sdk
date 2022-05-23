@@ -43,6 +43,6 @@ var GetNamespacePublisherCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespacePublisherCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetNamespacePublisherCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetNamespacePublisherCmd.MarkFlagRequired("namespace")
 }

@@ -49,6 +49,6 @@ var CreateImagePatchCmd = &cobra.Command{
 }
 
 func init() {
-	CreateImagePatchCmd.Flags().StringP("body", "", "", "Body")
+	CreateImagePatchCmd.Flags().String("body", "", "Body")
 	_ = CreateImagePatchCmd.MarkFlagRequired("body")
 }

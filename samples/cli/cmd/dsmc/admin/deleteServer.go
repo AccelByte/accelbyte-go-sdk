@@ -43,8 +43,8 @@ var DeleteServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteServerCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteServerCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteServerCmd.MarkFlagRequired("namespace")
-	DeleteServerCmd.Flags().StringP("podName", "", "", "Pod name")
+	DeleteServerCmd.Flags().String("podName", "", "Pod name")
 	_ = DeleteServerCmd.MarkFlagRequired("podName")
 }

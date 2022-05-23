@@ -55,10 +55,10 @@ var UpdateCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("body", "", "", "Body")
+	UpdateCountryAgeRestrictionCmd.Flags().String("body", "", "Body")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("body")
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("countryCode", "", "", "Country code")
+	UpdateCountryAgeRestrictionCmd.Flags().String("countryCode", "", "Country code")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("countryCode")
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateCountryAgeRestrictionCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

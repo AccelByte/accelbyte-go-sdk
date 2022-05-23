@@ -53,10 +53,10 @@ var UpdateMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMatchmakingChannelCmd.Flags().StringP("body", "", "", "Body")
+	UpdateMatchmakingChannelCmd.Flags().String("body", "", "Body")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("body")
-	UpdateMatchmakingChannelCmd.Flags().StringP("channelName", "", "", "Channel name")
+	UpdateMatchmakingChannelCmd.Flags().String("channelName", "", "Channel name")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	UpdateMatchmakingChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateMatchmakingChannelCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

@@ -53,7 +53,7 @@ var AddCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	AddCountryGroupCmd.Flags().StringP("body", "", "", "Body")
-	AddCountryGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AddCountryGroupCmd.Flags().String("body", "", "Body")
+	AddCountryGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = AddCountryGroupCmd.MarkFlagRequired("namespace")
 }

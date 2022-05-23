@@ -43,6 +43,6 @@ var GetRegisteredEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRegisteredEventIDHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
+	GetRegisteredEventIDHandlerCmd.Flags().String("eventId", "0", "Event id")
 	_ = GetRegisteredEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

@@ -55,9 +55,9 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRequestDataRetrievalCmd.Flags().StringP("password", "", "", "Password")
-	AdminRequestDataRetrievalCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminRequestDataRetrievalCmd.Flags().String("password", "", "Password")
+	AdminRequestDataRetrievalCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminRequestDataRetrievalCmd.MarkFlagRequired("namespace")
-	AdminRequestDataRetrievalCmd.Flags().StringP("userId", "", "", "User id")
+	AdminRequestDataRetrievalCmd.Flags().String("userId", "", "User id")
 	_ = AdminRequestDataRetrievalCmd.MarkFlagRequired("userId")
 }

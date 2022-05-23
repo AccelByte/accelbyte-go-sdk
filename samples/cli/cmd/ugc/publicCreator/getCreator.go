@@ -45,8 +45,8 @@ var GetCreatorCmd = &cobra.Command{
 }
 
 func init() {
-	GetCreatorCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetCreatorCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCreatorCmd.MarkFlagRequired("namespace")
-	GetCreatorCmd.Flags().StringP("userId", "", "", "User id")
+	GetCreatorCmd.Flags().String("userId", "", "User id")
 	_ = GetCreatorCmd.MarkFlagRequired("userId")
 }

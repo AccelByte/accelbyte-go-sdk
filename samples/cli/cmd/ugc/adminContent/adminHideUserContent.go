@@ -57,12 +57,12 @@ var AdminHideUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminHideUserContentCmd.Flags().StringP("body", "", "", "Body")
+	AdminHideUserContentCmd.Flags().String("body", "", "Body")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("body")
-	AdminHideUserContentCmd.Flags().StringP("contentId", "", "", "Content id")
+	AdminHideUserContentCmd.Flags().String("contentId", "", "Content id")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("contentId")
-	AdminHideUserContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminHideUserContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("namespace")
-	AdminHideUserContentCmd.Flags().StringP("userId", "", "", "User id")
+	AdminHideUserContentCmd.Flags().String("userId", "", "User id")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("userId")
 }

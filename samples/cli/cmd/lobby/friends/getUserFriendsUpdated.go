@@ -47,8 +47,8 @@ var GetUserFriendsUpdatedCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserFriendsUpdatedCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserFriendsUpdatedCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserFriendsUpdatedCmd.MarkFlagRequired("namespace")
-	GetUserFriendsUpdatedCmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetUserFriendsUpdatedCmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetUserFriendsUpdatedCmd.Flags().Int64("limit", 20, "Limit")
+	GetUserFriendsUpdatedCmd.Flags().Int64("offset", 0, "Offset")
 }

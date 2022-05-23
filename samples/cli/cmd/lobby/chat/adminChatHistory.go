@@ -47,10 +47,10 @@ var AdminChatHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	AdminChatHistoryCmd.Flags().StringP("friendId", "", "", "Friend id")
+	AdminChatHistoryCmd.Flags().String("friendId", "", "Friend id")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("friendId")
-	AdminChatHistoryCmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminChatHistoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("namespace")
-	AdminChatHistoryCmd.Flags().StringP("userId", "", "", "User id")
+	AdminChatHistoryCmd.Flags().String("userId", "", "User id")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("userId")
 }

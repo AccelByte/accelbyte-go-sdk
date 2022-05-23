@@ -57,12 +57,12 @@ var UploadContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	UploadContentScreenshotCmd.Flags().StringP("body", "", "", "Body")
+	UploadContentScreenshotCmd.Flags().String("body", "", "Body")
 	_ = UploadContentScreenshotCmd.MarkFlagRequired("body")
-	UploadContentScreenshotCmd.Flags().StringP("contentId", "", "", "Content id")
+	UploadContentScreenshotCmd.Flags().String("contentId", "", "Content id")
 	_ = UploadContentScreenshotCmd.MarkFlagRequired("contentId")
-	UploadContentScreenshotCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UploadContentScreenshotCmd.Flags().String("namespace", "", "Namespace")
 	_ = UploadContentScreenshotCmd.MarkFlagRequired("namespace")
-	UploadContentScreenshotCmd.Flags().StringP("userId", "", "", "User id")
+	UploadContentScreenshotCmd.Flags().String("userId", "", "User id")
 	_ = UploadContentScreenshotCmd.MarkFlagRequired("userId")
 }

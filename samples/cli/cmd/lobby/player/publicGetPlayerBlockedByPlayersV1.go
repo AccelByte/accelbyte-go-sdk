@@ -43,6 +43,6 @@ var PublicGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetPlayerBlockedByPlayersV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("namespace")
 }

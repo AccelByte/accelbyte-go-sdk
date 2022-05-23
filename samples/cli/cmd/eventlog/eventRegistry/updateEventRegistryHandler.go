@@ -51,8 +51,8 @@ var UpdateEventRegistryHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateEventRegistryHandlerCmd.Flags().StringP("body", "", "", "Body")
+	UpdateEventRegistryHandlerCmd.Flags().String("body", "", "Body")
 	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("body")
-	UpdateEventRegistryHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
+	UpdateEventRegistryHandlerCmd.Flags().String("eventId", "0", "Event id")
 	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("eventId")
 }

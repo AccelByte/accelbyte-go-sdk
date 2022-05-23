@@ -53,7 +53,7 @@ var UpdateNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateNamespaceSlotConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateNamespaceSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateNamespaceSlotConfigCmd.Flags().String("body", "", "Body")
+	UpdateNamespaceSlotConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

@@ -53,7 +53,7 @@ var PublicBulkIncUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkIncUserStatItemCmd.Flags().StringP("body", "", "", "Body")
-	PublicBulkIncUserStatItemCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicBulkIncUserStatItemCmd.Flags().String("body", "", "Body")
+	PublicBulkIncUserStatItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicBulkIncUserStatItemCmd.MarkFlagRequired("namespace")
 }

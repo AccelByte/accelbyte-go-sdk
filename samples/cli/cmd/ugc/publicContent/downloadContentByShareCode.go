@@ -45,8 +45,8 @@ var DownloadContentByShareCodeCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadContentByShareCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DownloadContentByShareCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("namespace")
-	DownloadContentByShareCodeCmd.Flags().StringP("shareCode", "", "", "Share code")
+	DownloadContentByShareCodeCmd.Flags().String("shareCode", "", "Share code")
 	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("shareCode")
 }

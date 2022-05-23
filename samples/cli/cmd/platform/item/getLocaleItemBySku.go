@@ -55,13 +55,13 @@ var GetLocaleItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	GetLocaleItemBySkuCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetLocaleItemBySkuCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("namespace")
-	GetLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	GetLocaleItemBySkuCmd.Flags().StringP("language", "", "", "Language")
-	GetLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "", false, "Populate bundle")
-	GetLocaleItemBySkuCmd.Flags().StringP("region", "", "", "Region")
-	GetLocaleItemBySkuCmd.Flags().StringP("storeId", "", "", "Store id")
-	GetLocaleItemBySkuCmd.Flags().StringP("sku", "", "", "Sku")
+	GetLocaleItemBySkuCmd.Flags().Bool("activeOnly", false, "Active only")
+	GetLocaleItemBySkuCmd.Flags().String("language", "", "Language")
+	GetLocaleItemBySkuCmd.Flags().Bool("populateBundle", false, "Populate bundle")
+	GetLocaleItemBySkuCmd.Flags().String("region", "", "Region")
+	GetLocaleItemBySkuCmd.Flags().String("storeId", "", "Store id")
+	GetLocaleItemBySkuCmd.Flags().String("sku", "", "Sku")
 	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("sku")
 }

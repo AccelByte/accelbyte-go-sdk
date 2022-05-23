@@ -45,8 +45,8 @@ var GetGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "", "", "Configuration code")
+	GetGroupConfigurationAdminV1Cmd.Flags().String("configurationCode", "", "Configuration code")
 	_ = GetGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	GetGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetGroupConfigurationAdminV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

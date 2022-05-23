@@ -45,7 +45,7 @@ var AdminGetUserByEmailAddressV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminGetUserByEmailAddressV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("emailAddress", "", "", "Email address")
+	AdminGetUserByEmailAddressV3Cmd.Flags().String("emailAddress", "", "Email address")
 }

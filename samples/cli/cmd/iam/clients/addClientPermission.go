@@ -53,10 +53,10 @@ var AddClientPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddClientPermissionCmd.Flags().Int64P("action", "", -1, "Action")
+	AddClientPermissionCmd.Flags().Int64("action", -1, "Action")
 	_ = AddClientPermissionCmd.MarkFlagRequired("action")
-	AddClientPermissionCmd.Flags().StringP("clientId", "", "", "Client id")
+	AddClientPermissionCmd.Flags().String("clientId", "", "Client id")
 	_ = AddClientPermissionCmd.MarkFlagRequired("clientId")
-	AddClientPermissionCmd.Flags().StringP("resource", "", "", "Resource")
+	AddClientPermissionCmd.Flags().String("resource", "", "Resource")
 	_ = AddClientPermissionCmd.MarkFlagRequired("resource")
 }

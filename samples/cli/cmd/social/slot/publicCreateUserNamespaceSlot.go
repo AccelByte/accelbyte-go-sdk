@@ -73,13 +73,13 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("checksum", "", "", "Checksum")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "", "", "Custom attribute")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("file", "", "", "File")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("checksum", "", "Checksum")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("customAttribute", "", "Custom attribute")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("file", "", "File")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCreateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("userId", "", "", "User id")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("userId", "", "User id")
 	_ = PublicCreateUserNamespaceSlotCmd.MarkFlagRequired("userId")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("label", "", "", "Label")
-	PublicCreateUserNamespaceSlotCmd.Flags().StringP("tags", "", "", "Tags")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("label", "", "Label")
+	PublicCreateUserNamespaceSlotCmd.Flags().String("tags", "", "Tags")
 }

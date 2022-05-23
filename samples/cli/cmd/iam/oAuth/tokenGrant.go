@@ -67,14 +67,14 @@ var TokenGrantCmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantCmd.Flags().StringP("deviceId", "", "", "Device id")
-	TokenGrantCmd.Flags().StringP("code", "", "", "Code")
-	TokenGrantCmd.Flags().BoolP("extendExp", "", false, "Extend exp")
-	TokenGrantCmd.Flags().StringP("namespace", "", "", "Namespace")
-	TokenGrantCmd.Flags().StringP("password", "", "", "Password")
-	TokenGrantCmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
-	TokenGrantCmd.Flags().StringP("refreshToken", "", "", "Refresh token")
-	TokenGrantCmd.Flags().StringP("username", "", "", "Username")
-	TokenGrantCmd.Flags().StringP("grantType", "", "", "Grant type")
+	TokenGrantCmd.Flags().String("deviceId", "", "Device id")
+	TokenGrantCmd.Flags().String("code", "", "Code")
+	TokenGrantCmd.Flags().Bool("extendExp", false, "Extend exp")
+	TokenGrantCmd.Flags().String("namespace", "", "Namespace")
+	TokenGrantCmd.Flags().String("password", "", "Password")
+	TokenGrantCmd.Flags().String("redirectUri", "", "Redirect uri")
+	TokenGrantCmd.Flags().String("refreshToken", "", "Refresh token")
+	TokenGrantCmd.Flags().String("username", "", "Username")
+	TokenGrantCmd.Flags().String("grantType", "", "Grant type")
 	_ = TokenGrantCmd.MarkFlagRequired("grant_type")
 }

@@ -57,9 +57,9 @@ var UpdateAdyenConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAdyenConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateAdyenConfigCmd.Flags().StringP("id", "", "", "Id")
+	UpdateAdyenConfigCmd.Flags().String("body", "", "Body")
+	UpdateAdyenConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateAdyenConfigCmd.MarkFlagRequired("id")
-	UpdateAdyenConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
-	UpdateAdyenConfigCmd.Flags().BoolP("validate", "", false, "Validate")
+	UpdateAdyenConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
+	UpdateAdyenConfigCmd.Flags().Bool("validate", false, "Validate")
 }

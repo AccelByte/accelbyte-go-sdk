@@ -53,7 +53,7 @@ var UpdateConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateConfigCmd.Flags().StringP("body", "", "", "Body")
-	UpdateConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateConfigCmd.Flags().String("body", "", "Body")
+	UpdateConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateConfigCmd.MarkFlagRequired("namespace")
 }

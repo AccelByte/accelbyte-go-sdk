@@ -51,8 +51,8 @@ var AdminRemoveRoleMembersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminRemoveRoleMembersV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminRemoveRoleMembersV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminRemoveRoleMembersV3Cmd.MarkFlagRequired("body")
-	AdminRemoveRoleMembersV3Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminRemoveRoleMembersV3Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminRemoveRoleMembersV3Cmd.MarkFlagRequired("roleId")
 }

@@ -55,9 +55,9 @@ var BulkIncUserStatItem1Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkIncUserStatItem1Cmd.Flags().StringP("body", "", "", "Body")
-	BulkIncUserStatItem1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	BulkIncUserStatItem1Cmd.Flags().String("body", "", "Body")
+	BulkIncUserStatItem1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkIncUserStatItem1Cmd.MarkFlagRequired("namespace")
-	BulkIncUserStatItem1Cmd.Flags().StringP("userId", "", "", "User id")
+	BulkIncUserStatItem1Cmd.Flags().String("userId", "", "User id")
 	_ = BulkIncUserStatItem1Cmd.MarkFlagRequired("userId")
 }

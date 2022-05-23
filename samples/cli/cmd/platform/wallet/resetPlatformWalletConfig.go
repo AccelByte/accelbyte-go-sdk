@@ -45,8 +45,8 @@ var ResetPlatformWalletConfigCmd = &cobra.Command{
 }
 
 func init() {
-	ResetPlatformWalletConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ResetPlatformWalletConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = ResetPlatformWalletConfigCmd.MarkFlagRequired("namespace")
-	ResetPlatformWalletConfigCmd.Flags().StringP("platform", "", "", "Platform")
+	ResetPlatformWalletConfigCmd.Flags().String("platform", "", "Platform")
 	_ = ResetPlatformWalletConfigCmd.MarkFlagRequired("platform")
 }

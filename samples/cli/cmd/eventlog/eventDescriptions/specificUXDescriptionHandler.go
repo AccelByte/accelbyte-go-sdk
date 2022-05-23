@@ -43,5 +43,5 @@ var SpecificUXDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificUXDescriptionHandlerCmd.Flags().StringP("ux", "", "", "Ux")
+	SpecificUXDescriptionHandlerCmd.Flags().String("ux", "", "Ux")
 }

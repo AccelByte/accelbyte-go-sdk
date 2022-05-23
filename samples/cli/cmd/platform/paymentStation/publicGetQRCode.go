@@ -59,8 +59,8 @@ var PublicGetQRCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetQRCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
+	PublicGetQRCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetQRCodeCmd.MarkFlagRequired("namespace")
-	PublicGetQRCodeCmd.Flags().StringP("code", "", "", "Code")
+	PublicGetQRCodeCmd.Flags().String("code", "", "Code")
 	_ = PublicGetQRCodeCmd.MarkFlagRequired("code")
 }

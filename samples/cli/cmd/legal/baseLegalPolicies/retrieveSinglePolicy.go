@@ -43,6 +43,6 @@ var RetrieveSinglePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSinglePolicyCmd.Flags().StringP("basePolicyId", "", "", "Base policy id")
+	RetrieveSinglePolicyCmd.Flags().String("basePolicyId", "", "Base policy id")
 	_ = RetrieveSinglePolicyCmd.MarkFlagRequired("basePolicyId")
 }

@@ -43,6 +43,6 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserIncomingFriendsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetUserIncomingFriendsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetUserIncomingFriendsCmd.MarkFlagRequired("namespace")
 }

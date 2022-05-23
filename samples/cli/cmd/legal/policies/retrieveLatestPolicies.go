@@ -49,9 +49,9 @@ var RetrieveLatestPoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesCmd.Flags().StringP("countryCode", "", "", "Country code")
+	RetrieveLatestPoliciesCmd.Flags().String("countryCode", "", "Country code")
 	_ = RetrieveLatestPoliciesCmd.MarkFlagRequired("countryCode")
-	RetrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
-	RetrieveLatestPoliciesCmd.Flags().StringP("policyType", "", "", "Policy type")
-	RetrieveLatestPoliciesCmd.Flags().StringP("tags", "", "", "Tags")
+	RetrieveLatestPoliciesCmd.Flags().Bool("defaultOnEmpty", false, "Default on empty")
+	RetrieveLatestPoliciesCmd.Flags().String("policyType", "", "Policy type")
+	RetrieveLatestPoliciesCmd.Flags().String("tags", "", "Tags")
 }

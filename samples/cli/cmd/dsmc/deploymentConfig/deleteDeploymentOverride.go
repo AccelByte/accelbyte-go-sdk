@@ -47,10 +47,10 @@ var DeleteDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDeploymentOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
+	DeleteDeploymentOverrideCmd.Flags().String("deployment", "", "Deployment")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	DeleteDeploymentOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DeleteDeploymentOverrideCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	DeleteDeploymentOverrideCmd.Flags().StringP("version", "", "", "Version")
+	DeleteDeploymentOverrideCmd.Flags().String("version", "", "Version")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("version")
 }

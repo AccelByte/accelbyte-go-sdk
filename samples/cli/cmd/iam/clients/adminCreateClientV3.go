@@ -53,8 +53,8 @@ var AdminCreateClientV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateClientV3Cmd.Flags().StringP("body", "", "", "Body")
+	AdminCreateClientV3Cmd.Flags().String("body", "", "Body")
 	_ = AdminCreateClientV3Cmd.MarkFlagRequired("body")
-	AdminCreateClientV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	AdminCreateClientV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminCreateClientV3Cmd.MarkFlagRequired("namespace")
 }

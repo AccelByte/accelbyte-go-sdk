@@ -43,6 +43,6 @@ var AdminGetRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleV4Cmd.Flags().StringP("roleId", "", "", "Role id")
+	AdminGetRoleV4Cmd.Flags().String("roleId", "", "Role id")
 	_ = AdminGetRoleV4Cmd.MarkFlagRequired("roleId")
 }

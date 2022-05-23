@@ -47,8 +47,8 @@ var GetFollowedContentCmd = &cobra.Command{
 }
 
 func init() {
-	GetFollowedContentCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetFollowedContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetFollowedContentCmd.MarkFlagRequired("namespace")
-	GetFollowedContentCmd.Flags().Int64P("limit", "", 20, "Limit")
-	GetFollowedContentCmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetFollowedContentCmd.Flags().Int64("limit", 20, "Limit")
+	GetFollowedContentCmd.Flags().Int64("offset", 0, "Offset")
 }

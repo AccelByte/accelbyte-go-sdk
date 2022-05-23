@@ -57,12 +57,12 @@ var Verify2faCodeCmd = &cobra.Command{
 }
 
 func init() {
-	Verify2faCodeCmd.Flags().StringP("code", "", "", "Code")
+	Verify2faCodeCmd.Flags().String("code", "", "Code")
 	_ = Verify2faCodeCmd.MarkFlagRequired("code")
-	Verify2faCodeCmd.Flags().StringP("factor", "", "", "Factor")
+	Verify2faCodeCmd.Flags().String("factor", "", "Factor")
 	_ = Verify2faCodeCmd.MarkFlagRequired("factor")
-	Verify2faCodeCmd.Flags().StringP("mfaToken", "", "", "Mfa token")
+	Verify2faCodeCmd.Flags().String("mfaToken", "", "Mfa token")
 	_ = Verify2faCodeCmd.MarkFlagRequired("mfaToken")
-	Verify2faCodeCmd.Flags().BoolP("rememberDevice", "", false, "Remember device")
+	Verify2faCodeCmd.Flags().Bool("rememberDevice", false, "Remember device")
 	_ = Verify2faCodeCmd.MarkFlagRequired("rememberDevice")
 }

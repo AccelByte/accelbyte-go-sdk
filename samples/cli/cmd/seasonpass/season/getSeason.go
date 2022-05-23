@@ -45,8 +45,8 @@ var GetSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	GetSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
+	GetSeasonCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetSeasonCmd.MarkFlagRequired("namespace")
-	GetSeasonCmd.Flags().StringP("seasonId", "", "", "Season id")
+	GetSeasonCmd.Flags().String("seasonId", "", "Season id")
 	_ = GetSeasonCmd.MarkFlagRequired("seasonId")
 }

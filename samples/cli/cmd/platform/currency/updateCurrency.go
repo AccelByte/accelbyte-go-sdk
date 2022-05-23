@@ -55,9 +55,9 @@ var UpdateCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCurrencyCmd.Flags().StringP("body", "", "", "Body")
-	UpdateCurrencyCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	UpdateCurrencyCmd.Flags().String("body", "", "Body")
+	UpdateCurrencyCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = UpdateCurrencyCmd.MarkFlagRequired("currencyCode")
-	UpdateCurrencyCmd.Flags().StringP("namespace", "", "", "Namespace")
+	UpdateCurrencyCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateCurrencyCmd.MarkFlagRequired("namespace")
 }

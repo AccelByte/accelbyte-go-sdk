@@ -46,10 +46,12 @@ func createSessionBrowser() string {
 func TestIntegrationSessionDSMC(t *testing.T) {
 	t.Parallel()
 	Init()
+
 	SessionBrowserID := createSessionBrowser()
+	getUserId := GetUserID()
 	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
 	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
-		UserID: &emptyString,
+		UserID: &getUserId,
 	}
 	partyMembers = append(partyMembers, partyMember)
 	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
@@ -102,7 +104,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
 
 	// Claiming a DS (Dedicated Server)
-	time.Sleep(5 * time.Second)
+	time.Sleep(20 * time.Second)
 
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
 	inputClaim := &session.ClaimServerParams{

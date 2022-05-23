@@ -30,18 +30,18 @@ type Backoff interface {
 	Get(attempt uint) time.Duration
 }
 
-type exponentialDelay struct {
+type exponentialBackoff struct {
 	// The start duration to delay after the first Next() call
 	Start time.Duration
 	// The maximum duration of delay
 	Max time.Duration
 }
 
-func NewExponentialDelay(start time.Duration, max time.Duration) Backoff {
-	return &exponentialDelay{Start: start, Max: max}
+func NewExponentialBackoff(start time.Duration, max time.Duration) Backoff {
+	return &exponentialBackoff{Start: start, Max: max}
 }
 
-func (b *exponentialDelay) Get(attempt uint) time.Duration {
+func (b *exponentialBackoff) Get(attempt uint) time.Duration {
 	d := b.Start
 	for i := uint(0); i < attempt; i++ {
 		d *= time.Duration(2)
@@ -53,15 +53,15 @@ func (b *exponentialDelay) Get(attempt uint) time.Duration {
 	return d
 }
 
-type constantDelay struct {
+type constantBackoff struct {
 	Duration time.Duration
 }
 
-func NewConstantDelay(duration time.Duration) Backoff {
-	return &constantDelay{Duration: duration}
+func NewConstantBackoff(duration time.Duration) Backoff {
+	return &constantBackoff{Duration: duration}
 }
 
-func (b *constantDelay) Get(attempt uint) time.Duration {
+func (b *constantBackoff) Get(attempt uint) time.Duration {
 	return b.Duration
 }
 

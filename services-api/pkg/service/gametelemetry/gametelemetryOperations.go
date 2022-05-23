@@ -165,7 +165,7 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantDelay(0),
+			Backoff:    utils.NewConstantBackoff(0),
 			Transport:  g.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}

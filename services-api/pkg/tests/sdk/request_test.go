@@ -209,8 +209,9 @@ func TestReq_PathParameter(t *testing.T) {
 			input := &GetParams{
 				Param: tt.params.Param,
 			}
-			_, err := TestService.Client.GetOperations.Get(input)
-			assert.NotNil(t, err, "error is nil")
+			ok, err := TestService.Client.TestOperations.Get(input)
+			assert.Nil(t, err, "error should be empty")
+			assert.NotNil(t, ok, "should not empty")
 		})
 	}
 }
@@ -255,6 +256,58 @@ func (p GetParams) Validate() error {
 	return nil
 }
 
+type MockServerConfigure struct {
+	Enabled   bool `json:"enabled"`
+	Overwrite bool `json:"overwrite"`
+	Status    int  `json:"status"`
+}
+
+// needs to be moved to other file
+type MockServerConfigureParams struct {
+	/*Cookie*/
+	Cookie *string
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
+
+	Body *MockServerConfigure
+
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
+}
+
+func (o *MockServerConfigureParams) SetHTTPClient(client *http.Client) {
+	o.HTTPClient = client
+}
+
+func (o MockServerConfigureParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	if err := r.SetTimeout(o.timeout); err != nil {
+		return err
+	}
+	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+
+	return nil
+}
+
+func (o MockServerConfigureParams) Validate() error {
+	if o.Body == nil {
+		return fmt.Errorf("empty body")
+	}
+
+	return nil
+}
+
 func AssertRequest(req *http.Request) error {
 	if req.Body != nil {
 		if req.Body != nil {
@@ -271,15 +324,17 @@ func AssertRequest(req *http.Request) error {
 }
 
 type AnythingService struct {
-	GetOperations ClientService
+	TestOperations ClientService
 
+	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
 
-func New(transport runtime.ClientTransport) *AnythingService {
+func New(transport runtime.ClientTransport, runtime *httptransport.Runtime) *AnythingService {
 	cli := new(AnythingService)
 	cli.Transport = transport
-	cli.GetOperations = NewService(transport)
+	cli.Runtime = runtime
+	cli.TestOperations = NewService(transport)
 
 	return cli
 }
@@ -291,8 +346,9 @@ func NewClientWithBasePath(url string, endpoint string) *AnythingService {
 	}
 
 	transport := httptransport.New(url, endpoint, schemes)
+	transport.Transport = utils.SetHeader(transport.Transport, utils.UserAgentGen(), utils.AmazonTraceIDGen())
 
-	return New(transport)
+	return New(transport, transport)
 }
 
 // NewService creates the operations
@@ -306,6 +362,8 @@ type Client struct {
 
 type ClientService interface {
 	Get(params *GetParams) (*Ok, error)
+	MockServerConfigure(params *MockServerConfigureParams) (*Ok, error)
+	MockServerResetOverwriteResponse(params *MockServerConfigureParams) (*Ok, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -315,6 +373,10 @@ func (a *Client) Get(params *GetParams) (*Ok, error) {
 		return nil, err
 	}
 
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get",
 		Method:             "GET",
@@ -322,6 +384,83 @@ func (a *Client) Get(params *GetParams) (*Ok, error) {
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
+		Reader:             &GetReader{},
+		Params:             params,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+	case *Ok:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) MockServerConfigure(params *MockServerConfigureParams) (*Ok, error) {
+	if err := params.Validate(); err != nil {
+		return nil, err
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "mockServerConfigure",
+		Method:             "POST",
+		PathPattern:        "/configure-overwrite-response",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Reader:             &GetReader{},
+		Params:             params,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+	case *Ok:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) MockServerResetOverwriteResponse(params *MockServerConfigureParams) (*Ok, error) {
+	if err := params.Validate(); err != nil {
+		return nil, err
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "MockServerResetOverwriteResponse",
+		Method:             "POST",
+		PathPattern:        "/reset-overwrite-response",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Reader:             &GetReader{},
 		Params:             params,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -345,5 +484,35 @@ func (a *Client) SetTransport(transport runtime.ClientTransport) {
 }
 
 type Ok struct {
-	Payload interface{}
+}
+
+func NewOk() *Ok {
+	return &Ok{}
+}
+
+type GetReader struct {
+}
+
+func (o *GetReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+	switch response.Code() {
+	case 200:
+		result := NewOk()
+		if err := result.readResponse(response, consumer); err != nil {
+			return nil, err
+		}
+
+		return result, nil
+
+	default:
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("requested url returns an error %d: %s", response.Code(), string(data))
+	}
+}
+
+func (o *Ok) readResponse(response runtime.ClientResponse, consumer runtime.Consumer) error {
+	return nil
 }

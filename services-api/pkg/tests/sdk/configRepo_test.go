@@ -17,6 +17,11 @@ var (
 	token       iamclientmodels.OauthmodelTokenResponseV3
 	ConfigRepo  ConfigRepositoryImplTest
 	TestService = &TestWrapperService{
+		Client:           NewClientWithBasePath("httpbin.org", ""),
+		ConfigRepository: &ConfigRepositoryImplTest{},
+		TokenRepository:  &TokenRepositoryImplTest{},
+	}
+	TestMockService = &TestWrapperService{
 		Client:           NewClientWithBasePath("0.0.0.0:8080", ""),
 		ConfigRepository: &ConfigRepositoryImplTest{},
 		TokenRepository:  &TokenRepositoryImplTest{},
@@ -25,8 +30,8 @@ var (
 
 const (
 	ConstAccessToken  = "foo"
-	ConstClientId     = "ClientIdTest"
-	ConstClientSecret = "ClientSecretTest"
+	ConstClientId     = "admin"
+	ConstClientSecret = "admin"
 	ConstURL          = "https://httpbin.org"
 )
 

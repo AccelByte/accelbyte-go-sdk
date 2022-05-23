@@ -80,7 +80,7 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	input.RetryPolicy = &utils.Retry{
 		Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
 		MaxTries:  utils.MaxTries,
-		Backoff:   utils.NewConstantDelay(0),
+		Backoff:   utils.NewConstantBackoff(0),
 		RetryCodes: map[int]bool{
 			422: true,
 		},

@@ -21,6 +21,15 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in PublicGetUserEntitlementByItemIDParams
+const (
+	PublicGetUserEntitlementByItemIDAPPConstant          = "APP"
+	PublicGetUserEntitlementByItemIDCODEConstant         = "CODE"
+	PublicGetUserEntitlementByItemIDENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicGetUserEntitlementByItemIDMEDIAConstant        = "MEDIA"
+	PublicGetUserEntitlementByItemIDSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewPublicGetUserEntitlementByItemIDParams creates a new PublicGetUserEntitlementByItemIDParams object
 // with the default values initialized.
 func NewPublicGetUserEntitlementByItemIDParams() *PublicGetUserEntitlementByItemIDParams {

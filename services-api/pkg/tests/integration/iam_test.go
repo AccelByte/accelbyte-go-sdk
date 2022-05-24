@@ -175,7 +175,7 @@ func TestIntegrationLogin(t *testing.T) {
 	input := &o_auth2_0.TokenGrantV3Params{
 		Password:  &password,
 		Username:  &username,
-		GrantType: "password",
+		GrantType: o_auth2_0.GrantTypeConstant,
 	}
 	ok, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {

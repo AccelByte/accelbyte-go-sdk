@@ -23,6 +23,18 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
+// Get the enum in UpdatePlatformWalletConfigParams
+const (
+	UpdatePlatformWalletConfigEpicConstant        = "Epic"
+	UpdatePlatformWalletConfigGooglePlayConstant  = "GooglePlay"
+	UpdatePlatformWalletConfigIOSConstant         = "IOS"
+	UpdatePlatformWalletConfigNintendoConstant    = "Nintendo"
+	UpdatePlatformWalletConfigOtherConstant       = "Other"
+	UpdatePlatformWalletConfigPlaystationConstant = "Playstation"
+	UpdatePlatformWalletConfigSteamConstant       = "Steam"
+	UpdatePlatformWalletConfigXboxConstant        = "Xbox"
+)
+
 // NewUpdatePlatformWalletConfigParams creates a new UpdatePlatformWalletConfigParams object
 // with the default values initialized.
 func NewUpdatePlatformWalletConfigParams() *UpdatePlatformWalletConfigParams {

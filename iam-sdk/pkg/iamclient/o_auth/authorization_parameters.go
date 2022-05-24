@@ -21,6 +21,12 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in AuthorizationParams
+const (
+	AuthorizationCodeConstant  = "code"
+	AuthorizationTokenConstant = "token"
+)
+
 // NewAuthorizationParams creates a new AuthorizationParams object
 // with the default values initialized.
 func NewAuthorizationParams() *AuthorizationParams {

@@ -22,6 +22,21 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryUserOrdersParams
+const (
+	QueryUserOrdersCHARGEBACKConstant         = "CHARGEBACK"
+	QueryUserOrdersCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
+	QueryUserOrdersCHARGEDConstant            = "CHARGED"
+	QueryUserOrdersCLOSEDConstant             = "CLOSED"
+	QueryUserOrdersDELETEDConstant            = "DELETED"
+	QueryUserOrdersFULFILLEDConstant          = "FULFILLED"
+	QueryUserOrdersFULFILLFAILEDConstant      = "FULFILL_FAILED"
+	QueryUserOrdersINITConstant               = "INIT"
+	QueryUserOrdersREFUNDEDConstant           = "REFUNDED"
+	QueryUserOrdersREFUNDINGConstant          = "REFUNDING"
+	QueryUserOrdersREFUNDFAILEDConstant       = "REFUND_FAILED"
+)
+
 // NewQueryUserOrdersParams creates a new QueryUserOrdersParams object
 // with the default values initialized.
 func NewQueryUserOrdersParams() *QueryUserOrdersParams {

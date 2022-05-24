@@ -22,6 +22,15 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in GetUserEntitlementBySkuParams
+const (
+	GetUserEntitlementBySkuAPPConstant          = "APP"
+	GetUserEntitlementBySkuCODEConstant         = "CODE"
+	GetUserEntitlementBySkuENTITLEMENTConstant  = "ENTITLEMENT"
+	GetUserEntitlementBySkuMEDIAConstant        = "MEDIA"
+	GetUserEntitlementBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewGetUserEntitlementBySkuParams creates a new GetUserEntitlementBySkuParams object
 // with the default values initialized.
 func NewGetUserEntitlementBySkuParams() *GetUserEntitlementBySkuParams {

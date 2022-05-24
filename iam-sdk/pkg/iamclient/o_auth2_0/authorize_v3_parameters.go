@@ -21,6 +21,17 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in AuthorizeV3Params
+const (
+	AuthorizeV3S256Constant  = "S256"
+	AuthorizeV3PlainConstant = "plain"
+)
+
+// Get the enum in AuthorizeV3Params
+const (
+	AuthorizeV3CodeConstant = "code"
+)
+
 // NewAuthorizeV3Params creates a new AuthorizeV3Params object
 // with the default values initialized.
 func NewAuthorizeV3Params() *AuthorizeV3Params {

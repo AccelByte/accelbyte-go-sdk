@@ -21,6 +21,12 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in PublicListCurrenciesParams
+const (
+	PublicListCurrenciesREALConstant    = "REAL"
+	PublicListCurrenciesVIRTUALConstant = "VIRTUAL"
+)
+
 // NewPublicListCurrenciesParams creates a new PublicListCurrenciesParams object
 // with the default values initialized.
 func NewPublicListCurrenciesParams() *PublicListCurrenciesParams {

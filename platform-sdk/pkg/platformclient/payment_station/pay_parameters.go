@@ -23,6 +23,18 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
+// Get the enum in PayParams
+const (
+	PayADYENConstant    = "ADYEN"
+	PayALIPAYConstant   = "ALIPAY"
+	PayCHECKOUTConstant = "CHECKOUT"
+	PayPAYPALConstant   = "PAYPAL"
+	PaySTRIPEConstant   = "STRIPE"
+	PayWALLETConstant   = "WALLET"
+	PayWXPAYConstant    = "WXPAY"
+	PayXSOLLAConstant   = "XSOLLA"
+)
+
 // NewPayParams creates a new PayParams object
 // with the default values initialized.
 func NewPayParams() *PayParams {

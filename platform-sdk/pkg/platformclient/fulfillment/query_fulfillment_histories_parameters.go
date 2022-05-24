@@ -22,6 +22,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryFulfillmentHistoriesParams
+const (
+	QueryFulfillmentHistoriesFAILConstant    = "FAIL"
+	QueryFulfillmentHistoriesSUCCESSConstant = "SUCCESS"
+)
+
 // NewQueryFulfillmentHistoriesParams creates a new QueryFulfillmentHistoriesParams object
 // with the default values initialized.
 func NewQueryFulfillmentHistoriesParams() *QueryFulfillmentHistoriesParams {

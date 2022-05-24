@@ -22,6 +22,25 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryUserIAPOrdersParams
+const (
+	QueryUserIAPOrdersFAILEDConstant    = "FAILED"
+	QueryUserIAPOrdersFULFILLEDConstant = "FULFILLED"
+	QueryUserIAPOrdersVERIFIEDConstant  = "VERIFIED"
+)
+
+// Get the enum in QueryUserIAPOrdersParams
+const (
+	QueryUserIAPOrdersAPPLEConstant       = "APPLE"
+	QueryUserIAPOrdersEPICGAMESConstant   = "EPICGAMES"
+	QueryUserIAPOrdersGOOGLEConstant      = "GOOGLE"
+	QueryUserIAPOrdersPLAYSTATIONConstant = "PLAYSTATION"
+	QueryUserIAPOrdersSTADIAConstant      = "STADIA"
+	QueryUserIAPOrdersSTEAMConstant       = "STEAM"
+	QueryUserIAPOrdersTWITCHConstant      = "TWITCH"
+	QueryUserIAPOrdersXBOXConstant        = "XBOX"
+)
+
 // NewQueryUserIAPOrdersParams creates a new QueryUserIAPOrdersParams object
 // with the default values initialized.
 func NewQueryUserIAPOrdersParams() *QueryUserIAPOrdersParams {

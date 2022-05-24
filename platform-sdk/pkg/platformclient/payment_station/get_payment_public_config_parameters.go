@@ -22,6 +22,18 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in GetPaymentPublicConfigParams
+const (
+	GetPaymentPublicConfigADYENConstant    = "ADYEN"
+	GetPaymentPublicConfigALIPAYConstant   = "ALIPAY"
+	GetPaymentPublicConfigCHECKOUTConstant = "CHECKOUT"
+	GetPaymentPublicConfigPAYPALConstant   = "PAYPAL"
+	GetPaymentPublicConfigSTRIPEConstant   = "STRIPE"
+	GetPaymentPublicConfigWALLETConstant   = "WALLET"
+	GetPaymentPublicConfigWXPAYConstant    = "WXPAY"
+	GetPaymentPublicConfigXSOLLAConstant   = "XSOLLA"
+)
+
 // NewGetPaymentPublicConfigParams creates a new GetPaymentPublicConfigParams object
 // with the default values initialized.
 func NewGetPaymentPublicConfigParams() *GetPaymentPublicConfigParams {

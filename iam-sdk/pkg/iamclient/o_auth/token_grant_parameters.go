@@ -22,6 +22,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in TokenGrantParams
+const (
+	TokenGrantAuthorizationCodeConstant = "authorization_code"
+	TokenGrantClientCredentialsConstant = "client_credentials"
+	TokenGrantPasswordConstant          = "password"
+	TokenGrantRefreshTokenConstant      = "refresh_token"
+)
+
 // NewTokenGrantParams creates a new TokenGrantParams object
 // with the default values initialized.
 func NewTokenGrantParams() *TokenGrantParams {

@@ -21,6 +21,18 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in PublicNormalizePaymentReturnURLParams
+const (
+	PublicNormalizePaymentReturnURLADYENConstant    = "ADYEN"
+	PublicNormalizePaymentReturnURLALIPAYConstant   = "ALIPAY"
+	PublicNormalizePaymentReturnURLCHECKOUTConstant = "CHECKOUT"
+	PublicNormalizePaymentReturnURLPAYPALConstant   = "PAYPAL"
+	PublicNormalizePaymentReturnURLSTRIPEConstant   = "STRIPE"
+	PublicNormalizePaymentReturnURLWALLETConstant   = "WALLET"
+	PublicNormalizePaymentReturnURLWXPAYConstant    = "WXPAY"
+	PublicNormalizePaymentReturnURLXSOLLAConstant   = "XSOLLA"
+)
+
 // NewPublicNormalizePaymentReturnURLParams creates a new PublicNormalizePaymentReturnURLParams object
 // with the default values initialized.
 func NewPublicNormalizePaymentReturnURLParams() *PublicNormalizePaymentReturnURLParams {

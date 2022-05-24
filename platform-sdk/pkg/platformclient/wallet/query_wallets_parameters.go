@@ -22,6 +22,21 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryWalletsParams
+const (
+	QueryWalletsEpicConstant        = "Epic"
+	QueryWalletsGooglePlayConstant  = "GooglePlay"
+	QueryWalletsIOSConstant         = "IOS"
+	QueryWalletsNintendoConstant    = "Nintendo"
+	QueryWalletsOtherConstant       = "Other"
+	QueryWalletsPlaystationConstant = "Playstation"
+	QueryWalletsStadiaConstant      = "Stadia"
+	QueryWalletsSteamConstant       = "Steam"
+	QueryWalletsSystemConstant      = "System"
+	QueryWalletsTwitchConstant      = "Twitch"
+	QueryWalletsXboxConstant        = "Xbox"
+)
+
 // NewQueryWalletsParams creates a new QueryWalletsParams object
 // with the default values initialized.
 func NewQueryWalletsParams() *QueryWalletsParams {

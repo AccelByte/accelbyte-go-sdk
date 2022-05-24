@@ -22,6 +22,19 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in ListImagesParams
+const (
+	ListImagesCreatedAtConstant = "createdAt"
+	ListImagesUpdatedAtConstant = "updatedAt"
+	ListImagesVersionConstant   = "version"
+)
+
+// Get the enum in ListImagesParams
+const (
+	ListImagesAscConstant  = "asc"
+	ListImagesDescConstant = "desc"
+)
+
 // NewListImagesParams creates a new ListImagesParams object
 // with the default values initialized.
 func NewListImagesParams() *ListImagesParams {

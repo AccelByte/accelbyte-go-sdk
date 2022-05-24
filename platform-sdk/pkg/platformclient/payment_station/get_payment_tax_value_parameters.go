@@ -21,6 +21,18 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in GetPaymentTaxValueParams
+const (
+	GetPaymentTaxValueADYENConstant    = "ADYEN"
+	GetPaymentTaxValueALIPAYConstant   = "ALIPAY"
+	GetPaymentTaxValueCHECKOUTConstant = "CHECKOUT"
+	GetPaymentTaxValuePAYPALConstant   = "PAYPAL"
+	GetPaymentTaxValueSTRIPEConstant   = "STRIPE"
+	GetPaymentTaxValueWALLETConstant   = "WALLET"
+	GetPaymentTaxValueWXPAYConstant    = "WXPAY"
+	GetPaymentTaxValueXSOLLAConstant   = "XSOLLA"
+)
+
 // NewGetPaymentTaxValueParams creates a new GetPaymentTaxValueParams object
 // with the default values initialized.
 func NewGetPaymentTaxValueParams() *GetPaymentTaxValueParams {

@@ -21,6 +21,21 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in CheckWalletParams
+const (
+	CheckWalletEpicConstant        = "Epic"
+	CheckWalletGooglePlayConstant  = "GooglePlay"
+	CheckWalletIOSConstant         = "IOS"
+	CheckWalletNintendoConstant    = "Nintendo"
+	CheckWalletOtherConstant       = "Other"
+	CheckWalletPlaystationConstant = "Playstation"
+	CheckWalletStadiaConstant      = "Stadia"
+	CheckWalletSteamConstant       = "Steam"
+	CheckWalletSystemConstant      = "System"
+	CheckWalletTwitchConstant      = "Twitch"
+	CheckWalletXboxConstant        = "Xbox"
+)
+
 // NewCheckWalletParams creates a new CheckWalletParams object
 // with the default values initialized.
 func NewCheckWalletParams() *CheckWalletParams {

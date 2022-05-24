@@ -22,6 +22,29 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsCHARGEDConstant           = "CHARGED"
+	QueryUserSubscriptionsCHARGEFAILEDConstant      = "CHARGE_FAILED"
+	QueryUserSubscriptionsNEVERConstant             = "NEVER"
+	QueryUserSubscriptionsRECURRINGCHARGINGConstant = "RECURRING_CHARGING"
+	QueryUserSubscriptionsSETUPConstant             = "SETUP"
+)
+
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsACTIVEConstant    = "ACTIVE"
+	QueryUserSubscriptionsCANCELLEDConstant = "CANCELLED"
+	QueryUserSubscriptionsEXPIREDConstant   = "EXPIRED"
+	QueryUserSubscriptionsINITConstant      = "INIT"
+)
+
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsPLATFORMConstant = "PLATFORM"
+	QueryUserSubscriptionsUSERConstant     = "USER"
+)
+
 // NewQueryUserSubscriptionsParams creates a new QueryUserSubscriptionsParams object
 // with the default values initialized.
 func NewQueryUserSubscriptionsParams() *QueryUserSubscriptionsParams {

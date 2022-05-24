@@ -22,6 +22,29 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryPaymentOrdersParams
+const (
+	QueryPaymentOrdersEXTERNALConstant = "EXTERNAL"
+	QueryPaymentOrdersINTERNALConstant = "INTERNAL"
+)
+
+// Get the enum in QueryPaymentOrdersParams
+const (
+	QueryPaymentOrdersAUTHORISEDConstant               = "AUTHORISED"
+	QueryPaymentOrdersAUTHORISEFAILEDConstant          = "AUTHORISE_FAILED"
+	QueryPaymentOrdersCHARGEBACKConstant               = "CHARGEBACK"
+	QueryPaymentOrdersCHARGEBACKREVERSEDConstant       = "CHARGEBACK_REVERSED"
+	QueryPaymentOrdersCHARGEDConstant                  = "CHARGED"
+	QueryPaymentOrdersCHARGEFAILEDConstant             = "CHARGE_FAILED"
+	QueryPaymentOrdersDELETEDConstant                  = "DELETED"
+	QueryPaymentOrdersINITConstant                     = "INIT"
+	QueryPaymentOrdersNOTIFICATIONOFCHARGEBACKConstant = "NOTIFICATION_OF_CHARGEBACK"
+	QueryPaymentOrdersREFUNDEDConstant                 = "REFUNDED"
+	QueryPaymentOrdersREFUNDINGConstant                = "REFUNDING"
+	QueryPaymentOrdersREFUNDFAILEDConstant             = "REFUND_FAILED"
+	QueryPaymentOrdersREQUESTFORINFORMATIONConstant    = "REQUEST_FOR_INFORMATION"
+)
+
 // NewQueryPaymentOrdersParams creates a new QueryPaymentOrdersParams object
 // with the default values initialized.
 func NewQueryPaymentOrdersParams() *QueryPaymentOrdersParams {

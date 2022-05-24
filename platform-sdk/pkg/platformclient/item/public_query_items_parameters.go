@@ -22,6 +22,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in PublicQueryItemsParams
+const (
+	PublicQueryItemsDEMOConstant     = "DEMO"
+	PublicQueryItemsDLCConstant      = "DLC"
+	PublicQueryItemsGAMEConstant     = "GAME"
+	PublicQueryItemsSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in PublicQueryItemsParams
+const (
+	PublicQueryItemsAPPConstant          = "APP"
+	PublicQueryItemsBUNDLEConstant       = "BUNDLE"
+	PublicQueryItemsCODEConstant         = "CODE"
+	PublicQueryItemsCOINSConstant        = "COINS"
+	PublicQueryItemsINGAMEITEMConstant   = "INGAMEITEM"
+	PublicQueryItemsMEDIAConstant        = "MEDIA"
+	PublicQueryItemsSEASONConstant       = "SEASON"
+	PublicQueryItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewPublicQueryItemsParams creates a new PublicQueryItemsParams object
 // with the default values initialized.
 func NewPublicQueryItemsParams() *PublicQueryItemsParams {

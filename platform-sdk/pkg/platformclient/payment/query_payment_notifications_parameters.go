@@ -22,6 +22,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryPaymentNotificationsParams
+const (
+	QueryPaymentNotificationsADYENConstant    = "ADYEN"
+	QueryPaymentNotificationsALIPAYConstant   = "ALIPAY"
+	QueryPaymentNotificationsCHECKOUTConstant = "CHECKOUT"
+	QueryPaymentNotificationsPAYPALConstant   = "PAYPAL"
+	QueryPaymentNotificationsSTRIPEConstant   = "STRIPE"
+	QueryPaymentNotificationsWALLETConstant   = "WALLET"
+	QueryPaymentNotificationsWXPAYConstant    = "WXPAY"
+	QueryPaymentNotificationsXSOLLAConstant   = "XSOLLA"
+)
+
+// Get the enum in QueryPaymentNotificationsParams
+const (
+	QueryPaymentNotificationsERRORConstant     = "ERROR"
+	QueryPaymentNotificationsIGNOREDConstant   = "IGNORED"
+	QueryPaymentNotificationsPROCESSEDConstant = "PROCESSED"
+	QueryPaymentNotificationsWARNConstant      = "WARN"
+)
+
 // NewQueryPaymentNotificationsParams creates a new QueryPaymentNotificationsParams object
 // with the default values initialized.
 func NewQueryPaymentNotificationsParams() *QueryPaymentNotificationsParams {

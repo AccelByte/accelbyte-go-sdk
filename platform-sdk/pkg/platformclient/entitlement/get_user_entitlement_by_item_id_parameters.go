@@ -22,6 +22,15 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in GetUserEntitlementByItemIDParams
+const (
+	GetUserEntitlementByItemIDAPPConstant          = "APP"
+	GetUserEntitlementByItemIDCODEConstant         = "CODE"
+	GetUserEntitlementByItemIDENTITLEMENTConstant  = "ENTITLEMENT"
+	GetUserEntitlementByItemIDMEDIAConstant        = "MEDIA"
+	GetUserEntitlementByItemIDSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewGetUserEntitlementByItemIDParams creates a new GetUserEntitlementByItemIDParams object
 // with the default values initialized.
 func NewGetUserEntitlementByItemIDParams() *GetUserEntitlementByItemIDParams {

@@ -21,6 +21,15 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in PublicGetUserEntitlementOwnershipBySkuParams
+const (
+	PublicGetUserEntitlementOwnershipBySkuAPPConstant          = "APP"
+	PublicGetUserEntitlementOwnershipBySkuCODEConstant         = "CODE"
+	PublicGetUserEntitlementOwnershipBySkuENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicGetUserEntitlementOwnershipBySkuMEDIAConstant        = "MEDIA"
+	PublicGetUserEntitlementOwnershipBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewPublicGetUserEntitlementOwnershipBySkuParams creates a new PublicGetUserEntitlementOwnershipBySkuParams object
 // with the default values initialized.
 func NewPublicGetUserEntitlementOwnershipBySkuParams() *PublicGetUserEntitlementOwnershipBySkuParams {

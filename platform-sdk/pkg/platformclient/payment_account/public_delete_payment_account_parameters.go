@@ -21,6 +21,12 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in PublicDeletePaymentAccountParams
+const (
+	PublicDeletePaymentAccountCardConstant   = "card"
+	PublicDeletePaymentAccountPaypalConstant = "paypal"
+)
+
 // NewPublicDeletePaymentAccountParams creates a new PublicDeletePaymentAccountParams object
 // with the default values initialized.
 func NewPublicDeletePaymentAccountParams() *PublicDeletePaymentAccountParams {

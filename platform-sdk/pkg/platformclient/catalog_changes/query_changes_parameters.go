@@ -22,6 +22,38 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesCREATEConstant = "CREATE"
+	QueryChangesDELETEConstant = "DELETE"
+	QueryChangesUPDATEConstant = "UPDATE"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesAPPConstant          = "APP"
+	QueryChangesBUNDLEConstant       = "BUNDLE"
+	QueryChangesCODEConstant         = "CODE"
+	QueryChangesCOINSConstant        = "COINS"
+	QueryChangesINGAMEITEMConstant   = "INGAMEITEM"
+	QueryChangesMEDIAConstant        = "MEDIA"
+	QueryChangesSEASONConstant       = "SEASON"
+	QueryChangesSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesPUBLISHEDConstant   = "PUBLISHED"
+	QueryChangesUNPUBLISHEDConstant = "UNPUBLISHED"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesCATEGORYConstant = "CATEGORY"
+	QueryChangesITEMConstant     = "ITEM"
+	QueryChangesSTOREConstant    = "STORE"
+)
+
 // NewQueryChangesParams creates a new QueryChangesParams object
 // with the default values initialized.
 func NewQueryChangesParams() *QueryChangesParams {

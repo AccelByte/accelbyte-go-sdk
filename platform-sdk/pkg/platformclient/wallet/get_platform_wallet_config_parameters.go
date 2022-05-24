@@ -21,6 +21,18 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in GetPlatformWalletConfigParams
+const (
+	GetPlatformWalletConfigEpicConstant        = "Epic"
+	GetPlatformWalletConfigGooglePlayConstant  = "GooglePlay"
+	GetPlatformWalletConfigIOSConstant         = "IOS"
+	GetPlatformWalletConfigNintendoConstant    = "Nintendo"
+	GetPlatformWalletConfigOtherConstant       = "Other"
+	GetPlatformWalletConfigPlaystationConstant = "Playstation"
+	GetPlatformWalletConfigSteamConstant       = "Steam"
+	GetPlatformWalletConfigXboxConstant        = "Xbox"
+)
+
 // NewGetPlatformWalletConfigParams creates a new GetPlatformWalletConfigParams object
 // with the default values initialized.
 func NewGetPlatformWalletConfigParams() *GetPlatformWalletConfigParams {

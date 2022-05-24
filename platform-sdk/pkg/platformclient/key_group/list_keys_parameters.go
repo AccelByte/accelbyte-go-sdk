@@ -22,6 +22,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in ListKeysParams
+const (
+	ListKeysACQUIREDConstant = "ACQUIRED"
+	ListKeysACTIVEConstant   = "ACTIVE"
+)
+
 // NewListKeysParams creates a new ListKeysParams object
 // with the default values initialized.
 func NewListKeysParams() *ListKeysParams {

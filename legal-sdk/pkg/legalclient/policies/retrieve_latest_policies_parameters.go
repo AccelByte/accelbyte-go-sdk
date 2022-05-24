@@ -22,6 +22,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in RetrieveLatestPoliciesParams
+const (
+	RetrieveLatestPoliciesLEGALDOCUMENTTYPEConstant       = "LEGAL_DOCUMENT_TYPE"
+	RetrieveLatestPoliciesMARKETINGPREFERENCETYPEConstant = "MARKETING_PREFERENCE_TYPE"
+)
+
 // NewRetrieveLatestPoliciesParams creates a new RetrieveLatestPoliciesParams object
 // with the default values initialized.
 func NewRetrieveLatestPoliciesParams() *RetrieveLatestPoliciesParams {

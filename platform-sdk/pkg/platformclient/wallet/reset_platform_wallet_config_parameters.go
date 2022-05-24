@@ -21,6 +21,18 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Get the enum in ResetPlatformWalletConfigParams
+const (
+	ResetPlatformWalletConfigEpicConstant        = "Epic"
+	ResetPlatformWalletConfigGooglePlayConstant  = "GooglePlay"
+	ResetPlatformWalletConfigIOSConstant         = "IOS"
+	ResetPlatformWalletConfigNintendoConstant    = "Nintendo"
+	ResetPlatformWalletConfigOtherConstant       = "Other"
+	ResetPlatformWalletConfigPlaystationConstant = "Playstation"
+	ResetPlatformWalletConfigSteamConstant       = "Steam"
+	ResetPlatformWalletConfigXboxConstant        = "Xbox"
+)
+
 // NewResetPlatformWalletConfigParams creates a new ResetPlatformWalletConfigParams object
 // with the default values initialized.
 func NewResetPlatformWalletConfigParams() *ResetPlatformWalletConfigParams {

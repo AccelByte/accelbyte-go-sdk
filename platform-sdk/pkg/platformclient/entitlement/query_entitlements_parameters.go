@@ -22,6 +22,23 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in QueryEntitlementsParams
+const (
+	QueryEntitlementsDEMOConstant     = "DEMO"
+	QueryEntitlementsDLCConstant      = "DLC"
+	QueryEntitlementsGAMEConstant     = "GAME"
+	QueryEntitlementsSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in QueryEntitlementsParams
+const (
+	QueryEntitlementsAPPConstant          = "APP"
+	QueryEntitlementsCODEConstant         = "CODE"
+	QueryEntitlementsENTITLEMENTConstant  = "ENTITLEMENT"
+	QueryEntitlementsMEDIAConstant        = "MEDIA"
+	QueryEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewQueryEntitlementsParams creates a new QueryEntitlementsParams object
 // with the default values initialized.
 func NewQueryEntitlementsParams() *QueryEntitlementsParams {

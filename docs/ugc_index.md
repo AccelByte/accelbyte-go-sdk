@@ -178,6 +178,7 @@
 | `models.CreateTypeResponse` | [ModelsCreateTypeResponse ](../ugc-sdk/pkg/ugcclientmodels/models_create_type_response.go) |
 | `models.CreatorFollowState` | [ModelsCreatorFollowState ](../ugc-sdk/pkg/ugcclientmodels/models_creator_follow_state.go) |
 | `models.CreatorOverviewResponse` | [ModelsCreatorOverviewResponse ](../ugc-sdk/pkg/ugcclientmodels/models_creator_overview_response.go) |
+| `models.CreatorResponse` | [ModelsCreatorResponse ](../ugc-sdk/pkg/ugcclientmodels/models_creator_response.go) |
 | `models.GetContentPreviewResponse` | [ModelsGetContentPreviewResponse ](../ugc-sdk/pkg/ugcclientmodels/models_get_content_preview_response.go) |
 | `models.HideContentRequest` | [ModelsHideContentRequest ](../ugc-sdk/pkg/ugcclientmodels/models_hide_content_request.go) |
 | `models.LikeState` | [ModelsLikeState ](../ugc-sdk/pkg/ugcclientmodels/models_like_state.go) |

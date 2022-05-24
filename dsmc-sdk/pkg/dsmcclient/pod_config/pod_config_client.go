@@ -120,6 +120,10 @@ func (a *Client) CreatePodConfigShort(params *CreatePodConfigParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreatePodConfig",
 		Method:             "POST",
@@ -230,6 +234,10 @@ func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeletePodConfig",
 		Method:             "DELETE",
@@ -336,6 +344,10 @@ func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllPodConfig",
 		Method:             "GET",
@@ -439,6 +451,10 @@ func (a *Client) GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -549,6 +565,10 @@ func (a *Client) UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -109,6 +109,10 @@ func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createFulfillmentScript",
 		Method:             "POST",
@@ -192,6 +196,10 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -280,6 +288,10 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getFulfillmentScript",
 		Method:             "GET",
@@ -365,6 +377,10 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listFulfillmentScripts",
 		Method:             "GET",
@@ -446,6 +462,10 @@ func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEva
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -532,6 +552,10 @@ func (a *Client) UpdateFulfillmentScriptShort(params *UpdateFulfillmentScriptPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

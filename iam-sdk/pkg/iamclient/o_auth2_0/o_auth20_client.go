@@ -145,6 +145,10 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRetrieveUserThirdPartyPlatformTokenV3",
 		Method:             "GET",
@@ -250,6 +254,10 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -369,6 +377,10 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AuthorizeV3",
 		Method:             "GET",
@@ -460,6 +472,10 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -554,6 +570,10 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetJWKSV3",
 		Method:             "GET",
@@ -641,6 +661,10 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -815,6 +839,10 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PlatformTokenGrantV3",
 		Method:             "POST",
@@ -924,6 +952,10 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUser
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveUserThirdPartyPlatformTokenV3",
 		Method:             "GET",
@@ -1024,6 +1056,10 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1192,6 +1228,10 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenGrantV3",
 		Method:             "POST",
@@ -1289,6 +1329,10 @@ func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenIntrospectionV3",
 		Method:             "POST",
@@ -1383,6 +1427,10 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenRevocationV3",
 		Method:             "POST",
@@ -1473,6 +1521,10 @@ func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

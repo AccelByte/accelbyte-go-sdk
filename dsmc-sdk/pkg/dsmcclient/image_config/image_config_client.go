@@ -145,6 +145,10 @@ func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateImage",
 		Method:             "POST",
@@ -262,6 +266,10 @@ func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateImagePatch",
 		Method:             "POST",
@@ -370,6 +378,10 @@ func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -484,6 +496,10 @@ func (a *Client) DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteImagePatch",
 		Method:             "DELETE",
@@ -594,6 +610,10 @@ func (a *Client) ExportImagesShort(params *ExportImagesParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ExportImages",
 		Method:             "GET",
@@ -698,6 +718,10 @@ func (a *Client) GetImageDetailShort(params *GetImageDetailParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetImageDetail",
 		Method:             "GET",
@@ -798,6 +822,10 @@ func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -902,6 +930,10 @@ func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetImagePatchDetail",
 		Method:             "GET",
@@ -999,6 +1031,10 @@ func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1099,6 +1135,10 @@ func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1219,6 +1259,10 @@ func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ImportImages",
 		Method:             "POST",
@@ -1321,6 +1365,10 @@ func (a *Client) ListImagesShort(params *ListImagesParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1432,6 +1480,10 @@ func (a *Client) UpdateImageShort(params *UpdateImageParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

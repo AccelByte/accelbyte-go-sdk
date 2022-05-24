@@ -149,6 +149,10 @@ func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateUserOrder",
 		Method:             "POST",
@@ -242,6 +246,10 @@ func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "countOfPurchasedItem",
 		Method:             "GET",
@@ -329,6 +337,10 @@ func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -427,6 +439,10 @@ func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillUserOrder",
 		Method:             "PUT",
@@ -519,6 +535,10 @@ func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrder",
 		Method:             "GET",
@@ -602,6 +622,10 @@ func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -690,6 +714,10 @@ func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrder",
 		Method:             "GET",
@@ -775,6 +803,10 @@ func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrderGrant",
 		Method:             "GET",
@@ -856,6 +888,10 @@ func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -942,6 +978,10 @@ func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotif
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1033,6 +1073,10 @@ func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1137,6 +1181,10 @@ func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserOrder",
 		Method:             "POST",
@@ -1236,6 +1284,10 @@ func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserO
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDownloadUserOrderReceipt",
 		Method:             "GET",
@@ -1326,6 +1378,10 @@ func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrder",
 		Method:             "GET",
@@ -1411,6 +1467,10 @@ func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHist
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrderHistories",
 		Method:             "GET",
@@ -1492,6 +1552,10 @@ func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1580,6 +1644,10 @@ func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryOrders",
 		Method:             "GET",
@@ -1663,6 +1731,10 @@ func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1755,6 +1827,10 @@ func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1853,6 +1929,10 @@ func (a *Client) UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

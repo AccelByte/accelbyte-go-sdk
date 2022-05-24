@@ -114,6 +114,10 @@ func (a *Client) CreateKeyGroupShort(params *CreateKeyGroupParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createKeyGroup",
 		Method:             "POST",
@@ -204,6 +208,10 @@ func (a *Client) GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroup",
 		Method:             "GET",
@@ -292,6 +300,10 @@ func (a *Client) GetKeyGroupDynamicShort(params *GetKeyGroupDynamicParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroupDynamic",
 		Method:             "GET",
@@ -377,6 +389,10 @@ func (a *Client) ListKeysShort(params *ListKeysParams, authInfo runtime.ClientAu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listKeys",
 		Method:             "GET",
@@ -458,6 +474,10 @@ func (a *Client) QueryKeyGroupsShort(params *QueryKeyGroupsParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -550,6 +570,10 @@ func (a *Client) UpdateKeyGroupShort(params *UpdateKeyGroupParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -645,6 +669,10 @@ func (a *Client) UploadKeysShort(params *UploadKeysParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

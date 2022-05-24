@@ -120,6 +120,10 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "banUsers",
 		Method:             "POST",
@@ -218,6 +222,10 @@ func (a *Client) GetActionsShort(params *GetActionsParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -319,6 +327,10 @@ func (a *Client) GetBannedUsersShort(params *GetBannedUsersParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -424,6 +436,10 @@ func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatus",
 		Method:             "GET",
@@ -521,6 +537,10 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReportUser",
 		Method:             "POST",
@@ -609,6 +629,10 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -706,6 +730,10 @@ func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

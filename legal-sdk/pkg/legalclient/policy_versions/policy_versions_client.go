@@ -107,6 +107,10 @@ func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPolicyVersion",
 		Method:             "POST",
@@ -193,6 +197,10 @@ func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -283,6 +291,10 @@ func (a *Client) RetrievePolicyVersionsShort(params *RetrievePolicyVersionsParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyVersions",
 		Method:             "GET",
@@ -371,6 +383,10 @@ func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
@@ -457,6 +473,10 @@ func (a *Client) UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

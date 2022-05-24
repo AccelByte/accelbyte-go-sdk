@@ -120,6 +120,10 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createReward",
 		Method:             "POST",
@@ -220,6 +224,10 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReward",
 		Method:             "DELETE",
@@ -315,6 +323,10 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward",
 		Method:             "GET",
@@ -406,6 +418,10 @@ func (a *Client) PublicBulkClaimUserRewardsShort(params *PublicBulkClaimUserRewa
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -504,6 +520,10 @@ func (a *Client) PublicClaimUserRewardShort(params *PublicClaimUserRewardParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicClaimUserReward",
 		Method:             "POST",
@@ -597,6 +617,10 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -696,6 +720,10 @@ func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -124,6 +124,10 @@ func (a *Client) GetLeaderboardConfigurationsPublicV2Short(params *GetLeaderboar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetLeaderboardConfigurationsPublicV2",
 		Method:             "GET",
@@ -240,6 +244,10 @@ func (a *Client) CreateLeaderboardConfigurationAdminV1Short(params *CreateLeader
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -364,6 +372,10 @@ func (a *Client) CreateLeaderboardConfigurationPublicV1Short(params *CreateLeade
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createLeaderboardConfigurationPublicV1",
 		Method:             "POST",
@@ -469,6 +481,10 @@ func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1Short(params *DeleteBu
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -577,6 +593,10 @@ func (a *Client) DeleteLeaderboardConfigurationAdminV1Short(params *DeleteLeader
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -689,6 +709,10 @@ func (a *Client) GetLeaderboardConfigurationAdminV1Short(params *GetLeaderboardC
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLeaderboardConfigurationAdminV1",
 		Method:             "GET",
@@ -796,6 +820,10 @@ func (a *Client) GetLeaderboardConfigurationsAdminV1Short(params *GetLeaderboard
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLeaderboardConfigurationsAdminV1",
 		Method:             "GET",
@@ -898,6 +926,10 @@ func (a *Client) GetLeaderboardConfigurationsPublicV1Short(params *GetLeaderboar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1015,6 +1047,10 @@ func (a *Client) UpdateLeaderboardConfigurationAdminV1Short(params *UpdateLeader
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

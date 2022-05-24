@@ -106,6 +106,10 @@ func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespaceSlotConfig",
 		Method:             "DELETE",
@@ -187,6 +191,10 @@ func (a *Client) DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -272,6 +280,10 @@ func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceSlotConfig",
 		Method:             "GET",
@@ -353,6 +365,10 @@ func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -438,6 +454,10 @@ func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespaceSlotConfig",
 		Method:             "PUT",
@@ -519,6 +539,10 @@ func (a *Client) UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

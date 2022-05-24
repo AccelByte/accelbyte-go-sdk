@@ -113,6 +113,10 @@ func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireUserTicket",
 		Method:             "POST",
@@ -208,6 +212,10 @@ func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "decreaseTicketSale",
 		Method:             "PUT",
@@ -298,6 +306,10 @@ func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTicketBoothID",
 		Method:             "GET",
@@ -384,6 +396,10 @@ func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -475,6 +491,10 @@ func (a *Client) IncreaseTicketSaleShort(params *IncreaseTicketSaleParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

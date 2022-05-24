@@ -157,6 +157,10 @@ func (a *Client) CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderBy
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentOrderByDedicated",
 		Method:             "POST",
@@ -294,6 +298,10 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundPaymentOrderByDedicated",
 		Method:             "PUT",
@@ -383,6 +391,10 @@ func (a *Client) SyncPaymentOrdersShort(params *SyncPaymentOrdersParams, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

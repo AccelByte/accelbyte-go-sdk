@@ -139,6 +139,10 @@ func (a *Client) AdminDeleteContentShort(params *AdminDeleteContentParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteContent",
 		Method:             "DELETE",
@@ -241,6 +245,10 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteContentScreenshot",
 		Method:             "DELETE",
@@ -341,6 +349,10 @@ func (a *Client) AdminDownloadContentPreviewShort(params *AdminDownloadContentPr
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDownloadContentPreview",
 		Method:             "GET",
@@ -437,6 +449,10 @@ func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -537,6 +553,10 @@ func (a *Client) AdminGetSpecificContentShort(params *AdminGetSpecificContentPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetSpecificContent",
 		Method:             "GET",
@@ -633,6 +653,10 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -733,6 +757,10 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminSearchChannelSpecificContent",
 		Method:             "GET",
@@ -829,6 +857,10 @@ func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -932,6 +964,10 @@ func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1040,6 +1076,10 @@ func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateContentS3",
 		Method:             "PUT",
@@ -1145,6 +1185,10 @@ func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateScreenshots",
 		Method:             "PUT",
@@ -1247,6 +1291,10 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUploadContentDirect",
 		Method:             "POST",
@@ -1347,6 +1395,10 @@ func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1456,6 +1508,10 @@ func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScr
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUploadContentScreenshot",
 		Method:             "POST",
@@ -1556,6 +1612,10 @@ func (a *Client) SingleAdminDeleteContentShort(params *SingleAdminDeleteContentP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteContent",
 		Method:             "DELETE",
@@ -1652,6 +1712,10 @@ func (a *Client) SingleAdminGetContentShort(params *SingleAdminGetContentParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1755,6 +1819,10 @@ func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateCo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1861,6 +1929,10 @@ func (a *Client) SingleAdminUpdateContentS3Short(params *SingleAdminUpdateConten
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -105,6 +105,10 @@ func (a *Client) RetrieveLatestPoliciesShort(params *RetrieveLatestPoliciesParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPolicies",
 		Method:             "GET",
@@ -184,6 +188,10 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -271,6 +279,10 @@ func (a *Client) RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPolicie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPoliciesPublic",
 		Method:             "GET",
@@ -356,6 +368,10 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicies",
 		Method:             "GET",
@@ -439,6 +455,10 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy_1",
 		Method:             "PATCH",
@@ -520,6 +540,10 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

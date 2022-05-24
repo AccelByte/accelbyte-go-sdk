@@ -111,6 +111,10 @@ func (a *Client) CreateChannelShort(params *CreateChannelParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateChannel",
 		Method:             "POST",
@@ -209,6 +213,10 @@ func (a *Client) DeleteChannelShort(params *DeleteChannelParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteChannel",
 		Method:             "DELETE",
@@ -305,6 +313,10 @@ func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -406,6 +418,10 @@ func (a *Client) UpdateChannelShort(params *UpdateChannelParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

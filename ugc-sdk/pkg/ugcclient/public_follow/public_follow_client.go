@@ -113,6 +113,10 @@ func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetFollowedContent",
 		Method:             "GET",
@@ -211,6 +215,10 @@ func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetFollowedUsers",
 		Method:             "GET",
@@ -307,6 +315,10 @@ func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetPublicFollowers",
 		Method:             "GET",
@@ -401,6 +413,10 @@ func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -502,6 +518,10 @@ func (a *Client) UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

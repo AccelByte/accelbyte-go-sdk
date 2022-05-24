@@ -411,6 +411,10 @@ func (a *Client) AddUserPermissionShort(params *AddUserPermissionParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddUserPermission",
 		Method:             "POST",
@@ -515,6 +519,10 @@ func (a *Client) AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -649,6 +657,10 @@ func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAddUserPermissionsV3",
 		Method:             "POST",
@@ -755,6 +767,10 @@ func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -865,6 +881,10 @@ func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminBanUserV2",
 		Method:             "POST",
@@ -971,6 +991,10 @@ func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1082,6 +1106,10 @@ func (a *Client) AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateJusticeUser",
 		Method:             "POST",
@@ -1188,6 +1216,10 @@ func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1313,6 +1345,10 @@ func (a *Client) AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeletePlatformLinkV2",
 		Method:             "DELETE",
@@ -1413,6 +1449,10 @@ func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInform
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1516,6 +1556,10 @@ func (a *Client) AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPer
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteUserPermissionBulkV3",
 		Method:             "DELETE",
@@ -1617,6 +1661,10 @@ func (a *Client) AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermiss
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1724,6 +1772,10 @@ func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteUserRoleV3",
 		Method:             "DELETE",
@@ -1825,6 +1877,10 @@ func (a *Client) AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1938,6 +1994,10 @@ func (a *Client) AdminDisableUserV2Short(params *AdminDisableUserV2Params, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDisableUserV2",
 		Method:             "PUT",
@@ -2043,6 +2103,10 @@ func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminEnableUserV2",
 		Method:             "PUT",
@@ -2141,6 +2205,10 @@ func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrict
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2245,6 +2313,10 @@ func (a *Client) AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrict
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2357,6 +2429,10 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserB
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetBulkUserByEmailAddressV3",
 		Method:             "POST",
@@ -2460,6 +2536,10 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2568,6 +2648,10 @@ func (a *Client) AdminGetListJusticePlatformAccountsShort(params *AdminGetListJu
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListJusticePlatformAccounts",
 		Method:             "GET",
@@ -2667,6 +2751,10 @@ func (a *Client) AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetMyUserV3",
 		Method:             "GET",
@@ -2761,6 +2849,10 @@ func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2865,6 +2957,10 @@ func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2973,6 +3069,10 @@ func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAd
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3085,6 +3185,10 @@ func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetUserByPlatformUserIDV3",
 		Method:             "GET",
@@ -3180,6 +3284,10 @@ func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3282,6 +3390,10 @@ func (a *Client) AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3389,6 +3501,10 @@ func (a *Client) AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionS
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetUserDeletionStatusV3",
 		Method:             "GET",
@@ -3487,6 +3603,10 @@ func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHist
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3593,6 +3713,10 @@ func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatfor
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3709,6 +3833,10 @@ func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminInviteUserV3",
 		Method:             "POST",
@@ -3814,6 +3942,10 @@ func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3922,6 +4054,10 @@ func (a *Client) AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserID
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListUserIDByUserIDsV3",
 		Method:             "POST",
@@ -4027,6 +4163,10 @@ func (a *Client) AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4155,6 +4295,10 @@ func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4293,6 +4437,10 @@ func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminPlatformUnlinkV3",
 		Method:             "DELETE",
@@ -4396,6 +4544,10 @@ func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4502,6 +4654,10 @@ func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4614,6 +4770,10 @@ func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4733,6 +4893,10 @@ func (a *Client) AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminSearchUserV3",
 		Method:             "GET",
@@ -4831,6 +4995,10 @@ func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4957,6 +5125,10 @@ func (a *Client) AdminSendVerificationCodeV3Short(params *AdminSendVerificationC
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminSendVerificationCodeV3",
 		Method:             "POST",
@@ -5064,6 +5236,10 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateAgeRestrictionConfigV2",
 		Method:             "PATCH",
@@ -5165,6 +5341,10 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRe
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5271,6 +5451,10 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCoun
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5385,6 +5569,10 @@ func (a *Client) AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateUserBanV3",
 		Method:             "PATCH",
@@ -5491,6 +5679,10 @@ func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDel
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5625,6 +5817,10 @@ func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermiss
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateUserPermissionV3",
 		Method:             "PUT",
@@ -5735,6 +5931,10 @@ func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Par
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateUserStatusV3",
 		Method:             "PATCH",
@@ -5839,6 +6039,10 @@ func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5959,6 +6163,10 @@ func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -6087,6 +6295,10 @@ func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadless
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpgradeHeadlessAccountV3",
 		Method:             "POST",
@@ -6200,6 +6412,10 @@ func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminVerifyAccountV3",
 		Method:             "POST",
@@ -6310,6 +6526,10 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVeri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminVerifyUserWithoutVerificationCodeV3",
 		Method:             "PUT",
@@ -6416,6 +6636,10 @@ func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -6536,6 +6760,10 @@ func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CheckUserAvailability",
 		Method:             "GET",
@@ -6648,6 +6876,10 @@ func (a *Client) CreateUserShort(params *CreateUserParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateUser",
 		Method:             "POST",
@@ -6757,6 +6989,10 @@ func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitatio
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateUserFromInvitationV3",
 		Method:             "POST",
@@ -6855,6 +7091,10 @@ func (a *Client) DeleteUserShort(params *DeleteUserParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteUser",
 		Method:             "DELETE",
@@ -6951,6 +7191,10 @@ func (a *Client) DeleteUserInformationShort(params *DeleteUserInformationParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7054,6 +7298,10 @@ func (a *Client) DeleteUserPermissionShort(params *DeleteUserPermissionParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteUserPermission",
 		Method:             "DELETE",
@@ -7155,6 +7403,10 @@ func (a *Client) DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7269,6 +7521,10 @@ func (a *Client) DisableUserShort(params *DisableUserParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DisableUser",
 		Method:             "PUT",
@@ -7372,6 +7628,10 @@ func (a *Client) DisableUserBanShort(params *DisableUserBanParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7478,6 +7738,10 @@ func (a *Client) EnableUserShort(params *EnableUserParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "EnableUser",
 		Method:             "PUT",
@@ -7579,6 +7843,10 @@ func (a *Client) EnableUserBanShort(params *EnableUserBanParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7684,6 +7952,10 @@ func (a *Client) ForgotPasswordShort(params *ForgotPasswordParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ForgotPassword",
 		Method:             "POST",
@@ -7780,6 +8052,10 @@ func (a *Client) GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7885,6 +8161,10 @@ func (a *Client) GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -7999,6 +8279,10 @@ func (a *Client) GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Par
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAdminUsersByRoleIdV3",
 		Method:             "GET",
@@ -8101,6 +8385,10 @@ func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRest
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetListCountryAgeRestriction",
 		Method:             "GET",
@@ -8194,6 +8482,10 @@ func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -8297,6 +8589,10 @@ func (a *Client) GetPublisherUserShort(params *GetPublisherUserParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetPublisherUser",
 		Method:             "GET",
@@ -8397,6 +8693,10 @@ func (a *Client) GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserBanHistory",
 		Method:             "GET",
@@ -8493,6 +8793,10 @@ func (a *Client) GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -8596,6 +8900,10 @@ func (a *Client) GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserByPlatformUserID",
 		Method:             "GET",
@@ -8693,6 +9001,10 @@ func (a *Client) GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserByUserID",
 		Method:             "GET",
@@ -8787,6 +9099,10 @@ func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -8892,6 +9208,10 @@ func (a *Client) GetUserJusticePlatformAccountShort(params *GetUserJusticePlatfo
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserJusticePlatformAccount",
 		Method:             "POST",
@@ -8988,6 +9308,10 @@ func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -9094,6 +9418,10 @@ func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserMapping",
 		Method:             "GET",
@@ -9198,6 +9526,10 @@ func (a *Client) GetUserPlatformAccountsShort(params *GetUserPlatformAccountsPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserPlatformAccounts",
 		Method:             "GET",
@@ -9294,6 +9626,10 @@ func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -9395,6 +9731,10 @@ func (a *Client) ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -9502,6 +9842,10 @@ func (a *Client) ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAc
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -9626,6 +9970,10 @@ func (a *Client) PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -9753,6 +10101,10 @@ func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PlatformUnlink",
 		Method:             "POST",
@@ -9858,6 +10210,10 @@ func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicBulkGetUsers",
 		Method:             "POST",
@@ -9959,6 +10315,10 @@ func (a *Client) PublicCreateJusticeUserShort(params *PublicCreateJusticeUserPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -10072,6 +10432,10 @@ func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicCreateUserV2",
 		Method:             "POST",
@@ -10181,6 +10545,10 @@ func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -10303,6 +10671,10 @@ func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLin
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicDeletePlatformLinkV2",
 		Method:             "DELETE",
@@ -10406,6 +10778,10 @@ func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -10513,6 +10889,10 @@ func (a *Client) PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Param
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicForgotPasswordV3",
 		Method:             "POST",
@@ -10611,6 +10991,10 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetAsyncStatus",
 		Method:             "GET",
@@ -10702,6 +11086,10 @@ func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAge
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -10797,6 +11185,10 @@ func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetMyUserV3",
 		Method:             "GET",
@@ -10889,6 +11281,10 @@ func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11001,6 +11397,10 @@ func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserBanHistoryV3",
 		Method:             "GET",
@@ -11111,6 +11511,10 @@ func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPla
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserByPlatformUserIDV3",
 		Method:             "GET",
@@ -11204,6 +11608,10 @@ func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Par
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11302,6 +11710,10 @@ func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Par
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserByUserIdV3",
 		Method:             "GET",
@@ -11398,6 +11810,10 @@ func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11500,6 +11916,10 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11608,6 +12028,10 @@ func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccoun
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicLinkPlatformAccount",
 		Method:             "POST",
@@ -11714,6 +12138,10 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUser
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11837,6 +12265,10 @@ func (a *Client) PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -11972,6 +12404,10 @@ func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicPlatformLinkV3",
 		Method:             "POST",
@@ -12103,6 +12539,10 @@ func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Param
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicPlatformUnlinkV3",
 		Method:             "DELETE",
@@ -12202,6 +12642,10 @@ func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -12310,6 +12754,10 @@ func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicSearchUserV3",
 		Method:             "GET",
@@ -12411,6 +12859,10 @@ func (a *Client) PublicSendRegistrationCodeShort(params *PublicSendRegistrationC
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -12534,6 +12986,10 @@ func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificatio
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicSendVerificationCodeV3",
 		Method:             "POST",
@@ -12642,6 +13098,10 @@ func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Param
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicUpdatePasswordV2",
 		Method:             "PUT",
@@ -12742,6 +13202,10 @@ func (a *Client) PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Param
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -12846,6 +13310,10 @@ func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -12960,6 +13428,10 @@ func (a *Client) PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -13084,6 +13556,10 @@ func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadle
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicUpgradeHeadlessAccountV3",
 		Method:             "POST",
@@ -13194,6 +13670,10 @@ func (a *Client) PublicUserVerificationV3Short(params *PublicUserVerificationV3P
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -13307,6 +13787,10 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicVali
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicValidateUserByUserIDAndPasswordV3",
 		Method:             "POST",
@@ -13415,6 +13899,10 @@ func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadless
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicVerifyHeadlessAccountV3",
 		Method:             "POST",
@@ -13512,6 +14000,10 @@ func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrat
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicVerifyRegistrationCode",
 		Method:             "POST",
@@ -13606,6 +14098,10 @@ func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicWebLinkPlatform",
 		Method:             "GET",
@@ -13693,6 +14189,10 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -13788,6 +14288,10 @@ func (a *Client) ResetPasswordShort(params *ResetPasswordParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -13888,6 +14392,10 @@ func (a *Client) ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -14018,6 +14526,10 @@ func (a *Client) SaveUserPermissionShort(params *SaveUserPermissionParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SaveUserPermission",
 		Method:             "POST",
@@ -14124,6 +14636,10 @@ func (a *Client) SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SaveUserRoles",
 		Method:             "POST",
@@ -14227,6 +14743,10 @@ func (a *Client) SearchUserShort(params *SearchUserParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -14346,6 +14866,10 @@ func (a *Client) SendVerificationCodeShort(params *SendVerificationCodeParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SendVerificationCode",
 		Method:             "POST",
@@ -14455,6 +14979,10 @@ func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateCountryAgeRestriction",
 		Method:             "PATCH",
@@ -14560,6 +15088,10 @@ func (a *Client) UpdatePasswordShort(params *UpdatePasswordParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -14668,6 +15200,10 @@ func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -14787,6 +15323,10 @@ func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateUserV3",
 		Method:             "PUT",
@@ -14890,6 +15430,10 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCodeShort(params *Upgrade
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -15000,6 +15544,10 @@ func (a *Client) UserVerificationShort(params *UserVerificationParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UserVerification",
 		Method:             "POST",
@@ -15108,6 +15656,10 @@ func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodePar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserVerificationCode",
 		Method:             "GET",
@@ -15206,6 +15758,10 @@ func (a *Client) UpgradeHeadlessAccountShort(params *UpgradeHeadlessAccountParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

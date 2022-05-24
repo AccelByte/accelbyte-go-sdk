@@ -146,6 +146,10 @@ func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddClientPermission",
 		Method:             "POST",
@@ -249,6 +253,10 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -387,6 +395,10 @@ func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateClientV3",
 		Method:             "POST",
@@ -488,6 +500,10 @@ func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -596,6 +612,10 @@ func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteClientV3",
 		Method:             "DELETE",
@@ -700,6 +720,10 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetClientsByNamespaceV3",
 		Method:             "GET",
@@ -799,6 +823,10 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsby
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -904,6 +932,10 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1033,6 +1065,10 @@ func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateClientV3",
 		Method:             "PATCH",
@@ -1135,6 +1171,10 @@ func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1240,6 +1280,10 @@ func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespacePar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateClientByNamespace",
 		Method:             "POST",
@@ -1341,6 +1385,10 @@ func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteClient",
 		Method:             "DELETE",
@@ -1437,6 +1485,10 @@ func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespacePar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1540,6 +1592,10 @@ func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteClientPermission",
 		Method:             "DELETE",
@@ -1640,6 +1696,10 @@ func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.Client
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetClient",
 		Method:             "GET",
@@ -1736,6 +1796,10 @@ func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetClients",
 		Method:             "GET",
@@ -1827,6 +1891,10 @@ func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1926,6 +1994,10 @@ func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2031,6 +2103,10 @@ func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateClientPermission",
 		Method:             "POST",
@@ -2132,6 +2208,10 @@ func (a *Client) UpdateClientSecretShort(params *UpdateClientSecretParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

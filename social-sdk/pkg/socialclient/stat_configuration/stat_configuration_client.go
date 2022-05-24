@@ -115,6 +115,10 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStat",
 		Method:             "POST",
@@ -201,6 +205,10 @@ func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -291,6 +299,10 @@ func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStat",
 		Method:             "DELETE",
@@ -374,6 +386,10 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -462,6 +478,10 @@ func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuth
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStat",
 		Method:             "GET",
@@ -545,6 +565,10 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -633,6 +657,10 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importStats",
 		Method:             "POST",
@@ -716,6 +744,10 @@ func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -802,6 +834,10 @@ func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

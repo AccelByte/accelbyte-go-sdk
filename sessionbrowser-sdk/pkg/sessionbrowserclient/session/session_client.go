@@ -139,6 +139,10 @@ func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddPlayerToSession",
 		Method:             "POST",
@@ -236,6 +240,10 @@ func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -339,6 +347,10 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -445,6 +457,10 @@ func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteSession",
 		Method:             "DELETE",
@@ -547,6 +563,10 @@ func (a *Client) DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteSessionLocalDS",
 		Method:             "DELETE",
@@ -644,6 +664,10 @@ func (a *Client) GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSes
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetActiveCustomGameSessions",
 		Method:             "GET",
@@ -737,6 +761,10 @@ func (a *Client) GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmak
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -836,6 +864,10 @@ func (a *Client) GetRecentPlayerShort(params *GetRecentPlayerParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRecentPlayer",
 		Method:             "GET",
@@ -931,6 +963,10 @@ func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1030,6 +1066,10 @@ func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetSessionByUserIDs",
 		Method:             "GET",
@@ -1123,6 +1163,10 @@ func (a *Client) GetTotalActiveSessionShort(params *GetTotalActiveSessionParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1228,6 +1272,10 @@ func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "JoinSession",
 		Method:             "POST",
@@ -1329,6 +1377,10 @@ func (a *Client) QuerySessionShort(params *QuerySessionParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QuerySession",
 		Method:             "GET",
@@ -1427,6 +1479,10 @@ func (a *Client) RemovePlayerFromSessionShort(params *RemovePlayerFromSessionPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1531,6 +1587,10 @@ func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateSession",
 		Method:             "PUT",
@@ -1631,6 +1691,10 @@ func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

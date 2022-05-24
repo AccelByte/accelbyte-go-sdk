@@ -100,6 +100,10 @@ func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetHealthcheckInfo",
 		Method:             "GET",
@@ -179,6 +183,10 @@ func (a *Client) HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -267,6 +275,10 @@ func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMessages",
 		Method:             "GET",
@@ -348,6 +360,10 @@ func (a *Client) VersionCheckHandlerShort(params *VersionCheckHandlerParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

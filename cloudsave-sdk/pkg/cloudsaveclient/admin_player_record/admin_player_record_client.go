@@ -127,6 +127,10 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRetrievePlayerRecords",
 		Method:             "GET",
@@ -247,6 +251,10 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDelete
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeletePlayerPublicRecordHandlerV1",
 		Method:             "DELETE",
@@ -344,6 +352,10 @@ func (a *Client) AdminDeletePlayerRecordHandlerV1Short(params *AdminDeletePlayer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -446,6 +458,10 @@ func (a *Client) AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayer
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerPublicRecordHandlerV1",
 		Method:             "GET",
@@ -546,6 +562,10 @@ func (a *Client) AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecord
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -679,6 +699,10 @@ func (a *Client) AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlay
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -827,6 +851,10 @@ func (a *Client) AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerReco
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminPostPlayerRecordHandlerV1",
 		Method:             "POST",
@@ -958,6 +986,10 @@ func (a *Client) AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1100,6 +1132,10 @@ func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecord
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminPutPlayerRecordHandlerV1",
 		Method:             "PUT",
@@ -1198,6 +1234,10 @@ func (a *Client) ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

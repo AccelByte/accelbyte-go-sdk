@@ -144,6 +144,10 @@ func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievemen
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateNewAchievement",
 		Method:             "POST",
@@ -244,6 +248,10 @@ func (a *Client) AdminDeleteAchievementShort(params *AdminDeleteAchievementParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -350,6 +358,10 @@ func (a *Client) AdminGetAchievementShort(params *AdminGetAchievementParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetAchievement",
 		Method:             "GET",
@@ -452,6 +464,10 @@ func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -558,6 +574,10 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListUserAchievements",
 		Method:             "GET",
@@ -657,6 +677,10 @@ func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -759,6 +783,10 @@ func (a *Client) AdminUpdateAchievementShort(params *AdminUpdateAchievementParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -865,6 +893,10 @@ func (a *Client) AdminUpdateAchievementListOrderShort(params *AdminUpdateAchieve
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateAchievementListOrder",
 		Method:             "PATCH",
@@ -967,6 +999,10 @@ func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1076,6 +1112,10 @@ func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ImportAchievements",
 		Method:             "POST",
@@ -1176,6 +1216,10 @@ func (a *Client) PublicGetAchievementShort(params *PublicGetAchievementParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1282,6 +1326,10 @@ func (a *Client) PublicListAchievementsShort(params *PublicListAchievementsParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicListAchievements",
 		Method:             "GET",
@@ -1386,6 +1434,10 @@ func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchieveme
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicListUserAchievements",
 		Method:             "GET",
@@ -1485,6 +1537,10 @@ func (a *Client) PublicUnlockAchievementShort(params *PublicUnlockAchievementPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

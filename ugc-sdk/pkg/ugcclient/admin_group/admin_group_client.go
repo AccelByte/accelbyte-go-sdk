@@ -125,6 +125,10 @@ func (a *Client) AdminCreateGroupShort(params *AdminCreateGroupParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateGroup",
 		Method:             "POST",
@@ -221,6 +225,10 @@ func (a *Client) AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -321,6 +329,10 @@ func (a *Client) AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetAllGroups",
 		Method:             "GET",
@@ -419,6 +431,10 @@ func (a *Client) AdminGetGroupShort(params *AdminGetGroupParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetGroup",
 		Method:             "GET",
@@ -515,6 +531,10 @@ func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -619,6 +639,10 @@ func (a *Client) AdminUpdateGroupShort(params *AdminUpdateGroupParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateGroup",
 		Method:             "PUT",
@@ -719,6 +743,10 @@ func (a *Client) SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteGroup",
 		Method:             "DELETE",
@@ -815,6 +843,10 @@ func (a *Client) SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -915,6 +947,10 @@ func (a *Client) SingleAdminGetGroupShort(params *SingleAdminGetGroupParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetGroup",
 		Method:             "GET",
@@ -1011,6 +1047,10 @@ func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupCon
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1113,6 +1153,10 @@ func (a *Client) SingleAdminUpdateGroupShort(params *SingleAdminUpdateGroupParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

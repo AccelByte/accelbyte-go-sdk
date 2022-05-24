@@ -128,6 +128,10 @@ func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCountryGroup",
 		Method:             "POST",
@@ -231,6 +235,10 @@ func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCountryGroup",
 		Method:             "DELETE",
@@ -326,6 +334,10 @@ func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -427,6 +439,10 @@ func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountryGroups",
 		Method:             "GET",
@@ -524,6 +540,10 @@ func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLanguages",
 		Method:             "GET",
@@ -617,6 +637,10 @@ func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTimeZones",
 		Method:             "GET",
@@ -706,6 +730,10 @@ func (a *Client) PublicGetCountriesShort(params *PublicGetCountriesParams) (*Pub
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCountries",
 		Method:             "GET",
@@ -792,6 +820,10 @@ func (a *Client) PublicGetLanguagesShort(params *PublicGetLanguagesParams) (*Pub
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetLanguages",
 		Method:             "GET",
@@ -873,6 +905,10 @@ func (a *Client) PublicGetTimeShort(params *PublicGetTimeParams) (*PublicGetTime
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -957,6 +993,10 @@ func (a *Client) PublicGetTimeZonesShort(params *PublicGetTimeZonesParams) (*Pub
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1053,6 +1093,10 @@ func (a *Client) UpdateCountryGroupShort(params *UpdateCountryGroupParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

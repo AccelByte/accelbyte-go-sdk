@@ -100,6 +100,10 @@ func (a *Client) GetDefaultProviderShort(params *GetDefaultProviderParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetDefaultProvider",
 		Method:             "GET",
@@ -183,6 +187,10 @@ func (a *Client) ListProvidersShort(params *ListProvidersParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ListProviders",
 		Method:             "GET",
@@ -264,6 +272,10 @@ func (a *Client) ListProvidersByRegionShort(params *ListProvidersByRegionParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -100,6 +100,10 @@ func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserInfoStatus",
 		Method:             "GET",
@@ -183,6 +187,10 @@ func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCachePar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "invalidateUserInfoCache",
 		Method:             "DELETE",
@@ -264,6 +272,10 @@ func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

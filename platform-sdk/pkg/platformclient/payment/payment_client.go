@@ -121,6 +121,10 @@ func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "chargePaymentOrder",
 		Method:             "PUT",
@@ -225,6 +229,10 @@ func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createUserPaymentOrder",
 		Method:             "POST",
@@ -321,6 +329,10 @@ func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrder",
 		Method:             "GET",
@@ -409,6 +421,10 @@ func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeS
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrderChargeStatus",
 		Method:             "GET",
@@ -494,6 +510,10 @@ func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listExtOrderNoByExtTxId",
 		Method:             "GET",
@@ -577,6 +597,10 @@ func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotification
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentNotifications",
 		Method:             "GET",
@@ -658,6 +682,10 @@ func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -750,6 +778,10 @@ func (a *Client) RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -845,6 +877,10 @@ func (a *Client) SimulatePaymentOrderNotificationShort(params *SimulatePaymentOr
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

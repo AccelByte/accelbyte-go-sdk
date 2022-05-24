@@ -96,6 +96,10 @@ func (a *Client) LoginSSOClientShort(params *LoginSSOClientParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "LoginSSOClient",
 		Method:             "GET",
@@ -190,6 +194,10 @@ func (a *Client) LogoutSSOClientShort(params *LogoutSSOClientParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

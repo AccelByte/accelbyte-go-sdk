@@ -141,6 +141,10 @@ func (a *Client) AdminGetUserProfilePublicInfoByIdsShort(params *AdminGetUserPro
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetUserProfilePublicInfoByIds",
 		Method:             "POST",
@@ -239,6 +243,10 @@ func (a *Client) CreateMyProfileShort(params *CreateMyProfileParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -346,6 +354,10 @@ func (a *Client) DeleteUserProfileShort(params *DeleteUserProfileParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserProfile",
 		Method:             "DELETE",
@@ -444,6 +456,10 @@ func (a *Client) GetCustomAttributesInfoShort(params *GetCustomAttributesInfoPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -547,6 +563,10 @@ func (a *Client) GetMyProfileInfoShort(params *GetMyProfileInfoParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMyProfileInfo",
 		Method:             "GET",
@@ -644,6 +664,10 @@ func (a *Client) GetMyZipCodeShort(params *GetMyZipCodeParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMyZipCode",
 		Method:             "GET",
@@ -738,6 +762,10 @@ func (a *Client) GetPrivateCustomAttributesInfoShort(params *GetPrivateCustomAtt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -839,6 +867,10 @@ func (a *Client) GetUserProfileInfoShort(params *GetUserProfileInfoParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -944,6 +976,10 @@ func (a *Client) PublicCreateUserProfileShort(params *PublicCreateUserProfilePar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserProfile",
 		Method:             "POST",
@@ -1039,6 +1075,10 @@ func (a *Client) PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttri
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1140,6 +1180,10 @@ func (a *Client) PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfileInfo",
 		Method:             "GET",
@@ -1236,6 +1280,10 @@ func (a *Client) PublicGetUserProfilePublicInfoShort(params *PublicGetUserProfil
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfilePublicInfo",
 		Method:             "GET",
@@ -1322,6 +1370,10 @@ func (a *Client) PublicGetUserProfilePublicInfoByIdsShort(params *PublicGetUserP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1418,6 +1470,10 @@ func (a *Client) PublicUpdateCustomAttributesPartiallyShort(params *PublicUpdate
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1523,6 +1579,10 @@ func (a *Client) PublicUpdateUserProfileShort(params *PublicUpdateUserProfilePar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateUserProfile",
 		Method:             "PUT",
@@ -1624,6 +1684,10 @@ func (a *Client) PublicUpdateUserProfileStatusShort(params *PublicUpdateUserProf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1729,6 +1793,10 @@ func (a *Client) UpdateCustomAttributesPartiallyShort(params *UpdateCustomAttrib
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCustomAttributesPartially",
 		Method:             "PUT",
@@ -1832,6 +1900,10 @@ func (a *Client) UpdateMyProfileShort(params *UpdateMyProfileParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateMyProfile",
 		Method:             "PUT",
@@ -1930,6 +2002,10 @@ func (a *Client) UpdateMyZipCodeShort(params *UpdateMyZipCodeParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2031,6 +2107,10 @@ func (a *Client) UpdatePrivateCustomAttributesPartiallyShort(params *UpdatePriva
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2136,6 +2216,10 @@ func (a *Client) UpdateUserProfileShort(params *UpdateUserProfileParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserProfile",
 		Method:             "PUT",
@@ -2237,6 +2321,10 @@ func (a *Client) UpdateUserProfileStatusShort(params *UpdateUserProfileStatusPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

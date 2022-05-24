@@ -114,6 +114,10 @@ func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCurrency",
 		Method:             "POST",
@@ -204,6 +208,10 @@ func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCurrency",
 		Method:             "DELETE",
@@ -290,6 +298,10 @@ func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -380,6 +392,10 @@ func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrencySummary",
 		Method:             "GET",
@@ -465,6 +481,10 @@ func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listCurrencies",
 		Method:             "GET",
@@ -545,6 +565,10 @@ func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -633,6 +657,10 @@ func (a *Client) UpdateCurrencyShort(params *UpdateCurrencyParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

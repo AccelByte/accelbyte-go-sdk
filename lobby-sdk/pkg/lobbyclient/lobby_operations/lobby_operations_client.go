@@ -119,6 +119,10 @@ func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminJoinPartyV1",
 		Method:             "POST",
@@ -233,6 +237,10 @@ func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttri
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdatePartyAttributesV1",
 		Method:             "PUT",
@@ -329,6 +337,10 @@ func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInf
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

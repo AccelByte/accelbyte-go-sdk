@@ -116,6 +116,10 @@ func (a *Client) AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminChatHistory",
 		Method:             "GET",
@@ -226,6 +230,10 @@ func (a *Client) GetPersonalChatHistoryV1PublicShort(params *GetPersonalChatHist
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPersonalChatHistoryV1Public",
 		Method:             "GET",
@@ -333,6 +341,10 @@ func (a *Client) PersonalChatHistoryShort(params *PersonalChatHistoryParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

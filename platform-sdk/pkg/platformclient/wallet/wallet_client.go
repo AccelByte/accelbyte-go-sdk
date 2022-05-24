@@ -139,6 +139,10 @@ func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkWallet",
 		Method:             "GET",
@@ -232,6 +236,10 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -333,6 +341,10 @@ func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debitUserWallet",
 		Method:             "PUT",
@@ -430,6 +442,10 @@ func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserWallet",
 		Method:             "PUT",
@@ -523,6 +539,10 @@ func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserWallet",
 		Method:             "PUT",
@@ -610,6 +630,10 @@ func (a *Client) GetPlatformWalletConfigShort(params *GetPlatformWalletConfigPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformWalletConfig",
 		Method:             "GET",
@@ -694,6 +718,10 @@ func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtim
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -784,6 +812,10 @@ func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.Client
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWallet",
 		Method:             "GET",
@@ -872,6 +904,10 @@ func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTrans
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserCurrencyTransactions",
 		Method:             "GET",
@@ -958,6 +994,10 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1051,6 +1091,10 @@ func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "payWithUserWallet",
 		Method:             "PUT",
@@ -1138,6 +1182,10 @@ func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyWallet",
 		Method:             "GET",
@@ -1219,6 +1267,10 @@ func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1304,6 +1356,10 @@ func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWal
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListUserWalletTransactions",
 		Method:             "GET",
@@ -1385,6 +1441,10 @@ func (a *Client) QueryUserCurrencyWalletsShort(params *QueryUserCurrencyWalletsP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1470,6 +1530,10 @@ func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryWallets",
 		Method:             "GET",
@@ -1553,6 +1617,10 @@ func (a *Client) ResetPlatformWalletConfigShort(params *ResetPlatformWalletConfi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetPlatformWalletConfig",
 		Method:             "PUT",
@@ -1634,6 +1702,10 @@ func (a *Client) UpdatePlatformWalletConfigShort(params *UpdatePlatformWalletCon
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

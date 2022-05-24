@@ -114,6 +114,10 @@ func (a *Client) GeneratedUploadURLShort(params *GeneratedUploadURLParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUploadUrl",
 		Method:             "POST",
@@ -218,6 +222,10 @@ func (a *Client) GeneratedUserUploadContentURLShort(params *GeneratedUserUploadC
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -325,6 +333,10 @@ func (a *Client) PublicGeneratedUploadURLShort(params *PublicGeneratedUploadURLP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUploadUrl",
 		Method:             "POST",
@@ -429,6 +441,10 @@ func (a *Client) PublicGeneratedUserUploadContentURLShort(params *PublicGenerate
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

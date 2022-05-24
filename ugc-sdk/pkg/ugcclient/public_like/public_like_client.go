@@ -107,6 +107,10 @@ func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo ru
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetLikedContent",
 		Method:             "GET",
@@ -203,6 +207,10 @@ func (a *Client) UpdateContentLikeStatusShort(params *UpdateContentLikeStatusPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

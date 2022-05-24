@@ -129,6 +129,10 @@ func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutCon
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addFriendsWithoutConfirmation",
 		Method:             "POST",
@@ -233,6 +237,10 @@ func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get list of friends",
 		Method:             "GET",
@@ -335,6 +343,10 @@ func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -443,6 +455,10 @@ func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserIncomingFriends",
 		Method:             "GET",
@@ -547,6 +563,10 @@ func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -655,6 +675,10 @@ func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userAcceptFriendRequest",
 		Method:             "POST",
@@ -761,6 +785,10 @@ func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userCancelFriendRequest",
 		Method:             "POST",
@@ -862,6 +890,10 @@ func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -966,6 +998,10 @@ func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1077,6 +1113,10 @@ func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userRequestFriend",
 		Method:             "POST",
@@ -1183,6 +1223,10 @@ func (a *Client) UserUnfriendRequestShort(params *UserUnfriendRequestParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

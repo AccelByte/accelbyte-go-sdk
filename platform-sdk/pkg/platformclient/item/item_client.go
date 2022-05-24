@@ -163,6 +163,10 @@ func (a *Client) AcquireItemShort(params *AcquireItemParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireItem",
 		Method:             "PUT",
@@ -249,6 +253,10 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -452,6 +460,10 @@ func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createItem",
 		Method:             "POST",
@@ -549,6 +561,10 @@ func (a *Client) DefeatureItemShort(params *DefeatureItemParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "defeatureItem",
 		Method:             "DELETE",
@@ -637,6 +653,10 @@ func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -728,6 +748,10 @@ func (a *Client) DisableItemShort(params *DisableItemParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -823,6 +847,10 @@ func (a *Client) EnableItemShort(params *EnableItemParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableItem",
 		Method:             "PUT",
@@ -916,6 +944,10 @@ func (a *Client) FeatureItemShort(params *FeatureItemParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "featureItem",
 		Method:             "PUT",
@@ -1003,6 +1035,10 @@ func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthIn
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApp",
 		Method:             "GET",
@@ -1084,6 +1120,10 @@ func (a *Client) GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1170,6 +1210,10 @@ func (a *Client) GetItemShort(params *GetItemParams, authInfo runtime.ClientAuth
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1260,6 +1304,10 @@ func (a *Client) GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemByAppId",
 		Method:             "GET",
@@ -1346,6 +1394,10 @@ func (a *Client) GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1436,6 +1488,10 @@ func (a *Client) GetItemDynamicDataShort(params *GetItemDynamicDataParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemDynamicData",
 		Method:             "GET",
@@ -1522,6 +1578,10 @@ func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1612,6 +1672,10 @@ func (a *Client) GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtim
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItem",
 		Method:             "GET",
@@ -1700,6 +1764,10 @@ func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItemBySku",
 		Method:             "GET",
@@ -1785,6 +1853,10 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listBasicItemsByFeatures",
 		Method:             "GET",
@@ -1868,6 +1940,10 @@ func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*Pub
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1956,6 +2032,10 @@ func (a *Client) PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetApp",
 		Method:             "GET",
@@ -2040,6 +2120,10 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItem
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2128,6 +2212,10 @@ func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemByAppId",
 		Method:             "GET",
@@ -2214,6 +2302,10 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*Pub
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemBySku",
 		Method:             "GET",
@@ -2298,6 +2390,10 @@ func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2389,6 +2485,10 @@ func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQ
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryItems",
 		Method:             "GET",
@@ -2475,6 +2575,10 @@ func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*Publi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2565,6 +2669,10 @@ func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2660,6 +2768,10 @@ func (a *Client) QueryUncategorizedItemsShort(params *QueryUncategorizedItemsPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUncategorizedItems",
 		Method:             "GET",
@@ -2753,6 +2865,10 @@ func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.Clie
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "returnItem",
 		Method:             "PUT",
@@ -2841,6 +2957,10 @@ func (a *Client) SearchItemsShort(params *SearchItemsParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2938,6 +3058,10 @@ func (a *Client) SyncInGameItemShort(params *SyncInGameItemParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3079,6 +3203,10 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3285,6 +3413,10 @@ func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.Clie
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

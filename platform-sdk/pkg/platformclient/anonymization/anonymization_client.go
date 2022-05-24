@@ -110,6 +110,10 @@ func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeCampaign",
 		Method:             "DELETE",
@@ -191,6 +195,10 @@ func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -276,6 +284,10 @@ func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeFulfillment",
 		Method:             "DELETE",
@@ -357,6 +369,10 @@ func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -442,6 +458,10 @@ func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeOrder",
 		Method:             "DELETE",
@@ -523,6 +543,10 @@ func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -608,6 +632,10 @@ func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeSubscription",
 		Method:             "DELETE",
@@ -689,6 +717,10 @@ func (a *Client) AnonymizeWalletShort(params *AnonymizeWalletParams, authInfo ru
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

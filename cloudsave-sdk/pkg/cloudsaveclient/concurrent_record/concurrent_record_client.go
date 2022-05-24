@@ -154,6 +154,10 @@ func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConc
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "putGameRecordConcurrentHandlerV1",
 		Method:             "PUT",
@@ -299,6 +303,10 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayer
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

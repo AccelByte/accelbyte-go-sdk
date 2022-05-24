@@ -108,6 +108,10 @@ func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "batchDownloadServerLogs",
 		Method:             "POST",
@@ -206,6 +210,10 @@ func (a *Client) ListAllTerminatedServersShort(params *ListAllTerminatedServersP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

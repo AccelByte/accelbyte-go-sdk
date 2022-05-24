@@ -105,6 +105,10 @@ func (a *Client) UsersPresenceHandlerV1Short(params *UsersPresenceHandlerV1Param
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UsersPresenceHandlerV1",
 		Method:             "GET",

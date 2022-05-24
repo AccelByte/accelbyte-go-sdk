@@ -120,6 +120,10 @@ func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUser
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventSpecificUserV2Handler",
 		Method:             "GET",
@@ -242,6 +246,10 @@ func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetPublicEditHistory",
 		Method:             "GET",
@@ -353,6 +361,10 @@ func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -469,6 +481,10 @@ func (a *Client) QueryEventStreamHandlerShort(params *QueryEventStreamHandlerPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

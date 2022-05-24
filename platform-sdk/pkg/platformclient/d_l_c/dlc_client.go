@@ -112,6 +112,10 @@ func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDLCItemConfig",
 		Method:             "DELETE",
@@ -193,6 +197,10 @@ func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -279,6 +287,10 @@ func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -369,6 +381,10 @@ func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformDLCConfig",
 		Method:             "GET",
@@ -457,6 +473,10 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSyncPsnDlcInventory",
 		Method:             "PUT",
@@ -542,6 +562,10 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamDLC",
 		Method:             "PUT",
@@ -623,6 +647,10 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -711,6 +739,10 @@ func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDLCItemConfig",
 		Method:             "PUT",
@@ -797,6 +829,10 @@ func (a *Client) UpdatePlatformDLCConfigShort(params *UpdatePlatformDLCConfigPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

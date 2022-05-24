@@ -127,6 +127,10 @@ func (a *Client) GetEventByEventIDHandlerShort(params *GetEventByEventIDHandlerP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventByEventIDHandler",
 		Method:             "GET",
@@ -233,6 +237,10 @@ func (a *Client) GetEventByEventTypeAndEventIDHandlerShort(params *GetEventByEve
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -343,6 +351,10 @@ func (a *Client) GetEventByEventTypeHandlerShort(params *GetEventByEventTypeHand
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventByEventTypeHandler",
 		Method:             "GET",
@@ -449,6 +461,10 @@ func (a *Client) GetEventByNamespaceHandlerShort(params *GetEventByNamespaceHand
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -559,6 +575,10 @@ func (a *Client) GetEventByUserEventIDAndEventTypeHandlerShort(params *GetEventB
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventByUserEventIDAndEventTypeHandler",
 		Method:             "GET",
@@ -665,6 +685,10 @@ func (a *Client) GetEventByUserIDAndEventIDHandlerShort(params *GetEventByUserID
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -775,6 +799,10 @@ func (a *Client) GetEventByUserIDAndEventTypeHandlerShort(params *GetEventByUser
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventByUserIDAndEventTypeHandler",
 		Method:             "GET",
@@ -883,6 +911,10 @@ func (a *Client) GetEventByUserIDHandlerShort(params *GetEventByUserIDHandlerPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetEventByUserIDHandler",
 		Method:             "GET",
@@ -986,6 +1018,10 @@ func (a *Client) PostEventHandlerShort(params *PostEventHandlerParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

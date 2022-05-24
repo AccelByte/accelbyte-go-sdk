@@ -120,6 +120,10 @@ func (a *Client) DeregisterLocalServerShort(params *DeregisterLocalServerParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeregisterLocalServer",
 		Method:             "POST",
@@ -226,6 +230,10 @@ func (a *Client) GetServerSessionShort(params *GetServerSessionParams, authInfo 
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -342,6 +350,10 @@ func (a *Client) RegisterLocalServerShort(params *RegisterLocalServerParams, aut
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RegisterLocalServer",
 		Method:             "POST",
@@ -453,6 +465,10 @@ func (a *Client) RegisterServerShort(params *RegisterServerParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RegisterServer",
 		Method:             "POST",
@@ -558,6 +574,10 @@ func (a *Client) ShutdownServerShort(params *ShutdownServerParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -121,6 +121,10 @@ func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformC
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddSSOLoginPlatformCredential",
 		Method:             "POST",
@@ -222,6 +226,10 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -327,6 +335,10 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllSSOLoginPlatformCredentialV3",
 		Method:             "GET",
@@ -428,6 +440,10 @@ func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLogi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -534,6 +550,10 @@ func (a *Client) UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCrede
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -135,6 +135,10 @@ func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCategory",
 		Method:             "POST",
@@ -232,6 +236,10 @@ func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runt
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCategory",
 		Method:             "DELETE",
@@ -321,6 +329,10 @@ func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*Dow
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadCategories",
 		Method:             "GET",
@@ -408,6 +420,10 @@ func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.Cl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCategory",
 		Method:             "GET",
@@ -493,6 +509,10 @@ func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authI
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getChildCategories",
 		Method:             "GET",
@@ -574,6 +594,10 @@ func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -659,6 +683,10 @@ func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRootCategories",
 		Method:             "GET",
@@ -740,6 +768,10 @@ func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, aut
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -827,6 +859,10 @@ func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*Publi
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCategory",
 		Method:             "GET",
@@ -910,6 +946,10 @@ func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetChildCategories",
 		Method:             "GET",
@@ -991,6 +1031,10 @@ func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantC
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetDescendantCategories",
 		Method:             "GET",
@@ -1070,6 +1114,10 @@ func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesPar
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1167,6 +1215,10 @@ func (a *Client) UpdateCategoryShort(params *UpdateCategoryParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

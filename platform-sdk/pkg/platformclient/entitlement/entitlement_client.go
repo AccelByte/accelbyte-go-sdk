@@ -174,6 +174,10 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "consumeUserEntitlement",
 		Method:             "PUT",
@@ -265,6 +269,10 @@ func (a *Client) DisableUserEntitlementShort(params *DisableUserEntitlementParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -360,6 +368,10 @@ func (a *Client) EnableUserEntitlementShort(params *EnableUserEntitlementParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserEntitlement",
 		Method:             "PUT",
@@ -447,6 +459,10 @@ func (a *Client) ExistsAnyUserActiveEntitlementShort(params *ExistsAnyUserActive
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlement",
 		Method:             "GET",
@@ -528,6 +544,10 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIdsShort(params *ExistsAnyU
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -614,6 +634,10 @@ func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runt
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -704,6 +728,10 @@ func (a *Client) GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlement
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementByAppId",
 		Method:             "GET",
@@ -787,6 +815,10 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -873,6 +905,10 @@ func (a *Client) GetUserEntitlementShort(params *GetUserEntitlementParams, authI
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -963,6 +999,10 @@ func (a *Client) GetUserEntitlementByItemIDShort(params *GetUserEntitlementByIte
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementByItemId",
 		Method:             "GET",
@@ -1051,6 +1091,10 @@ func (a *Client) GetUserEntitlementBySkuShort(params *GetUserEntitlementBySkuPar
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementBySku",
 		Method:             "GET",
@@ -1136,6 +1180,10 @@ func (a *Client) GetUserEntitlementHistoriesShort(params *GetUserEntitlementHist
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementHistories",
 		Method:             "GET",
@@ -1219,6 +1267,10 @@ func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitle
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipByItemId",
 		Method:             "GET",
@@ -1300,6 +1352,10 @@ func (a *Client) GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlemen
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1389,6 +1445,10 @@ func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1484,6 +1544,10 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicConsumeUserEntitlement",
 		Method:             "PUT",
@@ -1571,6 +1635,10 @@ func (a *Client) PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAny
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyMyActiveEntitlement",
 		Method:             "GET",
@@ -1652,6 +1720,10 @@ func (a *Client) PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsA
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1766,6 +1838,10 @@ func (a *Client) PublicGetEntitlementOwnershipTokenShort(params *PublicGetEntitl
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetEntitlementOwnershipToken",
 		Method:             "GET",
@@ -1847,6 +1923,10 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppIDShort(params *PublicGe
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1932,6 +2012,10 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemIDShort(params *PublicGetM
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipByItemId",
 		Method:             "GET",
@@ -2013,6 +2097,10 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySkuShort(params *PublicGetMyEn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2101,6 +2189,10 @@ func (a *Client) PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAp
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserAppEntitlementByAppId",
 		Method:             "GET",
@@ -2184,6 +2276,10 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *Public
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2270,6 +2366,10 @@ func (a *Client) PublicGetUserEntitlementShort(params *PublicGetUserEntitlementP
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2360,6 +2460,10 @@ func (a *Client) PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEnti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementByItemId",
 		Method:             "GET",
@@ -2448,6 +2552,10 @@ func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitle
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementBySku",
 		Method:             "GET",
@@ -2533,6 +2641,10 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGe
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipByItemId",
 		Method:             "GET",
@@ -2614,6 +2726,10 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUs
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2699,6 +2815,10 @@ func (a *Client) PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitle
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlements",
 		Method:             "GET",
@@ -2780,6 +2900,10 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2865,6 +2989,10 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
@@ -2948,6 +3076,10 @@ func (a *Client) QueryUserEntitlementsShort(params *QueryUserEntitlementsParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlements",
 		Method:             "GET",
@@ -3029,6 +3161,10 @@ func (a *Client) QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlemen
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3117,6 +3253,10 @@ func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams,
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlement",
 		Method:             "PUT",
@@ -3200,6 +3340,10 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3292,6 +3436,10 @@ func (a *Client) UpdateUserEntitlementShort(params *UpdateUserEntitlementParams,
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

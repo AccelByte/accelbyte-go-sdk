@@ -99,6 +99,10 @@ func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInf
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMessages",
 		Method:             "GET",

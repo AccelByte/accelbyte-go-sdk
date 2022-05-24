@@ -110,6 +110,10 @@ func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsP
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetInputValidations",
 		Method:             "GET",
@@ -204,6 +208,10 @@ func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidati
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -328,6 +336,10 @@ func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValida
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateInputValidations",
 		Method:             "PUT",
@@ -424,6 +436,10 @@ func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidation
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

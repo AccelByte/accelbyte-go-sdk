@@ -123,6 +123,10 @@ func (a *Client) AdminCancelUserAccountDeletionRequestShort(params *AdminCancelU
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCancelUserAccountDeletionRequest",
 		Method:             "DELETE",
@@ -231,6 +235,10 @@ func (a *Client) AdminGetListDeletionDataRequestShort(params *AdminGetListDeleti
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListDeletionDataRequest",
 		Method:             "GET",
@@ -334,6 +342,10 @@ func (a *Client) AdminGetUserAccountDeletionRequestShort(params *AdminGetUserAcc
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -442,6 +454,10 @@ func (a *Client) AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitU
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminSubmitUserAccountDeletionRequest",
 		Method:             "POST",
@@ -547,6 +563,10 @@ func (a *Client) PublicCancelUserAccountDeletionRequestShort(params *PublicCance
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicCancelUserAccountDeletionRequest",
 		Method:             "DELETE",
@@ -645,6 +665,10 @@ func (a *Client) PublicGetUserAccountDeletionStatusShort(params *PublicGetUserAc
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -749,6 +773,10 @@ func (a *Client) PublicSubmitUserAccountDeletionRequestShort(params *PublicSubmi
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -117,6 +117,10 @@ func (a *Client) GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo 
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetHiddenUsersV2",
 		Method:             "GET",
@@ -223,6 +227,10 @@ func (a *Client) GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -333,6 +341,10 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeader
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SetUserLeaderboardVisibilityStatusV2",
 		Method:             "PUT",
@@ -439,6 +451,10 @@ func (a *Client) SetUserVisibilityStatusV2Short(params *SetUserVisibilityStatusV
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -102,6 +102,10 @@ func (a *Client) GetCountryLocationV3Short(params *GetCountryLocationV3Params, a
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCountryLocationV3",
 		Method:             "GET",
@@ -183,6 +187,10 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -287,6 +295,10 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 		params.Context = context.Background()
 	}
 
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PlatformAuthenticationV3",
 		Method:             "GET",
@@ -372,6 +384,10 @@ func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, a
 
 	if params.Context == nil {
 		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

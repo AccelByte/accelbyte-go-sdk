@@ -105,7 +105,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
 
 	// Claiming a DS (Dedicated Server)
-	time.Sleep(5 * time.Second)
+	time.Sleep(20 * time.Second)
 
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
 	inputClaim := &session.ClaimServerParams{
@@ -114,10 +114,11 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	}
 	inputClaim.RetryPolicy = &utils.Retry{
 		Transport: sessionDSMCService.Client.Runtime.Transport,
-		MaxTries:  utils.MaxTries,
+		MaxTries:  5,
 		Backoff:   utils.NewConstantBackoff(60),
 		RetryCodes: map[int]bool{
 			425: true,
+			400: true,
 		},
 	}
 	errClaim := sessionDSMCService.ClaimServerShort(inputClaim)

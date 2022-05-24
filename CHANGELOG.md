@@ -1,3 +1,45 @@
+<a name="v0.19.0"></a>
+## [v0.19.0] - 2022-05-24
+
+### Chore
+- add .DS_Store to gitignore file
+- **api:** add log for retrying
+- **api:** adjust to one function
+- **api:** delete unnecessary method
+- **api:** move out the http retry
+- **api:** regenerate all services for justice 3.23
+- **api:** the example of override the http retry
+- **cli:** regenerate all cli for justice 3.23
+- **cli:** regenerate all cli remove shorthand parameter
+- **lint:** gosimple, return, and delete unnecessary codes
+- **sh-unit-tests:** regenerate sh unit tests for justice 3.23
+- **spec:** update spec files for justice 3.23
+- **test:** merging the disabled test
+- **test:** skip the game telemetry update
+
+### Docs
+- update CHANGELOG.md for v0.19.0 release
+- update doc index
+
+### Feat
+- **api:** add http retry
+- **api:** enable the custom http retry for developer
+- **test:** add mock server test
+- **test:** add test for http retry
+- **test:** integrating with jenkins
+
+### Fix
+- **api:** add cancellation to avoid leaking contexts
+- **api:** add http retry for short operation
+- **api:** invoke the http client inside the operation
+- **api:** modify round tripper for retry exponentials backoff
+- **api:** regenerate services with http retry
+- **test:** integrating with jenkins
+- **test:** add http retry for dsmc claimed server
+- **test:** add more time to claim server the dsmc integration test
+- **test:** add status code to retry dsmc integration test
+
+
 <a name="v0.18.1"></a>
 ## [v0.18.1] - 2022-05-19
 
@@ -8,6 +50,7 @@
 
 ### Docs
 - update CHANGELOG.md for v0.18.1 release
+
 
 <a name="v0.18.0"></a>
 ## [v0.18.0] - 2022-05-10
@@ -623,6 +666,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.19.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.1...v0.19.0
 [v0.18.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.0...v0.18.1
 [v0.18.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.17.0...v0.18.0
 [v0.17.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.16.0...v0.17.0

@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.7.1"
+    "version": "4.8.0"
   },
   "schemes": [
     "https"
@@ -14092,6 +14092,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Check wallet by balance origin and currency code whether it\u0026#39;s inactive.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkWallet",
         "parameters": [
@@ -14349,6 +14350,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "get a user wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: wallet info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserWallet",
         "parameters": [
@@ -14416,6 +14418,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Debit a user wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "debitUserWallet",
         "parameters": [
@@ -14509,6 +14512,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "disable a user wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "disableUserWallet",
         "parameters": [
@@ -14580,6 +14584,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "enable a user wallet.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "enableUserWallet",
         "parameters": [
@@ -14651,6 +14656,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "List user wallet transactions ordered by create time desc.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: wallet transaction info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listUserWalletTransactions",
         "parameters": [
@@ -14735,6 +14741,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Query wallets.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated wallets info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryWallets",
         "parameters": [
@@ -14833,6 +14840,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "get a wallet by wallet id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:WALLET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: wallet info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getWallet",
         "parameters": [
@@ -24083,6 +24091,7 @@
             "REWARD",
             "GIFT",
             "REFUND",
+            "DLC",
             "OTHER"
           ],
           "type": "string"
@@ -31548,7 +31557,7 @@
     "SteamDLCSyncRequest": {
       "properties": {
         "appId": {
-          "description": "Steam app id",
+          "description": "Steam app id, this field is deprecated",
           "type": "string"
         },
         "steamId": {
@@ -31557,7 +31566,6 @@
         }
       },
       "required": [
-        "appId",
         "steamId"
       ],
       "type": "object"

@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.17.0"
+    "version": "1.18.1"
   },
   "schemes": [
     "https"
@@ -4779,6 +4779,7 @@
           "application/json",
           "application/octet-stream"
         ],
+        "description": "Public user can access without token or if token specified, requires valid user token",
         "operationId": "GetCreator",
         "parameters": [
           {
@@ -4803,7 +4804,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.CreatorOverviewResponse"
+              "$ref": "#/definitions/models.CreatorResponse"
             }
           },
           "401": {
@@ -7376,6 +7377,42 @@
         }
       },
       "required": [
+        "followCount",
+        "followingCount",
+        "id",
+        "namespace",
+        "totalLikedContent"
+      ]
+    },
+    "models.CreatorResponse": {
+      "properties": {
+        "creatorFollowState": {
+          "$ref": "#/definitions/models.CreatorFollowState"
+        },
+        "followCount": {
+          "description": "Number of followers",
+          "format": "int32",
+          "type": "integer"
+        },
+        "followingCount": {
+          "description": "Number of following",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "totalLikedContent": {
+          "description": "Total all other user's like to creator content",
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "creatorFollowState",
         "followCount",
         "followingCount",
         "id",

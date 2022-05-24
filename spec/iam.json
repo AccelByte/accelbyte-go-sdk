@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.8.0"
+    "version": "5.8.3"
   },
   "schemes": [
     "https"
@@ -23694,12 +23694,6 @@
       ]
     },
     "model.UserBaseInfo": {
-      "required": [
-        "userId",
-        "displayName",
-        "avatarUrl",
-        "platformUserIds"
-      ],
       "properties": {
         "avatarUrl": {
           "type": "string"
@@ -23708,15 +23702,21 @@
           "type": "string"
         },
         "platformUserIds": {
-          "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "type": "object"
         },
         "userId": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "avatarUrl",
+        "displayName",
+        "platformUserIds",
+        "userId"
+      ]
     },
     "model.UserCreateFromInvitationRequestV3": {
       "properties": {

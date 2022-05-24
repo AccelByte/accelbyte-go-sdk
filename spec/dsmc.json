@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.0.0"
+    "version": "3.0.3"
   },
   "schemes": [
     "https"
@@ -5713,11 +5713,16 @@
         "image_limit": {
           "format": "int32",
           "type": "integer"
+        },
+        "non_persistent_image_number": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
         "image_count",
-        "image_limit"
+        "image_limit",
+        "non_persistent_image_number"
       ]
     },
     "models.GetImagePatchDetailResponse": {

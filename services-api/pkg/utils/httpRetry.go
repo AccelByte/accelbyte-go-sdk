@@ -19,6 +19,7 @@ const (
 
 var RetryCodes = map[int]bool{
 	422: true, // un-processable entity
+	425: true, // server not ready
 	500: true, // internal server error
 	502: true, // bad gateway
 	408: true, // request timeout error

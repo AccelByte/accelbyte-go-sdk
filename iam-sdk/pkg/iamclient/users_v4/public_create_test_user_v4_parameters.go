@@ -121,6 +121,15 @@ func (o *PublicCreateTestUserV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public create test user v4 params
+func (o *PublicCreateTestUserV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public create test user v4 params
 func (o *PublicCreateTestUserV4Params) WithBody(body *iamclientmodels.AccountCreateTestUserRequestV4) *PublicCreateTestUserV4Params {
 	o.SetBody(body)

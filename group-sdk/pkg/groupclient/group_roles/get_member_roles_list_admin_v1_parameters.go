@@ -128,6 +128,15 @@ func (o *GetMemberRolesListAdminV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get member roles list admin v1 params
+func (o *GetMemberRolesListAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get member roles list admin v1 params
 func (o *GetMemberRolesListAdminV1Params) WithLimit(limit *int64) *GetMemberRolesListAdminV1Params {
 	o.SetLimit(limit)

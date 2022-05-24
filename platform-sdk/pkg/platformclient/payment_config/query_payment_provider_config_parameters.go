@@ -147,6 +147,15 @@ func (o *QueryPaymentProviderConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query payment provider config params
+func (o *QueryPaymentProviderConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the query payment provider config params
 func (o *QueryPaymentProviderConfigParams) WithLimit(limit *int32) *QueryPaymentProviderConfigParams {
 	o.SetLimit(limit)

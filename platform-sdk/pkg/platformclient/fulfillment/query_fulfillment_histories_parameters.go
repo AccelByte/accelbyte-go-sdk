@@ -143,6 +143,15 @@ func (o *QueryFulfillmentHistoriesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query fulfillment histories params
+func (o *QueryFulfillmentHistoriesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the query fulfillment histories params
 func (o *QueryFulfillmentHistoriesParams) WithLimit(limit *int32) *QueryFulfillmentHistoriesParams {
 	o.SetLimit(limit)

@@ -12,7 +12,6 @@ package public
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -72,7 +71,7 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -116,7 +115,7 @@ func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.Clie
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

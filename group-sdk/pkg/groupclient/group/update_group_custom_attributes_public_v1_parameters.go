@@ -126,6 +126,15 @@ func (o *UpdateGroupCustomAttributesPublicV1Params) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group custom attributes public v1 params
+func (o *UpdateGroupCustomAttributesPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update group custom attributes public v1 params
 func (o *UpdateGroupCustomAttributesPublicV1Params) WithBody(body *groupclientmodels.ModelsUpdateGroupCustomAttributesRequestV1) *UpdateGroupCustomAttributesPublicV1Params {
 	o.SetBody(body)

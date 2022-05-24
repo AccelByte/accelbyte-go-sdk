@@ -12,7 +12,6 @@ package i_a_p
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -134,7 +133,7 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -175,7 +174,7 @@ func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, a
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -221,7 +220,7 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -262,7 +261,7 @@ func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -308,7 +307,7 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -349,7 +348,7 @@ func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -395,7 +394,7 @@ func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -436,7 +435,7 @@ func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, aut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -482,7 +481,7 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -523,7 +522,7 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -569,7 +568,7 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -610,7 +609,7 @@ func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -656,7 +655,7 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -697,7 +696,7 @@ func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, a
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -743,7 +742,7 @@ func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -784,7 +783,7 @@ func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -830,7 +829,7 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -871,7 +870,7 @@ func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -917,7 +916,7 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -958,7 +957,7 @@ func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1004,7 +1003,7 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1048,7 +1047,7 @@ func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1096,7 +1095,7 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1137,7 +1136,7 @@ func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1183,7 +1182,7 @@ func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runti
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1227,7 +1226,7 @@ func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1275,7 +1274,7 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1316,7 +1315,7 @@ func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigPar
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1362,7 +1361,7 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1403,7 +1402,7 @@ func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1449,7 +1448,7 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1490,7 +1489,7 @@ func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1536,7 +1535,7 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1577,7 +1576,7 @@ func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1623,7 +1622,7 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1667,7 +1666,7 @@ func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo ru
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1715,7 +1714,7 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1765,7 +1764,7 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1817,7 +1816,7 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1867,7 +1866,7 @@ func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPIte
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1919,7 +1918,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1969,7 +1968,7 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2021,7 +2020,7 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2065,7 +2064,7 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2113,7 +2112,7 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2154,7 +2153,7 @@ func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2200,7 +2199,7 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2241,7 +2240,7 @@ func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2287,7 +2286,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2328,7 +2327,7 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2374,7 +2373,7 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2415,7 +2414,7 @@ func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2461,7 +2460,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2502,7 +2501,7 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2548,7 +2547,7 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2589,7 +2588,7 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2635,7 +2634,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2676,7 +2675,7 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2722,7 +2721,7 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2763,7 +2762,7 @@ func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, a
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2809,7 +2808,7 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2850,7 +2849,7 @@ func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2896,7 +2895,7 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2937,7 +2936,7 @@ func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2983,7 +2982,7 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3024,7 +3023,7 @@ func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, aut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3070,7 +3069,7 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3114,7 +3113,7 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3162,7 +3161,7 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3203,7 +3202,7 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3249,7 +3248,7 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3290,7 +3289,7 @@ func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigF
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3336,7 +3335,7 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3377,7 +3376,7 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3423,7 +3422,7 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3464,7 +3463,7 @@ func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3510,7 +3509,7 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3551,7 +3550,7 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3597,7 +3596,7 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3638,7 +3637,7 @@ func (a *Client) UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

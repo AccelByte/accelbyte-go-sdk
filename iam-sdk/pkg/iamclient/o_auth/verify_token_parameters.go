@@ -117,6 +117,15 @@ func (o *VerifyTokenParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the verify token params
+func (o *VerifyTokenParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithToken adds the token to the verify token params
 func (o *VerifyTokenParams) WithToken(token string) *VerifyTokenParams {
 	o.SetToken(token)

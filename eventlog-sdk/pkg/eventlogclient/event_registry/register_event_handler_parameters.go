@@ -116,6 +116,15 @@ func (o *RegisterEventHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the register event handler params
+func (o *RegisterEventHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the register event handler params
 func (o *RegisterEventHandlerParams) WithBody(body *eventlogclientmodels.ModelsEventRegistry) *RegisterEventHandlerParams {
 	o.SetBody(body)

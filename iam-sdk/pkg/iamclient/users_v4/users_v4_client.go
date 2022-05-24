@@ -12,7 +12,6 @@ package users_v4
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -134,7 +133,7 @@ func (a *Client) AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -190,7 +189,7 @@ func (a *Client) AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -248,7 +247,7 @@ func (a *Client) AdminBulkCheckValidUserIDV4(params *AdminBulkCheckValidUserIDV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -301,7 +300,7 @@ func (a *Client) AdminBulkCheckValidUserIDV4Short(params *AdminBulkCheckValidUse
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -357,7 +356,7 @@ func (a *Client) AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticat
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -413,7 +412,7 @@ func (a *Client) AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthen
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -471,7 +470,7 @@ func (a *Client) AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -527,7 +526,7 @@ func (a *Client) AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -584,7 +583,7 @@ func (a *Client) AdminDisableUserMFAV4(params *AdminDisableUserMFAV4Params, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -640,7 +639,7 @@ func (a *Client) AdminDisableUserMFAV4Short(params *AdminDisableUserMFAV4Params,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -698,7 +697,7 @@ func (a *Client) AdminDownloadMyBackupCodesV4(params *AdminDownloadMyBackupCodes
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -754,7 +753,7 @@ func (a *Client) AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackup
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -812,7 +811,7 @@ func (a *Client) AdminEnableMyAuthenticatorV4(params *AdminEnableMyAuthenticator
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -871,7 +870,7 @@ func (a *Client) AdminEnableMyAuthenticatorV4Short(params *AdminEnableMyAuthenti
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -931,7 +930,7 @@ func (a *Client) AdminEnableMyBackupCodesV4(params *AdminEnableMyBackupCodesV4Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -990,7 +989,7 @@ func (a *Client) AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCode
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1051,7 +1050,7 @@ func (a *Client) AdminGenerateMyAuthenticatorKeyV4(params *AdminGenerateMyAuthen
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1107,7 +1106,7 @@ func (a *Client) AdminGenerateMyAuthenticatorKeyV4Short(params *AdminGenerateMyA
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1166,7 +1165,7 @@ func (a *Client) AdminGenerateMyBackupCodesV4(params *AdminGenerateMyBackupCodes
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1222,7 +1221,7 @@ func (a *Client) AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackup
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1281,7 +1280,7 @@ func (a *Client) AdminGetMyBackupCodesV4(params *AdminGetMyBackupCodesV4Params, 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1337,7 +1336,7 @@ func (a *Client) AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Par
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1395,7 +1394,7 @@ func (a *Client) AdminGetMyEnabledFactorsV4(params *AdminGetMyEnabledFactorsV4Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1451,7 +1450,7 @@ func (a *Client) AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactor
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1514,7 +1513,7 @@ func (a *Client) AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1570,7 +1569,7 @@ func (a *Client) AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1629,7 +1628,7 @@ func (a *Client) AdminListUserRolesV4(params *AdminListUserRolesV4Params, authIn
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1679,7 +1678,7 @@ func (a *Client) AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, a
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1733,7 +1732,7 @@ func (a *Client) AdminMakeFactorMyDefaultV4(params *AdminMakeFactorMyDefaultV4Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1789,7 +1788,7 @@ func (a *Client) AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaul
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1848,7 +1847,7 @@ func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1904,7 +1903,7 @@ func (a *Client) AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1965,7 +1964,7 @@ func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2018,7 +2017,7 @@ func (a *Client) AdminUpdateMyUserV4Short(params *AdminUpdateMyUserV4Params, aut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2076,7 +2075,7 @@ func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddre
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2132,7 +2131,7 @@ func (a *Client) AdminUpdateUserEmailAddressV4Short(params *AdminUpdateUserEmail
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2191,7 +2190,7 @@ func (a *Client) AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, auth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2247,7 +2246,7 @@ func (a *Client) AdminUpdateUserRoleV4Short(params *AdminUpdateUserRoleV4Params,
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2309,7 +2308,7 @@ func (a *Client) AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo run
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2368,7 +2367,7 @@ func (a *Client) AdminUpdateUserV4Short(params *AdminUpdateUserV4Params, authInf
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2443,7 +2442,7 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2493,7 +2492,7 @@ func (a *Client) CreateUserFromInvitationV4Short(params *CreateUserFromInvitatio
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2560,7 +2559,7 @@ func (a *Client) PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, au
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2613,7 +2612,7 @@ func (a *Client) PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Param
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2681,7 +2680,7 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2734,7 +2733,7 @@ func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2790,7 +2789,7 @@ func (a *Client) PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthentic
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2846,7 +2845,7 @@ func (a *Client) PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2904,7 +2903,7 @@ func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodes
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2960,7 +2959,7 @@ func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackup
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3018,7 +3017,7 @@ func (a *Client) PublicDownloadMyBackupCodesV4(params *PublicDownloadMyBackupCod
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3074,7 +3073,7 @@ func (a *Client) PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBack
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3132,7 +3131,7 @@ func (a *Client) PublicEnableMyAuthenticatorV4(params *PublicEnableMyAuthenticat
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3191,7 +3190,7 @@ func (a *Client) PublicEnableMyAuthenticatorV4Short(params *PublicEnableMyAuthen
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3251,7 +3250,7 @@ func (a *Client) PublicEnableMyBackupCodesV4(params *PublicEnableMyBackupCodesV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3310,7 +3309,7 @@ func (a *Client) PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3371,7 +3370,7 @@ func (a *Client) PublicGenerateMyAuthenticatorKeyV4(params *PublicGenerateMyAuth
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3427,7 +3426,7 @@ func (a *Client) PublicGenerateMyAuthenticatorKeyV4Short(params *PublicGenerateM
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3486,7 +3485,7 @@ func (a *Client) PublicGenerateMyBackupCodesV4(params *PublicGenerateMyBackupCod
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3542,7 +3541,7 @@ func (a *Client) PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBack
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3601,7 +3600,7 @@ func (a *Client) PublicGetMyBackupCodesV4(params *PublicGetMyBackupCodesV4Params
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3657,7 +3656,7 @@ func (a *Client) PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3715,7 +3714,7 @@ func (a *Client) PublicGetMyEnabledFactorsV4(params *PublicGetMyEnabledFactorsV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3771,7 +3770,7 @@ func (a *Client) PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFact
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3829,7 +3828,7 @@ func (a *Client) PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3885,7 +3884,7 @@ func (a *Client) PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3944,7 +3943,7 @@ func (a *Client) PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4000,7 +3999,7 @@ func (a *Client) PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDev
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4058,7 +4057,7 @@ func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAdd
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4114,7 +4113,7 @@ func (a *Client) PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEma
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4176,7 +4175,7 @@ func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo r
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4229,7 +4228,7 @@ func (a *Client) PublicUpdateUserV4Short(params *PublicUpdateUserV4Params, authI
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4285,7 +4284,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAcc
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4341,7 +4340,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV4Short(params *PublicUpgradeHeadle
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4411,7 +4410,7 @@ func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *Publ
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4470,7 +4469,7 @@ func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(params 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

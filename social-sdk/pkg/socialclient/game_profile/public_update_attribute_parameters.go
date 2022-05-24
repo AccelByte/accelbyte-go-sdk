@@ -136,6 +136,15 @@ func (o *PublicUpdateAttributeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update attribute params
+func (o *PublicUpdateAttributeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAttributeName adds the attributeName to the public update attribute params
 func (o *PublicUpdateAttributeParams) WithAttributeName(attributeName string) *PublicUpdateAttributeParams {
 	o.SetAttributeName(attributeName)

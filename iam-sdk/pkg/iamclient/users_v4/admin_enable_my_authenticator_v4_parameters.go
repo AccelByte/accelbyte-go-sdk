@@ -117,6 +117,15 @@ func (o *AdminEnableMyAuthenticatorV4Params) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin enable my authenticator v4 params
+func (o *AdminEnableMyAuthenticatorV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the admin enable my authenticator v4 params
 func (o *AdminEnableMyAuthenticatorV4Params) WithCode(code *string) *AdminEnableMyAuthenticatorV4Params {
 	o.SetCode(code)

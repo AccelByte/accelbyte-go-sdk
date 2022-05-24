@@ -127,6 +127,15 @@ func (o *DeleteUserRoleParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user role params
+func (o *DeleteUserRoleParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete user role params
 func (o *DeleteUserRoleParams) WithNamespace(namespace string) *DeleteUserRoleParams {
 	o.SetNamespace(namespace)

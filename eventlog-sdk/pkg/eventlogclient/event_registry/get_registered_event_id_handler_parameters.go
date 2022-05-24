@@ -117,6 +117,15 @@ func (o *GetRegisteredEventIDHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get registered event ID handler params
+func (o *GetRegisteredEventIDHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEventID adds the eventID to the get registered event ID handler params
 func (o *GetRegisteredEventIDHandlerParams) WithEventID(eventID string) *GetRegisteredEventIDHandlerParams {
 	o.SetEventID(eventID)

@@ -121,6 +121,15 @@ func (o *CreateNewGroupPublicV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create new group public v1 params
+func (o *CreateNewGroupPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create new group public v1 params
 func (o *CreateNewGroupPublicV1Params) WithBody(body *groupclientmodels.ModelsPublicCreateNewGroupRequestV1) *CreateNewGroupPublicV1Params {
 	o.SetBody(body)

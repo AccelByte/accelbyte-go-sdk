@@ -120,6 +120,15 @@ func (o *CheckEventConditionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check event condition params
+func (o *CheckEventConditionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the check event condition params
 func (o *CheckEventConditionParams) WithBody(body *platformclientmodels.EventPayload) *CheckEventConditionParams {
 	o.SetBody(body)

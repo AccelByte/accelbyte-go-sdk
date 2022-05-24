@@ -122,6 +122,15 @@ func (o *AdminGetSpecificContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get specific content params
+func (o *AdminGetSpecificContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithContentID adds the contentID to the admin get specific content params
 func (o *AdminGetSpecificContentParams) WithContentID(contentID string) *AdminGetSpecificContentParams {
 	o.SetContentID(contentID)

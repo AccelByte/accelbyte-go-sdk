@@ -126,6 +126,15 @@ func (o *UpdateMatchmakingChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update matchmaking channel params
+func (o *UpdateMatchmakingChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update matchmaking channel params
 func (o *UpdateMatchmakingChannelParams) WithBody(body *matchmakingclientmodels.ModelsUpdateChannelRequest) *UpdateMatchmakingChannelParams {
 	o.SetBody(body)

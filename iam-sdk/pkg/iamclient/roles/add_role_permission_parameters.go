@@ -132,6 +132,15 @@ func (o *AddRolePermissionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add role permission params
+func (o *AddRolePermissionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAction adds the action to the add role permission params
 func (o *AddRolePermissionParams) WithAction(action int64) *AddRolePermissionParams {
 	o.SetAction(action)

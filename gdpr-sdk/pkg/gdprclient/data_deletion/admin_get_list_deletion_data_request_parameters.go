@@ -143,6 +143,15 @@ func (o *AdminGetListDeletionDataRequestParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get list deletion data request params
+func (o *AdminGetListDeletionDataRequestParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the admin get list deletion data request params
 func (o *AdminGetListDeletionDataRequestParams) WithAfter(after *string) *AdminGetListDeletionDataRequestParams {
 	o.SetAfter(after)

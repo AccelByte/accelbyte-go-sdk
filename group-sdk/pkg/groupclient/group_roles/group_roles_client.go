@@ -12,7 +12,6 @@ package group_roles
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -133,7 +132,7 @@ func (a *Client) CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Par
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -190,7 +189,7 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -246,7 +245,7 @@ func (a *Client) DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Par
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -304,7 +303,7 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -363,7 +362,7 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -424,7 +423,7 @@ func (a *Client) GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Para
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -477,7 +476,7 @@ func (a *Client) GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -534,7 +533,7 @@ func (a *Client) GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -587,7 +586,7 @@ func (a *Client) GetMemberRolesListPublicV1Short(params *GetMemberRolesListPubli
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -644,7 +643,7 @@ func (a *Client) GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Pa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -700,7 +699,7 @@ func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdmi
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -759,7 +758,7 @@ func (a *Client) UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -815,7 +814,7 @@ func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Par
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -879,7 +878,7 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -935,7 +934,7 @@ func (a *Client) UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRole
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -993,7 +992,7 @@ func (a *Client) UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1049,7 +1048,7 @@ func (a *Client) UpdateMemberRolePublicV1Short(params *UpdateMemberRolePublicV1P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

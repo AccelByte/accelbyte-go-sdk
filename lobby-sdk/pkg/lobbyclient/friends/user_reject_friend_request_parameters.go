@@ -124,6 +124,15 @@ func (o *UserRejectFriendRequestParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the user reject friend request params
+func (o *UserRejectFriendRequestParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the user reject friend request params
 func (o *UserRejectFriendRequestParams) WithBody(body *lobbyclientmodels.ModelUserRejectFriendRequest) *UserRejectFriendRequestParams {
 	o.SetBody(body)

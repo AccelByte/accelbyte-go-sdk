@@ -127,6 +127,15 @@ func (o *AdminGetPlayerPublicRecordHandlerV1Params) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get player public record handler v1 params
+func (o *AdminGetPlayerPublicRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKey adds the key to the admin get player public record handler v1 params
 func (o *AdminGetPlayerPublicRecordHandlerV1Params) WithKey(key string) *AdminGetPlayerPublicRecordHandlerV1Params {
 	o.SetKey(key)

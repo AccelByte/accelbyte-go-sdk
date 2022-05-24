@@ -143,6 +143,15 @@ func (o *QueryKeyGroupsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query key groups params
+func (o *QueryKeyGroupsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the query key groups params
 func (o *QueryKeyGroupsParams) WithLimit(limit *int32) *QueryKeyGroupsParams {
 	o.SetLimit(limit)

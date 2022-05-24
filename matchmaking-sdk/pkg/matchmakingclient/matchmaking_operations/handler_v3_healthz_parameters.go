@@ -112,6 +112,15 @@ func (o *HandlerV3HealthzParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the handler v3 healthz params
+func (o *HandlerV3HealthzParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *HandlerV3HealthzParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

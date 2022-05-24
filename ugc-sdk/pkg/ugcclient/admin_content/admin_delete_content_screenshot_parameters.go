@@ -127,6 +127,15 @@ func (o *AdminDeleteContentScreenshotParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete content screenshot params
+func (o *AdminDeleteContentScreenshotParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithContentID adds the contentID to the admin delete content screenshot params
 func (o *AdminDeleteContentScreenshotParams) WithContentID(contentID string) *AdminDeleteContentScreenshotParams {
 	o.SetContentID(contentID)

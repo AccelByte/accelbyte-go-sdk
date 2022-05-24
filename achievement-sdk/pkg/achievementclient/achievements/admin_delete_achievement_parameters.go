@@ -122,6 +122,15 @@ func (o *AdminDeleteAchievementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete achievement params
+func (o *AdminDeleteAchievementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAchievementCode adds the achievementCode to the admin delete achievement params
 func (o *AdminDeleteAchievementParams) WithAchievementCode(achievementCode string) *AdminDeleteAchievementParams {
 	o.SetAchievementCode(achievementCode)

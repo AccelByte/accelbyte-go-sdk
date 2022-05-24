@@ -124,6 +124,15 @@ func (o *SendMultipleUsersFreeformNotificationV1AdminParams) SetHTTPClient(clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the send multiple users freeform notification v1 admin params
+func (o *SendMultipleUsersFreeformNotificationV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the send multiple users freeform notification v1 admin params
 func (o *SendMultipleUsersFreeformNotificationV1AdminParams) WithBody(body *lobbyclientmodels.ModelBulkUsersFreeFormNotificationRequestV1) *SendMultipleUsersFreeformNotificationV1AdminParams {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *GetUserByLoginIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user by login ID params
+func (o *GetUserByLoginIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLoginID adds the loginID to the get user by login ID params
 func (o *GetUserByLoginIDParams) WithLoginID(loginID *string) *GetUserByLoginIDParams {
 	o.SetLoginID(loginID)

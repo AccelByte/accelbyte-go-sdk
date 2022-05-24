@@ -147,6 +147,15 @@ func (o *QueryStatsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query stats params
+func (o *QueryStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKeyword adds the keyword to the query stats params
 func (o *QueryStatsParams) WithKeyword(keyword string) *QueryStatsParams {
 	o.SetKeyword(keyword)

@@ -120,6 +120,15 @@ func (o *PublicGetUserEntitlementOwnershipByItemIDParams) SetHTTPClient(client *
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user entitlement ownership by item Id params
+func (o *PublicGetUserEntitlementOwnershipByItemIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEntitlementClazz adds the entitlementClazz to the public get user entitlement ownership by item Id params
 func (o *PublicGetUserEntitlementOwnershipByItemIDParams) WithEntitlementClazz(entitlementClazz *string) *PublicGetUserEntitlementOwnershipByItemIDParams {
 	o.SetEntitlementClazz(entitlementClazz)

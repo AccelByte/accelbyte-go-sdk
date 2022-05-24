@@ -117,6 +117,15 @@ func (o *LogoutSSOClientParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the logout s s o client params
+func (o *LogoutSSOClientParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPlatformID adds the platformID to the logout s s o client params
 func (o *LogoutSSOClientParams) WithPlatformID(platformID string) *LogoutSSOClientParams {
 	o.SetPlatformID(platformID)

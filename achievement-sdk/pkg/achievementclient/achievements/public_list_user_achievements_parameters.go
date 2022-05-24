@@ -166,6 +166,15 @@ func (o *PublicListUserAchievementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public list user achievements params
+func (o *PublicListUserAchievementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the public list user achievements params
 func (o *PublicListUserAchievementsParams) WithLimit(limit *int64) *PublicListUserAchievementsParams {
 	o.SetLimit(limit)

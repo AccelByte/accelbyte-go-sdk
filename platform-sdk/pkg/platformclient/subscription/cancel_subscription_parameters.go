@@ -137,6 +137,15 @@ func (o *CancelSubscriptionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the cancel subscription params
+func (o *CancelSubscriptionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the cancel subscription params
 func (o *CancelSubscriptionParams) WithBody(body *platformclientmodels.CancelRequest) *CancelSubscriptionParams {
 	o.SetBody(body)

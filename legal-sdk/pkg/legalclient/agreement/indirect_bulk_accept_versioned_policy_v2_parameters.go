@@ -136,6 +136,15 @@ func (o *IndirectBulkAcceptVersionedPolicyV2Params) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the indirect bulk accept versioned policy v2 params
+func (o *IndirectBulkAcceptVersionedPolicyV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the indirect bulk accept versioned policy v2 params
 func (o *IndirectBulkAcceptVersionedPolicyV2Params) WithBody(body []*legalclientmodels.AcceptAgreementRequest) *IndirectBulkAcceptVersionedPolicyV2Params {
 	o.SetBody(body)

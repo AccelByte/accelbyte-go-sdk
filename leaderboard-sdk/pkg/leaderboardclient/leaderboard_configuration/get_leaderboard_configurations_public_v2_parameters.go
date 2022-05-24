@@ -128,6 +128,15 @@ func (o *GetLeaderboardConfigurationsPublicV2Params) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get leaderboard configurations public v2 params
+func (o *GetLeaderboardConfigurationsPublicV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get leaderboard configurations public v2 params
 func (o *GetLeaderboardConfigurationsPublicV2Params) WithLimit(limit *int64) *GetLeaderboardConfigurationsPublicV2Params {
 	o.SetLimit(limit)

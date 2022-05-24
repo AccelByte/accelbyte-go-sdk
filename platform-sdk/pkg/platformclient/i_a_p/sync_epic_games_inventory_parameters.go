@@ -120,6 +120,15 @@ func (o *SyncEpicGamesInventoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync epic games inventory params
+func (o *SyncEpicGamesInventoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync epic games inventory params
 func (o *SyncEpicGamesInventoryParams) WithBody(body *platformclientmodels.EpicGamesReconcileRequest) *SyncEpicGamesInventoryParams {
 	o.SetBody(body)

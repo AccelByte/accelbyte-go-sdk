@@ -122,6 +122,15 @@ func (o *AdminDeleteTagParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete tag params
+func (o *AdminDeleteTagParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin delete tag params
 func (o *AdminDeleteTagParams) WithNamespace(namespace string) *AdminDeleteTagParams {
 	o.SetNamespace(namespace)

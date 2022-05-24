@@ -122,6 +122,15 @@ func (o *GetPodConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get pod config params
+func (o *GetPodConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithName adds the name to the get pod config params
 func (o *GetPodConfigParams) WithName(name string) *GetPodConfigParams {
 	o.SetName(name)

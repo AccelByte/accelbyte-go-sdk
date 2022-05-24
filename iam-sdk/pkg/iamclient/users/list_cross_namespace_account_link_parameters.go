@@ -132,6 +132,15 @@ func (o *ListCrossNamespaceAccountLinkParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list cross namespace account link params
+func (o *ListCrossNamespaceAccountLinkParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLinkingToken adds the linkingToken to the list cross namespace account link params
 func (o *ListCrossNamespaceAccountLinkParams) WithLinkingToken(linkingToken string) *ListCrossNamespaceAccountLinkParams {
 	o.SetLinkingToken(linkingToken)

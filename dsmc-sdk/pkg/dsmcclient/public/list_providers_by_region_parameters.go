@@ -117,6 +117,15 @@ func (o *ListProvidersByRegionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list providers by region params
+func (o *ListProvidersByRegionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithRegion adds the region to the list providers by region params
 func (o *ListProvidersByRegionParams) WithRegion(region string) *ListProvidersByRegionParams {
 	o.SetRegion(region)

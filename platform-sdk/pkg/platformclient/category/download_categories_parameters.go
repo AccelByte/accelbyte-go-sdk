@@ -124,6 +124,15 @@ func (o *DownloadCategoriesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the download categories params
+func (o *DownloadCategoriesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLanguage adds the language to the download categories params
 func (o *DownloadCategoriesParams) WithLanguage(language *string) *DownloadCategoriesParams {
 	o.SetLanguage(language)

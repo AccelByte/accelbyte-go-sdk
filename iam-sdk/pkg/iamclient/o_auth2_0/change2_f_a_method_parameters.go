@@ -122,6 +122,15 @@ func (o *Change2FAMethodParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the change2 f a method params
+func (o *Change2FAMethodParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFactor adds the factor to the change2 f a method params
 func (o *Change2FAMethodParams) WithFactor(factor string) *Change2FAMethodParams {
 	o.SetFactor(factor)

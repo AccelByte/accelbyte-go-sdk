@@ -126,6 +126,15 @@ func (o *PublicLinkPlatformAccountParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public link platform account params
+func (o *PublicLinkPlatformAccountParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public link platform account params
 func (o *PublicLinkPlatformAccountParams) WithBody(body *iamclientmodels.ModelLinkPlatformAccountRequest) *PublicLinkPlatformAccountParams {
 	o.SetBody(body)

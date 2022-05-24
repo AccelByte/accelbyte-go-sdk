@@ -137,6 +137,15 @@ func (o *AdminGetRolesV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get roles v4 params
+func (o *AdminGetRolesV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAdminRole adds the adminRole to the admin get roles v4 params
 func (o *AdminGetRolesV4Params) WithAdminRole(adminRole *bool) *AdminGetRolesV4Params {
 	o.SetAdminRole(adminRole)

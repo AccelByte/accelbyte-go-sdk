@@ -133,6 +133,15 @@ func (o *GetUserAppEntitlementByAppIDParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user app entitlement by app Id params
+func (o *GetUserAppEntitlementByAppIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get user app entitlement by app Id params
 func (o *GetUserAppEntitlementByAppIDParams) WithActiveOnly(activeOnly *bool) *GetUserAppEntitlementByAppIDParams {
 	o.SetActiveOnly(activeOnly)

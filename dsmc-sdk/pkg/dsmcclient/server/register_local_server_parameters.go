@@ -121,6 +121,15 @@ func (o *RegisterLocalServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the register local server params
+func (o *RegisterLocalServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the register local server params
 func (o *RegisterLocalServerParams) WithBody(body *dsmcclientmodels.ModelsRegisterLocalServerRequest) *RegisterLocalServerParams {
 	o.SetBody(body)

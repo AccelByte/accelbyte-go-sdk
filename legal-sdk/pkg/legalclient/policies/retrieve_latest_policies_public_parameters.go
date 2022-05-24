@@ -138,6 +138,15 @@ func (o *RetrieveLatestPoliciesPublicParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve latest policies public params
+func (o *RetrieveLatestPoliciesPublicParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAlwaysIncludeDefault adds the alwaysIncludeDefault to the retrieve latest policies public params
 func (o *RetrieveLatestPoliciesPublicParams) WithAlwaysIncludeDefault(alwaysIncludeDefault *bool) *RetrieveLatestPoliciesPublicParams {
 	o.SetAlwaysIncludeDefault(alwaysIncludeDefault)

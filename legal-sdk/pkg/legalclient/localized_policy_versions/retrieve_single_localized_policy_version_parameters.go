@@ -117,6 +117,15 @@ func (o *RetrieveSingleLocalizedPolicyVersionParams) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve single localized policy version params
+func (o *RetrieveSingleLocalizedPolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLocalizedPolicyVersionID adds the localizedPolicyVersionID to the retrieve single localized policy version params
 func (o *RetrieveSingleLocalizedPolicyVersionParams) WithLocalizedPolicyVersionID(localizedPolicyVersionID string) *RetrieveSingleLocalizedPolicyVersionParams {
 	o.SetLocalizedPolicyVersionID(localizedPolicyVersionID)

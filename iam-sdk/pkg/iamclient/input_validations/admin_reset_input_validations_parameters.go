@@ -117,6 +117,15 @@ func (o *AdminResetInputValidationsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin reset input validations params
+func (o *AdminResetInputValidationsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithField adds the field to the admin reset input validations params
 func (o *AdminResetInputValidationsParams) WithField(field string) *AdminResetInputValidationsParams {
 	o.SetField(field)

@@ -131,6 +131,15 @@ func (o *SetUserLeaderboardVisibilityStatusV2Params) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the set user leaderboard visibility status v2 params
+func (o *SetUserLeaderboardVisibilityStatusV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the set user leaderboard visibility status v2 params
 func (o *SetUserLeaderboardVisibilityStatusV2Params) WithBody(body *leaderboardclientmodels.ModelsSetUserVisibilityRequest) *SetUserLeaderboardVisibilityStatusV2Params {
 	o.SetBody(body)

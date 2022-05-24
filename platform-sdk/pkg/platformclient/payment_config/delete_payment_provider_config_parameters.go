@@ -117,6 +117,15 @@ func (o *DeletePaymentProviderConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete payment provider config params
+func (o *DeletePaymentProviderConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the delete payment provider config params
 func (o *DeletePaymentProviderConfigParams) WithID(id string) *DeletePaymentProviderConfigParams {
 	o.SetID(id)

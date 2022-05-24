@@ -112,6 +112,15 @@ func (o *PublicGetMessagesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get messages params
+func (o *PublicGetMessagesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicGetMessagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

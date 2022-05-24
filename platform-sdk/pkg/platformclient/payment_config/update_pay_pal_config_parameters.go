@@ -143,6 +143,15 @@ func (o *UpdatePayPalConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update pay pal config params
+func (o *UpdatePayPalConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update pay pal config params
 func (o *UpdatePayPalConfigParams) WithBody(body *platformclientmodels.PayPalConfig) *UpdatePayPalConfigParams {
 	o.SetBody(body)

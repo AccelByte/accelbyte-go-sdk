@@ -121,6 +121,15 @@ func (o *PublicGetContentBulkParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get content bulk params
+func (o *PublicGetContentBulkParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public get content bulk params
 func (o *PublicGetContentBulkParams) WithBody(body *ugcclientmodels.ModelsPublicGetContentBulkRequest) *PublicGetContentBulkParams {
 	o.SetBody(body)

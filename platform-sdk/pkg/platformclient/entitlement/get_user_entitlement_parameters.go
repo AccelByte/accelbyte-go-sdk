@@ -118,6 +118,15 @@ func (o *GetUserEntitlementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user entitlement params
+func (o *GetUserEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEntitlementID adds the entitlementID to the get user entitlement params
 func (o *GetUserEntitlementParams) WithEntitlementID(entitlementID string) *GetUserEntitlementParams {
 	o.SetEntitlementID(entitlementID)

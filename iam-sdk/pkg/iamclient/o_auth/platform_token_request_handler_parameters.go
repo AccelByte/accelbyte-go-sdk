@@ -132,6 +132,15 @@ func (o *PlatformTokenRequestHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the platform token request handler params
+func (o *PlatformTokenRequestHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDeviceID adds the deviceID to the platform token request handler params
 func (o *PlatformTokenRequestHandlerParams) WithDeviceID(deviceID *string) *PlatformTokenRequestHandlerParams {
 	o.SetDeviceID(deviceID)

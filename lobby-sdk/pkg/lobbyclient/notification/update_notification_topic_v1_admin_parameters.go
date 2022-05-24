@@ -129,6 +129,15 @@ func (o *UpdateNotificationTopicV1AdminParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update notification topic v1 admin params
+func (o *UpdateNotificationTopicV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update notification topic v1 admin params
 func (o *UpdateNotificationTopicV1AdminParams) WithBody(body *lobbyclientmodels.ModelUpdateTopicRequest) *UpdateNotificationTopicV1AdminParams {
 	o.SetBody(body)

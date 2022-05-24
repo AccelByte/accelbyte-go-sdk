@@ -122,6 +122,15 @@ func (o *RejectGroupInvitationPublicV1Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the reject group invitation public v1 params
+func (o *RejectGroupInvitationPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the reject group invitation public v1 params
 func (o *RejectGroupInvitationPublicV1Params) WithGroupID(groupID string) *RejectGroupInvitationPublicV1Params {
 	o.SetGroupID(groupID)

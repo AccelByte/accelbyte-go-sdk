@@ -120,6 +120,15 @@ func (o *AcquireItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the acquire item params
+func (o *AcquireItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the acquire item params
 func (o *AcquireItemParams) WithBody(body *platformclientmodels.ItemAcquireRequest) *AcquireItemParams {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *GetGameRecordHandlerV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get game record handler v1 params
+func (o *GetGameRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKey adds the key to the get game record handler v1 params
 func (o *GetGameRecordHandlerV1Params) WithKey(key string) *GetGameRecordHandlerV1Params {
 	o.SetKey(key)

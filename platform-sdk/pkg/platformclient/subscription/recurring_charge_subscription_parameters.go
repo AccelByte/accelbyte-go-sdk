@@ -116,6 +116,15 @@ func (o *RecurringChargeSubscriptionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the recurring charge subscription params
+func (o *RecurringChargeSubscriptionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the recurring charge subscription params
 func (o *RecurringChargeSubscriptionParams) WithNamespace(namespace string) *RecurringChargeSubscriptionParams {
 	o.SetNamespace(namespace)

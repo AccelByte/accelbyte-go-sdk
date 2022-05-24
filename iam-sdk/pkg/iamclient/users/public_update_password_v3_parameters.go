@@ -121,6 +121,15 @@ func (o *PublicUpdatePasswordV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update password v3 params
+func (o *PublicUpdatePasswordV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update password v3 params
 func (o *PublicUpdatePasswordV3Params) WithBody(body *iamclientmodels.ModelUserPasswordUpdateV3Request) *PublicUpdatePasswordV3Params {
 	o.SetBody(body)

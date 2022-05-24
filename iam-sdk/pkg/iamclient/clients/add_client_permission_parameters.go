@@ -128,6 +128,15 @@ func (o *AddClientPermissionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add client permission params
+func (o *AddClientPermissionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAction adds the action to the add client permission params
 func (o *AddClientPermissionParams) WithAction(action int64) *AddClientPermissionParams {
 	o.SetAction(action)

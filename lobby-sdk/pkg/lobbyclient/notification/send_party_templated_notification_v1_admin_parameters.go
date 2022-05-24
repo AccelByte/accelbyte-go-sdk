@@ -129,6 +129,15 @@ func (o *SendPartyTemplatedNotificationV1AdminParams) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the send party templated notification v1 admin params
+func (o *SendPartyTemplatedNotificationV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the send party templated notification v1 admin params
 func (o *SendPartyTemplatedNotificationV1AdminParams) WithBody(body *lobbyclientmodels.ModelNotificationWithTemplateRequestV1) *SendPartyTemplatedNotificationV1AdminParams {
 	o.SetBody(body)

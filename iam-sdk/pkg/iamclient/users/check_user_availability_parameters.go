@@ -127,6 +127,15 @@ func (o *CheckUserAvailabilityParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check user availability params
+func (o *CheckUserAvailabilityParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithField adds the field to the check user availability params
 func (o *CheckUserAvailabilityParams) WithField(field string) *CheckUserAvailabilityParams {
 	o.SetField(field)

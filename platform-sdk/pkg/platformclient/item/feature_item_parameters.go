@@ -120,6 +120,15 @@ func (o *FeatureItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the feature item params
+func (o *FeatureItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFeature adds the feature to the feature item params
 func (o *FeatureItemParams) WithFeature(feature string) *FeatureItemParams {
 	o.SetFeature(feature)

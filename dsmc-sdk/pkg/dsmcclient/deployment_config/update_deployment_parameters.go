@@ -126,6 +126,15 @@ func (o *UpdateDeploymentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update deployment params
+func (o *UpdateDeploymentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update deployment params
 func (o *UpdateDeploymentParams) WithBody(body *dsmcclientmodels.ModelsUpdateDeploymentRequest) *UpdateDeploymentParams {
 	o.SetBody(body)

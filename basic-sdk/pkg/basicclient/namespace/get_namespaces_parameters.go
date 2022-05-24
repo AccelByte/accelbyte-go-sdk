@@ -130,6 +130,15 @@ func (o *GetNamespacesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get namespaces params
+func (o *GetNamespacesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get namespaces params
 func (o *GetNamespacesParams) WithActiveOnly(activeOnly *bool) *GetNamespacesParams {
 	o.SetActiveOnly(activeOnly)

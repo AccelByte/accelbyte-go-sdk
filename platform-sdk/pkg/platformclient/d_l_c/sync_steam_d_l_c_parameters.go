@@ -120,6 +120,15 @@ func (o *SyncSteamDLCParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync steam d l c params
+func (o *SyncSteamDLCParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync steam d l c params
 func (o *SyncSteamDLCParams) WithBody(body *platformclientmodels.SteamDLCSyncRequest) *SyncSteamDLCParams {
 	o.SetBody(body)

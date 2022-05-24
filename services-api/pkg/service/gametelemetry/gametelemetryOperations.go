@@ -21,37 +21,6 @@ type GametelemetryOperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetEventsGameTelemetryV1AdminEventsGetShort instead
-func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGet(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, unprocessableEntity, err := g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGet(input, client.BearerToken(*token.AccessToken))
-	if unprocessableEntity != nil {
-		return unprocessableEntity
-	}
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// Deprecated: Use AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort instead
-func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead
 func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) error {
 	token, err := g.TokenRepository.GetToken()
@@ -96,58 +65,6 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 	if unprocessableEntity != nil {
 		return unprocessableEntity
 	}
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-			{"cookie"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, authInfoWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-			{"cookie"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

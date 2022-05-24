@@ -120,6 +120,15 @@ func (o *UpdateStoreParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update store params
+func (o *UpdateStoreParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update store params
 func (o *UpdateStoreParams) WithBody(body *platformclientmodels.StoreUpdate) *UpdateStoreParams {
 	o.SetBody(body)

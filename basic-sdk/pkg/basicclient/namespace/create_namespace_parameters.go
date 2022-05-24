@@ -116,6 +116,15 @@ func (o *CreateNamespaceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create namespace params
+func (o *CreateNamespaceParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create namespace params
 func (o *CreateNamespaceParams) WithBody(body *basicclientmodels.NamespaceCreate) *CreateNamespaceParams {
 	o.SetBody(body)

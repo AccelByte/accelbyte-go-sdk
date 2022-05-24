@@ -116,6 +116,15 @@ func (o *PublicCheckPaymentOrderPaidStatusParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public check payment order paid status params
+func (o *PublicCheckPaymentOrderPaidStatusParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public check payment order paid status params
 func (o *PublicCheckPaymentOrderPaidStatusParams) WithNamespace(namespace string) *PublicCheckPaymentOrderPaidStatusParams {
 	o.SetNamespace(namespace)

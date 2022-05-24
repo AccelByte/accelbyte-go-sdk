@@ -122,6 +122,15 @@ func (o *ProcessUserSubscriptionNotificationParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the process user subscription notification params
+func (o *ProcessUserSubscriptionNotificationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the process user subscription notification params
 func (o *ProcessUserSubscriptionNotificationParams) WithBody(body *platformclientmodels.TradeNotification) *ProcessUserSubscriptionNotificationParams {
 	o.SetBody(body)

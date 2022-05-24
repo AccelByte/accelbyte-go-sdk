@@ -120,6 +120,15 @@ func (o *MockFulfillIAPItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the mock fulfill i a p item params
+func (o *MockFulfillIAPItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the mock fulfill i a p item params
 func (o *MockFulfillIAPItemParams) WithBody(body *platformclientmodels.MockIAPReceipt) *MockFulfillIAPItemParams {
 	o.SetBody(body)

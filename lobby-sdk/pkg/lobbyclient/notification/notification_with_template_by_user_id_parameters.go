@@ -129,6 +129,15 @@ func (o *NotificationWithTemplateByUserIDParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the notification with template by user ID params
+func (o *NotificationWithTemplateByUserIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the notification with template by user ID params
 func (o *NotificationWithTemplateByUserIDParams) WithBody(body *lobbyclientmodels.ModelNotificationWithTemplateRequest) *NotificationWithTemplateByUserIDParams {
 	o.SetBody(body)

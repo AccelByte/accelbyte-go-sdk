@@ -127,6 +127,15 @@ func (o *DeleteRootRegionOverrideParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete root region override params
+func (o *DeleteRootRegionOverrideParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDeployment adds the deployment to the delete root region override params
 func (o *DeleteRootRegionOverrideParams) WithDeployment(deployment string) *DeleteRootRegionOverrideParams {
 	o.SetDeployment(deployment)

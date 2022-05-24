@@ -117,6 +117,15 @@ func (o *GetNamespaceSlotConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get namespace slot config params
+func (o *GetNamespaceSlotConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get namespace slot config params
 func (o *GetNamespaceSlotConfigParams) WithNamespace(namespace string) *GetNamespaceSlotConfigParams {
 	o.SetNamespace(namespace)

@@ -120,6 +120,15 @@ func (o *FulfillRewardsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the fulfill rewards params
+func (o *FulfillRewardsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the fulfill rewards params
 func (o *FulfillRewardsParams) WithBody(body *platformclientmodels.RewardsRequest) *FulfillRewardsParams {
 	o.SetBody(body)

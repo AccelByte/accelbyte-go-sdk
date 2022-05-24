@@ -136,6 +136,15 @@ func (o *AdminUpdateContentDirectParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update content direct params
+func (o *AdminUpdateContentDirectParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update content direct params
 func (o *AdminUpdateContentDirectParams) WithBody(body *ugcclientmodels.ModelsCreateContentRequest) *AdminUpdateContentDirectParams {
 	o.SetBody(body)

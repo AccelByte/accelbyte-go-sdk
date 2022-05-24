@@ -114,6 +114,15 @@ func (o *DeleteEpicGamesIAPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete epic games i a p config params
+func (o *DeleteEpicGamesIAPConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete epic games i a p config params
 func (o *DeleteEpicGamesIAPConfigParams) WithNamespace(namespace string) *DeleteEpicGamesIAPConfigParams {
 	o.SetNamespace(namespace)

@@ -153,6 +153,15 @@ func (o *SingleAdminGetGroupContentsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the single admin get group contents params
+func (o *SingleAdminGetGroupContentsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the single admin get group contents params
 func (o *SingleAdminGetGroupContentsParams) WithGroupID(groupID string) *SingleAdminGetGroupContentsParams {
 	o.SetGroupID(groupID)

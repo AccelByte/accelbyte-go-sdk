@@ -129,6 +129,15 @@ func (o *TestAliPayConfigByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test ali pay config by Id params
+func (o *TestAliPayConfigByIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the test ali pay config by Id params
 func (o *TestAliPayConfigByIDParams) WithID(id string) *TestAliPayConfigByIDParams {
 	o.SetID(id)

@@ -153,6 +153,15 @@ func (o *GetUserSubscriptionBillingHistoriesParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user subscription billing histories params
+func (o *GetUserSubscriptionBillingHistoriesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithExcludeFree adds the excludeFree to the get user subscription billing histories params
 func (o *GetUserSubscriptionBillingHistoriesParams) WithExcludeFree(excludeFree *bool) *GetUserSubscriptionBillingHistoriesParams {
 	o.SetExcludeFree(excludeFree)

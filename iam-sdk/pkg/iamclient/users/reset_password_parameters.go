@@ -121,6 +121,15 @@ func (o *ResetPasswordParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the reset password params
+func (o *ResetPasswordParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the reset password params
 func (o *ResetPasswordParams) WithBody(body *iamclientmodels.ModelResetPasswordRequest) *ResetPasswordParams {
 	o.SetBody(body)

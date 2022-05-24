@@ -126,6 +126,15 @@ func (o *ChangePreferenceConsentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the change preference consent params
+func (o *ChangePreferenceConsentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the change preference consent params
 func (o *ChangePreferenceConsentParams) WithBody(body []*legalclientmodels.AcceptAgreementRequest) *ChangePreferenceConsentParams {
 	o.SetBody(body)

@@ -138,6 +138,15 @@ func (o *PublicQueryUserStatItems2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public query user stat items 2 params
+func (o *PublicQueryUserStatItems2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAdditionalKey adds the additionalKey to the public query user stat items 2 params
 func (o *PublicQueryUserStatItems2Params) WithAdditionalKey(additionalKey *string) *PublicQueryUserStatItems2Params {
 	o.SetAdditionalKey(additionalKey)

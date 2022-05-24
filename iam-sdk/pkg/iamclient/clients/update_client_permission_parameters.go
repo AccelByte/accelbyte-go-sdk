@@ -121,6 +121,15 @@ func (o *UpdateClientPermissionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update client permission params
+func (o *UpdateClientPermissionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update client permission params
 func (o *UpdateClientPermissionParams) WithBody(body *iamclientmodels.AccountcommonClientPermissions) *UpdateClientPermissionParams {
 	o.SetBody(body)

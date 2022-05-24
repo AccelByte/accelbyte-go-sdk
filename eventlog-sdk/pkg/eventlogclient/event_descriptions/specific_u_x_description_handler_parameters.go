@@ -117,6 +117,15 @@ func (o *SpecificUXDescriptionHandlerParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the specific u x description handler params
+func (o *SpecificUXDescriptionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithUx adds the ux to the specific u x description handler params
 func (o *SpecificUXDescriptionHandlerParams) WithUx(ux *string) *SpecificUXDescriptionHandlerParams {
 	o.SetUx(ux)

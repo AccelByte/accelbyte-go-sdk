@@ -133,6 +133,15 @@ func (o *GetTopicByNamespaceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get topic by namespace params
+func (o *GetTopicByNamespaceParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the get topic by namespace params
 func (o *GetTopicByNamespaceParams) WithAfter(after *string) *GetTopicByNamespaceParams {
 	o.SetAfter(after)

@@ -120,6 +120,15 @@ func (o *PublicFulfillGoogleIAPItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public fulfill google i a p item params
+func (o *PublicFulfillGoogleIAPItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public fulfill google i a p item params
 func (o *PublicFulfillGoogleIAPItemParams) WithBody(body *platformclientmodels.GoogleIAPReceipt) *PublicFulfillGoogleIAPItemParams {
 	o.SetBody(body)

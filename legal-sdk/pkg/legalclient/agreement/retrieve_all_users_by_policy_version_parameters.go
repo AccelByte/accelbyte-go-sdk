@@ -150,6 +150,15 @@ func (o *RetrieveAllUsersByPolicyVersionParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve all users by policy version params
+func (o *RetrieveAllUsersByPolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKeyword adds the keyword to the retrieve all users by policy version params
 func (o *RetrieveAllUsersByPolicyVersionParams) WithKeyword(keyword *string) *RetrieveAllUsersByPolicyVersionParams {
 	o.SetKeyword(keyword)

@@ -153,6 +153,15 @@ func (o *GetUserSubscriptionActivitiesParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user subscription activities params
+func (o *GetUserSubscriptionActivitiesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithExcludeSystem adds the excludeSystem to the get user subscription activities params
 func (o *GetUserSubscriptionActivitiesParams) WithExcludeSystem(excludeSystem *bool) *GetUserSubscriptionActivitiesParams {
 	o.SetExcludeSystem(excludeSystem)

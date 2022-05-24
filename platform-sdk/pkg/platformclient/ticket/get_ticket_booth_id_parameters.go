@@ -116,6 +116,15 @@ func (o *GetTicketBoothIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get ticket booth ID params
+func (o *GetTicketBoothIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBoothName adds the boothName to the get ticket booth ID params
 func (o *GetTicketBoothIDParams) WithBoothName(boothName string) *GetTicketBoothIDParams {
 	o.SetBoothName(boothName)

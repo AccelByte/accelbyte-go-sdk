@@ -145,6 +145,15 @@ func (o *QueryPaymentOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query payment orders params
+func (o *QueryPaymentOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannel adds the channel to the query payment orders params
 func (o *QueryPaymentOrdersParams) WithChannel(channel *string) *QueryPaymentOrdersParams {
 	o.SetChannel(channel)

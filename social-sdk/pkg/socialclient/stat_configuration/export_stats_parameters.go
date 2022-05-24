@@ -117,6 +117,15 @@ func (o *ExportStatsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the export stats params
+func (o *ExportStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the export stats params
 func (o *ExportStatsParams) WithNamespace(namespace string) *ExportStatsParams {
 	o.SetNamespace(namespace)

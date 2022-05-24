@@ -153,6 +153,15 @@ func (o *PublicGetUserContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user content params
+func (o *PublicGetUserContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the public get user content params
 func (o *PublicGetUserContentParams) WithLimit(limit *int64) *PublicGetUserContentParams {
 	o.SetLimit(limit)

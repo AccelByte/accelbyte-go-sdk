@@ -125,6 +125,15 @@ func (o *PublicGetItemByAppIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get item by app Id params
+func (o *PublicGetItemByAppIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAppID adds the appID to the public get item by app Id params
 func (o *PublicGetItemByAppIDParams) WithAppID(appID string) *PublicGetItemByAppIDParams {
 	o.SetAppID(appID)

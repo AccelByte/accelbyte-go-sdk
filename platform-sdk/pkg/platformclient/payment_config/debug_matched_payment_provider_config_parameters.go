@@ -142,6 +142,15 @@ func (o *DebugMatchedPaymentProviderConfigParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the debug matched payment provider config params
+func (o *DebugMatchedPaymentProviderConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the debug matched payment provider config params
 func (o *DebugMatchedPaymentProviderConfigParams) WithNamespace(namespace *string) *DebugMatchedPaymentProviderConfigParams {
 	o.SetNamespace(namespace)

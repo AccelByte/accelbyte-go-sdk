@@ -117,6 +117,15 @@ func (o *GetListCountryAgeRestrictionParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get list country age restriction params
+func (o *GetListCountryAgeRestrictionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get list country age restriction params
 func (o *GetListCountryAgeRestrictionParams) WithNamespace(namespace string) *GetListCountryAgeRestrictionParams {
 	o.SetNamespace(namespace)

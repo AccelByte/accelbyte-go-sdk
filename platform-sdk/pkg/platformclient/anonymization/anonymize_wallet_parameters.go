@@ -116,6 +116,15 @@ func (o *AnonymizeWalletParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the anonymize wallet params
+func (o *AnonymizeWalletParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the anonymize wallet params
 func (o *AnonymizeWalletParams) WithNamespace(namespace string) *AnonymizeWalletParams {
 	o.SetNamespace(namespace)

@@ -131,6 +131,15 @@ func (o *UpdateRootRegionOverrideParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update root region override params
+func (o *UpdateRootRegionOverrideParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update root region override params
 func (o *UpdateRootRegionOverrideParams) WithBody(body *dsmcclientmodels.ModelsUpdateRegionOverrideRequest) *UpdateRootRegionOverrideParams {
 	o.SetBody(body)

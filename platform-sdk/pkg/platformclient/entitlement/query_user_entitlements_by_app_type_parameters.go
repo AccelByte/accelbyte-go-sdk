@@ -153,6 +153,15 @@ func (o *QueryUserEntitlementsByAppTypeParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query user entitlements by app type params
+func (o *QueryUserEntitlementsByAppTypeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the query user entitlements by app type params
 func (o *QueryUserEntitlementsByAppTypeParams) WithActiveOnly(activeOnly *bool) *QueryUserEntitlementsByAppTypeParams {
 	o.SetActiveOnly(activeOnly)

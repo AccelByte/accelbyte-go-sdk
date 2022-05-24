@@ -118,6 +118,15 @@ func (o *UpdatePlaystationIAPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update playstation i a p config params
+func (o *UpdatePlaystationIAPConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update playstation i a p config params
 func (o *UpdatePlaystationIAPConfigParams) WithBody(body *platformclientmodels.PlaystationIAPConfigRequest) *UpdatePlaystationIAPConfigParams {
 	o.SetBody(body)

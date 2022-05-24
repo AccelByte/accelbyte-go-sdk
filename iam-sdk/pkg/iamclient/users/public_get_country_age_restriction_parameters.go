@@ -122,6 +122,15 @@ func (o *PublicGetCountryAgeRestrictionParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get country age restriction params
+func (o *PublicGetCountryAgeRestrictionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCountryCode adds the countryCode to the public get country age restriction params
 func (o *PublicGetCountryAgeRestrictionParams) WithCountryCode(countryCode string) *PublicGetCountryAgeRestrictionParams {
 	o.SetCountryCode(countryCode)

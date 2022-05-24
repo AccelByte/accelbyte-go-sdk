@@ -122,6 +122,15 @@ func (o *DeleteClientByNamespaceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete client by namespace params
+func (o *DeleteClientByNamespaceParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the delete client by namespace params
 func (o *DeleteClientByNamespaceParams) WithClientID(clientID string) *DeleteClientByNamespaceParams {
 	o.SetClientID(clientID)

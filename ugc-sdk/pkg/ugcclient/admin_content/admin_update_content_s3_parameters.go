@@ -136,6 +136,15 @@ func (o *AdminUpdateContentS3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update content s3 params
+func (o *AdminUpdateContentS3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update content s3 params
 func (o *AdminUpdateContentS3Params) WithBody(body *ugcclientmodels.ModelsCreateContentRequestS3) *AdminUpdateContentS3Params {
 	o.SetBody(body)

@@ -117,6 +117,15 @@ func (o *AdminMakeFactorMyDefaultV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin make factor my default v4 params
+func (o *AdminMakeFactorMyDefaultV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFactor adds the factor to the admin make factor my default v4 params
 func (o *AdminMakeFactorMyDefaultV4Params) WithFactor(factor string) *AdminMakeFactorMyDefaultV4Params {
 	o.SetFactor(factor)

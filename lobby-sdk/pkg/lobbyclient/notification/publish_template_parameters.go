@@ -127,6 +127,15 @@ func (o *PublishTemplateParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the publish template params
+func (o *PublishTemplateParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the publish template params
 func (o *PublishTemplateParams) WithNamespace(namespace string) *PublishTemplateParams {
 	o.SetNamespace(namespace)

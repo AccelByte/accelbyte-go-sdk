@@ -127,6 +127,15 @@ func (o *ImportChannelsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the import channels params
+func (o *ImportChannelsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the import channels params
 func (o *ImportChannelsParams) WithFile(file runtime.NamedReadCloser) *ImportChannelsParams {
 	o.SetFile(file)

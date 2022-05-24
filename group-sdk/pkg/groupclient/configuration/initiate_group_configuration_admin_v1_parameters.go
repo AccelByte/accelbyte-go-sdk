@@ -117,6 +117,15 @@ func (o *InitiateGroupConfigurationAdminV1Params) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the initiate group configuration admin v1 params
+func (o *InitiateGroupConfigurationAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the initiate group configuration admin v1 params
 func (o *InitiateGroupConfigurationAdminV1Params) WithNamespace(namespace string) *InitiateGroupConfigurationAdminV1Params {
 	o.SetNamespace(namespace)

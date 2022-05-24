@@ -133,6 +133,15 @@ func (o *GetAllTimeLeaderboardRankingPublicV2Params) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all time leaderboard ranking public v2 params
+func (o *GetAllTimeLeaderboardRankingPublicV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCode adds the leaderboardCode to the get all time leaderboard ranking public v2 params
 func (o *GetAllTimeLeaderboardRankingPublicV2Params) WithLeaderboardCode(leaderboardCode string) *GetAllTimeLeaderboardRankingPublicV2Params {
 	o.SetLeaderboardCode(leaderboardCode)

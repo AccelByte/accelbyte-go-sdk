@@ -122,6 +122,15 @@ func (o *DeleteUserActivitiesHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user activities handler params
+func (o *DeleteUserActivitiesHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete user activities handler params
 func (o *DeleteUserActivitiesHandlerParams) WithNamespace(namespace string) *DeleteUserActivitiesHandlerParams {
 	o.SetNamespace(namespace)

@@ -114,6 +114,15 @@ func (o *DeleteXblAPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete xbl a p config params
+func (o *DeleteXblAPConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete xbl a p config params
 func (o *DeleteXblAPConfigParams) WithNamespace(namespace string) *DeleteXblAPConfigParams {
 	o.SetNamespace(namespace)

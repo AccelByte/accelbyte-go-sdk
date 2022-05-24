@@ -127,6 +127,15 @@ func (o *DeleteImageParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete image params
+func (o *DeleteImageParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithImageURI adds the imageURI to the delete image params
 func (o *DeleteImageParams) WithImageURI(imageURI string) *DeleteImageParams {
 	o.SetImageURI(imageURI)

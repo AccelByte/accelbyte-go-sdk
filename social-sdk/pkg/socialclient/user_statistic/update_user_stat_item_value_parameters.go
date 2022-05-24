@@ -136,6 +136,15 @@ func (o *UpdateUserStatItemValueParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update user stat item value params
+func (o *UpdateUserStatItemValueParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAdditionalKey adds the additionalKey to the update user stat item value params
 func (o *UpdateUserStatItemValueParams) WithAdditionalKey(additionalKey *string) *UpdateUserStatItemValueParams {
 	o.SetAdditionalKey(additionalKey)

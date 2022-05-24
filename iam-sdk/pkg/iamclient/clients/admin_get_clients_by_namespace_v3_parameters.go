@@ -128,6 +128,15 @@ func (o *AdminGetClientsByNamespaceV3Params) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin get clients by namespace v3 params
 func (o *AdminGetClientsByNamespaceV3Params) WithLimit(limit *int64) *AdminGetClientsByNamespaceV3Params {
 	o.SetLimit(limit)

@@ -127,6 +127,15 @@ func (o *EnableUserWalletParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the enable user wallet params
+func (o *EnableUserWalletParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the enable user wallet params
 func (o *EnableUserWalletParams) WithNamespace(namespace string) *EnableUserWalletParams {
 	o.SetNamespace(namespace)

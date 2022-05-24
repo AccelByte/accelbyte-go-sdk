@@ -117,6 +117,15 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) SetHT
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve all active third party login platform credential public v3 params
+func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the retrieve all active third party login platform credential public v3 params
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) WithNamespace(namespace string) *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params {
 	o.SetNamespace(namespace)

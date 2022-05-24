@@ -116,6 +116,15 @@ func (o *GetKeyGroupDynamicParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get key group dynamic params
+func (o *GetKeyGroupDynamicParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKeyGroupID adds the keyGroupID to the get key group dynamic params
 func (o *GetKeyGroupDynamicParams) WithKeyGroupID(keyGroupID string) *GetKeyGroupDynamicParams {
 	o.SetKeyGroupID(keyGroupID)

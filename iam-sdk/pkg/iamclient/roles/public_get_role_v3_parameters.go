@@ -117,6 +117,15 @@ func (o *PublicGetRoleV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get role v3 params
+func (o *PublicGetRoleV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithRoleID adds the roleID to the public get role v3 params
 func (o *PublicGetRoleV3Params) WithRoleID(roleID string) *PublicGetRoleV3Params {
 	o.SetRoleID(roleID)

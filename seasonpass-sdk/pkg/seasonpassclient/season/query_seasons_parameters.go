@@ -147,6 +147,15 @@ func (o *QuerySeasonsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query seasons params
+func (o *QuerySeasonsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the query seasons params
 func (o *QuerySeasonsParams) WithLimit(limit *int32) *QuerySeasonsParams {
 	o.SetLimit(limit)

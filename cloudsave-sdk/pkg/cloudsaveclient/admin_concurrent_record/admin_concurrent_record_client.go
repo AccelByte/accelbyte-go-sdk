@@ -12,7 +12,6 @@ package admin_concurrent_record
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -120,7 +119,7 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecor
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -173,7 +172,7 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGame
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -291,7 +290,7 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -344,7 +343,7 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *Admi
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

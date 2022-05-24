@@ -161,6 +161,15 @@ func (o *AdminListAchievementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin list achievements params
+func (o *AdminListAchievementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin list achievements params
 func (o *AdminListAchievementsParams) WithLimit(limit *int64) *AdminListAchievementsParams {
 	o.SetLimit(limit)

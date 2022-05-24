@@ -124,6 +124,15 @@ func (o *AdminPutUserRolesV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin put user roles v2 params
+func (o *AdminPutUserRolesV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin put user roles v2 params
 func (o *AdminPutUserRolesV2Params) WithBody(body []string) *AdminPutUserRolesV2Params {
 	o.SetBody(body)

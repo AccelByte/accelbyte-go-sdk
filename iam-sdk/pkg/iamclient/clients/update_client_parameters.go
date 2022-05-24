@@ -121,6 +121,15 @@ func (o *UpdateClientParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update client params
+func (o *UpdateClientParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update client params
 func (o *UpdateClientParams) WithBody(body *iamclientmodels.ClientmodelClientUpdateRequest) *UpdateClientParams {
 	o.SetBody(body)

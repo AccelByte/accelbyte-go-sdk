@@ -127,6 +127,15 @@ func (o *DisableUserBanParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the disable user ban params
+func (o *DisableUserBanParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBanID adds the banID to the disable user ban params
 func (o *DisableUserBanParams) WithBanID(banID string) *DisableUserBanParams {
 	o.SetBanID(banID)

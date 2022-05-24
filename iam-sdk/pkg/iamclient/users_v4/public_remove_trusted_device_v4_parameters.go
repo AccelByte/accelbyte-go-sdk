@@ -119,6 +119,15 @@ func (o *PublicRemoveTrustedDeviceV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public remove trusted device v4 params
+func (o *PublicRemoveTrustedDeviceV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCookie adds the cookie to the public remove trusted device v4 params
 func (o *PublicRemoveTrustedDeviceV4Params) WithCookie(cookie *string) *PublicRemoveTrustedDeviceV4Params {
 	o.SetCookie(cookie)

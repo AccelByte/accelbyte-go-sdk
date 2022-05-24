@@ -120,6 +120,15 @@ func (o *GetRolesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get roles params
+func (o *GetRolesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithIsWildcard adds the isWildcard to the get roles params
 func (o *GetRolesParams) WithIsWildcard(isWildcard *string) *GetRolesParams {
 	o.SetIsWildcard(isWildcard)

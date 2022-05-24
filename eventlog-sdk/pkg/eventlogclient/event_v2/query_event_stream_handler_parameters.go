@@ -142,6 +142,15 @@ func (o *QueryEventStreamHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query event stream handler params
+func (o *QueryEventStreamHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the query event stream handler params
 func (o *QueryEventStreamHandlerParams) WithBody(body *eventlogclientmodels.ModelsGenericQueryPayload) *QueryEventStreamHandlerParams {
 	o.SetBody(body)

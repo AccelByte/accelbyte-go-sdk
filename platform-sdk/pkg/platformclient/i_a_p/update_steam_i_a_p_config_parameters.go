@@ -118,6 +118,15 @@ func (o *UpdateSteamIAPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update steam i a p config params
+func (o *UpdateSteamIAPConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update steam i a p config params
 func (o *UpdateSteamIAPConfigParams) WithBody(body *platformclientmodels.SteamIAPConfigRequest) *UpdateSteamIAPConfigParams {
 	o.SetBody(body)

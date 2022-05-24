@@ -133,6 +133,15 @@ func (o *AdminRetrievePlayerRecordsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin retrieve player records params
+func (o *AdminRetrievePlayerRecordsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin retrieve player records params
 func (o *AdminRetrievePlayerRecordsParams) WithLimit(limit *int64) *AdminRetrievePlayerRecordsParams {
 	o.SetLimit(limit)

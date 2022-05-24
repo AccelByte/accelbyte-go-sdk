@@ -127,6 +127,15 @@ func (o *AdminCreateJusticeUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin create justice user params
+func (o *AdminCreateJusticeUserParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin create justice user params
 func (o *AdminCreateJusticeUserParams) WithNamespace(namespace string) *AdminCreateJusticeUserParams {
 	o.SetNamespace(namespace)

@@ -138,6 +138,15 @@ func (o *GetEventByNamespaceHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get event by namespace handler params
+func (o *GetEventByNamespaceHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEndDate adds the endDate to the get event by namespace handler params
 func (o *GetEventByNamespaceHandlerParams) WithEndDate(endDate string) *GetEventByNamespaceHandlerParams {
 	o.SetEndDate(endDate)

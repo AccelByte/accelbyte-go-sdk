@@ -126,6 +126,15 @@ func (o *UserVerificationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the user verification params
+func (o *UserVerificationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the user verification params
 func (o *UserVerificationParams) WithBody(body *iamclientmodels.ModelUserVerificationRequest) *UserVerificationParams {
 	o.SetBody(body)

@@ -121,6 +121,15 @@ func (o *BulkIncUserStatItemValueParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the bulk inc user stat item value params
+func (o *BulkIncUserStatItemValueParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the bulk inc user stat item value params
 func (o *BulkIncUserStatItemValueParams) WithBody(body []*socialclientmodels.BulkUserStatItemInc) *BulkIncUserStatItemValueParams {
 	o.SetBody(body)

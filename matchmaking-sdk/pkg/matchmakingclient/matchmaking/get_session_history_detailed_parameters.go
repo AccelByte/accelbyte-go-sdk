@@ -122,6 +122,15 @@ func (o *GetSessionHistoryDetailedParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get session history detailed params
+func (o *GetSessionHistoryDetailedParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithMatchID adds the matchID to the get session history detailed params
 func (o *GetSessionHistoryDetailedParams) WithMatchID(matchID string) *GetSessionHistoryDetailedParams {
 	o.SetMatchID(matchID)

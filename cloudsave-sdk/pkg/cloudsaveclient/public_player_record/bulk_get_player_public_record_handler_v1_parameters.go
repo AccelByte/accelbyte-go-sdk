@@ -126,6 +126,15 @@ func (o *BulkGetPlayerPublicRecordHandlerV1Params) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the bulk get player public record handler v1 params
+func (o *BulkGetPlayerPublicRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the bulk get player public record handler v1 params
 func (o *BulkGetPlayerPublicRecordHandlerV1Params) WithBody(body *cloudsaveclientmodels.ModelsBulkUserIDsRequest) *BulkGetPlayerPublicRecordHandlerV1Params {
 	o.SetBody(body)

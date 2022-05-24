@@ -120,6 +120,15 @@ func (o *GetPaymentTaxValueParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get payment tax value params
+func (o *GetPaymentTaxValueParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get payment tax value params
 func (o *GetPaymentTaxValueParams) WithNamespace(namespace string) *GetPaymentTaxValueParams {
 	o.SetNamespace(namespace)

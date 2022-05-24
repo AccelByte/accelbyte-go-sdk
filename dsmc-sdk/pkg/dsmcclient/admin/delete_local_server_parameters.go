@@ -122,6 +122,15 @@ func (o *DeleteLocalServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete local server params
+func (o *DeleteLocalServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithName adds the name to the delete local server params
 func (o *DeleteLocalServerParams) WithName(name string) *DeleteLocalServerParams {
 	o.SetName(name)

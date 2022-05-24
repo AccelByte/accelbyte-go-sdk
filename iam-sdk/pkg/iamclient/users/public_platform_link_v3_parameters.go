@@ -132,6 +132,15 @@ func (o *PublicPlatformLinkV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public platform link v3 params
+func (o *PublicPlatformLinkV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public platform link v3 params
 func (o *PublicPlatformLinkV3Params) WithNamespace(namespace string) *PublicPlatformLinkV3Params {
 	o.SetNamespace(namespace)

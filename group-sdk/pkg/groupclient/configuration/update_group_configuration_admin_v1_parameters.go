@@ -126,6 +126,15 @@ func (o *UpdateGroupConfigurationAdminV1Params) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group configuration admin v1 params
+func (o *UpdateGroupConfigurationAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update group configuration admin v1 params
 func (o *UpdateGroupConfigurationAdminV1Params) WithBody(body *groupclientmodels.ModelsUpdateGroupConfigurationRequestV1) *UpdateGroupConfigurationAdminV1Params {
 	o.SetBody(body)

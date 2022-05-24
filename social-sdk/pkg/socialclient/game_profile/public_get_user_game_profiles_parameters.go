@@ -123,6 +123,15 @@ func (o *PublicGetUserGameProfilesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user game profiles params
+func (o *PublicGetUserGameProfilesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public get user game profiles params
 func (o *PublicGetUserGameProfilesParams) WithNamespace(namespace string) *PublicGetUserGameProfilesParams {
 	o.SetNamespace(namespace)

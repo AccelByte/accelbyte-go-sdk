@@ -121,6 +121,15 @@ func (o *DeregisterLocalServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the deregister local server params
+func (o *DeregisterLocalServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the deregister local server params
 func (o *DeregisterLocalServerParams) WithBody(body *dsmcclientmodels.ModelsDeregisterLocalServerRequest) *DeregisterLocalServerParams {
 	o.SetBody(body)

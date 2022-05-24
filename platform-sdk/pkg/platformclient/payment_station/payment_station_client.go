@@ -13,7 +13,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -75,7 +74,7 @@ func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -115,7 +114,7 @@ func (a *Client) GetPaymentCustomizationShort(params *GetPaymentCustomizationPar
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -160,7 +159,7 @@ func (a *Client) GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -200,7 +199,7 @@ func (a *Client) GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParam
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -245,7 +244,7 @@ func (a *Client) GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPayme
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -291,7 +290,7 @@ func (a *Client) GetPaymentTaxValueShort(params *GetPaymentTaxValueParams) (*Get
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -340,7 +339,7 @@ func (a *Client) Pay(params *PayParams) (*PayOK, *PayBadRequest, *PayNotFound, *
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -389,7 +388,7 @@ func (a *Client) PayShort(params *PayParams) (*PayOK, error) {
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -440,7 +439,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatus(params *PublicCheckPaymentOrd
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -483,7 +482,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPayme
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -530,7 +529,7 @@ func (a *Client) PublicGetPaymentMethods(params *PublicGetPaymentMethodsParams) 
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -573,7 +572,7 @@ func (a *Client) PublicGetPaymentMethodsShort(params *PublicGetPaymentMethodsPar
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -620,7 +619,7 @@ func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*Public
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -669,7 +668,7 @@ func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -720,7 +719,7 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -760,7 +759,7 @@ func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.W
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -805,7 +804,7 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -851,7 +850,7 @@ func (a *Client) PublicGetUnpaidPaymentOrderShort(params *PublicGetUnpaidPayment
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -902,7 +901,7 @@ func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentR
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -945,7 +944,7 @@ func (a *Client) PublicNormalizePaymentReturnURLShort(params *PublicNormalizePay
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

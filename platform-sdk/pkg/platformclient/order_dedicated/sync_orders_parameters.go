@@ -124,6 +124,15 @@ func (o *SyncOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync orders params
+func (o *SyncOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEnd adds the end to the sync orders params
 func (o *SyncOrdersParams) WithEnd(end string) *SyncOrdersParams {
 	o.SetEnd(end)

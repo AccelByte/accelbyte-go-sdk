@@ -122,6 +122,15 @@ func (o *GetCountryGroupsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get country groups params
+func (o *GetCountryGroupsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupCode adds the groupCode to the get country groups params
 func (o *GetCountryGroupsParams) WithGroupCode(groupCode *string) *GetCountryGroupsParams {
 	o.SetGroupCode(groupCode)

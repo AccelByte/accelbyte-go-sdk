@@ -148,6 +148,15 @@ func (o *GetFollowedContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get followed content params
+func (o *GetFollowedContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get followed content params
 func (o *GetFollowedContentParams) WithLimit(limit *int64) *GetFollowedContentParams {
 	o.SetLimit(limit)

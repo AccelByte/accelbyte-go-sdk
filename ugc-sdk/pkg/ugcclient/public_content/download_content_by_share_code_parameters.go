@@ -122,6 +122,15 @@ func (o *DownloadContentByShareCodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the download content by share code params
+func (o *DownloadContentByShareCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the download content by share code params
 func (o *DownloadContentByShareCodeParams) WithNamespace(namespace string) *DownloadContentByShareCodeParams {
 	o.SetNamespace(namespace)

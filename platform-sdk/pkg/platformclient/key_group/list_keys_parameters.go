@@ -146,6 +146,15 @@ func (o *ListKeysParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list keys params
+func (o *ListKeysParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKeyGroupID adds the keyGroupID to the list keys params
 func (o *ListKeysParams) WithKeyGroupID(keyGroupID string) *ListKeysParams {
 	o.SetKeyGroupID(keyGroupID)

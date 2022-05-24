@@ -116,6 +116,15 @@ func (o *EnableCodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the enable code params
+func (o *EnableCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the enable code params
 func (o *EnableCodeParams) WithCode(code string) *EnableCodeParams {
 	o.SetCode(code)

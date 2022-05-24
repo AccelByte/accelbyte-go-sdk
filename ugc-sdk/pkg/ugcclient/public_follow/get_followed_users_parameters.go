@@ -148,6 +148,15 @@ func (o *GetFollowedUsersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get followed users params
+func (o *GetFollowedUsersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get followed users params
 func (o *GetFollowedUsersParams) WithLimit(limit *int64) *GetFollowedUsersParams {
 	o.SetLimit(limit)

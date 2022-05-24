@@ -145,6 +145,15 @@ func (o *PublicCreateUserNamespaceSlotParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public create user namespace slot params
+func (o *PublicCreateUserNamespaceSlotParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChecksum adds the checksum to the public create user namespace slot params
 func (o *PublicCreateUserNamespaceSlotParams) WithChecksum(checksum *string) *PublicCreateUserNamespaceSlotParams {
 	o.SetChecksum(checksum)

@@ -117,6 +117,15 @@ func (o *ExportRewardsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the export rewards params
+func (o *ExportRewardsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the export rewards params
 func (o *ExportRewardsParams) WithNamespace(namespace string) *ExportRewardsParams {
 	o.SetNamespace(namespace)

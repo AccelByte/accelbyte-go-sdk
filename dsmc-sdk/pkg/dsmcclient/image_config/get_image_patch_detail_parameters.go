@@ -127,6 +127,15 @@ func (o *GetImagePatchDetailParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get image patch detail params
+func (o *GetImagePatchDetailParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get image patch detail params
 func (o *GetImagePatchDetailParams) WithNamespace(namespace string) *GetImagePatchDetailParams {
 	o.SetNamespace(namespace)

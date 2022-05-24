@@ -132,6 +132,15 @@ func (o *AdminGeneratePersonalDataURLParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin generate personal data URL params
+func (o *AdminGeneratePersonalDataURLParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin generate personal data URL params
 func (o *AdminGeneratePersonalDataURLParams) WithNamespace(namespace string) *AdminGeneratePersonalDataURLParams {
 	o.SetNamespace(namespace)

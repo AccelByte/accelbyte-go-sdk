@@ -133,6 +133,15 @@ func (o *AdminGetListPersonalDataRequestParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get list personal data request params
+func (o *AdminGetListPersonalDataRequestParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin get list personal data request params
 func (o *AdminGetListPersonalDataRequestParams) WithLimit(limit *int64) *AdminGetListPersonalDataRequestParams {
 	o.SetLimit(limit)

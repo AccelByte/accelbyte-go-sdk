@@ -121,6 +121,15 @@ func (o *PublicExistsAnyMyActiveEntitlementParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public exists any my active entitlement params
+func (o *PublicExistsAnyMyActiveEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAppIds adds the appIds to the public exists any my active entitlement params
 func (o *PublicExistsAnyMyActiveEntitlementParams) WithAppIds(appIds []string) *PublicExistsAnyMyActiveEntitlementParams {
 	o.SetAppIds(appIds)

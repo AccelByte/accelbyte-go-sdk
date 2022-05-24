@@ -128,6 +128,15 @@ func (o *CreditUserWalletParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the credit user wallet params
+func (o *CreditUserWalletParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the credit user wallet params
 func (o *CreditUserWalletParams) WithBody(body *platformclientmodels.CreditRequest) *CreditUserWalletParams {
 	o.SetBody(body)

@@ -117,6 +117,15 @@ func (o *GetGameTemplateParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get game template params
+func (o *GetGameTemplateParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get game template params
 func (o *GetGameTemplateParams) WithNamespace(namespace string) *GetGameTemplateParams {
 	o.SetNamespace(namespace)

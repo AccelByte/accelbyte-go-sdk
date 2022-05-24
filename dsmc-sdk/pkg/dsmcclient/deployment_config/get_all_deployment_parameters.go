@@ -133,6 +133,15 @@ func (o *GetAllDeploymentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all deployment params
+func (o *GetAllDeploymentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCount adds the count to the get all deployment params
 func (o *GetAllDeploymentParams) WithCount(count *int64) *GetAllDeploymentParams {
 	o.SetCount(count)

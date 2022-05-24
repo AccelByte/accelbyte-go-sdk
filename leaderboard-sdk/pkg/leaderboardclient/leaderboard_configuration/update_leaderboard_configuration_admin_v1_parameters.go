@@ -126,6 +126,15 @@ func (o *UpdateLeaderboardConfigurationAdminV1Params) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update leaderboard configuration admin v1 params
+func (o *UpdateLeaderboardConfigurationAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update leaderboard configuration admin v1 params
 func (o *UpdateLeaderboardConfigurationAdminV1Params) WithBody(body *leaderboardclientmodels.ModelsUpdateLeaderboardConfigReq) *UpdateLeaderboardConfigurationAdminV1Params {
 	o.SetBody(body)

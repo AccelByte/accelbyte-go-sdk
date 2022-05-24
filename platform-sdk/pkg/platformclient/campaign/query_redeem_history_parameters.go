@@ -145,6 +145,15 @@ func (o *QueryRedeemHistoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query redeem history params
+func (o *QueryRedeemHistoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCampaignID adds the campaignID to the query redeem history params
 func (o *QueryRedeemHistoryParams) WithCampaignID(campaignID string) *QueryRedeemHistoryParams {
 	o.SetCampaignID(campaignID)

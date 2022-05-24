@@ -143,6 +143,15 @@ func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetHTTPClient(
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve latest policies by namespace and country public params
+func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAlwaysIncludeDefault adds the alwaysIncludeDefault to the retrieve latest policies by namespace and country public params
 func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) WithAlwaysIncludeDefault(alwaysIncludeDefault *bool) *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
 	o.SetAlwaysIncludeDefault(alwaysIncludeDefault)

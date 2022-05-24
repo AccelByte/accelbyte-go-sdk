@@ -121,6 +121,15 @@ func (o *QueueSessionHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the queue session handler params
+func (o *QueueSessionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the queue session handler params
 func (o *QueueSessionHandlerParams) WithBody(body *matchmakingclientmodels.ModelsMatchmakingResult) *QueueSessionHandlerParams {
 	o.SetBody(body)

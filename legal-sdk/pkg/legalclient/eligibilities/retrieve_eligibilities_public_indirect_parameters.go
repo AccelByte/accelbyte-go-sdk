@@ -132,6 +132,15 @@ func (o *RetrieveEligibilitiesPublicIndirectParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve eligibilities public indirect params
+func (o *RetrieveEligibilitiesPublicIndirectParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the retrieve eligibilities public indirect params
 func (o *RetrieveEligibilitiesPublicIndirectParams) WithClientID(clientID string) *RetrieveEligibilitiesPublicIndirectParams {
 	o.SetClientID(clientID)

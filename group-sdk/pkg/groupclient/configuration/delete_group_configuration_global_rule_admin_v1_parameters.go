@@ -127,6 +127,15 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1Params) SetHTTPClient(client *
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete group configuration global rule admin v1 params
+func (o *DeleteGroupConfigurationGlobalRuleAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAllowedAction adds the allowedAction to the delete group configuration global rule admin v1 params
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Params) WithAllowedAction(allowedAction string) *DeleteGroupConfigurationGlobalRuleAdminV1Params {
 	o.SetAllowedAction(allowedAction)

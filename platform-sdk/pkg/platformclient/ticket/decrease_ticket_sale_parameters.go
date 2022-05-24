@@ -120,6 +120,15 @@ func (o *DecreaseTicketSaleParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the decrease ticket sale params
+func (o *DecreaseTicketSaleParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the decrease ticket sale params
 func (o *DecreaseTicketSaleParams) WithBody(body *platformclientmodels.TicketSaleDecrementRequest) *DecreaseTicketSaleParams {
 	o.SetBody(body)

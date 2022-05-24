@@ -118,6 +118,15 @@ func (o *UpdateXblBPCertFileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update xbl b p cert file params
+func (o *UpdateXblBPCertFileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the update xbl b p cert file params
 func (o *UpdateXblBPCertFileParams) WithFile(file runtime.NamedReadCloser) *UpdateXblBPCertFileParams {
 	o.SetFile(file)

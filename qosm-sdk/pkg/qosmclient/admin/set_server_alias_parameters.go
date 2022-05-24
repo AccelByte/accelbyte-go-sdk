@@ -121,6 +121,15 @@ func (o *SetServerAliasParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the set server alias params
+func (o *SetServerAliasParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the set server alias params
 func (o *SetServerAliasParams) WithBody(body *qosmclientmodels.ModelsSetAliasRequest) *SetServerAliasParams {
 	o.SetBody(body)

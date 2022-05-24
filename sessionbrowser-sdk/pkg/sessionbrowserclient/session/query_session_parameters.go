@@ -168,6 +168,15 @@ func (o *QuerySessionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query session params
+func (o *QuerySessionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGameMode adds the gameMode to the query session params
 func (o *QuerySessionParams) WithGameMode(gameMode *string) *QuerySessionParams {
 	o.SetGameMode(gameMode)

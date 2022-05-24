@@ -126,6 +126,15 @@ func (o *PublicBulkCreateUserStatItemsParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public bulk create user stat items params
+func (o *PublicBulkCreateUserStatItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public bulk create user stat items params
 func (o *PublicBulkCreateUserStatItemsParams) WithBody(body []*socialclientmodels.BulkStatItemCreate) *PublicBulkCreateUserStatItemsParams {
 	o.SetBody(body)

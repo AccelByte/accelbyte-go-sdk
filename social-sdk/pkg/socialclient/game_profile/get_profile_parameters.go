@@ -127,6 +127,15 @@ func (o *GetProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get profile params
+func (o *GetProfileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get profile params
 func (o *GetProfileParams) WithNamespace(namespace string) *GetProfileParams {
 	o.SetNamespace(namespace)

@@ -126,6 +126,15 @@ func (o *AdminUpdateAchievementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update achievement params
+func (o *AdminUpdateAchievementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAchievementCode adds the achievementCode to the admin update achievement params
 func (o *AdminUpdateAchievementParams) WithAchievementCode(achievementCode string) *AdminUpdateAchievementParams {
 	o.SetAchievementCode(achievementCode)

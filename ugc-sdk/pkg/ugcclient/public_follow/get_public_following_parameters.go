@@ -152,6 +152,15 @@ func (o *GetPublicFollowingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get public following params
+func (o *GetPublicFollowingParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get public following params
 func (o *GetPublicFollowingParams) WithLimit(limit *string) *GetPublicFollowingParams {
 	o.SetLimit(limit)

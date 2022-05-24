@@ -123,6 +123,15 @@ func (o *GrantUserPassParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the grant user pass params
+func (o *GrantUserPassParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the grant user pass params
 func (o *GrantUserPassParams) WithBody(body *seasonpassclientmodels.UserPassGrant) *GrantUserPassParams {
 	o.SetBody(body)

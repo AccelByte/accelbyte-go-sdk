@@ -121,6 +121,15 @@ func (o *BanUsersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the ban users params
+func (o *BanUsersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the ban users params
 func (o *BanUsersParams) WithBody(body *basicclientmodels.UserBanRequest) *BanUsersParams {
 	o.SetBody(body)

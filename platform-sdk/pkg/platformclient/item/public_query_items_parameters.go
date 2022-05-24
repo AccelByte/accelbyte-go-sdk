@@ -188,6 +188,15 @@ func (o *PublicQueryItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public query items params
+func (o *PublicQueryItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAppType adds the appType to the public query items params
 func (o *PublicQueryItemsParams) WithAppType(appType *string) *PublicQueryItemsParams {
 	o.SetAppType(appType)

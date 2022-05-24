@@ -133,6 +133,15 @@ func (o *GetCurrentWeekLeaderboardRankingAdminV1Params) SetHTTPClient(client *ht
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get current week leaderboard ranking admin v1 params
+func (o *GetCurrentWeekLeaderboardRankingAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCode adds the leaderboardCode to the get current week leaderboard ranking admin v1 params
 func (o *GetCurrentWeekLeaderboardRankingAdminV1Params) WithLeaderboardCode(leaderboardCode string) *GetCurrentWeekLeaderboardRankingAdminV1Params {
 	o.SetLeaderboardCode(leaderboardCode)

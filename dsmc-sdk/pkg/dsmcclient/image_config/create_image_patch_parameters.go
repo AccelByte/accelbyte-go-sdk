@@ -116,6 +116,15 @@ func (o *CreateImagePatchParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create image patch params
+func (o *CreateImagePatchParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create image patch params
 func (o *CreateImagePatchParams) WithBody(body *dsmcclientmodels.ModelsCreateImagePatchRequest) *CreateImagePatchParams {
 	o.SetBody(body)

@@ -151,6 +151,15 @@ func (o *PublicQueryUserSubscriptionsParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public query user subscriptions params
+func (o *PublicQueryUserSubscriptionsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChargeStatus adds the chargeStatus to the public query user subscriptions params
 func (o *PublicQueryUserSubscriptionsParams) WithChargeStatus(chargeStatus *string) *PublicQueryUserSubscriptionsParams {
 	o.SetChargeStatus(chargeStatus)

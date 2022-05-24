@@ -128,6 +128,15 @@ func (o *ListGroupConfigurationAdminV1Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list group configuration admin v1 params
+func (o *ListGroupConfigurationAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the list group configuration admin v1 params
 func (o *ListGroupConfigurationAdminV1Params) WithLimit(limit *int64) *ListGroupConfigurationAdminV1Params {
 	o.SetLimit(limit)

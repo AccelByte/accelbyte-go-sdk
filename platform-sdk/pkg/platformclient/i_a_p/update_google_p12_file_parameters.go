@@ -116,6 +116,15 @@ func (o *UpdateGoogleP12FileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update google p12 file params
+func (o *UpdateGoogleP12FileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the update google p12 file params
 func (o *UpdateGoogleP12FileParams) WithFile(file runtime.NamedReadCloser) *UpdateGoogleP12FileParams {
 	o.SetFile(file)

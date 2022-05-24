@@ -116,6 +116,15 @@ func (o *ListExtOrderNoByExtTxIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list ext order no by ext tx Id params
+func (o *ListExtOrderNoByExtTxIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithExtTxID adds the extTxID to the list ext order no by ext tx Id params
 func (o *ListExtOrderNoByExtTxIDParams) WithExtTxID(extTxID string) *ListExtOrderNoByExtTxIDParams {
 	o.SetExtTxID(extTxID)

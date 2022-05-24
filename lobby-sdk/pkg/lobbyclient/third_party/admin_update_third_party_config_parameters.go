@@ -124,6 +124,15 @@ func (o *AdminUpdateThirdPartyConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update third party config params
+func (o *AdminUpdateThirdPartyConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update third party config params
 func (o *AdminUpdateThirdPartyConfigParams) WithBody(body *lobbyclientmodels.ModelsUpdateConfigRequest) *AdminUpdateThirdPartyConfigParams {
 	o.SetBody(body)

@@ -127,6 +127,15 @@ func (o *BulkFetchStatItems1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the bulk fetch stat items 1 params
+func (o *BulkFetchStatItems1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the bulk fetch stat items 1 params
 func (o *BulkFetchStatItems1Params) WithNamespace(namespace string) *BulkFetchStatItems1Params {
 	o.SetNamespace(namespace)

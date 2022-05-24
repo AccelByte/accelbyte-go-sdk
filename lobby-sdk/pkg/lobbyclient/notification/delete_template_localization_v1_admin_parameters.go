@@ -127,6 +127,15 @@ func (o *DeleteTemplateLocalizationV1AdminParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete template localization v1 admin params
+func (o *DeleteTemplateLocalizationV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete template localization v1 admin params
 func (o *DeleteTemplateLocalizationV1AdminParams) WithNamespace(namespace string) *DeleteTemplateLocalizationV1AdminParams {
 	o.SetNamespace(namespace)

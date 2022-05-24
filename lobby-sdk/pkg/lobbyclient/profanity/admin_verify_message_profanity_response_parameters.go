@@ -124,6 +124,15 @@ func (o *AdminVerifyMessageProfanityResponseParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin verify message profanity response params
+func (o *AdminVerifyMessageProfanityResponseParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin verify message profanity response params
 func (o *AdminVerifyMessageProfanityResponseParams) WithBody(body *lobbyclientmodels.ModelsAdminVerifyMessageProfanityRequest) *AdminVerifyMessageProfanityResponseParams {
 	o.SetBody(body)

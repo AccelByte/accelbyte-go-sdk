@@ -148,6 +148,15 @@ func (o *GetPublicEditHistoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get public edit history params
+func (o *GetPublicEditHistoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEndDate adds the endDate to the get public edit history params
 func (o *GetPublicEditHistoryParams) WithEndDate(endDate *string) *GetPublicEditHistoryParams {
 	o.SetEndDate(endDate)

@@ -127,6 +127,15 @@ func (o *GetGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get group params
+func (o *GetGroupParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the get group params
 func (o *GetGroupParams) WithGroupID(groupID string) *GetGroupParams {
 	o.SetGroupID(groupID)

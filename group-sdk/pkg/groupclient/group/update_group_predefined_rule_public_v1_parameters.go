@@ -131,6 +131,15 @@ func (o *UpdateGroupPredefinedRulePublicV1Params) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group predefined rule public v1 params
+func (o *UpdateGroupPredefinedRulePublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAllowedAction adds the allowedAction to the update group predefined rule public v1 params
 func (o *UpdateGroupPredefinedRulePublicV1Params) WithAllowedAction(allowedAction string) *UpdateGroupPredefinedRulePublicV1Params {
 	o.SetAllowedAction(allowedAction)

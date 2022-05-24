@@ -124,6 +124,15 @@ func (o *AdminBulkCheckValidUserIDV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin bulk check valid user ID v4 params
+func (o *AdminBulkCheckValidUserIDV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin bulk check valid user ID v4 params
 func (o *AdminBulkCheckValidUserIDV4Params) WithBody(body *iamclientmodels.ModelCheckValidUserIDRequestV4) *AdminBulkCheckValidUserIDV4Params {
 	o.SetBody(body)

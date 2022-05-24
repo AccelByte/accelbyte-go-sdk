@@ -118,6 +118,15 @@ func (o *UpdateDLCItemConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update d l c item config params
+func (o *UpdateDLCItemConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update d l c item config params
 func (o *UpdateDLCItemConfigParams) WithBody(body *platformclientmodels.DLCItemConfigUpdate) *UpdateDLCItemConfigParams {
 	o.SetBody(body)

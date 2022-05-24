@@ -148,6 +148,15 @@ func (o *GetTypeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get type params
+func (o *GetTypeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get type params
 func (o *GetTypeParams) WithLimit(limit *int64) *GetTypeParams {
 	o.SetLimit(limit)

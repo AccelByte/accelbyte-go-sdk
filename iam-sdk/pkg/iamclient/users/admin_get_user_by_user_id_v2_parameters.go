@@ -122,6 +122,15 @@ func (o *AdminGetUserByUserIDV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get user by user Id v2 params
+func (o *AdminGetUserByUserIDV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin get user by user Id v2 params
 func (o *AdminGetUserByUserIDV2Params) WithNamespace(namespace string) *AdminGetUserByUserIDV2Params {
 	o.SetNamespace(namespace)

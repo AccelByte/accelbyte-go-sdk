@@ -121,6 +121,15 @@ func (o *PublicForgotPasswordV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public forgot password v3 params
+func (o *PublicForgotPasswordV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public forgot password v3 params
 func (o *PublicForgotPasswordV3Params) WithBody(body *iamclientmodels.ModelForgotPasswordRequestV3) *PublicForgotPasswordV3Params {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *AdminDeleteProfanityListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete profanity list params
+func (o *AdminDeleteProfanityListParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithList adds the list to the admin delete profanity list params
 func (o *AdminDeleteProfanityListParams) WithList(list string) *AdminDeleteProfanityListParams {
 	o.SetList(list)

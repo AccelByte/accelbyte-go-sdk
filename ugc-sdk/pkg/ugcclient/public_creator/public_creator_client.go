@@ -12,7 +12,6 @@ package public_creator
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -42,6 +41,8 @@ type ClientService interface {
 
 /*
   GetCreator gets creator stats number of total like by other user number of total following and follower user
+
+  Public user can access without token or if token specified, requires valid user token
 */
 func (a *Client) GetCreator(params *GetCreatorParams, authInfo runtime.ClientAuthInfoWriter) (*GetCreatorOK, *GetCreatorUnauthorized, *GetCreatorNotFound, *GetCreatorInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -54,7 +55,7 @@ func (a *Client) GetCreator(params *GetCreatorParams, authInfo runtime.ClientAut
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -104,7 +105,7 @@ func (a *Client) GetCreatorShort(params *GetCreatorParams, authInfo runtime.Clie
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

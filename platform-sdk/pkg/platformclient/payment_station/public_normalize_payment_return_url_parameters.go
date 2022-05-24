@@ -174,6 +174,15 @@ func (o *PublicNormalizePaymentReturnURLParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public normalize payment return Url params
+func (o *PublicNormalizePaymentReturnURLParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPayerID adds the payerID to the public normalize payment return Url params
 func (o *PublicNormalizePaymentReturnURLParams) WithPayerID(payerID *string) *PublicNormalizePaymentReturnURLParams {
 	o.SetPayerID(payerID)

@@ -122,6 +122,15 @@ func (o *DeleteChannelHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete channel handler params
+func (o *DeleteChannelHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannel adds the channel to the delete channel handler params
 func (o *DeleteChannelHandlerParams) WithChannel(channel string) *DeleteChannelHandlerParams {
 	o.SetChannel(channel)

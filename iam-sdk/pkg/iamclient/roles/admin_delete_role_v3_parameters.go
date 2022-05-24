@@ -117,6 +117,15 @@ func (o *AdminDeleteRoleV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete role v3 params
+func (o *AdminDeleteRoleV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithRoleID adds the roleID to the admin delete role v3 params
 func (o *AdminDeleteRoleV3Params) WithRoleID(roleID string) *AdminDeleteRoleV3Params {
 	o.SetRoleID(roleID)

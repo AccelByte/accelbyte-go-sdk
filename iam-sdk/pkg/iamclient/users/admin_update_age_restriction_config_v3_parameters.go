@@ -121,6 +121,15 @@ func (o *AdminUpdateAgeRestrictionConfigV3Params) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update age restriction config v3 params
+func (o *AdminUpdateAgeRestrictionConfigV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update age restriction config v3 params
 func (o *AdminUpdateAgeRestrictionConfigV3Params) WithBody(body *iamclientmodels.ModelAgeRestrictionRequestV3) *AdminUpdateAgeRestrictionConfigV3Params {
 	o.SetBody(body)

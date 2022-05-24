@@ -117,6 +117,15 @@ func (o *GetTimeZonesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get time zones params
+func (o *GetTimeZonesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get time zones params
 func (o *GetTimeZonesParams) WithNamespace(namespace string) *GetTimeZonesParams {
 	o.SetNamespace(namespace)

@@ -122,6 +122,15 @@ func (o *DeleteSSOLoginPlatformCredentialV3Params) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete s s o login platform credential v3 params
+func (o *DeleteSSOLoginPlatformCredentialV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete s s o login platform credential v3 params
 func (o *DeleteSSOLoginPlatformCredentialV3Params) WithNamespace(namespace string) *DeleteSSOLoginPlatformCredentialV3Params {
 	o.SetNamespace(namespace)

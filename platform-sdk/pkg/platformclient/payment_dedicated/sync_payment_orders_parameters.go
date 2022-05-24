@@ -124,6 +124,15 @@ func (o *SyncPaymentOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync payment orders params
+func (o *SyncPaymentOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEnd adds the end to the sync payment orders params
 func (o *SyncPaymentOrdersParams) WithEnd(end string) *SyncPaymentOrdersParams {
 	o.SetEnd(end)

@@ -143,6 +143,15 @@ func (o *PublicGetUserBanHistoryV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user ban history v3 params
+func (o *PublicGetUserBanHistoryV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the public get user ban history v3 params
 func (o *PublicGetUserBanHistoryV3Params) WithActiveOnly(activeOnly *bool) *PublicGetUserBanHistoryV3Params {
 	o.SetActiveOnly(activeOnly)

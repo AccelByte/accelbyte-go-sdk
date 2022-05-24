@@ -127,6 +127,15 @@ func (o *PublicGeneratedUserUploadContentURLParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public generated user upload content Url params
+func (o *PublicGeneratedUserUploadContentURLParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFileType adds the fileType to the public generated user upload content Url params
 func (o *PublicGeneratedUserUploadContentURLParams) WithFileType(fileType string) *PublicGeneratedUserUploadContentURLParams {
 	o.SetFileType(fileType)

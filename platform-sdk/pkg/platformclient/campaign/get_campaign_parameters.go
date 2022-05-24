@@ -116,6 +116,15 @@ func (o *GetCampaignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get campaign params
+func (o *GetCampaignParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCampaignID adds the campaignID to the get campaign params
 func (o *GetCampaignParams) WithCampaignID(campaignID string) *GetCampaignParams {
 	o.SetCampaignID(campaignID)

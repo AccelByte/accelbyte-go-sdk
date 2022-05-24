@@ -119,6 +119,15 @@ func (o *PublicGetCurrentSeasonParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get current season params
+func (o *PublicGetCurrentSeasonParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLanguage adds the language to the public get current season params
 func (o *PublicGetCurrentSeasonParams) WithLanguage(language *string) *PublicGetCurrentSeasonParams {
 	o.SetLanguage(language)

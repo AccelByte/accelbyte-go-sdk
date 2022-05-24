@@ -122,6 +122,15 @@ func (o *GetPersonalChatHistoryV1PublicParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get personal chat history v1 public params
+func (o *GetPersonalChatHistoryV1PublicParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFriendID adds the friendID to the get personal chat history v1 public params
 func (o *GetPersonalChatHistoryV1PublicParams) WithFriendID(friendID string) *GetPersonalChatHistoryV1PublicParams {
 	o.SetFriendID(friendID)

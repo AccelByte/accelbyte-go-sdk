@@ -123,6 +123,15 @@ func (o *RetrieveAllPolicyTypesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve all policy types params
+func (o *RetrieveAllPolicyTypesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the retrieve all policy types params
 func (o *RetrieveAllPolicyTypesParams) WithLimit(limit int32) *RetrieveAllPolicyTypesParams {
 	o.SetLimit(limit)

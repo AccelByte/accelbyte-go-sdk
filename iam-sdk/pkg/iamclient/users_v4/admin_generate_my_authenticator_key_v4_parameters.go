@@ -112,6 +112,15 @@ func (o *AdminGenerateMyAuthenticatorKeyV4Params) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin generate my authenticator key v4 params
+func (o *AdminGenerateMyAuthenticatorKeyV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGenerateMyAuthenticatorKeyV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

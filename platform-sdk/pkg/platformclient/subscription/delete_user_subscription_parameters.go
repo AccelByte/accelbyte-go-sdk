@@ -118,6 +118,15 @@ func (o *DeleteUserSubscriptionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user subscription params
+func (o *DeleteUserSubscriptionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete user subscription params
 func (o *DeleteUserSubscriptionParams) WithNamespace(namespace string) *DeleteUserSubscriptionParams {
 	o.SetNamespace(namespace)

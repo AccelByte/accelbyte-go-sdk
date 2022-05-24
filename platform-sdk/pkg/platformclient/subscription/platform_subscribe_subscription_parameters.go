@@ -120,6 +120,15 @@ func (o *PlatformSubscribeSubscriptionParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the platform subscribe subscription params
+func (o *PlatformSubscribeSubscriptionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the platform subscribe subscription params
 func (o *PlatformSubscribeSubscriptionParams) WithBody(body *platformclientmodels.PlatformSubscribeRequest) *PlatformSubscribeSubscriptionParams {
 	o.SetBody(body)

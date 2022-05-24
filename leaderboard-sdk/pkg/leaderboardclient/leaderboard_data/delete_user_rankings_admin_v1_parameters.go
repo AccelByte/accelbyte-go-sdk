@@ -128,6 +128,15 @@ func (o *DeleteUserRankingsAdminV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user rankings admin v1 params
+func (o *DeleteUserRankingsAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCode adds the leaderboardCode to the delete user rankings admin v1 params
 func (o *DeleteUserRankingsAdminV1Params) WithLeaderboardCode(leaderboardCode []string) *DeleteUserRankingsAdminV1Params {
 	o.SetLeaderboardCode(leaderboardCode)

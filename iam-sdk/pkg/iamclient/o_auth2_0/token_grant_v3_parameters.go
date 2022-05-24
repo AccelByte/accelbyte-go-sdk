@@ -175,6 +175,15 @@ func (o *TokenGrantV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the token grant v3 params
+func (o *TokenGrantV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the token grant v3 params
 func (o *TokenGrantV3Params) WithClientID(clientID *string) *TokenGrantV3Params {
 	o.SetClientID(clientID)

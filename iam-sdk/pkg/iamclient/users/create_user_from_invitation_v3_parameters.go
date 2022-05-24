@@ -126,6 +126,15 @@ func (o *CreateUserFromInvitationV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create user from invitation v3 params
+func (o *CreateUserFromInvitationV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create user from invitation v3 params
 func (o *CreateUserFromInvitationV3Params) WithBody(body *iamclientmodels.ModelUserCreateFromInvitationRequestV3) *CreateUserFromInvitationV3Params {
 	o.SetBody(body)

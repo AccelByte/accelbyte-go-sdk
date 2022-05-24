@@ -156,6 +156,15 @@ func (o *PublicSearchItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public search items params
+func (o *PublicSearchItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKeyword adds the keyword to the public search items params
 func (o *PublicSearchItemsParams) WithKeyword(keyword string) *PublicSearchItemsParams {
 	o.SetKeyword(keyword)

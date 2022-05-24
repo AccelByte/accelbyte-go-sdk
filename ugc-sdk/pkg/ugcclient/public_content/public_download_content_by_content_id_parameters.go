@@ -122,6 +122,15 @@ func (o *PublicDownloadContentByContentIDParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public download content by content ID params
+func (o *PublicDownloadContentByContentIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithContentID adds the contentID to the public download content by content ID params
 func (o *PublicDownloadContentByContentIDParams) WithContentID(contentID string) *PublicDownloadContentByContentIDParams {
 	o.SetContentID(contentID)

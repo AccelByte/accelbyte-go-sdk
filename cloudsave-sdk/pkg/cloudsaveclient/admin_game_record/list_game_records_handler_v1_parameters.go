@@ -133,6 +133,15 @@ func (o *ListGameRecordsHandlerV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the list game records handler v1 params
 func (o *ListGameRecordsHandlerV1Params) WithLimit(limit int64) *ListGameRecordsHandlerV1Params {
 	o.SetLimit(limit)

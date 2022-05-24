@@ -128,6 +128,15 @@ func (o *AdminListUsersV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin list users v3 params
+func (o *AdminListUsersV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin list users v3 params
 func (o *AdminListUsersV3Params) WithLimit(limit *int64) *AdminListUsersV3Params {
 	o.SetLimit(limit)

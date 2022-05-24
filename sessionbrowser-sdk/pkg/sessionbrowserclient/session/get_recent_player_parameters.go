@@ -122,6 +122,15 @@ func (o *GetRecentPlayerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get recent player params
+func (o *GetRecentPlayerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get recent player params
 func (o *GetRecentPlayerParams) WithNamespace(namespace string) *GetRecentPlayerParams {
 	o.SetNamespace(namespace)

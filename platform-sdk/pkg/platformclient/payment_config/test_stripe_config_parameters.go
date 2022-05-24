@@ -131,6 +131,15 @@ func (o *TestStripeConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test stripe config params
+func (o *TestStripeConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the test stripe config params
 func (o *TestStripeConfigParams) WithBody(body *platformclientmodels.StripeConfig) *TestStripeConfigParams {
 	o.SetBody(body)

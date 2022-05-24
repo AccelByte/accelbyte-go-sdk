@@ -118,6 +118,15 @@ func (o *EnableItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the enable item params
+func (o *EnableItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemID adds the itemID to the enable item params
 func (o *EnableItemParams) WithItemID(itemID string) *EnableItemParams {
 	o.SetItemID(itemID)

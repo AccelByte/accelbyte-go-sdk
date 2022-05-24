@@ -122,6 +122,15 @@ func (o *GetCurrencyConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get currency config params
+func (o *GetCurrencyConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCurrencyCode adds the currencyCode to the get currency config params
 func (o *GetCurrencyConfigParams) WithCurrencyCode(currencyCode string) *GetCurrencyConfigParams {
 	o.SetCurrencyCode(currencyCode)

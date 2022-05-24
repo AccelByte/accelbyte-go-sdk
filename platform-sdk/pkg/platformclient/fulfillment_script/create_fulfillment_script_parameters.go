@@ -118,6 +118,15 @@ func (o *CreateFulfillmentScriptParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create fulfillment script params
+func (o *CreateFulfillmentScriptParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create fulfillment script params
 func (o *CreateFulfillmentScriptParams) WithBody(body *platformclientmodels.FulfillmentScriptCreate) *CreateFulfillmentScriptParams {
 	o.SetBody(body)

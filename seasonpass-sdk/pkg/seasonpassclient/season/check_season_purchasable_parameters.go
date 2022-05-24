@@ -123,6 +123,15 @@ func (o *CheckSeasonPurchasableParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check season purchasable params
+func (o *CheckSeasonPurchasableParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the check season purchasable params
 func (o *CheckSeasonPurchasableParams) WithBody(body *seasonpassclientmodels.UserPurchasable) *CheckSeasonPurchasableParams {
 	o.SetBody(body)

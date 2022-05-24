@@ -117,6 +117,15 @@ func (o *AdminGetAgeRestrictionStatusV2Params) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get age restriction status v2 params
+func (o *AdminGetAgeRestrictionStatusV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin get age restriction status v2 params
 func (o *AdminGetAgeRestrictionStatusV2Params) WithNamespace(namespace string) *AdminGetAgeRestrictionStatusV2Params {
 	o.SetNamespace(namespace)

@@ -126,6 +126,15 @@ func (o *UpdateGroupCustomRulePublicV1Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group custom rule public v1 params
+func (o *UpdateGroupCustomRulePublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update group custom rule public v1 params
 func (o *UpdateGroupCustomRulePublicV1Params) WithBody(body *groupclientmodels.ModelsUpdateGroupCustomRuleRequestV1) *UpdateGroupCustomRulePublicV1Params {
 	o.SetBody(body)

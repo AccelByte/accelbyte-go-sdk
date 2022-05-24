@@ -117,6 +117,15 @@ func (o *AnonymizeUserAgreementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the anonymize user agreement params
+func (o *AnonymizeUserAgreementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithUserID adds the userID to the anonymize user agreement params
 func (o *AnonymizeUserAgreementParams) WithUserID(userID string) *AnonymizeUserAgreementParams {
 	o.SetUserID(userID)

@@ -112,6 +112,15 @@ func (o *AdminGetListBanReasonV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get list ban reason v3 params
+func (o *AdminGetListBanReasonV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetListBanReasonV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

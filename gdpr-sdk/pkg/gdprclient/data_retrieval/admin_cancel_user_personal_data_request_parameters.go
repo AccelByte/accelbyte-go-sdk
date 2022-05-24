@@ -127,6 +127,15 @@ func (o *AdminCancelUserPersonalDataRequestParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin cancel user personal data request params
+func (o *AdminCancelUserPersonalDataRequestParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin cancel user personal data request params
 func (o *AdminCancelUserPersonalDataRequestParams) WithNamespace(namespace string) *AdminCancelUserPersonalDataRequestParams {
 	o.SetNamespace(namespace)

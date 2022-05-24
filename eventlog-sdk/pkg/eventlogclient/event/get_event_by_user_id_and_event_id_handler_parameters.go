@@ -148,6 +148,15 @@ func (o *GetEventByUserIDAndEventIDHandlerParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get event by user ID and event ID handler params
+func (o *GetEventByUserIDAndEventIDHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEndDate adds the endDate to the get event by user ID and event ID handler params
 func (o *GetEventByUserIDAndEventIDHandlerParams) WithEndDate(endDate string) *GetEventByUserIDAndEventIDHandlerParams {
 	o.SetEndDate(endDate)

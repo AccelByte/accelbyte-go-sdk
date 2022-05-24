@@ -123,6 +123,15 @@ func (o *CreateItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create item params
+func (o *CreateItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create item params
 func (o *CreateItemParams) WithBody(body *platformclientmodels.ItemCreate) *CreateItemParams {
 	o.SetBody(body)

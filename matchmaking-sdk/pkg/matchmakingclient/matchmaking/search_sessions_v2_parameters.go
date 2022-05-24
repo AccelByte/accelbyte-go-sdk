@@ -153,6 +153,15 @@ func (o *SearchSessionsV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the search sessions v2 params
+func (o *SearchSessionsV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannel adds the channel to the search sessions v2 params
 func (o *SearchSessionsV2Params) WithChannel(channel *string) *SearchSessionsV2Params {
 	o.SetChannel(channel)

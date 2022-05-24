@@ -124,6 +124,15 @@ func (o *AdminDebugProfanityFiltersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin debug profanity filters params
+func (o *AdminDebugProfanityFiltersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin debug profanity filters params
 func (o *AdminDebugProfanityFiltersParams) WithBody(body *lobbyclientmodels.ModelsDebugProfanityFilterRequest) *AdminDebugProfanityFiltersParams {
 	o.SetBody(body)

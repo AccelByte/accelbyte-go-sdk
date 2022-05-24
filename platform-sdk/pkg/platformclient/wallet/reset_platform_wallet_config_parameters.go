@@ -119,6 +119,15 @@ func (o *ResetPlatformWalletConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the reset platform wallet config params
+func (o *ResetPlatformWalletConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the reset platform wallet config params
 func (o *ResetPlatformWalletConfigParams) WithNamespace(namespace string) *ResetPlatformWalletConfigParams {
 	o.SetNamespace(namespace)

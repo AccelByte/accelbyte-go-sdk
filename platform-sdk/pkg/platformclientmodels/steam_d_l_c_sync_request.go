@@ -17,9 +17,8 @@ import (
 // swagger:model SteamDLCSyncRequest
 type SteamDLCSyncRequest struct {
 
-	// Steam app id
-	// Required: true
-	AppID *string `json:"appId"`
+	// Steam app id, this field is deprecated
+	AppID string `json:"appId,omitempty"`
 
 	// Steam ID of the user
 	// Required: true
@@ -30,10 +29,6 @@ type SteamDLCSyncRequest struct {
 func (m *SteamDLCSyncRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAppID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSteamID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,15 +36,6 @@ func (m *SteamDLCSyncRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *SteamDLCSyncRequest) validateAppID(formats strfmt.Registry) error {
-
-	if err := validate.Required("appId", "body", m.AppID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

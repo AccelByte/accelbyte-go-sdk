@@ -121,6 +121,15 @@ func (o *DeleteRewardParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete reward params
+func (o *DeleteRewardParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the delete reward params
 func (o *DeleteRewardParams) WithCode(code string) *DeleteRewardParams {
 	o.SetCode(code)

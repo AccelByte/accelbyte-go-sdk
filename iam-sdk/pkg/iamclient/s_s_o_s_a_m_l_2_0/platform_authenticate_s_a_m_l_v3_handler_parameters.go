@@ -132,6 +132,15 @@ func (o *PlatformAuthenticateSAMLV3HandlerParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the platform authenticate s a m l v3 handler params
+func (o *PlatformAuthenticateSAMLV3HandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the platform authenticate s a m l v3 handler params
 func (o *PlatformAuthenticateSAMLV3HandlerParams) WithCode(code *string) *PlatformAuthenticateSAMLV3HandlerParams {
 	o.SetCode(code)

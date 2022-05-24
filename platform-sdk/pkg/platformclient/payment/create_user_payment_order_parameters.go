@@ -120,6 +120,15 @@ func (o *CreateUserPaymentOrderParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create user payment order params
+func (o *CreateUserPaymentOrderParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create user payment order params
 func (o *CreateUserPaymentOrderParams) WithBody(body *platformclientmodels.PaymentOrderCreate) *CreateUserPaymentOrderParams {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *UpdateRewardParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update reward params
+func (o *UpdateRewardParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update reward params
 func (o *UpdateRewardParams) WithBody(body *seasonpassclientmodels.RewardUpdate) *UpdateRewardParams {
 	o.SetBody(body)

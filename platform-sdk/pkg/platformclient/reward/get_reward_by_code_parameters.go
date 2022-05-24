@@ -116,6 +116,15 @@ func (o *GetRewardByCodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get reward by code params
+func (o *GetRewardByCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get reward by code params
 func (o *GetRewardByCodeParams) WithNamespace(namespace string) *GetRewardByCodeParams {
 	o.SetNamespace(namespace)

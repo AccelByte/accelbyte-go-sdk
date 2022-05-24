@@ -128,6 +128,15 @@ func (o *PublicGetAppParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get app params
+func (o *PublicGetAppParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemID adds the itemID to the public get app params
 func (o *PublicGetAppParams) WithItemID(itemID string) *PublicGetAppParams {
 	o.SetItemID(itemID)

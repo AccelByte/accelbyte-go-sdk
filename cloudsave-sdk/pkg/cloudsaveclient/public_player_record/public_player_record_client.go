@@ -12,7 +12,6 @@ package public_player_record
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -86,7 +85,7 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicR
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -139,7 +138,7 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPu
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -207,7 +206,7 @@ func (a *Client) DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -260,7 +259,7 @@ func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHand
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -328,7 +327,7 @@ func (a *Client) GetPlayerPublicRecordHandlerV1(params *GetPlayerPublicRecordHan
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -378,7 +377,7 @@ func (a *Client) GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicReco
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -443,7 +442,7 @@ func (a *Client) GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -496,7 +495,7 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -603,7 +602,7 @@ func (a *Client) PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordH
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -653,7 +652,7 @@ func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRe
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -753,7 +752,7 @@ func (a *Client) PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Para
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -806,7 +805,7 @@ func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -874,7 +873,7 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePla
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -927,7 +926,7 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1027,7 +1026,7 @@ func (a *Client) PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHan
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1077,7 +1076,7 @@ func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicReco
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1170,7 +1169,7 @@ func (a *Client) PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1223,7 +1222,7 @@ func (a *Client) PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

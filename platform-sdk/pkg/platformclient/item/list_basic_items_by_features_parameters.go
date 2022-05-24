@@ -134,6 +134,15 @@ func (o *ListBasicItemsByFeaturesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list basic items by features params
+func (o *ListBasicItemsByFeaturesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the list basic items by features params
 func (o *ListBasicItemsByFeaturesParams) WithActiveOnly(activeOnly *bool) *ListBasicItemsByFeaturesParams {
 	o.SetActiveOnly(activeOnly)

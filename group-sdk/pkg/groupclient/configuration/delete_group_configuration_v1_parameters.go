@@ -122,6 +122,15 @@ func (o *DeleteGroupConfigurationV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete group configuration v1 params
+func (o *DeleteGroupConfigurationV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithConfigurationCode adds the configurationCode to the delete group configuration v1 params
 func (o *DeleteGroupConfigurationV1Params) WithConfigurationCode(configurationCode string) *DeleteGroupConfigurationV1Params {
 	o.SetConfigurationCode(configurationCode)

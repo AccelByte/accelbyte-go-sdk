@@ -122,6 +122,15 @@ func (o *GetUserGroupInformationPublicV1Params) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user group information public v1 params
+func (o *GetUserGroupInformationPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get user group information public v1 params
 func (o *GetUserGroupInformationPublicV1Params) WithNamespace(namespace string) *GetUserGroupInformationPublicV1Params {
 	o.SetNamespace(namespace)

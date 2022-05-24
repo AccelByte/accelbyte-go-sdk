@@ -135,6 +135,15 @@ func (o *GetUserEntitlementBySkuParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user entitlement by sku params
+func (o *GetUserEntitlementBySkuParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get user entitlement by sku params
 func (o *GetUserEntitlementBySkuParams) WithActiveOnly(activeOnly *bool) *GetUserEntitlementBySkuParams {
 	o.SetActiveOnly(activeOnly)

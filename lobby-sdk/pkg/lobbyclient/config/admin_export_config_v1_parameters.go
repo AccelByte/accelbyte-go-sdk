@@ -117,6 +117,15 @@ func (o *AdminExportConfigV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin export config v1 params
+func (o *AdminExportConfigV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin export config v1 params
 func (o *AdminExportConfigV1Params) WithNamespace(namespace string) *AdminExportConfigV1Params {
 	o.SetNamespace(namespace)

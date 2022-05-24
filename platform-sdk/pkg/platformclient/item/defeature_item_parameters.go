@@ -120,6 +120,15 @@ func (o *DefeatureItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the defeature item params
+func (o *DefeatureItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFeature adds the feature to the defeature item params
 func (o *DefeatureItemParams) WithFeature(feature string) *DefeatureItemParams {
 	o.SetFeature(feature)

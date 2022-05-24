@@ -133,6 +133,15 @@ func (o *GetAllNotificationTopicsV1AdminParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all notification topics v1 admin params
+func (o *GetAllNotificationTopicsV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the get all notification topics v1 admin params
 func (o *GetAllNotificationTopicsV1AdminParams) WithAfter(after *string) *GetAllNotificationTopicsV1AdminParams {
 	o.SetAfter(after)

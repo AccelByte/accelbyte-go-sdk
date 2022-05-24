@@ -131,6 +131,15 @@ func (o *UpdateTemplateLocalizationV1AdminParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update template localization v1 admin params
+func (o *UpdateTemplateLocalizationV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update template localization v1 admin params
 func (o *UpdateTemplateLocalizationV1AdminParams) WithBody(body *lobbyclientmodels.ModelUpdateTemplateRequest) *UpdateTemplateLocalizationV1AdminParams {
 	o.SetBody(body)

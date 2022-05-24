@@ -133,6 +133,15 @@ func (o *AdminDeleteUserPermissionV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete user permission v3 params
+func (o *AdminDeleteUserPermissionV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAction adds the action to the admin delete user permission v3 params
 func (o *AdminDeleteUserPermissionV3Params) WithAction(action int64) *AdminDeleteUserPermissionV3Params {
 	o.SetAction(action)

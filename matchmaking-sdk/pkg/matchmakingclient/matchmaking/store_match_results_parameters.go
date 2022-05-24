@@ -121,6 +121,15 @@ func (o *StoreMatchResultsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the store match results params
+func (o *StoreMatchResultsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the store match results params
 func (o *StoreMatchResultsParams) WithBody(body *matchmakingclientmodels.ModelsMatchResultRequest) *StoreMatchResultsParams {
 	o.SetBody(body)

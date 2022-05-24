@@ -121,6 +121,15 @@ func (o *AdminAddRoleMembersV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin add role members v3 params
+func (o *AdminAddRoleMembersV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin add role members v3 params
 func (o *AdminAddRoleMembersV3Params) WithBody(body *iamclientmodels.ModelRoleMembersRequestV3) *AdminAddRoleMembersV3Params {
 	o.SetBody(body)

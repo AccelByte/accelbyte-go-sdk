@@ -122,6 +122,15 @@ func (o *LoginSSOClientParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the login s s o client params
+func (o *LoginSSOClientParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPayload adds the payload to the login s s o client params
 func (o *LoginSSOClientParams) WithPayload(payload *string) *LoginSSOClientParams {
 	o.SetPayload(payload)

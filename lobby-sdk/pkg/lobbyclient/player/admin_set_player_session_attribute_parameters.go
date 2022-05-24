@@ -129,6 +129,15 @@ func (o *AdminSetPlayerSessionAttributeParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin set player session attribute params
+func (o *AdminSetPlayerSessionAttributeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin set player session attribute params
 func (o *AdminSetPlayerSessionAttributeParams) WithBody(body *lobbyclientmodels.ModelsSetPlayerSessionAttributeRequest) *AdminSetPlayerSessionAttributeParams {
 	o.SetBody(body)

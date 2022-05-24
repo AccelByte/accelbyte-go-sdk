@@ -117,6 +117,15 @@ func (o *RetrieveAcceptedAgreementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve accepted agreements params
+func (o *RetrieveAcceptedAgreementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithUserID adds the userID to the retrieve accepted agreements params
 func (o *RetrieveAcceptedAgreementsParams) WithUserID(userID string) *RetrieveAcceptedAgreementsParams {
 	o.SetUserID(userID)

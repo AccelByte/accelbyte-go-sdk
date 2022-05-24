@@ -133,6 +133,15 @@ func (o *ListServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list server params
+func (o *ListServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCount adds the count to the list server params
 func (o *ListServerParams) WithCount(count *int64) *ListServerParams {
 	o.SetCount(count)

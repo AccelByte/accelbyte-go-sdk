@@ -127,6 +127,15 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) SetHTTPClient(client 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin retrieve user third party platform token v3 params
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin retrieve user third party platform token v3 params
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) WithNamespace(namespace string) *AdminRetrieveUserThirdPartyPlatformTokenV3Params {
 	o.SetNamespace(namespace)

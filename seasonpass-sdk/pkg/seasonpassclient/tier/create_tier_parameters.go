@@ -123,6 +123,15 @@ func (o *CreateTierParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create tier params
+func (o *CreateTierParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create tier params
 func (o *CreateTierParams) WithBody(body *seasonpassclientmodels.TierCreate) *CreateTierParams {
 	o.SetBody(body)

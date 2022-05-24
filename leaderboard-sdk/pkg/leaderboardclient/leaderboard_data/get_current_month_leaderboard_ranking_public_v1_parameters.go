@@ -133,6 +133,15 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1Params) SetHTTPClient(client *
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get current month leaderboard ranking public v1 params
+func (o *GetCurrentMonthLeaderboardRankingPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCode adds the leaderboardCode to the get current month leaderboard ranking public v1 params
 func (o *GetCurrentMonthLeaderboardRankingPublicV1Params) WithLeaderboardCode(leaderboardCode string) *GetCurrentMonthLeaderboardRankingPublicV1Params {
 	o.SetLeaderboardCode(leaderboardCode)

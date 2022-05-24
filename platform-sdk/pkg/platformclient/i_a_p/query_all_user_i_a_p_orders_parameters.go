@@ -116,6 +116,15 @@ func (o *QueryAllUserIAPOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query all user i a p orders params
+func (o *QueryAllUserIAPOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the query all user i a p orders params
 func (o *QueryAllUserIAPOrdersParams) WithNamespace(namespace string) *QueryAllUserIAPOrdersParams {
 	o.SetNamespace(namespace)

@@ -126,6 +126,15 @@ func (o *AdminBanUserV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin ban user v3 params
+func (o *AdminBanUserV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin ban user v3 params
 func (o *AdminBanUserV3Params) WithBody(body *iamclientmodels.ModelBanCreateRequest) *AdminBanUserV3Params {
 	o.SetBody(body)

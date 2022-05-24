@@ -116,6 +116,15 @@ func (o *GetOrderParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get order params
+func (o *GetOrderParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get order params
 func (o *GetOrderParams) WithNamespace(namespace string) *GetOrderParams {
 	o.SetNamespace(namespace)

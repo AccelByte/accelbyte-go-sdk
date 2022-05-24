@@ -120,6 +120,15 @@ func (o *SimulatePaymentOrderNotificationParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the simulate payment order notification params
+func (o *SimulatePaymentOrderNotificationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the simulate payment order notification params
 func (o *SimulatePaymentOrderNotificationParams) WithBody(body *platformclientmodels.PaymentOrderNotifySimulation) *SimulatePaymentOrderNotificationParams {
 	o.SetBody(body)

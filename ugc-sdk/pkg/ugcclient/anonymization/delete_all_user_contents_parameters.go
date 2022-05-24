@@ -122,6 +122,15 @@ func (o *DeleteAllUserContentsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete all user contents params
+func (o *DeleteAllUserContentsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete all user contents params
 func (o *DeleteAllUserContentsParams) WithNamespace(namespace string) *DeleteAllUserContentsParams {
 	o.SetNamespace(namespace)

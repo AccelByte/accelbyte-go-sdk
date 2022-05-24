@@ -142,6 +142,15 @@ func (o *PayParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the pay params
+func (o *PayParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the pay params
 func (o *PayParams) WithBody(body *platformclientmodels.PaymentToken) *PayParams {
 	o.SetBody(body)

@@ -131,6 +131,15 @@ func (o *UpdateGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group params
+func (o *UpdateGroupParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update group params
 func (o *UpdateGroupParams) WithBody(body *ugcclientmodels.ModelsCreateGroupRequest) *UpdateGroupParams {
 	o.SetBody(body)

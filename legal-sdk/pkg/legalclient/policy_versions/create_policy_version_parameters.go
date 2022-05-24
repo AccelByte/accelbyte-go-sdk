@@ -121,6 +121,15 @@ func (o *CreatePolicyVersionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create policy version params
+func (o *CreatePolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create policy version params
 func (o *CreatePolicyVersionParams) WithBody(body *legalclientmodels.CreatePolicyVersionRequest) *CreatePolicyVersionParams {
 	o.SetBody(body)

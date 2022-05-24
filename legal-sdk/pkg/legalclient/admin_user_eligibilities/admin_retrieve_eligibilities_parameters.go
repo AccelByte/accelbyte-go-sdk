@@ -137,6 +137,15 @@ func (o *AdminRetrieveEligibilitiesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin retrieve eligibilities params
+func (o *AdminRetrieveEligibilitiesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the admin retrieve eligibilities params
 func (o *AdminRetrieveEligibilitiesParams) WithClientID(clientID string) *AdminRetrieveEligibilitiesParams {
 	o.SetClientID(clientID)

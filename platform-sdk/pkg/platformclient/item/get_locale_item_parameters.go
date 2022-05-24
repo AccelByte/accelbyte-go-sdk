@@ -156,6 +156,15 @@ func (o *GetLocaleItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get locale item params
+func (o *GetLocaleItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get locale item params
 func (o *GetLocaleItemParams) WithActiveOnly(activeOnly *bool) *GetLocaleItemParams {
 	o.SetActiveOnly(activeOnly)

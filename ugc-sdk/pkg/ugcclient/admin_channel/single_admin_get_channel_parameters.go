@@ -148,6 +148,15 @@ func (o *SingleAdminGetChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the single admin get channel params
+func (o *SingleAdminGetChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the single admin get channel params
 func (o *SingleAdminGetChannelParams) WithLimit(limit *int64) *SingleAdminGetChannelParams {
 	o.SetLimit(limit)

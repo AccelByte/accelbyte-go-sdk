@@ -132,6 +132,15 @@ func (o *GetActiveMatchmakingGameSessionsParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithMatchID adds the matchID to the get active matchmaking game sessions params
 func (o *GetActiveMatchmakingGameSessionsParams) WithMatchID(matchID *string) *GetActiveMatchmakingGameSessionsParams {
 	o.SetMatchID(matchID)

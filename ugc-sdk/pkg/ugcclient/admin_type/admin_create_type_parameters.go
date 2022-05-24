@@ -121,6 +121,15 @@ func (o *AdminCreateTypeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin create type params
+func (o *AdminCreateTypeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin create type params
 func (o *AdminCreateTypeParams) WithBody(body *ugcclientmodels.ModelsCreateTypeRequest) *AdminCreateTypeParams {
 	o.SetBody(body)

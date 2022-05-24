@@ -135,6 +135,15 @@ func (o *PublishPolicyVersionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the publish policy version params
+func (o *PublishPolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPolicyVersionID adds the policyVersionID to the publish policy version params
 func (o *PublishPolicyVersionParams) WithPolicyVersionID(policyVersionID string) *PublishPolicyVersionParams {
 	o.SetPolicyVersionID(policyVersionID)

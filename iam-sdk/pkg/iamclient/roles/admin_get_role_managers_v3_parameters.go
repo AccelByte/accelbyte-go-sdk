@@ -133,6 +133,15 @@ func (o *AdminGetRoleManagersV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get role managers v3 params
+func (o *AdminGetRoleManagersV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the admin get role managers v3 params
 func (o *AdminGetRoleManagersV3Params) WithAfter(after *string) *AdminGetRoleManagersV3Params {
 	o.SetAfter(after)

@@ -127,6 +127,15 @@ func (o *AdminAddUserRoleV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin add user role v3 params
+func (o *AdminAddUserRoleV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin add user role v3 params
 func (o *AdminAddUserRoleV3Params) WithNamespace(namespace string) *AdminAddUserRoleV3Params {
 	o.SetNamespace(namespace)

@@ -112,6 +112,15 @@ func (o *CheckReadinessParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check readiness params
+func (o *CheckReadinessParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CheckReadinessParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

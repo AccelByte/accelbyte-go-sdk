@@ -120,6 +120,15 @@ func (o *SyncSteamInventoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync steam inventory params
+func (o *SyncSteamInventoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync steam inventory params
 func (o *SyncSteamInventoryParams) WithBody(body *platformclientmodels.SteamSyncRequest) *SyncSteamInventoryParams {
 	o.SetBody(body)

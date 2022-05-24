@@ -121,6 +121,15 @@ func (o *DequeueSessionHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the dequeue session handler params
+func (o *DequeueSessionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the dequeue session handler params
 func (o *DequeueSessionHandlerParams) WithBody(body *matchmakingclientmodels.ModelsDequeueRequest) *DequeueSessionHandlerParams {
 	o.SetBody(body)

@@ -142,6 +142,15 @@ func (o *GetGlobalStatItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get global stat items params
+func (o *GetGlobalStatItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get global stat items params
 func (o *GetGlobalStatItemsParams) WithLimit(limit *int32) *GetGlobalStatItemsParams {
 	o.SetLimit(limit)

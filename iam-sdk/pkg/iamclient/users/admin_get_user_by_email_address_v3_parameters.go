@@ -122,6 +122,15 @@ func (o *AdminGetUserByEmailAddressV3Params) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get user by email address v3 params
+func (o *AdminGetUserByEmailAddressV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEmailAddress adds the emailAddress to the admin get user by email address v3 params
 func (o *AdminGetUserByEmailAddressV3Params) WithEmailAddress(emailAddress *string) *AdminGetUserByEmailAddressV3Params {
 	o.SetEmailAddress(emailAddress)

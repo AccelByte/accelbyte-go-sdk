@@ -160,6 +160,15 @@ func (o *QueryRewardsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query rewards params
+func (o *QueryRewardsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEventTopic adds the eventTopic to the query rewards params
 func (o *QueryRewardsParams) WithEventTopic(eventTopic *string) *QueryRewardsParams {
 	o.SetEventTopic(eventTopic)

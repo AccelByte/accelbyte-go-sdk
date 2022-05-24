@@ -131,6 +131,15 @@ func (o *AddUserIntoSessionInChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add user into session in channel params
+func (o *AddUserIntoSessionInChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the add user into session in channel params
 func (o *AddUserIntoSessionInChannelParams) WithBody(body *matchmakingclientmodels.ModelsMatchAddUserIntoSessionRequest) *AddUserIntoSessionInChannelParams {
 	o.SetBody(body)

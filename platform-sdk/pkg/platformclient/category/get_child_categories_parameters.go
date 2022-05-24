@@ -124,6 +124,15 @@ func (o *GetChildCategoriesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get child categories params
+func (o *GetChildCategoriesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCategoryPath adds the categoryPath to the get child categories params
 func (o *GetChildCategoriesParams) WithCategoryPath(categoryPath string) *GetChildCategoriesParams {
 	o.SetCategoryPath(categoryPath)

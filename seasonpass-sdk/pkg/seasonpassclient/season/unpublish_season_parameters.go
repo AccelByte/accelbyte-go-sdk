@@ -131,6 +131,15 @@ func (o *UnpublishSeasonParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the unpublish season params
+func (o *UnpublishSeasonParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithForce adds the force to the unpublish season params
 func (o *UnpublishSeasonParams) WithForce(force *bool) *UnpublishSeasonParams {
 	o.SetForce(force)

@@ -121,6 +121,15 @@ func (o *RevokeUserEntitlementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the revoke user entitlements params
+func (o *RevokeUserEntitlementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEntitlementIds adds the entitlementIds to the revoke user entitlements params
 func (o *RevokeUserEntitlementsParams) WithEntitlementIds(entitlementIds string) *RevokeUserEntitlementsParams {
 	o.SetEntitlementIds(entitlementIds)

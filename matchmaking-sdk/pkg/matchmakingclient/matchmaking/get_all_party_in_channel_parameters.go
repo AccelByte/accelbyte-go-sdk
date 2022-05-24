@@ -122,6 +122,15 @@ func (o *GetAllPartyInChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all party in channel params
+func (o *GetAllPartyInChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannelName adds the channelName to the get all party in channel params
 func (o *GetAllPartyInChannelParams) WithChannelName(channelName string) *GetAllPartyInChannelParams {
 	o.SetChannelName(channelName)

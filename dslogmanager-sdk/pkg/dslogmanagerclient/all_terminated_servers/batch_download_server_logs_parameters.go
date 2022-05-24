@@ -116,6 +116,15 @@ func (o *BatchDownloadServerLogsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the batch download server logs params
+func (o *BatchDownloadServerLogsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the batch download server logs params
 func (o *BatchDownloadServerLogsParams) WithBody(body *dslogmanagerclientmodels.ModelsBatchDownloadLogsRequest) *BatchDownloadServerLogsParams {
 	o.SetBody(body)

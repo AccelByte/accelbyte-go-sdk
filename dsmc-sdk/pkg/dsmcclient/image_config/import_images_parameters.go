@@ -117,6 +117,15 @@ func (o *ImportImagesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the import images params
+func (o *ImportImagesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the import images params
 func (o *ImportImagesParams) WithFile(file runtime.NamedReadCloser) *ImportImagesParams {
 	o.SetFile(file)

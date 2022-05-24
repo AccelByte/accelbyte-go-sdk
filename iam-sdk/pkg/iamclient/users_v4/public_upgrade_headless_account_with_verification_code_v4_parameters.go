@@ -121,6 +121,15 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) SetHTTPClient
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public upgrade headless account with verification code v4 params
+func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public upgrade headless account with verification code v4 params
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) WithBody(body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params {
 	o.SetBody(body)

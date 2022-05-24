@@ -120,6 +120,15 @@ func (o *SyncXboxInventoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync xbox inventory params
+func (o *SyncXboxInventoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync xbox inventory params
 func (o *SyncXboxInventoryParams) WithBody(body *platformclientmodels.XblReconcileRequest) *SyncXboxInventoryParams {
 	o.SetBody(body)

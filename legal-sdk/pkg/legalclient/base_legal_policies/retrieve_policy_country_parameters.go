@@ -122,6 +122,15 @@ func (o *RetrievePolicyCountryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve policy country params
+func (o *RetrievePolicyCountryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBasePolicyID adds the basePolicyID to the retrieve policy country params
 func (o *RetrievePolicyCountryParams) WithBasePolicyID(basePolicyID string) *RetrievePolicyCountryParams {
 	o.SetBasePolicyID(basePolicyID)

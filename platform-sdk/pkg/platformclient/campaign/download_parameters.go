@@ -119,6 +119,15 @@ func (o *DownloadParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the download params
+func (o *DownloadParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBatchNo adds the batchNo to the download params
 func (o *DownloadParams) WithBatchNo(batchNo *int32) *DownloadParams {
 	o.SetBatchNo(batchNo)

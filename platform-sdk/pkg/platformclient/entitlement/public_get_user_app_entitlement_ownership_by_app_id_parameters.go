@@ -118,6 +118,15 @@ func (o *PublicGetUserAppEntitlementOwnershipByAppIDParams) SetHTTPClient(client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user app entitlement ownership by app Id params
+func (o *PublicGetUserAppEntitlementOwnershipByAppIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAppID adds the appID to the public get user app entitlement ownership by app Id params
 func (o *PublicGetUserAppEntitlementOwnershipByAppIDParams) WithAppID(appID string) *PublicGetUserAppEntitlementOwnershipByAppIDParams {
 	o.SetAppID(appID)

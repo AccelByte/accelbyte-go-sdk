@@ -158,6 +158,15 @@ func (o *AdminSearchUserV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBy adds the by to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithBy(by *string) *AdminSearchUserV3Params {
 	o.SetBy(by)

@@ -173,6 +173,15 @@ func (o *QueryUncategorizedItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query uncategorized items params
+func (o *QueryUncategorizedItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the query uncategorized items params
 func (o *QueryUncategorizedItemsParams) WithActiveOnly(activeOnly *bool) *QueryUncategorizedItemsParams {
 	o.SetActiveOnly(activeOnly)

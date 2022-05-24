@@ -121,6 +121,15 @@ func (o *PublicVerifyRegistrationCodeParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public verify registration code params
+func (o *PublicVerifyRegistrationCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public verify registration code params
 func (o *PublicVerifyRegistrationCodeParams) WithBody(body *iamclientmodels.ModelVerifyRegistrationCode) *PublicVerifyRegistrationCodeParams {
 	o.SetBody(body)

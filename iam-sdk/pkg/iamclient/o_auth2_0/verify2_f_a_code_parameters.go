@@ -133,6 +133,15 @@ func (o *Verify2FACodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the verify2 f a code params
+func (o *Verify2FACodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the verify2 f a code params
 func (o *Verify2FACodeParams) WithCode(code string) *Verify2FACodeParams {
 	o.SetCode(code)

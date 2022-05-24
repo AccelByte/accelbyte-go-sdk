@@ -127,6 +127,15 @@ func (o *GeneratedUploadURLParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the generated upload Url params
+func (o *GeneratedUploadURLParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFileType adds the fileType to the generated upload Url params
 func (o *GeneratedUploadURLParams) WithFileType(fileType string) *GeneratedUploadURLParams {
 	o.SetFileType(fileType)

@@ -128,6 +128,15 @@ func (o *GetAllPodConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all pod config params
+func (o *GetAllPodConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCount adds the count to the get all pod config params
 func (o *GetAllPodConfigParams) WithCount(count *int64) *GetAllPodConfigParams {
 	o.SetCount(count)

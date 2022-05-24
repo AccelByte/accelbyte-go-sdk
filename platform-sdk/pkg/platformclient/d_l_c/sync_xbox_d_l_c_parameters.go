@@ -120,6 +120,15 @@ func (o *SyncXboxDLCParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync xbox d l c params
+func (o *SyncXboxDLCParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync xbox d l c params
 func (o *SyncXboxDLCParams) WithBody(body *platformclientmodels.XblDLCSyncRequest) *SyncXboxDLCParams {
 	o.SetBody(body)

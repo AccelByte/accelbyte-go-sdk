@@ -131,6 +131,15 @@ func (o *CreateDeploymentOverrideParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create deployment override params
+func (o *CreateDeploymentOverrideParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create deployment override params
 func (o *CreateDeploymentOverrideParams) WithBody(body *dsmcclientmodels.ModelsCreateDeploymentOverrideRequest) *CreateDeploymentOverrideParams {
 	o.SetBody(body)

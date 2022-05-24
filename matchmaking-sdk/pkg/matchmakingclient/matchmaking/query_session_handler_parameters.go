@@ -122,6 +122,15 @@ func (o *QuerySessionHandlerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query session handler params
+func (o *QuerySessionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithMatchID adds the matchID to the query session handler params
 func (o *QuerySessionHandlerParams) WithMatchID(matchID string) *QuerySessionHandlerParams {
 	o.SetMatchID(matchID)

@@ -112,6 +112,15 @@ func (o *GetHealthcheckInfoParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get healthcheck info params
+func (o *GetHealthcheckInfoParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetHealthcheckInfoParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

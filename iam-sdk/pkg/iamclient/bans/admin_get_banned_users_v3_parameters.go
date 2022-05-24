@@ -138,6 +138,15 @@ func (o *AdminGetBannedUsersV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get banned users v3 params
+func (o *AdminGetBannedUsersV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the admin get banned users v3 params
 func (o *AdminGetBannedUsersV3Params) WithActiveOnly(activeOnly *bool) *AdminGetBannedUsersV3Params {
 	o.SetActiveOnly(activeOnly)

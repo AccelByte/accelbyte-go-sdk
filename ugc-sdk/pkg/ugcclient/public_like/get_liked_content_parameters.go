@@ -148,6 +148,15 @@ func (o *GetLikedContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get liked content params
+func (o *GetLikedContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get liked content params
 func (o *GetLikedContentParams) WithLimit(limit *int64) *GetLikedContentParams {
 	o.SetLimit(limit)

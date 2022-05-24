@@ -129,6 +129,15 @@ func (o *PublicUpdatePartyAttributesV1Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update party attributes v1 params
+func (o *PublicUpdatePartyAttributesV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update party attributes v1 params
 func (o *PublicUpdatePartyAttributesV1Params) WithBody(body *lobbyclientmodels.ModelsPartyPUTCustomAttributesRequest) *PublicUpdatePartyAttributesV1Params {
 	o.SetBody(body)

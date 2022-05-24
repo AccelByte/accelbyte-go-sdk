@@ -120,6 +120,15 @@ func (o *GrantUserEntitlementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the grant user entitlement params
+func (o *GrantUserEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the grant user entitlement params
 func (o *GrantUserEntitlementParams) WithBody(body []*platformclientmodels.EntitlementGrant) *GrantUserEntitlementParams {
 	o.SetBody(body)

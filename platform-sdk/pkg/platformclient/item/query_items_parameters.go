@@ -209,6 +209,15 @@ func (o *QueryItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query items params
+func (o *QueryItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the query items params
 func (o *QueryItemsParams) WithActiveOnly(activeOnly *bool) *QueryItemsParams {
 	o.SetActiveOnly(activeOnly)

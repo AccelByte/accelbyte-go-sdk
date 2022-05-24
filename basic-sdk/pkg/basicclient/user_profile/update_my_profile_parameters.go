@@ -121,6 +121,15 @@ func (o *UpdateMyProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update my profile params
+func (o *UpdateMyProfileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update my profile params
 func (o *UpdateMyProfileParams) WithBody(body *basicclientmodels.UserProfilePrivateUpdate) *UpdateMyProfileParams {
 	o.SetBody(body)

@@ -182,6 +182,15 @@ func (o *PlatformAuthenticationV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the platform authentication v3 params
+func (o *PlatformAuthenticationV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the platform authentication v3 params
 func (o *PlatformAuthenticationV3Params) WithCode(code *string) *PlatformAuthenticationV3Params {
 	o.SetCode(code)

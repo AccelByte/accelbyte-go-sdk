@@ -114,6 +114,15 @@ func (o *GetPlatformDLCConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get platform d l c config params
+func (o *GetPlatformDLCConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get platform d l c config params
 func (o *GetPlatformDLCConfigParams) WithNamespace(namespace string) *GetPlatformDLCConfigParams {
 	o.SetNamespace(namespace)

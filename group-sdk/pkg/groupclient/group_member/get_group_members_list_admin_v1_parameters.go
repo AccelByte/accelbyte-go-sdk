@@ -138,6 +138,15 @@ func (o *GetGroupMembersListAdminV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get group members list admin v1 params
+func (o *GetGroupMembersListAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the get group members list admin v1 params
 func (o *GetGroupMembersListAdminV1Params) WithGroupID(groupID string) *GetGroupMembersListAdminV1Params {
 	o.SetGroupID(groupID)

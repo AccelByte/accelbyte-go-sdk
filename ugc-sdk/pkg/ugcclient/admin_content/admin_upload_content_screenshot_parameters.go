@@ -126,6 +126,15 @@ func (o *AdminUploadContentScreenshotParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin upload content screenshot params
+func (o *AdminUploadContentScreenshotParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin upload content screenshot params
 func (o *AdminUploadContentScreenshotParams) WithBody(body *ugcclientmodels.ModelsCreateScreenshotRequest) *AdminUploadContentScreenshotParams {
 	o.SetBody(body)

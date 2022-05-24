@@ -117,6 +117,15 @@ func (o *SpecificAgentTypeDescriptionHandlerParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the specific agent type description handler params
+func (o *SpecificAgentTypeDescriptionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAgentTypes adds the agentTypes to the specific agent type description handler params
 func (o *SpecificAgentTypeDescriptionHandlerParams) WithAgentTypes(agentTypes *string) *SpecificAgentTypeDescriptionHandlerParams {
 	o.SetAgentTypes(agentTypes)

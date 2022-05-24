@@ -127,6 +127,15 @@ func (o *PublicValidateUserByUserIDAndPasswordV3Params) SetHTTPClient(client *ht
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public validate user by user ID and password v3 params
+func (o *PublicValidateUserByUserIDAndPasswordV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public validate user by user ID and password v3 params
 func (o *PublicValidateUserByUserIDAndPasswordV3Params) WithNamespace(namespace string) *PublicValidateUserByUserIDAndPasswordV3Params {
 	o.SetNamespace(namespace)

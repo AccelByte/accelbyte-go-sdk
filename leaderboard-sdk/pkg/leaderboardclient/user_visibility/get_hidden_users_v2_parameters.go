@@ -133,6 +133,15 @@ func (o *GetHiddenUsersV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get hidden users v2 params
+func (o *GetHiddenUsersV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCode adds the leaderboardCode to the get hidden users v2 params
 func (o *GetHiddenUsersV2Params) WithLeaderboardCode(leaderboardCode string) *GetHiddenUsersV2Params {
 	o.SetLeaderboardCode(leaderboardCode)

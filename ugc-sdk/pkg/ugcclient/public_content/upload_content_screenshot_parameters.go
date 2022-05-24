@@ -131,6 +131,15 @@ func (o *UploadContentScreenshotParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the upload content screenshot params
+func (o *UploadContentScreenshotParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the upload content screenshot params
 func (o *UploadContentScreenshotParams) WithBody(body *ugcclientmodels.ModelsCreateScreenshotRequest) *UploadContentScreenshotParams {
 	o.SetBody(body)

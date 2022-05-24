@@ -170,6 +170,15 @@ func (o *TokenGrantParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the token grant params
+func (o *TokenGrantParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDeviceID adds the deviceID to the token grant params
 func (o *TokenGrantParams) WithDeviceID(deviceID *string) *TokenGrantParams {
 	o.SetDeviceID(deviceID)

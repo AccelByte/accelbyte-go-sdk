@@ -145,6 +145,15 @@ func (o *QueryUserOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query user orders params
+func (o *QueryUserOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemID adds the itemID to the query user orders params
 func (o *QueryUserOrdersParams) WithItemID(itemID *string) *QueryUserOrdersParams {
 	o.SetItemID(itemID)

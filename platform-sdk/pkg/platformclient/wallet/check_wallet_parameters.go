@@ -126,6 +126,15 @@ func (o *CheckWalletParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check wallet params
+func (o *CheckWalletParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCurrencyCode adds the currencyCode to the check wallet params
 func (o *CheckWalletParams) WithCurrencyCode(currencyCode string) *CheckWalletParams {
 	o.SetCurrencyCode(currencyCode)

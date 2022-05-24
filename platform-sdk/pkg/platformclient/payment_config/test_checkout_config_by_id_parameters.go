@@ -129,6 +129,15 @@ func (o *TestCheckoutConfigByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test checkout config by Id params
+func (o *TestCheckoutConfigByIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the test checkout config by Id params
 func (o *TestCheckoutConfigByIDParams) WithID(id string) *TestCheckoutConfigByIDParams {
 	o.SetID(id)

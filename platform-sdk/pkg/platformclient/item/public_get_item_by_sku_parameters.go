@@ -125,6 +125,15 @@ func (o *PublicGetItemBySkuParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get item by sku params
+func (o *PublicGetItemBySkuParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLanguage adds the language to the public get item by sku params
 func (o *PublicGetItemBySkuParams) WithLanguage(language *string) *PublicGetItemBySkuParams {
 	o.SetLanguage(language)

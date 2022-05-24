@@ -117,6 +117,15 @@ func (o *PublicDownloadMyBackupCodesV4Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public download my backup codes v4 params
+func (o *PublicDownloadMyBackupCodesV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public download my backup codes v4 params
 func (o *PublicDownloadMyBackupCodesV4Params) WithNamespace(namespace string) *PublicDownloadMyBackupCodesV4Params {
 	o.SetNamespace(namespace)

@@ -131,6 +131,15 @@ func (o *AdminUpdateUserBanV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update user ban v3 params
+func (o *AdminUpdateUserBanV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBanID adds the banID to the admin update user ban v3 params
 func (o *AdminUpdateUserBanV3Params) WithBanID(banID string) *AdminUpdateUserBanV3Params {
 	o.SetBanID(banID)

@@ -126,6 +126,15 @@ func (o *AdminUpdateUserStatusV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update user status v3 params
+func (o *AdminUpdateUserStatusV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update user status v3 params
 func (o *AdminUpdateUserStatusV3Params) WithBody(body *iamclientmodels.ModelUpdateUserStatusRequest) *AdminUpdateUserStatusV3Params {
 	o.SetBody(body)

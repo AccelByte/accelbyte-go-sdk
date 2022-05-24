@@ -157,6 +157,15 @@ func (o *PublicQueryUserStatItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public query user stat items params
+func (o *PublicQueryUserStatItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the public query user stat items params
 func (o *PublicQueryUserStatItemsParams) WithLimit(limit *int32) *PublicQueryUserStatItemsParams {
 	o.SetLimit(limit)

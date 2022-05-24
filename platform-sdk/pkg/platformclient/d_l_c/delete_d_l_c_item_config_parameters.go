@@ -117,6 +117,15 @@ func (o *DeleteDLCItemConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete d l c item config params
+func (o *DeleteDLCItemConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete d l c item config params
 func (o *DeleteDLCItemConfigParams) WithNamespace(namespace string) *DeleteDLCItemConfigParams {
 	o.SetNamespace(namespace)

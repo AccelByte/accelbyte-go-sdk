@@ -138,6 +138,15 @@ func (o *PublicGetUserPlatformAccountsV3Params) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user platform accounts v3 params
+func (o *PublicGetUserPlatformAccountsV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the public get user platform accounts v3 params
 func (o *PublicGetUserPlatformAccountsV3Params) WithAfter(after *string) *PublicGetUserPlatformAccountsV3Params {
 	o.SetAfter(after)

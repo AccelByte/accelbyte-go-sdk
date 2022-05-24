@@ -122,6 +122,15 @@ func (o *CheckServerLogsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the check server logs params
+func (o *CheckServerLogsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the check server logs params
 func (o *CheckServerLogsParams) WithNamespace(namespace string) *CheckServerLogsParams {
 	o.SetNamespace(namespace)

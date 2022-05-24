@@ -159,6 +159,15 @@ func (o *QueryPaymentNotificationsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query payment notifications params
+func (o *QueryPaymentNotificationsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEndDate adds the endDate to the query payment notifications params
 func (o *QueryPaymentNotificationsParams) WithEndDate(endDate *string) *QueryPaymentNotificationsParams {
 	o.SetEndDate(endDate)

@@ -126,6 +126,15 @@ func (o *AddPortParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add port params
+func (o *AddPortParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the add port params
 func (o *AddPortParams) WithBody(body *dsmcclientmodels.ModelsCreatePortRequest) *AddPortParams {
 	o.SetBody(body)

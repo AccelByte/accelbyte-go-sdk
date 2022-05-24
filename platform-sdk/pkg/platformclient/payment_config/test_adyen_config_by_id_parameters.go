@@ -129,6 +129,15 @@ func (o *TestAdyenConfigByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test adyen config by Id params
+func (o *TestAdyenConfigByIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the test adyen config by Id params
 func (o *TestAdyenConfigByIDParams) WithID(id string) *TestAdyenConfigByIDParams {
 	o.SetID(id)

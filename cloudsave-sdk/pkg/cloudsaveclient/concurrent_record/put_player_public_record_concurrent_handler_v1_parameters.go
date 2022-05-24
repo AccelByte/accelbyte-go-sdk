@@ -131,6 +131,15 @@ func (o *PutPlayerPublicRecordConcurrentHandlerV1Params) SetHTTPClient(client *h
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the put player public record concurrent handler v1 params
+func (o *PutPlayerPublicRecordConcurrentHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the put player public record concurrent handler v1 params
 func (o *PutPlayerPublicRecordConcurrentHandlerV1Params) WithBody(body *cloudsaveclientmodels.ModelsConcurrentRecordRequest) *PutPlayerPublicRecordConcurrentHandlerV1Params {
 	o.SetBody(body)

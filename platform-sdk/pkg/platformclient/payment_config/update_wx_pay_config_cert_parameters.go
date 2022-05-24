@@ -116,6 +116,15 @@ func (o *UpdateWxPayConfigCertParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update wx pay config cert params
+func (o *UpdateWxPayConfigCertParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the update wx pay config cert params
 func (o *UpdateWxPayConfigCertParams) WithFile(file runtime.NamedReadCloser) *UpdateWxPayConfigCertParams {
 	o.SetFile(file)

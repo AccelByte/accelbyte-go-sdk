@@ -126,6 +126,15 @@ func (o *PublicUpdateUserProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update user profile params
+func (o *PublicUpdateUserProfileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update user profile params
 func (o *PublicUpdateUserProfileParams) WithBody(body *basicclientmodels.UserProfileUpdate) *PublicUpdateUserProfileParams {
 	o.SetBody(body)

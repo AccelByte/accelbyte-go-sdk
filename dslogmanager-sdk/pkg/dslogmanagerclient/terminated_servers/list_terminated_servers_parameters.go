@@ -195,6 +195,15 @@ func (o *ListTerminatedServersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list terminated servers params
+func (o *ListTerminatedServersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDeployment adds the deployment to the list terminated servers params
 func (o *ListTerminatedServersParams) WithDeployment(deployment *string) *ListTerminatedServersParams {
 	o.SetDeployment(deployment)

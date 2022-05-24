@@ -126,6 +126,15 @@ func (o *UpdateCountryGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update country group params
+func (o *UpdateCountryGroupParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update country group params
 func (o *UpdateCountryGroupParams) WithBody(body *basicclientmodels.UpdateCountryGroupRequest) *UpdateCountryGroupParams {
 	o.SetBody(body)

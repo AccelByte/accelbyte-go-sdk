@@ -122,6 +122,15 @@ func (o *BulkGetSessionsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the bulk get sessions params
+func (o *BulkGetSessionsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithMatchIDs adds the matchIDs to the bulk get sessions params
 func (o *BulkGetSessionsParams) WithMatchIDs(matchIDs *string) *BulkGetSessionsParams {
 	o.SetMatchIDs(matchIDs)

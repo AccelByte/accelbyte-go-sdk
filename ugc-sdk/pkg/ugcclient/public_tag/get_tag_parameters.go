@@ -148,6 +148,15 @@ func (o *GetTagParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get tag params
+func (o *GetTagParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get tag params
 func (o *GetTagParams) WithLimit(limit *int64) *GetTagParams {
 	o.SetLimit(limit)

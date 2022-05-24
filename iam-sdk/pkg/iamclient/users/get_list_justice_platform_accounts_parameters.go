@@ -122,6 +122,15 @@ func (o *GetListJusticePlatformAccountsParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get list justice platform accounts params
+func (o *GetListJusticePlatformAccountsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get list justice platform accounts params
 func (o *GetListJusticePlatformAccountsParams) WithNamespace(namespace string) *GetListJusticePlatformAccountsParams {
 	o.SetNamespace(namespace)

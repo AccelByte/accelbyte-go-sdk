@@ -112,6 +112,15 @@ func (o *GetBansTypeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get bans type params
+func (o *GetBansTypeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetBansTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

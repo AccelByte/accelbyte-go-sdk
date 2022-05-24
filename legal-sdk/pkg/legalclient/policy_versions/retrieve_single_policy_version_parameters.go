@@ -122,6 +122,15 @@ func (o *RetrieveSinglePolicyVersionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve single policy version params
+func (o *RetrieveSinglePolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPolicyID adds the policyID to the retrieve single policy version params
 func (o *RetrieveSinglePolicyVersionParams) WithPolicyID(policyID string) *RetrieveSinglePolicyVersionParams {
 	o.SetPolicyID(policyID)

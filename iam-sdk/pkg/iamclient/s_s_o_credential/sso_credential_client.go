@@ -12,7 +12,6 @@ package s_s_o_credential
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -69,7 +68,7 @@ func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCreden
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -122,7 +121,7 @@ func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformC
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -176,7 +175,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -229,7 +228,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -283,7 +282,7 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOL
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -336,7 +335,7 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAl
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -390,7 +389,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -443,7 +442,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLogi
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -497,7 +496,7 @@ func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredential
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -553,7 +552,7 @@ func (a *Client) UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCrede
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -116,6 +116,15 @@ func (o *TestFulfillmentScriptEvalParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test fulfillment script eval params
+func (o *TestFulfillmentScriptEvalParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the test fulfillment script eval params
 func (o *TestFulfillmentScriptEvalParams) WithBody(body *platformclientmodels.FulfillmentScriptEvalTestRequest) *TestFulfillmentScriptEvalParams {
 	o.SetBody(body)

@@ -136,6 +136,15 @@ func (o *GetItemBySkuParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get item by sku params
+func (o *GetItemBySkuParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get item by sku params
 func (o *GetItemBySkuParams) WithActiveOnly(activeOnly *bool) *GetItemBySkuParams {
 	o.SetActiveOnly(activeOnly)

@@ -116,6 +116,15 @@ func (o *UpdatePaymentTaxConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update payment tax config params
+func (o *UpdatePaymentTaxConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update payment tax config params
 func (o *UpdatePaymentTaxConfigParams) WithBody(body *platformclientmodels.PaymentTaxConfigEdit) *UpdatePaymentTaxConfigParams {
 	o.SetBody(body)

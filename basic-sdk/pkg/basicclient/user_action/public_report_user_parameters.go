@@ -126,6 +126,15 @@ func (o *PublicReportUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public report user params
+func (o *PublicReportUserParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public report user params
 func (o *PublicReportUserParams) WithBody(body *basicclientmodels.UserReportRequest) *PublicReportUserParams {
 	o.SetBody(body)

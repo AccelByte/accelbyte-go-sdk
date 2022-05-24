@@ -122,6 +122,15 @@ func (o *EnableUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the enable user params
+func (o *EnableUserParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the enable user params
 func (o *EnableUserParams) WithNamespace(namespace string) *EnableUserParams {
 	o.SetNamespace(namespace)

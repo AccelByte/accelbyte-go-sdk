@@ -120,6 +120,15 @@ func (o *PublicSyncPsnDlcInventoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public sync psn dlc inventory params
+func (o *PublicSyncPsnDlcInventoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public sync psn dlc inventory params
 func (o *PublicSyncPsnDlcInventoryParams) WithBody(body *platformclientmodels.PlayStationDLCSyncRequest) *PublicSyncPsnDlcInventoryParams {
 	o.SetBody(body)

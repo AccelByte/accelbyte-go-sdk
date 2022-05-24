@@ -126,6 +126,15 @@ func (o *UpdatePatchSingleGroupPublicV1Params) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update patch single group public v1 params
+func (o *UpdatePatchSingleGroupPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update patch single group public v1 params
 func (o *UpdatePatchSingleGroupPublicV1Params) WithBody(body *groupclientmodels.ModelsUpdateGroupRequestV1) *UpdatePatchSingleGroupPublicV1Params {
 	o.SetBody(body)

@@ -117,6 +117,15 @@ func (o *GetImageLimitParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get image limit params
+func (o *GetImageLimitParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get image limit params
 func (o *GetImageLimitParams) WithNamespace(namespace string) *GetImageLimitParams {
 	o.SetNamespace(namespace)

@@ -122,6 +122,15 @@ func (o *AdminGetPlayerBlockedByPlayersV1Params) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get player blocked by players v1 params
+func (o *AdminGetPlayerBlockedByPlayersV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin get player blocked by players v1 params
 func (o *AdminGetPlayerBlockedByPlayersV1Params) WithNamespace(namespace string) *AdminGetPlayerBlockedByPlayersV1Params {
 	o.SetNamespace(namespace)

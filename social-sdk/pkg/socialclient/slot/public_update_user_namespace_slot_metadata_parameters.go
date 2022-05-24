@@ -131,6 +131,15 @@ func (o *PublicUpdateUserNamespaceSlotMetadataParams) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update user namespace slot metadata params
+func (o *PublicUpdateUserNamespaceSlotMetadataParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update user namespace slot metadata params
 func (o *PublicUpdateUserNamespaceSlotMetadataParams) WithBody(body *socialclientmodels.SlotMetadataUpdate) *PublicUpdateUserNamespaceSlotMetadataParams {
 	o.SetBody(body)

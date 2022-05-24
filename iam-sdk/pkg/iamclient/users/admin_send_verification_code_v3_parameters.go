@@ -126,6 +126,15 @@ func (o *AdminSendVerificationCodeV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin send verification code v3 params
+func (o *AdminSendVerificationCodeV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin send verification code v3 params
 func (o *AdminSendVerificationCodeV3Params) WithBody(body *iamclientmodels.ModelSendVerificationCodeRequestV3) *AdminSendVerificationCodeV3Params {
 	o.SetBody(body)

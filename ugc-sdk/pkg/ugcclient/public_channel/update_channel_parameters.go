@@ -131,6 +131,15 @@ func (o *UpdateChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update channel params
+func (o *UpdateChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update channel params
 func (o *UpdateChannelParams) WithBody(body *ugcclientmodels.ModelsChannelRequest) *UpdateChannelParams {
 	o.SetBody(body)

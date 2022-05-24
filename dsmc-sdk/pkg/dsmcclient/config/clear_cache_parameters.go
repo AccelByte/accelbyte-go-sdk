@@ -117,6 +117,15 @@ func (o *ClearCacheParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the clear cache params
+func (o *ClearCacheParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the clear cache params
 func (o *ClearCacheParams) WithNamespace(namespace string) *ClearCacheParams {
 	o.SetNamespace(namespace)

@@ -159,6 +159,15 @@ func (o *AuthorizationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the authorization params
+func (o *AuthorizationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the authorization params
 func (o *AuthorizationParams) WithClientID(clientID string) *AuthorizationParams {
 	o.SetClientID(clientID)

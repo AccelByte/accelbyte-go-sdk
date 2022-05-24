@@ -123,6 +123,15 @@ func (o *UpdatePlatformWalletConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update platform wallet config params
+func (o *UpdatePlatformWalletConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update platform wallet config params
 func (o *UpdatePlatformWalletConfigParams) WithBody(body *platformclientmodels.PlatformWalletConfigUpdate) *UpdatePlatformWalletConfigParams {
 	o.SetBody(body)

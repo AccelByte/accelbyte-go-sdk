@@ -138,6 +138,15 @@ func (o *PublicGetUserLoginHistoriesV3Params) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user login histories v3 params
+func (o *PublicGetUserLoginHistoriesV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the public get user login histories v3 params
 func (o *PublicGetUserLoginHistoriesV3Params) WithAfter(after *float64) *PublicGetUserLoginHistoriesV3Params {
 	o.SetAfter(after)

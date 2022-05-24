@@ -116,6 +116,15 @@ func (o *BulkAcceptVersionedPolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the bulk accept versioned policy params
+func (o *BulkAcceptVersionedPolicyParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the bulk accept versioned policy params
 func (o *BulkAcceptVersionedPolicyParams) WithBody(body []*legalclientmodels.AcceptAgreementRequest) *BulkAcceptVersionedPolicyParams {
 	o.SetBody(body)

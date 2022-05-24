@@ -121,6 +121,15 @@ func (o *CloneStoreParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the clone store params
+func (o *CloneStoreParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the clone store params
 func (o *CloneStoreParams) WithNamespace(namespace string) *CloneStoreParams {
 	o.SetNamespace(namespace)

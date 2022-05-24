@@ -117,6 +117,15 @@ func (o *GetAllPartyInAllChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all party in all channel params
+func (o *GetAllPartyInAllChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get all party in all channel params
 func (o *GetAllPartyInAllChannelParams) WithNamespace(namespace string) *GetAllPartyInAllChannelParams {
 	o.SetNamespace(namespace)

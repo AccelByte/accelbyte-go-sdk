@@ -121,6 +121,15 @@ func (o *DeleteCategoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete category params
+func (o *DeleteCategoryParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCategoryPath adds the categoryPath to the delete category params
 func (o *DeleteCategoryParams) WithCategoryPath(categoryPath string) *DeleteCategoryParams {
 	o.SetCategoryPath(categoryPath)

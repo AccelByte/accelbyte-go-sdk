@@ -124,6 +124,15 @@ func (o *CreateTemplateParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create template params
+func (o *CreateTemplateParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the create template params
 func (o *CreateTemplateParams) WithBody(body *lobbyclientmodels.ModelCreateTemplateRequest) *CreateTemplateParams {
 	o.SetBody(body)

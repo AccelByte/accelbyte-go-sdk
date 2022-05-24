@@ -122,6 +122,15 @@ func (o *AdminGetUserAccountDeletionRequestParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get user account deletion request params
+func (o *AdminGetUserAccountDeletionRequestParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin get user account deletion request params
 func (o *AdminGetUserAccountDeletionRequestParams) WithNamespace(namespace string) *AdminGetUserAccountDeletionRequestParams {
 	o.SetNamespace(namespace)

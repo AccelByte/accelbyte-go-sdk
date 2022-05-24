@@ -129,6 +129,15 @@ func (o *UpdateUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update user params
+func (o *UpdateUserParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update user params
 func (o *UpdateUserParams) WithBody(body *iamclientmodels.ModelUserUpdateRequest) *UpdateUserParams {
 	o.SetBody(body)

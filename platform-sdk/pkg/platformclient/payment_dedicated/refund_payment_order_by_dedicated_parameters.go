@@ -120,6 +120,15 @@ func (o *RefundPaymentOrderByDedicatedParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the refund payment order by dedicated params
+func (o *RefundPaymentOrderByDedicatedParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the refund payment order by dedicated params
 func (o *RefundPaymentOrderByDedicatedParams) WithBody(body *platformclientmodels.PaymentOrderRefund) *RefundPaymentOrderByDedicatedParams {
 	o.SetBody(body)

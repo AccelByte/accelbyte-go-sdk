@@ -122,6 +122,15 @@ func (o *JoinGroupV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the join group v1 params
+func (o *JoinGroupV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the join group v1 params
 func (o *JoinGroupV1Params) WithGroupID(groupID string) *JoinGroupV1Params {
 	o.SetGroupID(groupID)

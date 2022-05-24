@@ -116,6 +116,15 @@ func (o *AnonymizeEntitlementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the anonymize entitlement params
+func (o *AnonymizeEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the anonymize entitlement params
 func (o *AnonymizeEntitlementParams) WithNamespace(namespace string) *AnonymizeEntitlementParams {
 	o.SetNamespace(namespace)

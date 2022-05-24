@@ -117,6 +117,15 @@ func (o *TokenIntrospectionV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the token introspection v3 params
+func (o *TokenIntrospectionV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithToken adds the token to the token introspection v3 params
 func (o *TokenIntrospectionV3Params) WithToken(token string) *TokenIntrospectionV3Params {
 	o.SetToken(token)

@@ -127,6 +127,15 @@ func (o *PublicGetUserByPlatformUserIDV3Params) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user by platform user ID v3 params
+func (o *PublicGetUserByPlatformUserIDV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public get user by platform user ID v3 params
 func (o *PublicGetUserByPlatformUserIDV3Params) WithNamespace(namespace string) *PublicGetUserByPlatformUserIDV3Params {
 	o.SetNamespace(namespace)

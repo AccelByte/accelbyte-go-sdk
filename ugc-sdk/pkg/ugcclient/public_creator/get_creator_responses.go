@@ -73,20 +73,20 @@ func NewGetCreatorOK() *GetCreatorOK {
   OK
 */
 type GetCreatorOK struct {
-	Payload *ugcclientmodels.ModelsCreatorOverviewResponse
+	Payload *ugcclientmodels.ModelsCreatorResponse
 }
 
 func (o *GetCreatorOK) Error() string {
 	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] getCreatorOK  %+v", 200, o.Payload)
 }
 
-func (o *GetCreatorOK) GetPayload() *ugcclientmodels.ModelsCreatorOverviewResponse {
+func (o *GetCreatorOK) GetPayload() *ugcclientmodels.ModelsCreatorResponse {
 	return o.Payload
 }
 
 func (o *GetCreatorOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(ugcclientmodels.ModelsCreatorOverviewResponse)
+	o.Payload = new(ugcclientmodels.ModelsCreatorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

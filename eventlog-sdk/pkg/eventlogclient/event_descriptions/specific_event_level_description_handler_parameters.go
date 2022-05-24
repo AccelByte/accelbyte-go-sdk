@@ -117,6 +117,15 @@ func (o *SpecificEventLevelDescriptionHandlerParams) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the specific event level description handler params
+func (o *SpecificEventLevelDescriptionHandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEventLevels adds the eventLevels to the specific event level description handler params
 func (o *SpecificEventLevelDescriptionHandlerParams) WithEventLevels(eventLevels *string) *SpecificEventLevelDescriptionHandlerParams {
 	o.SetEventLevels(eventLevels)

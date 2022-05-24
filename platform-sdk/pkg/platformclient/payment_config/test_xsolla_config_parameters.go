@@ -116,6 +116,15 @@ func (o *TestXsollaConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the test xsolla config params
+func (o *TestXsollaConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the test xsolla config params
 func (o *TestXsollaConfigParams) WithBody(body *platformclientmodels.XsollaConfig) *TestXsollaConfigParams {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *SingleAdminDeleteChannelParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the single admin delete channel params
+func (o *SingleAdminDeleteChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannelID adds the channelID to the single admin delete channel params
 func (o *SingleAdminDeleteChannelParams) WithChannelID(channelID string) *SingleAdminDeleteChannelParams {
 	o.SetChannelID(channelID)

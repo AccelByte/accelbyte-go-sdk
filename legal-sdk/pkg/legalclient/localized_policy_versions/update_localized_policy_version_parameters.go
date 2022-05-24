@@ -121,6 +121,15 @@ func (o *UpdateLocalizedPolicyVersionParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update localized policy version params
+func (o *UpdateLocalizedPolicyVersionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update localized policy version params
 func (o *UpdateLocalizedPolicyVersionParams) WithBody(body *legalclientmodels.UpdateLocalizedPolicyVersionRequest) *UpdateLocalizedPolicyVersionParams {
 	o.SetBody(body)

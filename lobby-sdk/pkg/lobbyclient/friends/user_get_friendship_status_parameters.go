@@ -122,6 +122,15 @@ func (o *UserGetFriendshipStatusParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the user get friendship status params
+func (o *UserGetFriendshipStatusParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFriendID adds the friendID to the user get friendship status params
 func (o *UserGetFriendshipStatusParams) WithFriendID(friendID string) *UserGetFriendshipStatusParams {
 	o.SetFriendID(friendID)

@@ -117,6 +117,15 @@ func (o *GetCurrentSeasonParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get current season params
+func (o *GetCurrentSeasonParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get current season params
 func (o *GetCurrentSeasonParams) WithNamespace(namespace string) *GetCurrentSeasonParams {
 	o.SetNamespace(namespace)

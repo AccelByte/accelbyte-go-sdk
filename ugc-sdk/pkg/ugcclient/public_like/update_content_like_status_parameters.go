@@ -126,6 +126,15 @@ func (o *UpdateContentLikeStatusParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update content like status params
+func (o *UpdateContentLikeStatusParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update content like status params
 func (o *UpdateContentLikeStatusParams) WithBody(body *ugcclientmodels.ModelsContentLikeRequest) *UpdateContentLikeStatusParams {
 	o.SetBody(body)

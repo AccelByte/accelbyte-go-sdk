@@ -114,6 +114,15 @@ func (o *GetFulfillmentScriptParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get fulfillment script params
+func (o *GetFulfillmentScriptParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the get fulfillment script params
 func (o *GetFulfillmentScriptParams) WithID(id string) *GetFulfillmentScriptParams {
 	o.SetID(id)

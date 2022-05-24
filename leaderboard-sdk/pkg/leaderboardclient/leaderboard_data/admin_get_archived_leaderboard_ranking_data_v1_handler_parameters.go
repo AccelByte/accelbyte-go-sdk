@@ -127,6 +127,15 @@ func (o *AdminGetArchivedLeaderboardRankingDataV1HandlerParams) SetHTTPClient(cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get archived leaderboard ranking data v1 handler params
+func (o *AdminGetArchivedLeaderboardRankingDataV1HandlerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLeaderboardCodes adds the leaderboardCodes to the admin get archived leaderboard ranking data v1 handler params
 func (o *AdminGetArchivedLeaderboardRankingDataV1HandlerParams) WithLeaderboardCodes(leaderboardCodes string) *AdminGetArchivedLeaderboardRankingDataV1HandlerParams {
 	o.SetLeaderboardCodes(leaderboardCodes)

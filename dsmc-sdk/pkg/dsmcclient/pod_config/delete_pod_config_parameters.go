@@ -122,6 +122,15 @@ func (o *DeletePodConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete pod config params
+func (o *DeletePodConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithName adds the name to the delete pod config params
 func (o *DeletePodConfigParams) WithName(name string) *DeletePodConfigParams {
 	o.SetName(name)

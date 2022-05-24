@@ -122,6 +122,15 @@ func (o *PublicDeletePlayerPublicRecordHandlerV1Params) SetHTTPClient(client *ht
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public delete player public record handler v1 params
+func (o *PublicDeletePlayerPublicRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKey adds the key to the public delete player public record handler v1 params
 func (o *PublicDeletePlayerPublicRecordHandlerV1Params) WithKey(key string) *PublicDeletePlayerPublicRecordHandlerV1Params {
 	o.SetKey(key)

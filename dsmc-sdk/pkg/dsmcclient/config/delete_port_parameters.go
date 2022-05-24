@@ -122,6 +122,15 @@ func (o *DeletePortParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete port params
+func (o *DeletePortParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithName adds the name to the delete port params
 func (o *DeletePortParams) WithName(name string) *DeletePortParams {
 	o.SetName(name)

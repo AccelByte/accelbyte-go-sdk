@@ -117,6 +117,15 @@ func (o *DeleteServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete server params
+func (o *DeleteServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithRegion adds the region to the delete server params
 func (o *DeleteServerParams) WithRegion(region string) *DeleteServerParams {
 	o.SetRegion(region)

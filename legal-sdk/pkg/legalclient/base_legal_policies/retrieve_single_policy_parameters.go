@@ -117,6 +117,15 @@ func (o *RetrieveSinglePolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve single policy params
+func (o *RetrieveSinglePolicyParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBasePolicyID adds the basePolicyID to the retrieve single policy params
 func (o *RetrieveSinglePolicyParams) WithBasePolicyID(basePolicyID string) *RetrieveSinglePolicyParams {
 	o.SetBasePolicyID(basePolicyID)

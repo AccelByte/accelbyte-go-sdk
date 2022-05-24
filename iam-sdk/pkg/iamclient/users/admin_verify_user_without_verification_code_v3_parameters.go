@@ -122,6 +122,15 @@ func (o *AdminVerifyUserWithoutVerificationCodeV3Params) SetHTTPClient(client *h
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin verify user without verification code v3 params
+func (o *AdminVerifyUserWithoutVerificationCodeV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin verify user without verification code v3 params
 func (o *AdminVerifyUserWithoutVerificationCodeV3Params) WithNamespace(namespace string) *AdminVerifyUserWithoutVerificationCodeV3Params {
 	o.SetNamespace(namespace)

@@ -116,6 +116,15 @@ func (o *AnonymizeFulfillmentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the anonymize fulfillment params
+func (o *AnonymizeFulfillmentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the anonymize fulfillment params
 func (o *AnonymizeFulfillmentParams) WithNamespace(namespace string) *AnonymizeFulfillmentParams {
 	o.SetNamespace(namespace)

@@ -122,6 +122,15 @@ func (o *RetrieveSSOLoginPlatformCredentialParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve s s o login platform credential params
+func (o *RetrieveSSOLoginPlatformCredentialParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the retrieve s s o login platform credential params
 func (o *RetrieveSSOLoginPlatformCredentialParams) WithNamespace(namespace string) *RetrieveSSOLoginPlatformCredentialParams {
 	o.SetNamespace(namespace)

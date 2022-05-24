@@ -117,6 +117,15 @@ func (o *SetDefaultPolicy1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the set default policy 1 params
+func (o *SetDefaultPolicy1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithPolicyID adds the policyID to the set default policy 1 params
 func (o *SetDefaultPolicy1Params) WithPolicyID(policyID string) *SetDefaultPolicy1Params {
 	o.SetPolicyID(policyID)

@@ -116,6 +116,15 @@ func (o *PublicGetQRCodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get q r code params
+func (o *PublicGetQRCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the public get q r code params
 func (o *PublicGetQRCodeParams) WithCode(code string) *PublicGetQRCodeParams {
 	o.SetCode(code)

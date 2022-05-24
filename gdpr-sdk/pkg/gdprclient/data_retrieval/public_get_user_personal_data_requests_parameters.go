@@ -133,6 +133,15 @@ func (o *PublicGetUserPersonalDataRequestsParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get user personal data requests params
+func (o *PublicGetUserPersonalDataRequestsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the public get user personal data requests params
 func (o *PublicGetUserPersonalDataRequestsParams) WithLimit(limit *int64) *PublicGetUserPersonalDataRequestsParams {
 	o.SetLimit(limit)

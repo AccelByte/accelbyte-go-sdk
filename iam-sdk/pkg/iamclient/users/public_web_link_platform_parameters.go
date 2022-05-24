@@ -132,6 +132,15 @@ func (o *PublicWebLinkPlatformParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public web link platform params
+func (o *PublicWebLinkPlatformParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithClientID adds the clientID to the public web link platform params
 func (o *PublicWebLinkPlatformParams) WithClientID(clientID *string) *PublicWebLinkPlatformParams {
 	o.SetClientID(clientID)

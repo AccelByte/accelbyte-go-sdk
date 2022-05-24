@@ -126,6 +126,15 @@ func (o *AdminUpdateUserPermissionV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin update user permission v3 params
+func (o *AdminUpdateUserPermissionV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin update user permission v3 params
 func (o *AdminUpdateUserPermissionV3Params) WithBody(body *iamclientmodels.AccountcommonPermissions) *AdminUpdateUserPermissionV3Params {
 	o.SetBody(body)

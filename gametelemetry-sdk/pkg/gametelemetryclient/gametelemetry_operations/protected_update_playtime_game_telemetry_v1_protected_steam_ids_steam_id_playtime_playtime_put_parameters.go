@@ -118,6 +118,15 @@ func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeP
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params
+func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCookie adds the cookie to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) WithCookie(cookie *string) *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams {
 	o.SetCookie(cookie)

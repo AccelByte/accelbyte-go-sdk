@@ -133,6 +133,15 @@ func (o *GetUserLeaderboardRankingsAdminV1Params) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user leaderboard rankings admin v1 params
+func (o *GetUserLeaderboardRankingsAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get user leaderboard rankings admin v1 params
 func (o *GetUserLeaderboardRankingsAdminV1Params) WithLimit(limit *int64) *GetUserLeaderboardRankingsAdminV1Params {
 	o.SetLimit(limit)

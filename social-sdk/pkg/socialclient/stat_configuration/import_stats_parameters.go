@@ -125,6 +125,15 @@ func (o *ImportStatsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the import stats params
+func (o *ImportStatsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the import stats params
 func (o *ImportStatsParams) WithFile(file runtime.NamedReadCloser) *ImportStatsParams {
 	o.SetFile(file)

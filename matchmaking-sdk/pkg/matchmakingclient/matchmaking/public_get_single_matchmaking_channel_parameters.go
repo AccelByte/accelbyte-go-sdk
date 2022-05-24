@@ -122,6 +122,15 @@ func (o *PublicGetSingleMatchmakingChannelParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get single matchmaking channel params
+func (o *PublicGetSingleMatchmakingChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannelName adds the channelName to the public get single matchmaking channel params
 func (o *PublicGetSingleMatchmakingChannelParams) WithChannelName(channelName string) *PublicGetSingleMatchmakingChannelParams {
 	o.SetChannelName(channelName)

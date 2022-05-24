@@ -126,6 +126,15 @@ func (o *DisableUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the disable user params
+func (o *DisableUserParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the disable user params
 func (o *DisableUserParams) WithBody(body *iamclientmodels.ModelDisableUserRequest) *DisableUserParams {
 	o.SetBody(body)

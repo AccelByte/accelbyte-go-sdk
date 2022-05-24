@@ -135,6 +135,15 @@ func (o *PublicGetInputValidationsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get input validations params
+func (o *PublicGetInputValidationsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDefaultOnEmpty adds the defaultOnEmpty to the public get input validations params
 func (o *PublicGetInputValidationsParams) WithDefaultOnEmpty(defaultOnEmpty *bool) *PublicGetInputValidationsParams {
 	o.SetDefaultOnEmpty(defaultOnEmpty)

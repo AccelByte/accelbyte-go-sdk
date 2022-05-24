@@ -117,6 +117,15 @@ func (o *GetAllNotificationTemplatesV1AdminParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get all notification templates v1 admin params
+func (o *GetAllNotificationTemplatesV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get all notification templates v1 admin params
 func (o *GetAllNotificationTemplatesV1AdminParams) WithNamespace(namespace string) *GetAllNotificationTemplatesV1AdminParams {
 	o.SetNamespace(namespace)

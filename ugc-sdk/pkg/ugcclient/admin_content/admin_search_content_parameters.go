@@ -193,6 +193,15 @@ func (o *AdminSearchContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin search content params
+func (o *AdminSearchContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCreator adds the creator to the admin search content params
 func (o *AdminSearchContentParams) WithCreator(creator *string) *AdminSearchContentParams {
 	o.SetCreator(creator)

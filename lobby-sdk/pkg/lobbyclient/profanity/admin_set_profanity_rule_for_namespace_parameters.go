@@ -124,6 +124,15 @@ func (o *AdminSetProfanityRuleForNamespaceParams) SetHTTPClient(client *http.Cli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin set profanity rule for namespace params
+func (o *AdminSetProfanityRuleForNamespaceParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin set profanity rule for namespace params
 func (o *AdminSetProfanityRuleForNamespaceParams) WithBody(body *lobbyclientmodels.ModelsAdminSetProfanityRuleForNamespaceRequest) *AdminSetProfanityRuleForNamespaceParams {
 	o.SetBody(body)

@@ -121,6 +121,15 @@ func (o *PublicUpgradeHeadlessAccountV4Params) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public upgrade headless account v4 params
+func (o *PublicUpgradeHeadlessAccountV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public upgrade headless account v4 params
 func (o *PublicUpgradeHeadlessAccountV4Params) WithBody(body *iamclientmodels.AccountUpgradeHeadlessAccountRequestV4) *PublicUpgradeHeadlessAccountV4Params {
 	o.SetBody(body)

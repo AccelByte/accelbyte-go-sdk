@@ -131,6 +131,15 @@ func (o *PublicIncUserStatItemValueParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public inc user stat item value params
+func (o *PublicIncUserStatItemValueParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public inc user stat item value params
 func (o *PublicIncUserStatItemValueParams) WithBody(body *socialclientmodels.StatItemInc) *PublicIncUserStatItemValueParams {
 	o.SetBody(body)

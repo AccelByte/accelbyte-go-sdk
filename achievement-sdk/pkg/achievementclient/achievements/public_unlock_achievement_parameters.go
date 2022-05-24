@@ -127,6 +127,15 @@ func (o *PublicUnlockAchievementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public unlock achievement params
+func (o *PublicUnlockAchievementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAchievementCode adds the achievementCode to the public unlock achievement params
 func (o *PublicUnlockAchievementParams) WithAchievementCode(achievementCode string) *PublicUnlockAchievementParams {
 	o.SetAchievementCode(achievementCode)

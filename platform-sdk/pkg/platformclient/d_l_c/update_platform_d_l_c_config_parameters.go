@@ -118,6 +118,15 @@ func (o *UpdatePlatformDLCConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update platform d l c config params
+func (o *UpdatePlatformDLCConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update platform d l c config params
 func (o *UpdatePlatformDLCConfigParams) WithBody(body *platformclientmodels.PlatformDLCConfigUpdate) *UpdatePlatformDLCConfigParams {
 	o.SetBody(body)

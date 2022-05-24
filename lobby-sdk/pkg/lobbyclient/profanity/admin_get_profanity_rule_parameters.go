@@ -117,6 +117,15 @@ func (o *AdminGetProfanityRuleParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get profanity rule params
+func (o *AdminGetProfanityRuleParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin get profanity rule params
 func (o *AdminGetProfanityRuleParams) WithNamespace(namespace string) *AdminGetProfanityRuleParams {
 	o.SetNamespace(namespace)

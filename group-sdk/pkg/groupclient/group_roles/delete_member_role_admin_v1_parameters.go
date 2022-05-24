@@ -122,6 +122,15 @@ func (o *DeleteMemberRoleAdminV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete member role admin v1 params
+func (o *DeleteMemberRoleAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithMemberRoleID adds the memberRoleID to the delete member role admin v1 params
 func (o *DeleteMemberRoleAdminV1Params) WithMemberRoleID(memberRoleID string) *DeleteMemberRoleAdminV1Params {
 	o.SetMemberRoleID(memberRoleID)

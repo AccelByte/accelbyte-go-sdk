@@ -116,6 +116,15 @@ func (o *GetTicketDynamicParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get ticket dynamic params
+func (o *GetTicketDynamicParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBoothName adds the boothName to the get ticket dynamic params
 func (o *GetTicketDynamicParams) WithBoothName(boothName string) *GetTicketDynamicParams {
 	o.SetBoothName(boothName)

@@ -152,6 +152,15 @@ func (o *PublicListUserWalletTransactionsParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public list user wallet transactions params
+func (o *PublicListUserWalletTransactionsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCurrencyCode adds the currencyCode to the public list user wallet transactions params
 func (o *PublicListUserWalletTransactionsParams) WithCurrencyCode(currencyCode string) *PublicListUserWalletTransactionsParams {
 	o.SetCurrencyCode(currencyCode)

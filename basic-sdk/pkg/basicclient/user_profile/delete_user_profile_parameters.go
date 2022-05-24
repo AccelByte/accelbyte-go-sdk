@@ -122,6 +122,15 @@ func (o *DeleteUserProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user profile params
+func (o *DeleteUserProfileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete user profile params
 func (o *DeleteUserProfileParams) WithNamespace(namespace string) *DeleteUserProfileParams {
 	o.SetNamespace(namespace)

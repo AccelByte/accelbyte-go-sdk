@@ -127,6 +127,15 @@ func (o *AddUserRoleParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add user role params
+func (o *AddUserRoleParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the add user role params
 func (o *AddUserRoleParams) WithNamespace(namespace string) *AddUserRoleParams {
 	o.SetNamespace(namespace)

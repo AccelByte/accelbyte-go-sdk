@@ -126,6 +126,15 @@ func (o *AddPlayerToSessionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add player to session params
+func (o *AddPlayerToSessionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the add player to session params
 func (o *AddPlayerToSessionParams) WithBody(body *sessionbrowserclientmodels.ModelsAddPlayerRequest) *AddPlayerToSessionParams {
 	o.SetBody(body)

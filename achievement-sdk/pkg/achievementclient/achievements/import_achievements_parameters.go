@@ -127,6 +127,15 @@ func (o *ImportAchievementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the import achievements params
+func (o *ImportAchievementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the import achievements params
 func (o *ImportAchievementsParams) WithFile(file runtime.NamedReadCloser) *ImportAchievementsParams {
 	o.SetFile(file)

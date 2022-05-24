@@ -117,6 +117,15 @@ func (o *GetAdminEmailConfigurationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get admin email configuration params
+func (o *GetAdminEmailConfigurationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get admin email configuration params
 func (o *GetAdminEmailConfigurationParams) WithNamespace(namespace string) *GetAdminEmailConfigurationParams {
 	o.SetNamespace(namespace)

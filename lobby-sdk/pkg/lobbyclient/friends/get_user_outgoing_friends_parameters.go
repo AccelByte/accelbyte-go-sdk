@@ -117,6 +117,15 @@ func (o *GetUserOutgoingFriendsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get user outgoing friends params
+func (o *GetUserOutgoingFriendsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get user outgoing friends params
 func (o *GetUserOutgoingFriendsParams) WithNamespace(namespace string) *GetUserOutgoingFriendsParams {
 	o.SetNamespace(namespace)

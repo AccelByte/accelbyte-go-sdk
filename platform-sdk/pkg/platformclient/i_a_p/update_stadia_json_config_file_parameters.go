@@ -116,6 +116,15 @@ func (o *UpdateStadiaJSONConfigFileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update stadia Json config file params
+func (o *UpdateStadiaJSONConfigFileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the update stadia Json config file params
 func (o *UpdateStadiaJSONConfigFileParams) WithFile(file runtime.NamedReadCloser) *UpdateStadiaJSONConfigFileParams {
 	o.SetFile(file)

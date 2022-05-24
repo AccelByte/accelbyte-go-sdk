@@ -118,6 +118,15 @@ func (o *UpdateXsollaUIConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update xsolla UI config params
+func (o *UpdateXsollaUIConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update xsolla UI config params
 func (o *UpdateXsollaUIConfigParams) WithBody(body *platformclientmodels.XsollaPaywallConfigRequest) *UpdateXsollaUIConfigParams {
 	o.SetBody(body)

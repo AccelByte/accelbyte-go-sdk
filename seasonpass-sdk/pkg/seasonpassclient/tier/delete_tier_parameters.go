@@ -121,6 +121,15 @@ func (o *DeleteTierParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete tier params
+func (o *DeleteTierParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithID adds the id to the delete tier params
 func (o *DeleteTierParams) WithID(id string) *DeleteTierParams {
 	o.SetID(id)

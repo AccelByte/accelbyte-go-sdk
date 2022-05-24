@@ -120,6 +120,15 @@ func (o *SyncTwitchDropsEntitlementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the sync twitch drops entitlement params
+func (o *SyncTwitchDropsEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the sync twitch drops entitlement params
 func (o *SyncTwitchDropsEntitlementParams) WithBody(body *platformclientmodels.TwitchSyncRequest) *SyncTwitchDropsEntitlementParams {
 	o.SetBody(body)

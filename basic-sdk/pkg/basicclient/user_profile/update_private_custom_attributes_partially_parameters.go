@@ -124,6 +124,15 @@ func (o *UpdatePrivateCustomAttributesPartiallyParams) SetHTTPClient(client *htt
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update private custom attributes partially params
+func (o *UpdatePrivateCustomAttributesPartiallyParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update private custom attributes partially params
 func (o *UpdatePrivateCustomAttributesPartiallyParams) WithBody(body map[string]interface{}) *UpdatePrivateCustomAttributesPartiallyParams {
 	o.SetBody(body)

@@ -122,6 +122,15 @@ func (o *AdminDeleteUserInformationV3Params) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete user information v3 params
+func (o *AdminDeleteUserInformationV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin delete user information v3 params
 func (o *AdminDeleteUserInformationV3Params) WithNamespace(namespace string) *AdminDeleteUserInformationV3Params {
 	o.SetNamespace(namespace)

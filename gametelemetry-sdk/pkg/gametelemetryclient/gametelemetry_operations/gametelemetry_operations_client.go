@@ -12,7 +12,6 @@ package gametelemetry_operations
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -34,10 +33,6 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetEventsGameTelemetryV1AdminEventsGet(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity, error)
-	AdminGetEventsGameTelemetryV1AdminEventsGetShort(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, error)
-	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error)
-	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error)
 	ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity, error)
 	ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, error)
 	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity, error)
@@ -46,195 +41,6 @@ type ClientService interface {
 	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-  AdminGetEventsGameTelemetryV1AdminEventsGet admins get events
-
-  This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.
-
-This endpoint retrieve the latest event from each event name on specific namespace.
-
-&lt;p&gt; Parameter:
-
-- **Namespace (required) (case-sensitive)**: telemetry namespace.
-            &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
-            &lt;p&gt; Example: accelbyte or accelbyte.game2 &lt;/p&gt;
-*/
-func (a *Client) AdminGetEventsGameTelemetryV1AdminEventsGet(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminGetEventsGameTelemetryV1AdminEventsGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "admin_get_events_game_telemetry_v1_admin_events_get",
-		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/admin/events",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminGetEventsGameTelemetryV1AdminEventsGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminGetEventsGameTelemetryV1AdminEventsGetOK:
-		return v, nil, nil
-
-	case *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) AdminGetEventsGameTelemetryV1AdminEventsGetShort(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminGetEventsGameTelemetryV1AdminEventsGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "admin_get_events_game_telemetry_v1_admin_events_get",
-		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/admin/events",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminGetEventsGameTelemetryV1AdminEventsGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminGetEventsGameTelemetryV1AdminEventsGetOK:
-		return v, nil
-	case *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet admins get namespace
-
-  This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.
-
-This endpoint retrieve namespace from kafka topic.
-*/
-func (a *Client) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
-		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/admin/telemetrynamespace",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
-		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/admin/telemetrynamespace",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
 }
 
 /*
@@ -258,7 +64,7 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -302,7 +108,7 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -366,7 +172,7 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *P
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -410,7 +216,7 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(para
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -461,7 +267,7 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -505,7 +311,7 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -127,6 +127,15 @@ func (o *GetLocalizationTemplateParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get localization template params
+func (o *GetLocalizationTemplateParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get localization template params
 func (o *GetLocalizationTemplateParams) WithNamespace(namespace string) *GetLocalizationTemplateParams {
 	o.SetNamespace(namespace)

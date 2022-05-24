@@ -193,6 +193,15 @@ func (o *PublicSearchContentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public search content params
+func (o *PublicSearchContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCreator adds the creator to the public search content params
 func (o *PublicSearchContentParams) WithCreator(creator *string) *PublicSearchContentParams {
 	o.SetCreator(creator)

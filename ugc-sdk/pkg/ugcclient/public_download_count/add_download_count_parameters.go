@@ -122,6 +122,15 @@ func (o *AddDownloadCountParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add download count params
+func (o *AddDownloadCountParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithContentID adds the contentID to the add download count params
 func (o *AddDownloadCountParams) WithContentID(contentID string) *AddDownloadCountParams {
 	o.SetContentID(contentID)

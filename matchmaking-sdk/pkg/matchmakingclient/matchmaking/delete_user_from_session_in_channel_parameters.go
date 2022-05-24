@@ -132,6 +132,15 @@ func (o *DeleteUserFromSessionInChannelParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete user from session in channel params
+func (o *DeleteUserFromSessionInChannelParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannelName adds the channelName to the delete user from session in channel params
 func (o *DeleteUserFromSessionInChannelParams) WithChannelName(channelName string) *DeleteUserFromSessionInChannelParams {
 	o.SetChannelName(channelName)

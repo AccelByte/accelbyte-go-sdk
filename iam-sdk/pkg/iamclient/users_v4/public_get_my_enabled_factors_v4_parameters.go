@@ -117,6 +117,15 @@ func (o *PublicGetMyEnabledFactorsV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get my enabled factors v4 params
+func (o *PublicGetMyEnabledFactorsV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public get my enabled factors v4 params
 func (o *PublicGetMyEnabledFactorsV4Params) WithNamespace(namespace string) *PublicGetMyEnabledFactorsV4Params {
 	o.SetNamespace(namespace)

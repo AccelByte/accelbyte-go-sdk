@@ -131,6 +131,15 @@ func (o *PublicUpdateProfileParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update profile params
+func (o *PublicUpdateProfileParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update profile params
 func (o *PublicUpdateProfileParams) WithBody(body *socialclientmodels.GameProfileRequest) *PublicUpdateProfileParams {
 	o.SetBody(body)

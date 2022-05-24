@@ -121,6 +121,15 @@ func (o *AdminInviteUserV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin invite user v3 params
+func (o *AdminInviteUserV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin invite user v3 params
 func (o *AdminInviteUserV3Params) WithBody(body *iamclientmodels.ModelInviteUserRequestV3) *AdminInviteUserV3Params {
 	o.SetBody(body)

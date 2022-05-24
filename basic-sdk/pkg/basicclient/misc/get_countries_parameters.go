@@ -134,6 +134,15 @@ func (o *GetCountriesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get countries params
+func (o *GetCountriesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLang adds the lang to the get countries params
 func (o *GetCountriesParams) WithLang(lang *string) *GetCountriesParams {
 	o.SetLang(lang)

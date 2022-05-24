@@ -133,6 +133,15 @@ func (o *GetListOfFriendsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get list of friends params
+func (o *GetListOfFriendsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get list of friends params
 func (o *GetListOfFriendsParams) WithLimit(limit *int64) *GetListOfFriendsParams {
 	o.SetLimit(limit)

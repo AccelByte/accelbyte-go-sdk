@@ -118,6 +118,15 @@ func (o *UpdateIAPItemConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update i a p item config params
+func (o *UpdateIAPItemConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update i a p item config params
 func (o *UpdateIAPItemConfigParams) WithBody(body *platformclientmodels.IAPItemConfigUpdate) *UpdateIAPItemConfigParams {
 	o.SetBody(body)

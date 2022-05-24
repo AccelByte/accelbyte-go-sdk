@@ -128,6 +128,15 @@ func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) SetHTTPClient(client *ht
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retrieve all s s o login platform credential v3 params
+func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the retrieve all s s o login platform credential v3 params
 func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) WithLimit(limit *int64) *RetrieveAllSSOLoginPlatformCredentialV3Params {
 	o.SetLimit(limit)

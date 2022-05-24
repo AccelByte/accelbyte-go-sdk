@@ -153,6 +153,15 @@ func (o *AdminGetAllGroupsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get all groups params
+func (o *AdminGetAllGroupsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the admin get all groups params
 func (o *AdminGetAllGroupsParams) WithLimit(limit *int64) *AdminGetAllGroupsParams {
 	o.SetLimit(limit)

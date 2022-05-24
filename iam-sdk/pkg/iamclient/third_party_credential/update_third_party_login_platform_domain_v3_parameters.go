@@ -126,6 +126,15 @@ func (o *UpdateThirdPartyLoginPlatformDomainV3Params) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update third party login platform domain v3 params
+func (o *UpdateThirdPartyLoginPlatformDomainV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update third party login platform domain v3 params
 func (o *UpdateThirdPartyLoginPlatformDomainV3Params) WithBody(body *iamclientmodels.ModelPlatformDomainUpdateRequest) *UpdateThirdPartyLoginPlatformDomainV3Params {
 	o.SetBody(body)

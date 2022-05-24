@@ -122,6 +122,15 @@ func (o *PublicGetCustomAttributesInfoParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get custom attributes info params
+func (o *PublicGetCustomAttributesInfoParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public get custom attributes info params
 func (o *PublicGetCustomAttributesInfoParams) WithNamespace(namespace string) *PublicGetCustomAttributesInfoParams {
 	o.SetNamespace(namespace)

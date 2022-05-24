@@ -127,6 +127,15 @@ func (o *AdminDeletePlayerRecordHandlerV1Params) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin delete player record handler v1 params
+func (o *AdminDeletePlayerRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithKey adds the key to the admin delete player record handler v1 params
 func (o *AdminDeletePlayerRecordHandlerV1Params) WithKey(key string) *AdminDeletePlayerRecordHandlerV1Params {
 	o.SetKey(key)

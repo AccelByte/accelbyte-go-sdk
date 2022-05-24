@@ -118,6 +118,15 @@ func (o *PublicDownloadUserOrderReceiptParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public download user order receipt params
+func (o *PublicDownloadUserOrderReceiptParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public download user order receipt params
 func (o *PublicDownloadUserOrderReceiptParams) WithNamespace(namespace string) *PublicDownloadUserOrderReceiptParams {
 	o.SetNamespace(namespace)

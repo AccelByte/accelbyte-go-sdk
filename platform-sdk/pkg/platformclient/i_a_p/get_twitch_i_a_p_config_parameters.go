@@ -114,6 +114,15 @@ func (o *GetTwitchIAPConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get twitch i a p config params
+func (o *GetTwitchIAPConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get twitch i a p config params
 func (o *GetTwitchIAPConfigParams) WithNamespace(namespace string) *GetTwitchIAPConfigParams {
 	o.SetNamespace(namespace)

@@ -123,6 +123,15 @@ func (o *DeleteAdminEmailConfigurationParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete admin email configuration params
+func (o *DeleteAdminEmailConfigurationParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEmails adds the emails to the delete admin email configuration params
 func (o *DeleteAdminEmailConfigurationParams) WithEmails(emails []string) *DeleteAdminEmailConfigurationParams {
 	o.SetEmails(emails)

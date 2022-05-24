@@ -127,6 +127,15 @@ func (o *DeleteGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete group params
+func (o *DeleteGroupParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupID adds the groupID to the delete group params
 func (o *DeleteGroupParams) WithGroupID(groupID string) *DeleteGroupParams {
 	o.SetGroupID(groupID)

@@ -138,6 +138,15 @@ func (o *GetGroupListPublicV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get group list public v1 params
+func (o *GetGroupListPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithGroupName adds the groupName to the get group list public v1 params
 func (o *GetGroupListPublicV1Params) WithGroupName(groupName *string) *GetGroupListPublicV1Params {
 	o.SetGroupName(groupName)

@@ -122,6 +122,15 @@ func (o *DeleteDeploymentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete deployment params
+func (o *DeleteDeploymentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithDeployment adds the deployment to the delete deployment params
 func (o *DeleteDeploymentParams) WithDeployment(deployment string) *DeleteDeploymentParams {
 	o.SetDeployment(deployment)

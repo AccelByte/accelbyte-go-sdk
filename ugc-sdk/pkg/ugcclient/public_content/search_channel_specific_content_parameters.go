@@ -198,6 +198,15 @@ func (o *SearchChannelSpecificContentParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the search channel specific content params
+func (o *SearchChannelSpecificContentParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithChannelID adds the channelID to the search channel specific content params
 func (o *SearchChannelSpecificContentParams) WithChannelID(channelID string) *SearchChannelSpecificContentParams {
 	o.SetChannelID(channelID)

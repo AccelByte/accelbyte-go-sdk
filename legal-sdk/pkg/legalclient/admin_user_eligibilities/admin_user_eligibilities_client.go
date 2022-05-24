@@ -12,7 +12,6 @@ package admin_user_eligibilities
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -56,7 +55,7 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -97,7 +96,7 @@ func (a *Client) AdminRetrieveEligibilitiesShort(params *AdminRetrieveEligibilit
 	}
 
 	if params.RetryPolicy != nil {
-		params.SetHTTPClient(&http.Client{Transport: params.RetryPolicy})
+		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

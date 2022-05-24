@@ -22,7 +22,7 @@ type PublicCreatorService struct {
 }
 
 // Deprecated: Use GetCreatorShort instead
-func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorOverviewResponse, error) {
+func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
 	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -44,7 +44,7 @@ func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorOverviewResponse, error) {
+func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

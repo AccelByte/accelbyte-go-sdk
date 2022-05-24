@@ -126,6 +126,15 @@ func (o *AddSSOLoginPlatformCredentialParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the add s s o login platform credential params
+func (o *AddSSOLoginPlatformCredentialParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the add s s o login platform credential params
 func (o *AddSSOLoginPlatformCredentialParams) WithBody(body *iamclientmodels.ModelSSOPlatformCredentialRequest) *AddSSOLoginPlatformCredentialParams {
 	o.SetBody(body)

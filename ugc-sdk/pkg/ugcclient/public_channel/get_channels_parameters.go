@@ -153,6 +153,15 @@ func (o *GetChannelsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get channels params
+func (o *GetChannelsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLimit adds the limit to the get channels params
 func (o *GetChannelsParams) WithLimit(limit *int64) *GetChannelsParams {
 	o.SetLimit(limit)

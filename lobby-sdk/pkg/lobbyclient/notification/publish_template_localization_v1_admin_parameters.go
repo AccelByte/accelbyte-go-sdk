@@ -127,6 +127,15 @@ func (o *PublishTemplateLocalizationV1AdminParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the publish template localization v1 admin params
+func (o *PublishTemplateLocalizationV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the publish template localization v1 admin params
 func (o *PublishTemplateLocalizationV1AdminParams) WithNamespace(namespace string) *PublishTemplateLocalizationV1AdminParams {
 	o.SetNamespace(namespace)

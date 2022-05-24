@@ -122,6 +122,15 @@ func (o *GetAdminInvitationV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get admin invitation v3 params
+func (o *GetAdminInvitationV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithInvitationID adds the invitationID to the get admin invitation v3 params
 func (o *GetAdminInvitationV3Params) WithInvitationID(invitationID string) *GetAdminInvitationV3Params {
 	o.SetInvitationID(invitationID)

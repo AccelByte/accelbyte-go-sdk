@@ -131,6 +131,15 @@ func (o *UpdateGroupConfigurationGlobalRuleAdminV1Params) SetHTTPClient(client *
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update group configuration global rule admin v1 params
+func (o *UpdateGroupConfigurationGlobalRuleAdminV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAllowedAction adds the allowedAction to the update group configuration global rule admin v1 params
 func (o *UpdateGroupConfigurationGlobalRuleAdminV1Params) WithAllowedAction(allowedAction string) *UpdateGroupConfigurationGlobalRuleAdminV1Params {
 	o.SetAllowedAction(allowedAction)

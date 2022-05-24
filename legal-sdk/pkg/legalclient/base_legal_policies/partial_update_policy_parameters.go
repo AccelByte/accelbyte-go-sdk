@@ -121,6 +121,15 @@ func (o *PartialUpdatePolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the partial update policy params
+func (o *PartialUpdatePolicyParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBasePolicyID adds the basePolicyID to the partial update policy params
 func (o *PartialUpdatePolicyParams) WithBasePolicyID(basePolicyID string) *PartialUpdatePolicyParams {
 	o.SetBasePolicyID(basePolicyID)

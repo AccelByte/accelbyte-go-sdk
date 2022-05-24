@@ -117,6 +117,15 @@ func (o *PublicGenerateMyAuthenticatorKeyV4Params) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public generate my authenticator key v4 params
+func (o *PublicGenerateMyAuthenticatorKeyV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public generate my authenticator key v4 params
 func (o *PublicGenerateMyAuthenticatorKeyV4Params) WithNamespace(namespace string) *PublicGenerateMyAuthenticatorKeyV4Params {
 	o.SetNamespace(namespace)

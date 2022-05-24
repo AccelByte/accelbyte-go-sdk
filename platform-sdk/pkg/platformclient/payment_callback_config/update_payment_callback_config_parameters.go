@@ -118,6 +118,15 @@ func (o *UpdatePaymentCallbackConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update payment callback config params
+func (o *UpdatePaymentCallbackConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update payment callback config params
 func (o *UpdatePaymentCallbackConfigParams) WithBody(body *platformclientmodels.PaymentCallbackConfigUpdate) *UpdatePaymentCallbackConfigParams {
 	o.SetBody(body)

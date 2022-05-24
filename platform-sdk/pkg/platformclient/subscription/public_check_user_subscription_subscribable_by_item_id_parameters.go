@@ -118,6 +118,15 @@ func (o *PublicCheckUserSubscriptionSubscribableByItemIDParams) SetHTTPClient(cl
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public check user subscription subscribable by item Id params
+func (o *PublicCheckUserSubscriptionSubscribableByItemIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemID adds the itemID to the public check user subscription subscribable by item Id params
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDParams) WithItemID(itemID string) *PublicCheckUserSubscriptionSubscribableByItemIDParams {
 	o.SetItemID(itemID)

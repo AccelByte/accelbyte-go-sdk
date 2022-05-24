@@ -126,6 +126,15 @@ func (o *SaveUserPermissionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the save user permission params
+func (o *SaveUserPermissionParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the save user permission params
 func (o *SaveUserPermissionParams) WithBody(body *iamclientmodels.AccountcommonPermissions) *SaveUserPermissionParams {
 	o.SetBody(body)

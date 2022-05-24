@@ -157,6 +157,15 @@ func (o *QueryWalletsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query wallets params
+func (o *QueryWalletsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCurrencyCode adds the currencyCode to the query wallets params
 func (o *QueryWalletsParams) WithCurrencyCode(currencyCode *string) *QueryWalletsParams {
 	o.SetCurrencyCode(currencyCode)

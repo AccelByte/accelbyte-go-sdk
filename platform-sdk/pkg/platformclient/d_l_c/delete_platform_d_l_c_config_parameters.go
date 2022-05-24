@@ -117,6 +117,15 @@ func (o *DeletePlatformDLCConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete platform d l c config params
+func (o *DeletePlatformDLCConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete platform d l c config params
 func (o *DeletePlatformDLCConfigParams) WithNamespace(namespace string) *DeletePlatformDLCConfigParams {
 	o.SetNamespace(namespace)

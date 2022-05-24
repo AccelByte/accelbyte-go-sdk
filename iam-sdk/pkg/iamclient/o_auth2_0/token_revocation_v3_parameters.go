@@ -117,6 +117,15 @@ func (o *TokenRevocationV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the token revocation v3 params
+func (o *TokenRevocationV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithToken adds the token to the token revocation v3 params
 func (o *TokenRevocationV3Params) WithToken(token string) *TokenRevocationV3Params {
 	o.SetToken(token)

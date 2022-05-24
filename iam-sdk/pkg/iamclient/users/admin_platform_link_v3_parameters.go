@@ -132,6 +132,15 @@ func (o *AdminPlatformLinkV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin platform link v3 params
+func (o *AdminPlatformLinkV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin platform link v3 params
 func (o *AdminPlatformLinkV3Params) WithNamespace(namespace string) *AdminPlatformLinkV3Params {
 	o.SetNamespace(namespace)

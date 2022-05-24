@@ -122,6 +122,15 @@ func (o *AdminDownloadContentPreviewParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin download content preview params
+func (o *AdminDownloadContentPreviewParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithContentID adds the contentID to the admin download content preview params
 func (o *AdminDownloadContentPreviewParams) WithContentID(contentID string) *AdminDownloadContentPreviewParams {
 	o.SetContentID(contentID)

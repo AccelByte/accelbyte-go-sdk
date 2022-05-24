@@ -122,6 +122,15 @@ func (o *AdminDisableUserMFAV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin disable user m f a v4 params
+func (o *AdminDisableUserMFAV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the admin disable user m f a v4 params
 func (o *AdminDisableUserMFAV4Params) WithNamespace(namespace string) *AdminDisableUserMFAV4Params {
 	o.SetNamespace(namespace)

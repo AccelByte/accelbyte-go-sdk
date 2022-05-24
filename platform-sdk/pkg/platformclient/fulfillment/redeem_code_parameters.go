@@ -120,6 +120,15 @@ func (o *RedeemCodeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the redeem code params
+func (o *RedeemCodeParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the redeem code params
 func (o *RedeemCodeParams) WithBody(body *platformclientmodels.FulfillCodeRequest) *RedeemCodeParams {
 	o.SetBody(body)

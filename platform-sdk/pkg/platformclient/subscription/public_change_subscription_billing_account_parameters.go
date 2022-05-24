@@ -118,6 +118,15 @@ func (o *PublicChangeSubscriptionBillingAccountParams) SetHTTPClient(client *htt
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public change subscription billing account params
+func (o *PublicChangeSubscriptionBillingAccountParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the public change subscription billing account params
 func (o *PublicChangeSubscriptionBillingAccountParams) WithNamespace(namespace string) *PublicChangeSubscriptionBillingAccountParams {
 	o.SetNamespace(namespace)

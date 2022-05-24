@@ -127,6 +127,15 @@ func (o *CreateUserStatItemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the create user stat item params
+func (o *CreateUserStatItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the create user stat item params
 func (o *CreateUserStatItemParams) WithNamespace(namespace string) *CreateUserStatItemParams {
 	o.SetNamespace(namespace)

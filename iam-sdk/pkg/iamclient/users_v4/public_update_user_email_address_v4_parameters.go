@@ -121,6 +121,15 @@ func (o *PublicUpdateUserEmailAddressV4Params) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public update user email address v4 params
+func (o *PublicUpdateUserEmailAddressV4Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public update user email address v4 params
 func (o *PublicUpdateUserEmailAddressV4Params) WithBody(body *iamclientmodels.ModelEmailUpdateRequestV4) *PublicUpdateUserEmailAddressV4Params {
 	o.SetBody(body)

@@ -114,6 +114,15 @@ func (o *ListStoresParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list stores params
+func (o *ListStoresParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the list stores params
 func (o *ListStoresParams) WithNamespace(namespace string) *ListStoresParams {
 	o.SetNamespace(namespace)

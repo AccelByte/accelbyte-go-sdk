@@ -121,6 +121,15 @@ func (o *AdminCreateNewAchievementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin create new achievement params
+func (o *AdminCreateNewAchievementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin create new achievement params
 func (o *AdminCreateNewAchievementParams) WithBody(body *achievementclientmodels.ModelsAchievementRequest) *AdminCreateNewAchievementParams {
 	o.SetBody(body)

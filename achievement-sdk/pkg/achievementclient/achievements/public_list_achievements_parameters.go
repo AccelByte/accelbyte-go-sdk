@@ -166,6 +166,15 @@ func (o *PublicListAchievementsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public list achievements params
+func (o *PublicListAchievementsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithLanguage adds the language to the public list achievements params
 func (o *PublicListAchievementsParams) WithLanguage(language string) *PublicListAchievementsParams {
 	o.SetLanguage(language)

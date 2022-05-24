@@ -118,6 +118,15 @@ func (o *PublicGetPaymentURLParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public get payment Url params
+func (o *PublicGetPaymentURLParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the public get payment Url params
 func (o *PublicGetPaymentURLParams) WithBody(body *platformclientmodels.PaymentURLCreate) *PublicGetPaymentURLParams {
 	o.SetBody(body)

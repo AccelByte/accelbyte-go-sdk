@@ -125,6 +125,15 @@ func (o *ImportRewardsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the import rewards params
+func (o *ImportRewardsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithFile adds the file to the import rewards params
 func (o *ImportRewardsParams) WithFile(file runtime.NamedReadCloser) *ImportRewardsParams {
 	o.SetFile(file)

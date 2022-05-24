@@ -189,6 +189,15 @@ func (o *QueryChangesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query changes params
+func (o *QueryChangesParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAction adds the action to the query changes params
 func (o *QueryChangesParams) WithAction(action *string) *QueryChangesParams {
 	o.SetAction(action)

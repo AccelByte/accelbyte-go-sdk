@@ -119,6 +119,15 @@ func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetHTTPClient(client *ht
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the exists any user active entitlement by item ids params
+func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemIds adds the itemIds to the exists any user active entitlement by item ids params
 func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) WithItemIds(itemIds []string) *ExistsAnyUserActiveEntitlementByItemIdsParams {
 	o.SetItemIds(itemIds)

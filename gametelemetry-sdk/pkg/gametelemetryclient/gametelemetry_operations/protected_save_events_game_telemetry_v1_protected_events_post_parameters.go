@@ -118,6 +118,15 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) SetHTTPCli
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the protected save events game telemetry v1 protected events post params
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCookie adds the cookie to the protected save events game telemetry v1 protected events post params
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) WithCookie(cookie *string) *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams {
 	o.SetCookie(cookie)

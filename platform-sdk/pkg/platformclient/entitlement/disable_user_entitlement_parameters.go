@@ -118,6 +118,15 @@ func (o *DisableUserEntitlementParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the disable user entitlement params
+func (o *DisableUserEntitlementParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEntitlementID adds the entitlementID to the disable user entitlement params
 func (o *DisableUserEntitlementParams) WithEntitlementID(entitlementID string) *DisableUserEntitlementParams {
 	o.SetEntitlementID(entitlementID)

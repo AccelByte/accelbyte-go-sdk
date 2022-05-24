@@ -122,6 +122,15 @@ func (o *ReorderTierParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the reorder tier params
+func (o *ReorderTierParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the reorder tier params
 func (o *ReorderTierParams) WithBody(body *seasonpassclientmodels.TierReorder) *ReorderTierParams {
 	o.SetBody(body)

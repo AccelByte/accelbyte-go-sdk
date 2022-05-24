@@ -138,6 +138,15 @@ func (o *GetLeaderboardConfigurationsPublicV1Params) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get leaderboard configurations public v1 params
+func (o *GetLeaderboardConfigurationsPublicV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithIsArchived adds the isArchived to the get leaderboard configurations public v1 params
 func (o *GetLeaderboardConfigurationsPublicV1Params) WithIsArchived(isArchived *bool) *GetLeaderboardConfigurationsPublicV1Params {
 	o.SetIsArchived(isArchived)

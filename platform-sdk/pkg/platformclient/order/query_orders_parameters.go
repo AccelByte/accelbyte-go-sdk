@@ -179,6 +179,15 @@ func (o *QueryOrdersParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the query orders params
+func (o *QueryOrdersParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithEndTime adds the endTime to the query orders params
 func (o *QueryOrdersParams) WithEndTime(endTime *string) *QueryOrdersParams {
 	o.SetEndTime(endTime)

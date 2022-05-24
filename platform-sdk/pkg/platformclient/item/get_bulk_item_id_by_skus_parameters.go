@@ -128,6 +128,15 @@ func (o *GetBulkItemIDBySkusParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get bulk item Id by skus params
+func (o *GetBulkItemIDBySkusParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get bulk item Id by skus params
 func (o *GetBulkItemIDBySkusParams) WithNamespace(namespace string) *GetBulkItemIDBySkusParams {
 	o.SetNamespace(namespace)

@@ -121,6 +121,15 @@ func (o *AdminGetBulkUserByEmailAddressV3Params) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin get bulk user by email address v3 params
+func (o *AdminGetBulkUserByEmailAddressV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin get bulk user by email address v3 params
 func (o *AdminGetBulkUserByEmailAddressV3Params) WithBody(body *iamclientmodels.ModelListEmailAddressRequest) *AdminGetBulkUserByEmailAddressV3Params {
 	o.SetBody(body)

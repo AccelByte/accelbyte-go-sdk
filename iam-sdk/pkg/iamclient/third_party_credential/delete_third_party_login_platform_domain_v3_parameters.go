@@ -126,6 +126,15 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3Params) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete third party login platform domain v3 params
+func (o *DeleteThirdPartyLoginPlatformDomainV3Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the delete third party login platform domain v3 params
 func (o *DeleteThirdPartyLoginPlatformDomainV3Params) WithBody(body *iamclientmodels.ModelPlatformDomainDeleteRequest) *DeleteThirdPartyLoginPlatformDomainV3Params {
 	o.SetBody(body)

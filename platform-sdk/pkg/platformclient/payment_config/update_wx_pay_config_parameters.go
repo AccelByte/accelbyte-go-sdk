@@ -133,6 +133,15 @@ func (o *UpdateWxPayConfigParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the update wx pay config params
+func (o *UpdateWxPayConfigParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the update wx pay config params
 func (o *UpdateWxPayConfigParams) WithBody(body *platformclientmodels.WxPayConfigRequest) *UpdateWxPayConfigParams {
 	o.SetBody(body)

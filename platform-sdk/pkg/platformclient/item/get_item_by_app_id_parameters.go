@@ -136,6 +136,15 @@ func (o *GetItemByAppIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get item by app Id params
+func (o *GetItemByAppIDParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithActiveOnly adds the activeOnly to the get item by app Id params
 func (o *GetItemByAppIDParams) WithActiveOnly(activeOnly *bool) *GetItemByAppIDParams {
 	o.SetActiveOnly(activeOnly)

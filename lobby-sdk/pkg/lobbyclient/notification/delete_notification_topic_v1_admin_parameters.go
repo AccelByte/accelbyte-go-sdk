@@ -122,6 +122,15 @@ func (o *DeleteNotificationTopicV1AdminParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete notification topic v1 admin params
+func (o *DeleteNotificationTopicV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the delete notification topic v1 admin params
 func (o *DeleteNotificationTopicV1AdminParams) WithNamespace(namespace string) *DeleteNotificationTopicV1AdminParams {
 	o.SetNamespace(namespace)

@@ -112,6 +112,15 @@ func (o *GetDefaultProviderParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get default provider params
+func (o *GetDefaultProviderParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetDefaultProviderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 

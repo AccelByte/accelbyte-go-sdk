@@ -121,6 +121,15 @@ func (o *DeletePassParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the delete pass params
+func (o *DeletePassParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCode adds the code to the delete pass params
 func (o *DeletePassParams) WithCode(code string) *DeletePassParams {
 	o.SetCode(code)

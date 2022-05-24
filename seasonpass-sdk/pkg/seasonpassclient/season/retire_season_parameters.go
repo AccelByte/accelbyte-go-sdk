@@ -131,6 +131,15 @@ func (o *RetireSeasonParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the retire season params
+func (o *RetireSeasonParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithForce adds the force to the retire season params
 func (o *RetireSeasonParams) WithForce(force *bool) *RetireSeasonParams {
 	o.SetForce(force)

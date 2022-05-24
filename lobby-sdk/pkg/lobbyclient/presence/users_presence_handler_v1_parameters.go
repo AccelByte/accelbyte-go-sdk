@@ -128,6 +128,15 @@ func (o *UsersPresenceHandlerV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the users presence handler v1 params
+func (o *UsersPresenceHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithCountOnly adds the countOnly to the users presence handler v1 params
 func (o *UsersPresenceHandlerV1Params) WithCountOnly(countOnly *bool) *UsersPresenceHandlerV1Params {
 	o.SetCountOnly(countOnly)

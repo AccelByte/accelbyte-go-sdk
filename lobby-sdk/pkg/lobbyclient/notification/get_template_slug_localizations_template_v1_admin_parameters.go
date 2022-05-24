@@ -138,6 +138,15 @@ func (o *GetTemplateSlugLocalizationsTemplateV1AdminParams) SetHTTPClient(client
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get template slug localizations template v1 admin params
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithAfter adds the after to the get template slug localizations template v1 admin params
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminParams) WithAfter(after *string) *GetTemplateSlugLocalizationsTemplateV1AdminParams {
 	o.SetAfter(after)

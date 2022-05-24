@@ -117,6 +117,15 @@ func (o *ListLocalServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the list local server params
+func (o *ListLocalServerParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the list local server params
 func (o *ListLocalServerParams) WithNamespace(namespace string) *ListLocalServerParams {
 	o.SetNamespace(namespace)

@@ -131,6 +131,15 @@ func (o *AdminPutPlayerPublicRecordHandlerV1Params) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the admin put player public record handler v1 params
+func (o *AdminPutPlayerPublicRecordHandlerV1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the admin put player public record handler v1 params
 func (o *AdminPutPlayerPublicRecordHandlerV1Params) WithBody(body cloudsaveclientmodels.ModelsPlayerRecordRequest) *AdminPutPlayerPublicRecordHandlerV1Params {
 	o.SetBody(body)

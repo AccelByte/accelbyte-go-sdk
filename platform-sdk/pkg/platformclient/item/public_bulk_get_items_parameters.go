@@ -131,6 +131,15 @@ func (o *PublicBulkGetItemsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the public bulk get items params
+func (o *PublicBulkGetItemsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemIds adds the itemIds to the public bulk get items params
 func (o *PublicBulkGetItemsParams) WithItemIds(itemIds string) *PublicBulkGetItemsParams {
 	o.SetItemIds(itemIds)

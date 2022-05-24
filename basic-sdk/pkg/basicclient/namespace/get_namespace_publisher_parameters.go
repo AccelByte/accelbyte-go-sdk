@@ -117,6 +117,15 @@ func (o *GetNamespacePublisherParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get namespace publisher params
+func (o *GetNamespacePublisherParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithNamespace adds the namespace to the get namespace publisher params
 func (o *GetNamespacePublisherParams) WithNamespace(namespace string) *GetNamespacePublisherParams {
 	o.SetNamespace(namespace)

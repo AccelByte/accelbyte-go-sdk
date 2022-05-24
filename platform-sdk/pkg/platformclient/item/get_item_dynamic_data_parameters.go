@@ -116,6 +116,15 @@ func (o *GetItemDynamicDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the get item dynamic data params
+func (o *GetItemDynamicDataParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithItemID adds the itemID to the get item dynamic data params
 func (o *GetItemDynamicDataParams) WithItemID(itemID string) *GetItemDynamicDataParams {
 	o.SetItemID(itemID)

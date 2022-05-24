@@ -126,6 +126,15 @@ func (o *SetUserVisibilityStatusV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// SetHTTPClient adds the HTTPClient Transport to the set user visibility status v2 params
+func (o *SetUserVisibilityStatusV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
 // WithBody adds the body to the set user visibility status v2 params
 func (o *SetUserVisibilityStatusV2Params) WithBody(body *leaderboardclientmodels.ModelsSetUserVisibilityRequest) *SetUserVisibilityStatusV2Params {
 	o.SetBody(body)

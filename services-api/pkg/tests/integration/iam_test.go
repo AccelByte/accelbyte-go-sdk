@@ -38,7 +38,7 @@ var (
 		ConfigRepository: &integration.ConfigRepositoryImpl{},
 		TokenRepository:  &integration.TokenRepositoryImpl{},
 	}
-	codeChallengeMethod = "S256"
+	codeChallengeMethod = o_auth2_0.AuthorizeV3S256Constant
 	redirectURI         string
 	scope               = "commerce account social publishing analytics"
 	username            = os.Getenv("AB_USERNAME")
@@ -50,7 +50,7 @@ func Init() {
 	input := &o_auth2_0.TokenGrantV3Params{
 		Password:  &password,
 		Username:  &username,
-		GrantType: "password",
+		GrantType: o_auth2_0.TokenGrantV3PasswordConstant,
 	}
 	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
@@ -77,7 +77,7 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 		RedirectURI:         &redirectURI,
 		Scope:               &scope,
 		ClientID:            clientID,
-		ResponseType:        "code",
+		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
 		HTTPClient:          httpClient,
 	}
 	expected, err := oAuth20Service.AuthorizeV3Short(input)
@@ -100,7 +100,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		RedirectURI:         &redirectURI,
 		Scope:               &scope,
 		ClientID:            oAuth20Service.ConfigRepository.GetClientId(),
-		ResponseType:        "code",
+		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
 		HTTPClient:          httpClient,
 	}
 	requestID, err := oAuth20Service.AuthorizeV3Short(input)
@@ -135,7 +135,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		RedirectURI:         &redirectURI,
 		Scope:               &scope,
 		ClientID:            clientID,
-		ResponseType:        "code",
+		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
 		HTTPClient:          httpClient,
 	}
 	requestID, err := oAuth20Service.AuthorizeV3Short(input)
@@ -159,7 +159,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	inputTokenGrant := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    "authorization_code",
+		GrantType:    o_auth2_0.AuthorizeV3CodeConstant,
 	}
 	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant)
 	if errExpected != nil {
@@ -175,7 +175,7 @@ func TestIntegrationLogin(t *testing.T) {
 	input := &o_auth2_0.TokenGrantV3Params{
 		Password:  &password,
 		Username:  &username,
-		GrantType: o_auth2_0.GrantTypeConstant,
+		GrantType: o_auth2_0.TokenGrantV3PasswordConstant,
 	}
 	ok, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {

@@ -37,7 +37,7 @@ func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 	param := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    "client_credentials",
+		GrantType:    o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}
 	accessToken, badRequest, unauthorized, forbidden, err :=
 		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
@@ -72,7 +72,7 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 	param := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    "refresh_token",
+		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
 		RefreshToken: &refreshToken,
 	}
 	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, ""))
@@ -107,7 +107,7 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 	param := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    "authorization_code",
+		GrantType:    o_auth2_0.AuthorizeV3CodeConstant,
 		ClientID:     &clientID,
 		RedirectURI:  &redirectURI,
 	}
@@ -170,7 +170,7 @@ func (o *OAuth20Service) Authenticate(requestID, username, password string) (str
 	if errorDescParam != nil {
 		return "", errors.New(errorDescParam[0])
 	}
-	code := query["code"][0]
+	code := query[o_auth2_0.AuthorizeV3CodeConstant][0]
 
 	return code, nil
 }
@@ -191,7 +191,7 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 		ClientID:            clientID,
 		CodeChallenge:       &challenge,
 		CodeChallengeMethod: &challengeMethod,
-		ResponseType:        "code",
+		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
 		Scope:               &scope,
 		HTTPClient:          httpClient,
 	}
@@ -221,7 +221,7 @@ func (o *OAuth20Service) Login(username, password string) error {
 	}
 	codeVerifier := codeVerifierGenerator.String()
 	challenge := codeVerifierGenerator.CodeChallengeS256()
-	challengeMethod := "S256"
+	challengeMethod := o_auth2_0.AuthorizeV3S256Constant
 	requestID, err := o.Authorize(scope, challenge, challengeMethod)
 	if err != nil {
 		return err

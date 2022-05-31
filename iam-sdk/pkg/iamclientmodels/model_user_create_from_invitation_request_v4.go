@@ -6,6 +6,7 @@ package iamclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -24,6 +25,7 @@ type ModelUserCreateFromInvitationRequestV4 struct {
 
 	// auth type
 	// Required: true
+	// Enum: [EMAILPASSWD]
 	AuthType *string `json:"authType"`
 
 	// country
@@ -113,9 +115,40 @@ func (m *ModelUserCreateFromInvitationRequestV4) validateAcceptedPolicies(format
 	return nil
 }
 
+var modelUserCreateFromInvitationRequestV4TypeAuthTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EMAILPASSWD"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelUserCreateFromInvitationRequestV4TypeAuthTypePropEnum = append(modelUserCreateFromInvitationRequestV4TypeAuthTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ModelUserCreateFromInvitationRequestV4AuthTypeEMAILPASSWD captures enum value "EMAILPASSWD"
+	ModelUserCreateFromInvitationRequestV4AuthTypeEMAILPASSWD string = "EMAILPASSWD"
+)
+
+// prop value enum
+func (m *ModelUserCreateFromInvitationRequestV4) validateAuthTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelUserCreateFromInvitationRequestV4TypeAuthTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelUserCreateFromInvitationRequestV4) validateAuthType(formats strfmt.Registry) error {
 
 	if err := validate.Required("authType", "body", m.AuthType); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateAuthTypeEnum("authType", "body", *m.AuthType); err != nil {
 		return err
 	}
 

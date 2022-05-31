@@ -219,6 +219,8 @@ type ClientService interface {
 	PublicCreateUserV3Short(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, error)
 	PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, *PublicDeletePlatformLinkV2BadRequest, *PublicDeletePlatformLinkV2Unauthorized, *PublicDeletePlatformLinkV2Forbidden, *PublicDeletePlatformLinkV2NotFound, *PublicDeletePlatformLinkV2InternalServerError, error)
 	PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, error)
+	PublicForceLinkPlatformWithProgression(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, *PublicForceLinkPlatformWithProgressionBadRequest, *PublicForceLinkPlatformWithProgressionUnauthorized, *PublicForceLinkPlatformWithProgressionForbidden, *PublicForceLinkPlatformWithProgressionInternalServerError, error)
+	PublicForceLinkPlatformWithProgressionShort(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, error)
 	PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, *PublicForgotPasswordV2BadRequest, *PublicForgotPasswordV2NotFound, *PublicForgotPasswordV2TooManyRequests, *PublicForgotPasswordV2InternalServerError, error)
 	PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error)
 	PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, *PublicForgotPasswordV3BadRequest, *PublicForgotPasswordV3NotFound, *PublicForgotPasswordV3TooManyRequests, error)
@@ -245,12 +247,16 @@ type ClientService interface {
 	PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error)
 	PublicLinkPlatformAccount(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, *PublicLinkPlatformAccountBadRequest, *PublicLinkPlatformAccountUnauthorized, *PublicLinkPlatformAccountForbidden, *PublicLinkPlatformAccountInternalServerError, error)
 	PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error)
+	PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, error)
+	PublicListUserAllPlatformAccountsDistinctV3Short(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, error)
 	PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error)
 	PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, error)
 	PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, *PublicPlatformLinkV2BadRequest, *PublicPlatformLinkV2Unauthorized, *PublicPlatformLinkV2Forbidden, *PublicPlatformLinkV2NotFound, *PublicPlatformLinkV2Conflict, *PublicPlatformLinkV2InternalServerError, error)
 	PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, error)
 	PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, *PublicPlatformLinkV3BadRequest, *PublicPlatformLinkV3Unauthorized, *PublicPlatformLinkV3NotFound, *PublicPlatformLinkV3Conflict, *PublicPlatformLinkV3InternalServerError, error)
 	PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, error)
+	PublicPlatformUnlinkAllV3(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, *PublicPlatformUnlinkAllV3BadRequest, *PublicPlatformUnlinkAllV3Unauthorized, *PublicPlatformUnlinkAllV3NotFound, *PublicPlatformUnlinkAllV3InternalServerError, error)
+	PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, error)
 	PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, *PublicPlatformUnlinkV3BadRequest, *PublicPlatformUnlinkV3Unauthorized, *PublicPlatformUnlinkV3NotFound, *PublicPlatformUnlinkV3InternalServerError, error)
 	PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, error)
 	PublicResetPasswordV2(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, *PublicResetPasswordV2BadRequest, *PublicResetPasswordV2Forbidden, *PublicResetPasswordV2NotFound, *PublicResetPasswordV2InternalServerError, error)
@@ -10474,14 +10480,13 @@ func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authI
   PublicCreateUserV3 creates user
 
 
-&lt;p&gt;Available Authentication Types:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
-&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
-&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
-
+		&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+			&lt;ol&gt;
+				&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+		&lt;/ol&gt;
+		&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+		&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 */
 func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -10704,6 +10709,116 @@ func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLin
 	case *PublicDeletePlatformLinkV2NotFound:
 		return nil, v
 	case *PublicDeletePlatformLinkV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicForceLinkPlatformWithProgression forces link 3rd platform account and transfer progression
+
+  Force update other account&#39;s Platform Account relation to current User Account. &lt;br&gt;
+This endpoint can transfer progression from 3rd platform binding account&#39;s to current account.
+This endpoint need the same requestID which also used in &lt;a href=&#34;#operations-Users-PublicGetAsyncStatus&#34;&gt;Get link status&lt;/a&gt;.
+
+*/
+func (a *Client) PublicForceLinkPlatformWithProgression(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, *PublicForceLinkPlatformWithProgressionBadRequest, *PublicForceLinkPlatformWithProgressionUnauthorized, *PublicForceLinkPlatformWithProgressionForbidden, *PublicForceLinkPlatformWithProgressionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForceLinkPlatformWithProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForceLinkPlatformWithProgression",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForceLinkPlatformWithProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForceLinkPlatformWithProgressionNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicForceLinkPlatformWithProgressionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicForceLinkPlatformWithProgressionUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicForceLinkPlatformWithProgressionForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicForceLinkPlatformWithProgressionInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicForceLinkPlatformWithProgressionShort(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForceLinkPlatformWithProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForceLinkPlatformWithProgression",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForceLinkPlatformWithProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForceLinkPlatformWithProgressionNoContent:
+		return v, nil
+	case *PublicForceLinkPlatformWithProgressionBadRequest:
+		return nil, v
+	case *PublicForceLinkPlatformWithProgressionUnauthorized:
+		return nil, v
+	case *PublicForceLinkPlatformWithProgressionForbidden:
+		return nil, v
+	case *PublicForceLinkPlatformWithProgressionInternalServerError:
 		return nil, v
 
 	default:
@@ -11959,7 +12074,8 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 /*
   PublicLinkPlatformAccount links a platform user account to user account
 
-  Update Platform Account relation to current User Account.
+  It is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+Update Platform Account relation to current User Account.
 Note: Game progression data (statistics, reward, etc) associated with previous User Account will not be
 transferred. If the data is tight to game user ID, the user will have the game progression data.
 
@@ -12059,6 +12175,115 @@ func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccoun
 	case *PublicLinkPlatformAccountForbidden:
 		return nil, v
 	case *PublicLinkPlatformAccountInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicListUserAllPlatformAccountsDistinctV3 gets distinct platform accounts linked to the user
+
+  &lt;p&gt;This endpoint retrieves platform accounts linked to user.
+					&lt;br&gt;It will query all linked platform accounts and result will be distinct &amp; grouped, same platform we will pick oldest linked one.
+					&lt;br&gt;Required valid user authorization.&lt;/p&gt;
+*/
+func (a *Client) PublicListUserAllPlatformAccountsDistinctV3(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, *PublicListUserAllPlatformAccountsDistinctV3BadRequest, *PublicListUserAllPlatformAccountsDistinctV3Unauthorized, *PublicListUserAllPlatformAccountsDistinctV3Forbidden, *PublicListUserAllPlatformAccountsDistinctV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserAllPlatformAccountsDistinctV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserAllPlatformAccountsDistinctV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserAllPlatformAccountsDistinctV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserAllPlatformAccountsDistinctV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicListUserAllPlatformAccountsDistinctV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicListUserAllPlatformAccountsDistinctV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicListUserAllPlatformAccountsDistinctV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicListUserAllPlatformAccountsDistinctV3NotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListUserAllPlatformAccountsDistinctV3Short(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserAllPlatformAccountsDistinctV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserAllPlatformAccountsDistinctV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserAllPlatformAccountsDistinctV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserAllPlatformAccountsDistinctV3OK:
+		return v, nil
+	case *PublicListUserAllPlatformAccountsDistinctV3BadRequest:
+		return nil, v
+	case *PublicListUserAllPlatformAccountsDistinctV3Unauthorized:
+		return nil, v
+	case *PublicListUserAllPlatformAccountsDistinctV3Forbidden:
+		return nil, v
+	case *PublicListUserAllPlatformAccountsDistinctV3NotFound:
 		return nil, v
 
 	default:
@@ -12437,6 +12662,114 @@ func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, a
 	case *PublicPlatformLinkV3Conflict:
 		return nil, v
 	case *PublicPlatformLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicPlatformUnlinkAllV3 unlinks user s account from specific platform
+
+  Required valid user authorization.
+			&lt;p&gt;Unlink user&#39;s account from for all third platforms. &lt;/p&gt;
+*/
+func (a *Client) PublicPlatformUnlinkAllV3(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, *PublicPlatformUnlinkAllV3BadRequest, *PublicPlatformUnlinkAllV3Unauthorized, *PublicPlatformUnlinkAllV3NotFound, *PublicPlatformUnlinkAllV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlatformUnlinkAllV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicPlatformUnlinkAllV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlatformUnlinkAllV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlatformUnlinkAllV3NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicPlatformUnlinkAllV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicPlatformUnlinkAllV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicPlatformUnlinkAllV3NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicPlatformUnlinkAllV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlatformUnlinkAllV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicPlatformUnlinkAllV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlatformUnlinkAllV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlatformUnlinkAllV3NoContent:
+		return v, nil
+	case *PublicPlatformUnlinkAllV3BadRequest:
+		return nil, v
+	case *PublicPlatformUnlinkAllV3Unauthorized:
+		return nil, v
+	case *PublicPlatformUnlinkAllV3NotFound:
+		return nil, v
+	case *PublicPlatformUnlinkAllV3InternalServerError:
 		return nil, v
 
 	default:

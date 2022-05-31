@@ -41,9 +41,9 @@ type ClientService interface {
 	GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, error)
 	GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, *GetPlatformDLCConfigNotFound, error)
 	GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, error)
-	PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, *PublicSyncPsnDlcInventoryBadRequest, error)
+	PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error)
 	PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error)
-	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
+	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error)
 	SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
 	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
 	SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
@@ -418,7 +418,7 @@ func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, a
 
   Synchronize with dlc entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, *PublicSyncPsnDlcInventoryBadRequest, error) {
+func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSyncPsnDlcInventoryParams()
@@ -446,19 +446,16 @@ func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSyncPsnDlcInventoryNoContent:
-		return v, nil, nil
-
-	case *PublicSyncPsnDlcInventoryBadRequest:
-		return nil, v, nil
+		return v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -497,8 +494,6 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 
 	case *PublicSyncPsnDlcInventoryNoContent:
 		return v, nil
-	case *PublicSyncPsnDlcInventoryBadRequest:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -510,7 +505,7 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 
   Sync steam dlc.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error) {
+func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncSteamDLCParams()
@@ -538,16 +533,19 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncSteamDLCNoContent:
-		return v, nil
+		return v, nil, nil
+
+	case *SyncSteamDLCBadRequest:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -586,6 +584,8 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 
 	case *SyncSteamDLCNoContent:
 		return v, nil
+	case *SyncSteamDLCBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

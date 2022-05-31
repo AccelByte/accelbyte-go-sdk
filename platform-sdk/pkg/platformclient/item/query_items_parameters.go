@@ -49,13 +49,13 @@ func NewQueryItemsParams() *QueryItemsParams {
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc,displayOrder:asc")
+		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -68,13 +68,13 @@ func NewQueryItemsParamsWithTimeout(timeout time.Duration) *QueryItemsParams {
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc,displayOrder:asc")
+		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		timeout: timeout,
 	}
@@ -87,13 +87,13 @@ func NewQueryItemsParamsWithContext(ctx context.Context) *QueryItemsParams {
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc,displayOrder:asc")
+		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		Context: ctx,
 	}
@@ -106,13 +106,13 @@ func NewQueryItemsParamsWithHTTPClient(client *http.Client) *QueryItemsParams {
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc,displayOrder:asc")
+		sortByDefault     = []string{"name:asc", "displayOrder:asc"}
 	)
 	return &QueryItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -168,7 +168,7 @@ type QueryItemsParams struct {
 	  default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc
 
 	*/
-	SortBy *string
+	SortBy []string
 	/*StoreID
 	  default is published store id
 
@@ -360,13 +360,13 @@ func (o *QueryItemsParams) SetRegion(region *string) {
 }
 
 // WithSortBy adds the sortBy to the query items params
-func (o *QueryItemsParams) WithSortBy(sortBy *string) *QueryItemsParams {
+func (o *QueryItemsParams) WithSortBy(sortBy []string) *QueryItemsParams {
 	o.SetSortBy(sortBy)
 	return o
 }
 
 // SetSortBy adds the sortBy to the query items params
-func (o *QueryItemsParams) SetSortBy(sortBy *string) {
+func (o *QueryItemsParams) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
@@ -576,20 +576,12 @@ func (o *QueryItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 	}
 
-	if o.SortBy != nil {
+	valuesSortBy := o.SortBy
 
-		// query param sortBy
-		var qrSortBy string
-		if o.SortBy != nil {
-			qrSortBy = *o.SortBy
-		}
-		qSortBy := qrSortBy
-		if qSortBy != "" {
-			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
-				return err
-			}
-		}
-
+	joinedSortBy := swag.JoinByFormat(valuesSortBy, "")
+	// query array param sortBy
+	if err := r.SetQueryParam("sortBy", joinedSortBy...); err != nil {
+		return err
 	}
 
 	if o.StoreID != nil {

@@ -20,8 +20,10 @@ var QosmCmd = &cobra.Command{
 }
 
 func init() {
+	QosmCmd.AddCommand(admin.UpdateServerConfigCmd)
 	QosmCmd.AddCommand(admin.DeleteServerCmd)
 	QosmCmd.AddCommand(admin.SetServerAliasCmd)
+	QosmCmd.AddCommand(public.ListServerPerNamespaceCmd)
 	QosmCmd.AddCommand(public.ListServerCmd)
 	QosmCmd.AddCommand(server.HeartbeatCmd)
 }

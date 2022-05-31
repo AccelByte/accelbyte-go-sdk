@@ -60,13 +60,13 @@ func NewQueryChangesParams() *QueryChangesParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:desc")
+		sortByDefault = []string{"updatedAt:desc"}
 		statusDefault = string("UNPUBLISHED")
 	)
 	return &QueryChangesParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 		Status: &statusDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -79,13 +79,13 @@ func NewQueryChangesParamsWithTimeout(timeout time.Duration) *QueryChangesParams
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:desc")
+		sortByDefault = []string{"updatedAt:desc"}
 		statusDefault = string("UNPUBLISHED")
 	)
 	return &QueryChangesParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 		Status: &statusDefault,
 
 		timeout: timeout,
@@ -98,13 +98,13 @@ func NewQueryChangesParamsWithContext(ctx context.Context) *QueryChangesParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:desc")
+		sortByDefault = []string{"updatedAt:desc"}
 		statusDefault = string("UNPUBLISHED")
 	)
 	return &QueryChangesParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 		Status: &statusDefault,
 
 		Context: ctx,
@@ -117,13 +117,13 @@ func NewQueryChangesParamsWithHTTPClient(client *http.Client) *QueryChangesParam
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("updatedAt:desc")
+		sortByDefault = []string{"updatedAt:desc"}
 		statusDefault = string("UNPUBLISHED")
 	)
 	return &QueryChangesParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 		Status:     &statusDefault,
 		HTTPClient: client,
 	}
@@ -156,7 +156,7 @@ type QueryChangesParams struct {
 	  default is updatedAt:desc, allow values: [createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=title:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by title, make sure to include other sort such as sku or createdAt after the first sort, eg: title:asc,updatedAt:desc
 
 	*/
-	SortBy *string
+	SortBy []string
 	/*Status
 	  default is UNPUBLISHED
 
@@ -286,13 +286,13 @@ func (o *QueryChangesParams) SetOffset(offset *int32) {
 }
 
 // WithSortBy adds the sortBy to the query changes params
-func (o *QueryChangesParams) WithSortBy(sortBy *string) *QueryChangesParams {
+func (o *QueryChangesParams) WithSortBy(sortBy []string) *QueryChangesParams {
 	o.SetSortBy(sortBy)
 	return o
 }
 
 // SetSortBy adds the sortBy to the query changes params
-func (o *QueryChangesParams) SetSortBy(sortBy *string) {
+func (o *QueryChangesParams) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
@@ -428,20 +428,12 @@ func (o *QueryChangesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	}
 
-	if o.SortBy != nil {
+	valuesSortBy := o.SortBy
 
-		// query param sortBy
-		var qrSortBy string
-		if o.SortBy != nil {
-			qrSortBy = *o.SortBy
-		}
-		qSortBy := qrSortBy
-		if qSortBy != "" {
-			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
-				return err
-			}
-		}
-
+	joinedSortBy := swag.JoinByFormat(valuesSortBy, "")
+	// query array param sortBy
+	if err := r.SetQueryParam("sortBy", joinedSortBy...); err != nil {
+		return err
 	}
 
 	if o.Status != nil {

@@ -50,6 +50,9 @@ type UserProfilePrivateInfo struct {
 	// private custom attributes
 	PrivateCustomAttributes map[string]interface{} `json:"privateCustomAttributes,omitempty"`
 
+	// public Id
+	PublicID string `json:"publicId,omitempty"`
+
 	// status
 	// Enum: [ACTIVE INACTIVE]
 	Status string `json:"status,omitempty"`

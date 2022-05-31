@@ -17,6 +17,9 @@ import (
 // swagger:model SteamIAPConfig
 type SteamIAPConfig struct {
 
+	// app Id
+	AppID string `json:"appId,omitempty"`
+
 	// created at
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`

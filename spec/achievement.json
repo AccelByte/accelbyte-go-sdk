@@ -68,13 +68,24 @@
           {
             "default": "listOrder:asc",
             "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
+            "enum": [
+              "listOrder",
+              "listOrder:asc",
+              "listOrder:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
           },
           {
             "default": 0,
-            "description": "offset default 0",
+            "description": "offset",
             "in": "query",
             "name": "offset",
             "type": "integer"
@@ -674,7 +685,7 @@
           },
           {
             "default": 0,
-            "description": "offset default 0",
+            "description": "offset",
             "in": "query",
             "name": "offset",
             "type": "integer"
@@ -831,6 +842,17 @@
           {
             "default": "listOrder:asc",
             "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
+            "enum": [
+              "listOrder",
+              "listOrder:asc",
+              "listOrder:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -851,7 +873,7 @@
           },
           {
             "default": 0,
-            "description": "offset default 0",
+            "description": "offset",
             "in": "query",
             "name": "offset",
             "type": "integer"
@@ -1022,7 +1044,7 @@
           },
           {
             "default": 0,
-            "description": "offset default 0",
+            "description": "offset",
             "in": "query",
             "name": "offset",
             "type": "integer"

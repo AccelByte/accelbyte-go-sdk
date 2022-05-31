@@ -123,10 +123,7 @@ func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInve
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := d.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return badRequest
-	}
+	_, err = d.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -140,7 +137,10 @@ func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := d.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}

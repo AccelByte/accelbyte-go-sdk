@@ -21,6 +21,15 @@ type ModelLinkRequest struct {
 	// Required: true
 	ClientID *string `json:"client_id"`
 
+	// conflict publisher user id
+	ConflictPublisherUserID string `json:"conflict_publisher_user_id,omitempty"`
+
+	// conflict user linked games
+	ConflictUserLinkedGames []string `json:"conflict_user_linked_games"`
+
+	// current user linked games
+	CurrentUserLinkedGames []string `json:"current_user_linked_games"`
+
 	// error
 	Error *RestErrorResponse `json:"error,omitempty"`
 
@@ -38,6 +47,15 @@ type ModelLinkRequest struct {
 	// payload
 	// Required: true
 	Payload interface{} `json:"payload"`
+
+	// platform display name
+	PlatformDisplayName string `json:"platformDisplayName,omitempty"`
+
+	// platform ID
+	PlatformID string `json:"platformID,omitempty"`
+
+	// platform user id
+	PlatformUserID string `json:"platform_user_id,omitempty"`
 
 	// redirect uri
 	// Required: true

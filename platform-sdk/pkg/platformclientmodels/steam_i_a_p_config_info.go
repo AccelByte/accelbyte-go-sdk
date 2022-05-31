@@ -17,6 +17,9 @@ import (
 // swagger:model SteamIAPConfigInfo
 type SteamIAPConfigInfo struct {
 
+	// steam app id
+	AppID string `json:"appId,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

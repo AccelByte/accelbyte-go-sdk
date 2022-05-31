@@ -34,12 +34,6 @@ func (o *PublicReconcilePlayStationStoreReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewPublicReconcilePlayStationStoreBadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -76,39 +70,6 @@ func (o *PublicReconcilePlayStationStoreOK) readResponse(response runtime.Client
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewPublicReconcilePlayStationStoreBadRequest creates a PublicReconcilePlayStationStoreBadRequest with default headers values
-func NewPublicReconcilePlayStationStoreBadRequest() *PublicReconcilePlayStationStoreBadRequest {
-	return &PublicReconcilePlayStationStoreBadRequest{}
-}
-
-/*PublicReconcilePlayStationStoreBadRequest handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39123</td><td>PSN Sync failed with status code [{statusCode}] and psnAuthCode is [{psnAuthCode}]</td></tr>
-*/
-type PublicReconcilePlayStationStoreBadRequest struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *PublicReconcilePlayStationStoreBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreBadRequest  %+v", 400, o.Payload)
-}
-
-func (o *PublicReconcilePlayStationStoreBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *PublicReconcilePlayStationStoreBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

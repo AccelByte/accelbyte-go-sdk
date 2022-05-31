@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.18.1"
+    "version": "2.0.0"
   },
   "schemes": [
     "https"
@@ -4566,7 +4566,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Publicly accessible",
         "operationId": "GetTag",
         "parameters": [
           {

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.14.4"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -22,6 +22,7 @@
         "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]",
         "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]",
+        "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]": "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]",
         "NAMESPACE:{namespace}:MATCHRESULT [CREATE]": "NAMESPACE:{namespace}:MATCHRESULT [CREATE]",
         "NAMESPACE:{namespace}:SESSION [CREATE]": "NAMESPACE:{namespace}:SESSION [CREATE]",
         "NAMESPACE:{namespace}:SESSION [READ]": "NAMESPACE:{namespace}:SESSION [READ]",
@@ -386,6 +387,88 @@
           }
         ],
         "summary": "Store match result",
+        "tags": [
+          "Matchmaking"
+        ]
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/rebalance": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]\n\t\t\nRequired Scope: social\n\t\t\nDo rebalance the teams based on MMR from given matchID, \nconsider attribute name \u0026#34;mmr\u0026#34; (case-insensitive), \nor any first attribute with criteria \u0026#34;distance\u0026#34;\n\t\t\nWill return rebalanced mm result",
+        "operationId": "Rebalance",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.RebalanceRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.RebalanceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Rebalance Matchmaking based on MMR",
         "tags": [
           "Matchmaking"
         ]
@@ -2901,6 +2984,35 @@
       "required": [
         "current_score",
         "user_id"
+      ]
+    },
+    "models.RebalanceRequest": {
+      "properties": {
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "match_id"
+      ]
+    },
+    "models.RebalanceResponse": {
+      "properties": {
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "matching_allies": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "match_id",
+        "matching_allies"
       ]
     },
     "models.ResultAttributeRequest": {

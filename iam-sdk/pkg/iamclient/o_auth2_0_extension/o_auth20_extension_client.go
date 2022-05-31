@@ -33,6 +33,10 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error)
+	AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error)
+	GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error)
+	GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error)
 	GetCountryLocationV3(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error)
 	GetCountryLocationV3Short(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error)
 	Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error)
@@ -43,6 +47,199 @@ type ClientService interface {
 	UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AuthenticationWithPlatformLinkV3 authentications with platform link
+
+  &lt;p&gt;This endpoint is being used to authenticate a user account and perform platform link.
+					It validates user&#39;s email / username and password. If user already enable 2FA,
+					invoke &#39;&#39;/mfa/verify&#39; with response&#39;s mfa_token&#39;&lt;/p&gt;
+*/
+func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAuthenticationWithPlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AuthenticationWithPlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/authenticateWithLink",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AuthenticationWithPlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AuthenticationWithPlatformLinkV3OK:
+		return v, nil, nil, nil, nil
+
+	case *AuthenticationWithPlatformLinkV3BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AuthenticationWithPlatformLinkV3Unauthorized:
+		return nil, nil, v, nil, nil
+
+	case *AuthenticationWithPlatformLinkV3Conflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAuthenticationWithPlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AuthenticationWithPlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/authenticateWithLink",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AuthenticationWithPlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AuthenticationWithPlatformLinkV3OK:
+		return v, nil
+	case *AuthenticationWithPlatformLinkV3BadRequest:
+		return nil, v
+	case *AuthenticationWithPlatformLinkV3Unauthorized:
+		return nil, v
+	case *AuthenticationWithPlatformLinkV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GenerateTokenByNewHeadlessAccountV3 creates headless account and response token
+
+  &lt;p&gt;This endpoint is being used to create headless account after 3rd platform authenticated, and response token .
+					The &#39;linkingToken&#39; in request body is received from &#34;/platforms/{platformId}/token&#34;
+					when 3rd platform account is not linked to justice account yet.&#39;&lt;/p&gt;
+*/
+func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGenerateTokenByNewHeadlessAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GenerateTokenByNewHeadlessAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/headless/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GenerateTokenByNewHeadlessAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GenerateTokenByNewHeadlessAccountV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGenerateTokenByNewHeadlessAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GenerateTokenByNewHeadlessAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/headless/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GenerateTokenByNewHeadlessAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GenerateTokenByNewHeadlessAccountV3OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -224,6 +421,8 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
 
   This endpoint authenticates user platform. It validates user to its
           respective platforms. Deactivated or login-banned users are unable to login. &lt;br&gt;
+		  &lt;p&gt;If already linked with justice account or match SSO condition, will redirect to client&#39;s redirect url with code. then invoke &#39;/iam/v3/oauth/token&#39; with grant_type=authorization_code&lt;/p&gt;
+		  &lt;p&gt;If already not linked with justice account and not match SSO condition, will redirect to client&#39;s account linking page&lt;/p&gt;
           &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
           &lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;Steam login page will redirects to this endpoint after login success
           as previously defined on openID request parameter &lt;code&gt;openid.return_to&lt;/code&gt; when request login to steam

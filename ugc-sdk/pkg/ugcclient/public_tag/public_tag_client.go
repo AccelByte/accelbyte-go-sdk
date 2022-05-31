@@ -42,7 +42,7 @@ type ClientService interface {
 /*
   GetTag gets tags
 
-  Requires valid user token
+  Publicly accessible
 */
 func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagUnauthorized, *GetTagNotFound, *GetTagInternalServerError, error) {
 	// TODO: Validate the params before sending

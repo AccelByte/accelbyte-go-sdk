@@ -6,8 +6,10 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // TransactionAmountDetails transaction amount details
@@ -18,6 +20,10 @@ type TransactionAmountDetails struct {
 	// amount
 	Amount int64 `json:"amount,omitempty"`
 
+	// expire at
+	// Format: date-time
+	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
+
 	// origin
 	Origin string `json:"origin,omitempty"`
 
@@ -27,6 +33,28 @@ type TransactionAmountDetails struct {
 
 // Validate validates this transaction amount details
 func (m *TransactionAmountDetails) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateExpireAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionAmountDetails) validateExpireAt(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ExpireAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("expireAt", "body", "date-time", m.ExpireAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

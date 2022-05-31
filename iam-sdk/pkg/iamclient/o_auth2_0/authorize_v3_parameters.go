@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // Get the enum in AuthorizeV3Params
@@ -37,11 +38,13 @@ const (
 func NewAuthorizeV3Params() *AuthorizeV3Params {
 	var (
 		codeChallengeMethodDefault = string("plain")
+		createHeadlessDefault      = bool(true)
 		responseTypeDefault        = string("code")
 		scopeDefault               = string("commerce account social publishing analytics")
 	)
 	return &AuthorizeV3Params{
 		CodeChallengeMethod: &codeChallengeMethodDefault,
+		CreateHeadless:      &createHeadlessDefault,
 		ResponseType:        responseTypeDefault,
 		Scope:               &scopeDefault,
 
@@ -54,11 +57,13 @@ func NewAuthorizeV3Params() *AuthorizeV3Params {
 func NewAuthorizeV3ParamsWithTimeout(timeout time.Duration) *AuthorizeV3Params {
 	var (
 		codeChallengeMethodDefault = string("plain")
+		createHeadlessDefault      = bool(true)
 		responseTypeDefault        = string("code")
 		scopeDefault               = string("commerce account social publishing analytics")
 	)
 	return &AuthorizeV3Params{
 		CodeChallengeMethod: &codeChallengeMethodDefault,
+		CreateHeadless:      &createHeadlessDefault,
 		ResponseType:        responseTypeDefault,
 		Scope:               &scopeDefault,
 
@@ -71,11 +76,13 @@ func NewAuthorizeV3ParamsWithTimeout(timeout time.Duration) *AuthorizeV3Params {
 func NewAuthorizeV3ParamsWithContext(ctx context.Context) *AuthorizeV3Params {
 	var (
 		codeChallengeMethodDefault = string("plain")
+		createHeadlessDefault      = bool(true)
 		responseTypeDefault        = string("code")
 		scopeDefault               = string("commerce account social publishing analytics")
 	)
 	return &AuthorizeV3Params{
 		CodeChallengeMethod: &codeChallengeMethodDefault,
+		CreateHeadless:      &createHeadlessDefault,
 		ResponseType:        responseTypeDefault,
 		Scope:               &scopeDefault,
 
@@ -88,11 +95,13 @@ func NewAuthorizeV3ParamsWithContext(ctx context.Context) *AuthorizeV3Params {
 func NewAuthorizeV3ParamsWithHTTPClient(client *http.Client) *AuthorizeV3Params {
 	var (
 		codeChallengeMethodDefault = string("plain")
+		createHeadlessDefault      = bool(true)
 		responseTypeDefault        = string("code")
 		scopeDefault               = string("commerce account social publishing analytics")
 	)
 	return &AuthorizeV3Params{
 		CodeChallengeMethod: &codeChallengeMethodDefault,
+		CreateHeadless:      &createHeadlessDefault,
 		ResponseType:        responseTypeDefault,
 		Scope:               &scopeDefault,
 		HTTPClient:          client,
@@ -121,6 +130,11 @@ type AuthorizeV3Params struct {
 
 	*/
 	CodeChallengeMethod *string
+	/*CreateHeadless
+	  If create new headless account when login by new third platform user
+
+	*/
+	CreateHeadless *bool
 	/*RedirectURI
 	  Redirect URI registered for requesting client. Required if client registered with multiple redirect URI. Registered redirect uri will be assigned if left empty.
 
@@ -233,6 +247,17 @@ func (o *AuthorizeV3Params) SetCodeChallengeMethod(codeChallengeMethod *string) 
 	o.CodeChallengeMethod = codeChallengeMethod
 }
 
+// WithCreateHeadless adds the createHeadless to the authorize v3 params
+func (o *AuthorizeV3Params) WithCreateHeadless(createHeadless *bool) *AuthorizeV3Params {
+	o.SetCreateHeadless(createHeadless)
+	return o
+}
+
+// SetCreateHeadless adds the createHeadless to the authorize v3 params
+func (o *AuthorizeV3Params) SetCreateHeadless(createHeadless *bool) {
+	o.CreateHeadless = createHeadless
+}
+
 // WithRedirectURI adds the redirectURI to the authorize v3 params
 func (o *AuthorizeV3Params) WithRedirectURI(redirectURI *string) *AuthorizeV3Params {
 	o.SetRedirectURI(redirectURI)
@@ -331,6 +356,22 @@ func (o *AuthorizeV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qCodeChallengeMethod := qrCodeChallengeMethod
 		if qCodeChallengeMethod != "" {
 			if err := r.SetQueryParam("code_challenge_method", qCodeChallengeMethod); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CreateHeadless != nil {
+
+		// query param createHeadless
+		var qrCreateHeadless bool
+		if o.CreateHeadless != nil {
+			qrCreateHeadless = *o.CreateHeadless
+		}
+		qCreateHeadless := swag.FormatBool(qrCreateHeadless)
+		if qCreateHeadless != "" {
+			if err := r.SetQueryParam("createHeadless", qCreateHeadless); err != nil {
 				return err
 			}
 		}

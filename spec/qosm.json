@@ -13,6 +13,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]",
         "ADMIN:QOS:SERVER [DELETE]": "ADMIN:QOS:SERVER [DELETE]",
         "ADMIN:QOS:SERVER []": "ADMIN:QOS:SERVER []"
       },
@@ -36,6 +37,80 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/qosm/admin/namespaces/{namespace}/servers/{region}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]\nRequired scope: social\n\nThis endpoint updates the registered QoS service\u0026#39;s configurable configuration\u0026#39;.\n```",
+        "operationId": "UpdateServerConfig",
+        "parameters": [
+          {
+            "description": "original region of the QoS",
+            "in": "path",
+            "name": "region",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the QoS",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateServerRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "record updated"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "server record not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update QoS Service configuration",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/qosm/admin/servers/{region}": {
       "delete": {
         "consumes": [
@@ -147,6 +222,56 @@
         "summary": "Modify a QoS service's region alias",
         "tags": [
           "Admin"
+        ]
+      }
+    },
+    "/qosm/public/namespaces/{namespace}/qos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nThis endpoint lists all QoS services available in all regions.\n\nThis endpoint is intended to be called by game client to find out all available regions.\nAfter getting a list of QoS on each region, game client is expected to ping each one with UDP\nconnection as described below:\n\n1. Make UDP connection to each QoS\u0026#39;s IP:Port\n2. Send string \u0026#34;PING\u0026#34; after connection established\n3. Wait for string \u0026#34;PONG\u0026#34; response\n4. Note the request-response latency for each QoS in each region\n\nThe game then can use ping latency information to either:\n1. Inform the player on these latencies and let player choose preferred region\n2. Send the latency list to Matchmaking Service so that player can be matched with other players\n   in nearby regions\n```",
+        "operationId": "ListServerPerNamespace",
+        "parameters": [
+          {
+            "description": "namespace of the QoS",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "QoS status, available value: ACTIVE, INACTIVE, UNREACHABLE",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list of QoS services returned",
+            "schema": {
+              "$ref": "#/definitions/models.ListServerResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of QoS services per region",
+        "tags": [
+          "Public"
         ]
       }
     },
@@ -312,6 +437,16 @@
       },
       "required": [
         "alias"
+      ]
+    },
+    "models.UpdateServerRequest": {
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
       ]
     },
     "response.Error": {

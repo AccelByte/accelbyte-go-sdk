@@ -128,6 +128,35 @@ func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RebalanceShort instead
+func (m *MatchmakingService) Rebalance(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
+	token, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.Rebalance(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use QueueSessionHandlerShort instead
 func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSessionHandlerParams) error {
 	token, err := m.TokenRepository.GetToken()
@@ -763,6 +792,31 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 	}
 
 	ok, err := m.Client.Matchmaking.StoreMatchResultsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (m *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  m.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := m.Client.Matchmaking.RebalanceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

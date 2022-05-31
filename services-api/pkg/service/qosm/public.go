@@ -21,6 +21,23 @@ type PublicService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListServerPerNamespaceShort instead
+func (p *PublicService) ListServerPerNamespace(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	token, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, internalServerError, err := p.Client.Public.ListServerPerNamespace(input, client.BearerToken(*token.AccessToken))
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use ListServerShort instead
 func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	token, err := p.TokenRepository.GetToken()
@@ -31,6 +48,31 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicService) ListServerPerNamespaceShort(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := p.Client.Public.ListServerPerNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

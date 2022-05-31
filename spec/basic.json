@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "1.36.1"
+    "version": "1.36.2"
   },
   "schemes": [
     "https"
@@ -54,6 +54,7 @@
         "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]",
         "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]": "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]",
         "ADMIN:NAMESPACE:{namespace}:PROFILE []": "ADMIN:NAMESPACE:{namespace}:PROFILE []",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]",
@@ -1606,6 +1607,82 @@
         }
       }
     },
+    "/basic/v1/admin/namespaces/{namespace}/profiles/byPublicId": {
+      "get": {
+        "description": "Get user profile by public id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserProfileInfoByPublicId",
+        "parameters": [
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user public id",
+            "in": "query",
+            "name": "publicId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfileInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11469\u003c/td\u003e\u003ctd\u003eUser profile with publicId [{publicId}] not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user profile info by public id",
+        "tags": [
+          "UserProfile"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PROFILE"
+        }
+      }
+    },
     "/basic/v1/admin/namespaces/{namespace}/profiles/public": {
       "post": {
         "consumes": [
@@ -2966,6 +3043,55 @@
           }
         },
         "summary": "Get user profile public info by ids",
+        "tags": [
+          "UserProfile"
+        ]
+      }
+    },
+    "/basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId": {
+      "get": {
+        "description": "Get user public profile by public id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user public profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicGetUserProfileInfoByPublicId",
+        "parameters": [
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user public id",
+            "in": "query",
+            "name": "publicId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePublicInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11469\u003c/td\u003e\u003ctd\u003eUser profile with publicId [{publicId}] not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "summary": "Get user profile public info by public id",
         "tags": [
           "UserProfile"
         ]
@@ -4667,6 +4793,9 @@
         "namespace": {
           "type": "string"
         },
+        "publicId": {
+          "type": "string"
+        },
         "status": {
           "enum": [
             "ACTIVE",
@@ -4778,6 +4907,9 @@
           },
           "type": "object"
         },
+        "publicId": {
+          "type": "string"
+        },
         "status": {
           "enum": [
             "ACTIVE",
@@ -4871,6 +5003,9 @@
           "type": "object"
         },
         "namespace": {
+          "type": "string"
+        },
+        "publicId": {
           "type": "string"
         },
         "timeZone": {

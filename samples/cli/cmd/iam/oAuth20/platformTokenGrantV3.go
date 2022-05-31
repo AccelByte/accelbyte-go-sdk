@@ -30,6 +30,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
 		clientId, _ := cmd.Flags().GetString("clientId")
+		createHeadless, _ := cmd.Flags().GetBool("createHeadless")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
 		httpClient := &http.Client{
@@ -38,11 +39,12 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 			},
 		}
 		input := &o_auth2_0.PlatformTokenGrantV3Params{
-			ClientID:      &clientId,
-			DeviceID:      &deviceId,
-			PlatformToken: &platformToken,
-			PlatformID:    platformId,
-			HTTPClient:    httpClient,
+			ClientID:       &clientId,
+			CreateHeadless: &createHeadless,
+			DeviceID:       &deviceId,
+			PlatformToken:  &platformToken,
+			PlatformID:     platformId,
+			HTTPClient:     httpClient,
 		}
 		ok, err := oAuth20Service.PlatformTokenGrantV3Short(input)
 		if err != nil {
@@ -59,6 +61,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 
 func init() {
 	PlatformTokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
+	PlatformTokenGrantV3Cmd.Flags().Bool("createHeadless", false, "Create headless")
 	PlatformTokenGrantV3Cmd.Flags().String("deviceId", "", "Device id")
 	PlatformTokenGrantV3Cmd.Flags().String("platformToken", "", "Platform token")
 	PlatformTokenGrantV3Cmd.Flags().String("platformId", "", "Platform id")

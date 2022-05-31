@@ -19,13 +19,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPlatformTokenGrantV3Params creates a new PlatformTokenGrantV3Params object
 // with the default values initialized.
 func NewPlatformTokenGrantV3Params() *PlatformTokenGrantV3Params {
-	var ()
+	var (
+		createHeadlessDefault = bool(true)
+	)
 	return &PlatformTokenGrantV3Params{
+		CreateHeadless: &createHeadlessDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +38,11 @@ func NewPlatformTokenGrantV3Params() *PlatformTokenGrantV3Params {
 // NewPlatformTokenGrantV3ParamsWithTimeout creates a new PlatformTokenGrantV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPlatformTokenGrantV3ParamsWithTimeout(timeout time.Duration) *PlatformTokenGrantV3Params {
-	var ()
+	var (
+		createHeadlessDefault = bool(true)
+	)
 	return &PlatformTokenGrantV3Params{
+		CreateHeadless: &createHeadlessDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +51,11 @@ func NewPlatformTokenGrantV3ParamsWithTimeout(timeout time.Duration) *PlatformTo
 // NewPlatformTokenGrantV3ParamsWithContext creates a new PlatformTokenGrantV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewPlatformTokenGrantV3ParamsWithContext(ctx context.Context) *PlatformTokenGrantV3Params {
-	var ()
+	var (
+		createHeadlessDefault = bool(true)
+	)
 	return &PlatformTokenGrantV3Params{
+		CreateHeadless: &createHeadlessDefault,
 
 		Context: ctx,
 	}
@@ -54,9 +64,12 @@ func NewPlatformTokenGrantV3ParamsWithContext(ctx context.Context) *PlatformToke
 // NewPlatformTokenGrantV3ParamsWithHTTPClient creates a new PlatformTokenGrantV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPlatformTokenGrantV3ParamsWithHTTPClient(client *http.Client) *PlatformTokenGrantV3Params {
-	var ()
+	var (
+		createHeadlessDefault = bool(true)
+	)
 	return &PlatformTokenGrantV3Params{
-		HTTPClient: client,
+		CreateHeadless: &createHeadlessDefault,
+		HTTPClient:     client,
 	}
 }
 
@@ -72,6 +85,11 @@ type PlatformTokenGrantV3Params struct {
 
 	*/
 	ClientID *string
+	/*CreateHeadless
+	  If directly create new account when not linked yet
+
+	*/
+	CreateHeadless *bool
 	/*DeviceID
 	  Device/hardware identifier
 
@@ -152,6 +170,17 @@ func (o *PlatformTokenGrantV3Params) SetClientID(clientID *string) {
 	o.ClientID = clientID
 }
 
+// WithCreateHeadless adds the createHeadless to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) WithCreateHeadless(createHeadless *bool) *PlatformTokenGrantV3Params {
+	o.SetCreateHeadless(createHeadless)
+	return o
+}
+
+// SetCreateHeadless adds the createHeadless to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetCreateHeadless(createHeadless *bool) {
+	o.CreateHeadless = createHeadless
+}
+
 // WithDeviceID adds the deviceID to the platform token grant v3 params
 func (o *PlatformTokenGrantV3Params) WithDeviceID(deviceID *string) *PlatformTokenGrantV3Params {
 	o.SetDeviceID(deviceID)
@@ -203,6 +232,22 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		fClientID := frClientID
 		if fClientID != "" {
 			if err := r.SetFormParam("client_id", fClientID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CreateHeadless != nil {
+
+		// form param createHeadless
+		var frCreateHeadless bool
+		if o.CreateHeadless != nil {
+			frCreateHeadless = *o.CreateHeadless
+		}
+		fCreateHeadless := swag.FormatBool(frCreateHeadless)
+		if fCreateHeadless != "" {
+			if err := r.SetFormParam("createHeadless", fCreateHeadless); err != nil {
 				return err
 			}
 		}

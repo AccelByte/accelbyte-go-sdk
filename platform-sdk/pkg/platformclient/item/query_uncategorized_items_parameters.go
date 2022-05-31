@@ -29,13 +29,13 @@ func NewQueryUncategorizedItemsParams() *QueryUncategorizedItemsParams {
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc")
+		sortByDefault     = []string{"name:asc"}
 	)
 	return &QueryUncategorizedItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -48,13 +48,13 @@ func NewQueryUncategorizedItemsParamsWithTimeout(timeout time.Duration) *QueryUn
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc")
+		sortByDefault     = []string{"name:asc"}
 	)
 	return &QueryUncategorizedItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		timeout: timeout,
 	}
@@ -67,13 +67,13 @@ func NewQueryUncategorizedItemsParamsWithContext(ctx context.Context) *QueryUnca
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc")
+		sortByDefault     = []string{"name:asc"}
 	)
 	return &QueryUncategorizedItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 
 		Context: ctx,
 	}
@@ -86,13 +86,13 @@ func NewQueryUncategorizedItemsParamsWithHTTPClient(client *http.Client) *QueryU
 		activeOnlyDefault = bool(true)
 		limitDefault      = int32(20)
 		offsetDefault     = int32(0)
-		sortByDefault     = string("name:asc")
+		sortByDefault     = []string{"name:asc"}
 	)
 	return &QueryUncategorizedItemsParams{
 		ActiveOnly: &activeOnlyDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -122,7 +122,7 @@ type QueryUncategorizedItemsParams struct {
 	  default is name:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc
 
 	*/
-	SortBy *string
+	SortBy []string
 	/*StoreID
 	  default is published store id
 
@@ -227,13 +227,13 @@ func (o *QueryUncategorizedItemsParams) SetOffset(offset *int32) {
 }
 
 // WithSortBy adds the sortBy to the query uncategorized items params
-func (o *QueryUncategorizedItemsParams) WithSortBy(sortBy *string) *QueryUncategorizedItemsParams {
+func (o *QueryUncategorizedItemsParams) WithSortBy(sortBy []string) *QueryUncategorizedItemsParams {
 	o.SetSortBy(sortBy)
 	return o
 }
 
 // SetSortBy adds the sortBy to the query uncategorized items params
-func (o *QueryUncategorizedItemsParams) SetSortBy(sortBy *string) {
+func (o *QueryUncategorizedItemsParams) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
@@ -309,20 +309,12 @@ func (o *QueryUncategorizedItemsParams) WriteToRequest(r runtime.ClientRequest, 
 
 	}
 
-	if o.SortBy != nil {
+	valuesSortBy := o.SortBy
 
-		// query param sortBy
-		var qrSortBy string
-		if o.SortBy != nil {
-			qrSortBy = *o.SortBy
-		}
-		qSortBy := qrSortBy
-		if qSortBy != "" {
-			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
-				return err
-			}
-		}
-
+	joinedSortBy := swag.JoinByFormat(valuesSortBy, "")
+	// query array param sortBy
+	if err := r.SetQueryParam("sortBy", joinedSortBy...); err != nil {
+		return err
 	}
 
 	if o.StoreID != nil {

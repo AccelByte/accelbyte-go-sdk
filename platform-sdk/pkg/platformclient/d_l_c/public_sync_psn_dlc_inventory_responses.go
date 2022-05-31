@@ -11,13 +11,10 @@ package d_l_c
 
 import (
 	"fmt"
-	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // PublicSyncPsnDlcInventoryReader is a Reader for the PublicSyncPsnDlcInventory structure.
@@ -30,12 +27,6 @@ func (o *PublicSyncPsnDlcInventoryReader) ReadResponse(response runtime.ClientRe
 	switch response.Code() {
 	case 204:
 		result := NewPublicSyncPsnDlcInventoryNoContent()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 400:
-		result := NewPublicSyncPsnDlcInventoryBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,39 +59,6 @@ func (o *PublicSyncPsnDlcInventoryNoContent) Error() string {
 }
 
 func (o *PublicSyncPsnDlcInventoryNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewPublicSyncPsnDlcInventoryBadRequest creates a PublicSyncPsnDlcInventoryBadRequest with default headers values
-func NewPublicSyncPsnDlcInventoryBadRequest() *PublicSyncPsnDlcInventoryBadRequest {
-	return &PublicSyncPsnDlcInventoryBadRequest{}
-}
-
-/*PublicSyncPsnDlcInventoryBadRequest handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39123</td><td>PSN Sync failed with status code [{statusCode}] and psnAuthCode is [{psnAuthCode}]</td></tr>
-*/
-type PublicSyncPsnDlcInventoryBadRequest struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *PublicSyncPsnDlcInventoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryBadRequest  %+v", 400, o.Payload)
-}
-
-func (o *PublicSyncPsnDlcInventoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *PublicSyncPsnDlcInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }

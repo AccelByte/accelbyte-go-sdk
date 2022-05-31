@@ -6,10 +6,8 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // SteamIAPConfigRequest steam i a p config request
@@ -17,31 +15,15 @@ import (
 // swagger:model SteamIAPConfigRequest
 type SteamIAPConfigRequest struct {
 
+	// appId
+	AppID string `json:"appId,omitempty"`
+
 	// publisherAuthenticationKey
-	// Required: true
-	PublisherAuthenticationKey *string `json:"publisherAuthenticationKey"`
+	PublisherAuthenticationKey string `json:"publisherAuthenticationKey,omitempty"`
 }
 
 // Validate validates this steam i a p config request
 func (m *SteamIAPConfigRequest) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validatePublisherAuthenticationKey(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SteamIAPConfigRequest) validatePublisherAuthenticationKey(formats strfmt.Registry) error {
-
-	if err := validate.Required("publisherAuthenticationKey", "body", m.PublisherAuthenticationKey); err != nil {
-		return err
-	}
-
 	return nil
 }
 

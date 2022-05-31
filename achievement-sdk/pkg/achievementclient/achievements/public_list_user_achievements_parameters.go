@@ -107,7 +107,7 @@ type PublicListUserAchievementsParams struct {
 	*/
 	Namespace string
 	/*Offset
-	  offset default 0
+	  offset
 
 	*/
 	Offset *int64

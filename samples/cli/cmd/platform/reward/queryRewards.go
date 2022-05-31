@@ -7,6 +7,8 @@
 package reward
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -29,13 +31,18 @@ var QueryRewardsCmd = &cobra.Command{
 		eventTopic, _ := cmd.Flags().GetString("eventTopic")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
-		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortByString := cmd.Flag("sortBy").Value.String()
+		var sortBy []string
+		errSortBy := json.Unmarshal([]byte(sortByString), &sortBy)
+		if errSortBy != nil {
+			return errSortBy
+		}
 		input := &reward.QueryRewardsParams{
 			Namespace:  namespace,
 			EventTopic: &eventTopic,
 			Limit:      &limit,
 			Offset:     &offset,
-			SortBy:     &sortBy,
+			SortBy:     sortBy,
 		}
 		ok, err := rewardService.QueryRewardsShort(input)
 		if err != nil {

@@ -11,10 +11,13 @@ package d_l_c
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // SyncSteamDLCReader is a Reader for the SyncSteamDLC structure.
@@ -27,6 +30,12 @@ func (o *SyncSteamDLCReader) ReadResponse(response runtime.ClientResponse, consu
 	switch response.Code() {
 	case 204:
 		result := NewSyncSteamDLCNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewSyncSteamDLCBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,6 +68,39 @@ func (o *SyncSteamDLCNoContent) Error() string {
 }
 
 func (o *SyncSteamDLCNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewSyncSteamDLCBadRequest creates a SyncSteamDLCBadRequest with default headers values
+func NewSyncSteamDLCBadRequest() *SyncSteamDLCBadRequest {
+	return &SyncSteamDLCBadRequest{}
+}
+
+/*SyncSteamDLCBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr>
+*/
+type SyncSteamDLCBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncSteamDLCBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync][%d] syncSteamDLCBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *SyncSteamDLCBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncSteamDLCBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

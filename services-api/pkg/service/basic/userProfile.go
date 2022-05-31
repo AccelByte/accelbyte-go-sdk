@@ -21,6 +21,32 @@ type UserProfileService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetUserProfileInfoByPublicIDShort instead
+func (u *UserProfileService) GetUserProfileInfoByPublicID(input *user_profile.GetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfileInfo, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetUserProfileInfoByPublicID(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use AdminGetUserProfilePublicInfoByIdsShort instead
 func (u *UserProfileService) AdminGetUserProfilePublicInfoByIds(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	token, err := u.TokenRepository.GetToken()
@@ -245,6 +271,22 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIds(input *user_pro
 	ok, badRequest, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoByIds(input)
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use PublicGetUserProfileInfoByPublicIDShort instead
+func (u *UserProfileService) PublicGetUserProfileInfoByPublicID(input *user_profile.PublicGetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfilePublicInfo, error) {
+	ok, badRequest, notFound, err := u.Client.UserProfile.PublicGetUserProfileInfoByPublicID(input)
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -543,6 +585,31 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
+func (u *UserProfileService) GetUserProfileInfoByPublicIDShort(input *user_profile.GetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  u.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := u.Client.UserProfile.GetUserProfileInfoByPublicIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -770,6 +837,15 @@ func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.Up
 
 func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *user_profile.PublicGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoByIdsShort(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (u *UserProfileService) PublicGetUserProfileInfoByPublicIDShort(input *user_profile.PublicGetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfilePublicInfo, error) {
+	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoByPublicIDShort(input)
 	if err != nil {
 		return nil, err
 	}

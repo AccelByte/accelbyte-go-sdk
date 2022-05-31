@@ -30,6 +30,9 @@ type UserProfilePublicInfo struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// public Id
+	PublicID string `json:"publicId,omitempty"`
+
 	// time zone
 	TimeZone string `json:"timeZone,omitempty"`
 

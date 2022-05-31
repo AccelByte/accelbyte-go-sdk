@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..29"
+echo "1..30"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -87,171 +87,178 @@ samples/cli/sample-apps Matchmaking storeMatchResults \
     > test.out 2>&1
 eval_tap $? 7 'StoreMatchResults' test.out
 
-#- 8 QueueSessionHandler
-samples/cli/sample-apps Matchmaking queueSessionHandler \
-    --body '{"channel": "AGTJ8IEd", "client_version": "agEtp4w2", "deployment": "9KOu9c19", "game_mode": "R6XDqWHk", "joinable": false, "match_id": "P8npLEKM", "matching_allies": [{"matching_parties": [{"first_ticket_created_at": 11, "party_attributes": {"jiX7jpkV": {}}, "party_id": "Zk3IaQYE", "party_members": [{"extra_attributes": {"mqGodOEG": {}}, "user_id": "t9gPOj0c"}]}]}], "namespace": "6i0JkvIa", "party_attributes": {"s73ucYnF": {}}, "party_id": "AJ3DK5T4", "queued_at": 61, "region": "ogg0Y39U", "server_name": "oYlpv5bV", "status": "AgtsDhUT", "updated_at": "1985-05-25T00:00:00Z"}' \
-    --namespace 'cbQDjbTQ' \
+#- 8 Rebalance
+samples/cli/sample-apps Matchmaking rebalance \
+    --body '{"match_id": "AGTJ8IEd"}' \
+    --namespace 'agEtp4w2' \
     > test.out 2>&1
-eval_tap $? 8 'QueueSessionHandler' test.out
+eval_tap $? 8 'Rebalance' test.out
 
-#- 9 DequeueSessionHandler
-samples/cli/sample-apps Matchmaking dequeueSessionHandler \
-    --body '{"match_id": "uPMz2PTR"}' \
+#- 9 QueueSessionHandler
+samples/cli/sample-apps Matchmaking queueSessionHandler \
+    --body '{"channel": "9KOu9c19", "client_version": "R6XDqWHk", "deployment": "kP8npLEK", "game_mode": "MfjiX7jp", "joinable": false, "match_id": "VZk3IaQY", "matching_allies": [{"matching_parties": [{"first_ticket_created_at": 60, "party_attributes": {"mqGodOEG": {}}, "party_id": "t9gPOj0c", "party_members": [{"extra_attributes": {"6i0JkvIa": {}}, "user_id": "s73ucYnF"}]}]}], "namespace": "AJ3DK5T4", "party_attributes": {"Eogg0Y39": {}}, "party_id": "UoYlpv5b", "queued_at": 94, "region": "AgtsDhUT", "server_name": "DUscbQDj", "status": "bTQuPMz2", "updated_at": "1991-12-09T00:00:00Z"}' \
     --namespace 'lkyU89ZP' \
     > test.out 2>&1
-eval_tap $? 9 'DequeueSessionHandler' test.out
+eval_tap $? 9 'QueueSessionHandler' test.out
 
-#- 10 QuerySessionHandler
-samples/cli/sample-apps Matchmaking querySessionHandler \
-    --matchID 'Ow6zPFJ4' \
+#- 10 DequeueSessionHandler
+samples/cli/sample-apps Matchmaking dequeueSessionHandler \
+    --body '{"match_id": "Ow6zPFJ4"}' \
     --namespace '2cwmzBBS' \
     > test.out 2>&1
-eval_tap $? 10 'QuerySessionHandler' test.out
+eval_tap $? 10 'DequeueSessionHandler' test.out
 
-#- 11 UpdatePlayTimeWeight
+#- 11 QuerySessionHandler
+samples/cli/sample-apps Matchmaking querySessionHandler \
+    --matchID 'MNcoAAOj' \
+    --namespace 'KNjfcYHm' \
+    > test.out 2>&1
+eval_tap $? 11 'QuerySessionHandler' test.out
+
+#- 12 UpdatePlayTimeWeight
 samples/cli/sample-apps Matchmaking updatePlayTimeWeight \
-    --body '{"playtime": 76, "userID": "NcoAAOjK", "weight": 0.6139831702720356}' \
-    --namespace 'fcYHm093' \
+    --body '{"playtime": 0, "userID": "YgBU1sqj", "weight": 0.3848021147182681}' \
+    --namespace '0XH45PaR' \
     > test.out 2>&1
-eval_tap $? 11 'UpdatePlayTimeWeight' test.out
+eval_tap $? 12 'UpdatePlayTimeWeight' test.out
 
-#- 12 GetAllPartyInAllChannel
+#- 13 GetAllPartyInAllChannel
 samples/cli/sample-apps Matchmaking getAllPartyInAllChannel \
-    --namespace 'aYgBU1sq' \
+    --namespace 'SOFQBtu2' \
     > test.out 2>&1
-eval_tap $? 12 'GetAllPartyInAllChannel' test.out
+eval_tap $? 13 'GetAllPartyInAllChannel' test.out
 
-#- 13 BulkGetSessions
+#- 14 BulkGetSessions
 samples/cli/sample-apps Matchmaking bulkGetSessions \
-    --namespace 'jyK0XH45' \
-    --matchIDs 'PaRSOFQB' \
+    --namespace '3REZ8hRV' \
+    --matchIDs 'X7LGOvDd' \
     > test.out 2>&1
-eval_tap $? 13 'BulkGetSessions' test.out
+eval_tap $? 14 'BulkGetSessions' test.out
 
-#- 14 ExportChannels
+#- 15 ExportChannels
 samples/cli/sample-apps Matchmaking exportChannels \
-    --namespace 'tu23REZ8' \
+    --namespace 'YiQS9i7m' \
     > test.out 2>&1
-eval_tap $? 14 'ExportChannels' test.out
+eval_tap $? 15 'ExportChannels' test.out
 
-#- 15 ImportChannels
+#- 16 ImportChannels
 samples/cli/sample-apps Matchmaking importChannels \
     --file 'tmp.dat' \
-    --strategy 'hRVX7LGO' \
-    --namespace 'vDdYiQS9' \
+    --strategy 'V1C91pjG' \
+    --namespace '9gpxL6yc' \
     > test.out 2>&1
-eval_tap $? 15 'ImportChannels' test.out
+eval_tap $? 16 'ImportChannels' test.out
 
-#- 16 GetSingleMatchmakingChannel
+#- 17 GetSingleMatchmakingChannel
 samples/cli/sample-apps Matchmaking getSingleMatchmakingChannel \
-    --channelName 'i7mV1C91' \
-    --namespace 'pjG9gpxL' \
+    --channelName 'TQdvln2L' \
+    --namespace 'AuSQWEXL' \
     > test.out 2>&1
-eval_tap $? 16 'GetSingleMatchmakingChannel' test.out
+eval_tap $? 17 'GetSingleMatchmakingChannel' test.out
 
-#- 17 UpdateMatchmakingChannel
+#- 18 UpdateMatchmakingChannel
 samples/cli/sample-apps Matchmaking updateMatchmakingChannel \
-    --body '{"deployment": "6ycTQdvl", "description": "n2LAuSQW", "findMatchTimeoutSeconds": 61, "joinable": true, "max_delay_ms": 60, "ruleSet": {"alliance": {"maxNumber": 67, "minNumber": 28, "playerMaxNumber": 25, "playerMinNumber": 96}, "alliance_flexing_rule": [{"duration": 4, "max_number": 14, "min_number": 66, "player_max_number": 38, "player_min_number": 97}], "flexingRules": [{"attribute": "vbNYqgUq", "criteria": "slArFPiH", "duration": 93, "reference": 0.5364079277230105}], "match_options": {"options": [{"name": "aCv8kU9d", "type": "BBpdsJLh"}]}, "matchingRules": [{"attribute": "sVyExrkx", "criteria": "oot0B7WO", "reference": 0.08041181467016356}], "sub_game_modes": {}}, "sessionQueueTimeoutSeconds": 35, "socialMatchmaking": false, "use_sub_gamemode": false}' \
-    --channelName 'pMci37Ds' \
-    --namespace '7YSfExaI' \
+    --body '{"deployment": "6LFE1YHo", "description": "9m126ZWc", "findMatchTimeoutSeconds": 14, "joinable": true, "max_delay_ms": 97, "ruleSet": {"alliance": {"maxNumber": 43, "minNumber": 3, "playerMaxNumber": 79, "playerMinNumber": 33}, "alliance_flexing_rule": [{"duration": 12, "max_number": 92, "min_number": 33, "player_max_number": 37, "player_min_number": 22}], "flexingRules": [{"attribute": "ArFPiHUI", "criteria": "vaCv8kU9", "duration": 6, "reference": 0.4350794884136475}], "match_options": {"options": [{"name": "pdsJLhsV", "type": "yExrkxoo"}]}, "matchingRules": [{"attribute": "t0B7WOfe", "criteria": "rcZdpMci", "reference": 0.860706768410819}], "sub_game_modes": {}}, "sessionQueueTimeoutSeconds": 58, "socialMatchmaking": true, "use_sub_gamemode": false}' \
+    --channelName 'ExaI3uzL' \
+    --namespace 'teMbFAlt' \
     > test.out 2>&1
-eval_tap $? 17 'UpdateMatchmakingChannel' test.out
+eval_tap $? 18 'UpdateMatchmakingChannel' test.out
 
-#- 18 GetAllPartyInChannel
+#- 19 GetAllPartyInChannel
 samples/cli/sample-apps Matchmaking getAllPartyInChannel \
-    --channelName '3uzLteMb' \
-    --namespace 'FAlt4hr7' \
+    --channelName '4hr7HmOY' \
+    --namespace 'iBA5ltAO' \
     > test.out 2>&1
-eval_tap $? 18 'GetAllPartyInChannel' test.out
+eval_tap $? 19 'GetAllPartyInChannel' test.out
 
-#- 19 GetAllSessionsInChannel
+#- 20 GetAllSessionsInChannel
 samples/cli/sample-apps Matchmaking getAllSessionsInChannel \
-    --channelName 'HmOYiBA5' \
-    --namespace 'ltAOXmlG' \
+    --channelName 'XmlG6eh1' \
+    --namespace 'dTdoTFpB' \
     > test.out 2>&1
-eval_tap $? 19 'GetAllSessionsInChannel' test.out
+eval_tap $? 20 'GetAllSessionsInChannel' test.out
 
-#- 20 AddUserIntoSessionInChannel
+#- 21 AddUserIntoSessionInChannel
 samples/cli/sample-apps Matchmaking addUserIntoSessionInChannel \
-    --body '{"blocked_players": ["6eh1dTdo"], "party_id": "TFpBIcuC", "user_id": "1dQY93OJ"}' \
-    --channelName 'nJ6Te9vD' \
-    --matchID '8ldz7Hu8' \
-    --namespace 'AD79kdWu' \
+    --body '{"blocked_players": ["IcuC1dQY"], "party_id": "93OJnJ6T", "user_id": "e9vD8ldz"}' \
+    --channelName '7Hu8AD79' \
+    --matchID 'kdWunviz' \
+    --namespace 'U0q1pHyh' \
     > test.out 2>&1
-eval_tap $? 20 'AddUserIntoSessionInChannel' test.out
+eval_tap $? 21 'AddUserIntoSessionInChannel' test.out
 
-#- 21 DeleteSessionInChannel
+#- 22 DeleteSessionInChannel
 samples/cli/sample-apps Matchmaking deleteSessionInChannel \
-    --channelName 'nvizU0q1' \
-    --matchID 'pHyhhERo' \
-    --namespace 'GgdrysMi' \
+    --channelName 'hERoGgdr' \
+    --matchID 'ysMizBGS' \
+    --namespace 'RdP2l7DN' \
     > test.out 2>&1
-eval_tap $? 21 'DeleteSessionInChannel' test.out
+eval_tap $? 22 'DeleteSessionInChannel' test.out
 
-#- 22 DeleteUserFromSessionInChannel
+#- 23 DeleteUserFromSessionInChannel
 samples/cli/sample-apps Matchmaking deleteUserFromSessionInChannel \
-    --channelName 'zBGSRdP2' \
-    --matchID 'l7DNSZ8A' \
-    --namespace 'q0XiPLQX' \
-    --userID 'Se07ZddO' \
+    --channelName 'SZ8Aq0Xi' \
+    --matchID 'PLQXSe07' \
+    --namespace 'ZddOGTMl' \
+    --userID 'JjBwj9HJ' \
     > test.out 2>&1
-eval_tap $? 22 'DeleteUserFromSessionInChannel' test.out
+eval_tap $? 23 'DeleteUserFromSessionInChannel' test.out
 
-#- 23 SearchSessions
+#- 24 SearchSessions
 samples/cli/sample-apps Matchmaking searchSessions \
-    --namespace 'GTMlJjBw' \
-    --channel 'j9HJHQKs' \
-    --deleted 'False' \
-    --matchID 'EdSXRDSv' \
-    --partyID 'guauw1xT' \
-    --userID '7eMwSl9M' \
-    --limit '75' \
-    --offset '66' \
+    --namespace 'HQKseEdS' \
+    --channel 'XRDSvgua' \
+    --deleted 'True' \
+    --matchID 'w1xT7eMw' \
+    --partyID 'Sl9MLH0N' \
+    --userID 'nTJ2ulNz' \
+    --limit '55' \
+    --offset '42' \
     > test.out 2>&1
-eval_tap $? 23 'SearchSessions' test.out
+eval_tap $? 24 'SearchSessions' test.out
 
-#- 24 GetSessionHistoryDetailed
+#- 25 GetSessionHistoryDetailed
 samples/cli/sample-apps Matchmaking getSessionHistoryDetailed \
-    --matchID '0NnTJ2ul' \
-    --namespace 'NzBvwJaQ' \
+    --matchID 'wJaQa547' \
+    --namespace 'JllvA8RW' \
     > test.out 2>&1
-eval_tap $? 24 'GetSessionHistoryDetailed' test.out
+eval_tap $? 25 'GetSessionHistoryDetailed' test.out
 
-#- 25 PublicGetMessages
+#- 26 PublicGetMessages
 samples/cli/sample-apps Matchmaking publicGetMessages \
     > test.out 2>&1
-eval_tap $? 25 'PublicGetMessages' test.out
+eval_tap $? 26 'PublicGetMessages' test.out
 
-#- 26 PublicGetAllMatchmakingChannel
+#- 27 PublicGetAllMatchmakingChannel
 samples/cli/sample-apps Matchmaking publicGetAllMatchmakingChannel \
-    --namespace 'a547Jllv' \
+    --namespace 'SpabUt7x' \
     > test.out 2>&1
-eval_tap $? 26 'PublicGetAllMatchmakingChannel' test.out
+eval_tap $? 27 'PublicGetAllMatchmakingChannel' test.out
 
-#- 27 PublicGetSingleMatchmakingChannel
+#- 28 PublicGetSingleMatchmakingChannel
 samples/cli/sample-apps Matchmaking publicGetSingleMatchmakingChannel \
-    --channelName 'A8RWSpab' \
-    --namespace 'Ut7xk6Qx' \
+    --channelName 'k6QxyWhf' \
+    --namespace 'qoWfJw2o' \
     > test.out 2>&1
-eval_tap $? 27 'PublicGetSingleMatchmakingChannel' test.out
+eval_tap $? 28 'PublicGetSingleMatchmakingChannel' test.out
 
-#- 28 SearchSessionsV2
+#- 29 SearchSessionsV2
 samples/cli/sample-apps Matchmaking searchSessionsV2 \
-    --namespace 'yWhfqoWf' \
-    --channel 'Jw2o8oWU' \
-    --deleted 'True' \
-    --matchID 'vPCZ2HzT' \
-    --partyID '7NXmWDlX' \
-    --userID 'suNIdQJR' \
-    --limit '23' \
-    --offset '37' \
+    --namespace '8oWUqvPC' \
+    --channel 'Z2HzT7NX' \
+    --deleted 'False' \
+    --matchID 'WDlXsuNI' \
+    --partyID 'dQJR5lsN' \
+    --userID 'OlvkfwaS' \
+    --limit '2' \
+    --offset '26' \
     > test.out 2>&1
-eval_tap $? 28 'SearchSessionsV2' test.out
+eval_tap $? 29 'SearchSessionsV2' test.out
 
-#- 29 VersionCheckHandler
+#- 30 VersionCheckHandler
 samples/cli/sample-apps Matchmaking versionCheckHandler \
     > test.out 2>&1
-eval_tap $? 29 'VersionCheckHandler' test.out
+eval_tap $? 30 'VersionCheckHandler' test.out
 
 
 rm -f "tmp.dat"

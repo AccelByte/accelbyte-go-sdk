@@ -71,6 +71,8 @@ type ClientService interface {
 	QuerySessionHandlerShort(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, error)
 	QueueSessionHandler(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, *QueueSessionHandlerBadRequest, *QueueSessionHandlerUnauthorized, *QueueSessionHandlerForbidden, *QueueSessionHandlerInternalServerError, error)
 	QueueSessionHandlerShort(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, error)
+	Rebalance(params *RebalanceParams, authInfo runtime.ClientAuthInfoWriter) (*RebalanceOK, *RebalanceBadRequest, *RebalanceUnauthorized, *RebalanceForbidden, *RebalanceNotFound, *RebalanceInternalServerError, error)
+	RebalanceShort(params *RebalanceParams, authInfo runtime.ClientAuthInfoWriter) (*RebalanceOK, error)
 	SearchSessions(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, *SearchSessionsBadRequest, *SearchSessionsUnauthorized, *SearchSessionsForbidden, *SearchSessionsNotFound, *SearchSessionsInternalServerError, error)
 	SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error)
 	SearchSessionsV2(params *SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsV2OK, *SearchSessionsV2BadRequest, *SearchSessionsV2Unauthorized, *SearchSessionsV2Forbidden, *SearchSessionsV2NotFound, *SearchSessionsV2InternalServerError, error)
@@ -2303,6 +2305,126 @@ func (a *Client) QueueSessionHandlerShort(params *QueueSessionHandlerParams, aut
 	case *QueueSessionHandlerForbidden:
 		return nil, v
 	case *QueueSessionHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  Rebalance rebalances matchmaking based on m m r
+
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]
+
+Required Scope: social
+
+Do rebalance the teams based on MMR from given matchID,
+consider attribute name &#34;mmr&#34; (case-insensitive),
+or any first attribute with criteria &#34;distance&#34;
+
+Will return rebalanced mm result
+*/
+func (a *Client) Rebalance(params *RebalanceParams, authInfo runtime.ClientAuthInfoWriter) (*RebalanceOK, *RebalanceBadRequest, *RebalanceUnauthorized, *RebalanceForbidden, *RebalanceNotFound, *RebalanceInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRebalanceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Rebalance",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/rebalance",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RebalanceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RebalanceOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *RebalanceBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *RebalanceUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *RebalanceForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *RebalanceNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *RebalanceInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RebalanceShort(params *RebalanceParams, authInfo runtime.ClientAuthInfoWriter) (*RebalanceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRebalanceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Rebalance",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/rebalance",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RebalanceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RebalanceOK:
+		return v, nil
+	case *RebalanceBadRequest:
+		return nil, v
+	case *RebalanceUnauthorized:
+		return nil, v
+	case *RebalanceForbidden:
+		return nil, v
+	case *RebalanceNotFound:
+		return nil, v
+	case *RebalanceInternalServerError:
 		return nil, v
 
 	default:

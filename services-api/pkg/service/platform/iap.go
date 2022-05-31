@@ -556,10 +556,7 @@ func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcil
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := i.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
+	ok, err := i.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -587,7 +584,10 @@ func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) e
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := i.Client.Iap.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if err != nil {
 		return err
 	}

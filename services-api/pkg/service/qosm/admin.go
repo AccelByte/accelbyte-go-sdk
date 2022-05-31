@@ -20,6 +20,29 @@ type AdminService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use UpdateServerConfigShort instead
+func (a *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, notFound, internalServerError, err := a.Client.Admin.UpdateServerConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use DeleteServerShort instead
 func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	token, err := a.TokenRepository.GetToken()
@@ -53,6 +76,31 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	if internalServerError != nil {
 		return internalServerError
 	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (a *AdminService) UpdateServerConfigShort(input *admin.UpdateServerConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := a.Client.Admin.UpdateServerConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -37,6 +37,8 @@ type ClientService interface {
 	DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error)
 	SetServerAlias(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, *SetServerAliasBadRequest, *SetServerAliasNotFound, *SetServerAliasInternalServerError, error)
 	SetServerAliasShort(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, error)
+	UpdateServerConfig(params *UpdateServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServerConfigNoContent, *UpdateServerConfigBadRequest, *UpdateServerConfigNotFound, *UpdateServerConfigInternalServerError, error)
+	UpdateServerConfigShort(params *UpdateServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServerConfigNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -238,6 +240,113 @@ func (a *Client) SetServerAliasShort(params *SetServerAliasParams, authInfo runt
 	case *SetServerAliasNotFound:
 		return nil, v
 	case *SetServerAliasInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateServerConfig updates qo s service configuration
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]
+Required scope: social
+
+This endpoint updates the registered QoS service&#39;s configurable configuration&#39;.
+```
+*/
+func (a *Client) UpdateServerConfig(params *UpdateServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServerConfigNoContent, *UpdateServerConfigBadRequest, *UpdateServerConfigNotFound, *UpdateServerConfigInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateServerConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateServerConfig",
+		Method:             "PATCH",
+		PathPattern:        "/qosm/admin/namespaces/{namespace}/servers/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateServerConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateServerConfigNoContent:
+		return v, nil, nil, nil, nil
+
+	case *UpdateServerConfigBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *UpdateServerConfigNotFound:
+		return nil, nil, v, nil, nil
+
+	case *UpdateServerConfigInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateServerConfigShort(params *UpdateServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServerConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateServerConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateServerConfig",
+		Method:             "PATCH",
+		PathPattern:        "/qosm/admin/namespaces/{namespace}/servers/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateServerConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateServerConfigNoContent:
+		return v, nil
+	case *UpdateServerConfigBadRequest:
+		return nil, v
+	case *UpdateServerConfigNotFound:
+		return nil, v
+	case *UpdateServerConfigInternalServerError:
 		return nil, v
 
 	default:

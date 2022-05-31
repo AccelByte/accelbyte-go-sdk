@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.8.3"
+    "version": "5.9.0"
   },
   "schemes": [
     "https"
@@ -12774,6 +12774,135 @@
         ]
       }
     },
+    "/iam/v3/authenticateWithLink": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to authenticate a user account and perform platform link. \n\t\t\t\t\tIt validates user\u0026#39;s email / username and password. If user already enable 2FA, \n\t\t\t\t\tinvoke \u0026#39;\u0026#39;/mfa/verify\u0026#39; with response\u0026#39;s mfa_token\u0026#39;\u0026lt;/p\u0026gt;",
+        "operationId": "AuthenticationWithPlatformLinkV3",
+        "parameters": [
+          {
+            "description": "Account username",
+            "in": "formData",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Account password",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform linking Token",
+            "in": "formData",
+            "name": "linkingToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Client ID",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to authenticate and link platform account.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "400": {
+            "description": "Invalid username or password.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Need 2FA.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "User already link this platform's another account'.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Authentication with platform link",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
+    "/iam/v3/headless/token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to create headless account after 3rd platform authenticated, and response token . \n\t\t\t\t\tThe \u0026#39;linkingToken\u0026#39; in request body is received from \u0026#34;/platforms/{platformId}/token\u0026#34; \n\t\t\t\t\twhen 3rd platform account is not linked to justice account yet.\u0026#39;\u0026lt;/p\u0026gt;",
+        "operationId": "GenerateTokenByNewHeadlessAccountV3",
+        "parameters": [
+          {
+            "description": "Platform linking Token",
+            "in": "formData",
+            "name": "linkingToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to create headless account and response token info.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create headless account and response token",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
     "/iam/v3/location/country": {
       "get": {
         "consumes": [
@@ -13032,6 +13161,14 @@
             "in": "query",
             "name": "target_auth_page",
             "type": "string"
+          },
+          {
+            "default": true,
+            "description": "If create new headless account when login by new third platform user",
+            "in": "query",
+            "name": "createHeadless",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -13412,6 +13549,14 @@
             "in": "formData",
             "name": "device_id",
             "type": "string"
+          },
+          {
+            "default": true,
+            "description": "If directly create new account when not linked yet",
+            "in": "formData",
+            "name": "createHeadless",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -13638,7 +13783,7 @@
         "consumes": [
           "*/*"
         ],
-        "description": "This endpoint authenticates user platform. It validates user to its\n          respective platforms. Deactivated or login-banned users are unable to login. \u0026lt;br\u0026gt;\n          \u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\u0026lt;ul\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Steam login page will redirects to this endpoint after login success\n          as previously defined on openID request parameter \u0026lt;code\u0026gt;openid.return_to\u0026lt;/code\u0026gt; when request login to steam\n          https://openid.net/specs/openid-authentication-2_0.html#anchor27\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4web\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;PS4 login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt; \n\t\t  https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;XBL login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt; \n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Epicgames login page will redirects to this endpoint after login success\n          or an error occurred. If error, it redirects to the login page.\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Twitch login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Facebook login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Google login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;/ul\u0026gt; action code : 10709",
+        "description": "This endpoint authenticates user platform. It validates user to its\n          respective platforms. Deactivated or login-banned users are unable to login. \u0026lt;br\u0026gt;\n\t\t  \u0026lt;p\u0026gt;If already linked with justice account or match SSO condition, will redirect to client\u0026#39;s redirect url with code. then invoke \u0026#39;/iam/v3/oauth/token\u0026#39; with grant_type=authorization_code\u0026lt;/p\u0026gt;\t\n\t\t  \u0026lt;p\u0026gt;If already not linked with justice account and not match SSO condition, will redirect to client\u0026#39;s account linking page\u0026lt;/p\u0026gt;\t\n          \u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\u0026lt;ul\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Steam login page will redirects to this endpoint after login success\n          as previously defined on openID request parameter \u0026lt;code\u0026gt;openid.return_to\u0026lt;/code\u0026gt; when request login to steam\n          https://openid.net/specs/openid-authentication-2_0.html#anchor27\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4web\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;PS4 login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt; \n\t\t  https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;XBL login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt; \n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Epicgames login page will redirects to this endpoint after login success\n          or an error occurred. If error, it redirects to the login page.\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Twitch login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Facebook login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;Google login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter \u0026lt;code\u0026gt;redirect_uri\u0026lt;/code\u0026gt;\n          \u0026lt;/ul\u0026gt; action code : 10709",
         "operationId": "PlatformAuthenticationV3",
         "parameters": [
           {
@@ -14093,6 +14238,18 @@
             "in": "query",
             "name": "by",
             "type": "string"
+          },
+          {
+            "description": "The number of data retrieved in a page, default 100",
+            "in": "query",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "description": "number of offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "string"
           }
         ],
         "produces": [
@@ -14141,7 +14298,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;\n",
+        "description": "\n\t\t\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ol\u0026gt;\n\t\t\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.\u0026lt;/p\u0026gt;",
         "operationId": "PublicCreateUserV3",
         "parameters": [
           {
@@ -15333,6 +15490,72 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/all": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user authorization.\n\t\t\t\u0026lt;p\u0026gt;Unlink user\u0026#39;s account from for all third platforms. \u0026lt;/p\u0026gt;",
+        "operationId": "PublicPlatformUnlinkAllV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Unlink user's account from specific platform",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link": {
       "get": {
         "description": "This endpoint is used to generate third party login page which will redirected to establish endpoint.",
@@ -15660,6 +15883,72 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;This endpoint retrieves platform accounts linked to user.\n\t\t\t\t\t\u0026lt;br\u0026gt;It will query all linked platform accounts and result will be distinct \u0026amp; grouped, same platform we will pick oldest linked one. \n\t\t\t\t\t\u0026lt;br\u0026gt;Required valid user authorization.\u0026lt;/p\u0026gt;",
+        "operationId": "PublicListUserAllPlatformAccountsDistinctV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.DistinctPlatformResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get distinct platform accounts linked to the user",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories": {
       "get": {
         "description": "Required valid user authorization.\u0026lt;p\u0026gt;Notes for this endpoint: \u0026lt;/p\u0026gt; \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.\u0026lt;/li\u0026gt;\u0026lt;ul\u0026gt;",
@@ -15818,7 +16107,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update Platform Account relation to current User Account.\nNote: Game progression data (statistics, reward, etc) associated with previous User Account will not be \ntransferred. If the data is tight to game user ID, the user will have the game progression data.\n",
+        "description": "It is going to be \u0026lt;strong\u0026gt;DEPRECATED\u0026lt;/strong\u0026gt; for security purpose.\nUpdate Platform Account relation to current User Account.\nNote: Game progression data (statistics, reward, etc) associated with previous User Account will not be \ntransferred. If the data is tight to game user ID, the user will have the game progression data.\n",
         "operationId": "PublicLinkPlatformAccount",
         "parameters": [
           {
@@ -15882,6 +16171,80 @@
           }
         ],
         "summary": "Link a Platform User Account to User Account",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Force update other account\u0026#39;s Platform Account relation to current User Account. \u0026lt;br\u0026gt;\nThis endpoint can transfer progression from 3rd platform binding account\u0026#39;s to current account.\nThis endpoint need the same requestID which also used in \u0026lt;a href=\u0026#34;#operations-Users-PublicGetAsyncStatus\u0026#34;\u0026gt;Get link status\u0026lt;/a\u0026gt;.\n",
+        "operationId": "PublicForceLinkPlatformWithProgression",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Current user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.LinkPlatformAccountWithProgressionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Force link 3rd platform account and transfer progression",
         "tags": [
           "Users"
         ]
@@ -19866,6 +20229,9 @@
         },
         "authType": {
           "default": "EMAILPASSWD",
+          "enum": [
+            "EMAILPASSWD"
+          ],
           "type": "string"
         },
         "country": {
@@ -19916,6 +20282,9 @@
         },
         "authType": {
           "default": "EMAILPASSWD",
+          "enum": [
+            "EMAILPASSWD"
+          ],
           "type": "string"
         },
         "code": {
@@ -20295,6 +20664,43 @@
       "required": [
         "en-US",
         "zh-CN"
+      ]
+    },
+    "accountcommon.DistinctLinkedPlatformV3": {
+      "properties": {
+        "details": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.SimpleUserPlatformInfoV3"
+          },
+          "type": "array"
+        },
+        "linkedAt": {
+          "type": "string"
+        },
+        "platformName": {
+          "type": "string"
+        },
+        "platformUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "details",
+        "linkedAt",
+        "platformName"
+      ]
+    },
+    "accountcommon.DistinctPlatformResponseV3": {
+      "properties": {
+        "platforms": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.DistinctLinkedPlatformV3"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "platforms"
       ]
     },
     "accountcommon.InputValidationDescription": {
@@ -20713,6 +21119,30 @@
         "permissions",
         "roleId",
         "roleName"
+      ]
+    },
+    "accountcommon.SimpleUserPlatformInfoV3": {
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "linkedAt": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "originNamespace": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "linkedAt",
+        "namespace",
+        "originNamespace"
       ]
     },
     "accountcommon.UserLinkedPlatform": {
@@ -21905,10 +22335,42 @@
         "platformUserId"
       ]
     },
+    "model.LinkPlatformAccountWithProgressionRequest": {
+      "properties": {
+        "chosenNamespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chosenNamespaces",
+        "requestId"
+      ]
+    },
     "model.LinkRequest": {
       "properties": {
         "client_id": {
           "type": "string"
+        },
+        "conflict_publisher_user_id": {
+          "type": "string"
+        },
+        "conflict_user_linked_games": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "current_user_linked_games": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "error": {
           "$ref": "#/definitions/rest.ErrorResponse"
@@ -21925,6 +22387,15 @@
         },
         "payload": {
           "type": "object"
+        },
+        "platformDisplayName": {
+          "type": "string"
+        },
+        "platformID": {
+          "type": "string"
+        },
+        "platform_user_id": {
+          "type": "string"
         },
         "redirect_uri": {
           "type": "string"
@@ -23728,6 +24199,9 @@
         },
         "authType": {
           "default": "EMAILPASSWD",
+          "enum": [
+            "EMAILPASSWD"
+          ],
           "type": "string"
         },
         "country": {
@@ -23766,6 +24240,9 @@
         },
         "authType": {
           "default": "EMAILPASSWD",
+          "enum": [
+            "EMAILPASSWD"
+          ],
           "type": "string"
         },
         "country": {
@@ -24830,6 +25307,9 @@
     },
     "oauthmodel.ErrorResponse": {
       "properties": {
+        "clientId": {
+          "type": "string"
+        },
         "default_factor": {
           "type": "string"
         },
@@ -24848,7 +25328,13 @@
           },
           "type": "array"
         },
+        "linkingToken": {
+          "type": "string"
+        },
         "mfa_token": {
+          "type": "string"
+        },
+        "platformId": {
           "type": "string"
         }
       },

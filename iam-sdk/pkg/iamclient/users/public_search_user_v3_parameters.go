@@ -72,11 +72,21 @@ type PublicSearchUserV3Params struct {
 
 	*/
 	By *string
+	/*Limit
+	  The number of data retrieved in a page, default 100
+
+	*/
+	Limit *string
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
 	*/
 	Namespace string
+	/*Offset
+	  number of offset, default 0
+
+	*/
+	Offset *string
 	/*Query
 	  Query, can be either display name or username
 
@@ -147,6 +157,17 @@ func (o *PublicSearchUserV3Params) SetBy(by *string) {
 	o.By = by
 }
 
+// WithLimit adds the limit to the public search user v3 params
+func (o *PublicSearchUserV3Params) WithLimit(limit *string) *PublicSearchUserV3Params {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the public search user v3 params
+func (o *PublicSearchUserV3Params) SetLimit(limit *string) {
+	o.Limit = limit
+}
+
 // WithNamespace adds the namespace to the public search user v3 params
 func (o *PublicSearchUserV3Params) WithNamespace(namespace string) *PublicSearchUserV3Params {
 	o.SetNamespace(namespace)
@@ -156,6 +177,17 @@ func (o *PublicSearchUserV3Params) WithNamespace(namespace string) *PublicSearch
 // SetNamespace adds the namespace to the public search user v3 params
 func (o *PublicSearchUserV3Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithOffset adds the offset to the public search user v3 params
+func (o *PublicSearchUserV3Params) WithOffset(offset *string) *PublicSearchUserV3Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the public search user v3 params
+func (o *PublicSearchUserV3Params) SetOffset(offset *string) {
+	o.Offset = offset
 }
 
 // WithQuery adds the query to the public search user v3 params
@@ -193,9 +225,41 @@ func (o *PublicSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg s
 
 	}
 
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit string
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := qrLimit
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset string
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := qrOffset
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Query != nil {

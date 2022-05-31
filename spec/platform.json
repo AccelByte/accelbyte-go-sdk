@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.8.0"
+    "version": "4.9.0"
   },
   "schemes": [
     "https"
@@ -4599,12 +4599,33 @@
             "type": "integer"
           },
           {
-            "default": "name:asc,displayOrder:asc",
+            "default": [
+              "name:asc",
+              "displayOrder:asc"
+            ],
             "description": "default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "name",
+                "name:asc",
+                "name:desc",
+                "createdAt",
+                "createdAt:asc",
+                "createdAt:desc",
+                "updatedAt",
+                "updatedAt:asc",
+                "updatedAt:desc",
+                "displayOrder",
+                "displayOrder:asc",
+                "displayOrder:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -5246,12 +5267,32 @@
             "type": "integer"
           },
           {
-            "default": "name:asc",
+            "default": [
+              "name:asc"
+            ],
             "description": "default is name:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "name",
+                "name:asc",
+                "name:desc",
+                "createdAt",
+                "createdAt:asc",
+                "createdAt:desc",
+                "updatedAt",
+                "updatedAt:asc",
+                "updatedAt:desc",
+                "displayOrder",
+                "displayOrder:asc",
+                "displayOrder:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -8131,12 +8172,27 @@
             "type": "integer"
           },
           {
-            "default": "namespace:asc,rewardCode:asc",
+            "default": [
+              "namespace:asc",
+              "rewardCode:asc"
+            ],
             "description": "default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "namespace",
+                "namespace:asc",
+                "namespace:desc",
+                "rewardCode",
+                "rewardCode:asc",
+                "rewardCode:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -9218,12 +9274,26 @@
             "type": "integer"
           },
           {
-            "default": "updatedAt:desc",
+            "default": [
+              "updatedAt:desc"
+            ],
             "description": "default is updatedAt:desc, allow values: [createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=title:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by title, make sure to include other sort such as sku or createdAt after the first sort, eg: title:asc,updatedAt:desc",
             "in": "query",
+            "items": {
+              "enum": [
+                "createdAt",
+                "createdAt:asc",
+                "createdAt:desc",
+                "updatedAt",
+                "updatedAt:asc",
+                "updatedAt:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -17542,12 +17612,33 @@
             "type": "integer"
           },
           {
-            "default": "name:asc,displayOrder:asc",
+            "default": [
+              "name:asc",
+              "displayOrder:asc"
+            ],
             "description": "default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique value for example, if you wish to sort by displayOrder, make sure to include other sort such as name or createdAt after the first sort, eg: displayOrder:asc,name:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "name",
+                "name:asc",
+                "name:desc",
+                "createdAt",
+                "createdAt:asc",
+                "createdAt:desc",
+                "updatedAt",
+                "updatedAt:asc",
+                "updatedAt:desc",
+                "displayOrder",
+                "displayOrder:asc",
+                "displayOrder:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -18713,12 +18804,27 @@
             "type": "integer"
           },
           {
-            "default": "namespace:asc,rewardCode:asc",
+            "default": [
+              "namespace:asc",
+              "rewardCode:asc"
+            ],
             "description": "default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc",
             "in": "query",
+            "items": {
+              "enum": [
+                "namespace",
+                "namespace:asc",
+                "namespace:desc",
+                "rewardCode",
+                "rewardCode:asc",
+                "rewardCode:desc"
+              ],
+              "type": "string"
+            },
             "name": "sortBy",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "uniqueItems": true
           }
         ],
         "produces": [
@@ -19260,12 +19366,6 @@
         "responses": {
           "204": {
             "description": "Successful operation"
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39123\u003c/td\u003e\u003ctd\u003ePSN Sync failed with status code [{statusCode}] and psnAuthCode is [{psnAuthCode}]\u003c/td\u003e\u003c/tr\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
           }
         },
         "security": [
@@ -19318,6 +19418,12 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -20538,12 +20644,6 @@
               },
               "type": "array"
             }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39123\u003c/td\u003e\u003ctd\u003ePSN Sync failed with status code [{statusCode}] and psnAuthCode is [{psnAuthCode}]\u003c/td\u003e\u003c/tr\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
           }
         },
         "security": [
@@ -20660,6 +20760,12 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39123\u003c/td\u003e\u003ctd\u003eIAP request is not in valid application\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -31572,6 +31678,9 @@
     },
     "SteamIAPConfig": {
       "properties": {
+        "appId": {
+          "type": "string"
+        },
         "createdAt": {
           "format": "date-time",
           "type": "string",
@@ -31597,6 +31706,10 @@
     },
     "SteamIAPConfigInfo": {
       "properties": {
+        "appId": {
+          "description": "steam app id",
+          "type": "string"
+        },
         "namespace": {
           "description": "namespace",
           "type": "string"
@@ -31614,14 +31727,15 @@
     },
     "SteamIAPConfigRequest": {
       "properties": {
+        "appId": {
+          "description": "appId",
+          "type": "string"
+        },
         "publisherAuthenticationKey": {
           "description": "publisherAuthenticationKey",
           "type": "string"
         }
       },
-      "required": [
-        "publisherAuthenticationKey"
-      ],
       "type": "object"
     },
     "SteamSyncRequest": {
@@ -32895,6 +33009,11 @@
         "amount": {
           "format": "int64",
           "type": "integer"
+        },
+        "expireAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
         },
         "origin": {
           "type": "string"

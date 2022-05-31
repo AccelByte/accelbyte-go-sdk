@@ -49,12 +49,16 @@ type ClientService interface {
 	GetPrivateCustomAttributesInfoShort(params *GetPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetPrivateCustomAttributesInfoOK, error)
 	GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoOK, *GetUserProfileInfoBadRequest, *GetUserProfileInfoUnauthorized, *GetUserProfileInfoForbidden, *GetUserProfileInfoNotFound, error)
 	GetUserProfileInfoShort(params *GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoOK, error)
+	GetUserProfileInfoByPublicID(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, *GetUserProfileInfoByPublicIDBadRequest, *GetUserProfileInfoByPublicIDUnauthorized, *GetUserProfileInfoByPublicIDForbidden, *GetUserProfileInfoByPublicIDNotFound, error)
+	GetUserProfileInfoByPublicIDShort(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, error)
 	PublicCreateUserProfile(params *PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserProfileCreated, *PublicCreateUserProfileBadRequest, *PublicCreateUserProfileUnauthorized, *PublicCreateUserProfileForbidden, *PublicCreateUserProfileConflict, error)
 	PublicCreateUserProfileShort(params *PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserProfileCreated, error)
 	PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoUnauthorized, *PublicGetCustomAttributesInfoNotFound, error)
 	PublicGetCustomAttributesInfoShort(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, error)
 	PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, *PublicGetUserProfileInfoBadRequest, *PublicGetUserProfileInfoUnauthorized, *PublicGetUserProfileInfoForbidden, *PublicGetUserProfileInfoNotFound, error)
 	PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, error)
+	PublicGetUserProfileInfoByPublicID(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, *PublicGetUserProfileInfoByPublicIDBadRequest, *PublicGetUserProfileInfoByPublicIDNotFound, error)
+	PublicGetUserProfileInfoByPublicIDShort(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, error)
 	PublicGetUserProfilePublicInfo(params *PublicGetUserProfilePublicInfoParams) (*PublicGetUserProfilePublicInfoOK, *PublicGetUserProfilePublicInfoBadRequest, *PublicGetUserProfilePublicInfoNotFound, error)
 	PublicGetUserProfilePublicInfoShort(params *PublicGetUserProfilePublicInfoParams) (*PublicGetUserProfilePublicInfoOK, error)
 	PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfilePublicInfoByIdsParams) (*PublicGetUserProfilePublicInfoByIdsOK, *PublicGetUserProfilePublicInfoByIdsBadRequest, error)
@@ -908,6 +912,113 @@ func (a *Client) GetUserProfileInfoShort(params *GetUserProfileInfoParams, authI
 }
 
 /*
+  GetUserProfileInfoByPublicID gets user profile info by public id
+
+  Get user profile by public id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile info&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetUserProfileInfoByPublicID(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, *GetUserProfileInfoByPublicIDBadRequest, *GetUserProfileInfoByPublicIDUnauthorized, *GetUserProfileInfoByPublicIDForbidden, *GetUserProfileInfoByPublicIDNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserProfileInfoByPublicIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserProfileInfoByPublicId",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/profiles/byPublicId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserProfileInfoByPublicIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserProfileInfoByPublicIDOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetUserProfileInfoByPublicIDBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetUserProfileInfoByPublicIDUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetUserProfileInfoByPublicIDForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetUserProfileInfoByPublicIDNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserProfileInfoByPublicIDShort(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserProfileInfoByPublicIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserProfileInfoByPublicId",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/profiles/byPublicId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserProfileInfoByPublicIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserProfileInfoByPublicIDOK:
+		return v, nil
+	case *GetUserProfileInfoByPublicIDBadRequest:
+		return nil, v
+	case *GetUserProfileInfoByPublicIDUnauthorized:
+		return nil, v
+	case *GetUserProfileInfoByPublicIDForbidden:
+		return nil, v
+	case *GetUserProfileInfoByPublicIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicCreateUserProfile creates user profile
 
   Create user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11401&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Created user profile&lt;/li&gt;&lt;/ul&gt;
@@ -1211,6 +1322,101 @@ func (a *Client) PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoP
 	case *PublicGetUserProfileInfoForbidden:
 		return nil, v
 	case *PublicGetUserProfileInfoNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetUserProfileInfoByPublicID gets user profile public info by public id
+
+  Get user public profile by public id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profile&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicGetUserProfileInfoByPublicID(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, *PublicGetUserProfileInfoByPublicIDBadRequest, *PublicGetUserProfileInfoByPublicIDNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserProfileInfoByPublicIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserProfileInfoByPublicId",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserProfileInfoByPublicIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserProfileInfoByPublicIDOK:
+		return v, nil, nil, nil
+
+	case *PublicGetUserProfileInfoByPublicIDBadRequest:
+		return nil, v, nil, nil
+
+	case *PublicGetUserProfileInfoByPublicIDNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserProfileInfoByPublicIDShort(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserProfileInfoByPublicIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserProfileInfoByPublicId",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserProfileInfoByPublicIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserProfileInfoByPublicIDOK:
+		return v, nil
+	case *PublicGetUserProfileInfoByPublicIDBadRequest:
+		return nil, v
+	case *PublicGetUserProfileInfoByPublicIDNotFound:
 		return nil, v
 
 	default:

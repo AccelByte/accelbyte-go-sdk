@@ -27,10 +27,14 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		by, _ := cmd.Flags().GetString("by")
+		limit, _ := cmd.Flags().GetString("limit")
+		offset, _ := cmd.Flags().GetString("offset")
 		query, _ := cmd.Flags().GetString("query")
 		input := &users.PublicSearchUserV3Params{
 			Namespace: namespace,
 			By:        &by,
+			Limit:     &limit,
+			Offset:    &offset,
 			Query:     &query,
 		}
 		ok, err := usersService.PublicSearchUserV3Short(input)
@@ -50,5 +54,7 @@ func init() {
 	PublicSearchUserV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSearchUserV3Cmd.MarkFlagRequired("namespace")
 	PublicSearchUserV3Cmd.Flags().String("by", "", "By")
+	PublicSearchUserV3Cmd.Flags().String("limit", "20", "Limit")
+	PublicSearchUserV3Cmd.Flags().String("offset", "0", "Offset")
 	PublicSearchUserV3Cmd.Flags().String("query", "", "Query")
 }

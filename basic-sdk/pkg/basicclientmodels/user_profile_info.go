@@ -47,6 +47,9 @@ type UserProfileInfo struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// public Id
+	PublicID string `json:"publicId,omitempty"`
+
 	// status
 	// Enum: [ACTIVE INACTIVE]
 	Status string `json:"status,omitempty"`

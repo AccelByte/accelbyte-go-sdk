@@ -28,12 +28,12 @@ func NewQueryRewardsParams() *QueryRewardsParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("namespace:asc,rewardCode:asc")
+		sortByDefault = []string{"namespace:asc", "rewardCode:asc"}
 	)
 	return &QueryRewardsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -45,12 +45,12 @@ func NewQueryRewardsParamsWithTimeout(timeout time.Duration) *QueryRewardsParams
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("namespace:asc,rewardCode:asc")
+		sortByDefault = []string{"namespace:asc", "rewardCode:asc"}
 	)
 	return &QueryRewardsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 
 		timeout: timeout,
 	}
@@ -62,12 +62,12 @@ func NewQueryRewardsParamsWithContext(ctx context.Context) *QueryRewardsParams {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("namespace:asc,rewardCode:asc")
+		sortByDefault = []string{"namespace:asc", "rewardCode:asc"}
 	)
 	return &QueryRewardsParams{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
-		SortBy: &sortByDefault,
+		SortBy: sortByDefault,
 
 		Context: ctx,
 	}
@@ -79,12 +79,12 @@ func NewQueryRewardsParamsWithHTTPClient(client *http.Client) *QueryRewardsParam
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("namespace:asc,rewardCode:asc")
+		sortByDefault = []string{"namespace:asc", "rewardCode:asc"}
 	)
 	return &QueryRewardsParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		SortBy:     &sortByDefault,
+		SortBy:     sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -114,7 +114,7 @@ type QueryRewardsParams struct {
 	  default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc
 
 	*/
-	SortBy *string
+	SortBy []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -214,13 +214,13 @@ func (o *QueryRewardsParams) SetOffset(offset *int32) {
 }
 
 // WithSortBy adds the sortBy to the query rewards params
-func (o *QueryRewardsParams) WithSortBy(sortBy *string) *QueryRewardsParams {
+func (o *QueryRewardsParams) WithSortBy(sortBy []string) *QueryRewardsParams {
 	o.SetSortBy(sortBy)
 	return o
 }
 
 // SetSortBy adds the sortBy to the query rewards params
-func (o *QueryRewardsParams) SetSortBy(sortBy *string) {
+func (o *QueryRewardsParams) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
@@ -285,20 +285,12 @@ func (o *QueryRewardsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	}
 
-	if o.SortBy != nil {
+	valuesSortBy := o.SortBy
 
-		// query param sortBy
-		var qrSortBy string
-		if o.SortBy != nil {
-			qrSortBy = *o.SortBy
-		}
-		qSortBy := qrSortBy
-		if qSortBy != "" {
-			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
-				return err
-			}
-		}
-
+	joinedSortBy := swag.JoinByFormat(valuesSortBy, "")
+	// query array param sortBy
+	if err := r.SetQueryParam("sortBy", joinedSortBy...); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

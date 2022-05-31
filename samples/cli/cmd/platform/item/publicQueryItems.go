@@ -7,6 +7,8 @@
 package item
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -35,7 +37,12 @@ var PublicQueryItemsCmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		region, _ := cmd.Flags().GetString("region")
-		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortByString := cmd.Flag("sortBy").Value.String()
+		var sortBy []string
+		errSortBy := json.Unmarshal([]byte(sortByString), &sortBy)
+		if errSortBy != nil {
+			return errSortBy
+		}
 		storeId, _ := cmd.Flags().GetString("storeId")
 		tags, _ := cmd.Flags().GetString("tags")
 		input := &item.PublicQueryItemsParams{
@@ -49,7 +56,7 @@ var PublicQueryItemsCmd = &cobra.Command{
 			Limit:        &limit,
 			Offset:       &offset,
 			Region:       &region,
-			SortBy:       &sortBy,
+			SortBy:       sortBy,
 			StoreID:      &storeId,
 			Tags:         &tags,
 		}

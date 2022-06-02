@@ -23,13 +23,13 @@ using the latest release version is recommended.
 
 ### Environment Variables
 
-The following environment variables need to be set when using `DefaultConfigRepository`.
+The following environment variables need to be set when using `ConfigRepository`.
 
-| Name               | Required                                                | Example                          |
-|--------------------|---------------------------------------------------------|----------------------------------|
-| `JUSTICE_BASE_URL` | Yes                                                     | https://demo.accelbyte.io        |
-| `APP_CLIENT_ID`    | Yes                                                     | abcdef0123456789abcdef0123456789 |
-| `APP_CLIENT_SECRET`| Yes, but only if you use a confidential `APP_CLIENT_ID` | ab#c,d)ef(ab#c,d)ef(ab#c,d)ef(ab |
+| Name               | Required                                               | Example                          |
+|--------------------|--------------------------------------------------------|----------------------------------|
+| `AB_BASE_URL`      | Yes                                                    | https://demo.accelbyte.io        |
+| `AB_CLIENT_ID`     | Yes                                                    | abcdef0123456789abcdef0123456789 |
+| `AB_CLIENT_SECRET` | Yes, but only if you use a confidential `AB_CLIENT_ID` | ab#c,d)ef(ab#c,d)ef(ab#c,d)ef(ab |
 
 ## Usage
 

@@ -47,25 +47,25 @@ sample-apps loginClient
 But first, you need to set the environment variables
 ```sh
 # To directly export the variables in terminal (linux)
-export APP_CLIENT_ID=<value>
-export APP_CLIENT_SECRET=<value>
-export JUSTICE_BASE_URL="https://<environment>.accelbyte.io"
+export AB_CLIENT_ID=<value>
+export AB_CLIENT_SECRET=<value>
+export AB_BASE_URL="https://<environment>.accelbyte.io"
 
 # To check if you use the correct value
-echo $APP_CLIENT_ID
-echo $APP_CLIENT_SECRET
-echo $JUSTICE_BASE_URL
+echo AB_CLIENT_ID
+echo $AB_CLIENT_SECRET
+echo $AB_BASE_URL
 ```
 ```sh
 # To directly export the variables in control panel (windows user)
-setx APP_CLIENT_ID "<value>"
-setx APP_CLIENT_SECRET "<value>"
-setx JUSTICE_BASE_URL "https://<environment>.accelbyte.io"
+setx AB_CLIENT_ID "<value>"
+setx AB_CLIENT_SECRET "<value>"
+setx AB_BASE_URL "https://<environment>.accelbyte.io"
 
 # To check if you use the correct value
-echo %APP_CLIENT_ID%
-echo %APP_CLIENT_SECRET%
-echo %JUSTICE_BASE_URL%
+echo %AB_CLIENT_ID%
+echo %AB_CLIENT_SECRET%
+echo %AB_BASE_URL%
 ```
 
 ### Examples

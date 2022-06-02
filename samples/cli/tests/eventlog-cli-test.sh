@@ -18,10 +18,6 @@ export AB_CLIENT_ID="admin"
 export AB_CLIENT_SECRET="admin"
 export AB_NAMESPACE="test"
 
-export JUSTICE_BASE_URL="$AB_BASE_URL"
-export APP_CLIENT_ID="$AB_CLIENT_ID"
-export APP_CLIENT_SECRET="$AB_CLIENT_SECRET"
-
 EXIT_CODE=0
 
 eval_tap() {

@@ -159,7 +159,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	inputTokenGrant := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    o_auth2_0.AuthorizeV3CodeConstant,
+		GrantType:    o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
 	}
 	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant)
 	if errExpected != nil {

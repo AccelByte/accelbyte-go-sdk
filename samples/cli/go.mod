@@ -1,6 +1,6 @@
 module github.com/AccelByte/sample-apps
 
-go 1.15
+go 1.16
 
 replace github.com/AccelByte/accelbyte-go-sdk => ../../
 

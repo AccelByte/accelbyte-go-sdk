@@ -70,6 +70,7 @@ func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 
 func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken string) error {
 	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
 	if len(clientID) == 0 {
 		return errors.New("client not registered")
 	}
@@ -79,7 +80,7 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
 		RefreshToken: &refreshToken,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, ""))
+	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -105,17 +106,17 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 
 func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirectURI string) error {
 	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
 	if len(clientID) == 0 {
 		return errors.New("client not registered")
 	}
 	param := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
-		GrantType:    o_auth2_0.AuthorizeV3CodeConstant,
-		ClientID:     &clientID,
+		GrantType:    o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
 		RedirectURI:  &redirectURI,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, nil)
+	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -142,6 +143,7 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 func (o *OAuth20Service) Authenticate(requestID, username, password string) (string, error) {
 	logrus.Infof("Invoke authenticate: %s %s %s", requestID, username, password)
 	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
 	if len(clientID) == 0 {
 		return "", errors.New("client not registered")
 	}
@@ -158,7 +160,7 @@ func (o *OAuth20Service) Authenticate(requestID, username, password string) (str
 		HTTPClient: httpClient,
 	}
 	authenticated, err :=
-		o.Client.OAuth20Extension.UserAuthenticationV3(param, nil)
+		o.Client.OAuth20Extension.UserAuthenticationV3(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -181,6 +183,7 @@ func (o *OAuth20Service) Authenticate(requestID, username, password string) (str
 
 func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (string, error) {
 	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
 	if len(clientID) == 0 {
 		return "", errors.New("client not registered")
 	}
@@ -199,7 +202,7 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 		Scope:               &scope,
 		HTTPClient:          httpClient,
 	}
-	found, err := o.Client.OAuth20.AuthorizeV3(param, nil)
+	found, err := o.Client.OAuth20.AuthorizeV3(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}

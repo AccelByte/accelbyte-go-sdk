@@ -19,6 +19,10 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 )
 
+var (
+	emptyString = ""
+)
+
 func (o *OAuth20Service) GetToken() (string, error) {
 	token, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -236,6 +240,56 @@ func (o *OAuth20Service) Login(username, password string) error {
 	}
 
 	return nil
+}
+
+// LoginClient is a custom wrapper used to log in with clientId and clientSecret
+func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
+	if clientId == nil {
+		id := o.ConfigRepository.GetClientId()
+		clientId = &id
+		if clientSecret == nil {
+			secret := o.ConfigRepository.GetClientSecret()
+			clientSecret = &secret
+		}
+	} else {
+		if clientSecret == nil {
+			clientSecret = &emptyString
+		}
+	}
+	if len(*clientId) == 0 {
+		return errors.New("client not registered")
+	}
+	param := &o_auth2_0.TokenGrantV3Params{
+		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
+	}
+	accessToken, badRequest, unauthorized, forbidden, err :=
+		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(*clientId, *clientSecret))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if err != nil {
+		return err
+	}
+	if accessToken == nil {
+		return errors.New("empty access token")
+	}
+	err = o.TokenRepository.Store(*accessToken.GetPayload())
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// LoginUser is a custom wrapper used to log in with username and password
+func (o *OAuth20Service) LoginUser(username, password string) error {
+	return o.Login(username, password)
 }
 
 // Logout is a custom wrapper used to logout with client service oauth2 revoke

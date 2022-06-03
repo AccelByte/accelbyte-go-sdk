@@ -5,7 +5,6 @@
 package cmd
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,21 +25,9 @@ var loginCmd = &cobra.Command{
 			ConfigRepository: &repository.ConfigRepositoryImpl{},
 			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
-		if oAuth20Service.ConfigRepository.GetClientSecret() != "" {
-			input := &o_auth2_0.TokenGrantV3Params{
-				Password:  &password,
-				Username:  &username,
-				GrantType: "password",
-			}
-			_, err := oAuth20Service.TokenGrantV3Short(input)
-			if err != nil {
-				return err
-			}
-		} else {
-			err := oAuth20Service.Login(username, password)
-			if err != nil {
-				return err
-			}
+		err := oAuth20Service.Login(username, password)
+		if err != nil {
+			return err
 		}
 		logrus.Infof("User successfully logged in")
 

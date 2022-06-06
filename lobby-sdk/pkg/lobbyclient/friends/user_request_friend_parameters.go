@@ -73,7 +73,7 @@ type UserRequestFriendParams struct {
 	  add friend content
 
 	*/
-	Body *lobbyclientmodels.ModelRequestFriendsRequest
+	Body *lobbyclientmodels.ModelUserRequestFriendRequest
 	/*Namespace
 	  namespace
 
@@ -134,13 +134,13 @@ func (o *UserRequestFriendParams) SetHTTPClientTransport(roundTripper http.Round
 }
 
 // WithBody adds the body to the user request friend params
-func (o *UserRequestFriendParams) WithBody(body *lobbyclientmodels.ModelRequestFriendsRequest) *UserRequestFriendParams {
+func (o *UserRequestFriendParams) WithBody(body *lobbyclientmodels.ModelUserRequestFriendRequest) *UserRequestFriendParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the user request friend params
-func (o *UserRequestFriendParams) SetBody(body *lobbyclientmodels.ModelRequestFriendsRequest) {
+func (o *UserRequestFriendParams) SetBody(body *lobbyclientmodels.ModelUserRequestFriendRequest) {
 	o.Body = body
 }
 

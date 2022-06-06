@@ -1042,6 +1042,8 @@ func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestPar
 
 /*
   UserRequestFriend users add friend
+
+  Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.
 */
 func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, *UserRequestFriendBadRequest, *UserRequestFriendUnauthorized, *UserRequestFriendForbidden, *UserRequestFriendNotFound, *UserRequestFriendUnprocessableEntity, *UserRequestFriendInternalServerError, error) {
 	// TODO: Validate the params before sending

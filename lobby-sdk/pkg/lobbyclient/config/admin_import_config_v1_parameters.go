@@ -67,6 +67,11 @@ type AdminImportConfigV1Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*File
+	  file to be imported
+
+	*/
+	File runtime.NamedReadCloser
 	/*Namespace
 	  namespace
 
@@ -126,6 +131,17 @@ func (o *AdminImportConfigV1Params) SetHTTPClientTransport(roundTripper http.Rou
 	}
 }
 
+// WithFile adds the file to the admin import config v1 params
+func (o *AdminImportConfigV1Params) WithFile(file runtime.NamedReadCloser) *AdminImportConfigV1Params {
+	o.SetFile(file)
+	return o
+}
+
+// SetFile adds the file to the admin import config v1 params
+func (o *AdminImportConfigV1Params) SetFile(file runtime.NamedReadCloser) {
+	o.File = file
+}
+
 // WithNamespace adds the namespace to the admin import config v1 params
 func (o *AdminImportConfigV1Params) WithNamespace(namespace string) *AdminImportConfigV1Params {
 	o.SetNamespace(namespace)
@@ -144,6 +160,19 @@ func (o *AdminImportConfigV1Params) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.File != nil {
+
+		if o.File != nil {
+
+			// form file param file
+			if err := r.SetFileParam("file", o.File); err != nil {
+				return err
+			}
+
+		}
+
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

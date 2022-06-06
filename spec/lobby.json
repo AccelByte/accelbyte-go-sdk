@@ -287,6 +287,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.",
         "operationId": "userRequestFriend",
         "parameters": [
           {
@@ -302,7 +303,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.RequestFriendsRequest"
+              "$ref": "#/definitions/model.UserRequestFriendRequest"
             }
           }
         ],
@@ -1280,6 +1281,12 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "file to be imported",
+            "in": "formData",
+            "name": "file",
+            "type": "file"
           }
         ],
         "produces": [
@@ -7553,16 +7560,6 @@
         "previous"
       ]
     },
-    "model.RequestFriendsRequest": {
-      "properties": {
-        "friendId": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "friendId"
-      ]
-    },
     "model.TemplateContent": {
       "properties": {
         "draft": {
@@ -7750,6 +7747,20 @@
       },
       "required": [
         "friendId"
+      ]
+    },
+    "model.UserRequestFriendRequest": {
+      "properties": {
+        "friendId": {
+          "type": "string"
+        },
+        "friendPublicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "friendId",
+        "friendPublicId"
       ]
     },
     "model.UserUnfriendRequest": {

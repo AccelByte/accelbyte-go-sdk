@@ -13,16 +13,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const (
-	maxTries = 4
-)
-
-var (
-	request              = http.Request{}
-	successRes           = http.Response{StatusCode: 200}
-	retryResErrWithRetry = http.Response{StatusCode: 500, Header: http.Header{}}
-)
-
 func TestRetry_success(t *testing.T) {
 	calls := 0
 	slept := int64(0)
@@ -50,7 +40,7 @@ func TestRetry_withRetryOnce(t *testing.T) {
 	c := config{
 		transport: func(r *http.Request) (*http.Response, error) {
 			calls++
-			if calls == 2 {
+			if calls == 2 { // called twice because it has a default attempt once
 				return &successRes, nil
 			}
 
@@ -97,6 +87,7 @@ func TestRetry_MockServer(t *testing.T) {
 }
 
 func TestRetry_MockServerCustomOverride(t *testing.T) {
+	calls := 0
 	tests := []struct {
 		name   string
 		params MockServerConfigureParams
@@ -160,33 +151,7 @@ func TestRetry_MockServerCustomOverride(t *testing.T) {
 			input.RetryPolicy = tt.params.RetryPolicy
 			_, err := TestMockService.Client.TestOperations.MockServerConfigure(input)
 			assert.Nil(t, err, "error should be empty")
+			assert.Equal(t, calls, 1)
 		})
 	}
-}
-
-type transportWrapper struct {
-	transport func(r *http.Request) (*http.Response, error)
-}
-
-func (t transportWrapper) RoundTrip(request *http.Request) (*http.Response, error) {
-	return t.transport(request)
-}
-
-type config struct {
-	transport func(r *http.Request) (*http.Response, error)
-	sleeper   func(duration time.Duration)
-}
-
-func (c *config) getTestRetry() utils.Retry {
-	// Should backoff as 100ms, 200ms, 300ms, 300ms...
-	testBackoff := utils.NewExponentialBackoff(100*time.Millisecond, 300*time.Millisecond)
-	m := utils.Retry{
-		RetryCodes: map[int]bool{500: true},
-		MaxTries:   maxTries,
-		Backoff:    testBackoff,
-		Transport:  transportWrapper{transport: c.transport},
-		Sleeper:    c.sleeper,
-	}
-
-	return m
 }

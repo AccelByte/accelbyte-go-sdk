@@ -8,6 +8,7 @@ package config
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -28,12 +29,19 @@ var AdminImportConfigV1Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		output := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", output)
+		file, err := os.Open(output)
+		if err != nil {
+			return err
+		}
 		httpClient := &http.Client{
 			CheckRedirect: func(req *http.Request, via []*http.Request) error {
 				return http.ErrUseLastResponse
 			},
 		}
 		input := &config.AdminImportConfigV1Params{
+			File:       file,
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
@@ -51,6 +59,7 @@ var AdminImportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
+	AdminImportConfigV1Cmd.Flags().String("file", "", "File")
 	AdminImportConfigV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminImportConfigV1Cmd.MarkFlagRequired("namespace")
 }

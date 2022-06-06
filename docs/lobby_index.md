@@ -165,7 +165,6 @@
 | `model.NotificationWithTemplateRequest` | [ModelNotificationWithTemplateRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_notification_with_template_request.go) |
 | `model.NotificationWithTemplateRequestV1` | [ModelNotificationWithTemplateRequestV1 ](../lobby-sdk/pkg/lobbyclientmodels/model_notification_with_template_request_v1.go) |
 | `model.Pagination` | [ModelPagination ](../lobby-sdk/pkg/lobbyclientmodels/model_pagination.go) |
-| `model.RequestFriendsRequest` | [ModelRequestFriendsRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_request_friends_request.go) |
 | `model.TemplateContent` | [ModelTemplateContent ](../lobby-sdk/pkg/lobbyclientmodels/model_template_content.go) |
 | `model.TemplateLocalization` | [ModelTemplateLocalization ](../lobby-sdk/pkg/lobbyclientmodels/model_template_localization.go) |
 | `model.TemplateLocalizationResponse` | [ModelTemplateLocalizationResponse ](../lobby-sdk/pkg/lobbyclientmodels/model_template_localization_response.go) |
@@ -177,6 +176,7 @@
 | `model.UserCancelFriendRequest` | [ModelUserCancelFriendRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_user_cancel_friend_request.go) |
 | `model.UserGetFriendshipStatusResponse` | [ModelUserGetFriendshipStatusResponse ](../lobby-sdk/pkg/lobbyclientmodels/model_user_get_friendship_status_response.go) |
 | `model.UserRejectFriendRequest` | [ModelUserRejectFriendRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_user_reject_friend_request.go) |
+| `model.UserRequestFriendRequest` | [ModelUserRequestFriendRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_user_request_friend_request.go) |
 | `model.UserUnfriendRequest` | [ModelUserUnfriendRequest ](../lobby-sdk/pkg/lobbyclientmodels/model_user_unfriend_request.go) |
 | `models.AdminAddProfanityFilterIntoListRequest` | [ModelsAdminAddProfanityFilterIntoListRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_admin_add_profanity_filter_into_list_request.go) |
 | `models.AdminAddProfanityFiltersFilterRequest` | [ModelsAdminAddProfanityFiltersFilterRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_admin_add_profanity_filters_filter_request.go) |

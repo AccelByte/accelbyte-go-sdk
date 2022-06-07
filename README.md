@@ -44,6 +44,27 @@ oAuth20Service := iam.OAuth20Service{
 }
 ```
 
+#### With Custom HTTP retry in the client
+
+Use this to get SDK instance with HTTP retry functionality.
+
+```go
+input := &o_auth2_0.TokenGrantV3Params{
+		Password:  &password,
+		Username:  &username,
+		GrantType: o_auth2_0.TokenGrantV3PasswordConstant,
+	}
+input.RetryPolicy = &utils.Retry{
+    Transport: OAuth20Service.Client.Runtime.Transport,
+    MaxTries:  utils.MaxTries,
+    Backoff:   utils.NewConstantBackoff(0),
+    RetryCodes: map[int]bool{
+        502: true, // add an error code for bad gateway
+    },
+}
+ok, err := OAuth20Service.TokenGrantV3Short(input) // call the wrapper
+```
+
 ## Login
 
 ### Login Using Username and Password

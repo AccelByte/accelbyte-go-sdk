@@ -1,3 +1,38 @@
+<a name="v0.20.0"></a>
+## [v0.20.0] - 2022-06-07
+
+### Chore
+- **api:** generate client to implement the missing enum in path parameter
+- **api:** regenerate all services for justice 3.24
+- **api:** use the constant value instead of magic string
+- **cli:** change environment variables name
+- **cli:** regenerate all cli for justice 3.24
+- **cli:** update the go version to v1.16
+- **docs:** update the environment variables name
+- **test:** change the grant type in iam integration
+- **test:** delete the previous environment variable from the bash script
+- **test:** enhance the core test
+- **test:** use the constant value instead of magic string
+- **sh-unit-tests:** regenerate sh unit tests for justice 3.24
+- **spec:** update spec files for justice 3.24
+
+### Docs
+- update CHANGELOG.md for v0.20.0 release
+- update doc index
+- update readme to add the http retry functionality
+
+### Feat
+- **auth:** add LoginClient and LoginUser wrappers
+
+### Fix
+- implemented missing operation enums
+- **auth:** fix missing basic auth on wrapper
+- **cli:** change loginClient command to use LoginClient wrapper
+- **cli:** fix login command using TokenGrantV3 if clientSecret is present
+- **core:** reset body reader for the http retry loop
+- **test:** add more backoff time for dsmc integration test
+
+
 <a name="v0.19.0"></a>
 ## [v0.19.0] - 2022-05-24
 
@@ -666,6 +701,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.20.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.19.0...v0.20.0
 [v0.19.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.1...v0.19.0
 [v0.18.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.0...v0.18.1
 [v0.18.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.17.0...v0.18.0

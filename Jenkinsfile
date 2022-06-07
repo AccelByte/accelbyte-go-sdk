@@ -35,62 +35,66 @@ pipeline {
         }
       }
     }
-    stage('Lint') {
-      agent {
-        label "justice-codegen-sdk"
-      }
-      stages {
-        stage('Lint Commits') {
-          when {
-            expression {
-              return env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH
-            }
-          }
+    stage("Parallel") {
+      parallel {
+        stage('Lint') {
           agent {
-            docker {
-              image 'randondigital/commitlint:3.0'
-              reuseNode true
+            label "justice-codegen-sdk"
+          }
+          stages {
+            stage('Lint Commits') {
+              when {
+                expression {
+                  return env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH
+                }
+              }
+              agent {
+                docker {
+                  image 'randondigital/commitlint:3.0'
+                  reuseNode true
+                }
+              }
+              steps {
+                sh "npm install @commitlint/config-conventional@13.2.0"
+                sh "commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}"
+              }
+            }
+            stage('Lint Spec') {
+              steps {
+                sh "[ -s spec/TIMESTAMP ]"  // Make sure TIMESTAMP file is present in spec directory
+              }
+            }
+            stage('Lint Code') {
+              steps {
+                sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present in spec directory
+                sh "make lint-mod-outdated"
+                sh "make lint"
+              }
             }
           }
+        }
+        stage('Build') {
+          agent {
+            label "justice-codegen-sdk"
+          }
           steps {
-            sh "npm install @commitlint/config-conventional@13.2.0"
-            sh "commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}"
+            sh "make samples"
           }
         }
-        stage('Lint Spec') {
-          steps {
-            sh "[ -s spec/TIMESTAMP ]"  // Make sure TIMESTAMP file is present in spec directory
+        stage('Test') {
+          agent {
+            label "justice-codegen-sdk"
           }
-        }
-        stage('Lint Code') {
-          steps {
-            sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present in spec directory
-            sh "make lint-mod-outdated"
-            sh "make lint"
-          }
-        }
-      }
-    }
-    stage('Build') {
-      agent {
-        label "justice-codegen-sdk"
-      }
-      steps {
-        sh "make samples"
-      }
-    }
-    stage('Test') {
-      agent {
-        label "justice-codegen-sdk"
-      }
-      stages {
-        stage('Core Tests') {
-          steps {
-            sshagent(credentials: [bitbucketCredentialsSsh]) {
-              sh "rm -rf .justice-codegen-sdk-mock-server"
-              sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
+          stages {
+            stage('Core Tests') {
+              steps {
+                sshagent(credentials: [bitbucketCredentialsSsh]) {
+                  sh "rm -rf .justice-codegen-sdk-mock-server"
+                  sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
+                }
+                sh "make test_core SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
+              }
             }
-            sh "make test_core SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
           }
         }
       }

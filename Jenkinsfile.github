@@ -54,13 +54,18 @@ pipeline {
       }
       steps {
         script {
+          if (params.RELEASE_NOTE ==~ /(?s).*@[A-Za-z0-9_-]+@.*/)
+          {
+            echo 'Release note still contains one or more template placeholders e.g. @VERSION@, etc. Please check.'
+            sh 'false' // Fail this job
+          }
           sh "git checkout master"
           sshagent(credentials: [githubSsh])
           {
             sh "git push ${githubUrl} ${params.RELEASE_TAG}"
             
           }
-          github.createRelease(githubPat, githubOwner, githubRepo, params.RELEASE_TAG)
+          github.createRelease(githubPat, githubOwner, githubRepo, params.RELEASE_TAG, params.RELEASE_TAG, params.RELEASE_NOTE)
         }
       }
     }

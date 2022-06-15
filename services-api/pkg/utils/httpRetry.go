@@ -5,8 +5,6 @@
 package utils
 
 import (
-	"bytes"
-	"io/ioutil"
 	"net/http"
 	"time"
 
@@ -84,31 +82,47 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 	if sleep == nil {
 		sleep = time.Sleep
 	}
-	var body []byte
-	if req.Body != nil {
-		body, err = ioutil.ReadAll(req.Body)
+
+	//var body []byte
+	//if req.Body != nil {
+	//	body, err = ioutil.ReadAll(req.Body)
+	//}
+
+	req, err = SetupRewindBody(req)
+	if err != nil {
+		return nil, err
 	}
-	if err == nil {
-		// Retry logic: Retry up to maxTries, wait exponentially long (using the backoff).
-		for try := uint(0); try < m.MaxTries+1; try++ {
-			if req.Body != nil {
-				req.Body = ioutil.NopCloser(bytes.NewReader(body)) // Reset body for reading
-			}
-			res, err = m.Transport.RoundTrip(req)
-			t := m.Backoff.Get(try) // time to wait for next retry
-			// Do not try again if there was an error with the transport or the status code is not in the RetryCodes
-			a := err != nil
-			b := res == nil
-			c := !m.RetryCodes[res.StatusCode]
-			if a || b || c {
-				return res, err
-			}
-			logrus.Infof("Retrying attempt: %v", try)
-			// Wait and try again
-			if try != m.MaxTries-1 {
-				sleep(t)
-			}
+
+	for attempt := uint(0); attempt < m.MaxTries+1; attempt++ {
+
+		//if req.Body != nil {
+		//	req.Body = ioutil.NopCloser(bytes.NewReader(body)) // Reset body for reading
+		//}
+
+		res, err = m.Transport.RoundTrip(req)
+
+		// Do not try again if:
+		hasError := err != nil
+		isResponseNil := res == nil
+		isStatusCodeAllowed := !isResponseNil && !m.RetryCodes[res.StatusCode]
+		if hasError ||
+			isResponseNil ||
+			isStatusCodeAllowed {
+			return res, err
 		}
+
+		req, err = RewindBody(req)
+		if err != nil {
+			return nil, err
+		}
+
+		// Wait (backoff) and try again (retry)
+		if attempt != m.MaxTries-1 {
+			backOffDuration := m.Backoff.Get(attempt)
+			sleep(backOffDuration)
+		}
+
+		logrus.Infof("Retrying attempt: %v", attempt)
 	}
 
 	return res, err

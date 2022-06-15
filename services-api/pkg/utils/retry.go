@@ -1,3 +1,7 @@
+// Copyright (c) 2022 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package utils
 
 import (
@@ -52,15 +56,17 @@ func (rt DefaultPersistentRoundTripper) RoundTrip(req *http.Request) (*http.Resp
 	elapsed := 0 * time.Second
 	for {
 		attempt += 1
-		res, err := rt.internalRoundTripper.RoundTrip(req)
-		if err != nil {
-			return nil, err
+		internalRes, internalErr := rt.internalRoundTripper.RoundTrip(req)
+		if internalErr != nil {
+			return nil, internalErr
 		}
+		res = internalRes
 		shouldRetry := rt.ShouldRetry(req, res, attempt, elapsed)
 		if !shouldRetry {
 			break
 		}
 	}
+
 	return res, err
 }
 
@@ -73,5 +79,6 @@ func IsStatusCodeError(statusCode int) bool {
 		statusCode <= 599 {
 		return true
 	}
+
 	return false
 }

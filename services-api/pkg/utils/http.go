@@ -1,3 +1,7 @@
+// Copyright (c) 2022 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package utils
 
 import (
@@ -5,7 +9,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"mime"
 	"mime/multipart"
@@ -145,6 +148,7 @@ func NewABClientTransportWithHttpClient(host, basePath string, schemes []string,
 			clientTransport.client = httpClient
 		})
 	}
+
 	return clientTransport
 }
 
@@ -166,6 +170,7 @@ func (ct *ABClientTransport) PickScheme(schemes []string) string {
 	if scheme := SelectScheme(schemes); scheme != "" {
 		return scheme
 	}
+
 	return "http"
 }
 
@@ -183,6 +188,7 @@ func (ct *ABClientTransport) GetPreSendABRequestFunc() PreSendABRequestFunc {
 
 func (ct *ABClientTransport) SetPreSendABequestFunc(requestFunc PreSendABRequestFunc) error {
 	ct.preSendABRequestFunc = requestFunc
+
 	return nil
 }
 
@@ -192,6 +198,7 @@ func (ct *ABClientTransport) GetPreSendHttpRequestFunc() PreSendHttpRequestFunc 
 
 func (ct *ABClientTransport) SetPreSendHttpRequestFunc(requestFunc PreSendHttpRequestFunc) error {
 	ct.preSendHttpRequestFunc = requestFunc
+
 	return nil
 }
 
@@ -208,12 +215,12 @@ func (ct *ABClientTransport) Submit(clientOperation *oar.ClientOperation) (inter
 		auth = ct.DefaultAuthentication
 	}
 
-	// TODO(go-openapi): Pick appropriate Media Type.
 	cmt := ct.DefaultMediaType
 	for _, mediaType := range clientOperation.ConsumesMediaTypes {
 		// Pick first non-empty media type.
 		if mediaType != "" {
 			cmt = mediaType
+
 			break
 		}
 	}
@@ -278,23 +285,6 @@ func (ct *ABClientTransport) Submit(clientOperation *oar.ClientOperation) (inter
 		ctx, cancel = context.WithTimeout(opCtx, timeout)
 	}
 	defer cancel()
-
-	if httpRequest.Body != nil {
-		body, err := ioutil.ReadAll(httpRequest.Body)
-		if err != nil {
-			return nil, err
-		}
-		ctx = context.WithValue(ctx, "body", body)
-		httpRequest.Body = ioutil.NopCloser(bytes.NewReader(body))
-		httpRequest.GetBody = func() (io.ReadCloser, error) {
-			bodyFromContextAny := httpRequest.Context().Value("body")
-			if bodyFromContextBytes, ok := bodyFromContextAny.([]byte); ok {
-				bodyReadCloser := ioutil.NopCloser(bytes.NewReader(bodyFromContextBytes))
-				return bodyReadCloser, nil
-			}
-			return nil, fmt.Errorf("invalid body from context")
-		}
-	}
 
 	client := clientOperation.Client
 	if client == nil {
@@ -404,14 +394,14 @@ func NewABRequestFromClientOperation(clientOperation *oar.ClientOperation) (*ABR
 //#region ABRequest.Utils
 
 func NewHttpRequestFromABRequest(
-	r *ABRequest,
+	req *ABRequest,
 	mediaType string,
 	basePath string,
 	producers map[string]oar.Producer,
 	registry oaStrFmt.Registry,
 	auth oar.ClientAuthInfoWriter,
 ) (*http.Request, error) {
-	if err := r.Writer.WriteToRequest(r, registry); err != nil {
+	if err := req.Writer.WriteToRequest(req, registry); err != nil {
 		return nil, err
 	}
 
@@ -424,33 +414,34 @@ func NewHttpRequestFromABRequest(
 	var pr *io.PipeReader
 	var pw *io.PipeWriter
 
-	r.Buf = bytes.NewBuffer(nil)
-	if r.Payload != nil || len(r.FormFields) > 0 || len(r.FileFields) > 0 {
-		body = r.Buf
-		if IsMultipart(r, mediaType) {
+	req.Buf = bytes.NewBuffer(nil)
+	if req.Payload != nil || len(req.FormFields) > 0 || len(req.FileFields) > 0 {
+		body = req.Buf
+		if IsMultipart(req, mediaType) {
 			pr, pw = io.Pipe()
 			body = pr
 		}
 	}
 
-	if IsFormType(r) {
-		if !IsMultipart(r, mediaType) {
-			r.Header.Set(oar.HeaderContentType, mediaType)
-			formString := r.FormFields.Encode()
-			r.Buf.WriteString(formString)
+	if IsFormType(req) {
+		if !IsMultipart(req, mediaType) {
+			req.Header.Set(oar.HeaderContentType, mediaType)
+			formString := req.FormFields.Encode()
+			req.Buf.WriteString(formString)
+
 			goto DoneChoosingBodySource
 		}
 
 		mp := multipart.NewWriter(pw)
 		mpContentType := MangleContentType(mediaType, mp.Boundary())
-		r.Header.Set(oar.HeaderContentType, mpContentType)
+		req.Header.Set(oar.HeaderContentType, mpContentType)
 
 		go func() {
 			defer func() {
 				_ = mp.Close()
 				_ = pw.Close()
 			}()
-			for fn, v := range r.FormFields {
+			for fn, v := range req.FormFields {
 				for _, vi := range v {
 					if err := mp.WriteField(fn, vi); err != nil {
 						_ = pw.CloseWithError(err)
@@ -460,13 +451,13 @@ func NewHttpRequestFromABRequest(
 			}
 
 			defer func() {
-				for _, ff := range r.FileFields {
+				for _, ff := range req.FileFields {
 					for _, ffi := range ff {
 						_ = ffi.Close()
 					}
 				}
 			}()
-			for fn, f := range r.FileFields {
+			for fn, f := range req.FileFields {
 				for _, fi := range f {
 					buf := bytes.NewBuffer([]byte{})
 
@@ -504,34 +495,36 @@ func NewHttpRequestFromABRequest(
 		goto DoneChoosingBodySource
 	}
 
-	if r.Payload != nil {
-		r.Header.Set(oar.HeaderContentType, mediaType)
+	if req.Payload != nil {
+		req.Header.Set(oar.HeaderContentType, mediaType)
 
-		if payloadReader, ok := r.Payload.(io.ReadCloser); ok {
+		if payloadReader, ok := req.Payload.(io.ReadCloser); ok {
 			body = payloadReader
+
 			goto DoneChoosingBodySource
 		}
 
-		if payloadReader, ok := r.Payload.(io.Reader); ok {
+		if payloadReader, ok := req.Payload.(io.Reader); ok {
 			body = payloadReader
+
 			goto DoneChoosingBodySource
 		}
 
 		producer := producers[mediaType]
-		if err := producer.Produce(r.Buf, r.Payload); err != nil {
+		if err := producer.Produce(req.Buf, req.Payload); err != nil {
 			return nil, err
 		}
 	}
 
 DoneChoosingBodySource:
 
-	if oar.CanHaveBody(r.Method) && body == nil && r.Header.Get(oar.HeaderContentType) == "" {
-		r.Header.Set(oar.HeaderContentType, mediaType)
+	if oar.CanHaveBody(req.Method) && body == nil && req.Header.Get(oar.HeaderContentType) == "" {
+		req.Header.Set(oar.HeaderContentType, mediaType)
 	}
 
 	if auth != nil {
 		// NOTE(go-openapi):
-		// If we're not using r.buf as our http.Request's body,
+		// If we're not using req.buf as our http.Request's body,
 		// either the payload is an io.Reader or io.ReadCloser,
 		// or we're doing a multipart form/file.
 		//
@@ -550,9 +543,9 @@ DoneChoosingBodySource:
 		// from the AuthenticateRequest call, because the misread
 		// body may have interfered with the auth.
 		var copyErr error
-		if buf, ok := body.(*bytes.Buffer); body != nil && (!ok || buf != r.Buf) {
+		if buf, ok := body.(*bytes.Buffer); body != nil && (!ok || buf != req.Buf) {
 			var copied bool
-			r.GetBodyFunc = func(r *ABRequest) []byte {
+			req.GetBodyFunc = func(r *ABRequest) []byte {
 				if copied {
 					return GetRequestBuffer(r)
 				}
@@ -572,11 +565,12 @@ DoneChoosingBodySource:
 				}
 
 				body = r.Buf
+
 				return GetRequestBuffer(r)
 			}
 		}
 
-		authErr := auth.AuthenticateRequest(r, registry)
+		authErr := auth.AuthenticateRequest(req, registry)
 
 		if copyErr != nil {
 			return nil, fmt.Errorf("error retrieving the response body: %v", copyErr)
@@ -588,31 +582,32 @@ DoneChoosingBodySource:
 	}
 
 	var reinstateSlash bool
-	if r.PathPattern != "" &&
-		r.PathPattern != "/" &&
-		r.PathPattern[len(r.PathPattern)-1] == '/' {
+	if req.PathPattern != "" &&
+		req.PathPattern != "/" &&
+		req.PathPattern[len(req.PathPattern)-1] == '/' {
 		reinstateSlash = true
 	}
-	urlPath := path.Join(basePath, r.PathPattern)
-	for k, v := range r.PathParams {
+	urlPath := path.Join(basePath, req.PathPattern)
+	for k, v := range req.PathParams {
 		urlPath = strings.Replace(urlPath, "{"+k+"}", url.PathEscape(v), -1)
 	}
 	if reinstateSlash {
 		urlPath = urlPath + "/"
 	}
 
-	httpRequest, err := http.NewRequest(r.Method, urlPath, body)
+	httpRequest, err := http.NewRequest(req.Method, urlPath, body)
 	if err != nil {
 		return nil, err
 	}
 
-	httpRequest.URL.RawQuery = r.Query.Encode()
-	httpRequest.Header = r.Header
+	httpRequest.URL.RawQuery = req.Query.Encode()
+	httpRequest.Header = req.Header
 
 	httpRequest.GetBody = func() (io.ReadCloser, error) {
 		if readCloser, ok := body.(io.ReadCloser); ok {
 			return readCloser, nil
 		}
+
 		return nil, nil
 	}
 
@@ -627,6 +622,7 @@ func IsMultipart(r *ABRequest, mediaType string) bool {
 	if len(r.FileFields) > 0 {
 		return true
 	}
+
 	return oar.MultipartFormMime == mediaType
 }
 
@@ -634,6 +630,7 @@ func GetRequestBuffer(r *ABRequest) []byte {
 	if r.Buf == nil {
 		return nil
 	}
+
 	return r.Buf.Bytes()
 }
 
@@ -641,6 +638,7 @@ func MangleContentType(mediaType, boundary string) string {
 	if strings.ToLower(mediaType) == oar.URLencodedFormMime {
 		return fmt.Sprintf("%s; boundary=%s", mediaType, boundary)
 	}
+
 	return "multipart/form-data; boundary=" + boundary
 }
 
@@ -673,20 +671,22 @@ func (r *ABRequest) GetQueryParams() url.Values {
 	for key, value := range r.Query {
 		result[key] = append([]string{}, value...)
 	}
+
 	return result
 }
 
 func (r *ABRequest) GetPath() string {
-	// TODO: move logic into a pure function
 	pathStr := r.PathPattern
 	for k, v := range r.PathParams {
 		pathStr = strings.Replace(pathStr, "{"+k+"}", v, -1)
 	}
+
 	return pathStr
 }
 
 func (r *ABRequest) SetBodyParam(payload interface{}) error {
 	r.Payload = payload
+
 	return nil
 }
 
@@ -709,6 +709,7 @@ func (r *ABRequest) SetFileParam(name string, files ...oar.NamedReadCloser) erro
 	if r.FormFields == nil {
 		r.FormFields = make(url.Values)
 	}
+
 	return nil
 }
 
@@ -717,6 +718,7 @@ func (r *ABRequest) SetFormParam(name string, values ...string) error {
 		r.FormFields = make(url.Values)
 	}
 	r.FormFields[name] = values
+
 	return nil
 }
 
@@ -725,6 +727,7 @@ func (r *ABRequest) SetHeaderParam(name string, values ...string) error {
 		r.Header = make(http.Header)
 	}
 	r.Header[http.CanonicalHeaderKey(name)] = values
+
 	return nil
 }
 
@@ -733,6 +736,7 @@ func (r *ABRequest) SetPathParam(name string, value string) error {
 		r.PathParams = make(map[string]string)
 	}
 	r.PathParams[name] = value
+
 	return nil
 }
 
@@ -741,11 +745,13 @@ func (r *ABRequest) SetQueryParam(name string, values ...string) error {
 		r.Query = make(url.Values)
 	}
 	r.Query[name] = values
+
 	return nil
 }
 
 func (r *ABRequest) SetTimeout(timeout time.Duration) error {
 	r.Timeout = timeout
+
 	return nil
 }
 
@@ -805,10 +811,12 @@ func SelectScheme(schemes []string) string {
 		for _, otherScheme := range schemes {
 			if otherScheme == "https" {
 				scheme = otherScheme
+
 				break
 			}
 		}
 	}
+
 	return scheme
 }
 

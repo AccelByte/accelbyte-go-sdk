@@ -1,3 +1,7 @@
+// Copyright (c) 2022 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package utils
 
 import (
@@ -18,11 +22,13 @@ type TrackedReadCloser struct {
 
 func (r *TrackedReadCloser) Read(data []byte) (int, error) {
 	r.didRead = true
+
 	return r.ReadCloser.Read(data)
 }
 
 func (r *TrackedReadCloser) Close() error {
 	r.didClose = true
+
 	return r.ReadCloser.Close()
 }
 
@@ -38,6 +44,7 @@ func SetupRewindBody(r *http.Request) (*http.Request, error) {
 		r.Body = ioutil.NopCloser(bytes.NewReader(cachedBody))
 		r.GetBody = func() (io.ReadCloser, error) {
 			bodyReadCloser := ioutil.NopCloser(bytes.NewReader(cachedBody))
+
 			return bodyReadCloser, nil
 		}
 	}
@@ -45,10 +52,11 @@ func SetupRewindBody(r *http.Request) (*http.Request, error) {
 	newBody := &TrackedReadCloser{ReadCloser: existingBody}
 	newR := *r
 	newR.Body = newBody
+
 	return &newR, nil
 }
 
-func RewindBody(r *http.Request) (rewound *http.Request, err error) {
+func RewindBody(r *http.Request) (*http.Request, error) {
 	// Nothing to rewind when there is no body.
 	if r.Body == nil || r.Body == http.NoBody {
 		return r, nil
@@ -73,6 +81,7 @@ func RewindBody(r *http.Request) (rewound *http.Request, err error) {
 	}
 	newR := *r
 	newR.Body = &TrackedReadCloser{ReadCloser: newBody}
+
 	return &newR, nil
 }
 

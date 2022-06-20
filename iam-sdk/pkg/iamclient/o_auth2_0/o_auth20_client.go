@@ -725,6 +725,7 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token or id token (JWT).&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;xbl&lt;/strong&gt;: The platform_token’s value is XSTS token&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The platform_token’s value is code returned by xbox after login&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;h2&gt;Account Group&lt;/h2&gt;
 			&lt;p&gt;Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id.

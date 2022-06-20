@@ -22,6 +22,8 @@
 | `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression` | GET | GetCurrentUserSeasonProgressionShort | [GetCurrentUserSeasonProgressionShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [GetCurrentUserSeasonProgressionShort](../services-api/pkg/service/seasonpass/season.go) | [GetCurrentUserSeasonProgressionShort](../samples/cli/cmd/seasonpass/season/getCurrentUserSeasonProgression.go) |
 | `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable` | POST | CheckSeasonPurchasableShort | [CheckSeasonPurchasableShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [CheckSeasonPurchasableShort](../services-api/pkg/service/seasonpass/season.go) | [CheckSeasonPurchasableShort](../samples/cli/cmd/seasonpass/season/checkSeasonPurchasable.go) |
 | `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset` | DELETE | ResetUserSeasonShort | [ResetUserSeasonShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [ResetUserSeasonShort](../services-api/pkg/service/seasonpass/season.go) | [ResetUserSeasonShort](../samples/cli/cmd/seasonpass/season/resetUserSeason.go) |
+| `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history` | GET | QueryUserExpGrantHistoryShort | [QueryUserExpGrantHistoryShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [QueryUserExpGrantHistoryShort](../services-api/pkg/service/seasonpass/season.go) | [QueryUserExpGrantHistoryShort](../samples/cli/cmd/seasonpass/season/queryUserExpGrantHistory.go) |
+| `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags` | GET | QueryUserExpGrantHistoryTagShort | [QueryUserExpGrantHistoryTagShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [QueryUserExpGrantHistoryTagShort](../services-api/pkg/service/seasonpass/season.go) | [QueryUserExpGrantHistoryTagShort](../samples/cli/cmd/seasonpass/season/queryUserExpGrantHistoryTag.go) |
 | `/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data` | GET | GetUserSeasonShort | [GetUserSeasonShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [GetUserSeasonShort](../services-api/pkg/service/seasonpass/season.go) | [GetUserSeasonShort](../samples/cli/cmd/seasonpass/season/getUserSeason.go) |
 | `/seasonpass/public/namespaces/{namespace}/seasons/current` | GET | PublicGetCurrentSeasonShort | [PublicGetCurrentSeasonShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [PublicGetCurrentSeasonShort](../services-api/pkg/service/seasonpass/season.go) | [PublicGetCurrentSeasonShort](../samples/cli/cmd/seasonpass/season/publicGetCurrentSeason.go) |
 | `/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data` | GET | PublicGetCurrentUserSeasonShort | [PublicGetCurrentUserSeasonShort](../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [PublicGetCurrentUserSeasonShort](../services-api/pkg/service/seasonpass/season.go) | [PublicGetCurrentUserSeasonShort](../samples/cli/cmd/seasonpass/season/publicGetCurrentUserSeason.go) |
@@ -70,6 +72,8 @@
 | `ClaimableUserSeasonInfo` | [ClaimableUserSeasonInfo ](../seasonpass-sdk/pkg/seasonpassclientmodels/claimable_user_season_info.go) |
 | `ErrorEntity` | [ErrorEntity ](../seasonpass-sdk/pkg/seasonpassclientmodels/error_entity.go) |
 | `ExcessStrategy` | [ExcessStrategy ](../seasonpass-sdk/pkg/seasonpassclientmodels/excess_strategy.go) |
+| `ExpGrantHistoryInfo` | [ExpGrantHistoryInfo ](../seasonpass-sdk/pkg/seasonpassclientmodels/exp_grant_history_info.go) |
+| `ExpGrantHistoryPagingSlicedResult` | [ExpGrantHistoryPagingSlicedResult ](../seasonpass-sdk/pkg/seasonpassclientmodels/exp_grant_history_paging_sliced_result.go) |
 | `FieldValidationError` | [FieldValidationError ](../seasonpass-sdk/pkg/seasonpassclientmodels/field_validation_error.go) |
 | `Image` | [Image ](../seasonpass-sdk/pkg/seasonpassclientmodels/image.go) |
 | `ListSeasonInfo` | [ListSeasonInfo ](../seasonpass-sdk/pkg/seasonpassclientmodels/list_season_info.go) |
@@ -84,6 +88,7 @@
 | `PassCreate` | [PassCreate ](../seasonpass-sdk/pkg/seasonpassclientmodels/pass_create.go) |
 | `PassInfo` | [PassInfo ](../seasonpass-sdk/pkg/seasonpassclientmodels/pass_info.go) |
 | `PassUpdate` | [PassUpdate ](../seasonpass-sdk/pkg/seasonpassclientmodels/pass_update.go) |
+| `ReasonTagsResult` | [ReasonTagsResult ](../seasonpass-sdk/pkg/seasonpassclientmodels/reason_tags_result.go) |
 | `RewardCreate` | [RewardCreate ](../seasonpass-sdk/pkg/seasonpassclientmodels/reward_create.go) |
 | `RewardCurrency` | [RewardCurrency ](../seasonpass-sdk/pkg/seasonpassclientmodels/reward_currency.go) |
 | `RewardInfo` | [RewardInfo ](../seasonpass-sdk/pkg/seasonpassclientmodels/reward_info.go) |

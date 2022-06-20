@@ -508,7 +508,8 @@ func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams,
   AdminListUserAchievements queries user achievements include achieved and in progress
 
   &lt;p&gt;Required permission
-&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;p&gt;Note: user achievement status value mean: &lt;code&gt;status = 1 (in progress)&lt;/code&gt; and &lt;code&gt;status = 2 (unlocked)&lt;/p&gt;&lt;/code&gt;
 */
 func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1368,7 +1369,8 @@ func (a *Client) PublicListAchievementsShort(params *PublicListAchievementsParam
   PublicListUserAchievements queries user achievements include achieved and in progress
 
   &lt;p&gt;Required permission
-&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;p&gt;Note: user achievement status value mean: &lt;code&gt;status = 1 (in progress)&lt;/code&gt; and &lt;code&gt;status = 2 (unlocked)&lt;/p&gt;&lt;/code&gt;
 */
 func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, *PublicListUserAchievementsBadRequest, *PublicListUserAchievementsUnauthorized, *PublicListUserAchievementsNotFound, *PublicListUserAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending

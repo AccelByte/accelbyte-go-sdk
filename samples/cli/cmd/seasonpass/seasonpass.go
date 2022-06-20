@@ -54,6 +54,8 @@ func init() {
 	SeasonpassCmd.AddCommand(season.CheckSeasonPurchasableCmd)
 	SeasonpassCmd.AddCommand(season.ResetUserSeasonCmd)
 	SeasonpassCmd.AddCommand(tier.GrantUserTierCmd)
+	SeasonpassCmd.AddCommand(season.QueryUserExpGrantHistoryCmd)
+	SeasonpassCmd.AddCommand(season.QueryUserExpGrantHistoryTagCmd)
 	SeasonpassCmd.AddCommand(season.GetUserSeasonCmd)
 	SeasonpassCmd.AddCommand(season.PublicGetCurrentSeasonCmd)
 	SeasonpassCmd.AddCommand(season.PublicGetCurrentUserSeasonCmd)

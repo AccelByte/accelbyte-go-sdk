@@ -6,8 +6,12 @@ package seasonpassclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UserExpGrant A DTO object for granting user exp.
@@ -17,10 +21,69 @@ type UserExpGrant struct {
 
 	// exp to grant
 	Exp int32 `json:"exp,omitempty"`
+
+	// source
+	// Enum: [PAID_FOR SWEAT]
+	Source string `json:"source,omitempty"`
+
+	// tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this user exp grant
 func (m *UserExpGrant) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var userExpGrantTypeSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PAID_FOR","SWEAT"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		userExpGrantTypeSourcePropEnum = append(userExpGrantTypeSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// UserExpGrantSourcePAIDFOR captures enum value "PAID_FOR"
+	UserExpGrantSourcePAIDFOR string = "PAID_FOR"
+
+	// UserExpGrantSourceSWEAT captures enum value "SWEAT"
+	UserExpGrantSourceSWEAT string = "SWEAT"
+)
+
+// prop value enum
+func (m *UserExpGrant) validateSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, userExpGrantTypeSourcePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UserExpGrant) validateSource(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Source) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSourceEnum("source", "body", m.Source); err != nil {
+		return err
+	}
+
 	return nil
 }
 

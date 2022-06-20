@@ -36,6 +36,9 @@ type CatalogChangeInfo struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
 
+	// a description if this change is not directly caused by user action. eg: bundle item
+	Description string `json:"description,omitempty"`
+
 	// item id
 	ItemID string `json:"itemId,omitempty"`
 

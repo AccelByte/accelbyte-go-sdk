@@ -34,12 +34,6 @@ func (o *GetEpicGamesIAPConfigReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetEpicGamesIAPConfigNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -75,39 +69,6 @@ func (o *GetEpicGamesIAPConfigOK) GetPayload() *platformclientmodels.EpicGamesIA
 func (o *GetEpicGamesIAPConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.EpicGamesIAPConfigInfo)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetEpicGamesIAPConfigNotFound creates a GetEpicGamesIAPConfigNotFound with default headers values
-func NewGetEpicGamesIAPConfigNotFound() *GetEpicGamesIAPConfigNotFound {
-	return &GetEpicGamesIAPConfigNotFound{}
-}
-
-/*GetEpicGamesIAPConfigNotFound handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39243</td><td>EpicGames config does not exist</td></tr></table>
-*/
-type GetEpicGamesIAPConfigNotFound struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *GetEpicGamesIAPConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/epicgames][%d] getEpicGamesIAPConfigNotFound  %+v", 404, o.Payload)
-}
-
-func (o *GetEpicGamesIAPConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *GetEpicGamesIAPConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

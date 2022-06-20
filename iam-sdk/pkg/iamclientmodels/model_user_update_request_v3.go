@@ -15,6 +15,9 @@ import (
 // swagger:model model.UserUpdateRequestV3
 type ModelUserUpdateRequestV3 struct {
 
+	// avatar Url
+	AvatarURL string `json:"avatarUrl,omitempty"`
+
 	// country
 	Country string `json:"country,omitempty"`
 

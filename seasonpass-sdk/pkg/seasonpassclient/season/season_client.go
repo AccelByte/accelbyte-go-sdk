@@ -63,6 +63,10 @@ type ClientService interface {
 	PublishSeasonShort(params *PublishSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSeasonOK, error)
 	QuerySeasons(params *QuerySeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySeasonsOK, *QuerySeasonsBadRequest, error)
 	QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySeasonsOK, error)
+	QueryUserExpGrantHistory(params *QueryUserExpGrantHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryOK, *QueryUserExpGrantHistoryBadRequest, error)
+	QueryUserExpGrantHistoryShort(params *QueryUserExpGrantHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryOK, error)
+	QueryUserExpGrantHistoryTag(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, *QueryUserExpGrantHistoryTagBadRequest, error)
+	QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, error)
 	ResetUserSeason(params *ResetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserSeasonNoContent, *ResetUserSeasonBadRequest, error)
 	ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserSeasonNoContent, error)
 	RetireSeason(params *RetireSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*RetireSeasonOK, *RetireSeasonBadRequest, *RetireSeasonNotFound, *RetireSeasonConflict, error)
@@ -1531,6 +1535,190 @@ func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.
 	case *QuerySeasonsOK:
 		return v, nil
 	case *QuerySeasonsBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  QueryUserExpGrantHistory queries user season exp acquisition history
+
+  This API is used to get user exp acquisition history, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated grant history&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) QueryUserExpGrantHistory(params *QueryUserExpGrantHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryOK, *QueryUserExpGrantHistoryBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserExpGrantHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserExpGrantHistory",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserExpGrantHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserExpGrantHistoryOK:
+		return v, nil, nil
+
+	case *QueryUserExpGrantHistoryBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUserExpGrantHistoryShort(params *QueryUserExpGrantHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserExpGrantHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserExpGrantHistory",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserExpGrantHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserExpGrantHistoryOK:
+		return v, nil
+	case *QueryUserExpGrantHistoryBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  QueryUserExpGrantHistoryTag queries user season exp acquisition history s reason tag list
+
+  This API is used to get user exp acquisition history&#39;s tag list.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: exp grant history tags list&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) QueryUserExpGrantHistoryTag(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, *QueryUserExpGrantHistoryTagBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserExpGrantHistoryTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserExpGrantHistoryTag",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserExpGrantHistoryTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserExpGrantHistoryTagOK:
+		return v, nil, nil
+
+	case *QueryUserExpGrantHistoryTagBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserExpGrantHistoryTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserExpGrantHistoryTag",
+		Method:             "GET",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserExpGrantHistoryTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserExpGrantHistoryTagOK:
+		return v, nil
+	case *QueryUserExpGrantHistoryTagBadRequest:
 		return nil, v
 
 	default:

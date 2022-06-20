@@ -65,6 +65,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	KeyID *string `json:"KeyID"`
 
+	// A json containing credentials for netflix integration. Only for netflix platformId
+	// Required: true
+	NetflixCertificates *AccountcommonNetflixCertificates `json:"NetflixCertificates"`
+
 	// organization Id
 	// Required: true
 	OrganizationID *string `json:"OrganizationId"`
@@ -143,6 +147,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateKeyID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNetflixCertificates(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -283,6 +291,24 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateKeyID(formats st
 
 	if err := validate.Required("KeyID", "body", m.KeyID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateNetflixCertificates(formats strfmt.Registry) error {
+
+	if err := validate.Required("NetflixCertificates", "body", m.NetflixCertificates); err != nil {
+		return err
+	}
+
+	if m.NetflixCertificates != nil {
+		if err := m.NetflixCertificates.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("NetflixCertificates")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -30,8 +30,8 @@ var GetAllPodConfigCmd = &cobra.Command{
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &pod_config.GetAllPodConfigParams{
 			Namespace: namespace,
-			Count:     &count,
-			Offset:    &offset,
+			Count:     count,
+			Offset:    offset,
 		}
 		ok, err := podConfigService.GetAllPodConfigShort(input)
 		if err != nil {
@@ -50,5 +50,7 @@ func init() {
 	GetAllPodConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAllPodConfigCmd.MarkFlagRequired("namespace")
 	GetAllPodConfigCmd.Flags().Int64("count", 1, "Count")
+	_ = GetAllPodConfigCmd.MarkFlagRequired("count")
 	GetAllPodConfigCmd.Flags().Int64("offset", 0, "Offset")
+	_ = GetAllPodConfigCmd.MarkFlagRequired("offset")
 }

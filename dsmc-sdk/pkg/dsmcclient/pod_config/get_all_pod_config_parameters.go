@@ -72,7 +72,7 @@ type GetAllPodConfigParams struct {
 	  how many items to return
 
 	*/
-	Count *int64
+	Count int64
 	/*Namespace
 	  namespace of the game
 
@@ -82,7 +82,7 @@ type GetAllPodConfigParams struct {
 	  offset from list to query from
 
 	*/
-	Offset *int64
+	Offset int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -138,13 +138,13 @@ func (o *GetAllPodConfigParams) SetHTTPClientTransport(roundTripper http.RoundTr
 }
 
 // WithCount adds the count to the get all pod config params
-func (o *GetAllPodConfigParams) WithCount(count *int64) *GetAllPodConfigParams {
+func (o *GetAllPodConfigParams) WithCount(count int64) *GetAllPodConfigParams {
 	o.SetCount(count)
 	return o
 }
 
 // SetCount adds the count to the get all pod config params
-func (o *GetAllPodConfigParams) SetCount(count *int64) {
+func (o *GetAllPodConfigParams) SetCount(count int64) {
 	o.Count = count
 }
 
@@ -160,13 +160,13 @@ func (o *GetAllPodConfigParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get all pod config params
-func (o *GetAllPodConfigParams) WithOffset(offset *int64) *GetAllPodConfigParams {
+func (o *GetAllPodConfigParams) WithOffset(offset int64) *GetAllPodConfigParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get all pod config params
-func (o *GetAllPodConfigParams) SetOffset(offset *int64) {
+func (o *GetAllPodConfigParams) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -178,20 +178,13 @@ func (o *GetAllPodConfigParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
-	if o.Count != nil {
-
-		// query param count
-		var qrCount int64
-		if o.Count != nil {
-			qrCount = *o.Count
+	// query param count
+	qrCount := o.Count
+	qCount := swag.FormatInt64(qrCount)
+	if qCount != "" {
+		if err := r.SetQueryParam("count", qCount); err != nil {
+			return err
 		}
-		qCount := swag.FormatInt64(qrCount)
-		if qCount != "" {
-			if err := r.SetQueryParam("count", qCount); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// path param namespace
@@ -199,20 +192,13 @@ func (o *GetAllPodConfigParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 
-	if o.Offset != nil {
-
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
+	// query param offset
+	qrOffset := o.Offset
+	qOffset := swag.FormatInt64(qrOffset)
+	if qOffset != "" {
+		if err := r.SetQueryParam("offset", qOffset); err != nil {
+			return err
 		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if len(res) > 0 {

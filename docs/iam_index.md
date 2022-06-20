@@ -399,6 +399,7 @@
 | `accountcommon.JWTBanV3` | [AccountcommonJWTBanV3 ](../iam-sdk/pkg/iamclientmodels/accountcommon_jwt_ban_v3.go) |
 | `accountcommon.ListUsersWithPlatformAccountsResponse` | [AccountcommonListUsersWithPlatformAccountsResponse ](../iam-sdk/pkg/iamclientmodels/accountcommon_list_users_with_platform_accounts_response.go) |
 | `accountcommon.NamespaceRole` | [AccountcommonNamespaceRole ](../iam-sdk/pkg/iamclientmodels/accountcommon_namespace_role.go) |
+| `accountcommon.NetflixCertificates` | [AccountcommonNetflixCertificates ](../iam-sdk/pkg/iamclientmodels/accountcommon_netflix_certificates.go) |
 | `accountcommon.Pagination` | [AccountcommonPagination ](../iam-sdk/pkg/iamclientmodels/accountcommon_pagination.go) |
 | `accountcommon.PaginationV3` | [AccountcommonPaginationV3 ](../iam-sdk/pkg/iamclientmodels/accountcommon_pagination_v3.go) |
 | `accountcommon.Permission` | [AccountcommonPermission ](../iam-sdk/pkg/iamclientmodels/accountcommon_permission.go) |

@@ -97,6 +97,7 @@ func init() {
 	LobbyCmd.AddCommand(chat.GetPersonalChatHistoryV1PublicCmd)
 	LobbyCmd.AddCommand(party.PublicGetPartyDataV1Cmd)
 	LobbyCmd.AddCommand(party.PublicUpdatePartyAttributesV1Cmd)
+	LobbyCmd.AddCommand(party.PublicSetPartyLimitV1Cmd)
 	LobbyCmd.AddCommand(player.PublicGetPlayerBlockedPlayersV1Cmd)
 	LobbyCmd.AddCommand(player.PublicGetPlayerBlockedByPlayersV1Cmd)
 	LobbyCmd.AddCommand(presence.UsersPresenceHandlerV1Cmd)

@@ -158,6 +158,35 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicSetPartyLimitV1Short instead
+func (p *PartyService) PublicSetPartyLimitV1(input *party.PublicSetPartyLimitV1Params) error {
+	token, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.PublicSetPartyLimitV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -256,4 +285,29 @@ func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpd
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (p *PartyService) PublicSetPartyLimitV1Short(input *party.PublicSetPartyLimitV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  p.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := p.Client.Party.PublicSetPartyLimitV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

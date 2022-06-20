@@ -354,6 +354,40 @@ func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) err
 	return nil
 }
 
+// Deprecated: Use QueryUserExpGrantHistoryShort instead
+func (s *SeasonService) QueryUserExpGrantHistory(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := s.Client.Season.QueryUserExpGrantHistory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use QueryUserExpGrantHistoryTagShort instead
+func (s *SeasonService) QueryUserExpGrantHistoryTag(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := s.Client.Season.QueryUserExpGrantHistoryTag(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use GetUserSeasonShort instead
 func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	token, err := s.TokenRepository.GetToken()
@@ -803,6 +837,56 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 	}
 
 	return nil
+}
+
+func (s *SeasonService) QueryUserExpGrantHistoryShort(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := s.Client.Season.QueryUserExpGrantHistoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (s *SeasonService) QueryUserExpGrantHistoryTagShort(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  s.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := s.Client.Season.QueryUserExpGrantHistoryTagShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {

@@ -83,6 +83,7 @@
 | `/lobby/v1/admin/party/namespaces/{namespace}/users/{userId}/party` | GET | AdminGetUserPartyV1Short | [AdminGetUserPartyV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [AdminGetUserPartyV1Short](../services-api/pkg/service/lobby/party.go) | [AdminGetUserPartyV1Short](../samples/cli/cmd/lobby/party/adminGetUserPartyV1.go) |
 | `/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}` | GET | PublicGetPartyDataV1Short | [PublicGetPartyDataV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [PublicGetPartyDataV1Short](../services-api/pkg/service/lobby/party.go) | [PublicGetPartyDataV1Short](../samples/cli/cmd/lobby/party/publicGetPartyDataV1.go) |
 | `/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes` | PUT | PublicUpdatePartyAttributesV1Short | [PublicUpdatePartyAttributesV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [PublicUpdatePartyAttributesV1Short](../services-api/pkg/service/lobby/party.go) | [PublicUpdatePartyAttributesV1Short](../samples/cli/cmd/lobby/party/publicUpdatePartyAttributesV1.go) |
+| `/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit` | PUT | PublicSetPartyLimitV1Short | [PublicSetPartyLimitV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [PublicSetPartyLimitV1Short](../services-api/pkg/service/lobby/party.go) | [PublicSetPartyLimitV1Short](../samples/cli/cmd/lobby/party/publicSetPartyLimitV1.go) |
 
 ### Lobby Operations Wrapper:  [LobbyOperations](../services-api/pkg/service/lobby/lobbyOperations.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -208,6 +209,7 @@
 | `models.ListBlockedPlayerRequest` | [ModelsListBlockedPlayerRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_list_blocked_player_request.go) |
 | `models.PartyData` | [ModelsPartyData ](../lobby-sdk/pkg/lobbyclientmodels/models_party_data.go) |
 | `models.PartyPUTCustomAttributesRequest` | [ModelsPartyPUTCustomAttributesRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_party_put_custom_attributes_request.go) |
+| `models.PartyPUTLimitSizeRequest` | [ModelsPartyPUTLimitSizeRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_party_put_limit_size_request.go) |
 | `models.ProfanityFilter` | [ModelsProfanityFilter ](../lobby-sdk/pkg/lobbyclientmodels/models_profanity_filter.go) |
 | `models.ProfanityRule` | [ModelsProfanityRule ](../lobby-sdk/pkg/lobbyclientmodels/models_profanity_rule.go) |
 | `models.SetPlayerSessionAttributeRequest` | [ModelsSetPlayerSessionAttributeRequest ](../lobby-sdk/pkg/lobbyclientmodels/models_set_player_session_attribute_request.go) |

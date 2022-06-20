@@ -34,12 +34,6 @@ func (o *GetXblIAPConfigReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetXblIAPConfigNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -75,39 +69,6 @@ func (o *GetXblIAPConfigOK) GetPayload() *platformclientmodels.XblIAPConfigInfo 
 func (o *GetXblIAPConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.XblIAPConfigInfo)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetXblIAPConfigNotFound creates a GetXblIAPConfigNotFound with default headers values
-func NewGetXblIAPConfigNotFound() *GetXblIAPConfigNotFound {
-	return &GetXblIAPConfigNotFound{}
-}
-
-/*GetXblIAPConfigNotFound handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39242</td><td>XBL config does not exist</td></tr></table>
-*/
-type GetXblIAPConfigNotFound struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *GetXblIAPConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigNotFound  %+v", 404, o.Payload)
-}
-
-func (o *GetXblIAPConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *GetXblIAPConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

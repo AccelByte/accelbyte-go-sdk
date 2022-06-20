@@ -39,6 +39,8 @@ type ClientService interface {
 	AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPartyV1OK, error)
 	PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, *PublicGetPartyDataV1BadRequest, *PublicGetPartyDataV1Unauthorized, *PublicGetPartyDataV1Forbidden, *PublicGetPartyDataV1NotFound, *PublicGetPartyDataV1InternalServerError, error)
 	PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, error)
+	PublicSetPartyLimitV1(params *PublicSetPartyLimitV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSetPartyLimitV1OK, *PublicSetPartyLimitV1BadRequest, *PublicSetPartyLimitV1Unauthorized, *PublicSetPartyLimitV1Forbidden, *PublicSetPartyLimitV1NotFound, *PublicSetPartyLimitV1InternalServerError, error)
+	PublicSetPartyLimitV1Short(params *PublicSetPartyLimitV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSetPartyLimitV1OK, error)
 	PublicUpdatePartyAttributesV1(params *PublicUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyAttributesV1OK, *PublicUpdatePartyAttributesV1BadRequest, *PublicUpdatePartyAttributesV1Unauthorized, *PublicUpdatePartyAttributesV1Forbidden, *PublicUpdatePartyAttributesV1NotFound, *PublicUpdatePartyAttributesV1PreconditionFailed, *PublicUpdatePartyAttributesV1InternalServerError, error)
 	PublicUpdatePartyAttributesV1Short(params *PublicUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyAttributesV1OK, error)
 
@@ -378,6 +380,119 @@ func (a *Client) PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, a
 	case *PublicGetPartyDataV1NotFound:
 		return nil, v
 	case *PublicGetPartyDataV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicSetPartyLimitV1 sets party limit
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;Set party limit, only party leader can call this endpoint.
+*/
+func (a *Client) PublicSetPartyLimitV1(params *PublicSetPartyLimitV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSetPartyLimitV1OK, *PublicSetPartyLimitV1BadRequest, *PublicSetPartyLimitV1Unauthorized, *PublicSetPartyLimitV1Forbidden, *PublicSetPartyLimitV1NotFound, *PublicSetPartyLimitV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSetPartyLimitV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSetPartyLimitV1",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSetPartyLimitV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSetPartyLimitV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicSetPartyLimitV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicSetPartyLimitV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicSetPartyLimitV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicSetPartyLimitV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicSetPartyLimitV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSetPartyLimitV1Short(params *PublicSetPartyLimitV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSetPartyLimitV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSetPartyLimitV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSetPartyLimitV1",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSetPartyLimitV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSetPartyLimitV1OK:
+		return v, nil
+	case *PublicSetPartyLimitV1BadRequest:
+		return nil, v
+	case *PublicSetPartyLimitV1Unauthorized:
+		return nil, v
+	case *PublicSetPartyLimitV1Forbidden:
+		return nil, v
+	case *PublicSetPartyLimitV1NotFound:
+		return nil, v
+	case *PublicSetPartyLimitV1InternalServerError:
 		return nil, v
 
 	default:

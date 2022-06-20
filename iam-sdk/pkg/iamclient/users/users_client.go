@@ -13690,7 +13690,7 @@ func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authI
 
   &lt;p&gt;Requires valid user access token &lt;/p&gt;
 &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth, avatarUrl}&lt;/p&gt;
 &lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
 &lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
 &lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
@@ -15580,7 +15580,7 @@ func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.Clie
 
   &lt;p&gt;Requires valid user access token &lt;/p&gt;
 &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth, avatarUrl}&lt;/p&gt;
 &lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
 &lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
 &lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;

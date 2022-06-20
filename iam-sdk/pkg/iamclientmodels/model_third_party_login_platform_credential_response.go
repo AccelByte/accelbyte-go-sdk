@@ -71,6 +71,9 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	Namespace *string `json:"Namespace"`
 
+	// A json containing Credentials for netflix integration.
+	NetflixCertificates *AccountcommonNetflixCertificates `json:"NetflixCertificates,omitempty"`
+
 	// organization Id
 	// Required: true
 	OrganizationID *string `json:"OrganizationId"`
@@ -161,6 +164,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNetflixCertificates(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -318,6 +325,24 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateNamespace(forma
 
 	if err := validate.Required("Namespace", "body", m.Namespace); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateNetflixCertificates(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.NetflixCertificates) { // not required
+		return nil
+	}
+
+	if m.NetflixCertificates != nil {
+		if err := m.NetflixCertificates.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("NetflixCertificates")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -75,6 +75,15 @@ type ClaimableUserSeasonInfo struct {
 	// Required: true
 	ToClaimRewards map[string]map[string][]string `json:"toClaimRewards"`
 
+	// total exp
+	TotalExp int64 `json:"totalExp,omitempty"`
+
+	// total paid-for exp
+	TotalPaidForExp int64 `json:"totalPaidForExp,omitempty"`
+
+	// total sweat exp
+	TotalSweatExp int64 `json:"totalSweatExp,omitempty"`
+
 	// updated at
 	// Required: true
 	// Format: date-time

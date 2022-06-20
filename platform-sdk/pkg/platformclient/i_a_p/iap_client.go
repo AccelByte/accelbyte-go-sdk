@@ -53,7 +53,7 @@ type ClientService interface {
 	DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error)
 	GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error)
-	GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, *GetEpicGamesIAPConfigNotFound, error)
+	GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error)
 	GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error)
 	GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
 	GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
@@ -67,7 +67,7 @@ type ClientService interface {
 	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error)
 	GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error)
-	GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, *GetXblIAPConfigNotFound, error)
+	GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error)
 	GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error)
 	MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error)
 	MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error)
@@ -992,7 +992,7 @@ func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInf
 
   Get epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: epic games iap config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, *GetEpicGamesIAPConfigNotFound, error) {
+func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEpicGamesIAPConfigParams()
@@ -1020,19 +1020,16 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetEpicGamesIAPConfigOK:
-		return v, nil, nil
-
-	case *GetEpicGamesIAPConfigNotFound:
-		return nil, v, nil
+		return v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1071,8 +1068,6 @@ func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams,
 
 	case *GetEpicGamesIAPConfigOK:
 		return v, nil
-	case *GetEpicGamesIAPConfigNotFound:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1611,7 +1606,7 @@ func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authI
 
   Get xbox iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: xbox iap config&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, *GetXblIAPConfigNotFound, error) {
+func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetXblIAPConfigParams()
@@ -1639,19 +1634,16 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetXblIAPConfigOK:
-		return v, nil, nil
-
-	case *GetXblIAPConfigNotFound:
-		return nil, v, nil
+		return v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1690,8 +1682,6 @@ func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo ru
 
 	case *GetXblIAPConfigOK:
 		return v, nil
-	case *GetXblIAPConfigNotFound:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

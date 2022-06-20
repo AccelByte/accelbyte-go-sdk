@@ -87,10 +87,7 @@ func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigPar
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := i.Client.Iap.GetEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		return nil, notFound
-	}
+	ok, err := i.Client.Iap.GetEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -404,10 +401,7 @@ func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platf
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := i.Client.Iap.GetXblIAPConfig(input, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		return nil, notFound
-	}
+	ok, err := i.Client.Iap.GetXblIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}

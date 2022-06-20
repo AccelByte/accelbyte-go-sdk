@@ -64,6 +64,32 @@ func (a *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(inp
 	return nil
 }
 
+// Deprecated: Use AdminPutPlayerRecordConcurrentHandlerV1Short instead
+func (a *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := a.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead
 func (a *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) error {
 	token, err := a.TokenRepository.GetToken()
@@ -108,6 +134,31 @@ func (a *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Shor
 	}
 
 	_, err := a.Client.AdminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (a *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := a.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

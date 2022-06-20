@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..91"
+echo "1..92"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -556,156 +556,164 @@ samples/cli/sample-apps Lobby publicUpdatePartyAttributesV1 \
     > test.out 2>&1
 eval_tap $? 71 'PublicUpdatePartyAttributesV1' test.out
 
-#- 72 PublicGetPlayerBlockedPlayersV1
+#- 72 PublicSetPartyLimitV1
+samples/cli/sample-apps Lobby publicSetPartyLimitV1 \
+    --body '{"limit": 36}' \
+    --namespace 'WS2qwO76' \
+    --partyId '3iEklkzL' \
+    > test.out 2>&1
+eval_tap $? 72 'PublicSetPartyLimitV1' test.out
+
+#- 73 PublicGetPlayerBlockedPlayersV1
 samples/cli/sample-apps Lobby publicGetPlayerBlockedPlayersV1 \
-    --namespace '5sWS2qwO' \
+    --namespace 'm88LpLuY' \
     > test.out 2>&1
-eval_tap $? 72 'PublicGetPlayerBlockedPlayersV1' test.out
+eval_tap $? 73 'PublicGetPlayerBlockedPlayersV1' test.out
 
-#- 73 PublicGetPlayerBlockedByPlayersV1
+#- 74 PublicGetPlayerBlockedByPlayersV1
 samples/cli/sample-apps Lobby publicGetPlayerBlockedByPlayersV1 \
-    --namespace '763iEklk' \
+    --namespace 'RO3C55yH' \
     > test.out 2>&1
-eval_tap $? 73 'PublicGetPlayerBlockedByPlayersV1' test.out
+eval_tap $? 74 'PublicGetPlayerBlockedByPlayersV1' test.out
 
-#- 74 UsersPresenceHandlerV1
+#- 75 UsersPresenceHandlerV1
 samples/cli/sample-apps Lobby usersPresenceHandlerV1 \
-    --namespace 'zLm88LpL' \
-    --countOnly 'True' \
-    --userIds 'YRO3C55y' \
+    --namespace 'pwK2Jaqe' \
+    --countOnly 'False' \
+    --userIds 'DGn7a2NU' \
     > test.out 2>&1
-eval_tap $? 74 'UsersPresenceHandlerV1' test.out
+eval_tap $? 75 'UsersPresenceHandlerV1' test.out
 
-#- 75 FreeFormNotification
+#- 76 FreeFormNotification
 samples/cli/sample-apps Lobby freeFormNotification \
-    --body '{"message": "HpwK2Jaq", "topic": "enDGn7a2"}' \
-    --namespace 'NUplWiLj' \
+    --body '{"message": "plWiLjq0", "topic": "6n6a0rW8"}' \
+    --namespace 'EfkpaXtw' \
     > test.out 2>&1
-eval_tap $? 75 'FreeFormNotification' test.out
+eval_tap $? 76 'FreeFormNotification' test.out
 
-#- 76 NotificationWithTemplate
+#- 77 NotificationWithTemplate
 samples/cli/sample-apps Lobby notificationWithTemplate \
-    --body '{"templateContext": {"q06n6a0r": "W8EfkpaX"}, "templateLanguage": "twYZJaQ4", "templateSlug": "WbwNmsFY", "topic": "etjEurH8"}' \
-    --namespace 'eloJzNKt' \
+    --body '{"templateContext": {"YZJaQ4Wb": "wNmsFYet"}, "templateLanguage": "jEurH8el", "templateSlug": "oJzNKtRU", "topic": "aTz1ETds"}' \
+    --namespace 'mwzjkkn9' \
     > test.out 2>&1
-eval_tap $? 76 'NotificationWithTemplate' test.out
+eval_tap $? 77 'NotificationWithTemplate' test.out
 
-#- 77 GetGameTemplate
+#- 78 GetGameTemplate
 samples/cli/sample-apps Lobby getGameTemplate \
-    --namespace 'RUaTz1ET' \
+    --namespace 'oiQl05g7' \
     > test.out 2>&1
-eval_tap $? 77 'GetGameTemplate' test.out
+eval_tap $? 78 'GetGameTemplate' test.out
 
-#- 78 CreateTemplate
+#- 79 CreateTemplate
 samples/cli/sample-apps Lobby createTemplate \
-    --body '{"templateContent": "dsmwzjkk", "templateLanguage": "n9oiQl05", "templateSlug": "g7cO3ZMb"}' \
-    --namespace '6Ojlo6DM' \
+    --body '{"templateContent": "cO3ZMb6O", "templateLanguage": "jlo6DMNp", "templateSlug": "P2qMrTQ1"}' \
+    --namespace 'UpjfU6wJ' \
     > test.out 2>&1
-eval_tap $? 78 'CreateTemplate' test.out
+eval_tap $? 79 'CreateTemplate' test.out
 
-#- 79 GetSlugTemplate
+#- 80 GetSlugTemplate
 samples/cli/sample-apps Lobby getSlugTemplate \
-    --namespace 'NpP2qMrT' \
-    --templateSlug 'Q1UpjfU6' \
-    --after 'wJhy1jOV' \
-    --before 'kkUlS795' \
-    --limit '60' \
+    --namespace 'hy1jOVkk' \
+    --templateSlug 'UlS79527' \
+    --after 'EZ25Ia8u' \
+    --before 'CeZFlLtE' \
+    --limit '95' \
     > test.out 2>&1
-eval_tap $? 79 'GetSlugTemplate' test.out
+eval_tap $? 80 'GetSlugTemplate' test.out
 
-#- 80 DeleteTemplateSlug
+#- 81 DeleteTemplateSlug
 samples/cli/sample-apps Lobby deleteTemplateSlug \
-    --namespace 'Z25Ia8uC' \
-    --templateSlug 'eZFlLtEV' \
-    > test.out 2>&1
-eval_tap $? 80 'DeleteTemplateSlug' test.out
-
-#- 81 GetLocalizationTemplate
-samples/cli/sample-apps Lobby getLocalizationTemplate \
     --namespace 'pDAEbA82' \
-    --templateLanguage 'jy74lq0p' \
-    --templateSlug 'DE5xRwh5' \
+    --templateSlug 'jy74lq0p' \
     > test.out 2>&1
-eval_tap $? 81 'GetLocalizationTemplate' test.out
+eval_tap $? 81 'DeleteTemplateSlug' test.out
 
-#- 82 UpdateLocalizationTemplate
+#- 82 GetLocalizationTemplate
+samples/cli/sample-apps Lobby getLocalizationTemplate \
+    --namespace 'DE5xRwh5' \
+    --templateLanguage 'b45ebpcM' \
+    --templateSlug '7ScSs3UO' \
+    > test.out 2>&1
+eval_tap $? 82 'GetLocalizationTemplate' test.out
+
+#- 83 UpdateLocalizationTemplate
 samples/cli/sample-apps Lobby updateLocalizationTemplate \
-    --body '{"templateContent": "b45ebpcM"}' \
-    --namespace '7ScSs3UO' \
-    --templateLanguage 'pAwIp9rR' \
-    --templateSlug 'tn1PcCxd' \
+    --body '{"templateContent": "pAwIp9rR"}' \
+    --namespace 'tn1PcCxd' \
+    --templateLanguage 'bumeYgOd' \
+    --templateSlug 'EBWRQiW3' \
     > test.out 2>&1
-eval_tap $? 82 'UpdateLocalizationTemplate' test.out
+eval_tap $? 83 'UpdateLocalizationTemplate' test.out
 
-#- 83 DeleteTemplateLocalization
+#- 84 DeleteTemplateLocalization
 samples/cli/sample-apps Lobby deleteTemplateLocalization \
-    --namespace 'bumeYgOd' \
-    --templateLanguage 'EBWRQiW3' \
-    --templateSlug 'KFfU8icH' \
+    --namespace 'KFfU8icH' \
+    --templateLanguage '4081gRB1' \
+    --templateSlug 'GyLfLg4R' \
     > test.out 2>&1
-eval_tap $? 83 'DeleteTemplateLocalization' test.out
+eval_tap $? 84 'DeleteTemplateLocalization' test.out
 
-#- 84 PublishTemplate
+#- 85 PublishTemplate
 samples/cli/sample-apps Lobby publishTemplate \
-    --namespace '4081gRB1' \
-    --templateLanguage 'GyLfLg4R' \
-    --templateSlug 'YuEbgUDE' \
+    --namespace 'YuEbgUDE' \
+    --templateLanguage 'cJyIvsPw' \
+    --templateSlug 'Or0BmV5i' \
     > test.out 2>&1
-eval_tap $? 84 'PublishTemplate' test.out
+eval_tap $? 85 'PublishTemplate' test.out
 
-#- 85 GetTopicByNamespace
+#- 86 GetTopicByNamespace
 samples/cli/sample-apps Lobby getTopicByNamespace \
-    --namespace 'cJyIvsPw' \
-    --after 'Or0BmV5i' \
-    --before 'FvfwFjTS' \
-    --limit '25' \
+    --namespace 'FvfwFjTS' \
+    --after 'mIEqoLyL' \
+    --before 'eUGmomGX' \
+    --limit '36' \
     > test.out 2>&1
-eval_tap $? 85 'GetTopicByNamespace' test.out
+eval_tap $? 86 'GetTopicByNamespace' test.out
 
-#- 86 CreateTopic
+#- 87 CreateTopic
 samples/cli/sample-apps Lobby createTopic \
-    --body '{"description": "IEqoLyLe", "topic": "UGmomGX9"}' \
-    --namespace 'sXTZ0v8p' \
+    --body '{"description": "XTZ0v8pq", "topic": "Lfc5SwGn"}' \
+    --namespace 'ReUULDX4' \
     > test.out 2>&1
-eval_tap $? 86 'CreateTopic' test.out
+eval_tap $? 87 'CreateTopic' test.out
 
-#- 87 GetTopicByTopicName
+#- 88 GetTopicByTopicName
 samples/cli/sample-apps Lobby getTopicByTopicName \
-    --namespace 'qLfc5SwG' \
-    --topic 'nReUULDX' \
+    --namespace 'QUIbb5nh' \
+    --topic '68ZnyUtR' \
     > test.out 2>&1
-eval_tap $? 87 'GetTopicByTopicName' test.out
+eval_tap $? 88 'GetTopicByTopicName' test.out
 
-#- 88 UpdateTopicByTopicName
+#- 89 UpdateTopicByTopicName
 samples/cli/sample-apps Lobby updateTopicByTopicName \
-    --body '{"description": "4QUIbb5n"}' \
-    --namespace 'h68ZnyUt' \
-    --topic 'RvW9hNBS' \
+    --body '{"description": "vW9hNBSF"}' \
+    --namespace 'TtFrOmjk' \
+    --topic 'FrFVA8t0' \
     > test.out 2>&1
-eval_tap $? 88 'UpdateTopicByTopicName' test.out
+eval_tap $? 89 'UpdateTopicByTopicName' test.out
 
-#- 89 DeleteTopicByTopicName
+#- 90 DeleteTopicByTopicName
 samples/cli/sample-apps Lobby deleteTopicByTopicName \
-    --namespace 'FTtFrOmj' \
-    --topic 'kFrFVA8t' \
+    --namespace 'xF34Xpt6' \
+    --topic 'ZlTTic0k' \
     > test.out 2>&1
-eval_tap $? 89 'DeleteTopicByTopicName' test.out
+eval_tap $? 90 'DeleteTopicByTopicName' test.out
 
-#- 90 FreeFormNotificationByUserID
+#- 91 FreeFormNotificationByUserID
 samples/cli/sample-apps Lobby freeFormNotificationByUserID \
-    --body '{"message": "0xF34Xpt", "topic": "6ZlTTic0"}' \
-    --namespace 'kr2a0nI2' \
-    --userId 'oo7UHCJK' \
+    --body '{"message": "r2a0nI2o", "topic": "o7UHCJK5"}' \
+    --namespace 'sp0aCvIq' \
+    --userId '3aHVYIle' \
     > test.out 2>&1
-eval_tap $? 90 'FreeFormNotificationByUserID' test.out
+eval_tap $? 91 'FreeFormNotificationByUserID' test.out
 
-#- 91 NotificationWithTemplateByUserID
+#- 92 NotificationWithTemplateByUserID
 samples/cli/sample-apps Lobby notificationWithTemplateByUserID \
-    --body '{"templateContext": {"5sp0aCvI": "q3aHVYIl"}, "templateLanguage": "ewLRuHY8", "templateSlug": "3bGj0HTe", "topic": "eWXlIcRi"}' \
-    --namespace 'dqctDpyg' \
-    --userId 'Y0ax476E' \
+    --body '{"templateContext": {"wLRuHY83": "bGj0HTee"}, "templateLanguage": "WXlIcRid", "templateSlug": "qctDpygY", "topic": "0ax476ED"}' \
+    --namespace '4MMO9Tw2' \
+    --userId 'JH0qhWIw' \
     > test.out 2>&1
-eval_tap $? 91 'NotificationWithTemplateByUserID' test.out
+eval_tap $? 92 'NotificationWithTemplateByUserID' test.out
 
 
 rm -f "tmp.dat"

@@ -64,6 +64,32 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *concur
 	return nil
 }
 
+// Deprecated: Use PutPlayerRecordConcurrentHandlerV1Short instead
+func (c *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1(input *concurrent_record.PutPlayerRecordConcurrentHandlerV1Params) error {
+	token, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := c.Client.ConcurrentRecord.PutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use PutPlayerPublicRecordConcurrentHandlerV1Short instead
 func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params) error {
 	token, err := c.TokenRepository.GetToken()
@@ -108,6 +134,31 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *c
 	}
 
 	_, err := c.Client.ConcurrentRecord.PutGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1Short(input *concurrent_record.PutPlayerRecordConcurrentHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  c.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := c.Client.ConcurrentRecord.PutPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

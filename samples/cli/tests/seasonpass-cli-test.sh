@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..40"
+echo "1..42"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -258,102 +258,124 @@ eval_tap $? 27 'GetUserParticipatedSeasons' test.out
 
 #- 28 GrantUserExp
 samples/cli/sample-apps Seasonpass grantUserExp \
-    --body '{"exp": 52}' \
-    --namespace '2jz1ZOpd' \
-    --userId 'OjSyMddB' \
+    --body '{"exp": 52, "source": "PAID_FOR", "tags": ["z1ZOpdOj"]}' \
+    --namespace 'SyMddB41' \
+    --userId 'JuMf7RUy' \
     > test.out 2>&1
 eval_tap $? 28 'GrantUserExp' test.out
 
 #- 29 GrantUserPass
 samples/cli/sample-apps Seasonpass grantUserPass \
-    --body '{"passCode": "41JuMf7R", "passItemId": "UyBHRj8I"}' \
-    --namespace 'iRimRllH' \
-    --userId 'T6Dc40vF' \
+    --body '{"passCode": "BHRj8IiR", "passItemId": "imRllHT6"}' \
+    --namespace 'Dc40vFFA' \
+    --userId '6gpU7EW3' \
     > test.out 2>&1
 eval_tap $? 29 'GrantUserPass' test.out
 
 #- 30 ExistsAnyPassByPassCodes
 samples/cli/sample-apps Seasonpass existsAnyPassByPassCodes \
-    --namespace 'FA6gpU7E' \
-    --userId 'W3x1dCpm' \
-    --passCodes '["55gOeqQI"]' \
+    --namespace 'x1dCpm55' \
+    --userId 'gOeqQIqc' \
+    --passCodes '["JVKmBM1J"]' \
     > test.out 2>&1
 eval_tap $? 30 'ExistsAnyPassByPassCodes' test.out
 
 #- 31 GetCurrentUserSeasonProgression
 samples/cli/sample-apps Seasonpass getCurrentUserSeasonProgression \
-    --namespace 'qcJVKmBM' \
-    --userId '1J1IbuTr' \
+    --namespace '1IbuTrrk' \
+    --userId 'bmuT1whO' \
     > test.out 2>&1
 eval_tap $? 31 'GetCurrentUserSeasonProgression' test.out
 
 #- 32 CheckSeasonPurchasable
 samples/cli/sample-apps Seasonpass checkSeasonPurchasable \
-    --body '{"passItemId": "rkbmuT1w", "tierItemCount": 15, "tierItemId": "OqmEnDXI"}' \
-    --namespace 'WrBPlSay' \
-    --userId '46mv71BA' \
+    --body '{"passItemId": "qmEnDXIW", "tierItemCount": 35, "tierItemId": "BPlSay46"}' \
+    --namespace 'mv71BAZA' \
+    --userId 'OjtFJ2vm' \
     > test.out 2>&1
 eval_tap $? 32 'CheckSeasonPurchasable' test.out
 
 #- 33 ResetUserSeason
 samples/cli/sample-apps Seasonpass resetUserSeason \
-    --namespace 'ZAOjtFJ2' \
-    --userId 'vmTj7tT7' \
+    --namespace 'Tj7tT7TZ' \
+    --userId 'HWDdCkIs' \
     > test.out 2>&1
 eval_tap $? 33 'ResetUserSeason' test.out
 
 #- 34 GrantUserTier
 samples/cli/sample-apps Seasonpass grantUserTier \
-    --body '{"count": 90}' \
-    --namespace 'ZHWDdCkI' \
-    --userId 'sZoArWwP' \
+    --body '{"count": 29, "source": "SWEAT", "tags": ["rWwPHcyF"]}' \
+    --namespace 'AdAtYciL' \
+    --userId 'IgRwFRr0' \
     > test.out 2>&1
 eval_tap $? 34 'GrantUserTier' test.out
 
-#- 35 GetUserSeason
+#- 35 QueryUserExpGrantHistory
+samples/cli/sample-apps Seasonpass queryUserExpGrantHistory \
+    --namespace 'gwB9tz3v' \
+    --userId 'p99XVlV8' \
+    --from 'rK3tE6n0' \
+    --limit '36' \
+    --offset '25' \
+    --seasonId 'ip1tw3L7' \
+    --source 'PAID_FOR' \
+    --tags '["Ud9pqtv6"]' \
+    --to 'JfPZwcCV' \
+    > test.out 2>&1
+eval_tap $? 35 'QueryUserExpGrantHistory' test.out
+
+#- 36 QueryUserExpGrantHistoryTag
+samples/cli/sample-apps Seasonpass queryUserExpGrantHistoryTag \
+    --namespace 'OXcVa80T' \
+    --userId 'mCwtD2lA' \
+    --seasonId 'H01o6Ndc' \
+    > test.out 2>&1
+eval_tap $? 36 'QueryUserExpGrantHistoryTag' test.out
+
+#- 37 GetUserSeason
 samples/cli/sample-apps Seasonpass getUserSeason \
-    --namespace 'HcyFAdAt' \
-    --seasonId 'YciLIgRw' \
-    --userId 'FRr0gwB9' \
+    --namespace 'BIgzrDyW' \
+    --seasonId 'pFBYGmmB' \
+    --userId 'awMyoKyN' \
     > test.out 2>&1
-eval_tap $? 35 'GetUserSeason' test.out
+eval_tap $? 37 'GetUserSeason' test.out
 
-#- 36 PublicGetCurrentSeason
+#- 38 PublicGetCurrentSeason
 samples/cli/sample-apps Seasonpass publicGetCurrentSeason \
-    --namespace 'tz3vp99X' \
-    --language 'VlV8rK3t' \
+    --namespace 'pdAasm8x' \
+    --language 'wUfzOlQi' \
     > test.out 2>&1
-eval_tap $? 36 'PublicGetCurrentSeason' test.out
+eval_tap $? 38 'PublicGetCurrentSeason' test.out
 
-#- 37 PublicGetCurrentUserSeason
+#- 39 PublicGetCurrentUserSeason
 samples/cli/sample-apps Seasonpass publicGetCurrentUserSeason \
-    --namespace 'E6n0smip' \
-    --userId '1tw3L7cU' \
+    --namespace 'ZY4NbOQX' \
+    --userId 'J7uOTzNM' \
     > test.out 2>&1
-eval_tap $? 37 'PublicGetCurrentUserSeason' test.out
+eval_tap $? 39 'PublicGetCurrentUserSeason' test.out
 
-#- 38 PublicClaimUserReward
+#- 40 PublicClaimUserReward
 samples/cli/sample-apps Seasonpass publicClaimUserReward \
-    --body '{"passCode": "d9pqtv6J", "rewardCode": "fPZwcCVO", "tierIndex": 98}' \
-    --namespace 'cVa80TmC' \
-    --userId 'wtD2lAH0' \
+    --body '{"passCode": "vuq2tNl4", "rewardCode": "CX4IjiK4", "tierIndex": 58}' \
+    --namespace 'EUJRVK3l' \
+    --userId '9Eb0R1XR' \
     > test.out 2>&1
-eval_tap $? 38 'PublicClaimUserReward' test.out
+eval_tap $? 40 'PublicClaimUserReward' test.out
 
-#- 39 PublicBulkClaimUserRewards
+#- 41 PublicBulkClaimUserRewards
 samples/cli/sample-apps Seasonpass publicBulkClaimUserRewards \
-    --namespace '1o6NdcBI' \
-    --userId 'gzrDyWpF' \
+    --namespace 'b0RH8vS1' \
+    --userId 'smeOlngr' \
     > test.out 2>&1
-eval_tap $? 39 'PublicBulkClaimUserRewards' test.out
+eval_tap $? 41 'PublicBulkClaimUserRewards' test.out
 
-#- 40 PublicGetUserSeason
+#- 42 PublicGetUserSeason
 samples/cli/sample-apps Seasonpass publicGetUserSeason \
-    --namespace 'BYGmmBaw' \
-    --seasonId 'MyoKyNpd' \
-    --userId 'Aasm8xwU' \
+    --namespace 'dTXCzaPB' \
+    --seasonId 'tkZMio4w' \
+    --userId 'cyhloVS3' \
     > test.out 2>&1
-eval_tap $? 40 'PublicGetUserSeason' test.out
+eval_tap $? 42 'PublicGetUserSeason' test.out
 
 
 rm -f "tmp.dat"

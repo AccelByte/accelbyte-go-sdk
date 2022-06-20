@@ -23,6 +23,9 @@ type ModelUserResponseV3 struct {
 	// Required: true
 	AuthType *string `json:"authType"`
 
+	// avatar Url
+	AvatarURL string `json:"avatarUrl,omitempty"`
+
 	// bans
 	// Required: true
 	Bans []*ModelUserActiveBanResponseV3 `json:"bans"`

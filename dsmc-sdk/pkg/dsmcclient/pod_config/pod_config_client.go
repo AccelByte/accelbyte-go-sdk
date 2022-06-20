@@ -282,6 +282,8 @@ func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo ru
 Required scope: social
 
 This endpoint get a all pod configs in a namespace
+
+Parameter Offset and Count is Required
 */
 func (a *Client) GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, *GetAllPodConfigBadRequest, *GetAllPodConfigUnauthorized, *GetAllPodConfigInternalServerError, error) {
 	// TODO: Validate the params before sending

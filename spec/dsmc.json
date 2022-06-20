@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.1.1"
+    "version": "3.2.1"
   },
   "schemes": [
     "https"
@@ -1944,7 +1944,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all pod configs in a namespace",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all pod configs in a namespace\n\nParameter Offset and Count is Required",
         "operationId": "GetAllPodConfig",
         "parameters": [
           {
@@ -1958,12 +1958,14 @@
             "description": "offset from list to query from",
             "in": "query",
             "name": "offset",
+            "required": true,
             "type": "integer"
           },
           {
             "description": "how many items to return",
             "in": "query",
             "name": "count",
+            "required": true,
             "type": "integer"
           }
         ],

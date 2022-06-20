@@ -5533,6 +5533,87 @@
         ]
       }
     },
+    "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Set party limit, only party leader can call this endpoint.",
+        "operationId": "publicSetPartyLimitV1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "party ID",
+            "in": "path",
+            "name": "partyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "party custom attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PartyPUTLimitSizeRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "set party limit",
+        "tags": [
+          "party"
+        ]
+      }
+    },
     "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked": {
       "get": {
         "consumes": [
@@ -8446,6 +8527,17 @@
       "required": [
         "custom_attribute",
         "updatedAt"
+      ]
+    },
+    "models.PartyPUTLimitSizeRequest": {
+      "properties": {
+        "limit": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit"
       ]
     },
     "models.ProfanityFilter": {

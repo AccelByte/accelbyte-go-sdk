@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "1.14.5"
+    "version": "1.14.6"
   },
   "schemes": [
     "https"

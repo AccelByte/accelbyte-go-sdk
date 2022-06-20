@@ -659,7 +659,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission\n\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: user achievement status value mean: \u0026lt;code\u0026gt;status = 1 (in progress)\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;status = 2 (unlocked)\u0026lt;/p\u0026gt;\u0026lt;/code\u0026gt;",
         "operationId": "AdminListUserAchievements",
         "parameters": [
           {
@@ -1018,7 +1018,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \n\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: user achievement status value mean: \u0026lt;code\u0026gt;status = 1 (in progress)\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;status = 2 (unlocked)\u0026lt;/p\u0026gt;\u0026lt;/code\u0026gt;",
         "operationId": "PublicListUserAchievements",
         "parameters": [
           {

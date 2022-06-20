@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.9.0"
+    "version": "4.10.0"
   },
   "schemes": [
     "https"
@@ -3072,12 +3072,6 @@
             "schema": {
               "$ref": "#/definitions/EpicGamesIAPConfigInfo"
             }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39243\u003c/td\u003e\u003ctd\u003eEpicGames config does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
           }
         },
         "security": [
@@ -4095,12 +4089,6 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/XblIAPConfigInfo"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39242\u003c/td\u003e\u003ctd\u003eXBL config does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -23766,6 +23754,10 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "description": {
+          "description": "a description if this change is not directly caused by user action. eg: bundle item",
+          "type": "string"
         },
         "itemId": {
           "description": "item id",

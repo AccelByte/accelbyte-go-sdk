@@ -2509,6 +2509,188 @@
         }
       }
     },
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history": {
+      "get": {
+        "description": "This API is used to get user exp acquisition history, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated grant history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryUserExpGrantHistory",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "if not provide, will query current season",
+            "in": "query",
+            "name": "seasonId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "exp grant source",
+            "enum": [
+              "PAID_FOR",
+              "SWEAT"
+            ],
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "exp grant tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "section active range time start , using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "section active range time end, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 20,
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ExpGrantHistoryPagingSlicedResult"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query user season exp acquisition history",
+        "tags": [
+          "Season"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
+        }
+      }
+    },
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags": {
+      "get": {
+        "description": "This API is used to get user exp acquisition history\u0026#39;s tag list.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: exp grant history tags list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryUserExpGrantHistoryTag",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "if not provide, will query current season",
+            "in": "query",
+            "name": "seasonId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ReasonTagsResult"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query user season exp acquisition history's reason tag list",
+        "tags": [
+          "Season"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
+        }
+      }
+    },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
       "get": {
         "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -3029,6 +3211,21 @@
           "description": "To claim rewards, zero based tier index as key, rewards per pass as value ",
           "type": "object"
         },
+        "totalExp": {
+          "description": "total exp",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPaidForExp": {
+          "description": "total paid-for exp",
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalSweatExp": {
+          "description": "total sweat exp",
+          "format": "int64",
+          "type": "integer"
+        },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
@@ -3110,6 +3307,84 @@
       },
       "required": [
         "method"
+      ],
+      "type": "object"
+    },
+    "ExpGrantHistoryInfo": {
+      "description": "A DTO object for exp grant history details.",
+      "properties": {
+        "createdAt": {
+          "description": "acquired at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "grantExp": {
+          "description": "grant exp",
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "seasonId": {
+          "description": "season id",
+          "type": "string"
+        },
+        "source": {
+          "description": "id",
+          "enum": [
+            "PAID_FOR",
+            "SWEAT"
+          ],
+          "type": "string"
+        },
+        "tags": {
+          "description": "id",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "description": "user id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "grantExp",
+        "id",
+        "namespace",
+        "seasonId",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "ExpGrantHistoryPagingSlicedResult": {
+      "properties": {
+        "data": {
+          "description": "data",
+          "items": {
+            "$ref": "#/definitions/ExpGrantHistoryInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "total": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data"
       ],
       "type": "object"
     },
@@ -3741,6 +4016,22 @@
       },
       "type": "object"
     },
+    "ReasonTagsResult": {
+      "description": "A DTO object for reason tags.",
+      "properties": {
+        "tags": {
+          "description": "tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "tags"
+      ],
+      "type": "object"
+    },
     "RewardCreate": {
       "description": "A DTO object for creating reward API call.",
       "properties": {
@@ -4363,6 +4654,21 @@
           "description": "exp to grant",
           "format": "int32",
           "type": "integer"
+        },
+        "source": {
+          "description": "source",
+          "enum": [
+            "PAID_FOR",
+            "SWEAT"
+          ],
+          "type": "string"
+        },
+        "tags": {
+          "description": "tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4508,6 +4814,21 @@
           "description": "count to grant",
           "format": "int32",
           "type": "integer"
+        },
+        "source": {
+          "description": "source",
+          "enum": [
+            "PAID_FOR",
+            "SWEAT"
+          ],
+          "type": "string"
+        },
+        "tags": {
+          "description": "tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

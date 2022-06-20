@@ -1,3 +1,33 @@
+<a name="v0.21.0"></a>
+## [v0.21.0] - 2022-06-21
+
+### Chore
+- fix lint errors
+- **api:** regenerate wrapper for supporting refresh token
+- **makefile:** simplify mock server launch for testing
+- **makefile:** use local go cache folder
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for justice 3.25
+
+### CI
+- make lint, build, and test run in parallel
+- **github:** add release note input
+
+### Docs
+- add refresh token
+- update CHANGELOG.md for v0.21.0 release
+
+### Feat
+- **core:** add PersistentRoundTripper interface
+- **core:** add TrackedReadCloser struct
+- **core:** add usage of TrackedReadCloser in Retry.Roundtrip()
+- **core:** port over go-openapi unexported structs and functions
+- **sdk:** add refresh token
+- **test:** add refresh token
+
+### Fix
+- **test:** add network host for docker core test
+
+
 <a name="v0.20.0"></a>
 ## [v0.20.0] - 2022-06-07
 
@@ -701,6 +731,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.21.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.20.0...v0.21.0
 [v0.20.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.19.0...v0.20.0
 [v0.19.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.1...v0.19.0
 [v0.18.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.0...v0.18.1

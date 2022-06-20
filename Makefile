@@ -37,10 +37,10 @@ test_core:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
 			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
-			(DOCKER_RUN_ARGS="-t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data -w /data --network host --name justice-codegen-sdk-mock-server" bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
+			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
 			(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
-		  	docker run -t --rm -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
-            			sh -c "CGO_ENABLED=0 GOOS=linux go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
+			docker run -t --rm -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+						sh -c "CGO_ENABLED=0 GOOS=linux go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
 
 test_integration:
 	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
@@ -54,7 +54,7 @@ test_cli:
 			sh -c "cd samples/cli && CGO_ENABLED=0 GOOS=linux go build"
 	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
 			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
-			(DOCKER_RUN_ARGS="-t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data -w /data --network host --name justice-codegen-sdk-mock-server" bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
+			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
 			(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
 			sed -i "s/\r//" samples/cli/tests/* && \
 			rm -f samples/cli/tests/*.tap && \

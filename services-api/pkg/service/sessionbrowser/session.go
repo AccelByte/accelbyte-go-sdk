@@ -17,8 +17,26 @@ import (
 )
 
 type SessionService struct {
-	Client          *sessionbrowserclient.JusticeSessionbrowserService
-	TokenRepository repository.TokenRepository
+	Client                 *sessionbrowserclient.JusticeSessionbrowserService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (s *SessionService) GetAuthSession() auth.Session {
+	if s.RefreshTokenRepository != nil {
+		return auth.Session{
+			s.TokenRepository,
+			s.ConfigRepository,
+			s.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		s.TokenRepository,
+		s.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetTotalActiveSessionShort instead
@@ -377,7 +395,7 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -402,7 +420,7 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -427,7 +445,7 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -452,7 +470,7 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -477,7 +495,7 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -502,7 +520,7 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -527,7 +545,7 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -552,7 +570,7 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sess
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -577,7 +595,7 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -602,7 +620,7 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -627,7 +645,7 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -652,7 +670,7 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -677,7 +695,7 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -702,7 +720,7 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -727,7 +745,7 @@ func (s *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -752,7 +770,7 @@ func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

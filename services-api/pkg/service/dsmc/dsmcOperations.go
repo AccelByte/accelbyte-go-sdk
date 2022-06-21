@@ -17,8 +17,26 @@ import (
 )
 
 type DsmcOperationsService struct {
-	Client          *dsmcclient.JusticeDsmcService
-	TokenRepository repository.TokenRepository
+	Client                 *dsmcclient.JusticeDsmcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (d *DsmcOperationsService) GetAuthSession() auth.Session {
+	if d.RefreshTokenRepository != nil {
+		return auth.Session{
+			d.TokenRepository,
+			d.ConfigRepository,
+			d.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		d.TokenRepository,
+		d.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use PublicGetMessagesShort instead
@@ -44,7 +62,7 @@ func (d *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.Pu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

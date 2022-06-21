@@ -17,8 +17,26 @@ import (
 )
 
 type RolesService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (r *RolesService) GetAuthSession() auth.Session {
+	if r.RefreshTokenRepository != nil {
+		return auth.Session{
+			r.TokenRepository,
+			r.ConfigRepository,
+			r.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		r.TokenRepository,
+		r.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetRolesShort instead
@@ -1257,7 +1275,7 @@ func (r *RolesService) GetRolesShort(input *roles.GetRolesParams) ([]*iamclientm
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1282,7 +1300,7 @@ func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams) (*iamclien
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1307,7 +1325,7 @@ func (r *RolesService) GetRoleShort(input *roles.GetRoleParams) (*iamclientmodel
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1332,7 +1350,7 @@ func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams) (*iamclien
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1357,7 +1375,7 @@ func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1382,7 +1400,7 @@ func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1407,7 +1425,7 @@ func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams) er
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1432,7 +1450,7 @@ func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1457,7 +1475,7 @@ func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1482,7 +1500,7 @@ func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1507,7 +1525,7 @@ func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1532,7 +1550,7 @@ func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1557,7 +1575,7 @@ func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams) er
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1582,7 +1600,7 @@ func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1607,7 +1625,7 @@ func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermiss
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1632,7 +1650,7 @@ func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1657,7 +1675,7 @@ func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1682,7 +1700,7 @@ func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1707,7 +1725,7 @@ func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1732,7 +1750,7 @@ func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1757,7 +1775,7 @@ func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1782,7 +1800,7 @@ func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1807,7 +1825,7 @@ func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleA
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1832,7 +1850,7 @@ func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1857,7 +1875,7 @@ func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleA
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1882,7 +1900,7 @@ func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleMana
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1907,7 +1925,7 @@ func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleMana
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1932,7 +1950,7 @@ func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1957,7 +1975,7 @@ func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1982,7 +2000,7 @@ func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2007,7 +2025,7 @@ func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRol
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2032,7 +2050,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2057,7 +2075,7 @@ func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRoleP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2082,7 +2100,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDelet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2107,7 +2125,7 @@ func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDelete
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2132,7 +2150,7 @@ func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2157,7 +2175,7 @@ func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2182,7 +2200,7 @@ func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2207,7 +2225,7 @@ func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2232,7 +2250,7 @@ func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2257,7 +2275,7 @@ func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2282,7 +2300,7 @@ func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2307,7 +2325,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2332,7 +2350,7 @@ func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRoleP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2357,7 +2375,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDelet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2382,7 +2400,7 @@ func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2407,7 +2425,7 @@ func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUser
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2432,7 +2450,7 @@ func (r *RolesService) AdminRevokeUserFromRoleV4Short(input *roles.AdminRevokeUs
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

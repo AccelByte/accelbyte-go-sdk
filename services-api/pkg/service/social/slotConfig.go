@@ -17,8 +17,26 @@ import (
 )
 
 type SlotConfigService struct {
-	Client          *socialclient.JusticeSocialService
-	TokenRepository repository.TokenRepository
+	Client                 *socialclient.JusticeSocialService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (s *SlotConfigService) GetAuthSession() auth.Session {
+	if s.RefreshTokenRepository != nil {
+		return auth.Session{
+			s.TokenRepository,
+			s.ConfigRepository,
+			s.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		s.TokenRepository,
+		s.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetNamespaceSlotConfigShort instead
@@ -111,7 +129,7 @@ func (s *SlotConfigService) GetNamespaceSlotConfigShort(input *slot_config.GetNa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -136,7 +154,7 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfigShort(input *slot_config.Up
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -161,7 +179,7 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfigShort(input *slot_config.De
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -186,7 +204,7 @@ func (s *SlotConfigService) GetUserSlotConfigShort(input *slot_config.GetUserSlo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -211,7 +229,7 @@ func (s *SlotConfigService) UpdateUserSlotConfigShort(input *slot_config.UpdateU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -236,7 +254,7 @@ func (s *SlotConfigService) DeleteUserSlotConfigShort(input *slot_config.DeleteU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type LobbyOperationsService struct {
-	Client          *lobbyclient.JusticeLobbyService
-	TokenRepository repository.TokenRepository
+	Client                 *lobbyclient.JusticeLobbyService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (l *LobbyOperationsService) GetAuthSession() auth.Session {
+	if l.RefreshTokenRepository != nil {
+		return auth.Session{
+			l.TokenRepository,
+			l.ConfigRepository,
+			l.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		l.TokenRepository,
+		l.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminUpdatePartyAttributesV1Short instead
@@ -108,7 +126,7 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -133,7 +151,7 @@ func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.A
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -158,7 +176,7 @@ func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type ItemService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (i *ItemService) GetAuthSession() auth.Session {
+	if i.RefreshTokenRepository != nil {
+		return auth.Session{
+			i.TokenRepository,
+			i.ConfigRepository,
+			i.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		i.TokenRepository,
+		i.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use SyncInGameItemShort instead
@@ -604,7 +622,7 @@ func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -629,7 +647,7 @@ func (i *ItemService) CreateItemShort(input *item.CreateItemParams) (*platformcl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -654,7 +672,7 @@ func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -679,7 +697,7 @@ func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platformcl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -704,7 +722,7 @@ func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsBy
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -729,7 +747,7 @@ func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platfo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -754,7 +772,7 @@ func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -779,7 +797,7 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -804,7 +822,7 @@ func (i *ItemService) GetBulkItemIDBySkusShort(input *item.GetBulkItemIDBySkusPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -829,7 +847,7 @@ func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -854,7 +872,7 @@ func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -879,7 +897,7 @@ func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorize
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -904,7 +922,7 @@ func (i *ItemService) GetItemShort(input *item.GetItemParams) (*platformclientmo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -929,7 +947,7 @@ func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platformcl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -954,7 +972,7 @@ func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -979,7 +997,7 @@ func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1004,7 +1022,7 @@ func (i *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmode
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1029,7 +1047,7 @@ func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformclie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1054,7 +1072,7 @@ func (i *ItemService) DisableItemShort(input *item.DisableItemParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1079,7 +1097,7 @@ func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1104,7 +1122,7 @@ func (i *ItemService) EnableItemShort(input *item.EnableItemParams) (*platformcl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1129,7 +1147,7 @@ func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1154,7 +1172,7 @@ func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*plat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1179,7 +1197,7 @@ func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*plat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1204,7 +1222,7 @@ func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type NotificationService struct {
-	Client          *lobbyclient.JusticeLobbyService
-	TokenRepository repository.TokenRepository
+	Client                 *lobbyclient.JusticeLobbyService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (n *NotificationService) GetAuthSession() auth.Session {
+	if n.RefreshTokenRepository != nil {
+		return auth.Session{
+			n.TokenRepository,
+			n.ConfigRepository,
+			n.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		n.TokenRepository,
+		n.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use SendMultipleUsersFreeformNotificationV1AdminShort instead
@@ -995,7 +1013,7 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1020,7 +1038,7 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1045,7 +1063,7 @@ func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *n
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1070,7 +1088,7 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1095,7 +1113,7 @@ func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *not
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1120,7 +1138,7 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1145,7 +1163,7 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1170,7 +1188,7 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1195,7 +1213,7 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1220,7 +1238,7 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *n
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1245,7 +1263,7 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1270,7 +1288,7 @@ func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *noti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1295,7 +1313,7 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1320,7 +1338,7 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1345,7 +1363,7 @@ func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notific
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1370,7 +1388,7 @@ func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notificati
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1395,7 +1413,7 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1420,7 +1438,7 @@ func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notific
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1445,7 +1463,7 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(i
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1470,7 +1488,7 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1495,7 +1513,7 @@ func (n *NotificationService) FreeFormNotificationShort(input *notification.Free
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1520,7 +1538,7 @@ func (n *NotificationService) NotificationWithTemplateShort(input *notification.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1545,7 +1563,7 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1570,7 +1588,7 @@ func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemp
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1595,7 +1613,7 @@ func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1620,7 +1638,7 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1645,7 +1663,7 @@ func (n *NotificationService) GetLocalizationTemplateShort(input *notification.G
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1670,7 +1688,7 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1695,7 +1713,7 @@ func (n *NotificationService) DeleteTemplateLocalizationShort(input *notificatio
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1720,7 +1738,7 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1745,7 +1763,7 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1770,7 +1788,7 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1795,7 +1813,7 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1820,7 +1838,7 @@ func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.Up
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1845,7 +1863,7 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1870,7 +1888,7 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1895,7 +1913,7 @@ func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notif
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

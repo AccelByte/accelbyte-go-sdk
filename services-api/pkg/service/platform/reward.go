@@ -17,8 +17,26 @@ import (
 )
 
 type RewardService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (r *RewardService) GetAuthSession() auth.Session {
+	if r.RefreshTokenRepository != nil {
+		return auth.Session{
+			r.TokenRepository,
+			r.ConfigRepository,
+			r.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		r.TokenRepository,
+		r.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use CreateRewardShort instead
@@ -220,7 +238,7 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -245,7 +263,7 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -270,7 +288,7 @@ func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) er
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -295,7 +313,7 @@ func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) er
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -320,7 +338,7 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -345,7 +363,7 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -370,7 +388,7 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -395,7 +413,7 @@ func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -420,7 +438,7 @@ func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -445,7 +463,7 @@ func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -470,7 +488,7 @@ func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platfo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

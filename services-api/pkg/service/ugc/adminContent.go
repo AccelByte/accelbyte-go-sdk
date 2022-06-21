@@ -17,8 +17,26 @@ import (
 )
 
 type AdminContentService struct {
-	Client          *ugcclient.JusticeUgcService
-	TokenRepository repository.TokenRepository
+	Client                 *ugcclient.JusticeUgcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (a *AdminContentService) GetAuthSession() auth.Session {
+	if a.RefreshTokenRepository != nil {
+		return auth.Session{
+			a.TokenRepository,
+			a.ConfigRepository,
+			a.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		a.TokenRepository,
+		a.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminUploadContentDirectShort instead
@@ -462,7 +480,7 @@ func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -487,7 +505,7 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -512,7 +530,7 @@ func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_conte
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -537,7 +555,7 @@ func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -562,7 +580,7 @@ func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_c
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -587,7 +605,7 @@ func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -612,7 +630,7 @@ func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.Si
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -637,7 +655,7 @@ func (a *AdminContentService) AdminSearchContentShort(input *admin_content.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -662,7 +680,7 @@ func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -687,7 +705,7 @@ func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_cont
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -712,7 +730,7 @@ func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.A
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -737,7 +755,7 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -762,7 +780,7 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -787,7 +805,7 @@ func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.Adm
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -812,7 +830,7 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -837,7 +855,7 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -862,7 +880,7 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -887,7 +905,7 @@ func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.Adm
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

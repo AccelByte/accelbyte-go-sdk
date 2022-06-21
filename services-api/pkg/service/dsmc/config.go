@@ -17,8 +17,26 @@ import (
 )
 
 type ConfigService struct {
-	Client          *dsmcclient.JusticeDsmcService
-	TokenRepository repository.TokenRepository
+	Client                 *dsmcclient.JusticeDsmcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (c *ConfigService) GetAuthSession() auth.Session {
+	if c.RefreshTokenRepository != nil {
+		return auth.Session{
+			c.TokenRepository,
+			c.ConfigRepository,
+			c.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		c.TokenRepository,
+		c.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ListConfigShort instead
@@ -327,7 +345,7 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmccl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -352,7 +370,7 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -377,7 +395,7 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -402,7 +420,7 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*ds
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -427,7 +445,7 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) erro
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -452,7 +470,7 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*ds
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -477,7 +495,7 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -502,7 +520,7 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -527,7 +545,7 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmccl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -552,7 +570,7 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmccl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -577,7 +595,7 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -602,7 +620,7 @@ func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

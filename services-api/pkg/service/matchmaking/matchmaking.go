@@ -17,8 +17,26 @@ import (
 )
 
 type MatchmakingService struct {
-	Client          *matchmakingclient.JusticeMatchmakingService
-	TokenRepository repository.TokenRepository
+	Client                 *matchmakingclient.JusticeMatchmakingService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (m *MatchmakingService) GetAuthSession() auth.Session {
+	if m.RefreshTokenRepository != nil {
+		return auth.Session{
+			m.TokenRepository,
+			m.ConfigRepository,
+			m.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		m.TokenRepository,
+		m.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetAllChannelsHandlerShort instead
@@ -705,7 +723,7 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -730,7 +748,7 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -755,7 +773,7 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -780,7 +798,7 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -805,7 +823,7 @@ func (m *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -830,7 +848,7 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -855,7 +873,7 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -880,7 +898,7 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -905,7 +923,7 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -930,7 +948,7 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -955,7 +973,7 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -980,7 +998,7 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1005,7 +1023,7 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1030,7 +1048,7 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1055,7 +1073,7 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1080,7 +1098,7 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1105,7 +1123,7 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1130,7 +1148,7 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1155,7 +1173,7 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1180,7 +1198,7 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1205,7 +1223,7 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1230,7 +1248,7 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1255,7 +1273,7 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1280,7 +1298,7 @@ func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSess
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

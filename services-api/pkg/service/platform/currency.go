@@ -17,8 +17,26 @@ import (
 )
 
 type CurrencyService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (c *CurrencyService) GetAuthSession() auth.Session {
+	if c.RefreshTokenRepository != nil {
+		return auth.Session{
+			c.TokenRepository,
+			c.ConfigRepository,
+			c.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		c.TokenRepository,
+		c.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ListCurrenciesShort instead
@@ -142,7 +160,7 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -167,7 +185,7 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -192,7 +210,7 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -217,7 +235,7 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -242,7 +260,7 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -267,7 +285,7 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type PodConfigService struct {
-	Client          *dsmcclient.JusticeDsmcService
-	TokenRepository repository.TokenRepository
+	Client                 *dsmcclient.JusticeDsmcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (p *PodConfigService) GetAuthSession() auth.Session {
+	if p.RefreshTokenRepository != nil {
+		return auth.Session{
+			p.TokenRepository,
+			p.ConfigRepository,
+			p.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		p.TokenRepository,
+		p.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetAllPodConfigShort instead
@@ -160,7 +178,7 @@ func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -185,7 +203,7 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -210,7 +228,7 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -235,7 +253,7 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -260,7 +278,7 @@ func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

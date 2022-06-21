@@ -16,8 +16,26 @@ import (
 )
 
 type ConcurrentRecordService struct {
-	Client          *cloudsaveclient.JusticeCloudsaveService
-	TokenRepository repository.TokenRepository
+	Client                 *cloudsaveclient.JusticeCloudsaveService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (c *ConcurrentRecordService) GetAuthSession() auth.Session {
+	if c.RefreshTokenRepository != nil {
+		return auth.Session{
+			c.TokenRepository,
+			c.ConfigRepository,
+			c.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		c.TokenRepository,
+		c.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use PutGameRecordConcurrentHandlerV1Short instead
@@ -78,7 +96,7 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *c
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -103,7 +121,7 @@ func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Short(
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

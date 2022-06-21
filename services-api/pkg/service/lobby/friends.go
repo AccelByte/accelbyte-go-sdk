@@ -17,8 +17,26 @@ import (
 )
 
 type FriendsService struct {
-	Client          *lobbyclient.JusticeLobbyService
-	TokenRepository repository.TokenRepository
+	Client                 *lobbyclient.JusticeLobbyService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (f *FriendsService) GetAuthSession() auth.Session {
+	if f.RefreshTokenRepository != nil {
+		return auth.Session{
+			f.TokenRepository,
+			f.ConfigRepository,
+			f.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		f.TokenRepository,
+		f.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetUserFriendsUpdatedShort instead
@@ -340,7 +358,7 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -365,7 +383,7 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -390,7 +408,7 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -415,7 +433,7 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -440,7 +458,7 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -465,7 +483,7 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -490,7 +508,7 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -515,7 +533,7 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -540,7 +558,7 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -565,7 +583,7 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -590,7 +608,7 @@ func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

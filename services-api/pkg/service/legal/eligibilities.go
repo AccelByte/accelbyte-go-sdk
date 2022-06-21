@@ -17,8 +17,26 @@ import (
 )
 
 type EligibilitiesService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (e *EligibilitiesService) GetAuthSession() auth.Session {
+	if e.RefreshTokenRepository != nil {
+		return auth.Session{
+			e.TokenRepository,
+			e.ConfigRepository,
+			e.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		e.TokenRepository,
+		e.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use RetrieveEligibilitiesPublicShort instead
@@ -55,7 +73,7 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibili
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -80,7 +98,7 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *e
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

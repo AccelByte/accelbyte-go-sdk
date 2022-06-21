@@ -17,8 +17,26 @@ import (
 )
 
 type CatalogChangesService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (c *CatalogChangesService) GetAuthSession() auth.Session {
+	if c.RefreshTokenRepository != nil {
+		return auth.Session{
+			c.TokenRepository,
+			c.ConfigRepository,
+			c.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		c.TokenRepository,
+		c.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryChangesShort instead
@@ -61,7 +79,7 @@ func (c *CatalogChangesService) QueryChangesShort(input *catalog_changes.QueryCh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -86,7 +104,7 @@ func (c *CatalogChangesService) PublishAllShort(input *catalog_changes.PublishAl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

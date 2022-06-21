@@ -17,8 +17,26 @@ import (
 )
 
 type DataDeletionService struct {
-	Client          *gdprclient.JusticeGdprService
-	TokenRepository repository.TokenRepository
+	Client                 *gdprclient.JusticeGdprService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (d *DataDeletionService) GetAuthSession() auth.Session {
+	if d.RefreshTokenRepository != nil {
+		return auth.Session{
+			d.TokenRepository,
+			d.ConfigRepository,
+			d.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		d.TokenRepository,
+		d.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminGetListDeletionDataRequestShort instead
@@ -218,7 +236,7 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -243,7 +261,7 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -268,7 +286,7 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -293,7 +311,7 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -318,7 +336,7 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -343,7 +361,7 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -368,7 +386,7 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *dat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

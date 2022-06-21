@@ -17,8 +17,26 @@ import (
 )
 
 type PaymentAccountService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (p *PaymentAccountService) GetAuthSession() auth.Session {
+	if p.RefreshTokenRepository != nil {
+		return auth.Session{
+			p.TokenRepository,
+			p.ConfigRepository,
+			p.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		p.TokenRepository,
+		p.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use PublicGetPaymentAccountsShort instead
@@ -55,7 +73,7 @@ func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_acc
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -80,7 +98,7 @@ func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_a
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type ConfigService struct {
-	Client          *lobbyclient.JusticeLobbyService
-	TokenRepository repository.TokenRepository
+	Client                 *lobbyclient.JusticeLobbyService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (c *ConfigService) GetAuthSession() auth.Session {
+	if c.RefreshTokenRepository != nil {
+		return auth.Session{
+			c.TokenRepository,
+			c.ConfigRepository,
+			c.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		c.TokenRepository,
+		c.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminGetAllConfigV1Short instead
@@ -163,7 +181,7 @@ func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -188,7 +206,7 @@ func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -213,7 +231,7 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -238,7 +256,7 @@ func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -263,7 +281,7 @@ func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

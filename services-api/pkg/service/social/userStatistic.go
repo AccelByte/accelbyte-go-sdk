@@ -17,8 +17,26 @@ import (
 )
 
 type UserStatisticService struct {
-	Client          *socialclient.JusticeSocialService
-	TokenRepository repository.TokenRepository
+	Client                 *socialclient.JusticeSocialService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (u *UserStatisticService) GetAuthSession() auth.Session {
+	if u.RefreshTokenRepository != nil {
+		return auth.Session{
+			u.TokenRepository,
+			u.ConfigRepository,
+			u.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		u.TokenRepository,
+		u.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use BulkFetchStatItemsShort instead
@@ -768,7 +786,7 @@ func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.Bul
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -793,7 +811,7 @@ func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.Bu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -818,7 +836,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statist
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -843,7 +861,7 @@ func (u *UserStatisticService) BulkFetchOrDefaultStatItemsShort(input *user_stat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -868,7 +886,7 @@ func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -893,7 +911,7 @@ func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUs
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -918,7 +936,7 @@ func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statisti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -943,7 +961,7 @@ func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.B
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -968,7 +986,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statis
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -993,7 +1011,7 @@ func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1018,7 +1036,7 @@ func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.Cre
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1043,7 +1061,7 @@ func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.De
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1068,7 +1086,7 @@ func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.I
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1093,7 +1111,7 @@ func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1118,7 +1136,7 @@ func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.Bu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1143,7 +1161,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statis
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1168,7 +1186,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_s
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1193,7 +1211,7 @@ func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1218,7 +1236,7 @@ func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statist
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1243,7 +1261,7 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_st
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1268,7 +1286,7 @@ func (u *UserStatisticService) PublicQueryUserStatItems1Short(input *user_statis
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1293,7 +1311,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_stati
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1318,7 +1336,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statis
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1343,7 +1361,7 @@ func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1368,7 +1386,7 @@ func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statist
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1393,7 +1411,7 @@ func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.D
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1418,7 +1436,7 @@ func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1443,7 +1461,7 @@ func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_stati
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1468,7 +1486,7 @@ func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statisti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1493,7 +1511,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1518,7 +1536,7 @@ func (u *UserStatisticService) BulkFetchOrDefaultStatItems1Short(input *user_sta
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1543,7 +1561,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1568,7 +1586,7 @@ func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_stat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1593,7 +1611,7 @@ func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.D
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1618,7 +1636,7 @@ func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statisti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1643,7 +1661,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statisti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1668,7 +1686,7 @@ func (u *UserStatisticService) PublicQueryUserStatItems2Short(input *user_statis
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1693,7 +1711,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statisti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1718,7 +1736,7 @@ func (u *UserStatisticService) UpdateUserStatItemValue1Short(input *user_statist
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

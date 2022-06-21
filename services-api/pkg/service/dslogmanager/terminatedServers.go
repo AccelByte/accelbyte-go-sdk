@@ -17,8 +17,26 @@ import (
 )
 
 type TerminatedServersService struct {
-	Client          *dslogmanagerclient.JusticeDslogmanagerService
-	TokenRepository repository.TokenRepository
+	Client                 *dslogmanagerclient.JusticeDslogmanagerService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (t *TerminatedServersService) GetAuthSession() auth.Session {
+	if t.RefreshTokenRepository != nil {
+		return auth.Session{
+			t.TokenRepository,
+			t.ConfigRepository,
+			t.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		t.TokenRepository,
+		t.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ListTerminatedServersShort instead
@@ -90,7 +108,7 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -115,7 +133,7 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -140,7 +158,7 @@ func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_server
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

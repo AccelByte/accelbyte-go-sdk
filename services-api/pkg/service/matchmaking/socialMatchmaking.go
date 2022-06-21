@@ -17,8 +17,26 @@ import (
 )
 
 type SocialMatchmakingService struct {
-	Client          *matchmakingclient.JusticeMatchmakingService
-	TokenRepository repository.TokenRepository
+	Client                 *matchmakingclient.JusticeMatchmakingService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (s *SocialMatchmakingService) GetAuthSession() auth.Session {
+	if s.RefreshTokenRepository != nil {
+		return auth.Session{
+			s.TokenRepository,
+			s.ConfigRepository,
+			s.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		s.TokenRepository,
+		s.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use UpdatePlayTimeWeightShort instead
@@ -56,7 +74,7 @@ func (s *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_match
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

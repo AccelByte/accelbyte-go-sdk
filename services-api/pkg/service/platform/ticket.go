@@ -17,8 +17,26 @@ import (
 )
 
 type TicketService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (t *TicketService) GetAuthSession() auth.Session {
+	if t.RefreshTokenRepository != nil {
+		return auth.Session{
+			t.TokenRepository,
+			t.ConfigRepository,
+			t.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		t.TokenRepository,
+		t.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetTicketDynamicShort instead
@@ -124,7 +142,7 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -149,7 +167,7 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -174,7 +192,7 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -199,7 +217,7 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -224,7 +242,7 @@ func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

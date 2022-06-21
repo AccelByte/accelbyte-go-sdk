@@ -16,8 +16,26 @@ import (
 )
 
 type AnonymizationService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (a *AnonymizationService) GetAuthSession() auth.Session {
+	if a.RefreshTokenRepository != nil {
+		return auth.Session{
+			a.TokenRepository,
+			a.ConfigRepository,
+			a.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		a.TokenRepository,
+		a.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AnonymizeCampaignShort instead
@@ -138,7 +156,7 @@ func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.Anony
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -163,7 +181,7 @@ func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.An
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -188,7 +206,7 @@ func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.An
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -213,7 +231,7 @@ func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.An
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -238,7 +256,7 @@ func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.Anonymiz
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -263,7 +281,7 @@ func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anonym
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -288,7 +306,7 @@ func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.A
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -313,7 +331,7 @@ func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.Anonymi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

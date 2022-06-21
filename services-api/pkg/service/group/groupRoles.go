@@ -17,8 +17,26 @@ import (
 )
 
 type GroupRolesService struct {
-	Client          *groupclient.JusticeGroupService
-	TokenRepository repository.TokenRepository
+	Client                 *groupclient.JusticeGroupService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (g *GroupRolesService) GetAuthSession() auth.Session {
+	if g.RefreshTokenRepository != nil {
+		return auth.Session{
+			g.TokenRepository,
+			g.ConfigRepository,
+			g.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		g.TokenRepository,
+		g.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetMemberRolesListAdminV1Short instead
@@ -282,7 +300,7 @@ func (g *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.Ge
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -307,7 +325,7 @@ func (g *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.Crea
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -332,7 +350,7 @@ func (g *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles.G
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -357,7 +375,7 @@ func (g *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.Dele
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -382,7 +400,7 @@ func (g *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.Upda
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -407,7 +425,7 @@ func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *group_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -432,7 +450,7 @@ func (g *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles.G
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -457,7 +475,7 @@ func (g *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.Upd
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -482,7 +500,7 @@ func (g *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.Del
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

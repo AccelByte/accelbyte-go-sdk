@@ -17,8 +17,26 @@ import (
 )
 
 type AgreementService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (a *AgreementService) GetAuthSession() auth.Session {
+	if a.RefreshTokenRepository != nil {
+		return auth.Session{
+			a.TokenRepository,
+			a.ConfigRepository,
+			a.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		a.TokenRepository,
+		a.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ChangePreferenceConsentShort instead
@@ -159,7 +177,7 @@ func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangeP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -184,7 +202,7 @@ func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Retr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -209,7 +227,7 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -234,7 +252,7 @@ func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.Change
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -259,7 +277,7 @@ func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVer
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -284,7 +302,7 @@ func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.Retrie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -309,7 +327,7 @@ func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkA
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -334,7 +352,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agree
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -359,7 +377,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type SeasonService struct {
-	Client          *seasonpassclient.JusticeSeasonpassService
-	TokenRepository repository.TokenRepository
+	Client                 *seasonpassclient.JusticeSeasonpassService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (s *SeasonService) GetAuthSession() auth.Session {
+	if s.RefreshTokenRepository != nil {
+		return auth.Session{
+			s.TokenRepository,
+			s.ConfigRepository,
+			s.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		s.TokenRepository,
+		s.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QuerySeasonsShort instead
@@ -418,7 +436,7 @@ func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -443,7 +461,7 @@ func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -468,7 +486,7 @@ func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -493,7 +511,7 @@ func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -518,7 +536,7 @@ func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) erro
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -543,7 +561,7 @@ func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -568,7 +586,7 @@ func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seas
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -593,7 +611,7 @@ func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -618,7 +636,7 @@ func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -643,7 +661,7 @@ func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -668,7 +686,7 @@ func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserPar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -693,7 +711,7 @@ func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPas
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -718,7 +736,7 @@ func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -743,7 +761,7 @@ func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPur
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -768,7 +786,7 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -793,7 +811,7 @@ func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -827,7 +845,7 @@ func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetC
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -852,7 +870,7 @@ func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeas
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type StatConfigurationService struct {
-	Client          *socialclient.JusticeSocialService
-	TokenRepository repository.TokenRepository
+	Client                 *socialclient.JusticeSocialService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (s *StatConfigurationService) GetAuthSession() auth.Session {
+	if s.RefreshTokenRepository != nil {
+		return auth.Session{
+			s.TokenRepository,
+			s.ConfigRepository,
+			s.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		s.TokenRepository,
+		s.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetStatsShort instead
@@ -171,7 +189,7 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -196,7 +214,7 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -221,7 +239,7 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -246,7 +264,7 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -271,7 +289,7 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -296,7 +314,7 @@ func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetSta
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -321,7 +339,7 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -346,7 +364,7 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -371,7 +389,7 @@ func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.Cr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

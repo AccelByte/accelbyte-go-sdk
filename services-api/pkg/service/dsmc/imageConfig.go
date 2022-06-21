@@ -17,8 +17,26 @@ import (
 )
 
 type ImageConfigService struct {
-	Client          *dsmcclient.JusticeDsmcService
-	TokenRepository repository.TokenRepository
+	Client                 *dsmcclient.JusticeDsmcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (i *ImageConfigService) GetAuthSession() auth.Session {
+	if i.RefreshTokenRepository != nil {
+		return auth.Session{
+			i.TokenRepository,
+			i.ConfigRepository,
+			i.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		i.TokenRepository,
+		i.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use UpdateImageShort instead
@@ -347,7 +365,7 @@ func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImagePar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -372,7 +390,7 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -397,7 +415,7 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -447,7 +465,7 @@ func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParam
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -472,7 +490,7 @@ func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImagePar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -497,7 +515,7 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -522,7 +540,7 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -547,7 +565,7 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -572,7 +590,7 @@ func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -597,7 +615,7 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -622,7 +640,7 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -647,7 +665,7 @@ func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type EventDescriptionsService struct {
-	Client          *eventlogclient.JusticeEventlogService
-	TokenRepository repository.TokenRepository
+	Client                 *eventlogclient.JusticeEventlogService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (e *EventDescriptionsService) GetAuthSession() auth.Session {
+	if e.RefreshTokenRepository != nil {
+		return auth.Session{
+			e.TokenRepository,
+			e.ConfigRepository,
+			e.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		e.TokenRepository,
+		e.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AgentTypeDescriptionHandlerShort instead
@@ -197,7 +215,7 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -222,7 +240,7 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(inpu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -247,7 +265,7 @@ func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_d
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -272,7 +290,7 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -297,7 +315,7 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *even
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -322,7 +340,7 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(inp
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -347,7 +365,7 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -372,7 +390,7 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(inpu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -397,7 +415,7 @@ func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_de
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (e *EventDescriptionsService) SpecificUXDescriptionHandlerShort(input *even
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

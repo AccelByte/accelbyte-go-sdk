@@ -17,8 +17,26 @@ import (
 )
 
 type PublicPlayerRecordService struct {
-	Client          *cloudsaveclient.JusticeCloudsaveService
-	TokenRepository repository.TokenRepository
+	Client                 *cloudsaveclient.JusticeCloudsaveService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (p *PublicPlayerRecordService) GetAuthSession() auth.Session {
+	if p.RefreshTokenRepository != nil {
+		return auth.Session{
+			p.TokenRepository,
+			p.ConfigRepository,
+			p.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		p.TokenRepository,
+		p.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead
@@ -252,7 +270,7 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(inpu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -277,7 +295,7 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -302,7 +320,7 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -327,7 +345,7 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -352,7 +370,7 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -377,7 +395,7 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -402,7 +420,7 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *p
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -427,7 +445,7 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *p
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -452,7 +470,7 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type RewardService struct {
-	Client          *seasonpassclient.JusticeSeasonpassService
-	TokenRepository repository.TokenRepository
+	Client                 *seasonpassclient.JusticeSeasonpassService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (r *RewardService) GetAuthSession() auth.Session {
+	if r.RefreshTokenRepository != nil {
+		return auth.Session{
+			r.TokenRepository,
+			r.ConfigRepository,
+			r.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		r.TokenRepository,
+		r.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryRewardsShort instead
@@ -185,7 +203,7 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -210,7 +228,7 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -235,7 +253,7 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -260,7 +278,7 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) erro
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -285,7 +303,7 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*se
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -310,7 +328,7 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -335,7 +353,7 @@ func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulk
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type AdminChannelService struct {
-	Client          *ugcclient.JusticeUgcService
-	TokenRepository repository.TokenRepository
+	Client                 *ugcclient.JusticeUgcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (a *AdminChannelService) GetAuthSession() auth.Session {
+	if a.RefreshTokenRepository != nil {
+		return auth.Session{
+			a.TokenRepository,
+			a.ConfigRepository,
+			a.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		a.TokenRepository,
+		a.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use SingleAdminGetChannelShort instead
@@ -194,7 +212,7 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -219,7 +237,7 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -244,7 +262,7 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -269,7 +287,7 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -294,7 +312,7 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -319,7 +337,7 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -344,7 +362,7 @@ func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

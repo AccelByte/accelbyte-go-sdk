@@ -17,8 +17,26 @@ import (
 )
 
 type PublicChannelService struct {
-	Client          *ugcclient.JusticeUgcService
-	TokenRepository repository.TokenRepository
+	Client                 *ugcclient.JusticeUgcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (p *PublicChannelService) GetAuthSession() auth.Session {
+	if p.RefreshTokenRepository != nil {
+		return auth.Session{
+			p.TokenRepository,
+			p.ConfigRepository,
+			p.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		p.TokenRepository,
+		p.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetChannelsShort instead
@@ -122,7 +140,7 @@ func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannel
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -147,7 +165,7 @@ func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateCh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -172,7 +190,7 @@ func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateCh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -197,7 +215,7 @@ func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteCh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

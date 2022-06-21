@@ -17,8 +17,26 @@ import (
 )
 
 type DeploymentConfigService struct {
-	Client          *dsmcclient.JusticeDsmcService
-	TokenRepository repository.TokenRepository
+	Client                 *dsmcclient.JusticeDsmcService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (d *DeploymentConfigService) GetAuthSession() auth.Session {
+	if d.RefreshTokenRepository != nil {
+		return auth.Session{
+			d.TokenRepository,
+			d.ConfigRepository,
+			d.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		d.TokenRepository,
+		d.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetAllDeploymentShort instead
@@ -397,7 +415,7 @@ func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.Ge
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -447,7 +465,7 @@ func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -472,7 +490,7 @@ func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -497,7 +515,7 @@ func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -522,7 +540,7 @@ func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -547,7 +565,7 @@ func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -572,7 +590,7 @@ func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -597,7 +615,7 @@ func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -622,7 +640,7 @@ func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -647,7 +665,7 @@ func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploymen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -672,7 +690,7 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deplo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -697,7 +715,7 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deplo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -722,7 +740,7 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deplo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

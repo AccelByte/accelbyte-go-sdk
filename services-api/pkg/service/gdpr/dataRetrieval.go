@@ -17,8 +17,26 @@ import (
 )
 
 type DataRetrievalService struct {
-	Client          *gdprclient.JusticeGdprService
-	TokenRepository repository.TokenRepository
+	Client                 *gdprclient.JusticeGdprService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (d *DataRetrievalService) GetAuthSession() auth.Session {
+	if d.RefreshTokenRepository != nil {
+		return auth.Session{
+			d.TokenRepository,
+			d.ConfigRepository,
+			d.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		d.TokenRepository,
+		d.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetAdminEmailConfigurationShort instead
@@ -347,7 +365,7 @@ func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retri
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -372,7 +390,7 @@ func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_re
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -397,7 +415,7 @@ func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_re
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -447,7 +465,7 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -472,7 +490,7 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -497,7 +515,7 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -522,7 +540,7 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -547,7 +565,7 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_ret
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -572,7 +590,7 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -597,7 +615,7 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -622,7 +640,7 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -647,7 +665,7 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_re
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type UsersV4Service struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (u *UsersV4Service) GetAuthSession() auth.Session {
+	if u.RefreshTokenRepository != nil {
+		return auth.Session{
+			u.TokenRepository,
+			u.ConfigRepository,
+			u.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		u.TokenRepository,
+		u.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminBulkCheckValidUserIDV4Short instead
@@ -1120,7 +1138,7 @@ func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminB
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1145,7 +1163,7 @@ func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1170,7 +1188,7 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1195,7 +1213,7 @@ func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisable
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1220,7 +1238,7 @@ func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUser
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1245,7 +1263,7 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1270,7 +1288,7 @@ func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRol
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1295,7 +1313,7 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1320,7 +1338,7 @@ func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1345,7 +1363,7 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.Admi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1370,7 +1388,7 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1395,7 +1413,7 @@ func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1420,7 +1438,7 @@ func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMy
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1445,7 +1463,7 @@ func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1470,7 +1488,7 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminD
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1495,7 +1513,7 @@ func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.Admin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1520,7 +1538,7 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEn
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1545,7 +1563,7 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1570,7 +1588,7 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1595,7 +1613,7 @@ func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1620,7 +1638,7 @@ func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1645,7 +1663,7 @@ func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUse
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1670,7 +1688,7 @@ func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1695,7 +1713,7 @@ func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUse
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1720,7 +1738,7 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.Pub
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1745,7 +1763,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1770,7 +1788,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.Pub
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1795,7 +1813,7 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.Pub
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1820,7 +1838,7 @@ func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1845,7 +1863,7 @@ func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1870,7 +1888,7 @@ func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1895,7 +1913,7 @@ func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1920,7 +1938,7 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.Publi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1945,7 +1963,7 @@ func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1970,7 +1988,7 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1995,7 +2013,7 @@ func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2020,7 +2038,7 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -2045,7 +2063,7 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

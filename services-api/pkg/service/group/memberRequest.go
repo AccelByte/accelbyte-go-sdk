@@ -17,8 +17,26 @@ import (
 )
 
 type MemberRequestService struct {
-	Client          *groupclient.JusticeGroupService
-	TokenRepository repository.TokenRepository
+	Client                 *groupclient.JusticeGroupService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (m *MemberRequestService) GetAuthSession() auth.Session {
+	if m.RefreshTokenRepository != nil {
+		return auth.Session{
+			m.TokenRepository,
+			m.ConfigRepository,
+			m.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		m.TokenRepository,
+		m.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetGroupJoinRequestPublicV1Short instead
@@ -79,7 +97,7 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_re
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -104,7 +122,7 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *mem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

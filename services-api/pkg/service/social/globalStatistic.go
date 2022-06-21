@@ -17,8 +17,26 @@ import (
 )
 
 type GlobalStatisticService struct {
-	Client          *socialclient.JusticeSocialService
-	TokenRepository repository.TokenRepository
+	Client                 *socialclient.JusticeSocialService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (g *GlobalStatisticService) GetAuthSession() auth.Session {
+	if g.RefreshTokenRepository != nil {
+		return auth.Session{
+			g.TokenRepository,
+			g.ConfigRepository,
+			g.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		g.TokenRepository,
+		g.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetGlobalStatItemsShort instead
@@ -41,7 +59,7 @@ func (g *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

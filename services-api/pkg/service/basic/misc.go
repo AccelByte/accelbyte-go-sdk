@@ -17,8 +17,26 @@ import (
 )
 
 type MiscService struct {
-	Client          *basicclient.JusticeBasicService
-	TokenRepository repository.TokenRepository
+	Client                 *basicclient.JusticeBasicService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (m *MiscService) GetAuthSession() auth.Session {
+	if m.RefreshTokenRepository != nil {
+		return auth.Session{
+			m.TokenRepository,
+			m.ConfigRepository,
+			m.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		m.TokenRepository,
+		m.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetCountriesShort instead
@@ -240,7 +258,7 @@ func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams) ([]*basi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -265,7 +283,7 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -290,7 +308,7 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -315,7 +333,7 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -340,7 +358,7 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -365,7 +383,7 @@ func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[str
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -390,7 +408,7 @@ func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]strin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type ThirdPartyService struct {
-	Client          *lobbyclient.JusticeLobbyService
-	TokenRepository repository.TokenRepository
+	Client                 *lobbyclient.JusticeLobbyService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (t *ThirdPartyService) GetAuthSession() auth.Session {
+	if t.RefreshTokenRepository != nil {
+		return auth.Session{
+			t.TokenRepository,
+			t.ConfigRepository,
+			t.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		t.TokenRepository,
+		t.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminGetThirdPartyConfigShort instead
@@ -131,7 +149,7 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.Adm
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -156,7 +174,7 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -181,7 +199,7 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -206,7 +224,7 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

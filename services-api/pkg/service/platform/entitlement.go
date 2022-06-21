@@ -17,8 +17,26 @@ import (
 )
 
 type EntitlementService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (e *EntitlementService) GetAuthSession() auth.Session {
+	if e.RefreshTokenRepository != nil {
+		return auth.Session{
+			e.TokenRepository,
+			e.ConfigRepository,
+			e.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		e.TokenRepository,
+		e.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryEntitlementsShort instead
@@ -614,7 +632,7 @@ func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEnti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -639,7 +657,7 @@ func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitleme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -664,7 +682,7 @@ func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Query
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -689,7 +707,7 @@ func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantU
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -714,7 +732,7 @@ func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlemen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -739,7 +757,7 @@ func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -764,7 +782,7 @@ func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -789,7 +807,7 @@ func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.Get
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -814,7 +832,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -839,7 +857,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -864,7 +882,7 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *e
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -889,7 +907,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *ent
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -914,7 +932,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -939,7 +957,7 @@ func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Revo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -964,7 +982,7 @@ func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserE
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -989,7 +1007,7 @@ func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Updat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1014,7 +1032,7 @@ func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Cons
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1039,7 +1057,7 @@ func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.Disa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1064,7 +1082,7 @@ func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.Enabl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1089,7 +1107,7 @@ func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1114,7 +1132,7 @@ func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Revok
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1139,7 +1157,7 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *enti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1164,7 +1182,7 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(inpu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1189,7 +1207,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1214,7 +1232,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *en
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1239,7 +1257,7 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *enti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1264,7 +1282,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1289,7 +1307,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *enti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1314,7 +1332,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *en
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1339,7 +1357,7 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1364,7 +1382,7 @@ func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitleme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1389,7 +1407,7 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *en
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1414,7 +1432,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(in
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1439,7 +1457,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(inpu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1464,7 +1482,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1489,7 +1507,7 @@ func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.Pu
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1514,7 +1532,7 @@ func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlemen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

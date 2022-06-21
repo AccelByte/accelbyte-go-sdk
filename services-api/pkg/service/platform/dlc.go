@@ -17,8 +17,26 @@ import (
 )
 
 type DLCService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (d *DLCService) GetAuthSession() auth.Session {
+	if d.RefreshTokenRepository != nil {
+		return auth.Session{
+			d.TokenRepository,
+			d.ConfigRepository,
+			d.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		d.TokenRepository,
+		d.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetDLCItemConfigShort instead
@@ -168,7 +186,7 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -193,7 +211,7 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -218,7 +236,7 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -243,7 +261,7 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -268,7 +286,7 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -293,7 +311,7 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -318,7 +336,7 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -343,7 +361,7 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -368,7 +386,7 @@ func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

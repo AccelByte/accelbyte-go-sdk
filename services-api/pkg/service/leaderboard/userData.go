@@ -17,8 +17,26 @@ import (
 )
 
 type UserDataService struct {
-	Client          *leaderboardclient.JusticeLeaderboardService
-	TokenRepository repository.TokenRepository
+	Client                 *leaderboardclient.JusticeLeaderboardService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (u *UserDataService) GetAuthSession() auth.Session {
+	if u.RefreshTokenRepository != nil {
+		return auth.Session{
+			u.TokenRepository,
+			u.ConfigRepository,
+			u.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		u.TokenRepository,
+		u.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetUserLeaderboardRankingsAdminV1Short instead
@@ -53,7 +71,7 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_dat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

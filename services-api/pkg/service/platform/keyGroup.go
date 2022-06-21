@@ -17,8 +17,26 @@ import (
 )
 
 type KeyGroupService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (k *KeyGroupService) GetAuthSession() auth.Session {
+	if k.RefreshTokenRepository != nil {
+		return auth.Session{
+			k.TokenRepository,
+			k.ConfigRepository,
+			k.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		k.TokenRepository,
+		k.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryKeyGroupsShort instead
@@ -152,7 +170,7 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -177,7 +195,7 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -202,7 +220,7 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -227,7 +245,7 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -252,7 +270,7 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -277,7 +295,7 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -302,7 +320,7 @@ func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*p
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

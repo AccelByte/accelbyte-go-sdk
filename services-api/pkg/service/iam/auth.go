@@ -12,7 +12,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 

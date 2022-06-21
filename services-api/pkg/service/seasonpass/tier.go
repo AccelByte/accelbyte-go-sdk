@@ -17,8 +17,26 @@ import (
 )
 
 type TierService struct {
-	Client          *seasonpassclient.JusticeSeasonpassService
-	TokenRepository repository.TokenRepository
+	Client                 *seasonpassclient.JusticeSeasonpassService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (t *TierService) GetAuthSession() auth.Session {
+	if t.RefreshTokenRepository != nil {
+		return auth.Session{
+			t.TokenRepository,
+			t.ConfigRepository,
+			t.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		t.TokenRepository,
+		t.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryTiersShort instead
@@ -185,7 +203,7 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpass
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -210,7 +228,7 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -235,7 +253,7 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpass
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -260,7 +278,7 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -285,7 +303,7 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -310,7 +328,7 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*season
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -335,7 +353,7 @@ func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seas
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type WalletService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (w *WalletService) GetAuthSession() auth.Session {
+	if w.RefreshTokenRepository != nil {
+		return auth.Session{
+			w.TokenRepository,
+			w.ConfigRepository,
+			w.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		w.TokenRepository,
+		w.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetPlatformWalletConfigShort instead
@@ -336,7 +354,7 @@ func (w *WalletService) GetPlatformWalletConfigShort(input *wallet.GetPlatformWa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -361,7 +379,7 @@ func (w *WalletService) UpdatePlatformWalletConfigShort(input *wallet.UpdatePlat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -386,7 +404,7 @@ func (w *WalletService) ResetPlatformWalletConfigShort(input *wallet.ResetPlatfo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -411,7 +429,7 @@ func (w *WalletService) QueryUserCurrencyWalletsShort(input *wallet.QueryUserCur
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -436,7 +454,7 @@ func (w *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUser
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -461,7 +479,7 @@ func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -486,7 +504,7 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -511,7 +529,7 @@ func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -536,7 +554,7 @@ func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -561,7 +579,7 @@ func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -586,7 +604,7 @@ func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -611,7 +629,7 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -636,7 +654,7 @@ func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -661,7 +679,7 @@ func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*pl
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -686,7 +704,7 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platform
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -711,7 +729,7 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -736,7 +754,7 @@ func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -761,7 +779,7 @@ func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(w.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(w.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

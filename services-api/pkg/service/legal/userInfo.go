@@ -17,8 +17,26 @@ import (
 )
 
 type UserInfoService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (u *UserInfoService) GetAuthSession() auth.Session {
+	if u.RefreshTokenRepository != nil {
+		return auth.Session{
+			u.TokenRepository,
+			u.ConfigRepository,
+			u.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		u.TokenRepository,
+		u.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetUserInfoStatusShort instead
@@ -69,7 +87,7 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -94,7 +112,7 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams)
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -119,7 +137,7 @@ func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.Invalida
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -17,8 +17,26 @@ import (
 )
 
 type BaseLegalPoliciesService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (b *BaseLegalPoliciesService) GetAuthSession() auth.Session {
+	if b.RefreshTokenRepository != nil {
+		return auth.Session{
+			b.TokenRepository,
+			b.ConfigRepository,
+			b.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		b.TokenRepository,
+		b.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use RetrieveAllLegalPoliciesShort instead
@@ -126,7 +144,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_leg
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -151,7 +169,7 @@ func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -176,7 +194,7 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_p
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -201,7 +219,7 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_po
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -226,7 +244,7 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -251,7 +269,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

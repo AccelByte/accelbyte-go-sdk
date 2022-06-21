@@ -17,8 +17,26 @@ import (
 )
 
 type GameProfileService struct {
-	Client          *socialclient.JusticeSocialService
-	TokenRepository repository.TokenRepository
+	Client                 *socialclient.JusticeSocialService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (g *GameProfileService) GetAuthSession() auth.Session {
+	if g.RefreshTokenRepository != nil {
+		return auth.Session{
+			g.TokenRepository,
+			g.ConfigRepository,
+			g.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		g.TokenRepository,
+		g.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetUserProfilesShort instead
@@ -197,7 +215,7 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -222,7 +240,7 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -247,7 +265,7 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -272,7 +290,7 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -297,7 +315,7 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -322,7 +340,7 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -347,7 +365,7 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -372,7 +390,7 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -397,7 +415,7 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.Publ
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

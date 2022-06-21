@@ -17,8 +17,26 @@ import (
 )
 
 type EQU8ConfigService struct {
-	Client          *basicclient.JusticeBasicService
-	TokenRepository repository.TokenRepository
+	Client                 *basicclient.JusticeBasicService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (e *EQU8ConfigService) GetAuthSession() auth.Session {
+	if e.RefreshTokenRepository != nil {
+		return auth.Session{
+			e.TokenRepository,
+			e.ConfigRepository,
+			e.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		e.TokenRepository,
+		e.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetConfigShort instead
@@ -81,7 +99,7 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams)
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -106,7 +124,7 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -131,7 +149,7 @@ func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

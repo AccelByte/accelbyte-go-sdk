@@ -17,8 +17,26 @@ import (
 )
 
 type AdminUserEligibilitiesService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (a *AdminUserEligibilitiesService) GetAuthSession() auth.Session {
+	if a.RefreshTokenRepository != nil {
+		return auth.Session{
+			a.TokenRepository,
+			a.ConfigRepository,
+			a.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		a.TokenRepository,
+		a.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminRetrieveEligibilitiesShort instead
@@ -41,7 +59,7 @@ func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilitiesShort(input *a
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

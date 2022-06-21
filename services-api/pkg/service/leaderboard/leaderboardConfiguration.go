@@ -17,8 +17,26 @@ import (
 )
 
 type LeaderboardConfigurationService struct {
-	Client          *leaderboardclient.JusticeLeaderboardService
-	TokenRepository repository.TokenRepository
+	Client                 *leaderboardclient.JusticeLeaderboardService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (l *LeaderboardConfigurationService) GetAuthSession() auth.Session {
+	if l.RefreshTokenRepository != nil {
+		return auth.Session{
+			l.TokenRepository,
+			l.ConfigRepository,
+			l.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		l.TokenRepository,
+		l.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetLeaderboardConfigurationsAdminV1Short instead
@@ -276,7 +294,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Sho
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -301,7 +319,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1S
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -326,7 +344,7 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdmi
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -351,7 +369,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Shor
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -376,7 +394,7 @@ func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1S
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -401,7 +419,7 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1S
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -426,7 +444,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Sh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -451,7 +469,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -476,7 +494,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2Sh
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

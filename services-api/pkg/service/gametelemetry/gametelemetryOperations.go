@@ -17,8 +17,26 @@ import (
 )
 
 type GametelemetryOperationsService struct {
-	Client          *gametelemetryclient.JusticeGametelemetryService
-	TokenRepository repository.TokenRepository
+	Client                 *gametelemetryclient.JusticeGametelemetryService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (g *GametelemetryOperationsService) GetAuthSession() auth.Session {
+	if g.RefreshTokenRepository != nil {
+		return auth.Session{
+			g.TokenRepository,
+			g.ConfigRepository,
+			g.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		g.TokenRepository,
+		g.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead
@@ -79,7 +97,7 @@ func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Prote
 			{"bearer"},
 			{"cookie"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, constant.AccessToken)
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -104,7 +122,7 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -130,7 +148,7 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 			{"bearer"},
 			{"cookie"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, constant.AccessToken)
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

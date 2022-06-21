@@ -17,8 +17,26 @@ import (
 )
 
 type GroupMemberService struct {
-	Client          *groupclient.JusticeGroupService
-	TokenRepository repository.TokenRepository
+	Client                 *groupclient.JusticeGroupService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (g *GroupMemberService) GetAuthSession() auth.Session {
+	if g.RefreshTokenRepository != nil {
+		return auth.Session{
+			g.TokenRepository,
+			g.ConfigRepository,
+			g.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		g.TokenRepository,
+		g.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetGroupMembersListAdminV1Short instead
@@ -390,7 +408,7 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -415,7 +433,7 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -440,7 +458,7 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -465,7 +483,7 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -490,7 +508,7 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.C
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -515,7 +533,7 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -540,7 +558,7 @@ func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -565,7 +583,7 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -590,7 +608,7 @@ func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.Invite
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -615,7 +633,7 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -640,7 +658,7 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -665,7 +683,7 @@ func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.Ki
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

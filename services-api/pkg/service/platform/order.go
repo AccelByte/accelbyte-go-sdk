@@ -17,8 +17,26 @@ import (
 )
 
 type OrderService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (o *OrderService) GetAuthSession() auth.Session {
+	if o.RefreshTokenRepository != nil {
+		return auth.Session{
+			o.TokenRepository,
+			o.ConfigRepository,
+			o.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		o.TokenRepository,
+		o.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryOrdersShort instead
@@ -397,7 +415,7 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platfo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -422,7 +440,7 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -447,7 +465,7 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclie
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -472,7 +490,7 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platfo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -497,7 +515,7 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -522,7 +540,7 @@ func (o *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrd
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -547,7 +565,7 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -572,7 +590,7 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*plat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -597,7 +615,7 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -622,7 +640,7 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -647,7 +665,7 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -672,7 +690,7 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -697,7 +715,7 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -722,7 +740,7 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -747,7 +765,7 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -772,7 +790,7 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -797,7 +815,7 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -822,7 +840,7 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -847,7 +865,7 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -872,7 +890,7 @@ func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDo
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

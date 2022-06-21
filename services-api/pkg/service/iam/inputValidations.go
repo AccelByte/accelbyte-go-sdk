@@ -17,8 +17,26 @@ import (
 )
 
 type InputValidationsService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (i *InputValidationsService) GetAuthSession() auth.Session {
+	if i.RefreshTokenRepository != nil {
+		return auth.Session{
+			i.TokenRepository,
+			i.ConfigRepository,
+			i.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		i.TokenRepository,
+		i.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminGetInputValidationsShort instead
@@ -113,7 +131,7 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -138,7 +156,7 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -163,7 +181,7 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -188,7 +206,7 @@ func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_va
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

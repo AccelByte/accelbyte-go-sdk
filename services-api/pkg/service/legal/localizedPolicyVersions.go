@@ -17,8 +17,26 @@ import (
 )
 
 type LocalizedPolicyVersionsService struct {
-	Client          *legalclient.JusticeLegalService
-	TokenRepository repository.TokenRepository
+	Client                 *legalclient.JusticeLegalService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (l *LocalizedPolicyVersionsService) GetAuthSession() auth.Session {
+	if l.RefreshTokenRepository != nil {
+		return auth.Session{
+			l.TokenRepository,
+			l.ConfigRepository,
+			l.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		l.TokenRepository,
+		l.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use RetrieveLocalizedPolicyVersionsShort instead
@@ -139,7 +157,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(in
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -164,7 +182,7 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -189,7 +207,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionSho
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -214,7 +232,7 @@ func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(input
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -239,7 +257,7 @@ func (l *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *localiz
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -264,7 +282,7 @@ func (l *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localized_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

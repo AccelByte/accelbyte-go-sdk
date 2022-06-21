@@ -17,8 +17,26 @@ import (
 )
 
 type MatchmakingOperationsService struct {
-	Client          *matchmakingclient.JusticeMatchmakingService
-	TokenRepository repository.TokenRepository
+	Client                 *matchmakingclient.JusticeMatchmakingService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (m *MatchmakingOperationsService) GetAuthSession() auth.Session {
+	if m.RefreshTokenRepository != nil {
+		return auth.Session{
+			m.TokenRepository,
+			m.ConfigRepository,
+			m.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		m.TokenRepository,
+		m.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetHealthcheckInfoShort instead
@@ -86,7 +104,7 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmakin
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -111,7 +129,7 @@ func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -136,7 +154,7 @@ func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -161,7 +179,7 @@ func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaki
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

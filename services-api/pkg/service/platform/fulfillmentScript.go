@@ -17,8 +17,26 @@ import (
 )
 
 type FulfillmentScriptService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (f *FulfillmentScriptService) GetAuthSession() auth.Session {
+	if f.RefreshTokenRepository != nil {
+		return auth.Session{
+			f.TokenRepository,
+			f.ConfigRepository,
+			f.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		f.TokenRepository,
+		f.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use ListFulfillmentScriptsShort instead
@@ -120,7 +138,7 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -145,7 +163,7 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -170,7 +188,7 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -195,7 +213,7 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -220,7 +238,7 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -245,7 +263,7 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

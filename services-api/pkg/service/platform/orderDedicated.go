@@ -17,8 +17,26 @@ import (
 )
 
 type OrderDedicatedService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (o *OrderDedicatedService) GetAuthSession() auth.Session {
+	if o.RefreshTokenRepository != nil {
+		return auth.Session{
+			o.TokenRepository,
+			o.ConfigRepository,
+			o.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		o.TokenRepository,
+		o.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use SyncOrdersShort instead
@@ -41,7 +59,7 @@ func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrder
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

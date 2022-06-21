@@ -17,8 +17,26 @@ import (
 )
 
 type BansService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (b *BansService) GetAuthSession() auth.Session {
+	if b.RefreshTokenRepository != nil {
+		return auth.Session{
+			b.TokenRepository,
+			b.ConfigRepository,
+			b.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		b.TokenRepository,
+		b.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetBansTypeShort instead
@@ -147,7 +165,7 @@ func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamclien
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -172,7 +190,7 @@ func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -197,7 +215,7 @@ func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Para
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -222,7 +240,7 @@ func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanRe
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -247,7 +265,7 @@ func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsers
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -272,7 +290,7 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetB
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

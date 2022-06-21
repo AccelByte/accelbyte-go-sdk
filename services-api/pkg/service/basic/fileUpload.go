@@ -17,8 +17,26 @@ import (
 )
 
 type FileUploadService struct {
-	Client          *basicclient.JusticeBasicService
-	TokenRepository repository.TokenRepository
+	Client                 *basicclient.JusticeBasicService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (f *FileUploadService) GetAuthSession() auth.Session {
+	if f.RefreshTokenRepository != nil {
+		return auth.Session{
+			f.TokenRepository,
+			f.ConfigRepository,
+			f.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		f.TokenRepository,
+		f.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GeneratedUploadURLShort instead
@@ -137,7 +155,7 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -162,7 +180,7 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -187,7 +205,7 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -212,7 +230,7 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

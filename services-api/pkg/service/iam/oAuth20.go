@@ -20,9 +20,26 @@ import (
 )
 
 type OAuth20Service struct {
-	Client           *iamclient.JusticeIamService
-	ConfigRepository repository.ConfigRepository
-	TokenRepository  repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (o *OAuth20Service) GetAuthSession() auth.Session {
+	if o.RefreshTokenRepository != nil {
+		return auth.Session{
+			o.TokenRepository,
+			o.ConfigRepository,
+			o.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		o.TokenRepository,
+		o.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead
@@ -275,7 +292,7 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -300,7 +317,7 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -325,7 +342,7 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -360,7 +377,7 @@ func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrosp
 			{"basic"},
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, o.ConfigRepository, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -385,7 +402,7 @@ func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamc
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -410,7 +427,7 @@ func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -435,7 +452,7 @@ func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -460,7 +477,7 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_aut
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -485,7 +502,7 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -510,7 +527,7 @@ func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformToke
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -535,7 +552,7 @@ func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocation
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -560,7 +577,7 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -585,7 +602,7 @@ func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) 
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(nil, o.ConfigRepository, security, "")
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

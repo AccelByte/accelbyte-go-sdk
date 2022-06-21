@@ -17,8 +17,26 @@ import (
 )
 
 type IAPService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (i *IAPService) GetAuthSession() auth.Session {
+	if i.RefreshTokenRepository != nil {
+		return auth.Session{
+			i.TokenRepository,
+			i.ConfigRepository,
+			i.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		i.TokenRepository,
+		i.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetAppleIAPConfigShort instead
@@ -629,7 +647,7 @@ func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -654,7 +672,7 @@ func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -679,7 +697,7 @@ func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -704,7 +722,7 @@ func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -729,7 +747,7 @@ func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesI
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -754,7 +772,7 @@ func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesI
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -779,7 +797,7 @@ func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -804,7 +822,7 @@ func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -829,7 +847,7 @@ func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -854,7 +872,7 @@ func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FilePa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -879,7 +897,7 @@ func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) 
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -904,7 +922,7 @@ func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -929,7 +947,7 @@ func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigPa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -954,7 +972,7 @@ func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAP
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -979,7 +997,7 @@ func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1004,7 +1022,7 @@ func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystat
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1029,7 +1047,7 @@ func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1054,7 +1072,7 @@ func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1079,7 +1097,7 @@ func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJS
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1104,7 +1122,7 @@ func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1129,7 +1147,7 @@ func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1154,7 +1172,7 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1179,7 +1197,7 @@ func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1204,7 +1222,7 @@ func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1229,7 +1247,7 @@ func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConf
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1254,7 +1272,7 @@ func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1279,7 +1297,7 @@ func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1304,7 +1322,7 @@ func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1329,7 +1347,7 @@ func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFilePa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1354,7 +1372,7 @@ func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1379,7 +1397,7 @@ func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrde
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1404,7 +1422,7 @@ func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1429,7 +1447,7 @@ func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAp
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1454,7 +1472,7 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1479,7 +1497,7 @@ func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillG
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1504,7 +1522,7 @@ func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicRec
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1529,7 +1547,7 @@ func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitleme
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1554,7 +1572,7 @@ func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1579,7 +1597,7 @@ func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDrop
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -1604,7 +1622,7 @@ func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

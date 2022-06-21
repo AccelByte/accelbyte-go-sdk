@@ -17,8 +17,26 @@ import (
 )
 
 type ThirdPartyCredentialService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client                 *iamclient.JusticeIamService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (t *ThirdPartyCredentialService) GetAuthSession() auth.Session {
+	if t.RefreshTokenRepository != nil {
+		return auth.Session{
+			t.TokenRepository,
+			t.ConfigRepository,
+			t.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		t.TokenRepository,
+		t.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead
@@ -270,7 +288,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -295,7 +313,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -320,7 +338,7 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -345,7 +363,7 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Shor
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -370,7 +388,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3S
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -395,7 +413,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3S
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -420,7 +438,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -445,7 +463,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -470,7 +488,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

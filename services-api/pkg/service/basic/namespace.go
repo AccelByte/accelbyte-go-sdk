@@ -17,8 +17,26 @@ import (
 )
 
 type NamespaceService struct {
-	Client          *basicclient.JusticeBasicService
-	TokenRepository repository.TokenRepository
+	Client                 *basicclient.JusticeBasicService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (n *NamespaceService) GetAuthSession() auth.Session {
+	if n.RefreshTokenRepository != nil {
+		return auth.Session{
+			n.TokenRepository,
+			n.ConfigRepository,
+			n.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		n.TokenRepository,
+		n.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use GetNamespacesShort instead
@@ -255,7 +273,7 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -280,7 +298,7 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -305,7 +323,7 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -330,7 +348,7 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -355,7 +373,7 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -380,7 +398,7 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -405,7 +423,7 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -430,7 +448,7 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -455,7 +473,7 @@ func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.Pub
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

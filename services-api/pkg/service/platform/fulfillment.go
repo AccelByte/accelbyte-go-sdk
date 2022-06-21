@@ -17,8 +17,26 @@ import (
 )
 
 type FulfillmentService struct {
-	Client          *platformclient.JusticePlatformService
-	TokenRepository repository.TokenRepository
+	Client                 *platformclient.JusticePlatformService
+	ConfigRepository       repository.ConfigRepository
+	TokenRepository        repository.TokenRepository
+	RefreshTokenRepository repository.RefreshTokenRepository
+}
+
+func (f *FulfillmentService) GetAuthSession() auth.Session {
+	if f.RefreshTokenRepository != nil {
+		return auth.Session{
+			f.TokenRepository,
+			f.ConfigRepository,
+			f.RefreshTokenRepository,
+		}
+	}
+
+	return auth.Session{
+		f.TokenRepository,
+		f.ConfigRepository,
+		auth.DefaultRefreshTokenImpl(),
+	}
 }
 
 // Deprecated: Use QueryFulfillmentHistoriesShort instead
@@ -133,7 +151,7 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -158,7 +176,7 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -183,7 +201,7 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -208,7 +226,7 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -233,7 +251,7 @@ func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRede
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{

@@ -39,7 +39,7 @@ test_core:
 			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
 			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
 			(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
-			docker run -t --rm -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+			docker run -t --rm -v $$(pwd):/data/ -w /data/ --network host -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
 						sh -c "CGO_ENABLED=0 GOOS=linux go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
 
 test_integration:

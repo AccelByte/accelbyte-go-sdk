@@ -14,15 +14,13 @@ import (
 	"testing"
 	"time"
 
-	lobbyConfig "github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	lobbyConfig "github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-
 	"github.com/stretchr/testify/assert"
 )
 
@@ -36,14 +34,25 @@ var (
 	contentTypeApplicationJson = "application/json"
 	emptyString                = ""
 	iamBansService             = &iam.BansService{
-		Client:          factory.NewIamClient(&configRepo),
-		TokenRepository: &tokenRepo,
+		Client:           factory.NewIamClient(&configRepo),
+		ConfigRepository: &configRepo,
+		TokenRepository:  &tokenRepo,
+		//RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to disable the AutoRefresh functionality and change RefreshRate
+		//	RefreshRate: 0,
+		//	AutoRefresh: false,
+		//},
+	}
+	// prepare
+	oAuth20Service = &iam.OAuth20Service{
+		Client:           factory.NewIamClient(&configRepo),
+		ConfigRepository: &configRepo,
+		TokenRepository:  &tokenRepo,
 	}
 	lobbyConfigService = &lobby.ConfigService{
 		Client:          factory.NewLobbyClient(&configRepo),
 		TokenRepository: &tokenRepo,
 	}
-	mockServerBaseUrl                    = "http://0.0.0.1:8080"
+	mockServerBaseUrl                    = "http://127.0.0.1:8080"
 	mockServerClientId                   = "admin"
 	mockServerClientSecret               = "admin"
 	mockServerConfigureOverwriteResponse = "/configure-overwrite-response"

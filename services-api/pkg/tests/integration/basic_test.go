@@ -7,6 +7,7 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
@@ -18,39 +19,39 @@ import (
 )
 
 var (
+	basicURL           = "https://picsum.photos/200"
+	timezone           = "Asia/Jakarta"
+	basicLanguange     = "en"
 	userProfileService = &basic.UserProfileService{
 		Client:          factory.NewBasicClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
 	bodyBasic = &basicclientmodels.UserProfilePrivateCreate{
-		AvatarLargeURL:          "https://picsum.photos/200",
-		AvatarSmallURL:          "https://picsum.photos/200",
-		AvatarURL:               "https://picsum.photos/200",
-		CustomAttributes:        nil,
-		DateOfBirth:             nil,
-		FirstName:               "go",
-		Language:                "en",
-		LastName:                "sdk",
-		PrivateCustomAttributes: nil,
-		TimeZone:                "Asia/Jakarta",
+		AvatarLargeURL: basicURL,
+		AvatarSmallURL: basicURL,
+		AvatarURL:      basicURL,
+		FirstName:      "go",
+		Language:       basicLanguange,
+		LastName:       "sdk",
+		TimeZone:       timezone,
 	}
 	bodyBasicUpdate = &basicclientmodels.UserProfileUpdate{
-		AvatarLargeURL:   "https://picsum.photos/200",
-		AvatarSmallURL:   "https://picsum.photos/200",
-		AvatarURL:        "https://picsum.photos/200",
-		CustomAttributes: nil,
-		DateOfBirth:      nil,
-		FirstName:        "firstUpdate",
-		Language:         "en",
-		LastName:         "secondUpdate",
-		TimeZone:         "Asia/Jakarta",
-		ZipCode:          "",
+		AvatarLargeURL: basicURL,
+		AvatarSmallURL: basicURL,
+		AvatarURL:      basicURL,
+		FirstName:      "goUpdate",
+		Language:       basicLanguange,
+		LastName:       "sdkUpdate",
+		TimeZone:       timezone,
+		ZipCode:        emptyString,
 	}
 )
 
 func TestIntegrationUserProfile(t *testing.T) {
 	t.Parallel()
 	Init()
+	checkProfileExist()
+
 	// Creating a profile
 	inputCreate := &user_profile.CreateMyProfileParams{
 		Body:      bodyBasic,
@@ -104,4 +105,25 @@ func TestIntegrationUserProfile(t *testing.T) {
 	assert.NotNil(t, updated, "response should not be nil")
 	assert.Nil(t, errDelete, "err should be nil")
 	assert.NotNil(t, deleted, "response should not be nil")
+}
+
+func checkProfileExist() {
+	inputGet := &user_profile.GetMyProfileInfoParams{
+		Namespace: integration.NamespaceTest,
+	}
+	existingProfile, err := userProfileService.GetMyProfileInfoShort(inputGet)
+	if err != nil {
+		logrus.Error("existing profile not found")
+	}
+	if existingProfile != nil {
+		inputDelete := &user_profile.DeleteUserProfileParams{
+			Namespace: integration.NamespaceTest,
+			UserID:    existingProfile.UserID,
+		}
+		deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete)
+		if errDelete != nil {
+			logrus.Error(errDelete.Error())
+		}
+		logrus.Infof("Existing Profile: %v deleted", deleted.UserID)
+	}
 }

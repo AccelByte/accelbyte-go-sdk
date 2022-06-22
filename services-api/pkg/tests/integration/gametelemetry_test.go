@@ -94,7 +94,6 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 
 // Protected Update Playtime
 func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
-	t.Skip("user not found error")
 	Init()
 
 	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
@@ -103,7 +102,9 @@ func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteam
 	}
 	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 	if err != nil {
-		assert.FailNow(t, err.Error())
+		assert.Contains(t, err.Error(), "returns an error 404")
+
+		t.Skip("User was not found.")
 	}
 
 	assert.Nil(t, err, "err should be nil")

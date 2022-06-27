@@ -129,22 +129,22 @@ func TestReq_BodyJson(t *testing.T) {
 }
 
 func TestReqHeader_UserAgent(t *testing.T) {
-	type args struct {
-		rt        http.RoundTripper
-		userAgent string
-	}
 	tests := []struct {
-		name      string
-		args      args
-		userAgent string
+		name   string
+		params GetParams
+		err    error
 	}{
 		{
-			name:      "user agent",
-			args:      args{userAgent: utils.UserAgentGen()},
-			userAgent: utils.UserAgentGen(),
+			name: "user agent",
+			params: GetParams{
+				Param: "param",
+			},
 		},
 	}
 	transport := httptransport.New(ConstURL, "/user-agent", nil)
+	if transport == nil {
+		t.Errorf("Transport is nil")
+	}
 	res := &http.Response{
 		Header: map[string][]string{
 			"User-Agent": {utils.UserAgentGen()},
@@ -152,34 +152,33 @@ func TestReqHeader_UserAgent(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			transport.Transport = utils.SetHeader(tt.args.rt, "", tt.args.userAgent)
-			if res.Header.Get("User-Agent") != tt.userAgent {
-				t.Errorf("agent = %v, want %v", res.Header.Get("User-Agent"), tt.userAgent)
+			ok, err := TestService.Client.TestOperations.Get(&tt.params)
+			if res.Header.Get("User-Agent") == "" {
+				assert.Errorf(t, err, "agent is nil, want %v", res.Header.Get("User-Agent"))
 			}
-			if transport == nil {
-				t.Errorf("Header is nil")
-			}
+			assert.NotNil(t, ok)
+			assert.Nil(t, err)
 		})
 	}
 }
 
 func TestReqHeader_AmazonTraceId(t *testing.T) {
-	type args struct {
-		rt            http.RoundTripper
-		amazonTraceId string
-	}
 	tests := []struct {
-		name          string
-		args          args
-		amazonTraceId string
+		name   string
+		params GetParams
+		err    error
 	}{
 		{
-			name:          "amazon trace id",
-			args:          args{amazonTraceId: utils.AmazonTraceIDGen()},
-			amazonTraceId: utils.AmazonTraceIDGen(),
+			name: "X-Amzn-Trace-Id",
+			params: GetParams{
+				Param: "param",
+			},
 		},
 	}
-	transport := httptransport.New(ConstURL, "/headers", nil)
+	transport := httptransport.New(ConstURL, "/X-Amzn-Trace-Id", nil)
+	if transport == nil {
+		t.Errorf("Transport is nil")
+	}
 	res := &http.Response{
 		Header: map[string][]string{
 			"X-Amzn-Trace-Id": {utils.AmazonTraceIDGen()},
@@ -187,13 +186,12 @@ func TestReqHeader_AmazonTraceId(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			transport.Transport = utils.SetHeader(tt.args.rt, "", tt.args.amazonTraceId)
-			if res.Header.Get("X-Amzn-Trace-Id") != tt.amazonTraceId {
-				assert.NotEqual(t, res.Header.Get("X-Amzn-Trace-Id"), tt.amazonTraceId, "equal except the timestamp")
+			ok, err := TestService.Client.TestOperations.Get(&tt.params)
+			if res.Header.Get("X-Amzn-Trace-Id") == "" {
+				assert.Errorf(t, err, "traceId is nil, want %v", res.Header.Get("X-Amzn-Trace-Id"))
 			}
-			if transport == nil {
-				t.Errorf("header is nil")
-			}
+			assert.NotNil(t, ok)
+			assert.Nil(t, err)
 		})
 	}
 }

@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
 )
 
@@ -19,8 +18,6 @@ var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserServ
 func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sessionbrowserclient.JusticeSessionbrowserService {
 	if sessionbrowserClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &sessionbrowserclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)
 		}

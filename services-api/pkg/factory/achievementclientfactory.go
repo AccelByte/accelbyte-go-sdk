@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var achievementClientInstance *achievementclient.JusticeAchievementService
@@ -19,8 +18,6 @@ var achievementClientInstance *achievementclient.JusticeAchievementService
 func NewAchievementClient(configRepository repository.ConfigRepository) *achievementclient.JusticeAchievementService {
 	if achievementClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &achievementclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			achievementClientInstance = achievementclient.NewHTTPClient(nil)
 		}

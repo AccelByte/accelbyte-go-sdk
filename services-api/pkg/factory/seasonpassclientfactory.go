@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var seasonpassClientInstance *seasonpassclient.JusticeSeasonpassService
@@ -19,8 +18,6 @@ var seasonpassClientInstance *seasonpassclient.JusticeSeasonpassService
 func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpassclient.JusticeSeasonpassService {
 	if seasonpassClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &seasonpassclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpa
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			seasonpassClientInstance = seasonpassclient.NewHTTPClient(nil)
 		}

@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var cloudsaveClientInstance *cloudsaveclient.JusticeCloudsaveService
@@ -19,8 +18,6 @@ var cloudsaveClientInstance *cloudsaveclient.JusticeCloudsaveService
 func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsaveclient.JusticeCloudsaveService {
 	if cloudsaveClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &cloudsaveclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsave
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			cloudsaveClientInstance = cloudsaveclient.NewHTTPClient(nil)
 		}

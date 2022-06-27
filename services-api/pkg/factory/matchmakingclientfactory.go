@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var matchmakingClientInstance *matchmakingclient.JusticeMatchmakingService
@@ -19,8 +18,6 @@ var matchmakingClientInstance *matchmakingclient.JusticeMatchmakingService
 func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchmakingclient.JusticeMatchmakingService {
 	if matchmakingClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &matchmakingclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			matchmakingClientInstance = matchmakingclient.NewHTTPClient(nil)
 		}

@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var leaderboardClientInstance *leaderboardclient.JusticeLeaderboardService
@@ -19,8 +18,6 @@ var leaderboardClientInstance *leaderboardclient.JusticeLeaderboardService
 func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderboardclient.JusticeLeaderboardService {
 	if leaderboardClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &leaderboardclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			leaderboardClientInstance = leaderboardclient.NewHTTPClient(nil)
 		}

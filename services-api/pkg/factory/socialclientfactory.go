@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 )
 
@@ -19,8 +18,6 @@ var socialClientInstance *socialclient.JusticeSocialService
 func NewSocialClient(configRepository repository.ConfigRepository) *socialclient.JusticeSocialService {
 	if socialClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &socialclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			socialClientInstance = socialclient.NewHTTPClient(nil)
 		}

@@ -40,12 +40,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice qosm service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeQosmService {
-	return NewHTTPClientWithConfig(formats, nil, "", "")
+	return NewHTTPClientWithConfig(formats, nil)
 }
 
 // NewHTTPClientWithConfig creates a new justice qosm service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string) *JusticeQosmService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *JusticeQosmService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -65,7 +65,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 
 	// optional custom request header
-	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
+	transport.Transport = utils.SetLogger(transport.Transport)
 
 	return New(transport, transport, formats)
 }

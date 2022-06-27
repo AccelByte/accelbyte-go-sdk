@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var platformClientInstance *platformclient.JusticePlatformService
@@ -19,8 +18,6 @@ var platformClientInstance *platformclient.JusticePlatformService
 func NewPlatformClient(configRepository repository.ConfigRepository) *platformclient.JusticePlatformService {
 	if platformClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &platformclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			platformClientInstance = platformclient.NewHTTPClient(nil)
 		}

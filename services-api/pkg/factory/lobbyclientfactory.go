@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var lobbyClientInstance *lobbyclient.JusticeLobbyService
@@ -19,8 +18,6 @@ var lobbyClientInstance *lobbyclient.JusticeLobbyService
 func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.JusticeLobbyService {
 	if lobbyClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &lobbyclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			lobbyClientInstance = lobbyclient.NewHTTPClient(nil)
 		}

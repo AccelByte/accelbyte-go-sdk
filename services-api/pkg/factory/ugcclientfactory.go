@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 )
 
@@ -19,8 +18,6 @@ var ugcClientInstance *ugcclient.JusticeUgcService
 func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.JusticeUgcService {
 	if ugcClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &ugcclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			ugcClientInstance = ugcclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			ugcClientInstance = ugcclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			ugcClientInstance = ugcclient.NewHTTPClient(nil)
 		}

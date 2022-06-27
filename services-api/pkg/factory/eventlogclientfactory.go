@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var eventlogClientInstance *eventlogclient.JusticeEventlogService
@@ -19,8 +18,6 @@ var eventlogClientInstance *eventlogclient.JusticeEventlogService
 func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogclient.JusticeEventlogService {
 	if eventlogClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &eventlogclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			eventlogClientInstance = eventlogclient.NewHTTPClient(nil)
 		}

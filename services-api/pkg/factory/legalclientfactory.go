@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var legalClientInstance *legalclient.JusticeLegalService
@@ -19,8 +18,6 @@ var legalClientInstance *legalclient.JusticeLegalService
 func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.JusticeLegalService {
 	if legalClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &legalclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			legalClientInstance = legalclient.NewHTTPClient(nil)
 		}

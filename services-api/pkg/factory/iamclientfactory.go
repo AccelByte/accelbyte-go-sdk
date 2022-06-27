@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var iamClientInstance *iamclient.JusticeIamService
@@ -19,8 +18,6 @@ var iamClientInstance *iamclient.JusticeIamService
 func NewIamClient(configRepository repository.ConfigRepository) *iamclient.JusticeIamService {
 	if iamClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &iamclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			iamClientInstance = iamclient.NewHTTPClient(nil)
 		}

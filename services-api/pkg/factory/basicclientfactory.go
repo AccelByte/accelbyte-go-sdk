@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var basicClientInstance *basicclient.JusticeBasicService
@@ -19,8 +18,6 @@ var basicClientInstance *basicclient.JusticeBasicService
 func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.JusticeBasicService {
 	if basicClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &basicclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			basicClientInstance = basicclient.NewHTTPClient(nil)
 		}

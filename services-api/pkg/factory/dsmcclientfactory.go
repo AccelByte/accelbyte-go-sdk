@@ -11,7 +11,6 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 var dsmcClientInstance *dsmcclient.JusticeDsmcService
@@ -19,8 +18,6 @@ var dsmcClientInstance *dsmcclient.JusticeDsmcService
 func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.JusticeDsmcService {
 	if dsmcClientInstance == nil {
 		baseURL := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceID := utils.AmazonTraceIDGen()
-		userAgent := utils.UserAgentGen()
 		if len(baseURL) > 0 {
 			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &dsmcclient.TransportConfig{
@@ -28,7 +25,7 @@ func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseURLSplit[0]},
 			}
-			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
+			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
 			dsmcClientInstance = dsmcclient.NewHTTPClient(nil)
 		}

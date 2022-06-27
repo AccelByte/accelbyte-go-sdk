@@ -150,6 +150,15 @@ func (o *RetrieveAcceptedAgreementsParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 
+	// setting the default header value
+	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {
+		return err
+	}
+
+	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
+		return err
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}

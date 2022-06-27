@@ -2,14 +2,14 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package log
+package utils
 
 import (
 	"fmt"
 	"net/http"
 )
 
-func Request(r *http.Request) interface{} {
+func LogRequest(r *http.Request) interface{} {
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`method`: `%v`, "+
@@ -18,7 +18,7 @@ func Request(r *http.Request) interface{} {
 	return logString
 }
 
-func Response(r *http.Response) interface{} {
+func LogResponse(r *http.Response) interface{} {
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`status_code`: `%v`, "+

@@ -9,39 +9,30 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
-
-	logger "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/log"
 )
 
 type CustomTransport struct {
-	inner          http.RoundTripper
-	UserAgent      string
-	XAmazonTraceID string
+	inner http.RoundTripper
 }
 
-func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceID string) http.RoundTripper {
+func SetLogger(inner http.RoundTripper) http.RoundTripper {
 	return &CustomTransport{
-		inner:          inner,
-		UserAgent:      userAgent,
-		XAmazonTraceID: xAmazonTraceID,
+		inner: inner,
 	}
 }
 
 func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
-	r.Header.Add("User-Agent", c.UserAgent)
-	r.Header.Add("X-Amzn-Trace-Id", c.XAmazonTraceID)
-
 	// enabling log
 	if os.Getenv("ENABLE_LOG") == "true" {
 		// logger request
-		logrus.Infof("Request: %v", logger.Request(r))
+		logrus.Infof("LogRequest: %v", LogRequest(r))
 
 		// logger response
 		res, err := c.inner.RoundTrip(r)
 		if err != nil {
 			logrus.Error("failed to use the RoundTrip method")
 		}
-		logrus.Infof("Response: %v", logger.Response(res))
+		logrus.Infof("Response: %v", LogResponse(res))
 
 		return res, nil
 	}

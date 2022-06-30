@@ -33,7 +33,7 @@ pipeline {
     stage('Push') {
       when {
         expression { 
-          return params.ACTION == 'PUSH' || params.ACTION == 'PUSH+RELEASE'
+          return params.ACTION == 'PUSH'
         }
       }
       steps {
@@ -59,9 +59,15 @@ pipeline {
             echo 'Release note still contains one or more template placeholders e.g. @VERSION@, etc. Please check.'
             sh 'false' // Fail this job
           }
-          sh "git checkout master"
+          sh "git checkout ${params.RELEASE_BRANCH}"
           sshagent(credentials: [githubSsh])
           {
+            if (params.RELEASE_BRANCH == "refs/heads/master") {
+              sh "git push ${githubUrl} HEAD:main"
+            }
+            else {
+              sh "git push ${githubUrl} HEAD:${params.RELEASE_BRANCH}"
+            }
             sh "git push ${githubUrl} ${params.RELEASE_TAG}"
             
           }

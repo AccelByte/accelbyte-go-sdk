@@ -11,7 +11,9 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/dgrijalva/jwt-go"
@@ -58,6 +60,13 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 			return events.LambdaFunctionURLResponse{}, err
 		}
 	}
+
+	// substitute of creating a stat configuration in admin portal
+	_, err = createStatConfig(request.Params, tokenRepositoryImpl)
+	if err != nil {
+		return events.LambdaFunctionURLResponse{}, err
+	}
+
 	_, err = createUserStatItem(request.Params, tokenRepositoryImpl)
 	if err != nil {
 		return events.LambdaFunctionURLResponse{}, err
@@ -66,6 +75,36 @@ func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLRespo
 	return events.LambdaFunctionURLResponse{
 		StatusCode: 200,
 	}, nil
+}
+
+func createStatConfig(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
+	statisticService := social.StatConfigurationService{
+		Client:          factory.NewSocialClient(&ConfigRepositoryImpl{}),
+		TokenRepository: tokenRepositoryImpl,
+	}
+	defaultValue := 0.1
+	setBy := socialclientmodels.StatCreateSetBySERVER
+	input := &stat_configuration.CreateStatParams{
+		Body: &socialclientmodels.StatCreate{
+			DefaultValue:  &defaultValue,
+			Description:   "test for lambda",
+			IncrementOnly: true,
+			Maximum:       101,
+			Minimum:       0.1,
+			Name:          &params.StatCode,
+			SetAsGlobal:   true,
+			SetBy:         &setBy,
+			StatCode:      &params.StatCode,
+			Tags:          nil,
+		},
+		Namespace: params.Namespace,
+	}
+	_, err := statisticService.CreateStatShort(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
 }
 
 func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {

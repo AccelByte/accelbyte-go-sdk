@@ -976,6 +976,8 @@ func (a *Client) DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideP
 Required scope: social
 
 This endpoint get a all deployments in a namespace
+
+Parameter Offset and Count is Required
 */
 func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentOK, *GetAllDeploymentBadRequest, *GetAllDeploymentUnauthorized, *GetAllDeploymentInternalServerError, error) {
 	// TODO: Validate the params before sending

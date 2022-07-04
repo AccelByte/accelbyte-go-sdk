@@ -28,8 +28,8 @@ type IndirectBulkAcceptVersionedPolicyReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *IndirectBulkAcceptVersionedPolicyReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewIndirectBulkAcceptVersionedPolicyOK()
+	case 201:
+		result := NewIndirectBulkAcceptVersionedPolicyCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -45,28 +45,28 @@ func (o *IndirectBulkAcceptVersionedPolicyReader) ReadResponse(response runtime.
 	}
 }
 
-// NewIndirectBulkAcceptVersionedPolicyOK creates a IndirectBulkAcceptVersionedPolicyOK with default headers values
-func NewIndirectBulkAcceptVersionedPolicyOK() *IndirectBulkAcceptVersionedPolicyOK {
-	return &IndirectBulkAcceptVersionedPolicyOK{}
+// NewIndirectBulkAcceptVersionedPolicyCreated creates a IndirectBulkAcceptVersionedPolicyCreated with default headers values
+func NewIndirectBulkAcceptVersionedPolicyCreated() *IndirectBulkAcceptVersionedPolicyCreated {
+	return &IndirectBulkAcceptVersionedPolicyCreated{}
 }
 
-/*IndirectBulkAcceptVersionedPolicyOK handles this case with default header values.
+/*IndirectBulkAcceptVersionedPolicyCreated handles this case with default header values.
 
   successful operation
 */
-type IndirectBulkAcceptVersionedPolicyOK struct {
+type IndirectBulkAcceptVersionedPolicyCreated struct {
 	Payload *legalclientmodels.AcceptAgreementResponse
 }
 
-func (o *IndirectBulkAcceptVersionedPolicyOK) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyOK  %+v", 200, o.Payload)
+func (o *IndirectBulkAcceptVersionedPolicyCreated) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyCreated  %+v", 201, o.Payload)
 }
 
-func (o *IndirectBulkAcceptVersionedPolicyOK) GetPayload() *legalclientmodels.AcceptAgreementResponse {
+func (o *IndirectBulkAcceptVersionedPolicyCreated) GetPayload() *legalclientmodels.AcceptAgreementResponse {
 	return o.Payload
 }
 
-func (o *IndirectBulkAcceptVersionedPolicyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *IndirectBulkAcceptVersionedPolicyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(legalclientmodels.AcceptAgreementResponse)
 

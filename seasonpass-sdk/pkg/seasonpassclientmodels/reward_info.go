@@ -39,7 +39,7 @@ type RewardInfo struct {
 	ItemSku string `json:"itemSku,omitempty"`
 
 	// itemType, required when reward type is ITEM
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// namespace
@@ -55,7 +55,7 @@ type RewardInfo struct {
 
 	// type
 	// Required: true
-	// Enum: [ITEM CURRENCY]
+	// Enum: [CURRENCY ITEM]
 	Type *string `json:"type"`
 }
 
@@ -146,7 +146,7 @@ var rewardInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -159,23 +159,23 @@ const (
 	// RewardInfoItemTypeAPP captures enum value "APP"
 	RewardInfoItemTypeAPP string = "APP"
 
-	// RewardInfoItemTypeCOINS captures enum value "COINS"
-	RewardInfoItemTypeCOINS string = "COINS"
-
-	// RewardInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	RewardInfoItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// RewardInfoItemTypeBUNDLE captures enum value "BUNDLE"
 	RewardInfoItemTypeBUNDLE string = "BUNDLE"
 
 	// RewardInfoItemTypeCODE captures enum value "CODE"
 	RewardInfoItemTypeCODE string = "CODE"
 
-	// RewardInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	RewardInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// RewardInfoItemTypeCOINS captures enum value "COINS"
+	RewardInfoItemTypeCOINS string = "COINS"
+
+	// RewardInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	RewardInfoItemTypeINGAMEITEM string = "INGAMEITEM"
 
 	// RewardInfoItemTypeSEASON captures enum value "SEASON"
 	RewardInfoItemTypeSEASON string = "SEASON"
+
+	// RewardInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	RewardInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
@@ -222,7 +222,7 @@ var rewardInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM","CURRENCY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CURRENCY","ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -232,11 +232,11 @@ func init() {
 
 const (
 
-	// RewardInfoTypeITEM captures enum value "ITEM"
-	RewardInfoTypeITEM string = "ITEM"
-
 	// RewardInfoTypeCURRENCY captures enum value "CURRENCY"
 	RewardInfoTypeCURRENCY string = "CURRENCY"
+
+	// RewardInfoTypeITEM captures enum value "ITEM"
+	RewardInfoTypeITEM string = "ITEM"
 )
 
 // prop value enum

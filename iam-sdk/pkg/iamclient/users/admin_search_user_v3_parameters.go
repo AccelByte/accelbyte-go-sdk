@@ -99,7 +99,7 @@ type AdminSearchUserV3Params struct {
 	*/
 	PlatformBy *string
 	/*PlatformID
-	  Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord or twitch
+	  Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord, twitch, or snapchat
 
 	*/
 	PlatformID *string

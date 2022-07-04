@@ -325,6 +325,12 @@
 |---|---|---|---|---|---|
 | `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria` | GET | QueryChangesShort | [QueryChangesShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [QueryChangesShort](../services-api/pkg/service/platform/catalogChanges.go) | [QueryChangesShort](../samples/cli/cmd/platform/catalogChanges/queryChanges.go) |
 | `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll` | PUT | PublishAllShort | [PublishAllShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [PublishAllShort](../services-api/pkg/service/platform/catalogChanges.go) | [PublishAllShort](../samples/cli/cmd/platform/catalogChanges/publishAll.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected` | PUT | PublishSelectedShort | [PublishSelectedShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [PublishSelectedShort](../services-api/pkg/service/platform/catalogChanges.go) | [PublishSelectedShort](../samples/cli/cmd/platform/catalogChanges/publishSelected.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/selectAll` | PUT | SelectAllRecordsShort | [SelectAllRecordsShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [SelectAllRecordsShort](../services-api/pkg/service/platform/catalogChanges.go) | [SelectAllRecordsShort](../samples/cli/cmd/platform/catalogChanges/selectAllRecords.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/statistics` | GET | GetStatisticShort | [GetStatisticShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [GetStatisticShort](../services-api/pkg/service/platform/catalogChanges.go) | [GetStatisticShort](../samples/cli/cmd/platform/catalogChanges/getStatistic.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/unselectAll` | PUT | UnselectAllRecordsShort | [UnselectAllRecordsShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [UnselectAllRecordsShort](../services-api/pkg/service/platform/catalogChanges.go) | [UnselectAllRecordsShort](../samples/cli/cmd/platform/catalogChanges/unselectAllRecords.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/select` | PUT | SelectRecordShort | [SelectRecordShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [SelectRecordShort](../services-api/pkg/service/platform/catalogChanges.go) | [SelectRecordShort](../samples/cli/cmd/platform/catalogChanges/selectRecord.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect` | PUT | UnselectRecordShort | [UnselectRecordShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [UnselectRecordShort](../services-api/pkg/service/platform/catalogChanges.go) | [UnselectRecordShort](../samples/cli/cmd/platform/catalogChanges/unselectRecord.go) |
 
 ### Subscription Wrapper:  [Subscription](../services-api/pkg/service/platform/subscription.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -357,6 +363,12 @@
 | `/platform/admin/namespaces/{namespace}/tickets/{boothName}/id` | GET | GetTicketBoothIDShort | [GetTicketBoothIDShort](../platform-sdk/pkg/platformclient/ticket/ticket_client.go) | [GetTicketBoothIDShort](../services-api/pkg/service/platform/ticket.go) | [GetTicketBoothIDShort](../samples/cli/cmd/platform/ticket/getTicketBoothID.go) |
 | `/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment` | PUT | IncreaseTicketSaleShort | [IncreaseTicketSaleShort](../platform-sdk/pkg/platformclient/ticket/ticket_client.go) | [IncreaseTicketSaleShort](../services-api/pkg/service/platform/ticket.go) | [IncreaseTicketSaleShort](../samples/cli/cmd/platform/ticket/increaseTicketSale.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}` | POST | AcquireUserTicketShort | [AcquireUserTicketShort](../platform-sdk/pkg/platformclient/ticket/ticket_client.go) | [AcquireUserTicketShort](../services-api/pkg/service/platform/ticket.go) | [AcquireUserTicketShort](../samples/cli/cmd/platform/ticket/acquireUserTicket.go) |
+
+### Achievement(Platform) Wrapper:  [AchievementPlatform](../services-api/pkg/service/platform/achievementPlatform.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam` | PUT | UnlockSteamUserAchievementShort | [UnlockSteamUserAchievementShort](../platform-sdk/pkg/platformclient/achievement_platform/achievement_platform_client.go) | [UnlockSteamUserAchievementShort](../services-api/pkg/service/platform/achievementPlatform.go) | [UnlockSteamUserAchievementShort](../samples/cli/cmd/platform/achievementPlatform/unlockSteamUserAchievement.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl` | PUT | UpdateXblUserAchievementShort | [UpdateXblUserAchievementShort](../platform-sdk/pkg/platformclient/achievement_platform/achievement_platform_client.go) | [UpdateXblUserAchievementShort](../services-api/pkg/service/platform/achievementPlatform.go) | [UpdateXblUserAchievementShort](../samples/cli/cmd/platform/achievementPlatform/updateXblUserAchievement.go) |
 
 ### Anonymization Wrapper:  [Anonymization](../services-api/pkg/service/platform/anonymization.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -440,6 +452,8 @@
 
 | Model Struct | Class |
 |---|---|
+| `A DTO object for unlock steam achievement API` | [ADTOObjectForUnlockSteamAchievementAPI ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_unlock_steam_achievement_api.go) |
+| `A DTO object for update xbox achievement complete percentage API` | [ADTOObjectForUpdateXboxAchievementCompletePercentageAPI ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_update_xbox_achievement_complete_percentage_api.go) |
 | `AdditionalData` | [AdditionalData ](../platform-sdk/pkg/platformclientmodels/additional_data.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |
 | `AdyenConfig` | [AdyenConfig ](../platform-sdk/pkg/platformclientmodels/adyen_config.go) |
@@ -467,6 +481,7 @@
 | `CancelRequest` | [CancelRequest ](../platform-sdk/pkg/platformclientmodels/cancel_request.go) |
 | `CatalogChangeInfo` | [CatalogChangeInfo ](../platform-sdk/pkg/platformclientmodels/catalog_change_info.go) |
 | `CatalogChangePagingSlicedResult` | [CatalogChangePagingSlicedResult ](../platform-sdk/pkg/platformclientmodels/catalog_change_paging_sliced_result.go) |
+| `CatalogChangeStatistics` | [CatalogChangeStatistics ](../platform-sdk/pkg/platformclientmodels/catalog_change_statistics.go) |
 | `CategoryCreate` | [CategoryCreate ](../platform-sdk/pkg/platformclientmodels/category_create.go) |
 | `CategoryInfo` | [CategoryInfo ](../platform-sdk/pkg/platformclientmodels/category_info.go) |
 | `CategoryUpdate` | [CategoryUpdate ](../platform-sdk/pkg/platformclientmodels/category_update.go) |
@@ -688,3 +703,5 @@
 | `XsollaConfig` | [XsollaConfig ](../platform-sdk/pkg/platformclientmodels/xsolla_config.go) |
 | `XsollaPaywallConfig` | [XsollaPaywallConfig ](../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config.go) |
 | `XsollaPaywallConfigRequest` | [XsollaPaywallConfigRequest ](../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config_request.go) |
+| `steam achievement request` | [SteamAchievementRequest ](../platform-sdk/pkg/platformclientmodels/steam_achievement_request.go) |
+| `xbox achievement request` | [XboxAchievementRequest ](../platform-sdk/pkg/platformclientmodels/xbox_achievement_request.go) |

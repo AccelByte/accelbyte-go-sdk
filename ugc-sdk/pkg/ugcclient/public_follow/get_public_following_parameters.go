@@ -19,14 +19,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetPublicFollowingParams creates a new GetPublicFollowingParams object
 // with the default values initialized.
 func NewGetPublicFollowingParams() *GetPublicFollowingParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
 		Limit:  &limitDefault,
@@ -40,8 +41,8 @@ func NewGetPublicFollowingParams() *GetPublicFollowingParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetPublicFollowingParamsWithTimeout(timeout time.Duration) *GetPublicFollowingParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
 		Limit:  &limitDefault,
@@ -55,8 +56,8 @@ func NewGetPublicFollowingParamsWithTimeout(timeout time.Duration) *GetPublicFol
 // with the default values initialized, and the ability to set a context for a request
 func NewGetPublicFollowingParamsWithContext(ctx context.Context) *GetPublicFollowingParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
 		Limit:  &limitDefault,
@@ -70,8 +71,8 @@ func NewGetPublicFollowingParamsWithContext(ctx context.Context) *GetPublicFollo
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetPublicFollowingParamsWithHTTPClient(client *http.Client) *GetPublicFollowingParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetPublicFollowingParams{
 		Limit:      &limitDefault,
@@ -91,7 +92,7 @@ type GetPublicFollowingParams struct {
 	  number of user per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -101,7 +102,7 @@ type GetPublicFollowingParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*UserID
 	  user ID
 
@@ -162,13 +163,13 @@ func (o *GetPublicFollowingParams) SetHTTPClientTransport(roundTripper http.Roun
 }
 
 // WithLimit adds the limit to the get public following params
-func (o *GetPublicFollowingParams) WithLimit(limit *string) *GetPublicFollowingParams {
+func (o *GetPublicFollowingParams) WithLimit(limit *int64) *GetPublicFollowingParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get public following params
-func (o *GetPublicFollowingParams) SetLimit(limit *string) {
+func (o *GetPublicFollowingParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -184,13 +185,13 @@ func (o *GetPublicFollowingParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get public following params
-func (o *GetPublicFollowingParams) WithOffset(offset *string) *GetPublicFollowingParams {
+func (o *GetPublicFollowingParams) WithOffset(offset *int64) *GetPublicFollowingParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get public following params
-func (o *GetPublicFollowingParams) SetOffset(offset *string) {
+func (o *GetPublicFollowingParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -216,11 +217,11 @@ func (o *GetPublicFollowingParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -237,11 +238,11 @@ func (o *GetPublicFollowingParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

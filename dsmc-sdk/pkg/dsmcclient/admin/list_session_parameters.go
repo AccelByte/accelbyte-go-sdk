@@ -72,7 +72,7 @@ type ListSessionParams struct {
 	  how many items to return, default: 50
 
 	*/
-	Count *int64
+	Count int64
 	/*Namespace
 	  namespace of the game
 
@@ -82,7 +82,7 @@ type ListSessionParams struct {
 	  offset from list to query from
 
 	*/
-	Offset *int64
+	Offset int64
 	/*Region
 	  region where session is located. if not specified it will list all sessions.
 
@@ -148,13 +148,13 @@ func (o *ListSessionParams) SetHTTPClientTransport(roundTripper http.RoundTrippe
 }
 
 // WithCount adds the count to the list session params
-func (o *ListSessionParams) WithCount(count *int64) *ListSessionParams {
+func (o *ListSessionParams) WithCount(count int64) *ListSessionParams {
 	o.SetCount(count)
 	return o
 }
 
 // SetCount adds the count to the list session params
-func (o *ListSessionParams) SetCount(count *int64) {
+func (o *ListSessionParams) SetCount(count int64) {
 	o.Count = count
 }
 
@@ -170,13 +170,13 @@ func (o *ListSessionParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the list session params
-func (o *ListSessionParams) WithOffset(offset *int64) *ListSessionParams {
+func (o *ListSessionParams) WithOffset(offset int64) *ListSessionParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the list session params
-func (o *ListSessionParams) SetOffset(offset *int64) {
+func (o *ListSessionParams) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -210,20 +210,13 @@ func (o *ListSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
-	if o.Count != nil {
-
-		// query param count
-		var qrCount int64
-		if o.Count != nil {
-			qrCount = *o.Count
+	// query param count
+	qrCount := o.Count
+	qCount := swag.FormatInt64(qrCount)
+	if qCount != "" {
+		if err := r.SetQueryParam("count", qCount); err != nil {
+			return err
 		}
-		qCount := swag.FormatInt64(qrCount)
-		if qCount != "" {
-			if err := r.SetQueryParam("count", qCount); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// path param namespace
@@ -231,20 +224,13 @@ func (o *ListSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 
-	if o.Offset != nil {
-
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
+	// query param offset
+	qrOffset := o.Offset
+	qOffset := swag.FormatInt64(qrOffset)
+	if qOffset != "" {
+		if err := r.SetQueryParam("offset", qOffset); err != nil {
+			return err
 		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if o.Region != nil {

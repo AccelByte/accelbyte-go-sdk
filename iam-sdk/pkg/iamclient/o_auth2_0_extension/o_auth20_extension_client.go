@@ -440,6 +440,8 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
           as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
           &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;Google login page will redirects to this endpoint after login success
           as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+		  &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;Snapchat login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
           &lt;/ul&gt; action code : 10709
 */
 func (a *Client) PlatformAuthenticationV3(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error) {

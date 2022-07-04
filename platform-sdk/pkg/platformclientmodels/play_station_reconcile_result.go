@@ -29,7 +29,7 @@ type PlayStationReconcileResult struct {
 	Sku string `json:"sku,omitempty"`
 
 	// status
-	// Enum: [VERIFIED FULFILLED FAILED]
+	// Enum: [FAILED FULFILLED VERIFIED]
 	Status string `json:"status,omitempty"`
 
 	// transaction Id
@@ -54,7 +54,7 @@ var playStationReconcileResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["VERIFIED","FULFILLED","FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED","FULFILLED","VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -64,14 +64,14 @@ func init() {
 
 const (
 
-	// PlayStationReconcileResultStatusVERIFIED captures enum value "VERIFIED"
-	PlayStationReconcileResultStatusVERIFIED string = "VERIFIED"
+	// PlayStationReconcileResultStatusFAILED captures enum value "FAILED"
+	PlayStationReconcileResultStatusFAILED string = "FAILED"
 
 	// PlayStationReconcileResultStatusFULFILLED captures enum value "FULFILLED"
 	PlayStationReconcileResultStatusFULFILLED string = "FULFILLED"
 
-	// PlayStationReconcileResultStatusFAILED captures enum value "FAILED"
-	PlayStationReconcileResultStatusFAILED string = "FAILED"
+	// PlayStationReconcileResultStatusVERIFIED captures enum value "VERIFIED"
+	PlayStationReconcileResultStatusVERIFIED string = "VERIFIED"
 )
 
 // prop value enum

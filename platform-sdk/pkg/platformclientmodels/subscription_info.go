@@ -25,7 +25,7 @@ type SubscriptionInfo struct {
 
 	// charge status
 	// Required: true
-	// Enum: [NEVER SETUP RECURRING_CHARGING CHARGED CHARGE_FAILED]
+	// Enum: [CHARGED CHARGE_FAILED NEVER RECURRING_CHARGING SETUP]
 	ChargeStatus *string `json:"chargeStatus"`
 
 	// already charged cycles
@@ -137,7 +137,7 @@ type SubscriptionInfo struct {
 
 	// status
 	// Required: true
-	// Enum: [INIT ACTIVE CANCELLED EXPIRED]
+	// Enum: [ACTIVE CANCELLED EXPIRED INIT]
 	Status *string `json:"status"`
 
 	// subscribed date time
@@ -145,7 +145,7 @@ type SubscriptionInfo struct {
 	SubscribedAt *strfmt.DateTime `json:"subscribedAt,omitempty"`
 
 	// subscribed by PLATFORM(system granted) or USER(subscribed by userself)
-	// Enum: [USER PLATFORM]
+	// Enum: [PLATFORM USER]
 	SubscribedBy string `json:"subscribedBy,omitempty"`
 
 	// title
@@ -302,7 +302,7 @@ var subscriptionInfoTypeChargeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["NEVER","SETUP","RECURRING_CHARGING","CHARGED","CHARGE_FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CHARGED","CHARGE_FAILED","NEVER","RECURRING_CHARGING","SETUP"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -312,20 +312,20 @@ func init() {
 
 const (
 
-	// SubscriptionInfoChargeStatusNEVER captures enum value "NEVER"
-	SubscriptionInfoChargeStatusNEVER string = "NEVER"
-
-	// SubscriptionInfoChargeStatusSETUP captures enum value "SETUP"
-	SubscriptionInfoChargeStatusSETUP string = "SETUP"
-
-	// SubscriptionInfoChargeStatusRECURRINGCHARGING captures enum value "RECURRING_CHARGING"
-	SubscriptionInfoChargeStatusRECURRINGCHARGING string = "RECURRING_CHARGING"
-
 	// SubscriptionInfoChargeStatusCHARGED captures enum value "CHARGED"
 	SubscriptionInfoChargeStatusCHARGED string = "CHARGED"
 
 	// SubscriptionInfoChargeStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
 	SubscriptionInfoChargeStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// SubscriptionInfoChargeStatusNEVER captures enum value "NEVER"
+	SubscriptionInfoChargeStatusNEVER string = "NEVER"
+
+	// SubscriptionInfoChargeStatusRECURRINGCHARGING captures enum value "RECURRING_CHARGING"
+	SubscriptionInfoChargeStatusRECURRINGCHARGING string = "RECURRING_CHARGING"
+
+	// SubscriptionInfoChargeStatusSETUP captures enum value "SETUP"
+	SubscriptionInfoChargeStatusSETUP string = "SETUP"
 )
 
 // prop value enum
@@ -565,7 +565,7 @@ var subscriptionInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","ACTIVE","CANCELLED","EXPIRED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","CANCELLED","EXPIRED","INIT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -575,9 +575,6 @@ func init() {
 
 const (
 
-	// SubscriptionInfoStatusINIT captures enum value "INIT"
-	SubscriptionInfoStatusINIT string = "INIT"
-
 	// SubscriptionInfoStatusACTIVE captures enum value "ACTIVE"
 	SubscriptionInfoStatusACTIVE string = "ACTIVE"
 
@@ -586,6 +583,9 @@ const (
 
 	// SubscriptionInfoStatusEXPIRED captures enum value "EXPIRED"
 	SubscriptionInfoStatusEXPIRED string = "EXPIRED"
+
+	// SubscriptionInfoStatusINIT captures enum value "INIT"
+	SubscriptionInfoStatusINIT string = "INIT"
 )
 
 // prop value enum
@@ -627,7 +627,7 @@ var subscriptionInfoTypeSubscribedByPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["USER","PLATFORM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PLATFORM","USER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -637,11 +637,11 @@ func init() {
 
 const (
 
-	// SubscriptionInfoSubscribedByUSER captures enum value "USER"
-	SubscriptionInfoSubscribedByUSER string = "USER"
-
 	// SubscriptionInfoSubscribedByPLATFORM captures enum value "PLATFORM"
 	SubscriptionInfoSubscribedByPLATFORM string = "PLATFORM"
+
+	// SubscriptionInfoSubscribedByUSER captures enum value "USER"
+	SubscriptionInfoSubscribedByUSER string = "USER"
 )
 
 // prop value enum

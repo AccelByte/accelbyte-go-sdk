@@ -23,7 +23,7 @@ type ItemSnapshot struct {
 	AppID string `json:"appId,omitempty"`
 
 	// App type, required when itemType is APP
-	// Enum: [GAME SOFTWARE DLC DEMO]
+	// Enum: [DEMO DLC GAME SOFTWARE]
 	AppType string `json:"appType,omitempty"`
 
 	// Base app Id
@@ -41,7 +41,7 @@ type ItemSnapshot struct {
 
 	// Entitlement type
 	// Required: true
-	// Enum: [DURABLE CONSUMABLE]
+	// Enum: [CONSUMABLE DURABLE]
 	EntitlementType *string `json:"entitlementType"`
 
 	// supported features
@@ -60,7 +60,7 @@ type ItemSnapshot struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// language
@@ -205,7 +205,7 @@ var itemSnapshotTypeAppTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME","SOFTWARE","DLC","DEMO"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DEMO","DLC","GAME","SOFTWARE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -215,17 +215,17 @@ func init() {
 
 const (
 
+	// ItemSnapshotAppTypeDEMO captures enum value "DEMO"
+	ItemSnapshotAppTypeDEMO string = "DEMO"
+
+	// ItemSnapshotAppTypeDLC captures enum value "DLC"
+	ItemSnapshotAppTypeDLC string = "DLC"
+
 	// ItemSnapshotAppTypeGAME captures enum value "GAME"
 	ItemSnapshotAppTypeGAME string = "GAME"
 
 	// ItemSnapshotAppTypeSOFTWARE captures enum value "SOFTWARE"
 	ItemSnapshotAppTypeSOFTWARE string = "SOFTWARE"
-
-	// ItemSnapshotAppTypeDLC captures enum value "DLC"
-	ItemSnapshotAppTypeDLC string = "DLC"
-
-	// ItemSnapshotAppTypeDEMO captures enum value "DEMO"
-	ItemSnapshotAppTypeDEMO string = "DEMO"
 )
 
 // prop value enum
@@ -267,7 +267,7 @@ var itemSnapshotTypeEntitlementTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DURABLE","CONSUMABLE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CONSUMABLE","DURABLE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -277,11 +277,11 @@ func init() {
 
 const (
 
-	// ItemSnapshotEntitlementTypeDURABLE captures enum value "DURABLE"
-	ItemSnapshotEntitlementTypeDURABLE string = "DURABLE"
-
 	// ItemSnapshotEntitlementTypeCONSUMABLE captures enum value "CONSUMABLE"
 	ItemSnapshotEntitlementTypeCONSUMABLE string = "CONSUMABLE"
+
+	// ItemSnapshotEntitlementTypeDURABLE captures enum value "DURABLE"
+	ItemSnapshotEntitlementTypeDURABLE string = "DURABLE"
 )
 
 // prop value enum
@@ -332,7 +332,7 @@ var itemSnapshotTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -345,26 +345,26 @@ const (
 	// ItemSnapshotItemTypeAPP captures enum value "APP"
 	ItemSnapshotItemTypeAPP string = "APP"
 
-	// ItemSnapshotItemTypeCOINS captures enum value "COINS"
-	ItemSnapshotItemTypeCOINS string = "COINS"
-
-	// ItemSnapshotItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	ItemSnapshotItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// ItemSnapshotItemTypeBUNDLE captures enum value "BUNDLE"
 	ItemSnapshotItemTypeBUNDLE string = "BUNDLE"
 
 	// ItemSnapshotItemTypeCODE captures enum value "CODE"
 	ItemSnapshotItemTypeCODE string = "CODE"
 
-	// ItemSnapshotItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	ItemSnapshotItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// ItemSnapshotItemTypeCOINS captures enum value "COINS"
+	ItemSnapshotItemTypeCOINS string = "COINS"
+
+	// ItemSnapshotItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	ItemSnapshotItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// ItemSnapshotItemTypeMEDIA captures enum value "MEDIA"
+	ItemSnapshotItemTypeMEDIA string = "MEDIA"
 
 	// ItemSnapshotItemTypeSEASON captures enum value "SEASON"
 	ItemSnapshotItemTypeSEASON string = "SEASON"
 
-	// ItemSnapshotItemTypeMEDIA captures enum value "MEDIA"
-	ItemSnapshotItemTypeMEDIA string = "MEDIA"
+	// ItemSnapshotItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	ItemSnapshotItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum

@@ -32,7 +32,7 @@ type FulfillmentItem struct {
 	ItemSku string `json:"itemSku,omitempty"`
 
 	// item type
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// quantity
@@ -65,7 +65,7 @@ var fulfillmentItemTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -78,26 +78,26 @@ const (
 	// FulfillmentItemItemTypeAPP captures enum value "APP"
 	FulfillmentItemItemTypeAPP string = "APP"
 
-	// FulfillmentItemItemTypeCOINS captures enum value "COINS"
-	FulfillmentItemItemTypeCOINS string = "COINS"
-
-	// FulfillmentItemItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	FulfillmentItemItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// FulfillmentItemItemTypeBUNDLE captures enum value "BUNDLE"
 	FulfillmentItemItemTypeBUNDLE string = "BUNDLE"
 
 	// FulfillmentItemItemTypeCODE captures enum value "CODE"
 	FulfillmentItemItemTypeCODE string = "CODE"
 
-	// FulfillmentItemItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	FulfillmentItemItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// FulfillmentItemItemTypeCOINS captures enum value "COINS"
+	FulfillmentItemItemTypeCOINS string = "COINS"
+
+	// FulfillmentItemItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	FulfillmentItemItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// FulfillmentItemItemTypeMEDIA captures enum value "MEDIA"
+	FulfillmentItemItemTypeMEDIA string = "MEDIA"
 
 	// FulfillmentItemItemTypeSEASON captures enum value "SEASON"
 	FulfillmentItemItemTypeSEASON string = "SEASON"
 
-	// FulfillmentItemItemTypeMEDIA captures enum value "MEDIA"
-	FulfillmentItemItemTypeMEDIA string = "MEDIA"
+	// FulfillmentItemItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	FulfillmentItemItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum

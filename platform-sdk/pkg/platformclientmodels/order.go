@@ -96,7 +96,7 @@ type Order struct {
 	PaymentOrderNo string `json:"paymentOrderNo,omitempty"`
 
 	// payment provider
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider string `json:"paymentProvider,omitempty"`
 
 	// payment provider fee
@@ -134,7 +134,7 @@ type Order struct {
 	Sandbox bool `json:"sandbox"`
 
 	// status
-	// Enum: [INIT CHARGED CHARGEBACK CHARGEBACK_REVERSED FULFILLED FULFILL_FAILED REFUNDING REFUNDED REFUND_FAILED CLOSED DELETED]
+	// Enum: [CHARGEBACK CHARGEBACK_REVERSED CHARGED CLOSED DELETED FULFILLED FULFILL_FAILED INIT REFUNDED REFUNDING REFUND_FAILED]
 	Status string `json:"status,omitempty"`
 
 	// status reason
@@ -356,7 +356,7 @@ var orderTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -366,29 +366,29 @@ func init() {
 
 const (
 
-	// OrderPaymentProviderWALLET captures enum value "WALLET"
-	OrderPaymentProviderWALLET string = "WALLET"
-
-	// OrderPaymentProviderXSOLLA captures enum value "XSOLLA"
-	OrderPaymentProviderXSOLLA string = "XSOLLA"
-
 	// OrderPaymentProviderADYEN captures enum value "ADYEN"
 	OrderPaymentProviderADYEN string = "ADYEN"
-
-	// OrderPaymentProviderSTRIPE captures enum value "STRIPE"
-	OrderPaymentProviderSTRIPE string = "STRIPE"
-
-	// OrderPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	OrderPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// OrderPaymentProviderALIPAY captures enum value "ALIPAY"
 	OrderPaymentProviderALIPAY string = "ALIPAY"
 
-	// OrderPaymentProviderWXPAY captures enum value "WXPAY"
-	OrderPaymentProviderWXPAY string = "WXPAY"
+	// OrderPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	OrderPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// OrderPaymentProviderPAYPAL captures enum value "PAYPAL"
 	OrderPaymentProviderPAYPAL string = "PAYPAL"
+
+	// OrderPaymentProviderSTRIPE captures enum value "STRIPE"
+	OrderPaymentProviderSTRIPE string = "STRIPE"
+
+	// OrderPaymentProviderWALLET captures enum value "WALLET"
+	OrderPaymentProviderWALLET string = "WALLET"
+
+	// OrderPaymentProviderWXPAY captures enum value "WXPAY"
+	OrderPaymentProviderWXPAY string = "WXPAY"
+
+	// OrderPaymentProviderXSOLLA captures enum value "XSOLLA"
+	OrderPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -430,7 +430,7 @@ var orderTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","CHARGED","CHARGEBACK","CHARGEBACK_REVERSED","FULFILLED","FULFILL_FAILED","REFUNDING","REFUNDED","REFUND_FAILED","CLOSED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CLOSED","DELETED","FULFILLED","FULFILL_FAILED","INIT","REFUNDED","REFUNDING","REFUND_FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -440,17 +440,20 @@ func init() {
 
 const (
 
-	// OrderStatusINIT captures enum value "INIT"
-	OrderStatusINIT string = "INIT"
-
-	// OrderStatusCHARGED captures enum value "CHARGED"
-	OrderStatusCHARGED string = "CHARGED"
-
 	// OrderStatusCHARGEBACK captures enum value "CHARGEBACK"
 	OrderStatusCHARGEBACK string = "CHARGEBACK"
 
 	// OrderStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	OrderStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
+
+	// OrderStatusCHARGED captures enum value "CHARGED"
+	OrderStatusCHARGED string = "CHARGED"
+
+	// OrderStatusCLOSED captures enum value "CLOSED"
+	OrderStatusCLOSED string = "CLOSED"
+
+	// OrderStatusDELETED captures enum value "DELETED"
+	OrderStatusDELETED string = "DELETED"
 
 	// OrderStatusFULFILLED captures enum value "FULFILLED"
 	OrderStatusFULFILLED string = "FULFILLED"
@@ -458,20 +461,17 @@ const (
 	// OrderStatusFULFILLFAILED captures enum value "FULFILL_FAILED"
 	OrderStatusFULFILLFAILED string = "FULFILL_FAILED"
 
-	// OrderStatusREFUNDING captures enum value "REFUNDING"
-	OrderStatusREFUNDING string = "REFUNDING"
+	// OrderStatusINIT captures enum value "INIT"
+	OrderStatusINIT string = "INIT"
 
 	// OrderStatusREFUNDED captures enum value "REFUNDED"
 	OrderStatusREFUNDED string = "REFUNDED"
 
+	// OrderStatusREFUNDING captures enum value "REFUNDING"
+	OrderStatusREFUNDING string = "REFUNDING"
+
 	// OrderStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	OrderStatusREFUNDFAILED string = "REFUND_FAILED"
-
-	// OrderStatusCLOSED captures enum value "CLOSED"
-	OrderStatusCLOSED string = "CLOSED"
-
-	// OrderStatusDELETED captures enum value "DELETED"
-	OrderStatusDELETED string = "DELETED"
 )
 
 // prop value enum

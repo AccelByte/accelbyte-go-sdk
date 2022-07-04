@@ -4366,6 +4366,7 @@ func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, aut
 				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
 			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.

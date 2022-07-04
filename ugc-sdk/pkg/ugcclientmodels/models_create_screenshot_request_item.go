@@ -29,7 +29,7 @@ type ModelsCreateScreenshotRequestItem struct {
 
 	// file extension
 	// Required: true
-	// Enum: [pjp jpg jpeg jfif bmp png]
+	// Enum: [bmp jfif jpeg jpg pjp png]
 	FileExtension *string `json:"fileExtension"`
 }
 
@@ -77,7 +77,7 @@ var modelsCreateScreenshotRequestItemTypeFileExtensionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["pjp","jpg","jpeg","jfif","bmp","png"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["bmp","jfif","jpeg","jpg","pjp","png"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -87,20 +87,20 @@ func init() {
 
 const (
 
-	// ModelsCreateScreenshotRequestItemFileExtensionPjp captures enum value "pjp"
-	ModelsCreateScreenshotRequestItemFileExtensionPjp string = "pjp"
-
-	// ModelsCreateScreenshotRequestItemFileExtensionJpg captures enum value "jpg"
-	ModelsCreateScreenshotRequestItemFileExtensionJpg string = "jpg"
-
-	// ModelsCreateScreenshotRequestItemFileExtensionJpeg captures enum value "jpeg"
-	ModelsCreateScreenshotRequestItemFileExtensionJpeg string = "jpeg"
+	// ModelsCreateScreenshotRequestItemFileExtensionBmp captures enum value "bmp"
+	ModelsCreateScreenshotRequestItemFileExtensionBmp string = "bmp"
 
 	// ModelsCreateScreenshotRequestItemFileExtensionJfif captures enum value "jfif"
 	ModelsCreateScreenshotRequestItemFileExtensionJfif string = "jfif"
 
-	// ModelsCreateScreenshotRequestItemFileExtensionBmp captures enum value "bmp"
-	ModelsCreateScreenshotRequestItemFileExtensionBmp string = "bmp"
+	// ModelsCreateScreenshotRequestItemFileExtensionJpeg captures enum value "jpeg"
+	ModelsCreateScreenshotRequestItemFileExtensionJpeg string = "jpeg"
+
+	// ModelsCreateScreenshotRequestItemFileExtensionJpg captures enum value "jpg"
+	ModelsCreateScreenshotRequestItemFileExtensionJpg string = "jpg"
+
+	// ModelsCreateScreenshotRequestItemFileExtensionPjp captures enum value "pjp"
+	ModelsCreateScreenshotRequestItemFileExtensionPjp string = "pjp"
 
 	// ModelsCreateScreenshotRequestItemFileExtensionPng captures enum value "png"
 	ModelsCreateScreenshotRequestItemFileExtensionPng string = "png"

@@ -87,7 +87,7 @@ type TradeNotification struct {
 
 	// Payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 
 	// Payment provider fee
@@ -116,7 +116,7 @@ type TradeNotification struct {
 
 	// Payment order status
 	// Required: true
-	// Enum: [INIT AUTHORISED AUTHORISE_FAILED CHARGED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUNDING REFUNDED REFUND_FAILED DELETED]
+	// Enum: [AUTHORISED AUTHORISE_FAILED CHARGEBACK CHARGEBACK_REVERSED CHARGED CHARGE_FAILED DELETED INIT NOTIFICATION_OF_CHARGEBACK REFUNDED REFUNDING REFUND_FAILED REQUEST_FOR_INFORMATION]
 	Status *string `json:"status"`
 
 	// Payment order status reason
@@ -398,7 +398,7 @@ var tradeNotificationTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -408,29 +408,29 @@ func init() {
 
 const (
 
-	// TradeNotificationPaymentProviderWALLET captures enum value "WALLET"
-	TradeNotificationPaymentProviderWALLET string = "WALLET"
-
-	// TradeNotificationPaymentProviderXSOLLA captures enum value "XSOLLA"
-	TradeNotificationPaymentProviderXSOLLA string = "XSOLLA"
-
 	// TradeNotificationPaymentProviderADYEN captures enum value "ADYEN"
 	TradeNotificationPaymentProviderADYEN string = "ADYEN"
-
-	// TradeNotificationPaymentProviderSTRIPE captures enum value "STRIPE"
-	TradeNotificationPaymentProviderSTRIPE string = "STRIPE"
-
-	// TradeNotificationPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	TradeNotificationPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// TradeNotificationPaymentProviderALIPAY captures enum value "ALIPAY"
 	TradeNotificationPaymentProviderALIPAY string = "ALIPAY"
 
-	// TradeNotificationPaymentProviderWXPAY captures enum value "WXPAY"
-	TradeNotificationPaymentProviderWXPAY string = "WXPAY"
+	// TradeNotificationPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	TradeNotificationPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// TradeNotificationPaymentProviderPAYPAL captures enum value "PAYPAL"
 	TradeNotificationPaymentProviderPAYPAL string = "PAYPAL"
+
+	// TradeNotificationPaymentProviderSTRIPE captures enum value "STRIPE"
+	TradeNotificationPaymentProviderSTRIPE string = "STRIPE"
+
+	// TradeNotificationPaymentProviderWALLET captures enum value "WALLET"
+	TradeNotificationPaymentProviderWALLET string = "WALLET"
+
+	// TradeNotificationPaymentProviderWXPAY captures enum value "WXPAY"
+	TradeNotificationPaymentProviderWXPAY string = "WXPAY"
+
+	// TradeNotificationPaymentProviderXSOLLA captures enum value "XSOLLA"
+	TradeNotificationPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -490,7 +490,7 @@ var tradeNotificationTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","AUTHORISED","AUTHORISE_FAILED","CHARGED","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REQUEST_FOR_INFORMATION","CHARGEBACK","CHARGEBACK_REVERSED","REFUNDING","REFUNDED","REFUND_FAILED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AUTHORISED","AUTHORISE_FAILED","CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CHARGE_FAILED","DELETED","INIT","NOTIFICATION_OF_CHARGEBACK","REFUNDED","REFUNDING","REFUND_FAILED","REQUEST_FOR_INFORMATION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -500,26 +500,11 @@ func init() {
 
 const (
 
-	// TradeNotificationStatusINIT captures enum value "INIT"
-	TradeNotificationStatusINIT string = "INIT"
-
 	// TradeNotificationStatusAUTHORISED captures enum value "AUTHORISED"
 	TradeNotificationStatusAUTHORISED string = "AUTHORISED"
 
 	// TradeNotificationStatusAUTHORISEFAILED captures enum value "AUTHORISE_FAILED"
 	TradeNotificationStatusAUTHORISEFAILED string = "AUTHORISE_FAILED"
-
-	// TradeNotificationStatusCHARGED captures enum value "CHARGED"
-	TradeNotificationStatusCHARGED string = "CHARGED"
-
-	// TradeNotificationStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
-	TradeNotificationStatusCHARGEFAILED string = "CHARGE_FAILED"
-
-	// TradeNotificationStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
-	TradeNotificationStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
-
-	// TradeNotificationStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
-	TradeNotificationStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 
 	// TradeNotificationStatusCHARGEBACK captures enum value "CHARGEBACK"
 	TradeNotificationStatusCHARGEBACK string = "CHARGEBACK"
@@ -527,17 +512,32 @@ const (
 	// TradeNotificationStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	TradeNotificationStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
 
-	// TradeNotificationStatusREFUNDING captures enum value "REFUNDING"
-	TradeNotificationStatusREFUNDING string = "REFUNDING"
+	// TradeNotificationStatusCHARGED captures enum value "CHARGED"
+	TradeNotificationStatusCHARGED string = "CHARGED"
+
+	// TradeNotificationStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
+	TradeNotificationStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// TradeNotificationStatusDELETED captures enum value "DELETED"
+	TradeNotificationStatusDELETED string = "DELETED"
+
+	// TradeNotificationStatusINIT captures enum value "INIT"
+	TradeNotificationStatusINIT string = "INIT"
+
+	// TradeNotificationStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
+	TradeNotificationStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
 
 	// TradeNotificationStatusREFUNDED captures enum value "REFUNDED"
 	TradeNotificationStatusREFUNDED string = "REFUNDED"
 
+	// TradeNotificationStatusREFUNDING captures enum value "REFUNDING"
+	TradeNotificationStatusREFUNDING string = "REFUNDING"
+
 	// TradeNotificationStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	TradeNotificationStatusREFUNDFAILED string = "REFUND_FAILED"
 
-	// TradeNotificationStatusDELETED captures enum value "DELETED"
-	TradeNotificationStatusDELETED string = "DELETED"
+	// TradeNotificationStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
+	TradeNotificationStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 )
 
 // prop value enum

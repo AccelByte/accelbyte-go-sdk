@@ -27,11 +27,11 @@ type XsollaPaywallConfigRequest struct {
 	ShowCloseButton bool `json:"showCloseButton"`
 
 	// Payment UI size, MEDIUM for default.
-	// Enum: [SMALL MEDIUM LARGE]
+	// Enum: [LARGE MEDIUM SMALL]
 	Size string `json:"size,omitempty"`
 
 	// Payment UI theme, DEFAULT for default.
-	// Enum: [DEFAULT DARK DEFAULT_DARK]
+	// Enum: [DARK DEFAULT DEFAULT_DARK]
 	Theme string `json:"theme,omitempty"`
 }
 
@@ -104,7 +104,7 @@ var xsollaPaywallConfigRequestTypeSizePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["SMALL","MEDIUM","LARGE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["LARGE","MEDIUM","SMALL"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -114,14 +114,14 @@ func init() {
 
 const (
 
-	// XsollaPaywallConfigRequestSizeSMALL captures enum value "SMALL"
-	XsollaPaywallConfigRequestSizeSMALL string = "SMALL"
+	// XsollaPaywallConfigRequestSizeLARGE captures enum value "LARGE"
+	XsollaPaywallConfigRequestSizeLARGE string = "LARGE"
 
 	// XsollaPaywallConfigRequestSizeMEDIUM captures enum value "MEDIUM"
 	XsollaPaywallConfigRequestSizeMEDIUM string = "MEDIUM"
 
-	// XsollaPaywallConfigRequestSizeLARGE captures enum value "LARGE"
-	XsollaPaywallConfigRequestSizeLARGE string = "LARGE"
+	// XsollaPaywallConfigRequestSizeSMALL captures enum value "SMALL"
+	XsollaPaywallConfigRequestSizeSMALL string = "SMALL"
 )
 
 // prop value enum
@@ -150,7 +150,7 @@ var xsollaPaywallConfigRequestTypeThemePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DEFAULT","DARK","DEFAULT_DARK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DARK","DEFAULT","DEFAULT_DARK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -160,11 +160,11 @@ func init() {
 
 const (
 
-	// XsollaPaywallConfigRequestThemeDEFAULT captures enum value "DEFAULT"
-	XsollaPaywallConfigRequestThemeDEFAULT string = "DEFAULT"
-
 	// XsollaPaywallConfigRequestThemeDARK captures enum value "DARK"
 	XsollaPaywallConfigRequestThemeDARK string = "DARK"
+
+	// XsollaPaywallConfigRequestThemeDEFAULT captures enum value "DEFAULT"
+	XsollaPaywallConfigRequestThemeDEFAULT string = "DEFAULT"
 
 	// XsollaPaywallConfigRequestThemeDEFAULTDARK captures enum value "DEFAULT_DARK"
 	XsollaPaywallConfigRequestThemeDEFAULTDARK string = "DEFAULT_DARK"

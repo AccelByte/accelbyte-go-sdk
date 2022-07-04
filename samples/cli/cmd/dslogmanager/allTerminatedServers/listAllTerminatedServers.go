@@ -38,6 +38,7 @@ var ListAllTerminatedServersCmd = &cobra.Command{
 		region, _ := cmd.Flags().GetString("region")
 		sessionId, _ := cmd.Flags().GetString("sessionId")
 		startDate, _ := cmd.Flags().GetString("startDate")
+		status, _ := cmd.Flags().GetString("status")
 		userId, _ := cmd.Flags().GetString("userId")
 		input := &all_terminated_servers.ListAllTerminatedServersParams{
 			Deployment: &deployment,
@@ -53,6 +54,7 @@ var ListAllTerminatedServersCmd = &cobra.Command{
 			Region:     &region,
 			SessionID:  &sessionId,
 			StartDate:  &startDate,
+			Status:     &status,
 			UserID:     &userId,
 		}
 		ok, err := allTerminatedServersService.ListAllTerminatedServersShort(input)
@@ -82,5 +84,6 @@ func init() {
 	ListAllTerminatedServersCmd.Flags().String("region", "", "Region")
 	ListAllTerminatedServersCmd.Flags().String("sessionId", "", "Session id")
 	ListAllTerminatedServersCmd.Flags().String("startDate", "", "Start date")
+	ListAllTerminatedServersCmd.Flags().String("status", "", "Status")
 	ListAllTerminatedServersCmd.Flags().String("userId", "", "User id")
 }

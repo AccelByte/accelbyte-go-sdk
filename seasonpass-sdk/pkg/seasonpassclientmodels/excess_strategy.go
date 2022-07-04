@@ -24,7 +24,7 @@ type ExcessStrategy struct {
 
 	// method while excess the final tier exp
 	// Required: true
-	// Enum: [NONE CURRENCY]
+	// Enum: [CURRENCY NONE]
 	Method *string `json:"method"`
 
 	// percent per exp, required while method is CURRENCY
@@ -49,7 +49,7 @@ var excessStrategyTypeMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["NONE","CURRENCY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CURRENCY","NONE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -59,11 +59,11 @@ func init() {
 
 const (
 
-	// ExcessStrategyMethodNONE captures enum value "NONE"
-	ExcessStrategyMethodNONE string = "NONE"
-
 	// ExcessStrategyMethodCURRENCY captures enum value "CURRENCY"
 	ExcessStrategyMethodCURRENCY string = "CURRENCY"
+
+	// ExcessStrategyMethodNONE captures enum value "NONE"
+	ExcessStrategyMethodNONE string = "NONE"
 )
 
 // prop value enum

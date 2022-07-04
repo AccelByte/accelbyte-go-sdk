@@ -45,12 +45,12 @@ func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicy(input *adm
 	if err != nil {
 		return nil, err
 	}
-	ok, err := a.Client.AdminUserAgreement.IndirectBulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
+	created, err := a.Client.AdminUserAgreement.IndirectBulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
 func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(input *admin_user_agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
@@ -70,10 +70,10 @@ func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(input
 		}
 	}
 
-	ok, err := a.Client.AdminUserAgreement.IndirectBulkAcceptVersionedPolicyShort(input, authInfoWriter)
+	created, err := a.Client.AdminUserAgreement.IndirectBulkAcceptVersionedPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
 
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }

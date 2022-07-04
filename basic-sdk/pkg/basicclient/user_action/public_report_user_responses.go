@@ -28,8 +28,8 @@ type PublicReportUserReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PublicReportUserReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 204:
-		result := NewPublicReportUserNoContent()
+	case 201:
+		result := NewPublicReportUserCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -57,23 +57,23 @@ func (o *PublicReportUserReader) ReadResponse(response runtime.ClientResponse, c
 	}
 }
 
-// NewPublicReportUserNoContent creates a PublicReportUserNoContent with default headers values
-func NewPublicReportUserNoContent() *PublicReportUserNoContent {
-	return &PublicReportUserNoContent{}
+// NewPublicReportUserCreated creates a PublicReportUserCreated with default headers values
+func NewPublicReportUserCreated() *PublicReportUserCreated {
+	return &PublicReportUserCreated{}
 }
 
-/*PublicReportUserNoContent handles this case with default header values.
+/*PublicReportUserCreated handles this case with default header values.
 
-  no content
+  successful operation
 */
-type PublicReportUserNoContent struct {
+type PublicReportUserCreated struct {
 }
 
-func (o *PublicReportUserNoContent) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserNoContent ", 204)
+func (o *PublicReportUserCreated) Error() string {
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserCreated ", 201)
 }
 
-func (o *PublicReportUserNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicReportUserCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -309,9 +309,11 @@ func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo 
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
 
-Required scope: social
+Required scope: social.
 
-This endpoint will delete an image that specified in the request parameter
+This endpoint will delete an image that specified in the request parameter.
+
+Default image is cannot be deleted and will throw error 422 (Unprocessable entity).
 */
 func (a *Client) DeleteImage(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, *DeleteImageBadRequest, *DeleteImageUnauthorized, *DeleteImageNotFound, *DeleteImageUnprocessableEntity, *DeleteImageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1305,6 +1307,8 @@ func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.
 Required scope: social
 
 This endpoint lists all of dedicated servers images.
+
+Parameter Offset and Count is Required
 */
 func (a *Client) ListImages(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, *ListImagesBadRequest, *ListImagesUnauthorized, *ListImagesInternalServerError, error) {
 	// TODO: Validate the params before sending

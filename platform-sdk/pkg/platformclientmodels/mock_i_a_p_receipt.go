@@ -23,7 +23,7 @@ type MockIAPReceipt struct {
 	// Enum: [ITEM_ID ITEM_SKU]
 	ItemIdentityType string `json:"itemIdentityType,omitempty"`
 
-	// language value from language tag, allowed format: en, en-US
+	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
@@ -36,7 +36,7 @@ type MockIAPReceipt struct {
 
 	// The IAP type.
 	// Required: true
-	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES TWITCH]
+	// Enum: [APPLE EPICGAMES GOOGLE PLAYSTATION STADIA STEAM TWITCH XBOX]
 	Type *string `json:"type"`
 }
 
@@ -135,7 +135,7 @@ var mockIAPReceiptTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES","TWITCH"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE","EPICGAMES","GOOGLE","PLAYSTATION","STADIA","STEAM","TWITCH","XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -148,26 +148,26 @@ const (
 	// MockIAPReceiptTypeAPPLE captures enum value "APPLE"
 	MockIAPReceiptTypeAPPLE string = "APPLE"
 
+	// MockIAPReceiptTypeEPICGAMES captures enum value "EPICGAMES"
+	MockIAPReceiptTypeEPICGAMES string = "EPICGAMES"
+
 	// MockIAPReceiptTypeGOOGLE captures enum value "GOOGLE"
 	MockIAPReceiptTypeGOOGLE string = "GOOGLE"
 
 	// MockIAPReceiptTypePLAYSTATION captures enum value "PLAYSTATION"
 	MockIAPReceiptTypePLAYSTATION string = "PLAYSTATION"
 
-	// MockIAPReceiptTypeSTEAM captures enum value "STEAM"
-	MockIAPReceiptTypeSTEAM string = "STEAM"
-
-	// MockIAPReceiptTypeXBOX captures enum value "XBOX"
-	MockIAPReceiptTypeXBOX string = "XBOX"
-
 	// MockIAPReceiptTypeSTADIA captures enum value "STADIA"
 	MockIAPReceiptTypeSTADIA string = "STADIA"
 
-	// MockIAPReceiptTypeEPICGAMES captures enum value "EPICGAMES"
-	MockIAPReceiptTypeEPICGAMES string = "EPICGAMES"
+	// MockIAPReceiptTypeSTEAM captures enum value "STEAM"
+	MockIAPReceiptTypeSTEAM string = "STEAM"
 
 	// MockIAPReceiptTypeTWITCH captures enum value "TWITCH"
 	MockIAPReceiptTypeTWITCH string = "TWITCH"
+
+	// MockIAPReceiptTypeXBOX captures enum value "XBOX"
+	MockIAPReceiptTypeXBOX string = "XBOX"
 )
 
 // prop value enum

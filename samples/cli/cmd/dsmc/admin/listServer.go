@@ -31,9 +31,9 @@ var ListServerCmd = &cobra.Command{
 		region, _ := cmd.Flags().GetString("region")
 		input := &admin.ListServerParams{
 			Namespace: namespace,
-			Count:     &count,
-			Offset:    &offset,
 			Region:    &region,
+			Count:     count,
+			Offset:    offset,
 		}
 		ok, err := adminService.ListServerShort(input)
 		if err != nil {
@@ -51,7 +51,9 @@ var ListServerCmd = &cobra.Command{
 func init() {
 	ListServerCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListServerCmd.MarkFlagRequired("namespace")
-	ListServerCmd.Flags().Int64("count", 1, "Count")
-	ListServerCmd.Flags().Int64("offset", 0, "Offset")
 	ListServerCmd.Flags().String("region", "", "Region")
+	ListServerCmd.Flags().Int64("count", 1, "Count")
+	_ = ListServerCmd.MarkFlagRequired("count")
+	ListServerCmd.Flags().Int64("offset", 0, "Offset")
+	_ = ListServerCmd.MarkFlagRequired("offset")
 }

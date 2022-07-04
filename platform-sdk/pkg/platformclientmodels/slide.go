@@ -36,7 +36,7 @@ type Slide struct {
 	URL string `json:"url,omitempty"`
 
 	// video source
-	// Enum: [generic youtube vimeo]
+	// Enum: [generic vimeo youtube]
 	VideoSource string `json:"videoSource,omitempty"`
 }
 
@@ -105,7 +105,7 @@ var slideTypeVideoSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["generic","youtube","vimeo"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["generic","vimeo","youtube"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -118,11 +118,11 @@ const (
 	// SlideVideoSourceGeneric captures enum value "generic"
 	SlideVideoSourceGeneric string = "generic"
 
-	// SlideVideoSourceYoutube captures enum value "youtube"
-	SlideVideoSourceYoutube string = "youtube"
-
 	// SlideVideoSourceVimeo captures enum value "vimeo"
 	SlideVideoSourceVimeo string = "vimeo"
+
+	// SlideVideoSourceYoutube captures enum value "youtube"
+	SlideVideoSourceYoutube string = "youtube"
 )
 
 // prop value enum

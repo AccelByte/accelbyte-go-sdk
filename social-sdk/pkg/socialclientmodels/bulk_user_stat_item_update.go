@@ -31,7 +31,7 @@ type BulkUserStatItemUpdate struct {
 
 	// update strategy
 	// Required: true
-	// Enum: [OVERRIDE INCREMENT MAX MIN]
+	// Enum: [INCREMENT MAX MIN OVERRIDE]
 	UpdateStrategy *string `json:"updateStrategy"`
 
 	// user Id
@@ -82,7 +82,7 @@ var bulkUserStatItemUpdateTypeUpdateStrategyPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["OVERRIDE","INCREMENT","MAX","MIN"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["INCREMENT","MAX","MIN","OVERRIDE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -92,9 +92,6 @@ func init() {
 
 const (
 
-	// BulkUserStatItemUpdateUpdateStrategyOVERRIDE captures enum value "OVERRIDE"
-	BulkUserStatItemUpdateUpdateStrategyOVERRIDE string = "OVERRIDE"
-
 	// BulkUserStatItemUpdateUpdateStrategyINCREMENT captures enum value "INCREMENT"
 	BulkUserStatItemUpdateUpdateStrategyINCREMENT string = "INCREMENT"
 
@@ -103,6 +100,9 @@ const (
 
 	// BulkUserStatItemUpdateUpdateStrategyMIN captures enum value "MIN"
 	BulkUserStatItemUpdateUpdateStrategyMIN string = "MIN"
+
+	// BulkUserStatItemUpdateUpdateStrategyOVERRIDE captures enum value "OVERRIDE"
+	BulkUserStatItemUpdateUpdateStrategyOVERRIDE string = "OVERRIDE"
 )
 
 // prop value enum

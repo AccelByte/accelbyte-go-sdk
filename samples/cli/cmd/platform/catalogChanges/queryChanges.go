@@ -30,9 +30,11 @@ var QueryChangesCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		action, _ := cmd.Flags().GetString("action")
+		itemSku, _ := cmd.Flags().GetString("itemSku")
 		itemType, _ := cmd.Flags().GetString("itemType")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		selected, _ := cmd.Flags().GetBool("selected")
 		sortByString := cmd.Flag("sortBy").Value.String()
 		var sortBy []string
 		errSortBy := json.Unmarshal([]byte(sortByString), &sortBy)
@@ -47,9 +49,11 @@ var QueryChangesCmd = &cobra.Command{
 			Namespace:      namespace,
 			StoreID:        storeId,
 			Action:         &action,
+			ItemSku:        &itemSku,
 			ItemType:       &itemType,
 			Limit:          &limit,
 			Offset:         &offset,
+			Selected:       &selected,
 			SortBy:         sortBy,
 			Status:         &status,
 			Type:           &type_,
@@ -75,9 +79,11 @@ func init() {
 	QueryChangesCmd.Flags().String("storeId", "", "Store id")
 	_ = QueryChangesCmd.MarkFlagRequired("storeId")
 	QueryChangesCmd.Flags().String("action", "-1", "Action")
+	QueryChangesCmd.Flags().String("itemSku", "", "Item sku")
 	QueryChangesCmd.Flags().String("itemType", "", "Item type")
 	QueryChangesCmd.Flags().Int32("limit", 20, "Limit")
 	QueryChangesCmd.Flags().Int32("offset", 0, "Offset")
+	QueryChangesCmd.Flags().Bool("selected", false, "Selected")
 	QueryChangesCmd.Flags().String("sortBy", "", "Sort by")
 	QueryChangesCmd.Flags().String("status", "", "Status")
 	QueryChangesCmd.Flags().String("type", "", "Type")

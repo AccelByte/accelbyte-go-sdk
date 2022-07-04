@@ -37,7 +37,7 @@ type RewardCreate struct {
 
 	// type, at current only support ITEM
 	// Required: true
-	// Enum: [ITEM CURRENCY]
+	// Enum: [CURRENCY ITEM]
 	Type *string `json:"type"`
 }
 
@@ -116,7 +116,7 @@ var rewardCreateTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM","CURRENCY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CURRENCY","ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -126,11 +126,11 @@ func init() {
 
 const (
 
-	// RewardCreateTypeITEM captures enum value "ITEM"
-	RewardCreateTypeITEM string = "ITEM"
-
 	// RewardCreateTypeCURRENCY captures enum value "CURRENCY"
 	RewardCreateTypeCURRENCY string = "CURRENCY"
+
+	// RewardCreateTypeITEM captures enum value "ITEM"
+	RewardCreateTypeITEM string = "ITEM"
 )
 
 // prop value enum

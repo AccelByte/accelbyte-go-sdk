@@ -23,7 +23,7 @@ type AppEntitlementInfo struct {
 	AppID string `json:"appId,omitempty"`
 
 	// appType for APP type entitlement
-	// Enum: [GAME SOFTWARE DLC DEMO]
+	// Enum: [DEMO DLC GAME SOFTWARE]
 	AppType string `json:"appType,omitempty"`
 
 	// entitlement end date
@@ -54,7 +54,7 @@ type AppEntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
+	// Enum: [ACTIVE CONSUMED INACTIVE REVOKED]
 	Status *string `json:"status"`
 
 	// item store id, null if published store
@@ -111,7 +111,7 @@ var appEntitlementInfoTypeAppTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME","SOFTWARE","DLC","DEMO"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DEMO","DLC","GAME","SOFTWARE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -121,17 +121,17 @@ func init() {
 
 const (
 
+	// AppEntitlementInfoAppTypeDEMO captures enum value "DEMO"
+	AppEntitlementInfoAppTypeDEMO string = "DEMO"
+
+	// AppEntitlementInfoAppTypeDLC captures enum value "DLC"
+	AppEntitlementInfoAppTypeDLC string = "DLC"
+
 	// AppEntitlementInfoAppTypeGAME captures enum value "GAME"
 	AppEntitlementInfoAppTypeGAME string = "GAME"
 
 	// AppEntitlementInfoAppTypeSOFTWARE captures enum value "SOFTWARE"
 	AppEntitlementInfoAppTypeSOFTWARE string = "SOFTWARE"
-
-	// AppEntitlementInfoAppTypeDLC captures enum value "DLC"
-	AppEntitlementInfoAppTypeDLC string = "DLC"
-
-	// AppEntitlementInfoAppTypeDEMO captures enum value "DEMO"
-	AppEntitlementInfoAppTypeDEMO string = "DEMO"
 )
 
 // prop value enum
@@ -226,7 +226,7 @@ var appEntitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","CONSUMED","INACTIVE","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -239,11 +239,11 @@ const (
 	// AppEntitlementInfoStatusACTIVE captures enum value "ACTIVE"
 	AppEntitlementInfoStatusACTIVE string = "ACTIVE"
 
-	// AppEntitlementInfoStatusINACTIVE captures enum value "INACTIVE"
-	AppEntitlementInfoStatusINACTIVE string = "INACTIVE"
-
 	// AppEntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
 	AppEntitlementInfoStatusCONSUMED string = "CONSUMED"
+
+	// AppEntitlementInfoStatusINACTIVE captures enum value "INACTIVE"
+	AppEntitlementInfoStatusINACTIVE string = "INACTIVE"
 
 	// AppEntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	AppEntitlementInfoStatusREVOKED string = "REVOKED"

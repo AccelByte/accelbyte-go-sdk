@@ -71,7 +71,7 @@ type PaymentOrderInfo struct {
 	ExtUserID string `json:"extUserId,omitempty"`
 
 	// Order item type
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// Payment user language
@@ -102,7 +102,7 @@ type PaymentOrderInfo struct {
 
 	// Payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 
 	// Payment provider fee
@@ -140,7 +140,7 @@ type PaymentOrderInfo struct {
 
 	// Payment order status
 	// Required: true
-	// Enum: [INIT AUTHORISED AUTHORISE_FAILED CHARGED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUNDING REFUNDED REFUND_FAILED DELETED]
+	// Enum: [AUTHORISED AUTHORISE_FAILED CHARGEBACK CHARGEBACK_REVERSED CHARGED CHARGE_FAILED DELETED INIT NOTIFICATION_OF_CHARGEBACK REFUNDED REFUNDING REFUND_FAILED REQUEST_FOR_INFORMATION]
 	Status *string `json:"status"`
 
 	// Payment order status reason
@@ -433,7 +433,7 @@ var paymentOrderInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -446,26 +446,26 @@ const (
 	// PaymentOrderInfoItemTypeAPP captures enum value "APP"
 	PaymentOrderInfoItemTypeAPP string = "APP"
 
-	// PaymentOrderInfoItemTypeCOINS captures enum value "COINS"
-	PaymentOrderInfoItemTypeCOINS string = "COINS"
-
-	// PaymentOrderInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	PaymentOrderInfoItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// PaymentOrderInfoItemTypeBUNDLE captures enum value "BUNDLE"
 	PaymentOrderInfoItemTypeBUNDLE string = "BUNDLE"
 
 	// PaymentOrderInfoItemTypeCODE captures enum value "CODE"
 	PaymentOrderInfoItemTypeCODE string = "CODE"
 
-	// PaymentOrderInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	PaymentOrderInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// PaymentOrderInfoItemTypeCOINS captures enum value "COINS"
+	PaymentOrderInfoItemTypeCOINS string = "COINS"
+
+	// PaymentOrderInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	PaymentOrderInfoItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// PaymentOrderInfoItemTypeMEDIA captures enum value "MEDIA"
+	PaymentOrderInfoItemTypeMEDIA string = "MEDIA"
 
 	// PaymentOrderInfoItemTypeSEASON captures enum value "SEASON"
 	PaymentOrderInfoItemTypeSEASON string = "SEASON"
 
-	// PaymentOrderInfoItemTypeMEDIA captures enum value "MEDIA"
-	PaymentOrderInfoItemTypeMEDIA string = "MEDIA"
+	// PaymentOrderInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	PaymentOrderInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
@@ -512,7 +512,7 @@ var paymentOrderInfoTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -522,29 +522,29 @@ func init() {
 
 const (
 
-	// PaymentOrderInfoPaymentProviderWALLET captures enum value "WALLET"
-	PaymentOrderInfoPaymentProviderWALLET string = "WALLET"
-
-	// PaymentOrderInfoPaymentProviderXSOLLA captures enum value "XSOLLA"
-	PaymentOrderInfoPaymentProviderXSOLLA string = "XSOLLA"
-
 	// PaymentOrderInfoPaymentProviderADYEN captures enum value "ADYEN"
 	PaymentOrderInfoPaymentProviderADYEN string = "ADYEN"
-
-	// PaymentOrderInfoPaymentProviderSTRIPE captures enum value "STRIPE"
-	PaymentOrderInfoPaymentProviderSTRIPE string = "STRIPE"
-
-	// PaymentOrderInfoPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	PaymentOrderInfoPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderInfoPaymentProviderALIPAY captures enum value "ALIPAY"
 	PaymentOrderInfoPaymentProviderALIPAY string = "ALIPAY"
 
-	// PaymentOrderInfoPaymentProviderWXPAY captures enum value "WXPAY"
-	PaymentOrderInfoPaymentProviderWXPAY string = "WXPAY"
+	// PaymentOrderInfoPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	PaymentOrderInfoPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderInfoPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentOrderInfoPaymentProviderPAYPAL string = "PAYPAL"
+
+	// PaymentOrderInfoPaymentProviderSTRIPE captures enum value "STRIPE"
+	PaymentOrderInfoPaymentProviderSTRIPE string = "STRIPE"
+
+	// PaymentOrderInfoPaymentProviderWALLET captures enum value "WALLET"
+	PaymentOrderInfoPaymentProviderWALLET string = "WALLET"
+
+	// PaymentOrderInfoPaymentProviderWXPAY captures enum value "WXPAY"
+	PaymentOrderInfoPaymentProviderWXPAY string = "WXPAY"
+
+	// PaymentOrderInfoPaymentProviderXSOLLA captures enum value "XSOLLA"
+	PaymentOrderInfoPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -604,7 +604,7 @@ var paymentOrderInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","AUTHORISED","AUTHORISE_FAILED","CHARGED","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REQUEST_FOR_INFORMATION","CHARGEBACK","CHARGEBACK_REVERSED","REFUNDING","REFUNDED","REFUND_FAILED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AUTHORISED","AUTHORISE_FAILED","CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CHARGE_FAILED","DELETED","INIT","NOTIFICATION_OF_CHARGEBACK","REFUNDED","REFUNDING","REFUND_FAILED","REQUEST_FOR_INFORMATION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -614,26 +614,11 @@ func init() {
 
 const (
 
-	// PaymentOrderInfoStatusINIT captures enum value "INIT"
-	PaymentOrderInfoStatusINIT string = "INIT"
-
 	// PaymentOrderInfoStatusAUTHORISED captures enum value "AUTHORISED"
 	PaymentOrderInfoStatusAUTHORISED string = "AUTHORISED"
 
 	// PaymentOrderInfoStatusAUTHORISEFAILED captures enum value "AUTHORISE_FAILED"
 	PaymentOrderInfoStatusAUTHORISEFAILED string = "AUTHORISE_FAILED"
-
-	// PaymentOrderInfoStatusCHARGED captures enum value "CHARGED"
-	PaymentOrderInfoStatusCHARGED string = "CHARGED"
-
-	// PaymentOrderInfoStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
-	PaymentOrderInfoStatusCHARGEFAILED string = "CHARGE_FAILED"
-
-	// PaymentOrderInfoStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
-	PaymentOrderInfoStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
-
-	// PaymentOrderInfoStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
-	PaymentOrderInfoStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 
 	// PaymentOrderInfoStatusCHARGEBACK captures enum value "CHARGEBACK"
 	PaymentOrderInfoStatusCHARGEBACK string = "CHARGEBACK"
@@ -641,17 +626,32 @@ const (
 	// PaymentOrderInfoStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	PaymentOrderInfoStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
 
-	// PaymentOrderInfoStatusREFUNDING captures enum value "REFUNDING"
-	PaymentOrderInfoStatusREFUNDING string = "REFUNDING"
+	// PaymentOrderInfoStatusCHARGED captures enum value "CHARGED"
+	PaymentOrderInfoStatusCHARGED string = "CHARGED"
+
+	// PaymentOrderInfoStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
+	PaymentOrderInfoStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// PaymentOrderInfoStatusDELETED captures enum value "DELETED"
+	PaymentOrderInfoStatusDELETED string = "DELETED"
+
+	// PaymentOrderInfoStatusINIT captures enum value "INIT"
+	PaymentOrderInfoStatusINIT string = "INIT"
+
+	// PaymentOrderInfoStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
+	PaymentOrderInfoStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
 
 	// PaymentOrderInfoStatusREFUNDED captures enum value "REFUNDED"
 	PaymentOrderInfoStatusREFUNDED string = "REFUNDED"
 
+	// PaymentOrderInfoStatusREFUNDING captures enum value "REFUNDING"
+	PaymentOrderInfoStatusREFUNDING string = "REFUNDING"
+
 	// PaymentOrderInfoStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	PaymentOrderInfoStatusREFUNDFAILED string = "REFUND_FAILED"
 
-	// PaymentOrderInfoStatusDELETED captures enum value "DELETED"
-	PaymentOrderInfoStatusDELETED string = "DELETED"
+	// PaymentOrderInfoStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
+	PaymentOrderInfoStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 )
 
 // prop value enum

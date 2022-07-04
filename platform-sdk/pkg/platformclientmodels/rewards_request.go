@@ -21,7 +21,7 @@ import (
 type RewardsRequest struct {
 
 	// origin, if rewards contains item icon, it will credit into related origin wallet. if not set, it will be credit into System wallet
-	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// reward
@@ -29,7 +29,7 @@ type RewardsRequest struct {
 	Rewards []*PlatformReward `json:"rewards"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT DLC OTHER]
+	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REWARD]
 	Source string `json:"source,omitempty"`
 }
 
@@ -59,7 +59,7 @@ var rewardsRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -69,38 +69,38 @@ func init() {
 
 const (
 
-	// RewardsRequestOriginPlaystation captures enum value "Playstation"
-	RewardsRequestOriginPlaystation string = "Playstation"
-
-	// RewardsRequestOriginXbox captures enum value "Xbox"
-	RewardsRequestOriginXbox string = "Xbox"
-
-	// RewardsRequestOriginSteam captures enum value "Steam"
-	RewardsRequestOriginSteam string = "Steam"
-
 	// RewardsRequestOriginEpic captures enum value "Epic"
 	RewardsRequestOriginEpic string = "Epic"
-
-	// RewardsRequestOriginStadia captures enum value "Stadia"
-	RewardsRequestOriginStadia string = "Stadia"
-
-	// RewardsRequestOriginIOS captures enum value "IOS"
-	RewardsRequestOriginIOS string = "IOS"
 
 	// RewardsRequestOriginGooglePlay captures enum value "GooglePlay"
 	RewardsRequestOriginGooglePlay string = "GooglePlay"
 
-	// RewardsRequestOriginTwitch captures enum value "Twitch"
-	RewardsRequestOriginTwitch string = "Twitch"
+	// RewardsRequestOriginIOS captures enum value "IOS"
+	RewardsRequestOriginIOS string = "IOS"
 
 	// RewardsRequestOriginNintendo captures enum value "Nintendo"
 	RewardsRequestOriginNintendo string = "Nintendo"
 
+	// RewardsRequestOriginOther captures enum value "Other"
+	RewardsRequestOriginOther string = "Other"
+
+	// RewardsRequestOriginPlaystation captures enum value "Playstation"
+	RewardsRequestOriginPlaystation string = "Playstation"
+
+	// RewardsRequestOriginStadia captures enum value "Stadia"
+	RewardsRequestOriginStadia string = "Stadia"
+
+	// RewardsRequestOriginSteam captures enum value "Steam"
+	RewardsRequestOriginSteam string = "Steam"
+
 	// RewardsRequestOriginSystem captures enum value "System"
 	RewardsRequestOriginSystem string = "System"
 
-	// RewardsRequestOriginOther captures enum value "Other"
-	RewardsRequestOriginOther string = "Other"
+	// RewardsRequestOriginTwitch captures enum value "Twitch"
+	RewardsRequestOriginTwitch string = "Twitch"
+
+	// RewardsRequestOriginXbox captures enum value "Xbox"
+	RewardsRequestOriginXbox string = "Xbox"
 )
 
 // prop value enum
@@ -154,7 +154,7 @@ var rewardsRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","DLC","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -164,35 +164,35 @@ func init() {
 
 const (
 
-	// RewardsRequestSourcePURCHASE captures enum value "PURCHASE"
-	RewardsRequestSourcePURCHASE string = "PURCHASE"
-
-	// RewardsRequestSourceIAP captures enum value "IAP"
-	RewardsRequestSourceIAP string = "IAP"
-
-	// RewardsRequestSourcePROMOTION captures enum value "PROMOTION"
-	RewardsRequestSourcePROMOTION string = "PROMOTION"
-
 	// RewardsRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	RewardsRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// RewardsRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	RewardsRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// RewardsRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	RewardsRequestSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// RewardsRequestSourceREWARD captures enum value "REWARD"
-	RewardsRequestSourceREWARD string = "REWARD"
-
-	// RewardsRequestSourceGIFT captures enum value "GIFT"
-	RewardsRequestSourceGIFT string = "GIFT"
 
 	// RewardsRequestSourceDLC captures enum value "DLC"
 	RewardsRequestSourceDLC string = "DLC"
 
+	// RewardsRequestSourceGIFT captures enum value "GIFT"
+	RewardsRequestSourceGIFT string = "GIFT"
+
+	// RewardsRequestSourceIAP captures enum value "IAP"
+	RewardsRequestSourceIAP string = "IAP"
+
 	// RewardsRequestSourceOTHER captures enum value "OTHER"
 	RewardsRequestSourceOTHER string = "OTHER"
+
+	// RewardsRequestSourcePROMOTION captures enum value "PROMOTION"
+	RewardsRequestSourcePROMOTION string = "PROMOTION"
+
+	// RewardsRequestSourcePURCHASE captures enum value "PURCHASE"
+	RewardsRequestSourcePURCHASE string = "PURCHASE"
+
+	// RewardsRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	RewardsRequestSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// RewardsRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	RewardsRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// RewardsRequestSourceREWARD captures enum value "REWARD"
+	RewardsRequestSourceREWARD string = "REWARD"
 )
 
 // prop value enum

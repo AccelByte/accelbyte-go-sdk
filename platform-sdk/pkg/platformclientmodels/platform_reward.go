@@ -29,7 +29,7 @@ type PlatformReward struct {
 	Quantity int32 `json:"quantity,omitempty"`
 
 	// reward type
-	// Enum: [ITEM CURRENCY]
+	// Enum: [CURRENCY ITEM]
 	Type string `json:"type,omitempty"`
 }
 
@@ -95,7 +95,7 @@ var platformRewardTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM","CURRENCY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CURRENCY","ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -105,11 +105,11 @@ func init() {
 
 const (
 
-	// PlatformRewardTypeITEM captures enum value "ITEM"
-	PlatformRewardTypeITEM string = "ITEM"
-
 	// PlatformRewardTypeCURRENCY captures enum value "CURRENCY"
 	PlatformRewardTypeCURRENCY string = "CURRENCY"
+
+	// PlatformRewardTypeITEM captures enum value "ITEM"
+	PlatformRewardTypeITEM string = "ITEM"
 )
 
 // prop value enum

@@ -25,7 +25,7 @@ type ModelsRuleInformation struct {
 
 	// rule criteria
 	// Required: true
-	// Enum: [EQUAL MINIMUM MAXIMUM]
+	// Enum: [EQUAL MAXIMUM MINIMUM]
 	RuleCriteria *string `json:"ruleCriteria"`
 
 	// rule value
@@ -68,7 +68,7 @@ var modelsRuleInformationTypeRuleCriteriaPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["EQUAL","MINIMUM","MAXIMUM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EQUAL","MAXIMUM","MINIMUM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -81,11 +81,11 @@ const (
 	// ModelsRuleInformationRuleCriteriaEQUAL captures enum value "EQUAL"
 	ModelsRuleInformationRuleCriteriaEQUAL string = "EQUAL"
 
-	// ModelsRuleInformationRuleCriteriaMINIMUM captures enum value "MINIMUM"
-	ModelsRuleInformationRuleCriteriaMINIMUM string = "MINIMUM"
-
 	// ModelsRuleInformationRuleCriteriaMAXIMUM captures enum value "MAXIMUM"
 	ModelsRuleInformationRuleCriteriaMAXIMUM string = "MAXIMUM"
+
+	// ModelsRuleInformationRuleCriteriaMINIMUM captures enum value "MINIMUM"
+	ModelsRuleInformationRuleCriteriaMINIMUM string = "MINIMUM"
 )
 
 // prop value enum

@@ -21,7 +21,7 @@ type FulfillCodeRequest struct {
 	// Required: true
 	Code *string `json:"code"`
 
-	// language value from language tag, allowed format: en, en-US
+	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 

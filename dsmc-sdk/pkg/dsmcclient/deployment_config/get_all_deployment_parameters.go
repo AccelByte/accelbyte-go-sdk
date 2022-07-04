@@ -72,7 +72,7 @@ type GetAllDeploymentParams struct {
 	  how many items to return
 
 	*/
-	Count *int64
+	Count int64
 	/*Name
 	  name of the deployment
 
@@ -87,7 +87,7 @@ type GetAllDeploymentParams struct {
 	  offset from list to query from
 
 	*/
-	Offset *int64
+	Offset int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -143,13 +143,13 @@ func (o *GetAllDeploymentParams) SetHTTPClientTransport(roundTripper http.RoundT
 }
 
 // WithCount adds the count to the get all deployment params
-func (o *GetAllDeploymentParams) WithCount(count *int64) *GetAllDeploymentParams {
+func (o *GetAllDeploymentParams) WithCount(count int64) *GetAllDeploymentParams {
 	o.SetCount(count)
 	return o
 }
 
 // SetCount adds the count to the get all deployment params
-func (o *GetAllDeploymentParams) SetCount(count *int64) {
+func (o *GetAllDeploymentParams) SetCount(count int64) {
 	o.Count = count
 }
 
@@ -176,13 +176,13 @@ func (o *GetAllDeploymentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get all deployment params
-func (o *GetAllDeploymentParams) WithOffset(offset *int64) *GetAllDeploymentParams {
+func (o *GetAllDeploymentParams) WithOffset(offset int64) *GetAllDeploymentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get all deployment params
-func (o *GetAllDeploymentParams) SetOffset(offset *int64) {
+func (o *GetAllDeploymentParams) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -194,20 +194,13 @@ func (o *GetAllDeploymentParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.Count != nil {
-
-		// query param count
-		var qrCount int64
-		if o.Count != nil {
-			qrCount = *o.Count
+	// query param count
+	qrCount := o.Count
+	qCount := swag.FormatInt64(qrCount)
+	if qCount != "" {
+		if err := r.SetQueryParam("count", qCount); err != nil {
+			return err
 		}
-		qCount := swag.FormatInt64(qrCount)
-		if qCount != "" {
-			if err := r.SetQueryParam("count", qCount); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if o.Name != nil {
@@ -231,20 +224,13 @@ func (o *GetAllDeploymentParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	if o.Offset != nil {
-
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
+	// query param offset
+	qrOffset := o.Offset
+	qOffset := swag.FormatInt64(qrOffset)
+	if qOffset != "" {
+		if err := r.SetQueryParam("offset", qOffset); err != nil {
+			return err
 		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// setting the default header value

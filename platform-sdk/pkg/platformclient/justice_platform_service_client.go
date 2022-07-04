@@ -17,6 +17,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/achievement_platform"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
@@ -102,6 +103,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticePlatformService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.AchievementPlatform = achievement_platform.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.Campaign = campaign.New(transport, formats)
 	cli.CatalogChanges = catalog_changes.New(transport, formats)
@@ -187,6 +189,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticePlatformService is a client for justice platform service
 type JusticePlatformService struct {
+	AchievementPlatform achievement_platform.ClientService
+
 	Anonymization anonymization.ClientService
 
 	Campaign campaign.ClientService
@@ -244,6 +248,7 @@ type JusticePlatformService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AchievementPlatform.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
 	c.Campaign.SetTransport(transport)
 	c.CatalogChanges.SetTransport(transport)

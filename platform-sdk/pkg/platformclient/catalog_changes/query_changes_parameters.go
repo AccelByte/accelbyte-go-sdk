@@ -138,6 +138,8 @@ type QueryChangesParams struct {
 	RetryPolicy *utils.Retry
 	/*Action*/
 	Action *string
+	/*ItemSku*/
+	ItemSku *string
 	/*ItemType*/
 	ItemType *string
 	/*Limit
@@ -152,6 +154,8 @@ type QueryChangesParams struct {
 
 	*/
 	Offset *int32
+	/*Selected*/
+	Selected *bool
 	/*SortBy
 	  default is updatedAt:desc, allow values: [createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=title:asc,createdAt:desc. Make sure to always use more than one sort if the first sort is not an unique valuefor example, if you wish to sort by title, make sure to include other sort such as sku or createdAt after the first sort, eg: title:asc,updatedAt:desc
 
@@ -241,6 +245,17 @@ func (o *QueryChangesParams) SetAction(action *string) {
 	o.Action = action
 }
 
+// WithItemSku adds the itemSku to the query changes params
+func (o *QueryChangesParams) WithItemSku(itemSku *string) *QueryChangesParams {
+	o.SetItemSku(itemSku)
+	return o
+}
+
+// SetItemSku adds the itemSku to the query changes params
+func (o *QueryChangesParams) SetItemSku(itemSku *string) {
+	o.ItemSku = itemSku
+}
+
 // WithItemType adds the itemType to the query changes params
 func (o *QueryChangesParams) WithItemType(itemType *string) *QueryChangesParams {
 	o.SetItemType(itemType)
@@ -283,6 +298,17 @@ func (o *QueryChangesParams) WithOffset(offset *int32) *QueryChangesParams {
 // SetOffset adds the offset to the query changes params
 func (o *QueryChangesParams) SetOffset(offset *int32) {
 	o.Offset = offset
+}
+
+// WithSelected adds the selected to the query changes params
+func (o *QueryChangesParams) WithSelected(selected *bool) *QueryChangesParams {
+	o.SetSelected(selected)
+	return o
+}
+
+// SetSelected adds the selected to the query changes params
+func (o *QueryChangesParams) SetSelected(selected *bool) {
+	o.Selected = selected
 }
 
 // WithSortBy adds the sortBy to the query changes params
@@ -375,6 +401,22 @@ func (o *QueryChangesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	}
 
+	if o.ItemSku != nil {
+
+		// query param itemSku
+		var qrItemSku string
+		if o.ItemSku != nil {
+			qrItemSku = *o.ItemSku
+		}
+		qItemSku := qrItemSku
+		if qItemSku != "" {
+			if err := r.SetQueryParam("itemSku", qItemSku); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.ItemType != nil {
 
 		// query param itemType
@@ -422,6 +464,22 @@ func (o *QueryChangesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Selected != nil {
+
+		// query param selected
+		var qrSelected bool
+		if o.Selected != nil {
+			qrSelected = *o.Selected
+		}
+		qSelected := swag.FormatBool(qrSelected)
+		if qSelected != "" {
+			if err := r.SetQueryParam("selected", qSelected); err != nil {
 				return err
 			}
 		}

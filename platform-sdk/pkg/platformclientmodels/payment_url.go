@@ -21,12 +21,12 @@ type PaymentURL struct {
 
 	// payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 
 	// payment type
 	// Required: true
-	// Enum: [QR_CODE LINK]
+	// Enum: [LINK QR_CODE]
 	PaymentType *string `json:"paymentType"`
 
 	// payment url
@@ -64,7 +64,7 @@ var paymentUrlTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -74,29 +74,29 @@ func init() {
 
 const (
 
-	// PaymentURLPaymentProviderWALLET captures enum value "WALLET"
-	PaymentURLPaymentProviderWALLET string = "WALLET"
-
-	// PaymentURLPaymentProviderXSOLLA captures enum value "XSOLLA"
-	PaymentURLPaymentProviderXSOLLA string = "XSOLLA"
-
 	// PaymentURLPaymentProviderADYEN captures enum value "ADYEN"
 	PaymentURLPaymentProviderADYEN string = "ADYEN"
-
-	// PaymentURLPaymentProviderSTRIPE captures enum value "STRIPE"
-	PaymentURLPaymentProviderSTRIPE string = "STRIPE"
-
-	// PaymentURLPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	PaymentURLPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentURLPaymentProviderALIPAY captures enum value "ALIPAY"
 	PaymentURLPaymentProviderALIPAY string = "ALIPAY"
 
-	// PaymentURLPaymentProviderWXPAY captures enum value "WXPAY"
-	PaymentURLPaymentProviderWXPAY string = "WXPAY"
+	// PaymentURLPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	PaymentURLPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentURLPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentURLPaymentProviderPAYPAL string = "PAYPAL"
+
+	// PaymentURLPaymentProviderSTRIPE captures enum value "STRIPE"
+	PaymentURLPaymentProviderSTRIPE string = "STRIPE"
+
+	// PaymentURLPaymentProviderWALLET captures enum value "WALLET"
+	PaymentURLPaymentProviderWALLET string = "WALLET"
+
+	// PaymentURLPaymentProviderWXPAY captures enum value "WXPAY"
+	PaymentURLPaymentProviderWXPAY string = "WXPAY"
+
+	// PaymentURLPaymentProviderXSOLLA captures enum value "XSOLLA"
+	PaymentURLPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -125,7 +125,7 @@ var paymentUrlTypePaymentTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["QR_CODE","LINK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["LINK","QR_CODE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -135,11 +135,11 @@ func init() {
 
 const (
 
-	// PaymentURLPaymentTypeQRCODE captures enum value "QR_CODE"
-	PaymentURLPaymentTypeQRCODE string = "QR_CODE"
-
 	// PaymentURLPaymentTypeLINK captures enum value "LINK"
 	PaymentURLPaymentTypeLINK string = "LINK"
+
+	// PaymentURLPaymentTypeQRCODE captures enum value "QR_CODE"
+	PaymentURLPaymentTypeQRCODE string = "QR_CODE"
 )
 
 // prop value enum

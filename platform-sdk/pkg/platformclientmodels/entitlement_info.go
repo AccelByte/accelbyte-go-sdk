@@ -23,12 +23,12 @@ type EntitlementInfo struct {
 	AppID string `json:"appId,omitempty"`
 
 	// appType if entitlement is an app
-	// Enum: [GAME SOFTWARE DLC DEMO]
+	// Enum: [DEMO DLC GAME SOFTWARE]
 	AppType string `json:"appType,omitempty"`
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP ENTITLEMENT CODE SUBSCRIPTION MEDIA]
+	// Enum: [APP CODE ENTITLEMENT MEDIA SUBSCRIPTION]
 	Clazz *string `json:"clazz"`
 
 	// entitlement created at
@@ -80,7 +80,7 @@ type EntitlementInfo struct {
 
 	// entitlement source
 	// Required: true
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
+	// Enum: [ACHIEVEMENT GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REWARD]
 	Source *string `json:"source"`
 
 	// Whether the CONSUMABLE entitlement is stackable
@@ -92,7 +92,7 @@ type EntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
+	// Enum: [ACTIVE CONSUMED INACTIVE REVOKED]
 	Status *string `json:"status"`
 
 	// storeId of the item, published store if omitted
@@ -100,7 +100,7 @@ type EntitlementInfo struct {
 
 	// entitlement type
 	// Required: true
-	// Enum: [DURABLE CONSUMABLE]
+	// Enum: [CONSUMABLE DURABLE]
 	Type *string `json:"type"`
 
 	// entitlement updated at
@@ -202,7 +202,7 @@ var entitlementInfoTypeAppTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME","SOFTWARE","DLC","DEMO"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DEMO","DLC","GAME","SOFTWARE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -212,17 +212,17 @@ func init() {
 
 const (
 
+	// EntitlementInfoAppTypeDEMO captures enum value "DEMO"
+	EntitlementInfoAppTypeDEMO string = "DEMO"
+
+	// EntitlementInfoAppTypeDLC captures enum value "DLC"
+	EntitlementInfoAppTypeDLC string = "DLC"
+
 	// EntitlementInfoAppTypeGAME captures enum value "GAME"
 	EntitlementInfoAppTypeGAME string = "GAME"
 
 	// EntitlementInfoAppTypeSOFTWARE captures enum value "SOFTWARE"
 	EntitlementInfoAppTypeSOFTWARE string = "SOFTWARE"
-
-	// EntitlementInfoAppTypeDLC captures enum value "DLC"
-	EntitlementInfoAppTypeDLC string = "DLC"
-
-	// EntitlementInfoAppTypeDEMO captures enum value "DEMO"
-	EntitlementInfoAppTypeDEMO string = "DEMO"
 )
 
 // prop value enum
@@ -251,7 +251,7 @@ var entitlementInfoTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","MEDIA","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -264,17 +264,17 @@ const (
 	// EntitlementInfoClazzAPP captures enum value "APP"
 	EntitlementInfoClazzAPP string = "APP"
 
-	// EntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
-	EntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
-
 	// EntitlementInfoClazzCODE captures enum value "CODE"
 	EntitlementInfoClazzCODE string = "CODE"
 
-	// EntitlementInfoClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	EntitlementInfoClazzSUBSCRIPTION string = "SUBSCRIPTION"
+	// EntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
+	EntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
 
 	// EntitlementInfoClazzMEDIA captures enum value "MEDIA"
 	EntitlementInfoClazzMEDIA string = "MEDIA"
+
+	// EntitlementInfoClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	EntitlementInfoClazzSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
@@ -418,7 +418,7 @@ var entitlementInfoTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -428,32 +428,32 @@ func init() {
 
 const (
 
-	// EntitlementInfoSourcePURCHASE captures enum value "PURCHASE"
-	EntitlementInfoSourcePURCHASE string = "PURCHASE"
-
-	// EntitlementInfoSourceIAP captures enum value "IAP"
-	EntitlementInfoSourceIAP string = "IAP"
-
-	// EntitlementInfoSourcePROMOTION captures enum value "PROMOTION"
-	EntitlementInfoSourcePROMOTION string = "PROMOTION"
-
 	// EntitlementInfoSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	EntitlementInfoSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// EntitlementInfoSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	EntitlementInfoSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// EntitlementInfoSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	EntitlementInfoSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// EntitlementInfoSourceREWARD captures enum value "REWARD"
-	EntitlementInfoSourceREWARD string = "REWARD"
 
 	// EntitlementInfoSourceGIFT captures enum value "GIFT"
 	EntitlementInfoSourceGIFT string = "GIFT"
 
+	// EntitlementInfoSourceIAP captures enum value "IAP"
+	EntitlementInfoSourceIAP string = "IAP"
+
 	// EntitlementInfoSourceOTHER captures enum value "OTHER"
 	EntitlementInfoSourceOTHER string = "OTHER"
+
+	// EntitlementInfoSourcePROMOTION captures enum value "PROMOTION"
+	EntitlementInfoSourcePROMOTION string = "PROMOTION"
+
+	// EntitlementInfoSourcePURCHASE captures enum value "PURCHASE"
+	EntitlementInfoSourcePURCHASE string = "PURCHASE"
+
+	// EntitlementInfoSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	EntitlementInfoSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// EntitlementInfoSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	EntitlementInfoSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// EntitlementInfoSourceREWARD captures enum value "REWARD"
+	EntitlementInfoSourceREWARD string = "REWARD"
 )
 
 // prop value enum
@@ -495,7 +495,7 @@ var entitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","CONSUMED","INACTIVE","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -508,11 +508,11 @@ const (
 	// EntitlementInfoStatusACTIVE captures enum value "ACTIVE"
 	EntitlementInfoStatusACTIVE string = "ACTIVE"
 
-	// EntitlementInfoStatusINACTIVE captures enum value "INACTIVE"
-	EntitlementInfoStatusINACTIVE string = "INACTIVE"
-
 	// EntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
 	EntitlementInfoStatusCONSUMED string = "CONSUMED"
+
+	// EntitlementInfoStatusINACTIVE captures enum value "INACTIVE"
+	EntitlementInfoStatusINACTIVE string = "INACTIVE"
 
 	// EntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	EntitlementInfoStatusREVOKED string = "REVOKED"
@@ -544,7 +544,7 @@ var entitlementInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DURABLE","CONSUMABLE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CONSUMABLE","DURABLE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -554,11 +554,11 @@ func init() {
 
 const (
 
-	// EntitlementInfoTypeDURABLE captures enum value "DURABLE"
-	EntitlementInfoTypeDURABLE string = "DURABLE"
-
 	// EntitlementInfoTypeCONSUMABLE captures enum value "CONSUMABLE"
 	EntitlementInfoTypeCONSUMABLE string = "CONSUMABLE"
+
+	// EntitlementInfoTypeDURABLE captures enum value "DURABLE"
+	EntitlementInfoTypeDURABLE string = "DURABLE"
 )
 
 // prop value enum

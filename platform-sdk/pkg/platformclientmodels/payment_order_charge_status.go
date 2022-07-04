@@ -23,7 +23,7 @@ type PaymentOrderChargeStatus struct {
 	Charging bool `json:"charging"`
 
 	// status
-	// Enum: [INIT AUTHORISED AUTHORISE_FAILED CHARGED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUNDING REFUNDED REFUND_FAILED DELETED]
+	// Enum: [AUTHORISED AUTHORISE_FAILED CHARGEBACK CHARGEBACK_REVERSED CHARGED CHARGE_FAILED DELETED INIT NOTIFICATION_OF_CHARGEBACK REFUNDED REFUNDING REFUND_FAILED REQUEST_FOR_INFORMATION]
 	Status string `json:"status,omitempty"`
 }
 
@@ -45,7 +45,7 @@ var paymentOrderChargeStatusTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","AUTHORISED","AUTHORISE_FAILED","CHARGED","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REQUEST_FOR_INFORMATION","CHARGEBACK","CHARGEBACK_REVERSED","REFUNDING","REFUNDED","REFUND_FAILED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AUTHORISED","AUTHORISE_FAILED","CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CHARGE_FAILED","DELETED","INIT","NOTIFICATION_OF_CHARGEBACK","REFUNDED","REFUNDING","REFUND_FAILED","REQUEST_FOR_INFORMATION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -55,26 +55,11 @@ func init() {
 
 const (
 
-	// PaymentOrderChargeStatusStatusINIT captures enum value "INIT"
-	PaymentOrderChargeStatusStatusINIT string = "INIT"
-
 	// PaymentOrderChargeStatusStatusAUTHORISED captures enum value "AUTHORISED"
 	PaymentOrderChargeStatusStatusAUTHORISED string = "AUTHORISED"
 
 	// PaymentOrderChargeStatusStatusAUTHORISEFAILED captures enum value "AUTHORISE_FAILED"
 	PaymentOrderChargeStatusStatusAUTHORISEFAILED string = "AUTHORISE_FAILED"
-
-	// PaymentOrderChargeStatusStatusCHARGED captures enum value "CHARGED"
-	PaymentOrderChargeStatusStatusCHARGED string = "CHARGED"
-
-	// PaymentOrderChargeStatusStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
-	PaymentOrderChargeStatusStatusCHARGEFAILED string = "CHARGE_FAILED"
-
-	// PaymentOrderChargeStatusStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
-	PaymentOrderChargeStatusStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
-
-	// PaymentOrderChargeStatusStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
-	PaymentOrderChargeStatusStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 
 	// PaymentOrderChargeStatusStatusCHARGEBACK captures enum value "CHARGEBACK"
 	PaymentOrderChargeStatusStatusCHARGEBACK string = "CHARGEBACK"
@@ -82,17 +67,32 @@ const (
 	// PaymentOrderChargeStatusStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	PaymentOrderChargeStatusStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
 
-	// PaymentOrderChargeStatusStatusREFUNDING captures enum value "REFUNDING"
-	PaymentOrderChargeStatusStatusREFUNDING string = "REFUNDING"
+	// PaymentOrderChargeStatusStatusCHARGED captures enum value "CHARGED"
+	PaymentOrderChargeStatusStatusCHARGED string = "CHARGED"
+
+	// PaymentOrderChargeStatusStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
+	PaymentOrderChargeStatusStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// PaymentOrderChargeStatusStatusDELETED captures enum value "DELETED"
+	PaymentOrderChargeStatusStatusDELETED string = "DELETED"
+
+	// PaymentOrderChargeStatusStatusINIT captures enum value "INIT"
+	PaymentOrderChargeStatusStatusINIT string = "INIT"
+
+	// PaymentOrderChargeStatusStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
+	PaymentOrderChargeStatusStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
 
 	// PaymentOrderChargeStatusStatusREFUNDED captures enum value "REFUNDED"
 	PaymentOrderChargeStatusStatusREFUNDED string = "REFUNDED"
 
+	// PaymentOrderChargeStatusStatusREFUNDING captures enum value "REFUNDING"
+	PaymentOrderChargeStatusStatusREFUNDING string = "REFUNDING"
+
 	// PaymentOrderChargeStatusStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	PaymentOrderChargeStatusStatusREFUNDFAILED string = "REFUND_FAILED"
 
-	// PaymentOrderChargeStatusStatusDELETED captures enum value "DELETED"
-	PaymentOrderChargeStatusStatusDELETED string = "DELETED"
+	// PaymentOrderChargeStatusStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
+	PaymentOrderChargeStatusStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 )
 
 // prop value enum

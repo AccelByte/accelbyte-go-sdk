@@ -48,7 +48,7 @@ type KeyInfo struct {
 
 	// status
 	// Required: true
-	// Enum: [ACTIVE ACQUIRED]
+	// Enum: [ACQUIRED ACTIVE]
 	Status *string `json:"status"`
 
 	// updated at
@@ -156,7 +156,7 @@ var keyInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","ACQUIRED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACQUIRED","ACTIVE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -166,11 +166,11 @@ func init() {
 
 const (
 
-	// KeyInfoStatusACTIVE captures enum value "ACTIVE"
-	KeyInfoStatusACTIVE string = "ACTIVE"
-
 	// KeyInfoStatusACQUIRED captures enum value "ACQUIRED"
 	KeyInfoStatusACQUIRED string = "ACQUIRED"
+
+	// KeyInfoStatusACTIVE captures enum value "ACTIVE"
+	KeyInfoStatusACTIVE string = "ACTIVE"
 )
 
 // prop value enum

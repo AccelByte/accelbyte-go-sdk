@@ -59,7 +59,7 @@ eval_tap $? 2 'QuerySeasons' test.out
 
 #- 3 CreateSeason
 samples/cli/sample-apps Seasonpass createSeason \
-    --body '{"autoClaim": false, "defaultLanguage": "sQuJu8vM", "defaultRequiredExp": 10, "draftStoreId": "0IsJkTrd", "end": "1988-08-24T00:00:00Z", "excessStrategy": {"currency": "cV2zXnTK", "method": "NONE", "percentPerExp": 99}, "images": [{"as": "Y1bPqami", "caption": "Bxx9Cs18", "height": 61, "imageUrl": "Y84ekItq", "smallImageUrl": "RzHU1oh5", "width": 72}], "localizations": {"QBVaewc7": {"description": "2krSha68", "title": "n3Ynozp1"}}, "name": "C2KmIQTu", "start": "1984-01-23T00:00:00Z", "tierItemId": "NEUsxFb8"}' \
+    --body '{"autoClaim": false, "defaultLanguage": "sQuJu8vM", "defaultRequiredExp": 10, "draftStoreId": "0IsJkTrd", "end": "1988-08-24T00:00:00Z", "excessStrategy": {"currency": "cV2zXnTK", "method": "CURRENCY", "percentPerExp": 99}, "images": [{"as": "Y1bPqami", "caption": "Bxx9Cs18", "height": 61, "imageUrl": "Y84ekItq", "smallImageUrl": "RzHU1oh5", "width": 72}], "localizations": {"QBVaewc7": {"description": "2krSha68", "title": "n3Ynozp1"}}, "name": "C2KmIQTu", "start": "1984-01-23T00:00:00Z", "tierItemId": "NEUsxFb8"}' \
     --namespace 'CJ17M7DJ' \
     > test.out 2>&1
 eval_tap $? 3 'CreateSeason' test.out
@@ -86,7 +86,7 @@ eval_tap $? 6 'DeleteSeason' test.out
 
 #- 7 UpdateSeason
 samples/cli/sample-apps Seasonpass updateSeason \
-    --body '{"autoClaim": true, "defaultLanguage": "giVpP8Cm", "defaultRequiredExp": 49, "draftStoreId": "vASUoxdx", "end": "1982-09-09T00:00:00Z", "excessStrategy": {"currency": "qmAGTJ8I", "method": "CURRENCY", "percentPerExp": 6}, "images": [{"as": "agEtp4w2", "caption": "9KOu9c19", "height": 87, "imageUrl": "6XDqWHkk", "smallImageUrl": "P8npLEKM", "width": 11}], "localizations": {"jiX7jpkV": {"description": "Zk3IaQYE", "title": "mqGodOEG"}}, "name": "t9gPOj0c", "start": "1975-10-10T00:00:00Z", "tierItemId": "kvIas73u"}' \
+    --body '{"autoClaim": true, "defaultLanguage": "giVpP8Cm", "defaultRequiredExp": 49, "draftStoreId": "vASUoxdx", "end": "1982-09-09T00:00:00Z", "excessStrategy": {"currency": "qmAGTJ8I", "method": "NONE", "percentPerExp": 6}, "images": [{"as": "agEtp4w2", "caption": "9KOu9c19", "height": 87, "imageUrl": "6XDqWHkk", "smallImageUrl": "P8npLEKM", "width": 11}], "localizations": {"jiX7jpkV": {"description": "Zk3IaQYE", "title": "mqGodOEG"}}, "name": "t9gPOj0c", "start": "1975-10-10T00:00:00Z", "tierItemId": "kvIas73u"}' \
     --namespace 'cYnFAJ3D' \
     --seasonId 'K5T4Eogg' \
     > test.out 2>&1
@@ -165,7 +165,7 @@ eval_tap $? 16 'QueryRewards' test.out
 
 #- 17 CreateReward
 samples/cli/sample-apps Seasonpass createReward \
-    --body '{"code": "vizU0q1p", "currency": {"currencyCode": "HyhhERoG", "namespace": "gdrysMiz"}, "image": {"as": "BGSRdP2l", "caption": "7DNSZ8Aq", "height": 98, "imageUrl": "iPLQXSe0", "smallImageUrl": "7ZddOGTM", "width": 23}, "itemId": "JjBwj9HJ", "quantity": 66, "type": "CURRENCY"}' \
+    --body '{"code": "vizU0q1p", "currency": {"currencyCode": "HyhhERoG", "namespace": "gdrysMiz"}, "image": {"as": "BGSRdP2l", "caption": "7DNSZ8Aq", "height": 98, "imageUrl": "iPLQXSe0", "smallImageUrl": "7ZddOGTM", "width": 23}, "itemId": "JjBwj9HJ", "quantity": 66, "type": "ITEM"}' \
     --namespace 'eEdSXRDS' \
     --seasonId 'vguauw1x' \
     > test.out 2>&1
@@ -189,7 +189,7 @@ eval_tap $? 19 'DeleteReward' test.out
 
 #- 20 UpdateReward
 samples/cli/sample-apps Seasonpass updateReward \
-    --body '{"currency": {"currencyCode": "6QxyWhfq", "namespace": "oWfJw2o8"}, "image": {"as": "oWUqvPCZ", "caption": "2HzT7NXm", "height": 96, "imageUrl": "DlXsuNId", "smallImageUrl": "QJR5lsNO", "width": 23}, "itemId": "vkfwaSbn", "nullFields": ["suLCgTox"], "quantity": 41, "type": "ITEM"}' \
+    --body '{"currency": {"currencyCode": "6QxyWhfq", "namespace": "oWfJw2o8"}, "image": {"as": "oWUqvPCZ", "caption": "2HzT7NXm", "height": 96, "imageUrl": "DlXsuNId", "smallImageUrl": "QJR5lsNO", "width": 23}, "itemId": "vkfwaSbn", "nullFields": ["suLCgTox"], "quantity": 41, "type": "CURRENCY"}' \
     --code 'kJgvg6h5' \
     --namespace 'HIpH0Dvi' \
     --seasonId 'plEk4vj3' \

@@ -93,7 +93,7 @@ eval_tap $? 7 'UpdateGroupConfigurationAdminV1' test.out
 
 #- 8 UpdateGroupConfigurationGlobalRuleAdminV1
 samples/cli/sample-apps Group updateGroupConfigurationGlobalRuleAdminV1 \
-    --body '{"ruleDetail": [{"ruleAttribute": "h3kgs9qq", "ruleCriteria": "MAXIMUM", "ruleValue": 0.016507493074878643}]}' \
+    --body '{"ruleDetail": [{"ruleAttribute": "h3kgs9qq", "ruleCriteria": "MINIMUM", "ruleValue": 0.016507493074878643}]}' \
     --allowedAction 'QsoBgiVp' \
     --configurationCode 'P8Cm3yvA' \
     --namespace 'SUoxdxxF' \
@@ -300,7 +300,7 @@ eval_tap $? 33 'UpdateGroupCustomRulePublicV1' test.out
 
 #- 34 UpdateGroupPredefinedRulePublicV1
 samples/cli/sample-apps Group updateGroupPredefinedRulePublicV1 \
-    --body '{"ruleDetail": [{"ruleAttribute": "xuVTekJg", "ruleCriteria": "MINIMUM", "ruleValue": 0.10679770946547151}]}' \
+    --body '{"ruleDetail": [{"ruleAttribute": "xuVTekJg", "ruleCriteria": "MAXIMUM", "ruleValue": 0.10679770946547151}]}' \
     --allowedAction 'h5HIpH0D' \
     --groupId 'viplEk4v' \
     --namespace 'j3LDp4yq' \

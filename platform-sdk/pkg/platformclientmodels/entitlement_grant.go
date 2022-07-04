@@ -34,7 +34,7 @@ type EntitlementGrant struct {
 	// Required: true
 	ItemNamespace *string `json:"itemNamespace"`
 
-	// language value from language tag, allowed format: en, en-US
+	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
@@ -46,7 +46,7 @@ type EntitlementGrant struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
+	// Enum: [ACHIEVEMENT GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REWARD]
 	Source string `json:"source,omitempty"`
 
 	// entitlement start date time
@@ -152,7 +152,7 @@ var entitlementGrantTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -162,32 +162,32 @@ func init() {
 
 const (
 
-	// EntitlementGrantSourcePURCHASE captures enum value "PURCHASE"
-	EntitlementGrantSourcePURCHASE string = "PURCHASE"
-
-	// EntitlementGrantSourceIAP captures enum value "IAP"
-	EntitlementGrantSourceIAP string = "IAP"
-
-	// EntitlementGrantSourcePROMOTION captures enum value "PROMOTION"
-	EntitlementGrantSourcePROMOTION string = "PROMOTION"
-
 	// EntitlementGrantSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	EntitlementGrantSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// EntitlementGrantSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	EntitlementGrantSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// EntitlementGrantSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	EntitlementGrantSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// EntitlementGrantSourceREWARD captures enum value "REWARD"
-	EntitlementGrantSourceREWARD string = "REWARD"
 
 	// EntitlementGrantSourceGIFT captures enum value "GIFT"
 	EntitlementGrantSourceGIFT string = "GIFT"
 
+	// EntitlementGrantSourceIAP captures enum value "IAP"
+	EntitlementGrantSourceIAP string = "IAP"
+
 	// EntitlementGrantSourceOTHER captures enum value "OTHER"
 	EntitlementGrantSourceOTHER string = "OTHER"
+
+	// EntitlementGrantSourcePROMOTION captures enum value "PROMOTION"
+	EntitlementGrantSourcePROMOTION string = "PROMOTION"
+
+	// EntitlementGrantSourcePURCHASE captures enum value "PURCHASE"
+	EntitlementGrantSourcePURCHASE string = "PURCHASE"
+
+	// EntitlementGrantSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	EntitlementGrantSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// EntitlementGrantSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	EntitlementGrantSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// EntitlementGrantSourceREWARD captures enum value "REWARD"
+	EntitlementGrantSourceREWARD string = "REWARD"
 )
 
 // prop value enum

@@ -24,7 +24,7 @@ type BundledItemInfo struct {
 	AppID string `json:"appId,omitempty"`
 
 	// App type, required when itemType is APP
-	// Enum: [GAME SOFTWARE DLC DEMO]
+	// Enum: [DEMO DLC GAME SOFTWARE]
 	AppType string `json:"appType,omitempty"`
 
 	// Base app id
@@ -60,7 +60,7 @@ type BundledItemInfo struct {
 
 	// Entitlement type
 	// Required: true
-	// Enum: [DURABLE CONSUMABLE]
+	// Enum: [CONSUMABLE DURABLE]
 	EntitlementType *string `json:"entitlementType"`
 
 	// customized item properties
@@ -85,7 +85,7 @@ type BundledItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// language
@@ -266,7 +266,7 @@ var bundledItemInfoTypeAppTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME","SOFTWARE","DLC","DEMO"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DEMO","DLC","GAME","SOFTWARE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -276,17 +276,17 @@ func init() {
 
 const (
 
+	// BundledItemInfoAppTypeDEMO captures enum value "DEMO"
+	BundledItemInfoAppTypeDEMO string = "DEMO"
+
+	// BundledItemInfoAppTypeDLC captures enum value "DLC"
+	BundledItemInfoAppTypeDLC string = "DLC"
+
 	// BundledItemInfoAppTypeGAME captures enum value "GAME"
 	BundledItemInfoAppTypeGAME string = "GAME"
 
 	// BundledItemInfoAppTypeSOFTWARE captures enum value "SOFTWARE"
 	BundledItemInfoAppTypeSOFTWARE string = "SOFTWARE"
-
-	// BundledItemInfoAppTypeDLC captures enum value "DLC"
-	BundledItemInfoAppTypeDLC string = "DLC"
-
-	// BundledItemInfoAppTypeDEMO captures enum value "DEMO"
-	BundledItemInfoAppTypeDEMO string = "DEMO"
 )
 
 // prop value enum
@@ -350,7 +350,7 @@ var bundledItemInfoTypeEntitlementTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DURABLE","CONSUMABLE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CONSUMABLE","DURABLE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -360,11 +360,11 @@ func init() {
 
 const (
 
-	// BundledItemInfoEntitlementTypeDURABLE captures enum value "DURABLE"
-	BundledItemInfoEntitlementTypeDURABLE string = "DURABLE"
-
 	// BundledItemInfoEntitlementTypeCONSUMABLE captures enum value "CONSUMABLE"
 	BundledItemInfoEntitlementTypeCONSUMABLE string = "CONSUMABLE"
+
+	// BundledItemInfoEntitlementTypeDURABLE captures enum value "DURABLE"
+	BundledItemInfoEntitlementTypeDURABLE string = "DURABLE"
 )
 
 // prop value enum
@@ -440,7 +440,7 @@ var bundledItemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -453,26 +453,26 @@ const (
 	// BundledItemInfoItemTypeAPP captures enum value "APP"
 	BundledItemInfoItemTypeAPP string = "APP"
 
-	// BundledItemInfoItemTypeCOINS captures enum value "COINS"
-	BundledItemInfoItemTypeCOINS string = "COINS"
-
-	// BundledItemInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	BundledItemInfoItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// BundledItemInfoItemTypeBUNDLE captures enum value "BUNDLE"
 	BundledItemInfoItemTypeBUNDLE string = "BUNDLE"
 
 	// BundledItemInfoItemTypeCODE captures enum value "CODE"
 	BundledItemInfoItemTypeCODE string = "CODE"
 
-	// BundledItemInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	BundledItemInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// BundledItemInfoItemTypeCOINS captures enum value "COINS"
+	BundledItemInfoItemTypeCOINS string = "COINS"
+
+	// BundledItemInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	BundledItemInfoItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// BundledItemInfoItemTypeMEDIA captures enum value "MEDIA"
+	BundledItemInfoItemTypeMEDIA string = "MEDIA"
 
 	// BundledItemInfoItemTypeSEASON captures enum value "SEASON"
 	BundledItemInfoItemTypeSEASON string = "SEASON"
 
-	// BundledItemInfoItemTypeMEDIA captures enum value "MEDIA"
-	BundledItemInfoItemTypeMEDIA string = "MEDIA"
+	// BundledItemInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	BundledItemInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum

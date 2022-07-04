@@ -33,7 +33,7 @@ type PaymentOrderNotifySimulation struct {
 
 	// payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 
 	// salesTax for xsolla
@@ -121,7 +121,7 @@ var paymentOrderNotifySimulationTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -131,29 +131,29 @@ func init() {
 
 const (
 
-	// PaymentOrderNotifySimulationPaymentProviderWALLET captures enum value "WALLET"
-	PaymentOrderNotifySimulationPaymentProviderWALLET string = "WALLET"
-
-	// PaymentOrderNotifySimulationPaymentProviderXSOLLA captures enum value "XSOLLA"
-	PaymentOrderNotifySimulationPaymentProviderXSOLLA string = "XSOLLA"
-
 	// PaymentOrderNotifySimulationPaymentProviderADYEN captures enum value "ADYEN"
 	PaymentOrderNotifySimulationPaymentProviderADYEN string = "ADYEN"
-
-	// PaymentOrderNotifySimulationPaymentProviderSTRIPE captures enum value "STRIPE"
-	PaymentOrderNotifySimulationPaymentProviderSTRIPE string = "STRIPE"
-
-	// PaymentOrderNotifySimulationPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	PaymentOrderNotifySimulationPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderNotifySimulationPaymentProviderALIPAY captures enum value "ALIPAY"
 	PaymentOrderNotifySimulationPaymentProviderALIPAY string = "ALIPAY"
 
-	// PaymentOrderNotifySimulationPaymentProviderWXPAY captures enum value "WXPAY"
-	PaymentOrderNotifySimulationPaymentProviderWXPAY string = "WXPAY"
+	// PaymentOrderNotifySimulationPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	PaymentOrderNotifySimulationPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderNotifySimulationPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentOrderNotifySimulationPaymentProviderPAYPAL string = "PAYPAL"
+
+	// PaymentOrderNotifySimulationPaymentProviderSTRIPE captures enum value "STRIPE"
+	PaymentOrderNotifySimulationPaymentProviderSTRIPE string = "STRIPE"
+
+	// PaymentOrderNotifySimulationPaymentProviderWALLET captures enum value "WALLET"
+	PaymentOrderNotifySimulationPaymentProviderWALLET string = "WALLET"
+
+	// PaymentOrderNotifySimulationPaymentProviderWXPAY captures enum value "WXPAY"
+	PaymentOrderNotifySimulationPaymentProviderWXPAY string = "WXPAY"
+
+	// PaymentOrderNotifySimulationPaymentProviderXSOLLA captures enum value "XSOLLA"
+	PaymentOrderNotifySimulationPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum

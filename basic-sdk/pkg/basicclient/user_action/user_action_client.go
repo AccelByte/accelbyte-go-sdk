@@ -33,20 +33,20 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersNoContent, *BanUsersBadRequest, *BanUsersNotFound, *BanUsersUnprocessableEntity, *BanUsersInternalServerError, error)
-	BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersNoContent, error)
+	BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersOK, *BanUsersBadRequest, *BanUsersNotFound, *BanUsersUnprocessableEntity, *BanUsersInternalServerError, error)
+	BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersOK, error)
 	GetActions(params *GetActionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActionsOK, *GetActionsBadRequest, *GetActionsNotFound, *GetActionsInternalServerError, error)
 	GetActionsShort(params *GetActionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActionsOK, error)
 	GetBannedUsers(params *GetBannedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetBannedUsersOK, *GetBannedUsersBadRequest, *GetBannedUsersNotFound, *GetBannedUsersUnprocessableEntity, *GetBannedUsersInternalServerError, error)
 	GetBannedUsersShort(params *GetBannedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetBannedUsersOK, error)
 	GetUserStatus(params *GetUserStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatusOK, *GetUserStatusBadRequest, *GetUserStatusNotFound, *GetUserStatusUnprocessableEntity, *GetUserStatusInternalServerError, error)
 	GetUserStatusShort(params *GetUserStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatusOK, error)
-	PublicReportUser(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserNoContent, *PublicReportUserBadRequest, *PublicReportUserUnprocessableEntity, error)
-	PublicReportUserShort(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserNoContent, error)
-	ReportUser(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserNoContent, *ReportUserUnprocessableEntity, error)
-	ReportUserShort(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserNoContent, error)
-	UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersNoContent, *UnBanUsersBadRequest, *UnBanUsersNotFound, *UnBanUsersUnprocessableEntity, *UnBanUsersInternalServerError, error)
-	UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersNoContent, error)
+	PublicReportUser(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserCreated, *PublicReportUserBadRequest, *PublicReportUserUnprocessableEntity, error)
+	PublicReportUserShort(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserCreated, error)
+	ReportUser(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserCreated, *ReportUserUnprocessableEntity, error)
+	ReportUserShort(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserCreated, error)
+	UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersOK, *UnBanUsersBadRequest, *UnBanUsersNotFound, *UnBanUsersUnprocessableEntity, *UnBanUsersInternalServerError, error)
+	UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -56,7 +56,7 @@ type ClientService interface {
 
   Ban user.&lt;br&gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersNoContent, *BanUsersBadRequest, *BanUsersNotFound, *BanUsersUnprocessableEntity, *BanUsersInternalServerError, error) {
+func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersOK, *BanUsersBadRequest, *BanUsersNotFound, *BanUsersUnprocessableEntity, *BanUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBanUsersParams()
@@ -89,7 +89,7 @@ func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInf
 
 	switch v := result.(type) {
 
-	case *BanUsersNoContent:
+	case *BanUsersOK:
 		return v, nil, nil, nil, nil, nil
 
 	case *BanUsersBadRequest:
@@ -109,7 +109,7 @@ func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInf
 	}
 }
 
-func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersNoContent, error) {
+func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBanUsersParams()
@@ -142,7 +142,7 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 
 	switch v := result.(type) {
 
-	case *BanUsersNoContent:
+	case *BanUsersOK:
 		return v, nil
 	case *BanUsersBadRequest:
 		return nil, v
@@ -479,7 +479,7 @@ func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtim
 
   This API is used to report a game user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserNoContent, *PublicReportUserBadRequest, *PublicReportUserUnprocessableEntity, error) {
+func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserCreated, *PublicReportUserBadRequest, *PublicReportUserUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicReportUserParams()
@@ -512,7 +512,7 @@ func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runti
 
 	switch v := result.(type) {
 
-	case *PublicReportUserNoContent:
+	case *PublicReportUserCreated:
 		return v, nil, nil, nil
 
 	case *PublicReportUserBadRequest:
@@ -526,7 +526,7 @@ func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runti
 	}
 }
 
-func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserNoContent, error) {
+func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicReportUserParams()
@@ -559,7 +559,7 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 
 	switch v := result.(type) {
 
-	case *PublicReportUserNoContent:
+	case *PublicReportUserCreated:
 		return v, nil
 	case *PublicReportUserBadRequest:
 		return nil, v
@@ -576,7 +576,7 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 
   This API is for game service to report a game player.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserNoContent, *ReportUserUnprocessableEntity, error) {
+func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserCreated, *ReportUserUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewReportUserParams()
@@ -609,7 +609,7 @@ func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAut
 
 	switch v := result.(type) {
 
-	case *ReportUserNoContent:
+	case *ReportUserCreated:
 		return v, nil, nil
 
 	case *ReportUserUnprocessableEntity:
@@ -620,7 +620,7 @@ func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAut
 	}
 }
 
-func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserNoContent, error) {
+func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewReportUserParams()
@@ -653,7 +653,7 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 
 	switch v := result.(type) {
 
-	case *ReportUserNoContent:
+	case *ReportUserCreated:
 		return v, nil
 	case *ReportUserUnprocessableEntity:
 		return nil, v
@@ -668,7 +668,7 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 
   Unban user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersNoContent, *UnBanUsersBadRequest, *UnBanUsersNotFound, *UnBanUsersUnprocessableEntity, *UnBanUsersInternalServerError, error) {
+func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersOK, *UnBanUsersBadRequest, *UnBanUsersNotFound, *UnBanUsersUnprocessableEntity, *UnBanUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnBanUsersParams()
@@ -701,7 +701,7 @@ func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAut
 
 	switch v := result.(type) {
 
-	case *UnBanUsersNoContent:
+	case *UnBanUsersOK:
 		return v, nil, nil, nil, nil, nil
 
 	case *UnBanUsersBadRequest:
@@ -721,7 +721,7 @@ func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAut
 	}
 }
 
-func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersNoContent, error) {
+func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnBanUsersParams()
@@ -754,7 +754,7 @@ func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.Clie
 
 	switch v := result.(type) {
 
-	case *UnBanUsersNoContent:
+	case *UnBanUsersOK:
 		return v, nil
 	case *UnBanUsersBadRequest:
 		return nil, v

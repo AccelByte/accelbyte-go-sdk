@@ -145,6 +145,11 @@ type ListAllTerminatedServersParams struct {
 
 	*/
 	StartDate *string
+	/*Status
+	  last status of the server
+
+	*/
+	Status *string
 	/*UserID
 	  ID of the user
 
@@ -345,6 +350,17 @@ func (o *ListAllTerminatedServersParams) WithStartDate(startDate *string) *ListA
 // SetStartDate adds the startDate to the list all terminated servers params
 func (o *ListAllTerminatedServersParams) SetStartDate(startDate *string) {
 	o.StartDate = startDate
+}
+
+// WithStatus adds the status to the list all terminated servers params
+func (o *ListAllTerminatedServersParams) WithStatus(status *string) *ListAllTerminatedServersParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the list all terminated servers params
+func (o *ListAllTerminatedServersParams) SetStatus(status *string) {
+	o.Status = status
 }
 
 // WithUserID adds the userID to the list all terminated servers params
@@ -568,6 +584,22 @@ func (o *ListAllTerminatedServersParams) WriteToRequest(r runtime.ClientRequest,
 		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("start_date", qStartDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+			if err := r.SetQueryParam("status", qStatus); err != nil {
 				return err
 			}
 		}

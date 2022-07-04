@@ -56,7 +56,7 @@ type FulfillmentHistoryInfo struct {
 
 	// fulfillment status
 	// Required: true
-	// Enum: [SUCCESS FAIL]
+	// Enum: [FAIL SUCCESS]
 	Status *string `json:"status"`
 
 	// updated at
@@ -247,7 +247,7 @@ var fulfillmentHistoryInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["SUCCESS","FAIL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAIL","SUCCESS"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -257,11 +257,11 @@ func init() {
 
 const (
 
-	// FulfillmentHistoryInfoStatusSUCCESS captures enum value "SUCCESS"
-	FulfillmentHistoryInfoStatusSUCCESS string = "SUCCESS"
-
 	// FulfillmentHistoryInfoStatusFAIL captures enum value "FAIL"
 	FulfillmentHistoryInfoStatusFAIL string = "FAIL"
+
+	// FulfillmentHistoryInfoStatusSUCCESS captures enum value "SUCCESS"
+	FulfillmentHistoryInfoStatusSUCCESS string = "SUCCESS"
 )
 
 // prop value enum

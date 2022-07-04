@@ -42,7 +42,7 @@ var platformWalletConfigUpdateAllowedBalanceOriginsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

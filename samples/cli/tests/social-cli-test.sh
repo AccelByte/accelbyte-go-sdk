@@ -557,7 +557,7 @@ eval_tap $? 64 'ResetUserStatItemValue1' test.out
 
 #- 65 BulkUpdateUserStatItemV2
 samples/cli/sample-apps Social bulkUpdateUserStatItemV2 \
-    --body '[{"additionalData": {"BWRQiW3K": {}}, "additionalKey": "FfU8icH4", "statCode": "081gRB1G", "updateStrategy": "MIN", "userId": "LfLg4RYu", "value": 0.47052862510821836}]' \
+    --body '[{"additionalData": {"BWRQiW3K": {}}, "additionalKey": "FfU8icH4", "statCode": "081gRB1G", "updateStrategy": "OVERRIDE", "userId": "LfLg4RYu", "value": 0.47052862510821836}]' \
     --namespace 'gUDEcJyI' \
     > test.out 2>&1
 eval_tap $? 65 'BulkUpdateUserStatItemV2' test.out
@@ -573,7 +573,7 @@ eval_tap $? 66 'BulkFetchOrDefaultStatItems1' test.out
 
 #- 67 BulkUpdateUserStatItem
 samples/cli/sample-apps Social bulkUpdateUserStatItem \
-    --body '[{"additionalData": {"omGX9sXT": {}}, "statCode": "Z0v8pqLf", "updateStrategy": "OVERRIDE", "value": 0.9011747963731541}]' \
+    --body '[{"additionalData": {"omGX9sXT": {}}, "statCode": "Z0v8pqLf", "updateStrategy": "INCREMENT", "value": 0.9011747963731541}]' \
     --namespace 'wGnReUUL' \
     --userId 'DX4QUIbb' \
     --additionalKey '5nh68Zny' \
@@ -600,7 +600,7 @@ eval_tap $? 69 'DeleteUserStatItems2' test.out
 
 #- 70 UpdateUserStatItemValue
 samples/cli/sample-apps Social updateUserStatItemValue \
-    --body '{"additionalData": {"IlewLRuH": {}}, "updateStrategy": "OVERRIDE", "value": 0.9787412248956047}' \
+    --body '{"additionalData": {"IlewLRuH": {}}, "updateStrategy": "INCREMENT", "value": 0.9787412248956047}' \
     --namespace 'j0HTeeWX' \
     --statCode 'lIcRidqc' \
     --userId 'tDpygY0a' \
@@ -610,7 +610,7 @@ eval_tap $? 70 'UpdateUserStatItemValue' test.out
 
 #- 71 BulkUpdateUserStatItem1
 samples/cli/sample-apps Social bulkUpdateUserStatItem1 \
-    --body '[{"additionalData": {"MO9Tw2JH": {}}, "additionalKey": "0qhWIwHW", "statCode": "TgzJFRYw", "updateStrategy": "MAX", "userId": "1IKZLO6V", "value": 0.8791084709379228}]' \
+    --body '[{"additionalData": {"MO9Tw2JH": {}}, "additionalKey": "0qhWIwHW", "statCode": "TgzJFRYw", "updateStrategy": "MIN", "userId": "1IKZLO6V", "value": 0.8791084709379228}]' \
     --namespace 'de46QmCi' \
     > test.out 2>&1
 eval_tap $? 71 'BulkUpdateUserStatItem1' test.out
@@ -627,7 +627,7 @@ eval_tap $? 72 'PublicQueryUserStatItems2' test.out
 
 #- 73 BulkUpdateUserStatItem2
 samples/cli/sample-apps Social bulkUpdateUserStatItem2 \
-    --body '[{"additionalData": {"Hog0blM1": {}}, "statCode": "d5MStYGc", "updateStrategy": "MIN", "value": 0.583079461337523}]' \
+    --body '[{"additionalData": {"Hog0blM1": {}}, "statCode": "d5MStYGc", "updateStrategy": "OVERRIDE", "value": 0.583079461337523}]' \
     --namespace 'NlEC0OEs' \
     --userId 'E3yzIsUP' \
     --additionalKey '0NjluOrG' \
@@ -636,7 +636,7 @@ eval_tap $? 73 'BulkUpdateUserStatItem2' test.out
 
 #- 74 UpdateUserStatItemValue1
 samples/cli/sample-apps Social updateUserStatItemValue1 \
-    --body '{"additionalData": {"ZTzsLW7F": {}}, "updateStrategy": "INCREMENT", "value": 0.08338569314990818}' \
+    --body '{"additionalData": {"ZTzsLW7F": {}}, "updateStrategy": "MAX", "value": 0.08338569314990818}' \
     --namespace '9nIkcZ38' \
     --statCode 'fUEanjKH' \
     --userId 'bXfk1zxd' \

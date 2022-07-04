@@ -61,21 +61,23 @@ func NewRetrievePolicyVersionsOK() *RetrievePolicyVersionsOK {
   successful operation
 */
 type RetrievePolicyVersionsOK struct {
-	Payload []*legalclientmodels.RetrievePolicyVersionResponse
+	Payload *legalclientmodels.RetrievePolicyVersionResponse
 }
 
 func (o *RetrievePolicyVersionsOK) Error() string {
 	return fmt.Sprintf("[GET /agreement/public/policies][%d] retrievePolicyVersionsOK  %+v", 200, o.Payload)
 }
 
-func (o *RetrievePolicyVersionsOK) GetPayload() []*legalclientmodels.RetrievePolicyVersionResponse {
+func (o *RetrievePolicyVersionsOK) GetPayload() *legalclientmodels.RetrievePolicyVersionResponse {
 	return o.Payload
 }
 
 func (o *RetrievePolicyVersionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(legalclientmodels.RetrievePolicyVersionResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

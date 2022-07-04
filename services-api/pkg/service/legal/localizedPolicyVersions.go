@@ -74,7 +74,7 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *loc
 }
 
 // Deprecated: Use RetrieveSingleLocalizedPolicyVersionShort instead
-func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
+func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -201,7 +201,7 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input
 	return created.GetPayload(), nil
 }
 
-func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
+func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

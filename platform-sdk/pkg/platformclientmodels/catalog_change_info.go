@@ -21,7 +21,7 @@ type CatalogChangeInfo struct {
 
 	// change action
 	// Required: true
-	// Enum: [CREATE UPDATE DELETE]
+	// Enum: [CREATE DELETE UPDATE]
 	Action *string `json:"action"`
 
 	// category path id type Category
@@ -43,7 +43,7 @@ type CatalogChangeInfo struct {
 	ItemID string `json:"itemId,omitempty"`
 
 	// item type
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// namespace
@@ -54,12 +54,16 @@ type CatalogChangeInfo struct {
 	// Format: date-time
 	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
+	// if it is selected for partial publish
+	// Required: true
+	Selected *bool `json:"selected"`
+
 	// item sku
 	Sku string `json:"sku,omitempty"`
 
 	// change status
 	// Required: true
-	// Enum: [UNPUBLISHED PUBLISHED]
+	// Enum: [PUBLISHED UNPUBLISHED]
 	Status *string `json:"status"`
 
 	// store id
@@ -70,7 +74,7 @@ type CatalogChangeInfo struct {
 	Title string `json:"title,omitempty"`
 
 	// change type
-	// Enum: [STORE CATEGORY ITEM]
+	// Enum: [CATEGORY ITEM STORE]
 	Type string `json:"type,omitempty"`
 
 	// updated time
@@ -107,6 +111,10 @@ func (m *CatalogChangeInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSelected(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -133,7 +141,7 @@ var catalogChangeInfoTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["CREATE","UPDATE","DELETE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CREATE","DELETE","UPDATE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -146,11 +154,11 @@ const (
 	// CatalogChangeInfoActionCREATE captures enum value "CREATE"
 	CatalogChangeInfoActionCREATE string = "CREATE"
 
-	// CatalogChangeInfoActionUPDATE captures enum value "UPDATE"
-	CatalogChangeInfoActionUPDATE string = "UPDATE"
-
 	// CatalogChangeInfoActionDELETE captures enum value "DELETE"
 	CatalogChangeInfoActionDELETE string = "DELETE"
+
+	// CatalogChangeInfoActionUPDATE captures enum value "UPDATE"
+	CatalogChangeInfoActionUPDATE string = "UPDATE"
 )
 
 // prop value enum
@@ -201,7 +209,7 @@ var catalogChangeInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -214,26 +222,26 @@ const (
 	// CatalogChangeInfoItemTypeAPP captures enum value "APP"
 	CatalogChangeInfoItemTypeAPP string = "APP"
 
-	// CatalogChangeInfoItemTypeCOINS captures enum value "COINS"
-	CatalogChangeInfoItemTypeCOINS string = "COINS"
-
-	// CatalogChangeInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	CatalogChangeInfoItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// CatalogChangeInfoItemTypeBUNDLE captures enum value "BUNDLE"
 	CatalogChangeInfoItemTypeBUNDLE string = "BUNDLE"
 
 	// CatalogChangeInfoItemTypeCODE captures enum value "CODE"
 	CatalogChangeInfoItemTypeCODE string = "CODE"
 
-	// CatalogChangeInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	CatalogChangeInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// CatalogChangeInfoItemTypeCOINS captures enum value "COINS"
+	CatalogChangeInfoItemTypeCOINS string = "COINS"
+
+	// CatalogChangeInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	CatalogChangeInfoItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// CatalogChangeInfoItemTypeMEDIA captures enum value "MEDIA"
+	CatalogChangeInfoItemTypeMEDIA string = "MEDIA"
 
 	// CatalogChangeInfoItemTypeSEASON captures enum value "SEASON"
 	CatalogChangeInfoItemTypeSEASON string = "SEASON"
 
-	// CatalogChangeInfoItemTypeMEDIA captures enum value "MEDIA"
-	CatalogChangeInfoItemTypeMEDIA string = "MEDIA"
+	// CatalogChangeInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	CatalogChangeInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
@@ -280,11 +288,20 @@ func (m *CatalogChangeInfo) validatePublishedAt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *CatalogChangeInfo) validateSelected(formats strfmt.Registry) error {
+
+	if err := validate.Required("selected", "body", m.Selected); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var catalogChangeInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["UNPUBLISHED","PUBLISHED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PUBLISHED","UNPUBLISHED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -294,11 +311,11 @@ func init() {
 
 const (
 
-	// CatalogChangeInfoStatusUNPUBLISHED captures enum value "UNPUBLISHED"
-	CatalogChangeInfoStatusUNPUBLISHED string = "UNPUBLISHED"
-
 	// CatalogChangeInfoStatusPUBLISHED captures enum value "PUBLISHED"
 	CatalogChangeInfoStatusPUBLISHED string = "PUBLISHED"
+
+	// CatalogChangeInfoStatusUNPUBLISHED captures enum value "UNPUBLISHED"
+	CatalogChangeInfoStatusUNPUBLISHED string = "UNPUBLISHED"
 )
 
 // prop value enum
@@ -336,7 +353,7 @@ var catalogChangeInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["STORE","CATEGORY","ITEM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CATEGORY","ITEM","STORE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -346,14 +363,14 @@ func init() {
 
 const (
 
-	// CatalogChangeInfoTypeSTORE captures enum value "STORE"
-	CatalogChangeInfoTypeSTORE string = "STORE"
-
 	// CatalogChangeInfoTypeCATEGORY captures enum value "CATEGORY"
 	CatalogChangeInfoTypeCATEGORY string = "CATEGORY"
 
 	// CatalogChangeInfoTypeITEM captures enum value "ITEM"
 	CatalogChangeInfoTypeITEM string = "ITEM"
+
+	// CatalogChangeInfoTypeSTORE captures enum value "STORE"
+	CatalogChangeInfoTypeSTORE string = "STORE"
 )
 
 // prop value enum

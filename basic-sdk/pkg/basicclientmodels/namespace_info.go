@@ -30,7 +30,7 @@ type NamespaceInfo struct {
 	Namespace string `json:"namespace,omitempty"`
 
 	// status
-	// Enum: [ACTIVE INACTIVE DELETED]
+	// Enum: [ACTIVE DELETED INACTIVE]
 	Status string `json:"status,omitempty"`
 
 	// updated at
@@ -77,7 +77,7 @@ var namespaceInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","DELETED","INACTIVE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -90,11 +90,11 @@ const (
 	// NamespaceInfoStatusACTIVE captures enum value "ACTIVE"
 	NamespaceInfoStatusACTIVE string = "ACTIVE"
 
-	// NamespaceInfoStatusINACTIVE captures enum value "INACTIVE"
-	NamespaceInfoStatusINACTIVE string = "INACTIVE"
-
 	// NamespaceInfoStatusDELETED captures enum value "DELETED"
 	NamespaceInfoStatusDELETED string = "DELETED"
+
+	// NamespaceInfoStatusINACTIVE captures enum value "INACTIVE"
+	NamespaceInfoStatusINACTIVE string = "INACTIVE"
 )
 
 // prop value enum

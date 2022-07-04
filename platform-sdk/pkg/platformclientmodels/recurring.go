@@ -21,7 +21,7 @@ type Recurring struct {
 
 	// recurring cycle
 	// Required: true
-	// Enum: [WEEKLY MONTHLY QUARTERLY YEARLY]
+	// Enum: [MONTHLY QUARTERLY WEEKLY YEARLY]
 	Cycle *string `json:"cycle"`
 
 	// fixed free days, 0 means not set
@@ -67,7 +67,7 @@ var recurringTypeCyclePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WEEKLY","MONTHLY","QUARTERLY","YEARLY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["MONTHLY","QUARTERLY","WEEKLY","YEARLY"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -77,14 +77,14 @@ func init() {
 
 const (
 
-	// RecurringCycleWEEKLY captures enum value "WEEKLY"
-	RecurringCycleWEEKLY string = "WEEKLY"
-
 	// RecurringCycleMONTHLY captures enum value "MONTHLY"
 	RecurringCycleMONTHLY string = "MONTHLY"
 
 	// RecurringCycleQUARTERLY captures enum value "QUARTERLY"
 	RecurringCycleQUARTERLY string = "QUARTERLY"
+
+	// RecurringCycleWEEKLY captures enum value "WEEKLY"
+	RecurringCycleWEEKLY string = "WEEKLY"
 
 	// RecurringCycleYEARLY captures enum value "YEARLY"
 	RecurringCycleYEARLY string = "YEARLY"

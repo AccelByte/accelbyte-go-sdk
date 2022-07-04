@@ -21,7 +21,7 @@ type OrderHistoryInfo struct {
 
 	// The action of the order
 	// Required: true
-	// Enum: [INIT CHARGED CHARGEBACK CHARGEBACK_REVERSED FULFILLED FULFILL_FAILED REFUNDING REFUNDED REFUND_FAILED CLOSE DELETED SET_STATUS]
+	// Enum: [CHARGEBACK CHARGEBACK_REVERSED CHARGED CLOSE DELETED FULFILLED FULFILL_FAILED INIT REFUNDED REFUNDING REFUND_FAILED SET_STATUS]
 	Action *string `json:"action"`
 
 	// created at
@@ -96,7 +96,7 @@ var orderHistoryInfoTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","CHARGED","CHARGEBACK","CHARGEBACK_REVERSED","FULFILLED","FULFILL_FAILED","REFUNDING","REFUNDED","REFUND_FAILED","CLOSE","DELETED","SET_STATUS"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CLOSE","DELETED","FULFILLED","FULFILL_FAILED","INIT","REFUNDED","REFUNDING","REFUND_FAILED","SET_STATUS"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -106,17 +106,20 @@ func init() {
 
 const (
 
-	// OrderHistoryInfoActionINIT captures enum value "INIT"
-	OrderHistoryInfoActionINIT string = "INIT"
-
-	// OrderHistoryInfoActionCHARGED captures enum value "CHARGED"
-	OrderHistoryInfoActionCHARGED string = "CHARGED"
-
 	// OrderHistoryInfoActionCHARGEBACK captures enum value "CHARGEBACK"
 	OrderHistoryInfoActionCHARGEBACK string = "CHARGEBACK"
 
 	// OrderHistoryInfoActionCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	OrderHistoryInfoActionCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
+
+	// OrderHistoryInfoActionCHARGED captures enum value "CHARGED"
+	OrderHistoryInfoActionCHARGED string = "CHARGED"
+
+	// OrderHistoryInfoActionCLOSE captures enum value "CLOSE"
+	OrderHistoryInfoActionCLOSE string = "CLOSE"
+
+	// OrderHistoryInfoActionDELETED captures enum value "DELETED"
+	OrderHistoryInfoActionDELETED string = "DELETED"
 
 	// OrderHistoryInfoActionFULFILLED captures enum value "FULFILLED"
 	OrderHistoryInfoActionFULFILLED string = "FULFILLED"
@@ -124,20 +127,17 @@ const (
 	// OrderHistoryInfoActionFULFILLFAILED captures enum value "FULFILL_FAILED"
 	OrderHistoryInfoActionFULFILLFAILED string = "FULFILL_FAILED"
 
-	// OrderHistoryInfoActionREFUNDING captures enum value "REFUNDING"
-	OrderHistoryInfoActionREFUNDING string = "REFUNDING"
+	// OrderHistoryInfoActionINIT captures enum value "INIT"
+	OrderHistoryInfoActionINIT string = "INIT"
 
 	// OrderHistoryInfoActionREFUNDED captures enum value "REFUNDED"
 	OrderHistoryInfoActionREFUNDED string = "REFUNDED"
 
+	// OrderHistoryInfoActionREFUNDING captures enum value "REFUNDING"
+	OrderHistoryInfoActionREFUNDING string = "REFUNDING"
+
 	// OrderHistoryInfoActionREFUNDFAILED captures enum value "REFUND_FAILED"
 	OrderHistoryInfoActionREFUNDFAILED string = "REFUND_FAILED"
-
-	// OrderHistoryInfoActionCLOSE captures enum value "CLOSE"
-	OrderHistoryInfoActionCLOSE string = "CLOSE"
-
-	// OrderHistoryInfoActionDELETED captures enum value "DELETED"
-	OrderHistoryInfoActionDELETED string = "DELETED"
 
 	// OrderHistoryInfoActionSETSTATUS captures enum value "SET_STATUS"
 	OrderHistoryInfoActionSETSTATUS string = "SET_STATUS"

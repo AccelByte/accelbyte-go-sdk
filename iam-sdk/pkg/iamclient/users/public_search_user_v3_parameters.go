@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicSearchUserV3Params creates a new PublicSearchUserV3Params object
@@ -76,7 +77,7 @@ type PublicSearchUserV3Params struct {
 	  The number of data retrieved in a page, default 100
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -86,7 +87,7 @@ type PublicSearchUserV3Params struct {
 	  number of offset, default 0
 
 	*/
-	Offset *string
+	Offset *int64
 	/*Query
 	  Query, can be either display name or username
 
@@ -158,13 +159,13 @@ func (o *PublicSearchUserV3Params) SetBy(by *string) {
 }
 
 // WithLimit adds the limit to the public search user v3 params
-func (o *PublicSearchUserV3Params) WithLimit(limit *string) *PublicSearchUserV3Params {
+func (o *PublicSearchUserV3Params) WithLimit(limit *int64) *PublicSearchUserV3Params {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the public search user v3 params
-func (o *PublicSearchUserV3Params) SetLimit(limit *string) {
+func (o *PublicSearchUserV3Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -180,13 +181,13 @@ func (o *PublicSearchUserV3Params) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the public search user v3 params
-func (o *PublicSearchUserV3Params) WithOffset(offset *string) *PublicSearchUserV3Params {
+func (o *PublicSearchUserV3Params) WithOffset(offset *int64) *PublicSearchUserV3Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the public search user v3 params
-func (o *PublicSearchUserV3Params) SetOffset(offset *string) {
+func (o *PublicSearchUserV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -228,11 +229,11 @@ func (o *PublicSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -249,11 +250,11 @@ func (o *PublicSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

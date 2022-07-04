@@ -27,8 +27,8 @@ var GetPublicFollowersCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &public_follow.GetPublicFollowersParams{
 			Namespace: namespace,
 			UserID:    userId,
@@ -53,6 +53,6 @@ func init() {
 	_ = GetPublicFollowersCmd.MarkFlagRequired("namespace")
 	GetPublicFollowersCmd.Flags().String("userId", "", "User id")
 	_ = GetPublicFollowersCmd.MarkFlagRequired("userId")
-	GetPublicFollowersCmd.Flags().String("limit", "20", "Limit")
-	GetPublicFollowersCmd.Flags().String("offset", "0", "Offset")
+	GetPublicFollowersCmd.Flags().Int64("limit", 20, "Limit")
+	GetPublicFollowersCmd.Flags().Int64("offset", 0, "Offset")
 }

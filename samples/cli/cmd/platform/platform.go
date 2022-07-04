@@ -7,6 +7,7 @@
 package platform
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/platform/achievementPlatform"
 	"github.com/AccelByte/sample-apps/cmd/platform/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/platform/campaign"
 	"github.com/AccelByte/sample-apps/cmd/platform/catalogChanges"
@@ -184,6 +185,12 @@ func init() {
 	PlatformCmd.AddCommand(store.DeleteStoreCmd)
 	PlatformCmd.AddCommand(catalogChanges.QueryChangesCmd)
 	PlatformCmd.AddCommand(catalogChanges.PublishAllCmd)
+	PlatformCmd.AddCommand(catalogChanges.PublishSelectedCmd)
+	PlatformCmd.AddCommand(catalogChanges.SelectAllRecordsCmd)
+	PlatformCmd.AddCommand(catalogChanges.GetStatisticCmd)
+	PlatformCmd.AddCommand(catalogChanges.UnselectAllRecordsCmd)
+	PlatformCmd.AddCommand(catalogChanges.SelectRecordCmd)
+	PlatformCmd.AddCommand(catalogChanges.UnselectRecordCmd)
 	PlatformCmd.AddCommand(store.CloneStoreCmd)
 	PlatformCmd.AddCommand(store.ExportStoreCmd)
 	PlatformCmd.AddCommand(subscription.QuerySubscriptionsCmd)
@@ -192,6 +199,8 @@ func init() {
 	PlatformCmd.AddCommand(ticket.DecreaseTicketSaleCmd)
 	PlatformCmd.AddCommand(ticket.GetTicketBoothIDCmd)
 	PlatformCmd.AddCommand(ticket.IncreaseTicketSaleCmd)
+	PlatformCmd.AddCommand(achievementPlatform.UnlockSteamUserAchievementCmd)
+	PlatformCmd.AddCommand(achievementPlatform.UpdateXblUserAchievementCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeCampaignCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeEntitlementCmd)
 	PlatformCmd.AddCommand(anonymization.AnonymizeFulfillmentCmd)

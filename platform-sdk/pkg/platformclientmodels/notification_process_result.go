@@ -29,7 +29,7 @@ type NotificationProcessResult struct {
 	Severity int32 `json:"severity,omitempty"`
 
 	// status
-	// Enum: [PROCESSED ERROR WARN IGNORED]
+	// Enum: [ERROR IGNORED PROCESSED WARN]
 	Status string `json:"status,omitempty"`
 }
 
@@ -51,7 +51,7 @@ var notificationProcessResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PROCESSED","ERROR","WARN","IGNORED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ERROR","IGNORED","PROCESSED","WARN"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -61,17 +61,17 @@ func init() {
 
 const (
 
-	// NotificationProcessResultStatusPROCESSED captures enum value "PROCESSED"
-	NotificationProcessResultStatusPROCESSED string = "PROCESSED"
-
 	// NotificationProcessResultStatusERROR captures enum value "ERROR"
 	NotificationProcessResultStatusERROR string = "ERROR"
 
-	// NotificationProcessResultStatusWARN captures enum value "WARN"
-	NotificationProcessResultStatusWARN string = "WARN"
-
 	// NotificationProcessResultStatusIGNORED captures enum value "IGNORED"
 	NotificationProcessResultStatusIGNORED string = "IGNORED"
+
+	// NotificationProcessResultStatusPROCESSED captures enum value "PROCESSED"
+	NotificationProcessResultStatusPROCESSED string = "PROCESSED"
+
+	// NotificationProcessResultStatusWARN captures enum value "WARN"
+	NotificationProcessResultStatusWARN string = "WARN"
 )
 
 // prop value enum

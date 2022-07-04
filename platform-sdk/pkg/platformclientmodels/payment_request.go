@@ -25,7 +25,7 @@ type PaymentRequest struct {
 	Amount *int64 `json:"amount"`
 
 	// wallet platform, base on platform wallet rule to payment wallet
-	// Enum: [Playstation Xbox Steam Epic IOS GooglePlay Nintendo Other]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam Xbox]
 	WalletPlatform string `json:"walletPlatform,omitempty"`
 }
 
@@ -64,7 +64,7 @@ var paymentRequestTypeWalletPlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","IOS","GooglePlay","Nintendo","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Steam","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -74,29 +74,29 @@ func init() {
 
 const (
 
-	// PaymentRequestWalletPlatformPlaystation captures enum value "Playstation"
-	PaymentRequestWalletPlatformPlaystation string = "Playstation"
-
-	// PaymentRequestWalletPlatformXbox captures enum value "Xbox"
-	PaymentRequestWalletPlatformXbox string = "Xbox"
-
-	// PaymentRequestWalletPlatformSteam captures enum value "Steam"
-	PaymentRequestWalletPlatformSteam string = "Steam"
-
 	// PaymentRequestWalletPlatformEpic captures enum value "Epic"
 	PaymentRequestWalletPlatformEpic string = "Epic"
 
-	// PaymentRequestWalletPlatformIOS captures enum value "IOS"
-	PaymentRequestWalletPlatformIOS string = "IOS"
-
 	// PaymentRequestWalletPlatformGooglePlay captures enum value "GooglePlay"
 	PaymentRequestWalletPlatformGooglePlay string = "GooglePlay"
+
+	// PaymentRequestWalletPlatformIOS captures enum value "IOS"
+	PaymentRequestWalletPlatformIOS string = "IOS"
 
 	// PaymentRequestWalletPlatformNintendo captures enum value "Nintendo"
 	PaymentRequestWalletPlatformNintendo string = "Nintendo"
 
 	// PaymentRequestWalletPlatformOther captures enum value "Other"
 	PaymentRequestWalletPlatformOther string = "Other"
+
+	// PaymentRequestWalletPlatformPlaystation captures enum value "Playstation"
+	PaymentRequestWalletPlatformPlaystation string = "Playstation"
+
+	// PaymentRequestWalletPlatformSteam captures enum value "Steam"
+	PaymentRequestWalletPlatformSteam string = "Steam"
+
+	// PaymentRequestWalletPlatformXbox captures enum value "Xbox"
+	PaymentRequestWalletPlatformXbox string = "Xbox"
 )
 
 // prop value enum

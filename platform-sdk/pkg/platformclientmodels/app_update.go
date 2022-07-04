@@ -45,7 +45,7 @@ type AppUpdate struct {
 	Players []string `json:"players"`
 
 	// primary genre
-	// Enum: [Action Adventure Casual FreeToPlay Indie MassivelyMultiplayer Racing RPG Simulation Sports Strategy]
+	// Enum: [Action Adventure Casual FreeToPlay Indie MassivelyMultiplayer RPG Racing Simulation Sports Strategy]
 	PrimaryGenre string `json:"primaryGenre,omitempty"`
 
 	// publisher, it should starts and ends with alphabets uppercase/lowercase or numeric, allowed separators, these symbols ',.-, and white-space, max length is 48
@@ -130,7 +130,7 @@ var appUpdateGenresItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","Racing","RPG","Simulation","Sports","Strategy"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","RPG","Racing","Simulation","Sports","Strategy"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -217,7 +217,7 @@ var appUpdatePlatformsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Windows","MacOS","Linux","IOS","Android"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Android","IOS","Linux","MacOS","Windows"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -254,7 +254,7 @@ var appUpdatePlayersItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Single","Multi","CrossPlatformMulti","MMO","Coop","LocalCoop"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Coop","CrossPlatformMulti","LocalCoop","MMO","Multi","Single"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -291,7 +291,7 @@ var appUpdateTypePrimaryGenrePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","Racing","RPG","Simulation","Sports","Strategy"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","RPG","Racing","Simulation","Sports","Strategy"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -319,11 +319,11 @@ const (
 	// AppUpdatePrimaryGenreMassivelyMultiplayer captures enum value "MassivelyMultiplayer"
 	AppUpdatePrimaryGenreMassivelyMultiplayer string = "MassivelyMultiplayer"
 
-	// AppUpdatePrimaryGenreRacing captures enum value "Racing"
-	AppUpdatePrimaryGenreRacing string = "Racing"
-
 	// AppUpdatePrimaryGenreRPG captures enum value "RPG"
 	AppUpdatePrimaryGenreRPG string = "RPG"
+
+	// AppUpdatePrimaryGenreRacing captures enum value "Racing"
+	AppUpdatePrimaryGenreRacing string = "Racing"
 
 	// AppUpdatePrimaryGenreSimulation captures enum value "Simulation"
 	AppUpdatePrimaryGenreSimulation string = "Simulation"

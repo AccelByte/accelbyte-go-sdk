@@ -886,6 +886,8 @@ func (a *Client) ListLocalServerShort(params *ListLocalServerParams, authInfo ru
 Required scope: social
 
 This endpoint lists all of dedicated servers in a namespace managed by this service.
+
+Parameter Offset and Count is Required
 */
 func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, *ListServerUnauthorized, *ListServerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -987,6 +989,8 @@ func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.Clie
 Required scope: social
 
 This endpoint lists all of sessions in a namespace managed by this service.
+
+Parameter Offset and Count is Required
 */
 func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, *ListSessionUnauthorized, *ListSessionInternalServerError, error) {
 	// TODO: Validate the params before sending

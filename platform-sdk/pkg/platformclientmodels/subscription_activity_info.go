@@ -21,7 +21,7 @@ type SubscriptionActivityInfo struct {
 
 	// subscription action
 	// Required: true
-	// Enum: [SUBSCRIBE CANCEL IMMEDIATE_CANCEL RESUBSCRIBE GRANT_DAYS CHANGE_BILLING_ACCOUNT]
+	// Enum: [CANCEL CHANGE_BILLING_ACCOUNT GRANT_DAYS IMMEDIATE_CANCEL RESUBSCRIBE SUBSCRIBE]
 	Action *string `json:"action"`
 
 	// subscription already charged cycle
@@ -59,7 +59,7 @@ type SubscriptionActivityInfo struct {
 
 	// subscription subscribed by
 	// Required: true
-	// Enum: [USER PLATFORM]
+	// Enum: [PLATFORM USER]
 	SubscribedBy *string `json:"subscribedBy"`
 
 	// Subscription id
@@ -133,7 +133,7 @@ var subscriptionActivityInfoTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["SUBSCRIBE","CANCEL","IMMEDIATE_CANCEL","RESUBSCRIBE","GRANT_DAYS","CHANGE_BILLING_ACCOUNT"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CANCEL","CHANGE_BILLING_ACCOUNT","GRANT_DAYS","IMMEDIATE_CANCEL","RESUBSCRIBE","SUBSCRIBE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -143,11 +143,14 @@ func init() {
 
 const (
 
-	// SubscriptionActivityInfoActionSUBSCRIBE captures enum value "SUBSCRIBE"
-	SubscriptionActivityInfoActionSUBSCRIBE string = "SUBSCRIBE"
-
 	// SubscriptionActivityInfoActionCANCEL captures enum value "CANCEL"
 	SubscriptionActivityInfoActionCANCEL string = "CANCEL"
+
+	// SubscriptionActivityInfoActionCHANGEBILLINGACCOUNT captures enum value "CHANGE_BILLING_ACCOUNT"
+	SubscriptionActivityInfoActionCHANGEBILLINGACCOUNT string = "CHANGE_BILLING_ACCOUNT"
+
+	// SubscriptionActivityInfoActionGRANTDAYS captures enum value "GRANT_DAYS"
+	SubscriptionActivityInfoActionGRANTDAYS string = "GRANT_DAYS"
 
 	// SubscriptionActivityInfoActionIMMEDIATECANCEL captures enum value "IMMEDIATE_CANCEL"
 	SubscriptionActivityInfoActionIMMEDIATECANCEL string = "IMMEDIATE_CANCEL"
@@ -155,11 +158,8 @@ const (
 	// SubscriptionActivityInfoActionRESUBSCRIBE captures enum value "RESUBSCRIBE"
 	SubscriptionActivityInfoActionRESUBSCRIBE string = "RESUBSCRIBE"
 
-	// SubscriptionActivityInfoActionGRANTDAYS captures enum value "GRANT_DAYS"
-	SubscriptionActivityInfoActionGRANTDAYS string = "GRANT_DAYS"
-
-	// SubscriptionActivityInfoActionCHANGEBILLINGACCOUNT captures enum value "CHANGE_BILLING_ACCOUNT"
-	SubscriptionActivityInfoActionCHANGEBILLINGACCOUNT string = "CHANGE_BILLING_ACCOUNT"
+	// SubscriptionActivityInfoActionSUBSCRIBE captures enum value "SUBSCRIBE"
+	SubscriptionActivityInfoActionSUBSCRIBE string = "SUBSCRIBE"
 )
 
 // prop value enum
@@ -237,7 +237,7 @@ var subscriptionActivityInfoTypeSubscribedByPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["USER","PLATFORM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PLATFORM","USER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -247,11 +247,11 @@ func init() {
 
 const (
 
-	// SubscriptionActivityInfoSubscribedByUSER captures enum value "USER"
-	SubscriptionActivityInfoSubscribedByUSER string = "USER"
-
 	// SubscriptionActivityInfoSubscribedByPLATFORM captures enum value "PLATFORM"
 	SubscriptionActivityInfoSubscribedByPLATFORM string = "PLATFORM"
+
+	// SubscriptionActivityInfoSubscribedByUSER captures enum value "USER"
+	SubscriptionActivityInfoSubscribedByUSER string = "USER"
 )
 
 // prop value enum

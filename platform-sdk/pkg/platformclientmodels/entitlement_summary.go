@@ -21,7 +21,7 @@ type EntitlementSummary struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP ENTITLEMENT CODE SUBSCRIPTION MEDIA]
+	// Enum: [APP CODE ENTITLEMENT MEDIA SUBSCRIPTION]
 	Clazz *string `json:"clazz"`
 
 	// created at
@@ -62,7 +62,7 @@ type EntitlementSummary struct {
 
 	// entitlement type
 	// Required: true
-	// Enum: [DURABLE CONSUMABLE]
+	// Enum: [CONSUMABLE DURABLE]
 	Type *string `json:"type"`
 
 	// updated at
@@ -125,7 +125,7 @@ var entitlementSummaryTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","CODE","ENTITLEMENT","MEDIA","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -138,17 +138,17 @@ const (
 	// EntitlementSummaryClazzAPP captures enum value "APP"
 	EntitlementSummaryClazzAPP string = "APP"
 
-	// EntitlementSummaryClazzENTITLEMENT captures enum value "ENTITLEMENT"
-	EntitlementSummaryClazzENTITLEMENT string = "ENTITLEMENT"
-
 	// EntitlementSummaryClazzCODE captures enum value "CODE"
 	EntitlementSummaryClazzCODE string = "CODE"
 
-	// EntitlementSummaryClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	EntitlementSummaryClazzSUBSCRIPTION string = "SUBSCRIPTION"
+	// EntitlementSummaryClazzENTITLEMENT captures enum value "ENTITLEMENT"
+	EntitlementSummaryClazzENTITLEMENT string = "ENTITLEMENT"
 
 	// EntitlementSummaryClazzMEDIA captures enum value "MEDIA"
 	EntitlementSummaryClazzMEDIA string = "MEDIA"
+
+	// EntitlementSummaryClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	EntitlementSummaryClazzSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum
@@ -234,7 +234,7 @@ var entitlementSummaryTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DURABLE","CONSUMABLE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CONSUMABLE","DURABLE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -244,11 +244,11 @@ func init() {
 
 const (
 
-	// EntitlementSummaryTypeDURABLE captures enum value "DURABLE"
-	EntitlementSummaryTypeDURABLE string = "DURABLE"
-
 	// EntitlementSummaryTypeCONSUMABLE captures enum value "CONSUMABLE"
 	EntitlementSummaryTypeCONSUMABLE string = "CONSUMABLE"
+
+	// EntitlementSummaryTypeDURABLE captures enum value "DURABLE"
+	EntitlementSummaryTypeDURABLE string = "DURABLE"
 )
 
 // prop value enum

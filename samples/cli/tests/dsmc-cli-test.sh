@@ -115,8 +115,8 @@ eval_tap $? 12 'ClearCache' test.out
 #- 13 GetAllDeployment
 samples/cli/sample-apps Dsmc getAllDeployment \
     --namespace 'iX7jpkVZ' \
-    --count '21' \
-    --name '3IaQYEmq' \
+    --name 'k3IaQYEm' \
+    --count '32' \
     --offset '64' \
     > test.out 2>&1
 eval_tap $? 13 'GetAllDeployment' test.out
@@ -296,183 +296,183 @@ eval_tap $? 34 'UpdatePort' test.out
 #- 35 ListImages
 samples/cli/sample-apps Dsmc listImages \
     --namespace 'F89xAc3Y' \
-    --count '95' \
-    --offset '11' \
-    --q 'aENtrl0p' \
-    --sortBy 'version' \
+    --q 'VfaENtrl' \
+    --sortBy 'createdAt' \
     --sortDirection 'desc' \
+    --count '50' \
+    --offset '66' \
     > test.out 2>&1
 eval_tap $? 35 'ListImages' test.out
 
 #- 36 DeleteImage
 samples/cli/sample-apps Dsmc deleteImage \
-    --namespace 'zHuBMYQS' \
-    --imageURI 'A2jz1ZOp' \
-    --version 'dOjSyMdd' \
+    --namespace 'uBMYQSA2' \
+    --imageURI 'jz1ZOpdO' \
+    --version 'jSyMddB4' \
     > test.out 2>&1
 eval_tap $? 36 'DeleteImage' test.out
 
 #- 37 ExportImages
 samples/cli/sample-apps Dsmc exportImages \
-    --namespace 'B41JuMf7' \
+    --namespace '1JuMf7RU' \
     > test.out 2>&1
 eval_tap $? 37 'ExportImages' test.out
 
 #- 38 GetImageLimit
 samples/cli/sample-apps Dsmc getImageLimit \
-    --namespace 'RUyBHRj8' \
+    --namespace 'yBHRj8Ii' \
     > test.out 2>&1
 eval_tap $? 38 'GetImageLimit' test.out
 
 #- 39 DeleteImagePatch
 samples/cli/sample-apps Dsmc deleteImagePatch \
-    --namespace 'IiRimRll' \
-    --imageURI 'HT6Dc40v' \
-    --version 'FFA6gpU7' \
-    --versionPatch 'EW3x1dCp' \
+    --namespace 'RimRllHT' \
+    --imageURI '6Dc40vFF' \
+    --version 'A6gpU7EW' \
+    --versionPatch '3x1dCpm5' \
     > test.out 2>&1
 eval_tap $? 39 'DeleteImagePatch' test.out
 
 #- 40 GetImageDetail
 samples/cli/sample-apps Dsmc getImageDetail \
-    --namespace 'm55gOeqQ' \
-    --version 'IqcJVKmB' \
+    --namespace '5gOeqQIq' \
+    --version 'cJVKmBM1' \
     > test.out 2>&1
 eval_tap $? 40 'GetImageDetail' test.out
 
 #- 41 GetImagePatches
 samples/cli/sample-apps Dsmc getImagePatches \
-    --namespace 'M1J1IbuT' \
-    --version 'rrkbmuT1' \
+    --namespace 'J1IbuTrr' \
+    --version 'kbmuT1wh' \
     > test.out 2>&1
 eval_tap $? 41 'GetImagePatches' test.out
 
 #- 42 GetImagePatchDetail
 samples/cli/sample-apps Dsmc getImagePatchDetail \
-    --namespace 'whOqmEnD' \
-    --version 'XIWrBPlS' \
-    --versionPatch 'ay46mv71' \
+    --namespace 'OqmEnDXI' \
+    --version 'WrBPlSay' \
+    --versionPatch '46mv71BA' \
     > test.out 2>&1
 eval_tap $? 42 'GetImagePatchDetail' test.out
 
 #- 43 ListServer
 samples/cli/sample-apps Dsmc listServer \
-    --namespace 'BAZAOjtF' \
-    --count '70' \
-    --offset '42' \
-    --region 'mTj7tT7T' \
+    --namespace 'ZAOjtFJ2' \
+    --region 'vmTj7tT7' \
+    --count '90' \
+    --offset '67' \
     > test.out 2>&1
 eval_tap $? 43 'ListServer' test.out
 
 #- 44 CountServer
 samples/cli/sample-apps Dsmc countServer \
-    --namespace 'ZHWDdCkI' \
+    --namespace 'WDdCkIsZ' \
     > test.out 2>&1
 eval_tap $? 44 'CountServer' test.out
 
 #- 45 CountServerDetailed
 samples/cli/sample-apps Dsmc countServerDetailed \
-    --namespace 'sZoArWwP' \
-    --region 'HcyFAdAt' \
+    --namespace 'oArWwPHc' \
+    --region 'yFAdAtYc' \
     > test.out 2>&1
 eval_tap $? 45 'CountServerDetailed' test.out
 
 #- 46 ListLocalServer
 samples/cli/sample-apps Dsmc listLocalServer \
-    --namespace 'YciLIgRw' \
+    --namespace 'iLIgRwFR' \
     > test.out 2>&1
 eval_tap $? 46 'ListLocalServer' test.out
 
 #- 47 DeleteLocalServer
 samples/cli/sample-apps Dsmc deleteLocalServer \
-    --name 'FRr0gwB9' \
-    --namespace 'tz3vp99X' \
+    --name 'r0gwB9tz' \
+    --namespace '3vp99XVl' \
     > test.out 2>&1
 eval_tap $? 47 'DeleteLocalServer' test.out
 
 #- 48 GetServer
 samples/cli/sample-apps Dsmc getServer \
-    --namespace 'VlV8rK3t' \
-    --podName 'E6n0smip' \
+    --namespace 'V8rK3tE6' \
+    --podName 'n0smip1t' \
     > test.out 2>&1
 eval_tap $? 48 'GetServer' test.out
 
 #- 49 DeleteServer
 samples/cli/sample-apps Dsmc deleteServer \
-    --namespace '1tw3L7cU' \
-    --podName 'd9pqtv6J' \
+    --namespace 'w3L7cUd9' \
+    --podName 'pqtv6JfP' \
     > test.out 2>&1
 eval_tap $? 49 'DeleteServer' test.out
 
 #- 50 GetServerLogs
 samples/cli/sample-apps Dsmc getServerLogs \
-    --namespace 'fPZwcCVO' \
-    --podName 'XcVa80Tm' \
+    --namespace 'ZwcCVOXc' \
+    --podName 'Va80TmCw' \
     > test.out 2>&1
 eval_tap $? 50 'GetServerLogs' test.out
 
 #- 51 ListSession
 samples/cli/sample-apps Dsmc listSession \
-    --namespace 'CwtD2lAH' \
-    --count '29' \
-    --offset '79' \
-    --region 'dcBIgzrD' \
+    --namespace 'tD2lAH01' \
+    --region 'o6NdcBIg' \
     --withServer 'True' \
+    --count '34' \
+    --offset '58' \
     > test.out 2>&1
 eval_tap $? 51 'ListSession' test.out
 
 #- 52 CountSession
 samples/cli/sample-apps Dsmc countSession \
-    --namespace 'WpFBYGmm' \
-    --region 'BawMyoKy' \
+    --namespace 'yWpFBYGm' \
+    --region 'mBawMyoK' \
     > test.out 2>&1
 eval_tap $? 52 'CountSession' test.out
 
 #- 53 DeleteSession
 samples/cli/sample-apps Dsmc deleteSession \
-    --namespace 'NpdAasm8' \
-    --sessionID 'xwUfzOlQ' \
+    --namespace 'yNpdAasm' \
+    --sessionID '8xwUfzOl' \
     > test.out 2>&1
 eval_tap $? 53 'DeleteSession' test.out
 
 #- 54 ExportConfigV1
 samples/cli/sample-apps Dsmc exportConfigV1 \
-    --namespace 'iZY4NbOQ' \
+    --namespace 'QiZY4NbO' \
     > test.out 2>&1
 eval_tap $? 54 'ExportConfigV1' test.out
 
 #- 55 ImportConfigV1
 samples/cli/sample-apps Dsmc importConfigV1 \
     --file 'tmp.dat' \
-    --namespace 'XJ7uOTzN' \
+    --namespace 'QXJ7uOTz' \
     > test.out 2>&1
 eval_tap $? 55 'ImportConfigV1' test.out
 
 #- 56 ImageDetailClient
 samples/cli/sample-apps Dsmc imageDetailClient \
-    --namespace 'Mvuq2tNl' \
-    --version '4CX4IjiK' \
+    --namespace 'NMvuq2tN' \
+    --version 'l4CX4Iji' \
     > test.out 2>&1
 eval_tap $? 56 'ImageDetailClient' test.out
 
 #- 57 DeregisterLocalServer
 samples/cli/sample-apps Dsmc deregisterLocalServer \
-    --body '{"name": "4DEUJRVK"}' \
-    --namespace '3l9Eb0R1' \
+    --body '{"name": "K4DEUJRV"}' \
+    --namespace 'K3l9Eb0R' \
     > test.out 2>&1
 eval_tap $? 57 'DeregisterLocalServer' test.out
 
 #- 58 RegisterLocalServer
 samples/cli/sample-apps Dsmc registerLocalServer \
-    --body '{"custom_attribute": "XRb0RH8v", "ip": "S1smeOln", "name": "grdTXCza", "port": 82}' \
-    --namespace 'BtkZMio4' \
+    --body '{"custom_attribute": "1XRb0RH8", "ip": "vS1smeOl", "name": "ngrdTXCz", "port": 1}' \
+    --namespace 'PBtkZMio' \
     > test.out 2>&1
 eval_tap $? 58 'RegisterLocalServer' test.out
 
 #- 59 RegisterServer
 samples/cli/sample-apps Dsmc registerServer \
-    --body '{"custom_attribute": "wcyhloVS", "pod_name": "3rYp8Qtc"}' \
-    --namespace 'EmCEVc75' \
+    --body '{"custom_attribute": "4wcyhloV", "pod_name": "S3rYp8Qt"}' \
+    --namespace 'cEmCEVc7' \
     > test.out 2>&1
 eval_tap $? 59 'RegisterServer' test.out
 

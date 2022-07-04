@@ -34,11 +34,11 @@ type AdminOrderCreate struct {
 	// Required: true
 	ItemID *string `json:"itemId"`
 
-	// language value from language tag, allowed format: en, en-US
+	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
 
 	// platform
-	// Enum: [Playstation Xbox Steam Epic IOS GooglePlay Nintendo Other]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam Xbox]
 	Platform string `json:"platform,omitempty"`
 
 	// Price of order, should match (item_price * quantity)
@@ -129,7 +129,7 @@ var adminOrderCreateTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","IOS","GooglePlay","Nintendo","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Steam","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -139,29 +139,29 @@ func init() {
 
 const (
 
-	// AdminOrderCreatePlatformPlaystation captures enum value "Playstation"
-	AdminOrderCreatePlatformPlaystation string = "Playstation"
-
-	// AdminOrderCreatePlatformXbox captures enum value "Xbox"
-	AdminOrderCreatePlatformXbox string = "Xbox"
-
-	// AdminOrderCreatePlatformSteam captures enum value "Steam"
-	AdminOrderCreatePlatformSteam string = "Steam"
-
 	// AdminOrderCreatePlatformEpic captures enum value "Epic"
 	AdminOrderCreatePlatformEpic string = "Epic"
 
-	// AdminOrderCreatePlatformIOS captures enum value "IOS"
-	AdminOrderCreatePlatformIOS string = "IOS"
-
 	// AdminOrderCreatePlatformGooglePlay captures enum value "GooglePlay"
 	AdminOrderCreatePlatformGooglePlay string = "GooglePlay"
+
+	// AdminOrderCreatePlatformIOS captures enum value "IOS"
+	AdminOrderCreatePlatformIOS string = "IOS"
 
 	// AdminOrderCreatePlatformNintendo captures enum value "Nintendo"
 	AdminOrderCreatePlatformNintendo string = "Nintendo"
 
 	// AdminOrderCreatePlatformOther captures enum value "Other"
 	AdminOrderCreatePlatformOther string = "Other"
+
+	// AdminOrderCreatePlatformPlaystation captures enum value "Playstation"
+	AdminOrderCreatePlatformPlaystation string = "Playstation"
+
+	// AdminOrderCreatePlatformSteam captures enum value "Steam"
+	AdminOrderCreatePlatformSteam string = "Steam"
+
+	// AdminOrderCreatePlatformXbox captures enum value "Xbox"
+	AdminOrderCreatePlatformXbox string = "Xbox"
 )
 
 // prop value enum

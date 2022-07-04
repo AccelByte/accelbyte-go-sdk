@@ -27,13 +27,13 @@ var GetAllDeploymentCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		count, _ := cmd.Flags().GetInt64("count")
-		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		name, _ := cmd.Flags().GetString("name")
 		input := &deployment_config.GetAllDeploymentParams{
 			Namespace: namespace,
-			Count:     &count,
 			Name:      &name,
-			Offset:    &offset,
+			Count:     count,
+			Offset:    offset,
 		}
 		ok, err := deploymentConfigService.GetAllDeploymentShort(input)
 		if err != nil {
@@ -51,7 +51,9 @@ var GetAllDeploymentCmd = &cobra.Command{
 func init() {
 	GetAllDeploymentCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAllDeploymentCmd.MarkFlagRequired("namespace")
-	GetAllDeploymentCmd.Flags().Int64("count", 1, "Count")
 	GetAllDeploymentCmd.Flags().String("name", "", "Name")
+	GetAllDeploymentCmd.Flags().Int64("count", 1, "Count")
+	_ = GetAllDeploymentCmd.MarkFlagRequired("count")
 	GetAllDeploymentCmd.Flags().Int64("offset", 0, "Offset")
+	_ = GetAllDeploymentCmd.MarkFlagRequired("offset")
 }

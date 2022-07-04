@@ -29,14 +29,14 @@ type CreditRequest struct {
 	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
 	// origin, balance origin decided on the type of wallet, default is System
-	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// reason, max length is 127
 	Reason string `json:"reason,omitempty"`
 
 	// source, purchase for default
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT REFUND DLC OTHER]
+	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REFUND REWARD]
 	Source string `json:"source,omitempty"`
 }
 
@@ -96,7 +96,7 @@ var creditRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -106,38 +106,38 @@ func init() {
 
 const (
 
-	// CreditRequestOriginPlaystation captures enum value "Playstation"
-	CreditRequestOriginPlaystation string = "Playstation"
-
-	// CreditRequestOriginXbox captures enum value "Xbox"
-	CreditRequestOriginXbox string = "Xbox"
-
-	// CreditRequestOriginSteam captures enum value "Steam"
-	CreditRequestOriginSteam string = "Steam"
-
 	// CreditRequestOriginEpic captures enum value "Epic"
 	CreditRequestOriginEpic string = "Epic"
-
-	// CreditRequestOriginStadia captures enum value "Stadia"
-	CreditRequestOriginStadia string = "Stadia"
-
-	// CreditRequestOriginIOS captures enum value "IOS"
-	CreditRequestOriginIOS string = "IOS"
 
 	// CreditRequestOriginGooglePlay captures enum value "GooglePlay"
 	CreditRequestOriginGooglePlay string = "GooglePlay"
 
-	// CreditRequestOriginTwitch captures enum value "Twitch"
-	CreditRequestOriginTwitch string = "Twitch"
+	// CreditRequestOriginIOS captures enum value "IOS"
+	CreditRequestOriginIOS string = "IOS"
 
 	// CreditRequestOriginNintendo captures enum value "Nintendo"
 	CreditRequestOriginNintendo string = "Nintendo"
 
+	// CreditRequestOriginOther captures enum value "Other"
+	CreditRequestOriginOther string = "Other"
+
+	// CreditRequestOriginPlaystation captures enum value "Playstation"
+	CreditRequestOriginPlaystation string = "Playstation"
+
+	// CreditRequestOriginStadia captures enum value "Stadia"
+	CreditRequestOriginStadia string = "Stadia"
+
+	// CreditRequestOriginSteam captures enum value "Steam"
+	CreditRequestOriginSteam string = "Steam"
+
 	// CreditRequestOriginSystem captures enum value "System"
 	CreditRequestOriginSystem string = "System"
 
-	// CreditRequestOriginOther captures enum value "Other"
-	CreditRequestOriginOther string = "Other"
+	// CreditRequestOriginTwitch captures enum value "Twitch"
+	CreditRequestOriginTwitch string = "Twitch"
+
+	// CreditRequestOriginXbox captures enum value "Xbox"
+	CreditRequestOriginXbox string = "Xbox"
 )
 
 // prop value enum
@@ -166,7 +166,7 @@ var creditRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","REFUND","DLC","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REFUND","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -176,38 +176,38 @@ func init() {
 
 const (
 
-	// CreditRequestSourcePURCHASE captures enum value "PURCHASE"
-	CreditRequestSourcePURCHASE string = "PURCHASE"
-
-	// CreditRequestSourceIAP captures enum value "IAP"
-	CreditRequestSourceIAP string = "IAP"
-
-	// CreditRequestSourcePROMOTION captures enum value "PROMOTION"
-	CreditRequestSourcePROMOTION string = "PROMOTION"
-
 	// CreditRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	CreditRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// CreditRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	CreditRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// CreditRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	CreditRequestSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// CreditRequestSourceREWARD captures enum value "REWARD"
-	CreditRequestSourceREWARD string = "REWARD"
-
-	// CreditRequestSourceGIFT captures enum value "GIFT"
-	CreditRequestSourceGIFT string = "GIFT"
-
-	// CreditRequestSourceREFUND captures enum value "REFUND"
-	CreditRequestSourceREFUND string = "REFUND"
 
 	// CreditRequestSourceDLC captures enum value "DLC"
 	CreditRequestSourceDLC string = "DLC"
 
+	// CreditRequestSourceGIFT captures enum value "GIFT"
+	CreditRequestSourceGIFT string = "GIFT"
+
+	// CreditRequestSourceIAP captures enum value "IAP"
+	CreditRequestSourceIAP string = "IAP"
+
 	// CreditRequestSourceOTHER captures enum value "OTHER"
 	CreditRequestSourceOTHER string = "OTHER"
+
+	// CreditRequestSourcePROMOTION captures enum value "PROMOTION"
+	CreditRequestSourcePROMOTION string = "PROMOTION"
+
+	// CreditRequestSourcePURCHASE captures enum value "PURCHASE"
+	CreditRequestSourcePURCHASE string = "PURCHASE"
+
+	// CreditRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	CreditRequestSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// CreditRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	CreditRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// CreditRequestSourceREFUND captures enum value "REFUND"
+	CreditRequestSourceREFUND string = "REFUND"
+
+	// CreditRequestSourceREWARD captures enum value "REWARD"
+	CreditRequestSourceREWARD string = "REWARD"
 )
 
 // prop value enum

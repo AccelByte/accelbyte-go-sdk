@@ -32,10 +32,10 @@ var ListSessionCmd = &cobra.Command{
 		withServer, _ := cmd.Flags().GetBool("withServer")
 		input := &admin.ListSessionParams{
 			Namespace:  namespace,
-			Count:      &count,
-			Offset:     &offset,
 			Region:     &region,
 			WithServer: &withServer,
+			Count:      count,
+			Offset:     offset,
 		}
 		ok, err := adminService.ListSessionShort(input)
 		if err != nil {
@@ -53,8 +53,10 @@ var ListSessionCmd = &cobra.Command{
 func init() {
 	ListSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListSessionCmd.MarkFlagRequired("namespace")
-	ListSessionCmd.Flags().Int64("count", 1, "Count")
-	ListSessionCmd.Flags().Int64("offset", 0, "Offset")
 	ListSessionCmd.Flags().String("region", "", "Region")
 	ListSessionCmd.Flags().Bool("withServer", false, "With server")
+	ListSessionCmd.Flags().Int64("count", 1, "Count")
+	_ = ListSessionCmd.MarkFlagRequired("count")
+	ListSessionCmd.Flags().Int64("offset", 0, "Offset")
+	_ = ListSessionCmd.MarkFlagRequired("offset")
 }

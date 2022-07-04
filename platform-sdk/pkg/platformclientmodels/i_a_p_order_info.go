@@ -72,7 +72,7 @@ type IAPOrderInfo struct {
 
 	// status
 	// Required: true
-	// Enum: [VERIFIED FULFILLED FAILED]
+	// Enum: [FAILED FULFILLED VERIFIED]
 	Status *string `json:"status"`
 
 	// status reason
@@ -83,7 +83,7 @@ type IAPOrderInfo struct {
 
 	// IAP type
 	// Required: true
-	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES TWITCH]
+	// Enum: [APPLE EPICGAMES GOOGLE PLAYSTATION STADIA STEAM TWITCH XBOX]
 	Type *string `json:"type"`
 
 	// updated at
@@ -244,7 +244,7 @@ var iAPOrderInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["VERIFIED","FULFILLED","FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED","FULFILLED","VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -254,14 +254,14 @@ func init() {
 
 const (
 
-	// IAPOrderInfoStatusVERIFIED captures enum value "VERIFIED"
-	IAPOrderInfoStatusVERIFIED string = "VERIFIED"
+	// IAPOrderInfoStatusFAILED captures enum value "FAILED"
+	IAPOrderInfoStatusFAILED string = "FAILED"
 
 	// IAPOrderInfoStatusFULFILLED captures enum value "FULFILLED"
 	IAPOrderInfoStatusFULFILLED string = "FULFILLED"
 
-	// IAPOrderInfoStatusFAILED captures enum value "FAILED"
-	IAPOrderInfoStatusFAILED string = "FAILED"
+	// IAPOrderInfoStatusVERIFIED captures enum value "VERIFIED"
+	IAPOrderInfoStatusVERIFIED string = "VERIFIED"
 )
 
 // prop value enum
@@ -290,7 +290,7 @@ var iAPOrderInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES","TWITCH"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE","EPICGAMES","GOOGLE","PLAYSTATION","STADIA","STEAM","TWITCH","XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -303,26 +303,26 @@ const (
 	// IAPOrderInfoTypeAPPLE captures enum value "APPLE"
 	IAPOrderInfoTypeAPPLE string = "APPLE"
 
+	// IAPOrderInfoTypeEPICGAMES captures enum value "EPICGAMES"
+	IAPOrderInfoTypeEPICGAMES string = "EPICGAMES"
+
 	// IAPOrderInfoTypeGOOGLE captures enum value "GOOGLE"
 	IAPOrderInfoTypeGOOGLE string = "GOOGLE"
 
 	// IAPOrderInfoTypePLAYSTATION captures enum value "PLAYSTATION"
 	IAPOrderInfoTypePLAYSTATION string = "PLAYSTATION"
 
-	// IAPOrderInfoTypeSTEAM captures enum value "STEAM"
-	IAPOrderInfoTypeSTEAM string = "STEAM"
-
-	// IAPOrderInfoTypeXBOX captures enum value "XBOX"
-	IAPOrderInfoTypeXBOX string = "XBOX"
-
 	// IAPOrderInfoTypeSTADIA captures enum value "STADIA"
 	IAPOrderInfoTypeSTADIA string = "STADIA"
 
-	// IAPOrderInfoTypeEPICGAMES captures enum value "EPICGAMES"
-	IAPOrderInfoTypeEPICGAMES string = "EPICGAMES"
+	// IAPOrderInfoTypeSTEAM captures enum value "STEAM"
+	IAPOrderInfoTypeSTEAM string = "STEAM"
 
 	// IAPOrderInfoTypeTWITCH captures enum value "TWITCH"
 	IAPOrderInfoTypeTWITCH string = "TWITCH"
+
+	// IAPOrderInfoTypeXBOX captures enum value "XBOX"
+	IAPOrderInfoTypeXBOX string = "XBOX"
 )
 
 // prop value enum

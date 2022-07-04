@@ -53,14 +53,14 @@ type Transaction struct {
 	PaymentProviderFee int32 `json:"paymentProviderFee,omitempty"`
 
 	// provider
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	Provider string `json:"provider,omitempty"`
 
 	// sales tax
 	SalesTax int32 `json:"salesTax,omitempty"`
 
 	// status
-	// Enum: [FINISHED FAILED]
+	// Enum: [FAILED FINISHED]
 	Status string `json:"status,omitempty"`
 
 	// tax
@@ -74,7 +74,7 @@ type Transaction struct {
 	TxID string `json:"txId,omitempty"`
 
 	// type
-	// Enum: [AUTHORISATION CHARGE CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUND REFUND_FAILED]
+	// Enum: [AUTHORISATION CHARGE CHARGEBACK CHARGEBACK_REVERSED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REFUND REFUND_FAILED REQUEST_FOR_INFORMATION]
 	Type string `json:"type,omitempty"`
 
 	// vat
@@ -155,7 +155,7 @@ var transactionTypeProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -165,29 +165,29 @@ func init() {
 
 const (
 
-	// TransactionProviderWALLET captures enum value "WALLET"
-	TransactionProviderWALLET string = "WALLET"
-
-	// TransactionProviderXSOLLA captures enum value "XSOLLA"
-	TransactionProviderXSOLLA string = "XSOLLA"
-
 	// TransactionProviderADYEN captures enum value "ADYEN"
 	TransactionProviderADYEN string = "ADYEN"
-
-	// TransactionProviderSTRIPE captures enum value "STRIPE"
-	TransactionProviderSTRIPE string = "STRIPE"
-
-	// TransactionProviderCHECKOUT captures enum value "CHECKOUT"
-	TransactionProviderCHECKOUT string = "CHECKOUT"
 
 	// TransactionProviderALIPAY captures enum value "ALIPAY"
 	TransactionProviderALIPAY string = "ALIPAY"
 
-	// TransactionProviderWXPAY captures enum value "WXPAY"
-	TransactionProviderWXPAY string = "WXPAY"
+	// TransactionProviderCHECKOUT captures enum value "CHECKOUT"
+	TransactionProviderCHECKOUT string = "CHECKOUT"
 
 	// TransactionProviderPAYPAL captures enum value "PAYPAL"
 	TransactionProviderPAYPAL string = "PAYPAL"
+
+	// TransactionProviderSTRIPE captures enum value "STRIPE"
+	TransactionProviderSTRIPE string = "STRIPE"
+
+	// TransactionProviderWALLET captures enum value "WALLET"
+	TransactionProviderWALLET string = "WALLET"
+
+	// TransactionProviderWXPAY captures enum value "WXPAY"
+	TransactionProviderWXPAY string = "WXPAY"
+
+	// TransactionProviderXSOLLA captures enum value "XSOLLA"
+	TransactionProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -216,7 +216,7 @@ var transactionTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FINISHED","FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED","FINISHED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -226,11 +226,11 @@ func init() {
 
 const (
 
-	// TransactionStatusFINISHED captures enum value "FINISHED"
-	TransactionStatusFINISHED string = "FINISHED"
-
 	// TransactionStatusFAILED captures enum value "FAILED"
 	TransactionStatusFAILED string = "FAILED"
+
+	// TransactionStatusFINISHED captures enum value "FINISHED"
+	TransactionStatusFINISHED string = "FINISHED"
 )
 
 // prop value enum
@@ -272,7 +272,7 @@ var transactionTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["AUTHORISATION","CHARGE","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REQUEST_FOR_INFORMATION","CHARGEBACK","CHARGEBACK_REVERSED","REFUND","REFUND_FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AUTHORISATION","CHARGE","CHARGEBACK","CHARGEBACK_REVERSED","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REFUND","REFUND_FAILED","REQUEST_FOR_INFORMATION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -288,26 +288,26 @@ const (
 	// TransactionTypeCHARGE captures enum value "CHARGE"
 	TransactionTypeCHARGE string = "CHARGE"
 
-	// TransactionTypeCHARGEFAILED captures enum value "CHARGE_FAILED"
-	TransactionTypeCHARGEFAILED string = "CHARGE_FAILED"
-
-	// TransactionTypeNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
-	TransactionTypeNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
-
-	// TransactionTypeREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
-	TransactionTypeREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
-
 	// TransactionTypeCHARGEBACK captures enum value "CHARGEBACK"
 	TransactionTypeCHARGEBACK string = "CHARGEBACK"
 
 	// TransactionTypeCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	TransactionTypeCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
 
+	// TransactionTypeCHARGEFAILED captures enum value "CHARGE_FAILED"
+	TransactionTypeCHARGEFAILED string = "CHARGE_FAILED"
+
+	// TransactionTypeNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
+	TransactionTypeNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
+
 	// TransactionTypeREFUND captures enum value "REFUND"
 	TransactionTypeREFUND string = "REFUND"
 
 	// TransactionTypeREFUNDFAILED captures enum value "REFUND_FAILED"
 	TransactionTypeREFUNDFAILED string = "REFUND_FAILED"
+
+	// TransactionTypeREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
+	TransactionTypeREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 )
 
 // prop value enum

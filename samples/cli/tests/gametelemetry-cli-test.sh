@@ -51,20 +51,20 @@ touch "tmp.dat"
 #- 2 ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost
 samples/cli/sample-apps Gametelemetry protectedSaveEventsGameTelemetryV1ProtectedEventsPost \
     --body '[{"EventId": "FtBxyZcD", "EventName": "XBpGlsQu", "EventNamespace": "Ju8vMf0I", "EventTimestamp": "1980-10-10T00:00:00Z", "Payload": {"kTrd8IDc": {}}}]' \
-    --cookie 'V2zXnTKj' \
+    --cookie 'access_token=foo' \
     > test.out 2>&1
 eval_tap $? 2 'ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost' test.out
 
 #- 3 ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
 samples/cli/sample-apps Gametelemetry protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet \
-    --cookie 'XY1bPqam' \
+    --cookie 'access_token=foo' \
     --steamId 'iBxx9Cs1' \
     > test.out 2>&1
 eval_tap $? 3 'ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet' test.out
 
 #- 4 ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 samples/cli/sample-apps Gametelemetry protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut \
-    --cookie '8EY84ekI' \
+    --cookie 'access_token=foo' \
     --playtime 'tqRzHU1o' \
     --steamId 'h570KQBV' \
     > test.out 2>&1

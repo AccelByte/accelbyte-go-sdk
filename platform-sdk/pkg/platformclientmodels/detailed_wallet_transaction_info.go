@@ -57,7 +57,7 @@ type DetailedWalletTransactionInfo struct {
 
 	// Action type
 	// Required: true
-	// Enum: [CREDIT PAYMENT DEBIT]
+	// Enum: [CREDIT DEBIT PAYMENT]
 	WalletAction *string `json:"walletAction"`
 
 	// wallet id
@@ -186,7 +186,7 @@ var detailedWalletTransactionInfoTypeWalletActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["CREDIT","PAYMENT","DEBIT"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CREDIT","DEBIT","PAYMENT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -199,11 +199,11 @@ const (
 	// DetailedWalletTransactionInfoWalletActionCREDIT captures enum value "CREDIT"
 	DetailedWalletTransactionInfoWalletActionCREDIT string = "CREDIT"
 
-	// DetailedWalletTransactionInfoWalletActionPAYMENT captures enum value "PAYMENT"
-	DetailedWalletTransactionInfoWalletActionPAYMENT string = "PAYMENT"
-
 	// DetailedWalletTransactionInfoWalletActionDEBIT captures enum value "DEBIT"
 	DetailedWalletTransactionInfoWalletActionDEBIT string = "DEBIT"
+
+	// DetailedWalletTransactionInfoWalletActionPAYMENT captures enum value "PAYMENT"
+	DetailedWalletTransactionInfoWalletActionPAYMENT string = "PAYMENT"
 )
 
 // prop value enum

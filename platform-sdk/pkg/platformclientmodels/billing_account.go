@@ -26,7 +26,7 @@ type BillingAccount struct {
 	PaymentMethod string `json:"paymentMethod,omitempty"`
 
 	// payment provider
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider string `json:"paymentProvider,omitempty"`
 }
 
@@ -70,7 +70,7 @@ var billingAccountTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -80,29 +80,29 @@ func init() {
 
 const (
 
-	// BillingAccountPaymentProviderWALLET captures enum value "WALLET"
-	BillingAccountPaymentProviderWALLET string = "WALLET"
-
-	// BillingAccountPaymentProviderXSOLLA captures enum value "XSOLLA"
-	BillingAccountPaymentProviderXSOLLA string = "XSOLLA"
-
 	// BillingAccountPaymentProviderADYEN captures enum value "ADYEN"
 	BillingAccountPaymentProviderADYEN string = "ADYEN"
-
-	// BillingAccountPaymentProviderSTRIPE captures enum value "STRIPE"
-	BillingAccountPaymentProviderSTRIPE string = "STRIPE"
-
-	// BillingAccountPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	BillingAccountPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// BillingAccountPaymentProviderALIPAY captures enum value "ALIPAY"
 	BillingAccountPaymentProviderALIPAY string = "ALIPAY"
 
-	// BillingAccountPaymentProviderWXPAY captures enum value "WXPAY"
-	BillingAccountPaymentProviderWXPAY string = "WXPAY"
+	// BillingAccountPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	BillingAccountPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// BillingAccountPaymentProviderPAYPAL captures enum value "PAYPAL"
 	BillingAccountPaymentProviderPAYPAL string = "PAYPAL"
+
+	// BillingAccountPaymentProviderSTRIPE captures enum value "STRIPE"
+	BillingAccountPaymentProviderSTRIPE string = "STRIPE"
+
+	// BillingAccountPaymentProviderWALLET captures enum value "WALLET"
+	BillingAccountPaymentProviderWALLET string = "WALLET"
+
+	// BillingAccountPaymentProviderWXPAY captures enum value "WXPAY"
+	BillingAccountPaymentProviderWXPAY string = "WXPAY"
+
+	// BillingAccountPaymentProviderXSOLLA captures enum value "XSOLLA"
+	BillingAccountPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum

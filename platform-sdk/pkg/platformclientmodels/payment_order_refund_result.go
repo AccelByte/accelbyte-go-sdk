@@ -38,7 +38,7 @@ type PaymentOrderRefundResult struct {
 
 	// Payment order status
 	// Required: true
-	// Enum: [INIT AUTHORISED AUTHORISE_FAILED CHARGED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUNDING REFUNDED REFUND_FAILED DELETED]
+	// Enum: [AUTHORISED AUTHORISE_FAILED CHARGEBACK CHARGEBACK_REVERSED CHARGED CHARGE_FAILED DELETED INIT NOTIFICATION_OF_CHARGEBACK REFUNDED REFUNDING REFUND_FAILED REQUEST_FOR_INFORMATION]
 	Status *string `json:"status"`
 
 	// Game namespace
@@ -126,7 +126,7 @@ var paymentOrderRefundResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","AUTHORISED","AUTHORISE_FAILED","CHARGED","CHARGE_FAILED","NOTIFICATION_OF_CHARGEBACK","REQUEST_FOR_INFORMATION","CHARGEBACK","CHARGEBACK_REVERSED","REFUNDING","REFUNDED","REFUND_FAILED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AUTHORISED","AUTHORISE_FAILED","CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CHARGE_FAILED","DELETED","INIT","NOTIFICATION_OF_CHARGEBACK","REFUNDED","REFUNDING","REFUND_FAILED","REQUEST_FOR_INFORMATION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -136,26 +136,11 @@ func init() {
 
 const (
 
-	// PaymentOrderRefundResultStatusINIT captures enum value "INIT"
-	PaymentOrderRefundResultStatusINIT string = "INIT"
-
 	// PaymentOrderRefundResultStatusAUTHORISED captures enum value "AUTHORISED"
 	PaymentOrderRefundResultStatusAUTHORISED string = "AUTHORISED"
 
 	// PaymentOrderRefundResultStatusAUTHORISEFAILED captures enum value "AUTHORISE_FAILED"
 	PaymentOrderRefundResultStatusAUTHORISEFAILED string = "AUTHORISE_FAILED"
-
-	// PaymentOrderRefundResultStatusCHARGED captures enum value "CHARGED"
-	PaymentOrderRefundResultStatusCHARGED string = "CHARGED"
-
-	// PaymentOrderRefundResultStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
-	PaymentOrderRefundResultStatusCHARGEFAILED string = "CHARGE_FAILED"
-
-	// PaymentOrderRefundResultStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
-	PaymentOrderRefundResultStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
-
-	// PaymentOrderRefundResultStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
-	PaymentOrderRefundResultStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 
 	// PaymentOrderRefundResultStatusCHARGEBACK captures enum value "CHARGEBACK"
 	PaymentOrderRefundResultStatusCHARGEBACK string = "CHARGEBACK"
@@ -163,17 +148,32 @@ const (
 	// PaymentOrderRefundResultStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	PaymentOrderRefundResultStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
 
-	// PaymentOrderRefundResultStatusREFUNDING captures enum value "REFUNDING"
-	PaymentOrderRefundResultStatusREFUNDING string = "REFUNDING"
+	// PaymentOrderRefundResultStatusCHARGED captures enum value "CHARGED"
+	PaymentOrderRefundResultStatusCHARGED string = "CHARGED"
+
+	// PaymentOrderRefundResultStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
+	PaymentOrderRefundResultStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// PaymentOrderRefundResultStatusDELETED captures enum value "DELETED"
+	PaymentOrderRefundResultStatusDELETED string = "DELETED"
+
+	// PaymentOrderRefundResultStatusINIT captures enum value "INIT"
+	PaymentOrderRefundResultStatusINIT string = "INIT"
+
+	// PaymentOrderRefundResultStatusNOTIFICATIONOFCHARGEBACK captures enum value "NOTIFICATION_OF_CHARGEBACK"
+	PaymentOrderRefundResultStatusNOTIFICATIONOFCHARGEBACK string = "NOTIFICATION_OF_CHARGEBACK"
 
 	// PaymentOrderRefundResultStatusREFUNDED captures enum value "REFUNDED"
 	PaymentOrderRefundResultStatusREFUNDED string = "REFUNDED"
 
+	// PaymentOrderRefundResultStatusREFUNDING captures enum value "REFUNDING"
+	PaymentOrderRefundResultStatusREFUNDING string = "REFUNDING"
+
 	// PaymentOrderRefundResultStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	PaymentOrderRefundResultStatusREFUNDFAILED string = "REFUND_FAILED"
 
-	// PaymentOrderRefundResultStatusDELETED captures enum value "DELETED"
-	PaymentOrderRefundResultStatusDELETED string = "DELETED"
+	// PaymentOrderRefundResultStatusREQUESTFORINFORMATION captures enum value "REQUEST_FOR_INFORMATION"
+	PaymentOrderRefundResultStatusREQUESTFORINFORMATION string = "REQUEST_FOR_INFORMATION"
 )
 
 // prop value enum

@@ -41,7 +41,7 @@ type PaymentNotificationInfo struct {
 
 	// payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	NotificationSource *string `json:"notificationSource"`
 
 	// notification type
@@ -54,7 +54,7 @@ type PaymentNotificationInfo struct {
 
 	// status
 	// Required: true
-	// Enum: [PROCESSED ERROR WARN IGNORED]
+	// Enum: [ERROR IGNORED PROCESSED WARN]
 	Status *string `json:"status"`
 
 	// status reason
@@ -156,7 +156,7 @@ var paymentNotificationInfoTypeNotificationSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -166,29 +166,29 @@ func init() {
 
 const (
 
-	// PaymentNotificationInfoNotificationSourceWALLET captures enum value "WALLET"
-	PaymentNotificationInfoNotificationSourceWALLET string = "WALLET"
-
-	// PaymentNotificationInfoNotificationSourceXSOLLA captures enum value "XSOLLA"
-	PaymentNotificationInfoNotificationSourceXSOLLA string = "XSOLLA"
-
 	// PaymentNotificationInfoNotificationSourceADYEN captures enum value "ADYEN"
 	PaymentNotificationInfoNotificationSourceADYEN string = "ADYEN"
-
-	// PaymentNotificationInfoNotificationSourceSTRIPE captures enum value "STRIPE"
-	PaymentNotificationInfoNotificationSourceSTRIPE string = "STRIPE"
-
-	// PaymentNotificationInfoNotificationSourceCHECKOUT captures enum value "CHECKOUT"
-	PaymentNotificationInfoNotificationSourceCHECKOUT string = "CHECKOUT"
 
 	// PaymentNotificationInfoNotificationSourceALIPAY captures enum value "ALIPAY"
 	PaymentNotificationInfoNotificationSourceALIPAY string = "ALIPAY"
 
-	// PaymentNotificationInfoNotificationSourceWXPAY captures enum value "WXPAY"
-	PaymentNotificationInfoNotificationSourceWXPAY string = "WXPAY"
+	// PaymentNotificationInfoNotificationSourceCHECKOUT captures enum value "CHECKOUT"
+	PaymentNotificationInfoNotificationSourceCHECKOUT string = "CHECKOUT"
 
 	// PaymentNotificationInfoNotificationSourcePAYPAL captures enum value "PAYPAL"
 	PaymentNotificationInfoNotificationSourcePAYPAL string = "PAYPAL"
+
+	// PaymentNotificationInfoNotificationSourceSTRIPE captures enum value "STRIPE"
+	PaymentNotificationInfoNotificationSourceSTRIPE string = "STRIPE"
+
+	// PaymentNotificationInfoNotificationSourceWALLET captures enum value "WALLET"
+	PaymentNotificationInfoNotificationSourceWALLET string = "WALLET"
+
+	// PaymentNotificationInfoNotificationSourceWXPAY captures enum value "WXPAY"
+	PaymentNotificationInfoNotificationSourceWXPAY string = "WXPAY"
+
+	// PaymentNotificationInfoNotificationSourceXSOLLA captures enum value "XSOLLA"
+	PaymentNotificationInfoNotificationSourceXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -235,7 +235,7 @@ var paymentNotificationInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PROCESSED","ERROR","WARN","IGNORED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ERROR","IGNORED","PROCESSED","WARN"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -245,17 +245,17 @@ func init() {
 
 const (
 
-	// PaymentNotificationInfoStatusPROCESSED captures enum value "PROCESSED"
-	PaymentNotificationInfoStatusPROCESSED string = "PROCESSED"
-
 	// PaymentNotificationInfoStatusERROR captures enum value "ERROR"
 	PaymentNotificationInfoStatusERROR string = "ERROR"
 
-	// PaymentNotificationInfoStatusWARN captures enum value "WARN"
-	PaymentNotificationInfoStatusWARN string = "WARN"
-
 	// PaymentNotificationInfoStatusIGNORED captures enum value "IGNORED"
 	PaymentNotificationInfoStatusIGNORED string = "IGNORED"
+
+	// PaymentNotificationInfoStatusPROCESSED captures enum value "PROCESSED"
+	PaymentNotificationInfoStatusPROCESSED string = "PROCESSED"
+
+	// PaymentNotificationInfoStatusWARN captures enum value "WARN"
+	PaymentNotificationInfoStatusWARN string = "WARN"
 )
 
 // prop value enum

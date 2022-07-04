@@ -44,11 +44,11 @@ type SubscriptionSummary struct {
 
 	// status
 	// Required: true
-	// Enum: [INIT ACTIVE CANCELLED EXPIRED]
+	// Enum: [ACTIVE CANCELLED EXPIRED INIT]
 	Status *string `json:"status"`
 
 	// subscribed by PLATFORM(system granted) or USER(subscribed by userself)
-	// Enum: [USER PLATFORM]
+	// Enum: [PLATFORM USER]
 	SubscribedBy string `json:"subscribedBy,omitempty"`
 
 	// user id
@@ -155,7 +155,7 @@ var subscriptionSummaryTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","ACTIVE","CANCELLED","EXPIRED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","CANCELLED","EXPIRED","INIT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -165,9 +165,6 @@ func init() {
 
 const (
 
-	// SubscriptionSummaryStatusINIT captures enum value "INIT"
-	SubscriptionSummaryStatusINIT string = "INIT"
-
 	// SubscriptionSummaryStatusACTIVE captures enum value "ACTIVE"
 	SubscriptionSummaryStatusACTIVE string = "ACTIVE"
 
@@ -176,6 +173,9 @@ const (
 
 	// SubscriptionSummaryStatusEXPIRED captures enum value "EXPIRED"
 	SubscriptionSummaryStatusEXPIRED string = "EXPIRED"
+
+	// SubscriptionSummaryStatusINIT captures enum value "INIT"
+	SubscriptionSummaryStatusINIT string = "INIT"
 )
 
 // prop value enum
@@ -204,7 +204,7 @@ var subscriptionSummaryTypeSubscribedByPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["USER","PLATFORM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PLATFORM","USER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -214,11 +214,11 @@ func init() {
 
 const (
 
-	// SubscriptionSummarySubscribedByUSER captures enum value "USER"
-	SubscriptionSummarySubscribedByUSER string = "USER"
-
 	// SubscriptionSummarySubscribedByPLATFORM captures enum value "PLATFORM"
 	SubscriptionSummarySubscribedByPLATFORM string = "PLATFORM"
+
+	// SubscriptionSummarySubscribedByUSER captures enum value "USER"
+	SubscriptionSummarySubscribedByUSER string = "USER"
 )
 
 // prop value enum

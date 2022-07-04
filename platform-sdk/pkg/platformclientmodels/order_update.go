@@ -21,7 +21,7 @@ type OrderUpdate struct {
 
 	// status
 	// Required: true
-	// Enum: [INIT CHARGED CHARGEBACK CHARGEBACK_REVERSED FULFILLED FULFILL_FAILED REFUNDING REFUNDED REFUND_FAILED CLOSED DELETED]
+	// Enum: [CHARGEBACK CHARGEBACK_REVERSED CHARGED CLOSED DELETED FULFILLED FULFILL_FAILED INIT REFUNDED REFUNDING REFUND_FAILED]
 	Status *string `json:"status"`
 
 	// update status reason
@@ -51,7 +51,7 @@ var orderUpdateTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","CHARGED","CHARGEBACK","CHARGEBACK_REVERSED","FULFILLED","FULFILL_FAILED","REFUNDING","REFUNDED","REFUND_FAILED","CLOSED","DELETED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CHARGEBACK","CHARGEBACK_REVERSED","CHARGED","CLOSED","DELETED","FULFILLED","FULFILL_FAILED","INIT","REFUNDED","REFUNDING","REFUND_FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -61,17 +61,20 @@ func init() {
 
 const (
 
-	// OrderUpdateStatusINIT captures enum value "INIT"
-	OrderUpdateStatusINIT string = "INIT"
-
-	// OrderUpdateStatusCHARGED captures enum value "CHARGED"
-	OrderUpdateStatusCHARGED string = "CHARGED"
-
 	// OrderUpdateStatusCHARGEBACK captures enum value "CHARGEBACK"
 	OrderUpdateStatusCHARGEBACK string = "CHARGEBACK"
 
 	// OrderUpdateStatusCHARGEBACKREVERSED captures enum value "CHARGEBACK_REVERSED"
 	OrderUpdateStatusCHARGEBACKREVERSED string = "CHARGEBACK_REVERSED"
+
+	// OrderUpdateStatusCHARGED captures enum value "CHARGED"
+	OrderUpdateStatusCHARGED string = "CHARGED"
+
+	// OrderUpdateStatusCLOSED captures enum value "CLOSED"
+	OrderUpdateStatusCLOSED string = "CLOSED"
+
+	// OrderUpdateStatusDELETED captures enum value "DELETED"
+	OrderUpdateStatusDELETED string = "DELETED"
 
 	// OrderUpdateStatusFULFILLED captures enum value "FULFILLED"
 	OrderUpdateStatusFULFILLED string = "FULFILLED"
@@ -79,20 +82,17 @@ const (
 	// OrderUpdateStatusFULFILLFAILED captures enum value "FULFILL_FAILED"
 	OrderUpdateStatusFULFILLFAILED string = "FULFILL_FAILED"
 
-	// OrderUpdateStatusREFUNDING captures enum value "REFUNDING"
-	OrderUpdateStatusREFUNDING string = "REFUNDING"
+	// OrderUpdateStatusINIT captures enum value "INIT"
+	OrderUpdateStatusINIT string = "INIT"
 
 	// OrderUpdateStatusREFUNDED captures enum value "REFUNDED"
 	OrderUpdateStatusREFUNDED string = "REFUNDED"
 
+	// OrderUpdateStatusREFUNDING captures enum value "REFUNDING"
+	OrderUpdateStatusREFUNDING string = "REFUNDING"
+
 	// OrderUpdateStatusREFUNDFAILED captures enum value "REFUND_FAILED"
 	OrderUpdateStatusREFUNDFAILED string = "REFUND_FAILED"
-
-	// OrderUpdateStatusCLOSED captures enum value "CLOSED"
-	OrderUpdateStatusCLOSED string = "CLOSED"
-
-	// OrderUpdateStatusDELETED captures enum value "DELETED"
-	OrderUpdateStatusDELETED string = "DELETED"
 )
 
 // prop value enum

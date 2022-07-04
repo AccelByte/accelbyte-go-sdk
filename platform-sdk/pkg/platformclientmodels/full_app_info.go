@@ -53,7 +53,7 @@ type FullAppInfo struct {
 	Players []string `json:"players"`
 
 	// primary genre
-	// Enum: [Action Adventure Casual FreeToPlay Indie MassivelyMultiplayer Racing RPG Simulation Sports Strategy]
+	// Enum: [Action Adventure Casual FreeToPlay Indie MassivelyMultiplayer RPG Racing Simulation Sports Strategy]
 	PrimaryGenre string `json:"primaryGenre,omitempty"`
 
 	// publisher
@@ -146,7 +146,7 @@ var fullAppInfoGenresItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","Racing","RPG","Simulation","Sports","Strategy"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","RPG","Racing","Simulation","Sports","Strategy"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -251,7 +251,7 @@ var fullAppInfoPlatformsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Windows","MacOS","Linux","IOS","Android"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Android","IOS","Linux","MacOS","Windows"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -288,7 +288,7 @@ var fullAppInfoPlayersItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Single","Multi","CrossPlatformMulti","MMO","Coop","LocalCoop"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Coop","CrossPlatformMulti","LocalCoop","MMO","Multi","Single"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -325,7 +325,7 @@ var fullAppInfoTypePrimaryGenrePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","Racing","RPG","Simulation","Sports","Strategy"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Action","Adventure","Casual","FreeToPlay","Indie","MassivelyMultiplayer","RPG","Racing","Simulation","Sports","Strategy"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -353,11 +353,11 @@ const (
 	// FullAppInfoPrimaryGenreMassivelyMultiplayer captures enum value "MassivelyMultiplayer"
 	FullAppInfoPrimaryGenreMassivelyMultiplayer string = "MassivelyMultiplayer"
 
-	// FullAppInfoPrimaryGenreRacing captures enum value "Racing"
-	FullAppInfoPrimaryGenreRacing string = "Racing"
-
 	// FullAppInfoPrimaryGenreRPG captures enum value "RPG"
 	FullAppInfoPrimaryGenreRPG string = "RPG"
+
+	// FullAppInfoPrimaryGenreRacing captures enum value "Racing"
+	FullAppInfoPrimaryGenreRacing string = "Racing"
 
 	// FullAppInfoPrimaryGenreSimulation captures enum value "Simulation"
 	FullAppInfoPrimaryGenreSimulation string = "Simulation"

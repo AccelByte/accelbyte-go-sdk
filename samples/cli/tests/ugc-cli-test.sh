@@ -176,7 +176,7 @@ eval_tap $? 16 'AdminUpdateScreenshots' test.out
 
 #- 17 AdminUploadContentScreenshot
 samples/cli/sample-apps Ugc adminUploadContentScreenshot \
-    --body '{"screenshots": [{"contentType": "lArFPiHU", "description": "IvaCv8kU", "fileExtension": "pjp"}]}' \
+    --body '{"screenshots": [{"contentType": "lArFPiHU", "description": "IvaCv8kU", "fileExtension": "bmp"}]}' \
     --contentId 'BBpdsJLh' \
     --namespace 'sVyExrkx' \
     > test.out 2>&1
@@ -661,7 +661,7 @@ eval_tap $? 76 'UpdateScreenshots' test.out
 
 #- 77 UploadContentScreenshot
 samples/cli/sample-apps Ugc uploadContentScreenshot \
-    --body '{"screenshots": [{"contentType": "IKZLO6V4", "description": "Ode46QmC", "fileExtension": "jpg"}]}' \
+    --body '{"screenshots": [{"contentType": "IKZLO6V4", "description": "Ode46QmC", "fileExtension": "jfif"}]}' \
     --contentId 'dgdpP7RT' \
     --namespace 'C587lmUm' \
     --userId 'BziPZBnp' \
@@ -689,83 +689,83 @@ eval_tap $? 79 'UpdateUserFollowStatus' test.out
 samples/cli/sample-apps Ugc getPublicFollowers \
     --namespace 'UP0NjluO' \
     --userId 'rGZTzsLW' \
-    --limit '7Fjfs9nI' \
-    --offset 'kcZ38fUE' \
+    --limit '63' \
+    --offset '18' \
     > test.out 2>&1
 eval_tap $? 80 'GetPublicFollowers' test.out
 
 #- 81 GetPublicFollowing
 samples/cli/sample-apps Ugc getPublicFollowing \
-    --namespace 'anjKHbXf' \
-    --userId 'k1zxdzxg' \
-    --limit '0UXcRyHi' \
-    --offset '3u8BzVWu' \
+    --namespace 'fs9nIkcZ' \
+    --userId '38fUEanj' \
+    --limit '72' \
+    --offset '67' \
     > test.out 2>&1
 eval_tap $? 81 'GetPublicFollowing' test.out
 
 #- 82 GetGroups
 samples/cli/sample-apps Ugc getGroups \
-    --namespace '1tOmhUtC' \
-    --userId 'gcpvGrEb' \
-    --limit '4' \
-    --offset '92' \
+    --namespace 'bXfk1zxd' \
+    --userId 'zxg0UXcR' \
+    --limit '49' \
+    --offset '67' \
     > test.out 2>&1
 eval_tap $? 82 'GetGroups' test.out
 
 #- 83 CreateGroup
 samples/cli/sample-apps Ugc createGroup \
-    --body '{"contents": ["DExH1tay"], "name": "OGXIHzMR"}' \
-    --namespace 'jMCtOJsE' \
-    --userId 'ijlrbpyy' \
+    --body '{"contents": ["i3u8BzVW"], "name": "u1tOmhUt"}' \
+    --namespace 'CgcpvGrE' \
+    --userId 'bcZUDExH' \
     > test.out 2>&1
 eval_tap $? 83 'CreateGroup' test.out
 
 #- 84 DeleteAllUserGroup
 samples/cli/sample-apps Ugc deleteAllUserGroup \
-    --namespace 'EcQxVgJI' \
-    --userId 'jMZqcWfM' \
+    --namespace '1tayOGXI' \
+    --userId 'HzMRjMCt' \
     > test.out 2>&1
 eval_tap $? 84 'DeleteAllUserGroup' test.out
 
 #- 85 GetGroup
 samples/cli/sample-apps Ugc getGroup \
-    --groupId 'l6dqrpD4' \
-    --namespace 'tnc3ZRB3' \
-    --userId 'IkdtPfAJ' \
+    --groupId 'OJsEijlr' \
+    --namespace 'bpyyEcQx' \
+    --userId 'VgJIjMZq' \
     > test.out 2>&1
 eval_tap $? 85 'GetGroup' test.out
 
 #- 86 UpdateGroup
 samples/cli/sample-apps Ugc updateGroup \
-    --body '{"contents": ["EomwenJv"], "name": "Q8grtQSv"}' \
-    --groupId '6EcALcMI' \
-    --namespace 'Pms5bT51' \
-    --userId 'M4yko8S0' \
+    --body '{"contents": ["cWfMl6dq"], "name": "rpD4tnc3"}' \
+    --groupId 'ZRB3Ikdt' \
+    --namespace 'PfAJEomw' \
+    --userId 'enJvQ8gr' \
     > test.out 2>&1
 eval_tap $? 86 'UpdateGroup' test.out
 
 #- 87 DeleteGroup
 samples/cli/sample-apps Ugc deleteGroup \
-    --groupId 'EnGLvGvf' \
-    --namespace 'uSyCTyjj' \
-    --userId '4mCaiuMG' \
+    --groupId 'tQSv6EcA' \
+    --namespace 'LcMIPms5' \
+    --userId 'bT51M4yk' \
     > test.out 2>&1
 eval_tap $? 87 'DeleteGroup' test.out
 
 #- 88 GetGroupContent
 samples/cli/sample-apps Ugc getGroupContent \
-    --groupId 'KOF5GJJo' \
-    --namespace 'oSXUl3YU' \
-    --userId '35QHGpBA' \
-    --limit '54' \
-    --offset '27' \
+    --groupId 'o8S0EnGL' \
+    --namespace 'vGvfuSyC' \
+    --userId 'Tyjj4mCa' \
+    --limit '16' \
+    --offset '41' \
     > test.out 2>&1
 eval_tap $? 88 'GetGroupContent' test.out
 
 #- 89 DeleteAllUserStates
 samples/cli/sample-apps Ugc deleteAllUserStates \
-    --namespace 'OlxDznIC' \
-    --userId 'QVyqBg34' \
+    --namespace 'MGKOF5GJ' \
+    --userId 'JooSXUl3' \
     > test.out 2>&1
 eval_tap $? 89 'DeleteAllUserStates' test.out
 

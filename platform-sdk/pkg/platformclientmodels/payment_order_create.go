@@ -40,10 +40,10 @@ type PaymentOrderCreate struct {
 	ExtUserID string `json:"extUserId,omitempty"`
 
 	// item type
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
-	// language value from language tag, allowed format: en, en-US
+	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
@@ -142,7 +142,7 @@ var paymentOrderCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -155,26 +155,26 @@ const (
 	// PaymentOrderCreateItemTypeAPP captures enum value "APP"
 	PaymentOrderCreateItemTypeAPP string = "APP"
 
-	// PaymentOrderCreateItemTypeCOINS captures enum value "COINS"
-	PaymentOrderCreateItemTypeCOINS string = "COINS"
-
-	// PaymentOrderCreateItemTypeINGAMEITEM captures enum value "INGAMEITEM"
-	PaymentOrderCreateItemTypeINGAMEITEM string = "INGAMEITEM"
-
 	// PaymentOrderCreateItemTypeBUNDLE captures enum value "BUNDLE"
 	PaymentOrderCreateItemTypeBUNDLE string = "BUNDLE"
 
 	// PaymentOrderCreateItemTypeCODE captures enum value "CODE"
 	PaymentOrderCreateItemTypeCODE string = "CODE"
 
-	// PaymentOrderCreateItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
-	PaymentOrderCreateItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+	// PaymentOrderCreateItemTypeCOINS captures enum value "COINS"
+	PaymentOrderCreateItemTypeCOINS string = "COINS"
+
+	// PaymentOrderCreateItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	PaymentOrderCreateItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// PaymentOrderCreateItemTypeMEDIA captures enum value "MEDIA"
+	PaymentOrderCreateItemTypeMEDIA string = "MEDIA"
 
 	// PaymentOrderCreateItemTypeSEASON captures enum value "SEASON"
 	PaymentOrderCreateItemTypeSEASON string = "SEASON"
 
-	// PaymentOrderCreateItemTypeMEDIA captures enum value "MEDIA"
-	PaymentOrderCreateItemTypeMEDIA string = "MEDIA"
+	// PaymentOrderCreateItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	PaymentOrderCreateItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
 )
 
 // prop value enum

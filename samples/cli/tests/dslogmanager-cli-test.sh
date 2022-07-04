@@ -63,46 +63,48 @@ samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --region 'oh570KQB' \
     --sessionId 'Vaewc72k' \
     --startDate 'rSha68n3' \
-    --userId 'Ynozp1C2' \
+    --status 'Ynozp1C2' \
+    --userId 'KmIQTuBd' \
     > test.out 2>&1
 eval_tap $? 2 'ListTerminatedServers' test.out
 
 #- 3 DownloadServerLogs
 samples/cli/sample-apps Dslogmanager downloadServerLogs \
-    --namespace 'KmIQTuBd' \
-    --podName 'NEUsxFb8' \
+    --namespace 'NEUsxFb8' \
+    --podName 'CJ17M7DJ' \
     > test.out 2>&1
 eval_tap $? 3 'DownloadServerLogs' test.out
 
 #- 4 CheckServerLogs
 samples/cli/sample-apps Dslogmanager checkServerLogs \
-    --namespace 'CJ17M7DJ' \
-    --podName 'ZaMSxECb' \
+    --namespace 'ZaMSxECb' \
+    --podName 'Zbygyoar' \
     > test.out 2>&1
 eval_tap $? 4 'CheckServerLogs' test.out
 
 #- 5 BatchDownloadServerLogs
 samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
-    --body '{"Downloads": [{"alloc_id": "Zbygyoar", "namespace": "ORoeNHSb", "pod_name": "8Rh3kgs9"}]}' \
+    --body '{"Downloads": [{"alloc_id": "ORoeNHSb", "namespace": "8Rh3kgs9", "pod_name": "qqJbnQso"}]}' \
     > test.out 2>&1
 eval_tap $? 5 'BatchDownloadServerLogs' test.out
 
 #- 6 ListAllTerminatedServers
 samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
-    --deployment 'qqJbnQso' \
-    --endDate 'BgiVpP8C' \
-    --gameMode 'm3yvASUo' \
-    --limit '47' \
-    --namespace 'dxxFqmAG' \
-    --next 'TJ8IEdag' \
-    --partyId 'Etp4w29K' \
-    --podName 'Ou9c19R6' \
-    --previous 'XDqWHkkP' \
-    --provider '8npLEKMf' \
-    --region 'jiX7jpkV' \
-    --sessionId 'Zk3IaQYE' \
-    --startDate 'mqGodOEG' \
-    --userId 't9gPOj0c' \
+    --deployment 'BgiVpP8C' \
+    --endDate 'm3yvASUo' \
+    --gameMode 'xdxxFqmA' \
+    --limit '65' \
+    --namespace 'TJ8IEdag' \
+    --next 'Etp4w29K' \
+    --partyId 'Ou9c19R6' \
+    --podName 'XDqWHkkP' \
+    --previous '8npLEKMf' \
+    --provider 'jiX7jpkV' \
+    --region 'Zk3IaQYE' \
+    --sessionId 'mqGodOEG' \
+    --startDate 't9gPOj0c' \
+    --status '6i0JkvIa' \
+    --userId 's73ucYnF' \
     > test.out 2>&1
 eval_tap $? 6 'ListAllTerminatedServers' test.out
 

@@ -32,7 +32,7 @@ type FulfillmentScriptContext struct {
 
 	// fulfillment source, default PURCHASE
 	// Required: true
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT DLC OTHER]
+	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REWARD]
 	Source *string `json:"source"`
 }
 
@@ -111,7 +111,7 @@ var fulfillmentScriptContextTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","DLC","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -121,35 +121,35 @@ func init() {
 
 const (
 
-	// FulfillmentScriptContextSourcePURCHASE captures enum value "PURCHASE"
-	FulfillmentScriptContextSourcePURCHASE string = "PURCHASE"
-
-	// FulfillmentScriptContextSourceIAP captures enum value "IAP"
-	FulfillmentScriptContextSourceIAP string = "IAP"
-
-	// FulfillmentScriptContextSourcePROMOTION captures enum value "PROMOTION"
-	FulfillmentScriptContextSourcePROMOTION string = "PROMOTION"
-
 	// FulfillmentScriptContextSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	FulfillmentScriptContextSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// FulfillmentScriptContextSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	FulfillmentScriptContextSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// FulfillmentScriptContextSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	FulfillmentScriptContextSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// FulfillmentScriptContextSourceREWARD captures enum value "REWARD"
-	FulfillmentScriptContextSourceREWARD string = "REWARD"
-
-	// FulfillmentScriptContextSourceGIFT captures enum value "GIFT"
-	FulfillmentScriptContextSourceGIFT string = "GIFT"
 
 	// FulfillmentScriptContextSourceDLC captures enum value "DLC"
 	FulfillmentScriptContextSourceDLC string = "DLC"
 
+	// FulfillmentScriptContextSourceGIFT captures enum value "GIFT"
+	FulfillmentScriptContextSourceGIFT string = "GIFT"
+
+	// FulfillmentScriptContextSourceIAP captures enum value "IAP"
+	FulfillmentScriptContextSourceIAP string = "IAP"
+
 	// FulfillmentScriptContextSourceOTHER captures enum value "OTHER"
 	FulfillmentScriptContextSourceOTHER string = "OTHER"
+
+	// FulfillmentScriptContextSourcePROMOTION captures enum value "PROMOTION"
+	FulfillmentScriptContextSourcePROMOTION string = "PROMOTION"
+
+	// FulfillmentScriptContextSourcePURCHASE captures enum value "PURCHASE"
+	FulfillmentScriptContextSourcePURCHASE string = "PURCHASE"
+
+	// FulfillmentScriptContextSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	FulfillmentScriptContextSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// FulfillmentScriptContextSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	FulfillmentScriptContextSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// FulfillmentScriptContextSourceREWARD captures enum value "REWARD"
+	FulfillmentScriptContextSourceREWARD string = "REWARD"
 )
 
 // prop value enum

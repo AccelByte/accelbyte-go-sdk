@@ -97,7 +97,7 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Admin
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminCreateThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := t.Client.ThirdParty.AdminCreateThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,6 +106,9 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Admin
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

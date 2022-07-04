@@ -33,11 +33,11 @@ var ListImagesCmd = &cobra.Command{
 		sortDirection, _ := cmd.Flags().GetString("sortDirection")
 		input := &image_config.ListImagesParams{
 			Namespace:     namespace,
-			Count:         &count,
-			Offset:        &offset,
 			Q:             &q,
 			SortBy:        &sortBy,
 			SortDirection: &sortDirection,
+			Count:         count,
+			Offset:        offset,
 		}
 		ok, err := imageConfigService.ListImagesShort(input)
 		if err != nil {
@@ -55,9 +55,11 @@ var ListImagesCmd = &cobra.Command{
 func init() {
 	ListImagesCmd.Flags().String("namespace", "", "Namespace")
 	_ = ListImagesCmd.MarkFlagRequired("namespace")
-	ListImagesCmd.Flags().Int64("count", 1, "Count")
-	ListImagesCmd.Flags().Int64("offset", 0, "Offset")
 	ListImagesCmd.Flags().String("q", "", "Q")
 	ListImagesCmd.Flags().String("sortBy", "", "Sort by")
 	ListImagesCmd.Flags().String("sortDirection", "", "Sort direction")
+	ListImagesCmd.Flags().Int64("count", 1, "Count")
+	_ = ListImagesCmd.MarkFlagRequired("count")
+	ListImagesCmd.Flags().Int64("offset", 0, "Offset")
+	_ = ListImagesCmd.MarkFlagRequired("offset")
 }

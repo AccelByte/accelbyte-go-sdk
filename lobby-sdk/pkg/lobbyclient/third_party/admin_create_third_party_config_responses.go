@@ -52,6 +52,12 @@ func (o *AdminCreateThirdPartyConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewAdminCreateThirdPartyConfigConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminCreateThirdPartyConfigInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -190,6 +196,39 @@ func (o *AdminCreateThirdPartyConfigForbidden) GetPayload() *lobbyclientmodels.R
 }
 
 func (o *AdminCreateThirdPartyConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminCreateThirdPartyConfigConflict creates a AdminCreateThirdPartyConfigConflict with default headers values
+func NewAdminCreateThirdPartyConfigConflict() *AdminCreateThirdPartyConfigConflict {
+	return &AdminCreateThirdPartyConfigConflict{}
+}
+
+/*AdminCreateThirdPartyConfigConflict handles this case with default header values.
+
+  Conflict
+*/
+type AdminCreateThirdPartyConfigConflict struct {
+	Payload *lobbyclientmodels.RestapiErrorResponseV1
+}
+
+func (o *AdminCreateThirdPartyConfigConflict) Error() string {
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigConflict  %+v", 409, o.Payload)
+}
+
+func (o *AdminCreateThirdPartyConfigConflict) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
+	return o.Payload
+}
+
+func (o *AdminCreateThirdPartyConfigConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseV1)
 

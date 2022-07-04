@@ -42,7 +42,7 @@ type FulfillmentRequest struct {
 	OrderNo string `json:"orderNo,omitempty"`
 
 	// origin
-	// Enum: [Playstation Xbox Steam Epic Stadia IOS GooglePlay Twitch Nintendo System Other]
+	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Stadia Steam System Twitch Xbox]
 	Origin string `json:"origin,omitempty"`
 
 	// quantity
@@ -53,7 +53,7 @@ type FulfillmentRequest struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT DLC OTHER]
+	// Enum: [ACHIEVEMENT DLC GIFT IAP OTHER PROMOTION PURCHASE REDEEM_CODE REFERRAL_BONUS REWARD]
 	Source string `json:"source,omitempty"`
 
 	// start date time
@@ -133,7 +133,7 @@ var fulfillmentRequestTypeOriginPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Playstation","Xbox","Steam","Epic","Stadia","IOS","GooglePlay","Twitch","Nintendo","System","Other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Epic","GooglePlay","IOS","Nintendo","Other","Playstation","Stadia","Steam","System","Twitch","Xbox"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -143,38 +143,38 @@ func init() {
 
 const (
 
-	// FulfillmentRequestOriginPlaystation captures enum value "Playstation"
-	FulfillmentRequestOriginPlaystation string = "Playstation"
-
-	// FulfillmentRequestOriginXbox captures enum value "Xbox"
-	FulfillmentRequestOriginXbox string = "Xbox"
-
-	// FulfillmentRequestOriginSteam captures enum value "Steam"
-	FulfillmentRequestOriginSteam string = "Steam"
-
 	// FulfillmentRequestOriginEpic captures enum value "Epic"
 	FulfillmentRequestOriginEpic string = "Epic"
-
-	// FulfillmentRequestOriginStadia captures enum value "Stadia"
-	FulfillmentRequestOriginStadia string = "Stadia"
-
-	// FulfillmentRequestOriginIOS captures enum value "IOS"
-	FulfillmentRequestOriginIOS string = "IOS"
 
 	// FulfillmentRequestOriginGooglePlay captures enum value "GooglePlay"
 	FulfillmentRequestOriginGooglePlay string = "GooglePlay"
 
-	// FulfillmentRequestOriginTwitch captures enum value "Twitch"
-	FulfillmentRequestOriginTwitch string = "Twitch"
+	// FulfillmentRequestOriginIOS captures enum value "IOS"
+	FulfillmentRequestOriginIOS string = "IOS"
 
 	// FulfillmentRequestOriginNintendo captures enum value "Nintendo"
 	FulfillmentRequestOriginNintendo string = "Nintendo"
 
+	// FulfillmentRequestOriginOther captures enum value "Other"
+	FulfillmentRequestOriginOther string = "Other"
+
+	// FulfillmentRequestOriginPlaystation captures enum value "Playstation"
+	FulfillmentRequestOriginPlaystation string = "Playstation"
+
+	// FulfillmentRequestOriginStadia captures enum value "Stadia"
+	FulfillmentRequestOriginStadia string = "Stadia"
+
+	// FulfillmentRequestOriginSteam captures enum value "Steam"
+	FulfillmentRequestOriginSteam string = "Steam"
+
 	// FulfillmentRequestOriginSystem captures enum value "System"
 	FulfillmentRequestOriginSystem string = "System"
 
-	// FulfillmentRequestOriginOther captures enum value "Other"
-	FulfillmentRequestOriginOther string = "Other"
+	// FulfillmentRequestOriginTwitch captures enum value "Twitch"
+	FulfillmentRequestOriginTwitch string = "Twitch"
+
+	// FulfillmentRequestOriginXbox captures enum value "Xbox"
+	FulfillmentRequestOriginXbox string = "Xbox"
 )
 
 // prop value enum
@@ -212,7 +212,7 @@ var fulfillmentRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","DLC","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT","DLC","GIFT","IAP","OTHER","PROMOTION","PURCHASE","REDEEM_CODE","REFERRAL_BONUS","REWARD"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -222,35 +222,35 @@ func init() {
 
 const (
 
-	// FulfillmentRequestSourcePURCHASE captures enum value "PURCHASE"
-	FulfillmentRequestSourcePURCHASE string = "PURCHASE"
-
-	// FulfillmentRequestSourceIAP captures enum value "IAP"
-	FulfillmentRequestSourceIAP string = "IAP"
-
-	// FulfillmentRequestSourcePROMOTION captures enum value "PROMOTION"
-	FulfillmentRequestSourcePROMOTION string = "PROMOTION"
-
 	// FulfillmentRequestSourceACHIEVEMENT captures enum value "ACHIEVEMENT"
 	FulfillmentRequestSourceACHIEVEMENT string = "ACHIEVEMENT"
-
-	// FulfillmentRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
-	FulfillmentRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
-
-	// FulfillmentRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
-	FulfillmentRequestSourceREDEEMCODE string = "REDEEM_CODE"
-
-	// FulfillmentRequestSourceREWARD captures enum value "REWARD"
-	FulfillmentRequestSourceREWARD string = "REWARD"
-
-	// FulfillmentRequestSourceGIFT captures enum value "GIFT"
-	FulfillmentRequestSourceGIFT string = "GIFT"
 
 	// FulfillmentRequestSourceDLC captures enum value "DLC"
 	FulfillmentRequestSourceDLC string = "DLC"
 
+	// FulfillmentRequestSourceGIFT captures enum value "GIFT"
+	FulfillmentRequestSourceGIFT string = "GIFT"
+
+	// FulfillmentRequestSourceIAP captures enum value "IAP"
+	FulfillmentRequestSourceIAP string = "IAP"
+
 	// FulfillmentRequestSourceOTHER captures enum value "OTHER"
 	FulfillmentRequestSourceOTHER string = "OTHER"
+
+	// FulfillmentRequestSourcePROMOTION captures enum value "PROMOTION"
+	FulfillmentRequestSourcePROMOTION string = "PROMOTION"
+
+	// FulfillmentRequestSourcePURCHASE captures enum value "PURCHASE"
+	FulfillmentRequestSourcePURCHASE string = "PURCHASE"
+
+	// FulfillmentRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
+	FulfillmentRequestSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// FulfillmentRequestSourceREFERRALBONUS captures enum value "REFERRAL_BONUS"
+	FulfillmentRequestSourceREFERRALBONUS string = "REFERRAL_BONUS"
+
+	// FulfillmentRequestSourceREWARD captures enum value "REWARD"
+	FulfillmentRequestSourceREWARD string = "REWARD"
 )
 
 // prop value enum

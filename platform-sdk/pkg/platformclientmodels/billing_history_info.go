@@ -72,7 +72,7 @@ type BillingHistoryInfo struct {
 
 	// billing history status
 	// Required: true
-	// Enum: [INIT CHARGED CHARGE_FAILED REFUNDED REFUND_FAILED]
+	// Enum: [CHARGED CHARGE_FAILED INIT REFUNDED REFUND_FAILED]
 	Status *string `json:"status"`
 
 	// status reason
@@ -286,7 +286,7 @@ var billingHistoryInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INIT","CHARGED","CHARGE_FAILED","REFUNDED","REFUND_FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CHARGED","CHARGE_FAILED","INIT","REFUNDED","REFUND_FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -296,14 +296,14 @@ func init() {
 
 const (
 
-	// BillingHistoryInfoStatusINIT captures enum value "INIT"
-	BillingHistoryInfoStatusINIT string = "INIT"
-
 	// BillingHistoryInfoStatusCHARGED captures enum value "CHARGED"
 	BillingHistoryInfoStatusCHARGED string = "CHARGED"
 
 	// BillingHistoryInfoStatusCHARGEFAILED captures enum value "CHARGE_FAILED"
 	BillingHistoryInfoStatusCHARGEFAILED string = "CHARGE_FAILED"
+
+	// BillingHistoryInfoStatusINIT captures enum value "INIT"
+	BillingHistoryInfoStatusINIT string = "INIT"
 
 	// BillingHistoryInfoStatusREFUNDED captures enum value "REFUNDED"
 	BillingHistoryInfoStatusREFUNDED string = "REFUNDED"

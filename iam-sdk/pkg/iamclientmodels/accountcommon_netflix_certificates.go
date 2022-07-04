@@ -21,13 +21,25 @@ type AccountcommonNetflixCertificates struct {
 	// Required: true
 	EncryptedPrivateKey *string `json:"encryptedPrivateKey"`
 
+	// encrypted private key name
+	// Required: true
+	EncryptedPrivateKeyName *string `json:"encryptedPrivateKeyName"`
+
 	// public certificate
 	// Required: true
 	PublicCertificate *string `json:"publicCertificate"`
 
+	// public certificate name
+	// Required: true
+	PublicCertificateName *string `json:"publicCertificateName"`
+
 	// root certificate
 	// Required: true
 	RootCertificate *string `json:"rootCertificate"`
+
+	// root certificate name
+	// Required: true
+	RootCertificateName *string `json:"rootCertificateName"`
 }
 
 // Validate validates this accountcommon netflix certificates
@@ -38,11 +50,23 @@ func (m *AccountcommonNetflixCertificates) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateEncryptedPrivateKeyName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePublicCertificate(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validatePublicCertificateName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRootCertificate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRootCertificateName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,6 +85,15 @@ func (m *AccountcommonNetflixCertificates) validateEncryptedPrivateKey(formats s
 	return nil
 }
 
+func (m *AccountcommonNetflixCertificates) validateEncryptedPrivateKeyName(formats strfmt.Registry) error {
+
+	if err := validate.Required("encryptedPrivateKeyName", "body", m.EncryptedPrivateKeyName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *AccountcommonNetflixCertificates) validatePublicCertificate(formats strfmt.Registry) error {
 
 	if err := validate.Required("publicCertificate", "body", m.PublicCertificate); err != nil {
@@ -70,9 +103,27 @@ func (m *AccountcommonNetflixCertificates) validatePublicCertificate(formats str
 	return nil
 }
 
+func (m *AccountcommonNetflixCertificates) validatePublicCertificateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("publicCertificateName", "body", m.PublicCertificateName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *AccountcommonNetflixCertificates) validateRootCertificate(formats strfmt.Registry) error {
 
 	if err := validate.Required("rootCertificate", "body", m.RootCertificate); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonNetflixCertificates) validateRootCertificateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("rootCertificateName", "body", m.RootCertificateName); err != nil {
 		return err
 	}
 

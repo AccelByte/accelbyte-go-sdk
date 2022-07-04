@@ -27,7 +27,7 @@ type PaymentOrderChargeRequest struct {
 
 	// payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 }
 
@@ -49,7 +49,7 @@ var paymentOrderChargeRequestTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -59,29 +59,29 @@ func init() {
 
 const (
 
-	// PaymentOrderChargeRequestPaymentProviderWALLET captures enum value "WALLET"
-	PaymentOrderChargeRequestPaymentProviderWALLET string = "WALLET"
-
-	// PaymentOrderChargeRequestPaymentProviderXSOLLA captures enum value "XSOLLA"
-	PaymentOrderChargeRequestPaymentProviderXSOLLA string = "XSOLLA"
-
 	// PaymentOrderChargeRequestPaymentProviderADYEN captures enum value "ADYEN"
 	PaymentOrderChargeRequestPaymentProviderADYEN string = "ADYEN"
-
-	// PaymentOrderChargeRequestPaymentProviderSTRIPE captures enum value "STRIPE"
-	PaymentOrderChargeRequestPaymentProviderSTRIPE string = "STRIPE"
-
-	// PaymentOrderChargeRequestPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	PaymentOrderChargeRequestPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderChargeRequestPaymentProviderALIPAY captures enum value "ALIPAY"
 	PaymentOrderChargeRequestPaymentProviderALIPAY string = "ALIPAY"
 
-	// PaymentOrderChargeRequestPaymentProviderWXPAY captures enum value "WXPAY"
-	PaymentOrderChargeRequestPaymentProviderWXPAY string = "WXPAY"
+	// PaymentOrderChargeRequestPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	PaymentOrderChargeRequestPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentOrderChargeRequestPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentOrderChargeRequestPaymentProviderPAYPAL string = "PAYPAL"
+
+	// PaymentOrderChargeRequestPaymentProviderSTRIPE captures enum value "STRIPE"
+	PaymentOrderChargeRequestPaymentProviderSTRIPE string = "STRIPE"
+
+	// PaymentOrderChargeRequestPaymentProviderWALLET captures enum value "WALLET"
+	PaymentOrderChargeRequestPaymentProviderWALLET string = "WALLET"
+
+	// PaymentOrderChargeRequestPaymentProviderWXPAY captures enum value "WXPAY"
+	PaymentOrderChargeRequestPaymentProviderWXPAY string = "WXPAY"
+
+	// PaymentOrderChargeRequestPaymentProviderXSOLLA captures enum value "XSOLLA"
+	PaymentOrderChargeRequestPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum

@@ -36,7 +36,7 @@ type RewardUpdate struct {
 	Quantity int32 `json:"quantity,omitempty"`
 
 	// type, at current only support ITEM
-	// Enum: [ITEM CURRENCY]
+	// Enum: [CURRENCY ITEM]
 	Type string `json:"type,omitempty"`
 }
 
@@ -119,7 +119,7 @@ var rewardUpdateTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM","CURRENCY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CURRENCY","ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -129,11 +129,11 @@ func init() {
 
 const (
 
-	// RewardUpdateTypeITEM captures enum value "ITEM"
-	RewardUpdateTypeITEM string = "ITEM"
-
 	// RewardUpdateTypeCURRENCY captures enum value "CURRENCY"
 	RewardUpdateTypeCURRENCY string = "CURRENCY"
+
+	// RewardUpdateTypeITEM captures enum value "ITEM"
+	RewardUpdateTypeITEM string = "ITEM"
 )
 
 // prop value enum

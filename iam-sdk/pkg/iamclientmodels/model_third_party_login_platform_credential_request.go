@@ -93,7 +93,7 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
-	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.
+	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
 	// Required: true
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
 }

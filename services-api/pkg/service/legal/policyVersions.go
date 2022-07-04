@@ -108,7 +108,7 @@ func (p *PolicyVersionsService) CreatePolicyVersion(input *policy_versions.Creat
 }
 
 // Deprecated: Use RetrievePolicyVersionsShort instead
-func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.RetrievePolicyVersionsParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.RetrievePolicyVersionsParams) (*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -224,7 +224,7 @@ func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.
 	return created.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams) (*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

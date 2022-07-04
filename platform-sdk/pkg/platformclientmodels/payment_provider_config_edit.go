@@ -21,7 +21,7 @@ import (
 type PaymentProviderConfigEdit struct {
 
 	// aggregate payment provider, allow empty value
-	// Enum: [XSOLLA ADYEN]
+	// Enum: [ADYEN XSOLLA]
 	Aggregate string `json:"aggregate,omitempty"`
 
 	// namespace, * indicates all namespace
@@ -78,7 +78,7 @@ var paymentProviderConfigEditTypeAggregatePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["XSOLLA","ADYEN"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -88,11 +88,11 @@ func init() {
 
 const (
 
-	// PaymentProviderConfigEditAggregateXSOLLA captures enum value "XSOLLA"
-	PaymentProviderConfigEditAggregateXSOLLA string = "XSOLLA"
-
 	// PaymentProviderConfigEditAggregateADYEN captures enum value "ADYEN"
 	PaymentProviderConfigEditAggregateADYEN string = "ADYEN"
+
+	// PaymentProviderConfigEditAggregateXSOLLA captures enum value "XSOLLA"
+	PaymentProviderConfigEditAggregateXSOLLA string = "XSOLLA"
 )
 
 // prop value enum
@@ -139,7 +139,7 @@ var paymentProviderConfigEditSpecialsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

@@ -33,7 +33,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigInternalServerError, error)
+	AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigConflict, *AdminCreateThirdPartyConfigInternalServerError, error)
 	AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, error)
 	AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, *AdminDeleteThirdPartyConfigBadRequest, *AdminDeleteThirdPartyConfigUnauthorized, *AdminDeleteThirdPartyConfigForbidden, *AdminDeleteThirdPartyConfigInternalServerError, error)
 	AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, error)
@@ -51,7 +51,7 @@ type ClientService interface {
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
 			&lt;br&gt;create third party config in a namespace.
 */
-func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigInternalServerError, error) {
+func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigConflict, *AdminCreateThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateThirdPartyConfigParams()
@@ -79,28 +79,31 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateThirdPartyConfigCreated:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminCreateThirdPartyConfigBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminCreateThirdPartyConfigUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminCreateThirdPartyConfigForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminCreateThirdPartyConfigConflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminCreateThirdPartyConfigInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -144,6 +147,8 @@ func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyC
 	case *AdminCreateThirdPartyConfigUnauthorized:
 		return nil, v
 	case *AdminCreateThirdPartyConfigForbidden:
+		return nil, v
+	case *AdminCreateThirdPartyConfigConflict:
 		return nil, v
 	case *AdminCreateThirdPartyConfigInternalServerError:
 		return nil, v

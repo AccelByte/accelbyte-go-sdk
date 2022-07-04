@@ -105,7 +105,7 @@ type ListImagesParams struct {
 	  how many items to return
 
 	*/
-	Count *int64
+	Count int64
 	/*Namespace
 	  namespace of the game
 
@@ -115,7 +115,7 @@ type ListImagesParams struct {
 	  offset from list to query from
 
 	*/
-	Offset *int64
+	Offset int64
 	/*Q
 	  image name or image version. In UI this is from search text box
 
@@ -186,13 +186,13 @@ func (o *ListImagesParams) SetHTTPClientTransport(roundTripper http.RoundTripper
 }
 
 // WithCount adds the count to the list images params
-func (o *ListImagesParams) WithCount(count *int64) *ListImagesParams {
+func (o *ListImagesParams) WithCount(count int64) *ListImagesParams {
 	o.SetCount(count)
 	return o
 }
 
 // SetCount adds the count to the list images params
-func (o *ListImagesParams) SetCount(count *int64) {
+func (o *ListImagesParams) SetCount(count int64) {
 	o.Count = count
 }
 
@@ -208,13 +208,13 @@ func (o *ListImagesParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the list images params
-func (o *ListImagesParams) WithOffset(offset *int64) *ListImagesParams {
+func (o *ListImagesParams) WithOffset(offset int64) *ListImagesParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the list images params
-func (o *ListImagesParams) SetOffset(offset *int64) {
+func (o *ListImagesParams) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -259,20 +259,13 @@ func (o *ListImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.Count != nil {
-
-		// query param count
-		var qrCount int64
-		if o.Count != nil {
-			qrCount = *o.Count
+	// query param count
+	qrCount := o.Count
+	qCount := swag.FormatInt64(qrCount)
+	if qCount != "" {
+		if err := r.SetQueryParam("count", qCount); err != nil {
+			return err
 		}
-		qCount := swag.FormatInt64(qrCount)
-		if qCount != "" {
-			if err := r.SetQueryParam("count", qCount); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// path param namespace
@@ -280,20 +273,13 @@ func (o *ListImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 
-	if o.Offset != nil {
-
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
+	// query param offset
+	qrOffset := o.Offset
+	qOffset := swag.FormatInt64(qrOffset)
+	if qOffset != "" {
+		if err := r.SetQueryParam("offset", qOffset); err != nil {
+			return err
 		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if o.Q != nil {

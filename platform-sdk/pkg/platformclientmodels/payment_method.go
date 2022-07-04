@@ -25,7 +25,7 @@ type PaymentMethod struct {
 
 	// payment provider
 	// Required: true
-	// Enum: [WALLET XSOLLA ADYEN STRIPE CHECKOUT ALIPAY WXPAY PAYPAL]
+	// Enum: [ADYEN ALIPAY CHECKOUT PAYPAL STRIPE WALLET WXPAY XSOLLA]
 	PaymentProvider *string `json:"paymentProvider"`
 }
 
@@ -60,7 +60,7 @@ var paymentMethodTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["WALLET","XSOLLA","ADYEN","STRIPE","CHECKOUT","ALIPAY","WXPAY","PAYPAL"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN","ALIPAY","CHECKOUT","PAYPAL","STRIPE","WALLET","WXPAY","XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -70,29 +70,29 @@ func init() {
 
 const (
 
-	// PaymentMethodPaymentProviderWALLET captures enum value "WALLET"
-	PaymentMethodPaymentProviderWALLET string = "WALLET"
-
-	// PaymentMethodPaymentProviderXSOLLA captures enum value "XSOLLA"
-	PaymentMethodPaymentProviderXSOLLA string = "XSOLLA"
-
 	// PaymentMethodPaymentProviderADYEN captures enum value "ADYEN"
 	PaymentMethodPaymentProviderADYEN string = "ADYEN"
-
-	// PaymentMethodPaymentProviderSTRIPE captures enum value "STRIPE"
-	PaymentMethodPaymentProviderSTRIPE string = "STRIPE"
-
-	// PaymentMethodPaymentProviderCHECKOUT captures enum value "CHECKOUT"
-	PaymentMethodPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentMethodPaymentProviderALIPAY captures enum value "ALIPAY"
 	PaymentMethodPaymentProviderALIPAY string = "ALIPAY"
 
-	// PaymentMethodPaymentProviderWXPAY captures enum value "WXPAY"
-	PaymentMethodPaymentProviderWXPAY string = "WXPAY"
+	// PaymentMethodPaymentProviderCHECKOUT captures enum value "CHECKOUT"
+	PaymentMethodPaymentProviderCHECKOUT string = "CHECKOUT"
 
 	// PaymentMethodPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentMethodPaymentProviderPAYPAL string = "PAYPAL"
+
+	// PaymentMethodPaymentProviderSTRIPE captures enum value "STRIPE"
+	PaymentMethodPaymentProviderSTRIPE string = "STRIPE"
+
+	// PaymentMethodPaymentProviderWALLET captures enum value "WALLET"
+	PaymentMethodPaymentProviderWALLET string = "WALLET"
+
+	// PaymentMethodPaymentProviderWXPAY captures enum value "WXPAY"
+	PaymentMethodPaymentProviderWXPAY string = "WXPAY"
+
+	// PaymentMethodPaymentProviderXSOLLA captures enum value "XSOLLA"
+	PaymentMethodPaymentProviderXSOLLA string = "XSOLLA"
 )
 
 // prop value enum

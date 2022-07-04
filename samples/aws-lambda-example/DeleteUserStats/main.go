@@ -41,30 +41,30 @@ func main() {
 	lambda.Start(Handler)
 }
 
-func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 	request := Request{}
 	err := json.Unmarshal([]byte(evt.Body), &request)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 	accessToken := request.AccessToken
 	tokenResponseV3, err := convertTokenToTokenResponseV3(accessToken)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 	tokenRepositoryImpl := &TokenRepositoryImpl{}
 	if tokenResponseV3 != nil {
 		err = tokenRepositoryImpl.Store(*tokenResponseV3)
 		if err != nil {
-			return events.APIGatewayProxyResponse{}, err
+			return events.LambdaFunctionURLResponse{}, err
 		}
 	}
 	_, err = deleteUserStatItems(request.Params, tokenRepositoryImpl)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 
-	return events.APIGatewayProxyResponse{
+	return events.LambdaFunctionURLResponse{
 		StatusCode: 200,
 	}, nil
 }

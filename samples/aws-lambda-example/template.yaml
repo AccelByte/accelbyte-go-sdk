@@ -21,62 +21,35 @@ Resources:
       CodeUri: CreateUserStats
       Handler: main
       Runtime: go1.x
-      Events:
-        CreateUserStats:
-          Type: Api
-          Properties:
-            Path: /CreateUserStats
-            Method: POST
   GetUserStatsFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: GetUserStats
       Handler: main
       Runtime: go1.x
-      Events:
-        GetUserStats:
-          Type: Api
-          Properties:
-            Path: /GetUserStats
-            Method: GET
   DeleteUserStatsFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: DeleteUserStats
       Handler: main
       Runtime: go1.x
-      Events:
-        CreateUserStats:
-          Type: Api
-          Properties:
-            Path: /DeleteUserStats
-            Method: DELETE
 
 Outputs:
-  CreateUserStatsApi:
-    Description: "API Gateway endpoint URL for Prod stage for Create User Stats Function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/CreateUserStats"
   CreateUserStatsFunction:
     Description: "Create User Stats Function ARN"
     Value: !GetAtt CreateUserStatsFunction.Arn
   CreateUserStatsFunctionIamRole:
     Description: "Implicit IAM Role created for Create User Stats Function"
     Value: !GetAtt CreateUserStatsFunctionRole.Arn
-  GetUserStatsApi:
-    Description: "API Gateway endpoint URL for Prod stage for Get User Stats Function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/GetUserStats"
   GetUserStatsFunction:
     Description: "Get User Stats Function Function ARN"
     Value: !GetAtt GetUserStatsFunction.Arn
   GetUserStatsFunctionIamRole:
     Description: "Implicit IAM Role created for Get User Stats Function"
     Value: !GetAtt GetUserStatsFunctionRole.Arn
-  DeleteUserStatsApi:
-    Description: "API Gateway endpoint URL for Prod stage for Delete User Stats Function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/DeleteUserStats"
-    DeleteUserStatsFunction:
-      Description: "Delete User Stats Function Function ARN"
-      Value: !GetAtt DeleteUserStatsFunction.Arn
-    DeleteUserStatsFunctionIamRole:
-      Description: "Implicit IAM Role created Delete User Stats Function"
-      Value: !GetAtt DeleteUserStatsFunctionRole.Arn
+  DeleteUserStatsFunction:
+    Description: "Delete User Stats Function Function ARN"
+    Value: !GetAtt DeleteUserStatsFunction.Arn
+  DeleteUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created Delete User Stats Function"
+    Value: !GetAtt DeleteUserStatsFunctionRole.Arn

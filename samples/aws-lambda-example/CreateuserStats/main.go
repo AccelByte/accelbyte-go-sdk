@@ -10,7 +10,8 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/dgrijalva/jwt-go"
@@ -39,40 +40,45 @@ func main() {
 	lambda.Start(Handler)
 }
 
-func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func Handler(evt events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 	request := Request{}
 	err := json.Unmarshal([]byte(evt.Body), &request)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 	accessToken := request.AccessToken
 	tokenResponseV3, err := convertTokenToTokenResponseV3(accessToken)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 	tokenRepositoryImpl := &TokenRepositoryImpl{}
 	if tokenResponseV3 != nil {
 		err = tokenRepositoryImpl.Store(*tokenResponseV3)
 		if err != nil {
-			return events.APIGatewayProxyResponse{}, err
+			return events.LambdaFunctionURLResponse{}, err
 		}
 	}
 	_, err = createUserStatItem(request.Params, tokenRepositoryImpl)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return events.LambdaFunctionURLResponse{}, err
 	}
 
-	return events.APIGatewayProxyResponse{
+	return events.LambdaFunctionURLResponse{
 		StatusCode: 200,
 	}, nil
 }
 
 func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
-	statisticService := service.StatisticService{
-		SocialServiceClient: factory.NewSocialClient(&ConfigRepositoryImpl{}),
-		TokenRepository:     tokenRepositoryImpl,
+	statisticService := social.UserStatisticService{
+		Client:          factory.NewSocialClient(&ConfigRepositoryImpl{}),
+		TokenRepository: tokenRepositoryImpl,
 	}
-	err := statisticService.CreateUserStatItem(params.Namespace, params.UserID, params.StatCode)
+	input := &user_statistic.CreateUserStatItemParams{
+		Namespace: params.Namespace,
+		StatCode:  params.StatCode,
+		UserID:    params.UserID,
+	}
+	err := statisticService.CreateUserStatItemShort(input)
 	if err != nil {
 		return nil, err
 	}

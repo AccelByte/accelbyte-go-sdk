@@ -8,14 +8,14 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "1.36.3"
+    "version": "2.0.0"
   },
   "schemes": [
     "https"
   ],
   "tags": [
     {
-      "name": "UserAction"
+      "name": "Anonymization"
     },
     {
       "name": "EQU8Config"
@@ -30,10 +30,10 @@
       "name": "Namespace"
     },
     {
-      "name": "UserProfile"
+      "name": "UserAction"
     },
     {
-      "name": "Anonymization"
+      "name": "UserProfile"
     }
   ],
   "securityDefinitions": {
@@ -468,8 +468,8 @@
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "no content"
+          "200": {
+            "description": "successful operation"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -628,8 +628,8 @@
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "no content"
+          "201": {
+            "description": "successful operation"
           },
           "422": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -763,8 +763,8 @@
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "no content"
+          "200": {
+            "description": "successful operation"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -1052,16 +1052,16 @@
         "operationId": "generatedUploadUrl",
         "parameters": [
           {
-            "description": "namespace, only accept alphabet and numeric",
+            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
             "in": "path",
-            "name": "namespace",
+            "name": "folder",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
+            "description": "namespace, only accept alphabet and numeric",
             "in": "path",
-            "name": "folder",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1351,16 +1351,16 @@
         "operationId": "deleteCountryGroup",
         "parameters": [
           {
-            "description": "namespace, only accept alphabet and numeric",
+            "description": "groupCode, only accept alphabet and whitespace",
             "in": "path",
-            "name": "namespace",
+            "name": "countryGroupCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "groupCode, only accept alphabet and whitespace",
+            "description": "namespace, only accept alphabet and numeric",
             "in": "path",
-            "name": "countryGroupCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1424,16 +1424,16 @@
         "operationId": "updateCountryGroup",
         "parameters": [
           {
-            "description": "namespace, only accept alphabet and numeric",
+            "description": "groupCode, only accept alphabet and whitespace",
             "in": "path",
-            "name": "namespace",
+            "name": "countryGroupCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "groupCode, only accept alphabet and whitespace",
+            "description": "namespace, only accept alphabet and numeric",
             "in": "path",
-            "name": "countryGroupCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2791,16 +2791,16 @@
         "operationId": "publicGeneratedUploadUrl",
         "parameters": [
           {
-            "description": "namespace, only accept alphabet and numeric",
+            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
             "in": "path",
-            "name": "namespace",
+            "name": "folder",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
+            "description": "namespace, only accept alphabet and numeric",
             "in": "path",
-            "name": "folder",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -3467,19 +3467,19 @@
         "operationId": "updateMyZipCode",
         "parameters": [
           {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "userZipCodeUpdate",
             "required": true,
             "schema": {
               "$ref": "#/definitions/UserZipCodeUpdate"
             }
+          },
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3567,8 +3567,8 @@
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "no content"
+          "201": {
+            "description": "successful operation"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -4523,8 +4523,8 @@
         "status": {
           "enum": [
             "ACTIVE",
-            "INACTIVE",
-            "DELETED"
+            "DELETED",
+            "INACTIVE"
           ],
           "type": "string"
         },
@@ -4676,7 +4676,7 @@
           "type": "string"
         },
         "language": {
-          "description": "language value from language tag, allowed format: en, en-US",
+          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
@@ -4745,7 +4745,7 @@
           "type": "string"
         },
         "language": {
-          "description": "language value from language tag, allowed format: en, en-US",
+          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
@@ -4778,6 +4778,7 @@
         },
         "dateOfBirth": {
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4847,7 +4848,7 @@
           "type": "string"
         },
         "language": {
-          "description": "language value from language tag, allowed format: en, en-US",
+          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
@@ -4886,6 +4887,7 @@
         },
         "dateOfBirth": {
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4961,7 +4963,7 @@
           "type": "string"
         },
         "language": {
-          "description": "language value from language tag, allowed format: en, en-US",
+          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
@@ -5066,7 +5068,7 @@
           "type": "string"
         },
         "language": {
-          "description": "language value from language tag, allowed format: en, en-US",
+          "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },

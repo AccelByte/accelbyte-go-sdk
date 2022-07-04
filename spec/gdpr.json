@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "1.14.6"
+    "version": "1.14.7"
   },
   "schemes": [
     "https"
@@ -63,12 +63,6 @@
             "type": "string"
           },
           {
-            "description": "The day in UTC of the deletion request. format : YYYY-MM-DD. Default : today time in UTC.",
-            "in": "query",
-            "name": "requestDate",
-            "type": "string"
-          },
-          {
             "description": "The day in UTC format to get deletion request list after that. format : YYYY-MM-DD",
             "in": "query",
             "name": "after",
@@ -91,6 +85,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "The day in UTC of the deletion request. format : YYYY-MM-DD. Default : today time in UTC.",
+            "in": "query",
+            "name": "requestDate",
+            "type": "string"
           }
         ],
         "produces": [
@@ -295,13 +295,6 @@
         "operationId": "SaveAdminEmailConfiguration",
         "parameters": [
           {
-            "description": "namespace of the user",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -311,6 +304,13 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace of the user",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -363,13 +363,6 @@
         "operationId": "UpdateAdminEmailConfiguration",
         "parameters": [
           {
-            "description": "namespace of the user",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -379,6 +372,13 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace of the user",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -437,12 +437,6 @@
             "type": "string"
           },
           {
-            "description": "request date with format YYYY-MM-DD. Default value today UTC",
-            "in": "query",
-            "name": "requestDate",
-            "type": "string"
-          },
-          {
             "description": "the maximum number of data that may be returned (1...100)",
             "in": "query",
             "name": "limit",
@@ -453,6 +447,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "request date with format YYYY-MM-DD. Default value today UTC",
+            "in": "query",
+            "name": "requestDate",
+            "type": "string"
           }
         ],
         "produces": [
@@ -911,16 +911,16 @@
             "type": "string"
           },
           {
-            "description": "IAM id of the user",
+            "description": "Request date in RFC3339 format",
             "in": "path",
-            "name": "userId",
+            "name": "requestDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Request date in RFC3339 format",
+            "description": "IAM id of the user",
             "in": "path",
-            "name": "requestDate",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -983,16 +983,16 @@
         "operationId": "AdminGeneratePersonalDataURL",
         "parameters": [
           {
-            "description": "namespace of the user",
-            "in": "path",
-            "name": "namespace",
+            "description": "IAM password of the user",
+            "in": "formData",
+            "name": "password",
             "required": true,
             "type": "string"
           },
           {
-            "description": "IAM id of the user",
+            "description": "namespace of the user",
             "in": "path",
-            "name": "userId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1004,9 +1004,9 @@
             "type": "string"
           },
           {
-            "description": "IAM password of the user",
-            "in": "formData",
-            "name": "password",
+            "description": "IAM id of the user",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -1136,6 +1136,13 @@
         "operationId": "PublicSubmitUserAccountDeletionRequest",
         "parameters": [
           {
+            "description": "IAM password of the user",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the user",
             "in": "path",
             "name": "namespace",
@@ -1146,13 +1153,6 @@
             "description": "IAM ID of the user",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "IAM password of the user",
-            "in": "formData",
-            "name": "password",
             "required": true,
             "type": "string"
           }
@@ -1354,6 +1354,13 @@
         "operationId": "PublicRequestDataRetrieval",
         "parameters": [
           {
+            "description": "IAM password of the user",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the user",
             "in": "path",
             "name": "namespace",
@@ -1364,13 +1371,6 @@
             "description": "IAM id of the user",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "IAM password of the user",
-            "in": "formData",
-            "name": "password",
             "required": true,
             "type": "string"
           }
@@ -1431,16 +1431,16 @@
             "type": "string"
           },
           {
-            "description": "IAM id of the user",
+            "description": "Request date in RFC3339 format",
             "in": "path",
-            "name": "userId",
+            "name": "requestDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Request date in RFC3339 format",
+            "description": "IAM id of the user",
             "in": "path",
-            "name": "requestDate",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -1500,16 +1500,16 @@
         "operationId": "PublicGeneratePersonalDataURL",
         "parameters": [
           {
-            "description": "namespace of the user",
-            "in": "path",
-            "name": "namespace",
+            "description": "IAM password of the user",
+            "in": "formData",
+            "name": "password",
             "required": true,
             "type": "string"
           },
           {
-            "description": "IAM id of the user",
+            "description": "namespace of the user",
             "in": "path",
-            "name": "userId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1521,9 +1521,9 @@
             "type": "string"
           },
           {
-            "description": "IAM password of the user",
-            "in": "formData",
-            "name": "password",
+            "description": "IAM id of the user",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }

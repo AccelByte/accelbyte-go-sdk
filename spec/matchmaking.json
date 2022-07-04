@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.15.1"
+    "version": "2.15.3"
   },
   "schemes": [
     "https"
@@ -100,15 +100,15 @@
             "type": "string"
           },
           {
-            "description": "offset index",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
-          },
-          {
             "description": "number of object per page",
             "in": "query",
             "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset index",
+            "in": "query",
+            "name": "offset",
             "type": "integer"
           }
         ],
@@ -177,19 +177,19 @@
         "operationId": "CreateChannelHandler",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.ChannelRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -259,16 +259,16 @@
         "operationId": "DeleteChannelHandler",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "channel to be deleted",
             "in": "path",
-            "name": "namespace",
+            "name": "channel",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channel to be deleted",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "channel",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -325,19 +325,19 @@
         "operationId": "StoreMatchResults",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.MatchResultRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -401,19 +401,19 @@
         "operationId": "Rebalance",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.RebalanceRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -483,19 +483,19 @@
         "operationId": "QueueSessionHandler",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.MatchmakingResult"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -556,19 +556,19 @@
         "operationId": "DequeueSessionHandler",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.DequeueRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -635,16 +635,16 @@
         "operationId": "QuerySessionHandler",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "ID of the match session",
             "in": "path",
-            "name": "namespace",
+            "name": "matchID",
             "required": true,
             "type": "string"
           },
           {
-            "description": "ID of the match session",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "matchID",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -716,19 +716,19 @@
         "operationId": "UpdatePlayTimeWeight",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.UpdatePlayTimeWeightRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1106,16 +1106,16 @@
         "operationId": "GetSingleMatchmakingChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
-            "name": "namespace",
+            "name": "channelName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "description": "namespace of the game, only accept alphabet and numeric",
             "in": "path",
-            "name": "channelName",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1185,11 +1185,12 @@
         "operationId": "UpdateMatchmakingChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateChannelRequest"
+            }
           },
           {
             "description": "channel name, accept snake_case, lowercase, and numeric",
@@ -1199,12 +1200,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateChannelRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1271,16 +1271,16 @@
         "operationId": "GetAllPartyInChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
-            "name": "namespace",
+            "name": "channelName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "description": "namespace of the game, only accept alphabet and numeric",
             "in": "path",
-            "name": "channelName",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1355,16 +1355,16 @@
         "operationId": "GetAllSessionsInChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
-            "name": "namespace",
+            "name": "channelName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "description": "namespace of the game, only accept alphabet and numeric",
             "in": "path",
-            "name": "channelName",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1439,13 +1439,6 @@
         "operationId": "DeleteSessionInChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
             "name": "channelName",
@@ -1456,6 +1449,13 @@
             "description": "ID of the match session",
             "in": "path",
             "name": "matchID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1522,11 +1522,12 @@
         "operationId": "AddUserIntoSessionInChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.MatchAddUserIntoSessionRequest"
+            }
           },
           {
             "description": "channel name, accept snake_case, lowercase, and numeric",
@@ -1543,12 +1544,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.MatchAddUserIntoSessionRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1615,13 +1615,6 @@
         "operationId": "DeleteUserFromSessionInChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
             "name": "channelName",
@@ -1632,6 +1625,13 @@
             "description": "ID of the match session",
             "in": "path",
             "name": "matchID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1717,22 +1717,18 @@
             "type": "string"
           },
           {
-            "description": "ID of the match session",
+            "description": "limit",
             "in": "query",
-            "name": "matchID",
-            "type": "string"
+            "name": "limit",
+            "required": true,
+            "type": "integer"
           },
           {
-            "description": "ID of the user",
+            "description": "offset",
             "in": "query",
-            "name": "userID",
-            "type": "string"
-          },
-          {
-            "description": "ID of the party",
-            "in": "query",
-            "name": "partyID",
-            "type": "string"
+            "name": "offset",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "ID of the channel",
@@ -1748,18 +1744,22 @@
             "x-omitempty": false
           },
           {
-            "description": "limit",
+            "description": "ID of the match session",
             "in": "query",
-            "name": "limit",
-            "required": true,
-            "type": "integer"
+            "name": "matchID",
+            "type": "string"
           },
           {
-            "description": "offset",
+            "description": "ID of the party",
             "in": "query",
-            "name": "offset",
-            "required": true,
-            "type": "integer"
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
           }
         ],
         "produces": [
@@ -1829,16 +1829,16 @@
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
+            "description": "ID of the match session",
             "in": "path",
-            "name": "namespace",
+            "name": "matchID",
             "required": true,
             "type": "string"
           },
           {
-            "description": "ID of the match session",
+            "description": "namespace of the game, only accept alphabet and numeric",
             "in": "path",
-            "name": "matchID",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2022,16 +2022,16 @@
         "operationId": "PublicGetSingleMatchmakingChannel",
         "parameters": [
           {
-            "description": "namespace of the game, only accept alphabet and numeric",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
             "in": "path",
-            "name": "namespace",
+            "name": "channelName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "description": "namespace of the game, only accept alphabet and numeric",
             "in": "path",
-            "name": "channelName",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2104,22 +2104,18 @@
             "type": "string"
           },
           {
-            "description": "ID of the match session",
+            "description": "limit",
             "in": "query",
-            "name": "matchID",
-            "type": "string"
+            "name": "limit",
+            "required": true,
+            "type": "integer"
           },
           {
-            "description": "ID of the user",
+            "description": "offset",
             "in": "query",
-            "name": "userID",
-            "type": "string"
-          },
-          {
-            "description": "ID of the party",
-            "in": "query",
-            "name": "partyID",
-            "type": "string"
+            "name": "offset",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "ID of the channel",
@@ -2135,18 +2131,22 @@
             "x-omitempty": false
           },
           {
-            "description": "limit",
+            "description": "ID of the match session",
             "in": "query",
-            "name": "limit",
-            "required": true,
-            "type": "integer"
+            "name": "matchID",
+            "type": "string"
           },
           {
-            "description": "offset",
+            "description": "ID of the party",
             "in": "query",
-            "name": "offset",
-            "required": true,
-            "type": "integer"
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
           }
         ],
         "produces": [

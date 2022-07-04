@@ -112,15 +112,15 @@
             "type": "string"
           },
           {
-            "description": "game session ID",
-            "in": "query",
-            "name": "session_id",
-            "type": "string"
-          },
-          {
             "description": "server region",
             "in": "query",
             "name": "server_region",
+            "type": "string"
+          },
+          {
+            "description": "game session ID",
+            "in": "query",
+            "name": "session_id",
             "type": "string"
           }
         ],
@@ -177,12 +177,6 @@
             "type": "string"
           },
           {
-            "description": "game session ID",
-            "in": "query",
-            "name": "session_id",
-            "type": "string"
-          },
-          {
             "description": "matchmaking ID",
             "in": "query",
             "name": "match_id",
@@ -192,6 +186,12 @@
             "description": "server region",
             "in": "query",
             "name": "server_region",
+            "type": "string"
+          },
+          {
+            "description": "game session ID",
+            "in": "query",
+            "name": "session_id",
             "type": "string"
           }
         ],
@@ -315,12 +315,6 @@
             "type": "string"
           },
           {
-            "description": "Owner of the P2P session. Dedicated server does not have user_id",
-            "in": "query",
-            "name": "user_id",
-            "type": "string"
-          },
-          {
             "description": "Game mode of the session to query",
             "in": "query",
             "name": "game_mode",
@@ -339,10 +333,10 @@
             "type": "string"
           },
           {
-            "description": "filter session by matchmaking ID",
+            "description": "max item to be returned",
             "in": "query",
-            "name": "match_id",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           },
           {
             "description": "filter session by match existence, accept 'true' or 'false'",
@@ -351,9 +345,9 @@
             "type": "string"
           },
           {
-            "description": "filter session by server status, accept CREATING,READY,BUSY,REMOVING,UNREACHABLE",
+            "description": "filter session by matchmaking ID",
             "in": "query",
-            "name": "server_status",
+            "name": "match_id",
             "type": "string"
           },
           {
@@ -363,10 +357,16 @@
             "type": "integer"
           },
           {
-            "description": "max item to be returned",
+            "description": "filter session by server status, accept CREATING,READY,BUSY,REMOVING,UNREACHABLE",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "server_status",
+            "type": "string"
+          },
+          {
+            "description": "Owner of the P2P session. Dedicated server does not have user_id",
+            "in": "query",
+            "name": "user_id",
+            "type": "string"
           }
         ],
         "produces": [
@@ -416,19 +416,19 @@
         "operationId": "CreateSession",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateSessionRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -683,6 +683,14 @@
         "operationId": "UpdateSession",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateSessionRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -695,14 +703,6 @@
             "name": "sessionID",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateSessionRequest"
-            }
           }
         ],
         "produces": [
@@ -760,19 +760,19 @@
         "operationId": "JoinSession",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.JoinGameSessionRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "session ID",
@@ -912,6 +912,14 @@
         "operationId": "AddPlayerToSession",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AddPlayerRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -924,14 +932,6 @@
             "name": "sessionID",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AddPlayerRequest"
-            }
           }
         ],
         "produces": [
@@ -1065,6 +1065,14 @@
         "operationId": "UpdateSettings",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateSettingsRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1077,14 +1085,6 @@
             "name": "sessionID",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateSettingsRequest"
-            }
           }
         ],
         "produces": [

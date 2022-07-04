@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.29.2"
+    "version": "1.29.3"
   },
   "schemes": [
     "https"
@@ -21,16 +21,16 @@
       "name": "GlobalStatistic"
     },
     {
-      "name": "UserStatistic"
-    },
-    {
-      "name": "StatConfiguration"
+      "name": "Slot"
     },
     {
       "name": "SlotConfig"
     },
     {
-      "name": "Slot"
+      "name": "StatConfiguration"
+    },
+    {
+      "name": "UserStatistic"
     }
   ],
   "securityDefinitions": {
@@ -452,16 +452,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Game profile ID",
             "in": "path",
-            "name": "userId",
+            "name": "profileId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Game profile ID",
+            "description": "User ID",
             "in": "path",
-            "name": "profileId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -572,16 +572,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Slot ID",
             "in": "path",
-            "name": "userId",
+            "name": "slotId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Slot ID",
+            "description": "User ID",
             "in": "path",
-            "name": "slotId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -822,16 +822,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Game profile ID",
             "in": "path",
-            "name": "userId",
+            "name": "profileId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Game profile ID",
+            "description": "User ID",
             "in": "path",
-            "name": "profileId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -879,16 +879,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Game profile ID",
             "in": "path",
-            "name": "userId",
+            "name": "profileId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Game profile ID",
+            "description": "User ID",
             "in": "path",
-            "name": "profileId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -945,16 +945,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Game profile ID",
             "in": "path",
-            "name": "userId",
+            "name": "profileId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Game profile ID",
+            "description": "User ID",
             "in": "path",
-            "name": "profileId",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -1017,16 +1017,16 @@
         "operationId": "publicGetProfileAttribute",
         "parameters": [
           {
-            "description": "Namespace ID",
+            "description": "Attribute Name",
             "in": "path",
-            "name": "namespace",
+            "name": "attributeName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Namespace ID",
             "in": "path",
-            "name": "userId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1038,9 +1038,9 @@
             "type": "string"
           },
           {
-            "description": "Attribute Name",
+            "description": "User ID",
             "in": "path",
-            "name": "attributeName",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -1090,16 +1090,16 @@
         "operationId": "publicUpdateAttribute",
         "parameters": [
           {
-            "description": "Namespace ID",
+            "description": "Attribute Name",
             "in": "path",
-            "name": "namespace",
+            "name": "attributeName",
             "required": true,
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Namespace ID",
             "in": "path",
-            "name": "userId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1111,9 +1111,9 @@
             "type": "string"
           },
           {
-            "description": "Attribute Name",
+            "description": "User ID",
             "in": "path",
-            "name": "attributeName",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -1246,6 +1246,26 @@
             "type": "string"
           },
           {
+            "description": "File checksum, base64 encoded md5",
+            "in": "formData",
+            "name": "checksum",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Custom attribute",
+            "in": "formData",
+            "name": "customAttribute",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          },
+          {
             "description": "Label",
             "in": "query",
             "name": "label",
@@ -1262,26 +1282,6 @@
             "name": "tags",
             "required": false,
             "type": "array"
-          },
-          {
-            "description": "Custom attribute",
-            "in": "formData",
-            "name": "customAttribute",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "File checksum, base64 encoded md5",
-            "in": "formData",
-            "name": "checksum",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "file",
-            "required": false,
-            "type": "file"
           }
         ],
         "produces": [
@@ -1338,16 +1338,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Slot ID",
             "in": "path",
-            "name": "userId",
+            "name": "slotId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Slot ID",
+            "description": "User ID",
             "in": "path",
-            "name": "slotId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -1398,16 +1398,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Slot ID",
             "in": "path",
-            "name": "userId",
+            "name": "slotId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Slot ID",
+            "description": "User ID",
             "in": "path",
-            "name": "slotId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -1465,6 +1465,13 @@
             "type": "string"
           },
           {
+            "description": "Slot ID",
+            "in": "path",
+            "name": "slotId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "User ID",
             "in": "path",
             "name": "userId",
@@ -1472,11 +1479,24 @@
             "type": "string"
           },
           {
-            "description": "Slot ID",
-            "in": "path",
-            "name": "slotId",
-            "required": true,
+            "description": "File checksum",
+            "in": "formData",
+            "name": "checksum",
+            "required": false,
             "type": "string"
+          },
+          {
+            "description": "Custom attribute",
+            "in": "formData",
+            "name": "customAttribute",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
           },
           {
             "description": "Label",
@@ -1495,26 +1515,6 @@
             "name": "tags",
             "required": false,
             "type": "array"
-          },
-          {
-            "description": "Custom attribute",
-            "in": "formData",
-            "name": "customAttribute",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "File checksum",
-            "in": "formData",
-            "name": "checksum",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "file",
-            "required": false,
-            "type": "file"
           }
         ],
         "produces": [
@@ -1577,16 +1577,16 @@
             "type": "string"
           },
           {
-            "description": "User ID",
+            "description": "Slot ID",
             "in": "path",
-            "name": "userId",
+            "name": "slotId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Slot ID",
+            "description": "User ID",
             "in": "path",
-            "name": "slotId",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -1650,18 +1650,18 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -2053,18 +2053,18 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -2291,18 +2291,18 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -2534,6 +2534,22 @@
             "type": "string"
           },
           {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "description": "stat codes",
             "in": "query",
             "name": "statCodes",
@@ -2546,22 +2562,6 @@
             "name": "tags",
             "required": false,
             "type": "string"
-          },
-          {
-            "default": 0,
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 20,
-            "format": "int32",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "type": "integer"
           }
         ],
         "produces": [
@@ -2907,16 +2907,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -2982,16 +2982,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -3053,16 +3053,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -3141,13 +3141,6 @@
             "type": "string"
           },
           {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "stat code",
             "in": "path",
             "name": "statCode",
@@ -3155,10 +3148,10 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
             "type": "string"
           },
           {
@@ -3168,6 +3161,13 @@
             "schema": {
               "$ref": "#/definitions/StatResetInfo"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3566,6 +3566,22 @@
             "type": "string"
           },
           {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "description": "stat codes",
             "in": "query",
             "name": "statCodes",
@@ -3578,22 +3594,6 @@
             "name": "tags",
             "required": false,
             "type": "string"
-          },
-          {
-            "default": 0,
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 20,
-            "format": "int32",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "type": "integer"
           }
         ],
         "produces": [
@@ -4032,16 +4032,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -4107,16 +4107,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -4178,16 +4178,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -4264,16 +4264,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -4352,16 +4352,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -4580,13 +4580,6 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": false,
@@ -4596,6 +4589,13 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4662,13 +4662,6 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": false,
@@ -4678,6 +4671,13 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4734,16 +4734,16 @@
             "type": "string"
           },
           {
-            "description": "user ID",
+            "description": "stat code",
             "in": "path",
-            "name": "userId",
+            "name": "statCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "stat code",
+            "description": "user ID",
             "in": "path",
-            "name": "statCode",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -4818,13 +4818,6 @@
             "type": "string"
           },
           {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "stat code",
             "in": "path",
             "name": "statCode",
@@ -4832,10 +4825,10 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
             "type": "string"
           },
           {
@@ -4845,6 +4838,13 @@
             "schema": {
               "$ref": "#/definitions/StatItemUpdate"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4991,6 +4991,13 @@
             "type": "string"
           },
           {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
+          },
+          {
             "collectionFormat": "multi",
             "description": "stat codes",
             "in": "query",
@@ -5011,13 +5018,6 @@
             "name": "tags",
             "required": false,
             "type": "array"
-          },
-          {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
-            "type": "string"
           }
         ],
         "produces": [
@@ -5094,13 +5094,6 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": false,
@@ -5110,6 +5103,13 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5169,13 +5169,6 @@
             "type": "string"
           },
           {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "stat code",
             "in": "path",
             "name": "statCode",
@@ -5183,10 +5176,10 @@
             "type": "string"
           },
           {
-            "description": "additional key",
-            "in": "query",
-            "name": "additionalKey",
-            "required": false,
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
             "type": "string"
           },
           {
@@ -5196,6 +5189,13 @@
             "schema": {
               "$ref": "#/definitions/StatItemUpdate"
             }
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5370,10 +5370,10 @@
         },
         "updateStrategy": {
           "enum": [
-            "OVERRIDE",
             "INCREMENT",
             "MAX",
-            "MIN"
+            "MIN",
+            "OVERRIDE"
           ],
           "type": "string"
         },
@@ -5441,10 +5441,10 @@
         },
         "updateStrategy": {
           "enum": [
-            "OVERRIDE",
             "INCREMENT",
             "MAX",
-            "MIN"
+            "MIN",
+            "OVERRIDE"
           ],
           "type": "string"
         },
@@ -6037,10 +6037,10 @@
         },
         "updateStrategy": {
           "enum": [
-            "OVERRIDE",
             "INCREMENT",
             "MAX",
-            "MIN"
+            "MIN",
+            "OVERRIDE"
           ],
           "type": "string"
         },

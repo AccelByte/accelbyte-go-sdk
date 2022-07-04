@@ -66,6 +66,13 @@
             "type": "integer"
           },
           {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
             "default": "listOrder:asc",
             "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
             "enum": [
@@ -82,13 +89,6 @@
             "in": "query",
             "name": "sortBy",
             "type": "string"
-          },
-          {
-            "default": 0,
-            "description": "offset",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
           }
         ],
         "produces": [
@@ -150,19 +150,19 @@
         "operationId": "AdminCreateNewAchievement",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.AchievementRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -359,16 +359,16 @@
         "operationId": "AdminDeleteAchievement",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "achievement code",
             "in": "path",
-            "name": "namespace",
+            "name": "achievementCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "achievement code",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "achievementCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -429,16 +429,16 @@
         "operationId": "AdminGetAchievement",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "achievement code",
             "in": "path",
-            "name": "namespace",
+            "name": "achievementCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "achievement code",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "achievementCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -502,11 +502,12 @@
         "operationId": "AdminUpdateAchievementListOrder",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AchievementOrderUpdateRequest"
+            }
           },
           {
             "description": "achievement code",
@@ -516,12 +517,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AchievementOrderUpdateRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -580,11 +580,12 @@
         "operationId": "AdminUpdateAchievement",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AchievementUpdateRequest"
+            }
           },
           {
             "description": "achievement code",
@@ -594,12 +595,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AchievementUpdateRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -760,6 +760,13 @@
         "operationId": "AdminUnlockAchievement",
         "parameters": [
           {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -770,13 +777,6 @@
             "description": "user id",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "achievement code",
-            "in": "path",
-            "name": "achievementCode",
             "required": true,
             "type": "string"
           }
@@ -840,24 +840,6 @@
             "type": "string"
           },
           {
-            "default": "listOrder:asc",
-            "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
-            "enum": [
-              "listOrder",
-              "listOrder:asc",
-              "listOrder:desc",
-              "createdAt",
-              "createdAt:asc",
-              "createdAt:desc",
-              "updatedAt",
-              "updatedAt:asc",
-              "updatedAt:desc"
-            ],
-            "in": "query",
-            "name": "sortBy",
-            "type": "string"
-          },
-          {
             "description": "language, if the selected language not exist in achievement,it use default language",
             "in": "query",
             "name": "language",
@@ -877,6 +859,24 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "default": "listOrder:asc",
+            "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
+            "enum": [
+              "listOrder",
+              "listOrder:asc",
+              "listOrder:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
           }
         ],
         "produces": [
@@ -940,16 +940,16 @@
         "operationId": "PublicGetAchievement",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "achievement code",
             "in": "path",
-            "name": "namespace",
+            "name": "achievementCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "achievement code",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "achievementCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1119,6 +1119,13 @@
         "operationId": "PublicUnlockAchievement",
         "parameters": [
           {
+            "description": "achievement code",
+            "in": "path",
+            "name": "achievementCode",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1129,13 +1136,6 @@
             "description": "user id",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "achievement code",
-            "in": "path",
-            "name": "achievementCode",
             "required": true,
             "type": "string"
           }

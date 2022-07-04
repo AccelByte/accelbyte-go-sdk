@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.3.2"
+    "version": "2.4.0"
   },
   "schemes": [
     "https"
@@ -57,57 +57,9 @@
             "type": "string"
           },
           {
-            "description": "region of the server",
-            "in": "query",
-            "name": "region",
-            "type": "string"
-          },
-          {
-            "description": "provider of the server",
-            "in": "query",
-            "name": "provider",
-            "type": "string"
-          },
-          {
-            "description": "session id of the game",
-            "in": "query",
-            "name": "session_id",
-            "type": "string"
-          },
-          {
-            "description": "pod name of the server",
-            "in": "query",
-            "name": "pod_name",
-            "type": "string"
-          },
-          {
-            "description": "ID of the party",
-            "in": "query",
-            "name": "party_id",
-            "type": "string"
-          },
-          {
-            "description": "ID of the user",
-            "in": "query",
-            "name": "user_id",
-            "type": "string"
-          },
-          {
-            "description": "game mode of the game",
-            "in": "query",
-            "name": "game_mode",
-            "type": "string"
-          },
-          {
             "description": "deployment of the game",
             "in": "query",
             "name": "deployment",
-            "type": "string"
-          },
-          {
-            "description": "start date on last update of the game RFC 3339",
-            "in": "query",
-            "name": "start_date",
             "type": "string"
           },
           {
@@ -117,9 +69,34 @@
             "type": "string"
           },
           {
+            "description": "game mode of the game",
+            "in": "query",
+            "name": "game_mode",
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
             "description": "next",
             "in": "query",
             "name": "next",
+            "type": "string"
+          },
+          {
+            "description": "ID of the party",
+            "in": "query",
+            "name": "party_id",
+            "type": "string"
+          },
+          {
+            "description": "pod name of the server",
+            "in": "query",
+            "name": "pod_name",
             "type": "string"
           },
           {
@@ -129,11 +106,40 @@
             "type": "string"
           },
           {
-            "default": 20,
-            "description": "limit",
+            "description": "provider of the server",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "provider",
+            "type": "string"
+          },
+          {
+            "description": "region of the server",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "session id of the game",
+            "in": "query",
+            "name": "session_id",
+            "type": "string"
+          },
+          {
+            "description": "start date on last update of the game RFC 3339",
+            "in": "query",
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "description": "last status of the server",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "user_id",
+            "type": "string"
           }
         ],
         "produces": [
@@ -368,75 +374,9 @@
         "operationId": "listAllTerminatedServers",
         "parameters": [
           {
-            "description": "namespace of the server",
-            "in": "query",
-            "name": "namespace",
-            "type": "string"
-          },
-          {
-            "description": "region of the server",
-            "in": "query",
-            "name": "region",
-            "type": "string"
-          },
-          {
-            "description": "provider of the server",
-            "in": "query",
-            "name": "provider",
-            "type": "string"
-          },
-          {
-            "description": "session id of the game",
-            "in": "query",
-            "name": "session_id",
-            "type": "string"
-          },
-          {
-            "description": "pod name of the server",
-            "in": "query",
-            "name": "pod_name",
-            "type": "string"
-          },
-          {
-            "description": "ID of the party",
-            "in": "query",
-            "name": "party_id",
-            "type": "string"
-          },
-          {
-            "description": "ID of the user",
-            "in": "query",
-            "name": "user_id",
-            "type": "string"
-          },
-          {
-            "description": "game mode of the game",
-            "in": "query",
-            "name": "game_mode",
-            "type": "string"
-          },
-          {
             "description": "deployment of the game",
             "in": "query",
             "name": "deployment",
-            "type": "string"
-          },
-          {
-            "description": "next",
-            "in": "query",
-            "name": "next",
-            "type": "string"
-          },
-          {
-            "description": "previous",
-            "in": "query",
-            "name": "previous",
-            "type": "string"
-          },
-          {
-            "description": "start date on last update of the game RFC 3339",
-            "in": "query",
-            "name": "start_date",
             "type": "string"
           },
           {
@@ -446,11 +386,83 @@
             "type": "string"
           },
           {
+            "description": "game mode of the game",
+            "in": "query",
+            "name": "game_mode",
+            "type": "string"
+          },
+          {
             "default": 20,
             "description": "limit",
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "namespace of the server",
+            "in": "query",
+            "name": "namespace",
+            "type": "string"
+          },
+          {
+            "description": "next",
+            "in": "query",
+            "name": "next",
+            "type": "string"
+          },
+          {
+            "description": "ID of the party",
+            "in": "query",
+            "name": "party_id",
+            "type": "string"
+          },
+          {
+            "description": "pod name of the server",
+            "in": "query",
+            "name": "pod_name",
+            "type": "string"
+          },
+          {
+            "description": "previous",
+            "in": "query",
+            "name": "previous",
+            "type": "string"
+          },
+          {
+            "description": "provider of the server",
+            "in": "query",
+            "name": "provider",
+            "type": "string"
+          },
+          {
+            "description": "region of the server",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "session id of the game",
+            "in": "query",
+            "name": "session_id",
+            "type": "string"
+          },
+          {
+            "description": "start date on last update of the game RFC 3339",
+            "in": "query",
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "description": "last status of the server",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "user_id",
+            "type": "string"
           }
         ],
         "produces": [

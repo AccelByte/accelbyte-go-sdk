@@ -46,11 +46,12 @@
         "operationId": "UpdateServerConfig",
         "parameters": [
           {
-            "description": "original region of the QoS",
-            "in": "path",
-            "name": "region",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateServerRequest"
+            }
           },
           {
             "description": "namespace of the QoS",
@@ -60,12 +61,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "original region of the QoS",
+            "in": "path",
+            "name": "region",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateServerRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -167,19 +167,19 @@
         "operationId": "SetServerAlias",
         "parameters": [
           {
-            "description": "original region of the QoS",
-            "in": "path",
-            "name": "region",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.SetAliasRequest"
             }
+          },
+          {
+            "description": "original region of the QoS",
+            "in": "path",
+            "name": "region",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [

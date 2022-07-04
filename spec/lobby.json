@@ -291,13 +291,6 @@
         "operationId": "userRequestFriend",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "add friend content",
             "in": "body",
             "name": "body",
@@ -305,6 +298,13 @@
             "schema": {
               "$ref": "#/definitions/model.UserRequestFriendRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -370,13 +370,6 @@
         "operationId": "userAcceptFriendRequest",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "accept friend content",
             "in": "body",
             "name": "body",
@@ -384,6 +377,13 @@
             "schema": {
               "$ref": "#/definitions/model.UserAcceptFriendRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -443,13 +443,6 @@
         "operationId": "userCancelFriendRequest",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "cancel friend request content",
             "in": "body",
             "name": "body",
@@ -457,6 +450,13 @@
             "schema": {
               "$ref": "#/definitions/model.UserCancelFriendRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -516,13 +516,6 @@
         "operationId": "userRejectFriendRequest",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "reject friend request content",
             "in": "body",
             "name": "body",
@@ -530,6 +523,13 @@
             "schema": {
               "$ref": "#/definitions/model.UserRejectFriendRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -586,16 +586,16 @@
         "operationId": "userGetFriendshipStatus",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Friend ID",
             "in": "path",
-            "name": "namespace",
+            "name": "friendId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Friend ID",
+            "description": "namespace",
             "in": "path",
-            "name": "friendId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -654,13 +654,6 @@
         "operationId": "userUnfriendRequest",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "unfriend request content",
             "in": "body",
             "name": "body",
@@ -668,6 +661,13 @@
             "schema": {
               "$ref": "#/definitions/model.UserUnfriendRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -728,6 +728,15 @@
         "operationId": "addFriendsWithoutConfirmation",
         "parameters": [
           {
+            "description": "friends request content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.BulkAddFriendsRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -740,15 +749,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "friends request content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.BulkAddFriendsRequest"
-            }
           }
         ],
         "produces": [
@@ -809,6 +809,13 @@
         "operationId": "personalChatHistory",
         "parameters": [
           {
+            "description": "user ID that receive the chat",
+            "in": "path",
+            "name": "friendId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -819,13 +826,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID that receive the chat",
-            "in": "path",
-            "name": "friendId",
             "required": true,
             "type": "string"
           }
@@ -900,6 +900,13 @@
         "operationId": "adminChatHistory",
         "parameters": [
           {
+            "description": "user ID that receive the chat",
+            "in": "path",
+            "name": "friendId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -910,13 +917,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID that receive the chat",
-            "in": "path",
-            "name": "friendId",
             "required": true,
             "type": "string"
           }
@@ -1128,13 +1128,6 @@
         "operationId": "adminUpdateConfigV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "lobby config",
             "in": "body",
             "name": "body",
@@ -1142,6 +1135,13 @@
             "schema": {
               "$ref": "#/definitions/models.ConfigReq"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1431,13 +1431,6 @@
         "operationId": "sendMultipleUsersFreeformNotificationV1Admin",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "notification content",
             "in": "body",
             "name": "body",
@@ -1445,6 +1438,13 @@
             "schema": {
               "$ref": "#/definitions/model.BulkUsersFreeFormNotificationRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1499,13 +1499,6 @@
         "operationId": "sendUsersFreeformNotificationV1Admin",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "notification content",
             "in": "body",
             "name": "body",
@@ -1513,6 +1506,13 @@
             "schema": {
               "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1573,6 +1573,15 @@
         "operationId": "sendPartyFreeformNotificationV1Admin",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -1585,15 +1594,6 @@
             "name": "partyId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
-            }
           }
         ],
         "produces": [
@@ -1654,6 +1654,15 @@
         "operationId": "sendPartyTemplatedNotificationV1Admin",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -1666,15 +1675,6 @@
             "name": "partyId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
-            }
           }
         ],
         "produces": [
@@ -1810,13 +1810,6 @@
         "operationId": "createNotificationTemplateV1Admin",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "create template input",
             "in": "body",
             "name": "body",
@@ -1824,6 +1817,13 @@
             "schema": {
               "$ref": "#/definitions/model.CreateTemplateRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1890,13 +1890,6 @@
         "operationId": "sendUsersTemplatedNotificationV1Admin",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "notification content",
             "in": "body",
             "name": "body",
@@ -1904,6 +1897,13 @@
             "schema": {
               "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2048,10 +2048,10 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
+            "description": "last language code of previous page",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "after",
+            "type": "string"
           },
           {
             "description": "first language code of next page",
@@ -2060,10 +2060,10 @@
             "type": "string"
           },
           {
-            "description": "last language code of previous page",
+            "description": "size of displayed data",
             "in": "query",
-            "name": "after",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2134,16 +2134,16 @@
             "type": "string"
           },
           {
-            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
+            "description": "template language, follows IETF BCP 47 standard",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language, follows IETF BCP 47 standard",
+            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -2211,16 +2211,16 @@
             "type": "string"
           },
           {
-            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
+            "description": "template language, follows IETF BCP 47 standard",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language, follows IETF BCP 47 standard",
+            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -2284,16 +2284,17 @@
         "operationId": "updateTemplateLocalizationV1Admin",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UpdateTemplateRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
-            "in": "path",
-            "name": "templateSlug",
             "required": true,
             "type": "string"
           },
@@ -2305,12 +2306,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
+            "in": "path",
+            "name": "templateSlug",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.UpdateTemplateRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2384,16 +2384,16 @@
             "type": "string"
           },
           {
-            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
+            "description": "template language, follows IETF BCP 47 standard",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language, follows IETF BCP 47 standard",
+            "description": "Template Identifier, only alphabet characters and hyphens are permitted",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -2463,10 +2463,10 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
+            "description": "last topic name of previous page",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "after",
+            "type": "string"
           },
           {
             "description": "first topic name of next page",
@@ -2475,10 +2475,10 @@
             "type": "string"
           },
           {
-            "description": "last topic name of previous page",
+            "description": "size of displayed data",
             "in": "query",
-            "name": "after",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2540,13 +2540,6 @@
         "operationId": "createNotificationTopicV1Admin",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "create topic input",
             "in": "body",
             "name": "body",
@@ -2554,6 +2547,13 @@
             "schema": {
               "$ref": "#/definitions/model.CreateTopicRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2751,6 +2751,15 @@
         "operationId": "updateNotificationTopicV1Admin",
         "parameters": [
           {
+            "description": "update topic input",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UpdateTopicRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -2763,15 +2772,6 @@
             "name": "topicName",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "update topic input",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.UpdateTopicRequest"
-            }
           }
         ],
         "produces": [
@@ -2838,6 +2838,15 @@
         "operationId": "sendSpecificUserFreeformNotificationV1Admin",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -2850,15 +2859,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
-            }
           }
         ],
         "produces": [
@@ -2919,6 +2919,15 @@
         "operationId": "sendSpecificUserTemplatedNotificationV1Admin",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -2931,15 +2940,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
-            }
           }
         ],
         "produces": [
@@ -3081,6 +3081,15 @@
         "operationId": "adminUpdatePartyAttributesV1",
         "parameters": [
           {
+            "description": "party custom attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PartyPUTCustomAttributesRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -3093,15 +3102,6 @@
             "name": "partyId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "party custom attributes",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PartyPUTCustomAttributesRequest"
-            }
           }
         ],
         "produces": [
@@ -3490,6 +3490,15 @@
         "operationId": "adminSetPlayerSessionAttribute",
         "parameters": [
           {
+            "description": "player attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.SetPlayerSessionAttributeRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -3502,15 +3511,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "player attributes",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.SetPlayerSessionAttributeRequest"
-            }
           }
         ],
         "produces": [
@@ -3577,6 +3577,13 @@
         "operationId": "adminGetPlayerSessionAttribute",
         "parameters": [
           {
+            "description": "attribute key",
+            "in": "path",
+            "name": "attribute",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -3587,13 +3594,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "attribute key",
-            "in": "path",
-            "name": "attribute",
             "required": true,
             "type": "string"
           }
@@ -3827,6 +3827,15 @@
         "operationId": "adminBulkBlockPlayersV1",
         "parameters": [
           {
+            "description": "list of blocked player request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ListBlockedPlayerRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -3839,15 +3848,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "list of blocked player request",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ListBlockedPlayerRequest"
-            }
           }
         ],
         "produces": [
@@ -3908,13 +3908,6 @@
         "operationId": "adminDebugProfanityFilters",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "request",
             "in": "body",
             "name": "body",
@@ -3922,6 +3915,13 @@
             "schema": {
               "$ref": "#/definitions/models.DebugProfanityFilterRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3994,16 +3994,16 @@
         "operationId": "adminGetProfanityListFiltersV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "list",
             "in": "path",
-            "name": "namespace",
+            "name": "list",
             "required": true,
             "type": "string"
           },
           {
-            "description": "list",
+            "description": "namespace",
             "in": "path",
-            "name": "list",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -4073,11 +4073,13 @@
         "operationId": "adminAddProfanityFilterIntoList",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "description": "request",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AdminAddProfanityFilterIntoListRequest"
+            }
           },
           {
             "description": "list",
@@ -4087,13 +4089,11 @@
             "type": "string"
           },
           {
-            "description": "request",
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminAddProfanityFilterIntoListRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4160,11 +4160,13 @@
         "operationId": "adminAddProfanityFilters",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "description": "request",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AdminAddProfanityFiltersRequest"
+            }
           },
           {
             "description": "list",
@@ -4174,13 +4176,11 @@
             "type": "string"
           },
           {
-            "description": "request",
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminAddProfanityFiltersRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4247,20 +4247,6 @@
         "operationId": "adminImportProfanityFiltersFromFile",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "list",
-            "in": "path",
-            "name": "list",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "file",
             "in": "body",
             "name": "body",
@@ -4271,6 +4257,20 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "list",
+            "in": "path",
+            "name": "list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4337,11 +4337,13 @@
         "operationId": "adminDeleteProfanityFilter",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "description": "request",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AdminDeleteProfanityFilterRequest"
+            }
           },
           {
             "description": "list",
@@ -4351,13 +4353,11 @@
             "type": "string"
           },
           {
-            "description": "request",
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminDeleteProfanityFilterRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4505,13 +4505,6 @@
         "operationId": "adminCreateProfanityList",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "request",
             "in": "body",
             "name": "body",
@@ -4519,6 +4512,13 @@
             "schema": {
               "$ref": "#/definitions/models.AdminCreateProfanityListRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4585,16 +4585,16 @@
         "operationId": "adminDeleteProfanityList",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "list",
             "in": "path",
-            "name": "namespace",
+            "name": "list",
             "required": true,
             "type": "string"
           },
           {
-            "description": "list",
+            "description": "namespace",
             "in": "path",
-            "name": "list",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -4661,11 +4661,13 @@
         "operationId": "adminUpdateProfanityList",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "description": "request",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AdminUpdateProfanityList"
+            }
           },
           {
             "description": "list",
@@ -4675,13 +4677,11 @@
             "type": "string"
           },
           {
-            "description": "request",
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminUpdateProfanityList"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4820,13 +4820,6 @@
         "operationId": "adminSetProfanityRuleForNamespace",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "request",
             "in": "body",
             "name": "body",
@@ -4834,6 +4827,13 @@
             "schema": {
               "$ref": "#/definitions/models.AdminSetProfanityRuleForNamespaceRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4900,13 +4900,6 @@
         "operationId": "adminVerifyMessageProfanityResponse",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "request",
             "in": "body",
             "name": "body",
@@ -4914,6 +4907,13 @@
             "schema": {
               "$ref": "#/definitions/models.AdminVerifyMessageProfanityRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5109,13 +5109,6 @@
         "operationId": "adminCreateThirdPartyConfig",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "third party config",
             "in": "body",
             "name": "body",
@@ -5123,6 +5116,13 @@
             "schema": {
               "$ref": "#/definitions/models.CreateConfigRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5149,6 +5149,12 @@
           },
           "403": {
             "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "schema": {
               "$ref": "#/definitions/restapi.ErrorResponseV1"
             }
@@ -5184,13 +5190,6 @@
         "operationId": "adminUpdateThirdPartyConfig",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "third party config",
             "in": "body",
             "name": "body",
@@ -5198,6 +5197,13 @@
             "schema": {
               "$ref": "#/definitions/models.UpdateConfigRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5299,16 +5305,16 @@
         "operationId": "getPersonalChatHistoryV1Public",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Friend User ID, should follow UUID version 4 without hyphen",
             "in": "path",
-            "name": "namespace",
+            "name": "friendId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Friend User ID, should follow UUID version 4 without hyphen",
+            "description": "namespace",
             "in": "path",
-            "name": "friendId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -5452,6 +5458,15 @@
         "operationId": "publicUpdatePartyAttributesV1",
         "parameters": [
           {
+            "description": "party custom attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PartyPUTCustomAttributesRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -5464,15 +5479,6 @@
             "name": "partyId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "party custom attributes",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PartyPUTCustomAttributesRequest"
-            }
           }
         ],
         "produces": [
@@ -5542,6 +5548,15 @@
         "operationId": "publicSetPartyLimitV1",
         "parameters": [
           {
+            "description": "party custom attributes",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PartyPUTLimitSizeRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -5554,15 +5569,6 @@
             "name": "partyId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "party custom attributes",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PartyPUTLimitSizeRequest"
-            }
           }
         ],
         "produces": [
@@ -5829,13 +5835,6 @@
         "operationId": "freeFormNotification",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "notification content",
             "in": "body",
             "name": "body",
@@ -5843,6 +5842,13 @@
             "schema": {
               "$ref": "#/definitions/model.FreeFormNotificationRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5903,13 +5909,6 @@
         "operationId": "notificationWithTemplate",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "notification content",
             "in": "body",
             "name": "body",
@@ -5917,6 +5916,13 @@
             "schema": {
               "$ref": "#/definitions/model.NotificationWithTemplateRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -6046,13 +6052,6 @@
         "operationId": "createTemplate",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "create template input",
             "in": "body",
             "name": "body",
@@ -6060,6 +6059,13 @@
             "schema": {
               "$ref": "#/definitions/model.CreateTemplateRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -6204,10 +6210,10 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
+            "description": "last language code of previous page",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "after",
+            "type": "string"
           },
           {
             "description": "first language code of next page",
@@ -6216,10 +6222,10 @@
             "type": "string"
           },
           {
-            "description": "last language code of previous page",
+            "description": "size of displayed data",
             "in": "query",
-            "name": "after",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6290,16 +6296,16 @@
             "type": "string"
           },
           {
-            "description": "template slug",
+            "description": "template language",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language",
+            "description": "template slug",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -6367,16 +6373,16 @@
             "type": "string"
           },
           {
-            "description": "template slug",
+            "description": "template language",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language",
+            "description": "template slug",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -6440,16 +6446,17 @@
         "operationId": "updateLocalizationTemplate",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UpdateTemplateRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "template slug",
-            "in": "path",
-            "name": "templateSlug",
             "required": true,
             "type": "string"
           },
@@ -6461,12 +6468,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "template slug",
+            "in": "path",
+            "name": "templateSlug",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.UpdateTemplateRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -6534,16 +6540,16 @@
             "type": "string"
           },
           {
-            "description": "template slug",
+            "description": "template language",
             "in": "path",
-            "name": "templateSlug",
+            "name": "templateLanguage",
             "required": true,
             "type": "string"
           },
           {
-            "description": "template language",
+            "description": "template slug",
             "in": "path",
-            "name": "templateLanguage",
+            "name": "templateSlug",
             "required": true,
             "type": "string"
           }
@@ -6613,10 +6619,10 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
+            "description": "last topic name of previous page",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "after",
+            "type": "string"
           },
           {
             "description": "first topic name of next page",
@@ -6625,10 +6631,10 @@
             "type": "string"
           },
           {
-            "description": "last topic name of previous page",
+            "description": "size of displayed data",
             "in": "query",
-            "name": "after",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6690,13 +6696,6 @@
         "operationId": "createTopic",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "create topic input",
             "in": "body",
             "name": "body",
@@ -6704,6 +6703,13 @@
             "schema": {
               "$ref": "#/definitions/model.CreateTopicRequest"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -6907,6 +6913,15 @@
         "operationId": "updateTopicByTopicName",
         "parameters": [
           {
+            "description": "update topic input",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UpdateTopicRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -6919,15 +6934,6 @@
             "name": "topic",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "update topic input",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.UpdateTopicRequest"
-            }
           }
         ],
         "produces": [
@@ -6988,6 +6994,15 @@
         "operationId": "freeFormNotificationByUserID",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.FreeFormNotificationRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -7000,15 +7015,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.FreeFormNotificationRequest"
-            }
           }
         ],
         "produces": [
@@ -7069,6 +7075,15 @@
         "operationId": "notificationWithTemplateByUserID",
         "parameters": [
           {
+            "description": "notification content",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.NotificationWithTemplateRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -7081,15 +7096,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "notification content",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/model.NotificationWithTemplateRequest"
-            }
           }
         ],
         "produces": [

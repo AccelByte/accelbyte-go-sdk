@@ -8,17 +8,23 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.22.2"
+    "version": "1.22.3"
   },
   "schemes": [
     "https"
   ],
   "tags": [
     {
-      "name": "Anonymization"
+      "name": "Admin User Agreement"
+    },
+    {
+      "name": "Admin User Eligibilities"
     },
     {
       "name": "Agreement"
+    },
+    {
+      "name": "Anonymization"
     },
     {
       "name": "Base Legal Policies"
@@ -34,12 +40,6 @@
     },
     {
       "name": "Policy Versions"
-    },
-    {
-      "name": "Admin User Agreement"
-    },
-    {
-      "name": "Admin User Eligibilities"
     },
     {
       "name": "UserInfo"
@@ -194,20 +194,20 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "description": "limit",
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -623,7 +623,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
+              "$ref": "#/definitions/RetrieveLocalizedPolicyVersionResponse"
             }
           },
           "400": {
@@ -825,13 +825,6 @@
             "type": "string"
           },
           {
-            "description": "Country Code",
-            "in": "query",
-            "name": "countryCode",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "Client Id",
             "in": "query",
             "name": "clientId",
@@ -839,10 +832,10 @@
             "type": "string"
           },
           {
-            "description": "Publisher user Id",
+            "description": "Country Code",
             "in": "query",
-            "name": "publisherUserId",
-            "required": false,
+            "name": "countryCode",
+            "required": true,
             "type": "string"
           },
           {
@@ -855,13 +848,20 @@
               },
               "type": "array"
             }
+          },
+          {
+            "description": "Publisher user Id",
+            "in": "query",
+            "name": "publisherUserId",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/AcceptAgreementResponse"
@@ -905,16 +905,16 @@
             "type": "string"
           },
           {
-            "description": "Country Code",
+            "description": "Client Id",
             "in": "query",
-            "name": "countryCode",
+            "name": "clientId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Client Id",
+            "description": "Country Code",
             "in": "query",
-            "name": "clientId",
+            "name": "countryCode",
             "required": true,
             "type": "string"
           },
@@ -1315,19 +1315,19 @@
         "operationId": "retrieveAllPolicyTypes",
         "parameters": [
           {
-            "description": "Offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "description": "Limit",
             "format": "int32",
             "in": "query",
             "name": "limit",
             "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
             "type": "integer"
           }
         ],
@@ -1679,16 +1679,9 @@
         "operationId": "indirectBulkAcceptVersionedPolicyV2",
         "parameters": [
           {
-            "description": "User Id",
+            "description": "Client ID",
             "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "name": "clientId",
             "required": true,
             "type": "string"
           },
@@ -1700,9 +1693,16 @@
             "type": "string"
           },
           {
-            "description": "Client ID",
+            "description": "namespace",
             "in": "path",
-            "name": "clientId",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -1839,9 +1839,9 @@
         "operationId": "retrieveEligibilitiesPublicIndirect",
         "parameters": [
           {
-            "description": "Namespace",
+            "description": "Client Id",
             "in": "path",
-            "name": "namespace",
+            "name": "clientId",
             "required": true,
             "type": "string"
           },
@@ -1853,9 +1853,9 @@
             "type": "string"
           },
           {
-            "description": "Client Id",
+            "description": "Namespace",
             "in": "path",
-            "name": "clientId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1931,13 +1931,6 @@
         "operationId": "retrievePolicyVersions",
         "parameters": [
           {
-            "description": "Namespace",
-            "in": "query",
-            "name": "namespace",
-            "required": false,
-            "type": "string"
-          },
-          {
             "description": "BasePolicy Id",
             "in": "query",
             "name": "basePolicyId",
@@ -1950,6 +1943,13 @@
             "name": "localeId",
             "required": false,
             "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "query",
+            "name": "namespace",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1959,10 +1959,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/RetrievePolicyVersionResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/RetrievePolicyVersionResponse"
             }
           },
           "404": {
@@ -2002,6 +1999,14 @@
             "type": "string"
           },
           {
+            "description": "Default On Empty",
+            "in": "query",
+            "name": "defaultOnEmpty",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "Policy Type",
             "enum": [
               "LEGAL_DOCUMENT_TYPE",
@@ -2018,14 +2023,6 @@
             "name": "tags",
             "required": false,
             "type": "string"
-          },
-          {
-            "description": "Default On Empty",
-            "in": "query",
-            "name": "defaultOnEmpty",
-            "required": false,
-            "type": "boolean",
-            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2061,6 +2058,22 @@
             "type": "string"
           },
           {
+            "description": "Always include default",
+            "in": "query",
+            "name": "alwaysIncludeDefault",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Default On Empty",
+            "in": "query",
+            "name": "defaultOnEmpty",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "Policy Type",
             "enum": [
               "LEGAL_DOCUMENT_TYPE",
@@ -2077,22 +2090,6 @@
             "name": "tags",
             "required": false,
             "type": "string"
-          },
-          {
-            "description": "Default On Empty",
-            "in": "query",
-            "name": "defaultOnEmpty",
-            "required": false,
-            "type": "boolean",
-            "x-omitempty": false
-          },
-          {
-            "description": "Always include default",
-            "in": "query",
-            "name": "alwaysIncludeDefault",
-            "required": false,
-            "type": "boolean",
-            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2132,6 +2129,13 @@
         "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
         "parameters": [
           {
+            "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -2139,11 +2143,20 @@
             "type": "string"
           },
           {
-            "description": "Country Code",
-            "in": "path",
-            "name": "countryCode",
-            "required": true,
-            "type": "string"
+            "description": "Always include default",
+            "in": "query",
+            "name": "alwaysIncludeDefault",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Default On Empty",
+            "in": "query",
+            "name": "defaultOnEmpty",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "Policy Type",
@@ -2162,22 +2175,6 @@
             "name": "tags",
             "required": false,
             "type": "string"
-          },
-          {
-            "description": "Default On Empty",
-            "in": "query",
-            "name": "defaultOnEmpty",
-            "required": false,
-            "type": "boolean",
-            "x-omitempty": false
-          },
-          {
-            "description": "Always include default",
-            "in": "query",
-            "name": "alwaysIncludeDefault",
-            "required": false,
-            "type": "boolean",
-            "x-omitempty": false
           }
         ],
         "produces": [

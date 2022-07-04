@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.15.5"
+    "version": "2.15.6"
   },
   "schemes": [
     "https"
@@ -57,6 +57,20 @@
             "type": "string"
           },
           {
+            "description": "filter for archived leaderboard",
+            "in": "query",
+            "name": "isArchived",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "filter for deleted leaderboard config",
+            "in": "query",
+            "name": "isDeleted",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "size of displayed data",
             "in": "query",
             "name": "limit",
@@ -67,20 +81,6 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
-          },
-          {
-            "description": "filter for deleted leaderboard config",
-            "in": "query",
-            "name": "isDeleted",
-            "type": "boolean",
-            "x-omitempty": false
-          },
-          {
-            "description": "filter for archived leaderboard",
-            "in": "query",
-            "name": "isArchived",
-            "type": "boolean",
-            "x-omitempty": false
           }
         ],
         "produces": [
@@ -139,19 +139,19 @@
         "operationId": "createLeaderboardConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.LeaderboardConfigReq"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -297,19 +297,19 @@
         "operationId": "CreateArchivedLeaderboardRankingDataV1Handler",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.ArchiveLeaderboardReq"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -373,19 +373,19 @@
         "operationId": "deleteBulkLeaderboardConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.DeleteBulkLeaderboardsReq"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -443,16 +443,16 @@
         "operationId": "deleteLeaderboardConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": " human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": " human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -513,16 +513,16 @@
         "operationId": "getLeaderboardConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": " human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": " human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -589,11 +589,12 @@
         "operationId": "updateLeaderboardConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateLeaderboardConfigReq"
+            }
           },
           {
             "description": " human readable unique code to indentify leaderboard. Must be lowercase and maximum length is 48",
@@ -603,12 +604,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateLeaderboardConfigReq"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -672,16 +672,16 @@
         "operationId": "GetAllTimeLeaderboardRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -759,16 +759,16 @@
         "operationId": "GetCurrentMonthLeaderboardRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -846,16 +846,16 @@
         "operationId": "GetCurrentSeasonLeaderboardRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -933,16 +933,16 @@
         "operationId": "GetTodayLeaderboardRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1023,16 +1023,16 @@
         "operationId": "deleteUserRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1094,16 +1094,16 @@
         "operationId": "getUserRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1171,11 +1171,12 @@
         "operationId": "updateUserPointAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateUserPointAdminV1Request"
+            }
           },
           {
             "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
@@ -1185,19 +1186,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "User ID, should follow UUID version 4 without hyphen",
             "in": "path",
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateUserPointAdminV1Request"
-            }
           }
         ],
         "produces": [
@@ -1258,16 +1258,16 @@
         "operationId": "GetCurrentWeekLeaderboardRankingAdminV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1513,6 +1513,20 @@
             "type": "string"
           },
           {
+            "description": "filter for archived leaderboard",
+            "in": "query",
+            "name": "isArchived",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "filter for deleted leaderboard config",
+            "in": "query",
+            "name": "isDeleted",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "size of displayed data",
             "in": "query",
             "name": "limit",
@@ -1523,20 +1537,6 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
-          },
-          {
-            "description": "filter for deleted leaderboard config",
-            "in": "query",
-            "name": "isDeleted",
-            "type": "boolean",
-            "x-omitempty": false
-          },
-          {
-            "description": "filter for archived leaderboard",
-            "in": "query",
-            "name": "isArchived",
-            "type": "boolean",
-            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1592,19 +1592,19 @@
         "operationId": "createLeaderboardConfigurationPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.LeaderboardConfigReq"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1668,16 +1668,16 @@
         "operationId": "GetAllTimeLeaderboardRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1740,16 +1740,16 @@
         "operationId": "GetArchivedLeaderboardRankingDataV1Handler",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1828,16 +1828,16 @@
         "operationId": "GetCurrentMonthLeaderboardRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1900,16 +1900,16 @@
         "operationId": "GetCurrentSeasonLeaderboardRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1972,16 +1972,16 @@
         "operationId": "GetTodayLeaderboardRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2047,16 +2047,16 @@
         "operationId": "deleteUserRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2118,16 +2118,16 @@
         "operationId": "getUserRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2191,16 +2191,16 @@
         "operationId": "GetCurrentWeekLeaderboardRankingPublicV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2263,16 +2263,16 @@
         "operationId": "GetHiddenUsersV2",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "Leaderboard Code",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Leaderboard Code",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2347,6 +2347,13 @@
         "operationId": "GetUserVisibilityStatusV2",
         "parameters": [
           {
+            "description": "Leaderboard Code",
+            "in": "path",
+            "name": "leaderboardCode",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2357,13 +2364,6 @@
             "description": "User ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Leaderboard Code",
-            "in": "path",
-            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           }
@@ -2427,13 +2427,6 @@
         "operationId": "SetUserLeaderboardVisibilityStatusV2",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -2442,16 +2435,23 @@
             }
           },
           {
-            "description": "User ID",
+            "description": "Leaderboard Code",
             "in": "path",
-            "name": "userId",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Leaderboard Code",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -2517,19 +2517,19 @@
         "operationId": "SetUserVisibilityStatusV2",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.SetUserVisibilityRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "User ID",
@@ -2668,16 +2668,16 @@
         "operationId": "GetAllTimeLeaderboardRankingPublicV2",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
             "in": "path",
-            "name": "namespace",
+            "name": "leaderboardCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "leaderboardCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },

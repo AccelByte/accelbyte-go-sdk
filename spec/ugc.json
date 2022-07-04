@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.1.0"
+    "version": "2.2.1"
   },
   "schemes": [
     "https"
@@ -148,19 +148,19 @@
         "operationId": "AdminCreateChannel",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.ChannelRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -215,16 +215,16 @@
         "operationId": "SingleAdminDeleteChannel",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "channelID",
             "in": "path",
-            "name": "namespace",
+            "name": "channelId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "channelID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "channelId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -276,11 +276,12 @@
         "operationId": "SingleAdminUpdateChannel",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.ChannelRequest"
+            }
           },
           {
             "description": "channelID",
@@ -290,12 +291,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ChannelRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -357,11 +357,12 @@
         "operationId": "AdminUploadContentDirect",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequest"
+            }
           },
           {
             "description": "channel ID",
@@ -371,12 +372,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -431,11 +431,12 @@
         "operationId": "AdminUploadContentS3",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequestS3"
+            }
           },
           {
             "description": "channel ID",
@@ -445,12 +446,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -505,11 +505,12 @@
         "operationId": "SingleAdminUpdateContentS3",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequestS3"
+            }
           },
           {
             "description": "channel ID",
@@ -526,12 +527,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -592,25 +592,6 @@
         "operationId": "AdminSearchChannelSpecificContent",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "sorting criteria: name,download,like,date. default=date",
-            "in": "query",
-            "name": "sortby",
-            "type": "string"
-          },
-          {
-            "description": "sorting order: asc, desc. default=desc",
-            "in": "query",
-            "name": "orderby",
-            "type": "string"
-          },
-          {
             "description": "channel ID",
             "in": "path",
             "name": "channelId",
@@ -618,9 +599,10 @@
             "type": "string"
           },
           {
-            "description": "content name",
-            "in": "query",
-            "name": "name",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
             "type": "string"
           },
           {
@@ -630,9 +612,41 @@
             "type": "string"
           },
           {
-            "description": "content type",
+            "description": "filter only official contents (boolean)",
             "in": "query",
-            "name": "type",
+            "name": "isofficial",
+            "type": "string"
+          },
+          {
+            "default": 1000,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "content name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
+            "type": "string"
+          },
+          {
+            "description": "sorting criteria: name,download,like,date. default=date",
+            "in": "query",
+            "name": "sortby",
             "type": "string"
           },
           {
@@ -652,24 +666,10 @@
             "type": "array"
           },
           {
-            "description": "filter only official contents (boolean)",
+            "description": "content type",
             "in": "query",
-            "name": "isofficial",
+            "name": "type",
             "type": "string"
-          },
-          {
-            "default": 1000,
-            "description": "number of content per page",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "the offset number to retrieve",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
           },
           {
             "description": "user ID",
@@ -730,13 +730,6 @@
         "operationId": "SingleAdminDeleteContent",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "channel ID",
             "in": "path",
             "name": "channelId",
@@ -747,6 +740,13 @@
             "description": "content ID",
             "in": "path",
             "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -799,11 +799,12 @@
         "operationId": "SingleAdminUpdateContentDirect",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequest"
+            }
           },
           {
             "description": "channel ID",
@@ -820,12 +821,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -966,16 +966,23 @@
             "type": "string"
           },
           {
-            "description": "sorting criteria: name,download,like,date. default=date",
+            "description": "creator name",
             "in": "query",
-            "name": "sortby",
+            "name": "creator",
             "type": "string"
           },
           {
-            "description": "sorting order: asc, desc. default=desc",
+            "description": "filter only official contents  (boolean)",
             "in": "query",
-            "name": "orderby",
+            "name": "isofficial",
             "type": "string"
+          },
+          {
+            "default": 1000,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
           },
           {
             "description": "content name",
@@ -984,15 +991,22 @@
             "type": "string"
           },
           {
-            "description": "creator name",
+            "default": 0,
+            "description": "the offset number to retrieve",
             "in": "query",
-            "name": "creator",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
             "type": "string"
           },
           {
-            "description": "content type",
+            "description": "sorting criteria: name,download,like,date. default=date",
             "in": "query",
-            "name": "type",
+            "name": "sortby",
             "type": "string"
           },
           {
@@ -1012,24 +1026,10 @@
             "type": "array"
           },
           {
-            "description": "filter only official contents  (boolean)",
+            "description": "content type",
             "in": "query",
-            "name": "isofficial",
+            "name": "type",
             "type": "string"
-          },
-          {
-            "default": 1000,
-            "description": "number of content per page",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "the offset number to retrieve",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
           },
           {
             "description": "user ID",
@@ -1090,16 +1090,16 @@
         "operationId": "AdminGetSpecificContent",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1156,16 +1156,16 @@
         "operationId": "AdminDownloadContentPreview",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1222,11 +1222,12 @@
         "operationId": "AdminUploadContentScreenshot",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
           },
           {
             "description": "content ID",
@@ -1236,12 +1237,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateScreenshotRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1300,11 +1300,12 @@
         "operationId": "AdminUpdateScreenshots",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
           },
           {
             "description": "content ID",
@@ -1314,12 +1315,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateScreenshotRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1380,16 +1380,16 @@
         "operationId": "AdminDeleteContentScreenshot",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1527,19 +1527,19 @@
         "operationId": "AdminCreateGroup",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateGroupRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1594,16 +1594,16 @@
         "operationId": "SingleAdminDeleteGroup",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "group ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1655,16 +1655,16 @@
         "operationId": "SingleAdminGetGroup",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "group ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1719,11 +1719,12 @@
         "operationId": "SingleAdminUpdateGroup",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupRequest"
+            }
           },
           {
             "description": "group ID",
@@ -1733,12 +1734,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateGroupRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1799,16 +1799,16 @@
         "operationId": "SingleAdminGetGroupContents",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "group ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1950,19 +1950,19 @@
         "operationId": "AdminCreateTag",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateTagRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2084,6 +2084,14 @@
         "operationId": "AdminUpdateTag",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateTagRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2096,14 +2104,6 @@
             "name": "tagId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateTagRequest"
-            }
           }
         ],
         "produces": [
@@ -2241,19 +2241,19 @@
         "operationId": "AdminCreateType",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateTypeRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2375,6 +2375,14 @@
         "operationId": "AdminUpdateType",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateTypeRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2387,14 +2395,6 @@
             "name": "typeId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateTypeRequest"
-            }
           }
         ],
         "produces": [
@@ -2602,6 +2602,13 @@
         "operationId": "AdminDeleteChannel",
         "parameters": [
           {
+            "description": "channelID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2612,13 +2619,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "channelID",
-            "in": "path",
-            "name": "channelId",
             "required": true,
             "type": "string"
           }
@@ -2670,6 +2670,21 @@
         "operationId": "AdminUpdateChannel",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ChannelRequest"
+            }
+          },
+          {
+            "description": "channelID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2682,21 +2697,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "channelID",
-            "in": "path",
-            "name": "channelId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ChannelRequest"
-            }
           }
         ],
         "produces": [
@@ -2757,18 +2757,12 @@
         "operationId": "AdminUpdateContentS3",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequestS3"
+            }
           },
           {
             "description": "channel ID",
@@ -2785,12 +2779,18 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
-            }
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2851,20 +2851,6 @@
         "operationId": "AdminDeleteContent",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "channel ID",
             "in": "path",
             "name": "channelId",
@@ -2875,6 +2861,20 @@
             "description": "content ID",
             "in": "path",
             "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -2927,18 +2927,12 @@
         "operationId": "AdminUpdateContentDirect",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequest"
+            }
           },
           {
             "description": "channel ID",
@@ -2955,12 +2949,18 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequest"
-            }
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3162,6 +3162,21 @@
         "operationId": "AdminHideUserContent",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.HideContentRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -3174,21 +3189,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "content ID",
-            "in": "path",
-            "name": "contentId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.HideContentRequest"
-            }
           }
         ],
         "produces": [
@@ -3384,6 +3384,13 @@
         "operationId": "AdminDeleteGroup",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -3394,13 +3401,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           }
@@ -3452,6 +3452,13 @@
         "operationId": "AdminGetGroup",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -3462,13 +3469,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           }
@@ -3523,6 +3523,21 @@
         "operationId": "AdminUpdateGroup",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupRequest"
+            }
+          },
+          {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -3535,21 +3550,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateGroupRequest"
-            }
           }
         ],
         "produces": [
@@ -3610,6 +3610,13 @@
         "operationId": "AdminGetGroupContents",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -3620,13 +3627,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           },
@@ -3761,25 +3761,6 @@
         "operationId": "SearchChannelSpecificContent",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "sorting criteria: name,download,like,date. default=date",
-            "in": "query",
-            "name": "sortby",
-            "type": "string"
-          },
-          {
-            "description": "sorting order: asc, desc. default=desc",
-            "in": "query",
-            "name": "orderby",
-            "type": "string"
-          },
-          {
             "description": "channel ID",
             "in": "path",
             "name": "channelId",
@@ -3787,9 +3768,10 @@
             "type": "string"
           },
           {
-            "description": "content name",
-            "in": "query",
-            "name": "name",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
             "type": "string"
           },
           {
@@ -3799,9 +3781,41 @@
             "type": "string"
           },
           {
-            "description": "content type",
+            "description": "filter only official contents (boolean)",
             "in": "query",
-            "name": "type",
+            "name": "isofficial",
+            "type": "string"
+          },
+          {
+            "default": 1000,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "content name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
+            "type": "string"
+          },
+          {
+            "description": "sorting criteria: name,download,like,date. default=date",
+            "in": "query",
+            "name": "sortby",
             "type": "string"
           },
           {
@@ -3821,24 +3835,10 @@
             "type": "array"
           },
           {
-            "description": "filter only official contents (boolean)",
+            "description": "content type",
             "in": "query",
-            "name": "isofficial",
+            "name": "type",
             "type": "string"
-          },
-          {
-            "default": 1000,
-            "description": "number of content per page",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "the offset number to retrieve",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
           },
           {
             "description": "user ID",
@@ -3904,16 +3904,23 @@
             "type": "string"
           },
           {
-            "description": "sorting criteria: name,download,like,date. default=date",
+            "description": "creator name",
             "in": "query",
-            "name": "sortby",
+            "name": "creator",
             "type": "string"
           },
           {
-            "description": "sorting order: asc, desc. default=desc",
+            "description": "filter only official contents (boolean)",
             "in": "query",
-            "name": "orderby",
+            "name": "isofficial",
             "type": "string"
+          },
+          {
+            "default": 1000,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
           },
           {
             "description": "content name",
@@ -3922,15 +3929,22 @@
             "type": "string"
           },
           {
-            "description": "creator name",
+            "default": 0,
+            "description": "the offset number to retrieve",
             "in": "query",
-            "name": "creator",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
             "type": "string"
           },
           {
-            "description": "content type",
+            "description": "sorting criteria: name,download,like,date. default=date",
             "in": "query",
-            "name": "type",
+            "name": "sortby",
             "type": "string"
           },
           {
@@ -3950,24 +3964,10 @@
             "type": "array"
           },
           {
-            "description": "filter only official contents (boolean)",
+            "description": "content type",
             "in": "query",
-            "name": "isofficial",
+            "name": "type",
             "type": "string"
-          },
-          {
-            "default": 1000,
-            "description": "number of content per page",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "the offset number to retrieve",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
           },
           {
             "description": "user ID",
@@ -4026,19 +4026,19 @@
         "operationId": "PublicGetContentBulk",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.PublicGetContentBulkRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4300,16 +4300,16 @@
         "operationId": "PublicDownloadContentByContentID",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -4364,16 +4364,16 @@
         "operationId": "AddDownloadCount",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -4434,11 +4434,12 @@
         "operationId": "UpdateContentLikeStatus",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.ContentLikeRequest"
+            }
           },
           {
             "description": "content ID",
@@ -4448,12 +4449,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ContentLikeRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4506,16 +4506,16 @@
         "operationId": "PublicDownloadContentPreview",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -4988,6 +4988,14 @@
         "operationId": "CreateChannel",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ChannelRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -5000,14 +5008,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ChannelRequest"
-            }
           }
         ],
         "produces": [
@@ -5063,6 +5063,13 @@
         "operationId": "DeleteChannel",
         "parameters": [
           {
+            "description": "channelID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -5073,13 +5080,6 @@
             "description": "userID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "channelID",
-            "in": "path",
-            "name": "channelId",
             "required": true,
             "type": "string"
           }
@@ -5132,6 +5132,21 @@
         "operationId": "UpdateChannel",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ChannelRequest"
+            }
+          },
+          {
+            "description": "channelID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -5144,21 +5159,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "channelID",
-            "in": "path",
-            "name": "channelId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ChannelRequest"
-            }
           }
         ],
         "produces": [
@@ -5221,6 +5221,21 @@
         "operationId": "CreateContentDirect",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -5233,21 +5248,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "channel ID",
-            "in": "path",
-            "name": "channelId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequest"
-            }
           }
         ],
         "produces": [
@@ -5303,6 +5303,21 @@
         "operationId": "CreateContentS3",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequestS3"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -5315,21 +5330,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "channel ID",
-            "in": "path",
-            "name": "channelId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
-            }
           }
         ],
         "produces": [
@@ -5385,18 +5385,12 @@
         "operationId": "UpdateContentS3",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequestS3"
+            }
           },
           {
             "description": "channel ID",
@@ -5413,12 +5407,18 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequestS3"
-            }
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5480,20 +5480,6 @@
         "operationId": "DeleteContent",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "channel ID",
             "in": "path",
             "name": "channelId",
@@ -5504,6 +5490,20 @@
             "description": "content ID",
             "in": "path",
             "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -5557,18 +5557,12 @@
         "operationId": "UpdateContentDirect",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentRequest"
+            }
           },
           {
             "description": "channel ID",
@@ -5585,12 +5579,18 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateContentRequest"
-            }
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5795,11 +5795,12 @@
         "operationId": "UploadContentScreenshot",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
           },
           {
             "description": "content ID",
@@ -5809,19 +5810,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "user ID",
             "in": "path",
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateScreenshotRequest"
-            }
           }
         ],
         "produces": [
@@ -5875,11 +5875,12 @@
         "operationId": "UpdateScreenshots",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
           },
           {
             "description": "content ID",
@@ -5889,19 +5890,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "user ID",
             "in": "path",
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateScreenshotRequest"
-            }
           }
         ],
         "produces": [
@@ -5963,16 +5963,16 @@
         "operationId": "DeleteContentScreenshot",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "content ID",
             "in": "path",
-            "name": "namespace",
+            "name": "contentId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "content ID",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "contentId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -6047,6 +6047,14 @@
         "operationId": "UpdateUserFollowStatus",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UserFollowRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6059,14 +6067,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UserFollowRequest"
-            }
           }
         ],
         "produces": [
@@ -6138,18 +6138,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of user per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6215,18 +6215,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of user per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6348,6 +6348,13 @@
             "type": "string"
           },
           {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "default": 1000,
             "description": "number of content per page",
             "in": "query",
@@ -6360,13 +6367,6 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
           }
         ],
         "produces": [
@@ -6420,6 +6420,14 @@
         "operationId": "CreateGroup",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupRequest"
+            }
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6432,14 +6440,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateGroupRequest"
-            }
           }
         ],
         "produces": [
@@ -6495,6 +6495,13 @@
         "operationId": "DeleteGroup",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6505,13 +6512,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           }
@@ -6564,6 +6564,13 @@
         "operationId": "GetGroup",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6574,13 +6581,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           }
@@ -6636,6 +6636,21 @@
         "operationId": "UpdateGroup",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupRequest"
+            }
+          },
+          {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6648,21 +6663,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateGroupRequest"
-            }
           }
         ],
         "produces": [
@@ -6724,6 +6724,13 @@
         "operationId": "GetGroupContent",
         "parameters": [
           {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -6734,13 +6741,6 @@
             "description": "user ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "group ID",
-            "in": "path",
-            "name": "groupId",
             "required": true,
             "type": "string"
           },
@@ -7698,11 +7698,11 @@
         },
         "fileExtension": {
           "enum": [
-            "pjp",
-            "jpg",
-            "jpeg",
-            "jfif",
             "bmp",
+            "jfif",
+            "jpeg",
+            "jpg",
+            "pjp",
             "png"
           ],
           "type": "string"

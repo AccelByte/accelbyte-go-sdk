@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.2.1"
+    "version": "3.3.0"
   },
   "schemes": [
     "https"
@@ -543,19 +543,19 @@
         "operationId": "UpdateConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.UpdateDSMConfigRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -617,19 +617,19 @@
         "operationId": "CreateConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateDSMConfigRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -742,7 +742,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all deployments in a namespace",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all deployments in a namespace\n\nParameter Offset and Count is Required",
         "operationId": "GetAllDeployment",
         "parameters": [
           {
@@ -753,22 +753,24 @@
             "type": "string"
           },
           {
-            "description": "name of the deployment",
+            "description": "how many items to return",
             "in": "query",
-            "name": "name",
-            "type": "string"
+            "name": "count",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "offset from list to query from",
             "in": "query",
             "name": "offset",
+            "required": true,
             "type": "integer"
           },
           {
-            "description": "how many items to return",
+            "description": "name of the deployment",
             "in": "query",
-            "name": "count",
-            "type": "integer"
+            "name": "name",
+            "type": "string"
           }
         ],
         "produces": [
@@ -826,16 +828,16 @@
         "operationId": "DeleteDeployment",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "deployment name",
             "in": "path",
-            "name": "namespace",
+            "name": "deployment",
             "required": true,
             "type": "string"
           },
           {
-            "description": "deployment name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "deployment",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -896,16 +898,16 @@
         "operationId": "GetDeployment",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "deployment name",
             "in": "path",
-            "name": "namespace",
+            "name": "deployment",
             "required": true,
             "type": "string"
           },
           {
-            "description": "deployment name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "deployment",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -969,11 +971,12 @@
         "operationId": "UpdateDeployment",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateDeploymentRequest"
+            }
           },
           {
             "description": "deployment name",
@@ -983,12 +986,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateDeploymentRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1050,11 +1052,12 @@
         "operationId": "CreateDeployment",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateDeploymentRequest"
+            }
           },
           {
             "description": "deployment name",
@@ -1064,12 +1067,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateDeploymentRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1133,16 +1135,16 @@
         "operationId": "DeleteRootRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "deployment name",
             "in": "path",
-            "name": "namespace",
+            "name": "deployment",
             "required": true,
             "type": "string"
           },
           {
-            "description": "deployment name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "deployment",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1213,11 +1215,12 @@
         "operationId": "UpdateRootRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
+            }
           },
           {
             "description": "deployment name",
@@ -1227,19 +1230,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "region",
             "in": "path",
             "name": "region",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
-            }
           }
         ],
         "produces": [
@@ -1301,11 +1303,12 @@
         "operationId": "CreateRootRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
+            }
           },
           {
             "description": "deployment of the game",
@@ -1315,19 +1318,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "region",
             "in": "path",
             "name": "region",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
-            }
           }
         ],
         "produces": [
@@ -1397,11 +1399,12 @@
         "operationId": "CreateDeploymentOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateDeploymentOverrideRequest"
+            }
           },
           {
             "description": "deployment of the game",
@@ -1411,19 +1414,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "version",
             "in": "path",
             "name": "version",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateDeploymentOverrideRequest"
-            }
           }
         ],
         "produces": [
@@ -1493,16 +1495,16 @@
         "operationId": "DeleteDeploymentOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "deployment name",
             "in": "path",
-            "name": "namespace",
+            "name": "deployment",
             "required": true,
             "type": "string"
           },
           {
-            "description": "deployment name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "deployment",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1573,11 +1575,12 @@
         "operationId": "UpdateDeploymentOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateDeploymentOverrideRequest"
+            }
           },
           {
             "description": "deployment name",
@@ -1587,19 +1590,18 @@
             "type": "string"
           },
           {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "version",
             "in": "path",
             "name": "version",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateDeploymentOverrideRequest"
-            }
           }
         ],
         "produces": [
@@ -1663,13 +1665,6 @@
         "operationId": "DeleteOverrideRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "deployment name",
             "in": "path",
             "name": "deployment",
@@ -1677,9 +1672,9 @@
             "type": "string"
           },
           {
-            "description": "version",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "version",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1687,6 +1682,13 @@
             "description": "region",
             "in": "path",
             "name": "region",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "version",
+            "in": "path",
+            "name": "version",
             "required": true,
             "type": "string"
           }
@@ -1750,11 +1752,12 @@
         "operationId": "UpdateOverrideRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
+            }
           },
           {
             "description": "deployment name",
@@ -1764,9 +1767,9 @@
             "type": "string"
           },
           {
-            "description": "version",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "version",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1778,12 +1781,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "version",
+            "in": "path",
+            "name": "version",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1845,11 +1847,12 @@
         "operationId": "CreateOverrideRegionOverride",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
+            }
           },
           {
             "description": "deployment of the game",
@@ -1859,9 +1862,9 @@
             "type": "string"
           },
           {
-            "description": "version",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "version",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1873,12 +1876,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "version",
+            "in": "path",
+            "name": "version",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1955,16 +1957,16 @@
             "type": "string"
           },
           {
-            "description": "offset from list to query from",
+            "description": "how many items to return",
             "in": "query",
-            "name": "offset",
+            "name": "count",
             "required": true,
             "type": "integer"
           },
           {
-            "description": "how many items to return",
+            "description": "offset from list to query from",
             "in": "query",
-            "name": "count",
+            "name": "offset",
             "required": true,
             "type": "integer"
           }
@@ -2024,16 +2026,16 @@
         "operationId": "DeletePodConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "pod name",
             "in": "path",
-            "name": "namespace",
+            "name": "name",
             "required": true,
             "type": "string"
           },
           {
-            "description": "pod name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "name",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2100,16 +2102,16 @@
         "operationId": "GetPodConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "pod name",
             "in": "path",
-            "name": "namespace",
+            "name": "name",
             "required": true,
             "type": "string"
           },
           {
-            "description": "pod name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "name",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2173,11 +2175,12 @@
         "operationId": "UpdatePodConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePodConfigRequest"
+            }
           },
           {
             "description": "pod name",
@@ -2187,12 +2190,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdatePodConfigRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2260,11 +2262,12 @@
         "operationId": "CreatePodConfig",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreatePodConfigRequest"
+            }
           },
           {
             "description": "pod name",
@@ -2274,12 +2277,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreatePodConfigRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2343,16 +2345,16 @@
         "operationId": "DeletePort",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "port name",
             "in": "path",
-            "name": "namespace",
+            "name": "name",
             "required": true,
             "type": "string"
           },
           {
-            "description": "port name",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "name",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2416,11 +2418,12 @@
         "operationId": "UpdatePort",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePortRequest"
+            }
           },
           {
             "description": "port name",
@@ -2430,12 +2433,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdatePortRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2497,11 +2499,12 @@
         "operationId": "AddPort",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.CreatePortRequest"
+            }
           },
           {
             "description": "port name",
@@ -2511,12 +2514,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.CreatePortRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2582,7 +2584,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint will delete an image that specified in the request parameter",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social.\n\nThis endpoint will delete an image that specified in the request parameter.\n\nDefault image is cannot be deleted and will throw error 422 (Unprocessable entity).",
         "operationId": "DeleteImage",
         "parameters": [
           {
@@ -2665,7 +2667,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers images.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers images.\n\nParameter Offset and Count is Required",
         "operationId": "ListImages",
         "parameters": [
           {
@@ -2676,22 +2678,24 @@
             "type": "string"
           },
           {
-            "description": "image name or image version. In UI this is from search text box",
+            "description": "how many items to return",
             "in": "query",
-            "name": "q",
-            "type": "string"
+            "name": "count",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "offset from list to query from",
             "in": "query",
             "name": "offset",
+            "required": true,
             "type": "integer"
           },
           {
-            "description": "how many items to return",
+            "description": "image name or image version. In UI this is from search text box",
             "in": "query",
-            "name": "count",
-            "type": "integer"
+            "name": "q",
+            "type": "string"
           },
           {
             "default": "createdAt",
@@ -3201,7 +3205,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers in a namespace managed by this service.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers in a namespace managed by this service.\n\nParameter Offset and Count is Required",
         "operationId": "ListServer",
         "parameters": [
           {
@@ -3212,22 +3216,24 @@
             "type": "string"
           },
           {
-            "description": "region where DS server is located. if not specified it will list all servers.",
+            "description": "how many items to return, default: 50",
             "in": "query",
-            "name": "region",
-            "type": "string"
+            "name": "count",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "offset from list to query from",
             "in": "query",
             "name": "offset",
+            "required": true,
             "type": "integer"
           },
           {
-            "description": "how many items to return, default: 50",
+            "description": "region where DS server is located. if not specified it will list all servers.",
             "in": "query",
-            "name": "count",
-            "type": "integer"
+            "name": "region",
+            "type": "string"
           }
         ],
         "produces": [
@@ -3453,16 +3459,16 @@
         "operationId": "DeleteLocalServer",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "name of the DS",
             "in": "path",
-            "name": "namespace",
+            "name": "name",
             "required": true,
             "type": "string"
           },
           {
-            "description": "name of the DS",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "name",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -3717,7 +3723,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]\n\nRequired scope: social\n\nThis endpoint lists all of sessions in a namespace managed by this service.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]\n\nRequired scope: social\n\nThis endpoint lists all of sessions in a namespace managed by this service.\n\nParameter Offset and Count is Required",
         "operationId": "ListSession",
         "parameters": [
           {
@@ -3728,22 +3734,24 @@
             "type": "string"
           },
           {
-            "description": "region where session is located. if not specified it will list all sessions.",
+            "description": "how many items to return, default: 50",
             "in": "query",
-            "name": "region",
-            "type": "string"
+            "name": "count",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "offset from list to query from",
             "in": "query",
             "name": "offset",
+            "required": true,
             "type": "integer"
           },
           {
-            "description": "how many items to return, default: 50",
+            "description": "region where session is located. if not specified it will list all sessions.",
             "in": "query",
-            "name": "count",
-            "type": "integer"
+            "name": "region",
+            "type": "string"
           },
           {
             "description": "append server info to session or not",
@@ -4141,19 +4149,19 @@
         "operationId": "DeregisterLocalServer",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.DeregisterLocalServerRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4208,19 +4216,19 @@
         "operationId": "RegisterLocalServer",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.RegisterLocalServerRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4284,19 +4292,19 @@
         "operationId": "RegisterServer",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.RegisterServerRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4360,19 +4368,19 @@
         "operationId": "ShutdownServer",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.ShutdownServerRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4508,19 +4516,19 @@
         "operationId": "CreateSession",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateSessionRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -4596,19 +4604,19 @@
         "operationId": "ClaimServer",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.ClaimSessionRequest"
             }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [

@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.11.5"
+    "version": "2.11.6"
   },
   "schemes": [
     "https"
@@ -138,19 +138,19 @@
         "operationId": "createGroupConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateGroupConfigurationRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -276,16 +276,16 @@
         "operationId": "deleteGroupConfigurationV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group Configuration Code",
             "in": "path",
-            "name": "namespace",
+            "name": "configurationCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group Configuration Code",
+            "description": "namespace",
             "in": "path",
-            "name": "configurationCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -346,16 +346,16 @@
         "operationId": "getGroupConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group Configuration Code",
             "in": "path",
-            "name": "namespace",
+            "name": "configurationCode",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group Configuration Code",
+            "description": "namespace",
             "in": "path",
-            "name": "configurationCode",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -422,11 +422,12 @@
         "operationId": "updateGroupConfigurationAdminV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationRequestV1"
+            }
           },
           {
             "description": "Group Configuration Code",
@@ -436,12 +437,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateGroupConfigurationRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -505,9 +505,9 @@
         "operationId": "deleteGroupConfigurationGlobalRuleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Allowed Action. The value should be any actions in the service",
             "in": "path",
-            "name": "namespace",
+            "name": "allowedAction",
             "required": true,
             "type": "string"
           },
@@ -519,9 +519,9 @@
             "type": "string"
           },
           {
-            "description": "Allowed Action. The value should be any actions in the service",
+            "description": "namespace",
             "in": "path",
-            "name": "allowedAction",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -588,9 +588,17 @@
         "operationId": "updateGroupConfigurationGlobalRuleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationGlobalRulesRequestV1"
+            }
+          },
+          {
+            "description": "Allowed Action. The value should be any actions in the service",
             "in": "path",
-            "name": "namespace",
+            "name": "allowedAction",
             "required": true,
             "type": "string"
           },
@@ -602,19 +610,11 @@
             "type": "string"
           },
           {
-            "description": "Allowed Action. The value should be any actions in the service",
+            "description": "namespace",
             "in": "path",
-            "name": "allowedAction",
+            "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateGroupConfigurationGlobalRulesRequestV1"
-            }
           }
         ],
         "produces": [
@@ -685,16 +685,10 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
+            "description": "Query Group Configuration Code",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "description": "The start position that points to query data",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
+            "name": "configurationCode",
+            "type": "string"
           },
           {
             "description": "Query Group Name",
@@ -709,10 +703,16 @@
             "type": "string"
           },
           {
-            "description": "Query Group Configuration Code",
+            "description": "size of displayed data",
             "in": "query",
-            "name": "configurationCode",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -770,16 +770,16 @@
         "operationId": "deleteGroupAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -840,16 +840,16 @@
         "operationId": "getSingleGroupAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -915,16 +915,16 @@
         "operationId": "getGroupMembersListAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -1083,19 +1083,19 @@
         "operationId": "createMemberRoleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateMemberRoleRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1153,16 +1153,16 @@
         "operationId": "deleteMemberRoleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "member Role ID",
             "in": "path",
-            "name": "namespace",
+            "name": "memberRoleId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "member Role ID",
+            "description": "namespace",
             "in": "path",
-            "name": "memberRoleId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1223,16 +1223,16 @@
         "operationId": "getSingleMemberRoleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "member Role ID",
             "in": "path",
-            "name": "namespace",
+            "name": "memberRoleId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "member Role ID",
+            "description": "namespace",
             "in": "path",
-            "name": "memberRoleId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1299,11 +1299,12 @@
         "operationId": "updateMemberRoleAdminV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRoleRequestV1"
+            }
           },
           {
             "description": "member Role ID",
@@ -1313,12 +1314,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateMemberRoleRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1385,11 +1385,12 @@
         "operationId": "updateMemberRolePermissionAdminV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRolePermissionsRequestV1"
+            }
           },
           {
             "description": "member Role ID",
@@ -1399,12 +1400,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateMemberRolePermissionsRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1475,18 +1475,6 @@
             "type": "string"
           },
           {
-            "description": "size of displayed data",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "description": "The start position that points to query data",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
-          },
-          {
             "description": "Query Group Name",
             "in": "query",
             "name": "groupName",
@@ -1497,6 +1485,18 @@
             "in": "query",
             "name": "groupRegion",
             "type": "string"
+          },
+          {
+            "description": "size of displayed data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The start position that points to query data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1552,19 +1552,19 @@
         "operationId": "createNewGroupPublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.PublicCreateNewGroupRequestV1"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1625,16 +1625,16 @@
         "operationId": "deleteGroupPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1695,16 +1695,16 @@
         "operationId": "getSingleGroupPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1768,13 +1768,6 @@
         "operationId": "updatePatchSingleGroupPublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -1786,6 +1779,13 @@
             "description": "Group ID",
             "in": "path",
             "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1852,13 +1852,6 @@
         "operationId": "updateSingleGroupV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -1870,6 +1863,13 @@
             "description": "Group ID",
             "in": "path",
             "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1938,13 +1938,6 @@
         "operationId": "updateGroupCustomAttributesPublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
@@ -1956,6 +1949,13 @@
             "description": "Group ID",
             "in": "path",
             "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2021,16 +2021,16 @@
         "operationId": "acceptGroupInvitationPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2099,16 +2099,16 @@
         "operationId": "rejectGroupInvitationPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2177,16 +2177,16 @@
         "operationId": "JoinGroupV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2249,16 +2249,16 @@
         "operationId": "CancelGroupJoinRequestV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2321,16 +2321,16 @@
         "operationId": "getGroupJoinRequestPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2399,16 +2399,16 @@
         "operationId": "getGroupMembersListPublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Group ID",
             "in": "path",
-            "name": "namespace",
+            "name": "groupId",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Group ID",
+            "description": "namespace",
             "in": "path",
-            "name": "groupId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -2492,11 +2492,12 @@
         "operationId": "updateGroupCustomRulePublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1"
+            }
           },
           {
             "description": "Group ID",
@@ -2506,12 +2507,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2572,9 +2572,9 @@
         "operationId": "deleteGroupPredefinedRulePublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "description": "Allowed action, any available action in service",
             "in": "path",
-            "name": "namespace",
+            "name": "allowedAction",
             "required": true,
             "type": "string"
           },
@@ -2586,9 +2586,9 @@
             "type": "string"
           },
           {
-            "description": "Allowed action, any available action in service",
+            "description": "namespace",
             "in": "path",
-            "name": "allowedAction",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -2652,9 +2652,17 @@
         "operationId": "updateGroupPredefinedRulePublicV1",
         "parameters": [
           {
-            "description": "namespace",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupPredefinedRuleRequestV1"
+            }
+          },
+          {
+            "description": "Allowed action, any available action in service",
             "in": "path",
-            "name": "namespace",
+            "name": "allowedAction",
             "required": true,
             "type": "string"
           },
@@ -2666,19 +2674,11 @@
             "type": "string"
           },
           {
-            "description": "Allowed action, any available action in service",
+            "description": "namespace",
             "in": "path",
-            "name": "allowedAction",
+            "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateGroupPredefinedRuleRequestV1"
-            }
           }
         ],
         "produces": [
@@ -2881,11 +2881,12 @@
         "operationId": "deleteMemberRolePublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.RemoveRoleFromMemberRequestV1"
+            }
           },
           {
             "description": "member Role ID",
@@ -2895,12 +2896,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.RemoveRoleFromMemberRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -2968,11 +2968,12 @@
         "operationId": "updateMemberRolePublicV1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AssignRoleToMemberRequestV1"
+            }
           },
           {
             "description": "member Role ID",
@@ -2982,12 +2983,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AssignRoleToMemberRequestV1"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -4074,8 +4074,8 @@
         "ruleCriteria": {
           "enum": [
             "EQUAL",
-            "MINIMUM",
-            "MAXIMUM"
+            "MAXIMUM",
+            "MINIMUM"
           ],
           "type": "string"
         },

@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.0.1"
+    "version": "3.1.1"
   },
   "schemes": [
     "https"
@@ -74,11 +74,12 @@
         "operationId": "adminPutGameRecordConcurrentHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -88,12 +89,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -162,10 +162,11 @@
             "type": "string"
           },
           {
-            "description": "key",
+            "description": "limit",
             "in": "query",
-            "name": "query",
-            "type": "string"
+            "name": "limit",
+            "required": true,
+            "type": "integer"
           },
           {
             "description": "offset",
@@ -175,11 +176,10 @@
             "type": "integer"
           },
           {
-            "description": "limit",
+            "description": "key",
             "in": "query",
-            "name": "limit",
-            "required": true,
-            "type": "integer"
+            "name": "query",
+            "type": "string"
           }
         ],
         "produces": [
@@ -231,16 +231,16 @@
         "operationId": "adminDeleteGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "key of record",
             "in": "path",
-            "name": "namespace",
+            "name": "key",
             "required": true,
             "type": "string"
           },
           {
-            "description": "key of record",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "key",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -289,16 +289,16 @@
         "operationId": "adminGetGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "key of record",
             "in": "path",
-            "name": "namespace",
+            "name": "key",
             "required": true,
             "type": "string"
           },
           {
-            "description": "key of record",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "key",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -356,11 +356,12 @@
         "operationId": "adminPostGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -370,12 +371,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.GameRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -423,11 +423,12 @@
         "operationId": "adminPutGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -437,12 +438,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.GameRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -500,10 +500,10 @@
             "type": "string"
           },
           {
-            "description": "query, search player records by key or userID",
+            "description": "limit",
             "in": "query",
-            "name": "query",
-            "type": "string"
+            "name": "limit",
+            "type": "integer"
           },
           {
             "description": "offset",
@@ -512,10 +512,10 @@
             "type": "integer"
           },
           {
-            "description": "limit",
+            "description": "query, search player records by key or userID",
             "in": "query",
-            "name": "limit",
-            "type": "integer"
+            "name": "query",
+            "type": "string"
           }
         ],
         "produces": [
@@ -573,6 +573,21 @@
         "operationId": "adminPutPlayerRecordConcurrentHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -585,21 +600,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -661,6 +661,21 @@
         "operationId": "adminPutPlayerPublicRecordConcurrentHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -673,21 +688,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -763,15 +763,15 @@
             "type": "string"
           },
           {
-            "description": "offset",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
-          },
-          {
             "description": "limit",
             "in": "query",
             "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
             "type": "integer"
           }
         ],
@@ -830,6 +830,13 @@
         "operationId": "adminDeletePlayerRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -840,13 +847,6 @@
             "description": "user ID who own the record",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -895,6 +895,13 @@
         "operationId": "adminGetPlayerRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -905,13 +912,6 @@
             "description": "user ID who own the record",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -969,6 +969,21 @@
         "operationId": "adminPostPlayerRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -981,21 +996,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -1043,6 +1043,21 @@
         "operationId": "adminPutPlayerRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1055,21 +1070,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -1119,6 +1119,13 @@
         "operationId": "adminDeletePlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1129,13 +1136,6 @@
             "description": "user ID who own the record",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -1190,6 +1190,13 @@
         "operationId": "adminGetPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1200,13 +1207,6 @@
             "description": "user ID who own the record",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -1264,6 +1264,21 @@
         "operationId": "adminPostPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1276,21 +1291,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -1343,6 +1343,21 @@
         "operationId": "adminPutPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1355,21 +1370,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -1424,11 +1424,12 @@
         "operationId": "putGameRecordConcurrentHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.ConcurrentRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -1438,12 +1439,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ConcurrentRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1504,16 +1504,16 @@
         "operationId": "deleteGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "key of record",
             "in": "path",
-            "name": "namespace",
+            "name": "key",
             "required": true,
             "type": "string"
           },
           {
-            "description": "key of record",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "key",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1568,16 +1568,16 @@
         "operationId": "getGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "key of record",
             "in": "path",
-            "name": "namespace",
+            "name": "key",
             "required": true,
             "type": "string"
           },
           {
-            "description": "key of record",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "key",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1635,11 +1635,12 @@
         "operationId": "postGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -1649,12 +1650,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.GameRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1701,11 +1701,12 @@
         "operationId": "putGameRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordRequest"
+            }
           },
           {
             "description": "key of record",
@@ -1715,12 +1716,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.GameRecordRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1769,11 +1769,12 @@
         "operationId": "bulkGetPlayerPublicRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
           },
           {
             "description": "key of record",
@@ -1783,12 +1784,11 @@
             "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.BulkUserIDsRequest"
-            }
+            "type": "string"
           }
         ],
         "produces": [
@@ -1852,16 +1852,16 @@
         "operationId": "publicDeletePlayerPublicRecordHandlerV1",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "key of record",
             "in": "path",
-            "name": "namespace",
+            "name": "key",
             "required": true,
             "type": "string"
           },
           {
-            "description": "key of record",
+            "description": "namespace of the game",
             "in": "path",
-            "name": "key",
+            "name": "namespace",
             "required": true,
             "type": "string"
           }
@@ -1922,6 +1922,21 @@
         "operationId": "putPlayerRecordConcurrentHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -1934,21 +1949,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ConcurrentRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -2009,6 +2009,21 @@
         "operationId": "putPlayerPublicRecordConcurrentHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ConcurrentRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2021,21 +2036,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.ConcurrentRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -2096,6 +2096,13 @@
         "operationId": "deletePlayerRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2106,13 +2113,6 @@
             "description": "user ID who own the record",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -2173,6 +2173,13 @@
         "operationId": "getPlayerRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2183,13 +2190,6 @@
             "description": "user ID of record owner",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -2253,6 +2253,21 @@
         "operationId": "postPlayerRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2265,21 +2280,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -2338,6 +2338,21 @@
         "operationId": "putPlayerRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2350,21 +2365,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -2425,6 +2425,13 @@
         "operationId": "getPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2435,13 +2442,6 @@
             "description": "user ID of record owner",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
             "required": true,
             "type": "string"
           }
@@ -2499,6 +2499,21 @@
         "operationId": "postPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2511,21 +2526,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [
@@ -2578,6 +2578,21 @@
         "operationId": "putPlayerPublicRecordHandlerV1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordRequest"
+            }
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "namespace of the game",
             "in": "path",
             "name": "namespace",
@@ -2590,21 +2605,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "key of record",
-            "in": "path",
-            "name": "key",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecordRequest"
-            }
           }
         ],
         "produces": [

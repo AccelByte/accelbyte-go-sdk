@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.12.2"
+    "version": "1.13.1"
   },
   "schemes": [
     "https"
@@ -72,6 +72,24 @@
             "type": "string"
           },
           {
+            "default": 20,
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "collectionFormat": "multi",
             "in": "query",
             "items": {
@@ -85,24 +103,6 @@
             "name": "status",
             "required": false,
             "type": "array"
-          },
-          {
-            "default": 0,
-            "description": "offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 20,
-            "description": "limit",
-            "format": "int32",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "type": "integer"
           }
         ],
         "produces": [
@@ -710,6 +710,12 @@
         "operationId": "deletePass",
         "parameters": [
           {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -719,12 +725,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           }
@@ -780,6 +780,12 @@
         "operationId": "getPass",
         "parameters": [
           {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -789,12 +795,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           }
@@ -851,6 +851,12 @@
         "parameters": [
           {
             "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
@@ -858,12 +864,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           },
@@ -1243,6 +1243,12 @@
         "operationId": "deleteReward",
         "parameters": [
           {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1252,12 +1258,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           }
@@ -1313,6 +1313,12 @@
         "operationId": "getReward",
         "parameters": [
           {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1322,12 +1328,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           }
@@ -1384,6 +1384,12 @@
         "parameters": [
           {
             "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
@@ -1391,12 +1397,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "code",
             "required": true,
             "type": "string"
           },
@@ -1483,20 +1483,20 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "description": "limit",
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -1638,6 +1638,12 @@
         "operationId": "deleteTier",
         "parameters": [
           {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1647,12 +1653,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "id",
             "required": true,
             "type": "string"
           }
@@ -1712,6 +1712,12 @@
         "parameters": [
           {
             "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
@@ -1719,12 +1725,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "id",
             "required": true,
             "type": "string"
           },
@@ -1803,6 +1803,12 @@
         "parameters": [
           {
             "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
@@ -1810,12 +1816,6 @@
           {
             "in": "path",
             "name": "seasonId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "id",
             "required": true,
             "type": "string"
           },
@@ -1982,20 +1982,20 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
             "default": 20,
             "description": "limit",
             "format": "int32",
             "in": "query",
             "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
             "required": false,
             "type": "integer"
           }
@@ -2528,6 +2528,31 @@
             "type": "string"
           },
           {
+            "description": "section active range time start , using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "description": "if not provide, will query current season",
             "in": "query",
             "name": "seasonId",
@@ -2557,36 +2582,11 @@
             "type": "array"
           },
           {
-            "description": "section active range time start , using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
-            "in": "query",
-            "name": "from",
-            "required": false,
-            "type": "string"
-          },
-          {
             "description": "section active range time end, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ",
             "in": "query",
             "name": "to",
             "required": false,
             "type": "string"
-          },
-          {
-            "default": 0,
-            "description": "offset",
-            "format": "int32",
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 20,
-            "description": "limit",
-            "format": "int32",
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "type": "integer"
           }
         ],
         "produces": [
@@ -2705,13 +2705,13 @@
           },
           {
             "in": "path",
-            "name": "userId",
+            "name": "seasonId",
             "required": true,
             "type": "string"
           },
           {
             "in": "path",
-            "name": "seasonId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -3028,13 +3028,13 @@
           },
           {
             "in": "path",
-            "name": "userId",
+            "name": "seasonId",
             "required": true,
             "type": "string"
           },
           {
             "in": "path",
-            "name": "seasonId",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
@@ -3294,8 +3294,8 @@
         "method": {
           "description": "method while excess the final tier exp",
           "enum": [
-            "NONE",
-            "CURRENCY"
+            "CURRENCY",
+            "NONE"
           ],
           "type": "string"
         },
@@ -4059,8 +4059,8 @@
         "type": {
           "description": "type, at current only support ITEM",
           "enum": [
-            "ITEM",
-            "CURRENCY"
+            "CURRENCY",
+            "ITEM"
           ],
           "type": "string"
         }
@@ -4120,12 +4120,12 @@
           "description": "itemType, required when reward type is ITEM",
           "enum": [
             "APP",
-            "COINS",
-            "INGAMEITEM",
             "BUNDLE",
             "CODE",
-            "SUBSCRIPTION",
-            "SEASON"
+            "COINS",
+            "INGAMEITEM",
+            "SEASON",
+            "SUBSCRIPTION"
           ],
           "type": "string"
         },
@@ -4145,8 +4145,8 @@
         "type": {
           "description": "type",
           "enum": [
-            "ITEM",
-            "CURRENCY"
+            "CURRENCY",
+            "ITEM"
           ],
           "type": "string"
         }
@@ -4190,8 +4190,8 @@
         "type": {
           "description": "type, at current only support ITEM",
           "enum": [
-            "ITEM",
-            "CURRENCY"
+            "CURRENCY",
+            "ITEM"
           ],
           "type": "string"
         }

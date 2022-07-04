@@ -384,13 +384,6 @@
             "type": "string"
           },
           {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06Z",
-            "in": "query",
-            "name": "startDate",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z",
             "in": "query",
             "name": "endDate",
@@ -403,6 +396,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -462,19 +462,19 @@
         "operationId": "PostEventHandler",
         "parameters": [
           {
-            "description": "Namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.Event"
             }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -521,13 +521,6 @@
         "operationId": "GetEventByEventIDHandler",
         "parameters": [
           {
-            "description": "Namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "Event's ID",
             "in": "path",
             "name": "eventId",
@@ -535,9 +528,9 @@
             "type": "number"
           },
           {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -554,6 +547,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -612,13 +612,6 @@
         "operationId": "GetEventByEventTypeHandler",
         "parameters": [
           {
-            "description": "Namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "Event's type",
             "in": "path",
             "name": "eventType",
@@ -626,9 +619,9 @@
             "type": "number"
           },
           {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -645,6 +638,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -703,11 +703,11 @@
         "operationId": "GetEventByEventTypeAndEventIDHandler",
         "parameters": [
           {
-            "description": "Namespace",
+            "description": "Event's ID",
             "in": "path",
-            "name": "namespace",
+            "name": "eventId",
             "required": true,
-            "type": "string"
+            "type": "number"
           },
           {
             "description": "Event's type",
@@ -717,16 +717,9 @@
             "type": "number"
           },
           {
-            "description": "Event's ID",
+            "description": "Namespace",
             "in": "path",
-            "name": "eventId",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -743,6 +736,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -815,13 +815,6 @@
             "type": "string"
           },
           {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
-            "required": true,
-            "type": "string"
-          },
-          {
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
             "in": "query",
             "name": "endDate",
@@ -834,6 +827,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -1025,6 +1025,13 @@
         "operationId": "GetEventByUserIDAndEventIDHandler",
         "parameters": [
           {
+            "description": "Event's ID",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "type": "number"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1035,20 +1042,6 @@
             "description": "User ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Event's ID",
-            "in": "path",
-            "name": "eventId",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
             "required": true,
             "type": "string"
           },
@@ -1065,6 +1058,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -1123,6 +1123,13 @@
         "operationId": "GetEventByUserIDAndEventTypeHandler",
         "parameters": [
           {
+            "description": "Event's type",
+            "in": "path",
+            "name": "eventType",
+            "required": true,
+            "type": "number"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1133,20 +1140,6 @@
             "description": "User ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Event's type",
-            "in": "path",
-            "name": "eventType",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
             "required": true,
             "type": "string"
           },
@@ -1163,6 +1156,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -1221,6 +1221,20 @@
         "operationId": "GetEventByUserEventIDAndEventTypeHandler",
         "parameters": [
           {
+            "description": "Event's ID",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Event's type",
+            "in": "path",
+            "name": "eventType",
+            "required": true,
+            "type": "number"
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
@@ -1231,27 +1245,6 @@
             "description": "User ID",
             "in": "path",
             "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Event's type",
-            "in": "path",
-            "name": "eventType",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "description": "Event's ID",
-            "in": "path",
-            "name": "eventId",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
-            "in": "query",
-            "name": "startDate",
             "required": true,
             "type": "string"
           },
@@ -1268,6 +1261,13 @@
             "name": "pageSize",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
           },
           {
             "description": "Offset to query",
@@ -1592,19 +1592,19 @@
         "operationId": "UpdateEventRegistryHandler",
         "parameters": [
           {
-            "description": "Event's ID",
-            "in": "path",
-            "name": "eventId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.EventRegistry"
             }
+          },
+          {
+            "description": "Event's ID",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1713,22 +1713,18 @@
         "operationId": "QueryEventStreamHandler",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GenericQueryPayload"
+            }
+          },
+          {
             "description": "Namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Number of result in a page. Default : 100. Max : 500",
-            "in": "query",
-            "name": "pageSize",
-            "type": "integer"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
-            "in": "query",
-            "name": "startDate",
             "type": "string"
           },
           {
@@ -1744,12 +1740,16 @@
             "type": "integer"
           },
           {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.GenericQueryPayload"
-            }
+            "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
           }
         ],
         "produces": [
@@ -1815,21 +1815,15 @@
             "type": "string"
           },
           {
-            "description": "Number of result in a page. Default : 100. Max : 500",
-            "in": "query",
-            "name": "pageSize",
-            "type": "integer"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
-            "in": "query",
-            "name": "startDate",
-            "type": "string"
-          },
-          {
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
             "in": "query",
             "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "Event Name to filter",
+            "in": "query",
+            "name": "eventName",
             "type": "string"
           },
           {
@@ -1839,9 +1833,15 @@
             "type": "integer"
           },
           {
-            "description": "Event Name to filter",
+            "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
-            "name": "eventName",
+            "name": "pageSize",
+            "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
+            "name": "startDate",
             "type": "string"
           }
         ],
@@ -1911,18 +1911,6 @@
             "type": "string"
           },
           {
-            "description": "Number of result in a page. Default : 100. Max : 500",
-            "in": "query",
-            "name": "pageSize",
-            "type": "integer"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
-            "in": "query",
-            "name": "startDate",
-            "type": "string"
-          },
-          {
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
             "in": "query",
             "name": "endDate",
@@ -1933,6 +1921,18 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
           },
           {
             "description": "Edit History type to fetch",
@@ -2001,21 +2001,15 @@
             "type": "string"
           },
           {
-            "description": "Number of result in a page. Default : 100. Max : 500",
-            "in": "query",
-            "name": "pageSize",
-            "type": "integer"
-          },
-          {
-            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
-            "in": "query",
-            "name": "startDate",
-            "type": "string"
-          },
-          {
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
             "in": "query",
             "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "Event Name to filter",
+            "in": "query",
+            "name": "eventName",
             "type": "string"
           },
           {
@@ -2025,9 +2019,15 @@
             "type": "integer"
           },
           {
-            "description": "Event Name to filter",
+            "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
-            "name": "eventName",
+            "name": "pageSize",
+            "type": "integer"
+          },
+          {
+            "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
+            "name": "startDate",
             "type": "string"
           }
         ],

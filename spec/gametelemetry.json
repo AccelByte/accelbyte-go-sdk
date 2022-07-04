@@ -87,10 +87,10 @@
         },
         "security": [
           {
-            "HTTPBearer": []
+            "APIKeyCookie": []
           },
           {
-            "APIKeyCookie": []
+            "HTTPBearer": []
           }
         ],
         "summary": "Protected Save Events",
@@ -143,10 +143,10 @@
         },
         "security": [
           {
-            "HTTPBearer": []
+            "APIKeyCookie": []
           },
           {
-            "APIKeyCookie": []
+            "HTTPBearer": []
           }
         ],
         "summary": "Protected Get Playtime",
@@ -202,10 +202,10 @@
         },
         "security": [
           {
-            "HTTPBearer": []
+            "APIKeyCookie": []
           },
           {
-            "APIKeyCookie": []
+            "HTTPBearer": []
           }
         ],
         "summary": "Protected Update Playtime",
@@ -255,8 +255,8 @@
         }
       },
       "required": [
-        "EventNamespace",
         "EventName",
+        "EventNamespace",
         "Payload"
       ],
       "title": "TelemetryBody",

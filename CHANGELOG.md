@@ -1,3 +1,31 @@
+<a name="v0.22.0"></a>
+## [v0.22.0] - 2022-07-05
+
+### Chore
+- **api:** set default header params
+- **api:** regenerate client to add the request header to the param
+- **samples:** rename the lowercase typo aws lambda function
+- **samples:** update the samples with the aws url function instead of api gateway
+- **sdk:** add negation in config
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for justice 3.26
+- **sdk:** rename the logger and move the file to utils
+- **spec:** update spec files for justice 3.26
+- **test:** assert error 404 for game telemetry
+- **test:** check if the profile exist in basic service
+
+### CI
+- fix permission issue
+- **github:** fix checkout problem
+- **github:** fix wrong slack channel
+- **github:** implement point release
+
+### Docs
+- update CHANGELOG.md for v0.22.0 release
+
+### Fix
+- **test:** add the custom header in params
+
+
 <a name="v0.21.0"></a>
 ## [v0.21.0] - 2022-06-21
 
@@ -731,6 +759,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.22.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.21.0...v0.22.0
 [v0.21.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.20.0...v0.21.0
 [v0.20.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.19.0...v0.20.0
 [v0.19.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.18.1...v0.19.0

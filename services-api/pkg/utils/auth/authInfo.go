@@ -75,13 +75,12 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 		return Error(fmt.Errorf("empty clientSecret"))
 	}
 
-	if s.Config != nil && s.Refresh.DisableAutoRefresh() {
+	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
 		getToken, _ := s.Token.GetToken()
 		if getToken.ExpiresIn != nil {
 			isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
 			if getToken.RefreshToken != nil && isExpired {
 				// avoid race condition
-				var wg sync.WaitGroup
 				var mu sync.Mutex
 
 				mu.Lock()
@@ -93,7 +92,6 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 				}
 
 				mu.Unlock()
-				wg.Done()
 
 				return Basic(clientID, clientSecret)
 			}
@@ -124,7 +122,6 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 			isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
 			if getToken.RefreshToken != nil && isExpired {
 				// avoid race condition
-				//var wg sync.WaitGroup
 				var mu sync.Mutex
 
 				mu.Lock()
@@ -136,7 +133,6 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 				}
 
 				mu.Unlock()
-				//wg.Done()
 
 				return Bearer(*updatedToken.AccessToken)
 			}
@@ -201,7 +197,6 @@ func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
 		isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
 		if s.Refresh != nil && isExpired {
 			// avoid race condition
-			var wg sync.WaitGroup
 			var mu sync.Mutex
 
 			mu.Lock()
@@ -213,7 +208,6 @@ func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
 			}
 
 			mu.Unlock()
-			wg.Done()
 
 			return CookieValue(key, *updatedToken.AccessToken)
 		}

@@ -62,7 +62,7 @@ pipeline {
           sh "git checkout ${params.RELEASE_BRANCH}"
           sshagent(credentials: [githubSsh])
           {
-            if (params.RELEASE_BRANCH == "refs/heads/master") {
+            if (params.RELEASE_BRANCH == "master") {
               sh "git push ${githubUrl} HEAD:main"
             }
             else {

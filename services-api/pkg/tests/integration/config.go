@@ -7,6 +7,7 @@ package integration
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
@@ -22,6 +23,7 @@ var (
 )
 
 type TokenRepositoryImpl struct {
+	IssuedTime *time.Time
 }
 
 type ConfigRepositoryImpl struct {
@@ -53,6 +55,10 @@ func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	token = iamclientmodels.OauthmodelTokenResponseV3{}
 
 	return nil
+}
+
+func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
+	return *tokenRepository.IssuedTime
 }
 
 type ConnectionManagerImpl struct {

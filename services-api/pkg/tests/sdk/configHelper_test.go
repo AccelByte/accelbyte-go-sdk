@@ -5,6 +5,8 @@
 package sdk_test
 
 import (
+	"time"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
@@ -13,7 +15,6 @@ var (
 	ConstClientId     = "admin"
 	ConstClientSecret = "admin"
 	ConstURL          = "https://httpbin.org"
-	token             iamclientmodels.OauthmodelTokenResponseV3
 	ConfigRepo        ConfigRepositoryImplTest
 	TestService       = &TestWrapperService{
 		Client:           NewClientWithBasePath("httpbin.org", ""),
@@ -27,6 +28,8 @@ const (
 )
 
 type TokenRepositoryImplTest struct {
+	IssuedTime time.Time                                 `json:"issuedTime"`
+	Token      iamclientmodels.OauthmodelTokenResponseV3 `json:"Token"`
 }
 
 type ConfigRepositoryImplTest struct {
@@ -51,17 +54,22 @@ func (c *ConfigRepositoryImplTest) GetJusticeBaseUrl() string {
 }
 
 func (t *TokenRepositoryImplTest) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	token = accessToken
+	t.IssuedTime = time.Now()
+	t.Token = accessToken
 
 	return nil
 }
 
 func (t *TokenRepositoryImplTest) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	return &token, nil
+	return &t.Token, nil
 }
 
 func (t *TokenRepositoryImplTest) RemoveToken() error {
-	token = iamclientmodels.OauthmodelTokenResponseV3{}
+	t.Token = iamclientmodels.OauthmodelTokenResponseV3{}
 
 	return nil
+}
+
+func (t *TokenRepositoryImplTest) TokenIssuedTimeUTC() time.Time {
+	return t.IssuedTime
 }

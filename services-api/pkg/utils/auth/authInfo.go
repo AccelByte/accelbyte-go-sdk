@@ -8,11 +8,9 @@ import (
 	"encoding/base64"
 	"fmt"
 	"sync"
-	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
@@ -25,6 +23,8 @@ type Session struct {
 	Config  repository.ConfigRepository
 	Refresh repository.RefreshTokenRepository
 }
+
+var Once sync.Once
 
 // AuthInfoWriter called by the existing security from the wrapper
 func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.ClientAuthInfoWriter {
@@ -66,6 +66,8 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 }
 
 func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
+	//tokenIssuedTime = s.Token.TokenIssuedTimeUTC()
+
 	clientID := s.Config.GetClientId()
 	if clientID == "" {
 		return Error(fmt.Errorf("empty clientID"))
@@ -75,26 +77,22 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 		return Error(fmt.Errorf("empty clientSecret"))
 	}
 
+	done := make(chan bool)
 	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
-		getToken, _ := s.Token.GetToken()
-		if getToken.ExpiresIn != nil {
-			isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
-			if getToken.RefreshToken != nil && isExpired {
-				// avoid race condition
-				var mu sync.Mutex
+		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
+		if isExpired {
+			// avoid race condition,
+			// do re-login only once for a new refreshed access token in a single thread
+			go func() {
+				Once.Do(func() {
+					errRefresh := ClientTokenRefresher(s)
+					if errRefresh != nil {
+						return
+					}
+					done <- true
+				})
+			}()
 
-				mu.Lock()
-
-				// re-login with access Token
-				_, errUpdatedToken := Refresher(s)
-				if errUpdatedToken != nil {
-					return Error(errUpdatedToken)
-				}
-
-				mu.Unlock()
-
-				return Basic(clientID, clientSecret)
-			}
 		}
 	}
 
@@ -102,8 +100,6 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 }
 
 func Basic(username, password string) runtime.ClientAuthInfoWriter {
-	TokenIssuedTime = time.Now()
-
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
 		encoded := base64.StdEncoding.EncodeToString([]byte(username + ":" + password))
 
@@ -117,25 +113,22 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 		return Error(err)
 	}
 
+	done := make(chan bool)
 	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
-		if getToken.ExpiresIn != nil {
-			isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
-			if getToken.RefreshToken != nil && isExpired {
-				// avoid race condition
-				var mu sync.Mutex
+		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
+		if getToken.RefreshToken != nil && isExpired {
+			// avoid race condition,
+			// do re-login only once for a new refreshed access token in a single thread
+			go func() {
+				Once.Do(func() {
+					errRefresh := UserTokenRefresher(s)
+					if errRefresh != nil {
+						return
+					}
+					done <- true
+				})
+			}()
 
-				mu.Lock()
-
-				// re-login with access Token
-				updatedToken, errUpdatedToken := Refresher(s)
-				if errUpdatedToken != nil {
-					return Error(errUpdatedToken)
-				}
-
-				mu.Unlock()
-
-				return Bearer(*updatedToken.AccessToken)
-			}
 		}
 	}
 
@@ -143,8 +136,6 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 }
 
 func Bearer(token string) runtime.ClientAuthInfoWriter {
-	TokenIssuedTime = time.Now()
-
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
 		return r.SetHeaderParam(constant.Authorization, "Bearer "+token)
 	})
@@ -156,9 +147,11 @@ type OAuth20RefreshService struct {
 	TokenRepository  repository.TokenRepository
 }
 
-func Refresher(s Session) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func UserTokenRefresher(s Session) error {
+	token, _ := s.Token.GetToken()
 	p := &o_auth2_0.TokenGrantV3Params{
-		GrantType: o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
+		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
+		RefreshToken: token.RefreshToken,
 	}
 	service := OAuth20RefreshService{
 		Client:           factory.NewIamClient(s.Config),
@@ -167,14 +160,35 @@ func Refresher(s Session) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	}
 	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
 	if errLogin != nil {
-		return nil, errLogin
+		return errLogin
 	}
 	err := s.Token.Store(*newToken.Payload)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return newToken.Payload, nil
+	return nil
+}
+
+func ClientTokenRefresher(s Session) error {
+	p := &o_auth2_0.TokenGrantV3Params{
+		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
+	}
+	service := OAuth20RefreshService{
+		Client:           factory.NewIamClient(s.Config),
+		ConfigRepository: s.Config,
+		TokenRepository:  s.Token,
+	}
+	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
+	if errLogin != nil {
+		return errLogin
+	}
+	err := s.Token.Store(*newToken.Payload)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func CookieValue(key, value string) runtime.ClientAuthInfoWriter {
@@ -189,27 +203,22 @@ func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
 		return Error(err)
 	}
 
-	if s.Config != nil && s.Refresh != nil {
-		errStoreToken := s.Refresh.StoreRefreshToken(*getToken)
-		if errStoreToken != nil {
-			return nil
-		}
-		isExpired := s.Refresh.HasRefreshTokenExpired(*getToken)
-		if s.Refresh != nil && isExpired {
-			// avoid race condition
-			var mu sync.Mutex
+	done := make(chan bool)
+	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
+		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
+		if getToken.RefreshToken != nil && isExpired {
+			// avoid race condition,
+			// do re-login only once for a new refreshed access token in a single thread
+			go func() {
+				Once.Do(func() {
+					errRefresh := UserTokenRefresher(s)
+					if errRefresh != nil {
+						return
+					}
+					done <- true
+				})
+			}()
 
-			mu.Lock()
-
-			// re-login with access Token
-			updatedToken, errUpdatedToken := Refresher(s)
-			if errUpdatedToken != nil {
-				return Error(errUpdatedToken)
-			}
-
-			mu.Unlock()
-
-			return CookieValue(key, *updatedToken.AccessToken)
 		}
 	}
 

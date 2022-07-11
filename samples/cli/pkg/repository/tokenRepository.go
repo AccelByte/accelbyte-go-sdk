@@ -9,6 +9,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"os"
+	"time"
 
 	"github.com/sirupsen/logrus"
 
@@ -16,9 +17,12 @@ import (
 )
 
 type TokenRepositoryImpl struct {
+	IssuedTime time.Time
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+	tokenRepository.TokenIssuedTimeUTC()
+
 	_, err := os.Stat(os.TempDir() + "/justice-sample-apps/")
 	if os.IsNotExist(err) {
 		errDir := os.MkdirAll(os.TempDir()+"/justice-sample-apps/", 0755)
@@ -70,4 +74,8 @@ func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	}
 
 	return nil
+}
+
+func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
+	return tokenRepository.IssuedTime
 }

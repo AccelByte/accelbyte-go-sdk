@@ -35,6 +35,7 @@ func TestConfig_BaseURL(t *testing.T) {
 
 func TestToken(t *testing.T) {
 	accessToken := "foo"
+	var token iamclientmodels.OauthmodelTokenResponseV3
 	token = iamclientmodels.OauthmodelTokenResponseV3{
 		AccessToken: &accessToken,
 	}
@@ -43,6 +44,6 @@ func TestToken(t *testing.T) {
 
 	tokenRepo, err := TestService.TokenRepository.GetToken()
 	require.Nil(t, err, "error should be empty")
-	assert.NotNil(t, tokenRepo, "token repository is empty")
+	assert.NotNil(t, tokenRepo, "Token repository is empty")
 	assert.Equal(t, ConstAccessToken, *tokenRepo.AccessToken)
 }

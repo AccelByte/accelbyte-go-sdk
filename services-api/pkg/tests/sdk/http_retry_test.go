@@ -108,23 +108,34 @@ func (c *MyConfigRepo) GetJusticeBaseUrl() string { return c.baseUrl }
 // region MyTokenRepo
 
 type MyTokenRepo struct {
+	IssuedTime  *time.Time
 	accessToken *iamclientmodels.OauthmodelTokenResponseV3
 }
 
 func (t *MyTokenRepo) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	if t.accessToken == nil {
+		return nil, fmt.Errorf("empty access Token")
+	}
 	return t.accessToken, nil
 }
 
 func (t *MyTokenRepo) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+	timeNow := time.Now().UTC()
+	t.IssuedTime = &timeNow
 	t.accessToken = &accessToken
 
 	return nil
 }
 
 func (t *MyTokenRepo) RemoveToken() error {
+	t.IssuedTime = nil
 	t.accessToken = nil
 
 	return nil
+}
+
+func (t *MyTokenRepo) TokenIssuedTimeUTC() time.Time {
+	return *t.IssuedTime
 }
 
 // endregion MyTokenRepo

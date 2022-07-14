@@ -44,7 +44,7 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	t.Logf("Expiring in... : %v", secondsTillExpiry)
 
 	// 4. force the Token to be expired
-	expiresIn := int32(5)
+	expiresIn = int32(5)
 	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
 	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
 
@@ -99,7 +99,7 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	t.Logf("Expiring in... : %v", secondsTillExpiry)
 
 	// 4. force the Token to be expired
-	expiresIn := int32(5)
+	expiresIn = int32(5)
 	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
 	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
 

@@ -26,6 +26,7 @@ import (
 
 var (
 	accessToken = "foo"
+	expiresIn   = int32(3600)
 	configRepo  = MyConfigRepo{
 		baseUrl:      mockServerBaseUrl,
 		clientId:     mockServerClientId,
@@ -61,6 +62,7 @@ var (
 	tokenRepo                            = MyTokenRepo{
 		accessToken: &iamclientmodels.OauthmodelTokenResponseV3{
 			AccessToken: &accessToken,
+			ExpiresIn:   &expiresIn,
 		},
 	}
 )
@@ -157,6 +159,7 @@ func (rt *MyRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 
 func TestRetryRequest_withMaxTries(t *testing.T) {
 	// Arrange
+	prepareToken(iamBansService)
 	maxNumberOfRetries := uint(3)
 	err := configureMockServerOverwriteResponse(map[string]interface{}{
 		"enabled":   true,
@@ -182,10 +185,10 @@ func TestRetryRequest_withMaxTries(t *testing.T) {
 		},
 		Transport: &roundTripper,
 	}
-	params := bans.GetBansTypeParams{
+	paramsRetry := bans.GetBansTypeParams{
 		RetryPolicy: &retryPolicy,
 	}
-	_, err = iamBansService.GetBansTypeShort(&params)
+	_, err = iamBansService.GetBansTypeShort(&paramsRetry)
 	assert.NotNil(t, err)
 
 	numberOfRetries := roundTripper.Counter - 1
@@ -241,12 +244,12 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 		},
 		Transport: &roundTripper,
 	}
-	params := lobbyConfig.AdminImportConfigV1Params{
+	paramsRetry := lobbyConfig.AdminImportConfigV1Params{
 		File:        file,
 		Namespace:   namespace,
 		RetryPolicy: &retryPolicy,
 	}
-	_, err = lobbyConfigService.AdminImportConfigV1Short(&params)
+	_, err = lobbyConfigService.AdminImportConfigV1Short(&paramsRetry)
 	assert.NotNil(t, err)
 
 	numberOfRetries := roundTripper.Counter - 1
@@ -257,4 +260,9 @@ func TestRetryRequest_withBigFile(t *testing.T) {
 	// Clean up
 	err = resetMockServerOverwriteResponse()
 	assert.Nil(t, err)
+}
+
+func prepareToken(iam *iam.BansService) {
+	t, _ := iam.TokenRepository.GetToken()
+	_ = iam.TokenRepository.Store(*t)
 }

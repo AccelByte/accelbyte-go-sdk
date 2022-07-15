@@ -117,17 +117,18 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	assert.True(t, hasIndeedExpired) // indeed expired
 
 	// 5. call again with time sleep for multiple requests async
-	attempts := 5
-	go func() {
-		for i := 1; i <= attempts; i++ {
-			timestamp := iamBansService.TokenRepository.TokenIssuedTimeUTC()
-			t.Logf("%vth request in timestamp: %+v, now: %v", i, timestamp, time.Now())
-			okBan2, errBan2 := iamBansService.GetBansTypeShort(&params)
-			if errBan2 != nil {
-				assert.FailNow(t, errBan2.Error())
-			}
-			assert.NotNil(t, okBan2, "not nil")
-			assert.False(t, hasExpired)
+	testing.Benchmark(func(b *testing.B) {
+		for i := 1; i <= b.N; i++ {
+			b.RunParallel(func(pb *testing.PB) { // run with goroutines
+				t.Logf("%vth request", i)
+				okBan2, errBan2 := iamBansService.GetBansTypeShort(&params)
+				if errBan2 != nil {
+					assert.FailNow(t, errBan2.Error())
+				}
+				assert.NotNil(t, okBan2, "not nil")
+				assert.False(t, hasExpired)
+			})
 		}
-	}()
+	})
+
 }

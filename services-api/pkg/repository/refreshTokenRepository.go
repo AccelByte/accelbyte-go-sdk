@@ -7,4 +7,5 @@ package repository
 type RefreshTokenRepository interface {
 	DisableAutoRefresh() bool
 	GetRefreshRate() float64
+	RefreshIsRunningInBackground(b bool) bool
 }

@@ -5,14 +5,16 @@
 package auth
 
 type RefreshTokenImpl struct {
-	RefreshRate float64
-	AutoRefresh bool
+	RefreshRate         float64
+	AutoRefresh         bool
+	IsRefreshInProgress bool
 }
 
 func DefaultRefreshTokenImpl() *RefreshTokenImpl {
 	return &RefreshTokenImpl{
 		1.0,
 		true,
+		false,
 	}
 }
 
@@ -22,4 +24,10 @@ func (r *RefreshTokenImpl) DisableAutoRefresh() bool {
 
 func (r *RefreshTokenImpl) GetRefreshRate() float64 {
 	return r.RefreshRate
+}
+
+func (r *RefreshTokenImpl) RefreshIsRunningInBackground(b bool) bool {
+	r.IsRefreshInProgress = b
+
+	return r.IsRefreshInProgress
 }

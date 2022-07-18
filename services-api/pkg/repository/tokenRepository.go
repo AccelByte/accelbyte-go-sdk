@@ -76,4 +76,107 @@ func HasRefreshTokenExpired(repository TokenRepository, refreshRate float64) boo
 	return GetSecondsTillExpiryRefresh(repository, refreshRate) <= 0
 }
 
+//func RefreshTokenScheduller(service *iam.OAuth20Service, loginType string) {
+//	getToken, err := service.TokenRepository.GetToken()
+//	if err != nil {
+//		err.Error()
+//	}
+//
+//	refreshRate := service.RefreshTokenRepository.GetRefreshRate()
+//	done := make(chan bool)
+//
+//	if !HasRefreshTokenExpired(service.TokenRepository, refreshRate) {
+//		switch loginType {
+//
+//		case "user": // user token have a refreshToken
+//			if getToken.RefreshToken != nil && !service.RefreshTokenRepository.DisableAutoRefresh() {
+//
+//				time.Sleep(GetSecondsTillExpiryRefresh(service.TokenRepository, refreshRate)) // timer
+//
+//				go func() {
+//					service.RefreshTokenRepository.RefreshIsRunningInBackground(true)
+//					Once.Do(func() {
+//						errRefresh := UserTokenRefresher(service)
+//						if errRefresh != nil {
+//							return
+//						}
+//						done <- true
+//					})
+//					service.RefreshTokenRepository.RefreshIsRunningInBackground(false)
+//				}()
+//			}
+//
+//		case "client":
+//			if getToken.RefreshToken != nil && !service.RefreshTokenRepository.DisableAutoRefresh() {
+//
+//				time.Sleep(GetSecondsTillExpiryRefresh(service.TokenRepository, refreshRate)) // timer
+//
+//				go func() {
+//					service.RefreshTokenRepository.RefreshIsRunningInBackground(true)
+//					Once.Do(func() {
+//						errRefresh := ClientTokenRefresher(service)
+//						if errRefresh != nil {
+//							return
+//						}
+//						done <- true
+//					})
+//					service.RefreshTokenRepository.RefreshIsRunningInBackground(false)
+//				}()
+//			}
+//		}
+//	}
+//
+//	_ = fmt.Sprint("Token in token repository has expired, please re-login")
+//}
+//
+//type OAuth20RefreshService struct {
+//	Client           *iamclient.JusticeIamService
+//	ConfigRepository ConfigRepository
+//	TokenRepository  TokenRepository
+//}
+//
+//func UserTokenRefresher(s *iam.OAuth20Service) error {
+//	token, _ := s.TokenRepository.GetToken()
+//	p := &o_auth2_0.TokenGrantV3Params{
+//		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
+//		RefreshToken: token.RefreshToken,
+//	}
+//	service := OAuth20RefreshService{
+//		Client:           factory.NewIamClient(s.ConfigRepository),
+//		ConfigRepository: s.ConfigRepository,
+//		TokenRepository:  s.TokenRepository,
+//	}
+//	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, auth.Basic(s.ConfigRepository.GetClientId(), s.ConfigRepository.GetClientSecret()))
+//	if errLogin != nil {
+//		return errLogin
+//	}
+//	err := s.TokenRepository.Store(*newToken.Payload)
+//	if err != nil {
+//		return err
+//	}
+//
+//	return nil
+//}
+//
+//func ClientTokenRefresher(s *iam.OAuth20Service) error {
+//	p := &o_auth2_0.TokenGrantV3Params{
+//		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
+//	}
+//	service := OAuth20RefreshService{
+//		Client:           factory.NewIamClient(s.ConfigRepository),
+//		ConfigRepository: s.ConfigRepository,
+//		TokenRepository:  s.TokenRepository,
+//	}
+//	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, auth.Basic(s.ConfigRepository.GetClientId(), s.ConfigRepository.GetClientSecret()))
+//	if errLogin != nil {
+//		return errLogin
+//	}
+//	err := s.TokenRepository.Store(*newToken.Payload)
+//	if err != nil {
+//		return err
+//	}
+//
+//	return nil
+//}
+
 // TODO a interface for OauthmodelTokenResponseV3

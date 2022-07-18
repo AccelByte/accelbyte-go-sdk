@@ -66,8 +66,6 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 }
 
 func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
-	//tokenIssuedTime = s.Token.TokenIssuedTimeUTC()
-
 	clientID := s.Config.GetClientId()
 	if clientID == "" {
 		return Error(fmt.Errorf("empty clientID"))
@@ -75,25 +73,6 @@ func ConfigRepo(s Session) runtime.ClientAuthInfoWriter {
 	clientSecret := s.Config.GetClientSecret()
 	if clientSecret == "" {
 		return Error(fmt.Errorf("empty clientSecret"))
-	}
-
-	done := make(chan bool)
-	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
-		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
-		if isExpired {
-			// avoid race condition,
-			// do re-login only once for a new refreshed access token in a single thread
-			go func() {
-				Once.Do(func() {
-					errRefresh := ClientTokenRefresher(s)
-					if errRefresh != nil {
-						return
-					}
-					done <- true
-				})
-			}()
-
-		}
 	}
 
 	return Basic(clientID, clientSecret)
@@ -113,25 +92,6 @@ func TokenRepo(s Session) runtime.ClientAuthInfoWriter {
 		return Error(err)
 	}
 
-	done := make(chan bool)
-	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
-		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
-		if getToken.RefreshToken != nil && isExpired {
-			// avoid race condition,
-			// do re-login only once for a new refreshed access token in a single thread
-			go func() {
-				Once.Do(func() {
-					errRefresh := UserTokenRefresher(s)
-					if errRefresh != nil {
-						return
-					}
-					done <- true
-				})
-			}()
-
-		}
-	}
-
 	return Bearer(*getToken.AccessToken)
 }
 
@@ -141,10 +101,84 @@ func Bearer(token string) runtime.ClientAuthInfoWriter {
 	})
 }
 
+func CookieValue(key, value string) runtime.ClientAuthInfoWriter {
+	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+		return r.SetHeaderParam(constant.CookieAuth, key+"="+value)
+	})
+}
+
+func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
+	getToken, err := s.Token.GetToken()
+	if err != nil {
+		return Error(err)
+	}
+
+	return CookieValue(key, *getToken.AccessToken)
+}
+
+func Error(err error) runtime.ClientAuthInfoWriter {
+	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+		return err
+	})
+}
+
+func RefreshTokenScheduller(service Session, loginType string) {
+	getToken, err := service.Token.GetToken()
+	if err != nil {
+		return
+	}
+
+	refreshRate := service.Refresh.GetRefreshRate()
+	done := make(chan bool)
+
+	if !repository.HasRefreshTokenExpired(service.Token, refreshRate) {
+		switch loginType {
+
+		case "user": // user token have a refreshToken
+			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
+
+				//time.Sleep(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate)) // timer
+
+				go func() {
+					service.Refresh.RefreshIsRunningInBackground(true)
+					Once.Do(func() {
+						errRefresh := UserTokenRefresher(service)
+						if errRefresh != nil {
+							return
+						}
+						done <- true
+					})
+					service.Refresh.RefreshIsRunningInBackground(false)
+				}()
+			}
+
+		case "client":
+			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
+
+				//time.Sleep(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate)) // timer
+
+				go func() {
+					service.Refresh.RefreshIsRunningInBackground(true)
+					Once.Do(func() {
+						errRefresh := ClientTokenRefresher(service)
+						if errRefresh != nil {
+							return
+						}
+						done <- true
+					})
+					service.Refresh.RefreshIsRunningInBackground(false)
+				}()
+			}
+		}
+	}
+
+	_ = fmt.Sprint("Token in token repository has expired, please re-login")
+}
+
 type OAuth20RefreshService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
-	TokenRepository  repository.TokenRepository
+	Token            repository.TokenRepository
 }
 
 func UserTokenRefresher(s Session) error {
@@ -156,7 +190,7 @@ func UserTokenRefresher(s Session) error {
 	service := OAuth20RefreshService{
 		Client:           factory.NewIamClient(s.Config),
 		ConfigRepository: s.Config,
-		TokenRepository:  s.Token,
+		Token:            s.Token,
 	}
 	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
 	if errLogin != nil {
@@ -177,7 +211,7 @@ func ClientTokenRefresher(s Session) error {
 	service := OAuth20RefreshService{
 		Client:           factory.NewIamClient(s.Config),
 		ConfigRepository: s.Config,
-		TokenRepository:  s.Token,
+		Token:            s.Token,
 	}
 	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
 	if errLogin != nil {
@@ -189,44 +223,4 @@ func ClientTokenRefresher(s Session) error {
 	}
 
 	return nil
-}
-
-func CookieValue(key, value string) runtime.ClientAuthInfoWriter {
-	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-		return r.SetHeaderParam(constant.CookieAuth, key+"="+value)
-	})
-}
-
-func Cookie(s Session, key string) runtime.ClientAuthInfoWriter {
-	getToken, err := s.Token.GetToken()
-	if err != nil {
-		return Error(err)
-	}
-
-	done := make(chan bool)
-	if s.Config != nil && !s.Refresh.DisableAutoRefresh() {
-		isExpired := repository.HasTokenExpired(s.Token, s.Refresh.GetRefreshRate())
-		if getToken.RefreshToken != nil && isExpired {
-			// avoid race condition,
-			// do re-login only once for a new refreshed access token in a single thread
-			go func() {
-				Once.Do(func() {
-					errRefresh := UserTokenRefresher(s)
-					if errRefresh != nil {
-						return
-					}
-					done <- true
-				})
-			}()
-
-		}
-	}
-
-	return CookieValue(key, *getToken.AccessToken)
-}
-
-func Error(err error) runtime.ClientAuthInfoWriter {
-	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-		return err
-	})
 }

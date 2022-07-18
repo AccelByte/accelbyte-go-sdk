@@ -12,6 +12,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 
@@ -115,6 +116,7 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 		GrantType:    o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
 		RedirectURI:  &redirectURI,
 	}
+
 	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
@@ -241,6 +243,8 @@ func (o *OAuth20Service) Login(username, password string) error {
 		return err
 	}
 
+	auth.RefreshTokenScheduller(o.GetAuthSession(), "user")
+
 	return nil
 }
 
@@ -285,6 +289,8 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	if err != nil {
 		return err
 	}
+
+	auth.RefreshTokenScheduller(o.GetAuthSession(), "client")
 
 	return nil
 }

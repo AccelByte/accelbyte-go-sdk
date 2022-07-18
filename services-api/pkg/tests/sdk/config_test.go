@@ -35,8 +35,7 @@ func TestConfig_BaseURL(t *testing.T) {
 
 func TestToken(t *testing.T) {
 	accessToken = "foo"
-	var token iamclientmodels.OauthmodelTokenResponseV3
-	token = iamclientmodels.OauthmodelTokenResponseV3{
+	token := iamclientmodels.OauthmodelTokenResponseV3{
 		AccessToken: &accessToken,
 	}
 	err := TestService.TokenRepository.Store(token)

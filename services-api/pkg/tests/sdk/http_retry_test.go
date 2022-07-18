@@ -118,6 +118,7 @@ func (t *MyTokenRepo) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, er
 	if t.accessToken == nil {
 		return nil, fmt.Errorf("empty access Token")
 	}
+
 	return t.accessToken, nil
 }
 

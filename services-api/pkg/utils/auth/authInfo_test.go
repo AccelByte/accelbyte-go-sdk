@@ -38,6 +38,8 @@ type dummyWrapperService struct {
 }
 
 type TokenRepositoryImpl struct {
+	IssuedTime  *time.Time
+	accessToken *iamclientmodels.OauthmodelTokenResponseV3
 }
 
 type ConfigRepositoryImpl struct {
@@ -382,17 +384,30 @@ func (r *request) SetTimeout(timeout time.Duration) error {
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	token = accessToken
+	timeNow := time.Now().UTC()
+	tokenRepository.IssuedTime = &timeNow
+	tokenRepository.accessToken = &accessToken
 
 	return nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	if tokenRepository.accessToken == nil {
+		return nil, fmt.Errorf("empty access Token")
+	}
+
 	return &token, nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
+	tokenRepository.IssuedTime = nil
+	tokenRepository.accessToken = nil
+
 	return nil
+}
+
+func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
+	return *tokenRepository.IssuedTime
 }
 
 func (configRepository *ConfigRepositoryImpl) GetClientId() string {

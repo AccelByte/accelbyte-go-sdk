@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 )
@@ -74,11 +75,11 @@ func TestAuthInfoWriter_RefreshToken(t *testing.T) {
 	for _, tt := range tests {
 		t.Parallel()
 		t.Run(tt.name, func(t *testing.T) {
-			err = dummyService.RefreshRepository.StoreRefreshToken(tt.args)
+			err = dummyService.TokenRepository.Store(tt.args)
 			if err != nil {
 				assert.FailNow(t, "fail to store the token")
 			}
-			getRefreshToken, errGetToken := dummyService.RefreshRepository.GetRefreshToken()
+			getRefreshToken, errGetToken := repository.GetRefreshToken(dummyService.TokenRepository)
 			if errGetToken != nil {
 				assert.FailNow(t, "fail to get the token")
 			}

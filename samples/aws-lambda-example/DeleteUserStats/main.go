@@ -6,7 +6,9 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
+	"time"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -19,6 +21,8 @@ import (
 )
 
 type TokenRepositoryImpl struct {
+	IssuedTime  *time.Time
+	accessToken *iamclientmodels.OauthmodelTokenResponseV3
 }
 
 type ConfigRepositoryImpl struct {
@@ -110,17 +114,30 @@ func convertTokenToTokenResponseV3(accessToken string) (*iamclientmodels.Oauthmo
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
-	clientTokenV3 = accessToken
+	timeNow := time.Now().UTC()
+	tokenRepository.IssuedTime = &timeNow
+	tokenRepository.accessToken = &accessToken
 
 	return nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	if tokenRepository.accessToken == nil {
+		return nil, fmt.Errorf("empty access Token")
+	}
+
 	return &clientTokenV3, nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
+	tokenRepository.IssuedTime = nil
+	tokenRepository.accessToken = nil
+
 	return nil
+}
+
+func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
+	return *tokenRepository.IssuedTime
 }
 
 func (configRepository *ConfigRepositoryImpl) GetClientId() string {

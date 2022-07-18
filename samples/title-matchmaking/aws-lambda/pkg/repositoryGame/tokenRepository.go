@@ -4,23 +4,43 @@
 
 package repositoryGame
 
-import models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+import (
+	"fmt"
+	"time"
+
+	models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+)
 
 type TokenRepositoryGameImpl struct {
+	IssuedTime  *time.Time
+	accessToken *models.OauthmodelTokenResponseV3
 }
 
 var clientTokenV3 models.OauthmodelTokenResponseV3
 
 func (tokenRepositoryGame *TokenRepositoryGameImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
-	clientTokenV3 = accessToken
+	timeNow := time.Now().UTC()
+	tokenRepositoryGame.IssuedTime = &timeNow
+	tokenRepositoryGame.accessToken = &accessToken
 
 	return nil
 }
 
 func (tokenRepositoryGame *TokenRepositoryGameImpl) GetToken() (*models.OauthmodelTokenResponseV3, error) {
+	if tokenRepositoryGame.accessToken == nil {
+		return nil, fmt.Errorf("empty access Token")
+	}
+
 	return &clientTokenV3, nil
 }
 
 func (tokenRepositoryGame *TokenRepositoryGameImpl) RemoveToken() error {
+	tokenRepositoryGame.IssuedTime = nil
+	tokenRepositoryGame.accessToken = nil
+
 	return nil
+}
+
+func (tokenRepositoryGame *TokenRepositoryGameImpl) TokenIssuedTimeUTC() time.Time {
+	return *tokenRepositoryGame.IssuedTime
 }

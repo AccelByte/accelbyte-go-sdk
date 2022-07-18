@@ -6,28 +6,45 @@ package repository
 
 import (
 	"encoding/json"
+	"fmt"
+	"time"
 
 	models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/golang-jwt/jwt"
 )
 
 type TokenRepositoryImpl struct {
+	IssuedTime  *time.Time
+	accessToken *models.OauthmodelTokenResponseV3
 }
 
 var clientTokenV3 models.OauthmodelTokenResponseV3
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
-	clientTokenV3 = accessToken
+	timeNow := time.Now().UTC()
+	tokenRepository.IssuedTime = &timeNow
+	tokenRepository.accessToken = &accessToken
 
 	return nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) GetToken() (*models.OauthmodelTokenResponseV3, error) {
+	if tokenRepository.accessToken == nil {
+		return nil, fmt.Errorf("empty access Token")
+	}
+
 	return &clientTokenV3, nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
+	tokenRepository.IssuedTime = nil
+	tokenRepository.accessToken = nil
+
 	return nil
+}
+
+func (tokenRepository *TokenRepositoryImpl) TokenIssuedTimeUTC() time.Time {
+	return *tokenRepository.IssuedTime
 }
 
 // ConvertTokenToTokenResponseV3 is used to convert token response

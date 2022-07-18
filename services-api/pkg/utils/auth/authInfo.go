@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"sync"
+	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -133,12 +134,10 @@ func RefreshTokenScheduller(service Session, loginType string) {
 
 	if !repository.HasRefreshTokenExpired(service.Token, refreshRate) {
 		switch loginType {
-
 		case "user": // user token have a refreshToken
 			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
-
-				//time.Sleep(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate)) // timer
-
+				var timer = time.NewTimer(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate) * time.Second)
+				<-timer.C
 				go func() {
 					service.Refresh.RefreshIsRunningInBackground(true)
 					Once.Do(func() {
@@ -154,9 +153,8 @@ func RefreshTokenScheduller(service Session, loginType string) {
 
 		case "client":
 			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
-
-				//time.Sleep(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate)) // timer
-
+				var timer = time.NewTimer(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate) * time.Second)
+				<-timer.C
 				go func() {
 					service.Refresh.RefreshIsRunningInBackground(true)
 					Once.Do(func() {
@@ -172,7 +170,7 @@ func RefreshTokenScheduller(service Session, loginType string) {
 		}
 	}
 
-	_ = fmt.Sprint("Token in token repository has expired, please re-login")
+	fmt.Print("Token in token repository has expired, please re-login")
 }
 
 type OAuth20RefreshService struct {

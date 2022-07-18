@@ -48,7 +48,7 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
 	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
 
-	getExpiresIn, err := repository.GetExpiresIn(oAuth20Service.TokenRepository)
+	getExpiresIn, _ := repository.GetExpiresIn(oAuth20Service.TokenRepository)
 	assert.Equal(t, *getExpiresIn, expiresIn)
 	getRefreshRate := Repository.GetRefreshRate()
 	assert.NotNil(t, getRefreshRate)
@@ -103,7 +103,7 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	getToken.ExpiresIn = &expiresIn        // monkey-patch, force expiry Token
 	getToken.RefreshExpiresIn = &expiresIn // monkey-patch, force expiry refreshToken
 
-	getExpiresIn, err := repository.GetExpiresIn(oAuth20Service.TokenRepository)
+	getExpiresIn, _ := repository.GetExpiresIn(oAuth20Service.TokenRepository)
 	assert.Equal(t, *getExpiresIn, expiresIn)
 	getRefreshRate := Repository.GetRefreshRate()
 	assert.NotNil(t, getRefreshRate)
@@ -112,12 +112,16 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	errStore := oAuth20Service.TokenRepository.Store(*getToken) // store the new monkey patch Token
 	assert.Nil(t, errStore)
 
+	getExpiresIn, _ = repository.GetExpiresIn(oAuth20Service.TokenRepository)
+	assert.Equal(t, *getExpiresIn, expiresIn)
 	time.Sleep(time.Duration(*getExpiresIn) * time.Second)
-	hasIndeedExpired := repository.HasTokenExpired(oAuth20Service.TokenRepository, Repository.GetRefreshRate())
+	refreshRate := Repository.GetRefreshRate()
+	hasIndeedExpired := repository.HasTokenExpired(oAuth20Service.TokenRepository, refreshRate)
 	assert.True(t, hasIndeedExpired) // indeed expired
 
 	// 5. call again with time sleep for multiple requests async
 	testing.Benchmark(func(b *testing.B) {
+		b.Helper()
 		for i := 1; i <= b.N; i++ {
 			b.RunParallel(func(pb *testing.PB) { // run with goroutines
 				t.Logf("%vth request", i)
@@ -130,5 +134,4 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 			})
 		}
 	})
-
 }

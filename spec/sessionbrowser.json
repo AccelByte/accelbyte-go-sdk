@@ -1641,6 +1641,12 @@
         "status": {
           "type": "string",
           "x-nullable": false
+        },
+        "sub_game_mode": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -1657,7 +1663,8 @@
         "queued_at",
         "region",
         "server_name",
-        "status"
+        "status",
+        "sub_game_mode"
       ]
     },
     "models.MatchingAlly": {

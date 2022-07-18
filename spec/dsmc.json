@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.3.0"
+    "version": "3.4.0"
   },
   "schemes": [
     "https"
@@ -5055,6 +5055,10 @@
           },
           "type": "array"
         },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5122,6 +5126,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
         },
         "use_buffer_percent": {
           "type": "boolean",
@@ -5545,6 +5553,10 @@
           },
           "type": "array"
         },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5627,6 +5639,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
         },
         "updatedAt": {
           "format": "date-time",
@@ -6517,6 +6533,10 @@
           },
           "type": "array"
         },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6532,6 +6552,7 @@
         "max_count",
         "min_count",
         "regions",
+        "session_timeout",
         "use_buffer_percent"
       ]
     },

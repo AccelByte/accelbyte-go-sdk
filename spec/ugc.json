@@ -4172,6 +4172,13 @@
             "type": "string"
           },
           {
+            "description": "filter content by official or community",
+            "in": "query",
+            "name": "isofficial",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "default": 1000,
             "description": "number of content per page",
             "in": "query",
@@ -4179,11 +4186,51 @@
             "type": "integer"
           },
           {
+            "description": "content name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
             "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
+            "type": "string"
+          },
+          {
+            "description": "sorting criteria: name,download,like,date. default=date",
+            "in": "query",
+            "name": "sortby",
+            "type": "string"
+          },
+          {
+            "description": "subtype",
+            "in": "query",
+            "name": "subtype",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          },
+          {
+            "description": "type",
+            "in": "query",
+            "name": "type",
+            "type": "string"
           }
         ],
         "produces": [

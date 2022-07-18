@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -1974,7 +1974,7 @@
     },
     "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUserUploadContentUrl",
         "parameters": [
           {
@@ -1997,6 +1997,14 @@
             "name": "fileType",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": "default",
+            "description": "Upload category. Supported categories: default, reporting",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2010,7 +2018,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11131\u003c/td\u003e\u003ctd\u003eUnable to {action}: File type is not supported\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11121\u003c/td\u003e\u003ctd\u003eUnable to {action}: category {category} is not valid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11131\u003c/td\u003e\u003ctd\u003eUnable to {action}: File type is not supported\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -3606,7 +3614,7 @@
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;The threshold of those limitations is different between upload category that is used.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUserUploadContentUrl",
         "parameters": [
           {
@@ -3629,6 +3637,14 @@
             "name": "fileType",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": "default",
+            "description": "Upload category. Supported categories: default, reporting",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3642,7 +3658,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11131\u003c/td\u003e\u003ctd\u003eUnable to {action}: File type is not supported\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11121\u003c/td\u003e\u003ctd\u003eUnable to {action}: category {category} is not valid\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11131\u003c/td\u003e\u003ctd\u003eUnable to {action}: File type is not supported\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }

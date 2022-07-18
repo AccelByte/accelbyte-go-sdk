@@ -51,6 +51,9 @@ type Order struct {
 	// Format: date-time
 	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
+	// creation options
+	CreationOptions *ADTOObjectForOrderCreationOptions `json:"creationOptions,omitempty"`
+
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`
 
@@ -187,6 +190,10 @@ func (m *Order) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCreationOptions(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCurrency(formats); err != nil {
 		res = append(res, err)
 	}
@@ -285,6 +292,24 @@ func (m *Order) validateCreatedTime(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("createdTime", "body", "date-time", m.CreatedTime.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Order) validateCreationOptions(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CreationOptions) { // not required
+		return nil
+	}
+
+	if m.CreationOptions != nil {
+		if err := m.CreationOptions.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("creationOptions")
+			}
+			return err
+		}
 	}
 
 	return nil

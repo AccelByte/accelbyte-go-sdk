@@ -88,11 +88,21 @@ type GetLikedContentParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Isofficial
+	  filter content by official or community
+
+	*/
+	Isofficial *bool
 	/*Limit
 	  number of content per page
 
 	*/
 	Limit *int64
+	/*Name
+	  content name
+
+	*/
+	Name *string
 	/*Namespace
 	  namespace of the game
 
@@ -103,6 +113,31 @@ type GetLikedContentParams struct {
 
 	*/
 	Offset *int64
+	/*Orderby
+	  sorting order: asc, desc. default=desc
+
+	*/
+	Orderby *string
+	/*Sortby
+	  sorting criteria: name,download,like,date. default=date
+
+	*/
+	Sortby *string
+	/*Subtype
+	  subtype
+
+	*/
+	Subtype *string
+	/*Tags
+	  tags
+
+	*/
+	Tags []string
+	/*Type
+	  type
+
+	*/
+	Type *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -157,6 +192,17 @@ func (o *GetLikedContentParams) SetHTTPClientTransport(roundTripper http.RoundTr
 	}
 }
 
+// WithIsofficial adds the isofficial to the get liked content params
+func (o *GetLikedContentParams) WithIsofficial(isofficial *bool) *GetLikedContentParams {
+	o.SetIsofficial(isofficial)
+	return o
+}
+
+// SetIsofficial adds the isofficial to the get liked content params
+func (o *GetLikedContentParams) SetIsofficial(isofficial *bool) {
+	o.Isofficial = isofficial
+}
+
 // WithLimit adds the limit to the get liked content params
 func (o *GetLikedContentParams) WithLimit(limit *int64) *GetLikedContentParams {
 	o.SetLimit(limit)
@@ -166,6 +212,17 @@ func (o *GetLikedContentParams) WithLimit(limit *int64) *GetLikedContentParams {
 // SetLimit adds the limit to the get liked content params
 func (o *GetLikedContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithName adds the name to the get liked content params
+func (o *GetLikedContentParams) WithName(name *string) *GetLikedContentParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the get liked content params
+func (o *GetLikedContentParams) SetName(name *string) {
+	o.Name = name
 }
 
 // WithNamespace adds the namespace to the get liked content params
@@ -190,6 +247,61 @@ func (o *GetLikedContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithOrderby adds the orderby to the get liked content params
+func (o *GetLikedContentParams) WithOrderby(orderby *string) *GetLikedContentParams {
+	o.SetOrderby(orderby)
+	return o
+}
+
+// SetOrderby adds the orderby to the get liked content params
+func (o *GetLikedContentParams) SetOrderby(orderby *string) {
+	o.Orderby = orderby
+}
+
+// WithSortby adds the sortby to the get liked content params
+func (o *GetLikedContentParams) WithSortby(sortby *string) *GetLikedContentParams {
+	o.SetSortby(sortby)
+	return o
+}
+
+// SetSortby adds the sortby to the get liked content params
+func (o *GetLikedContentParams) SetSortby(sortby *string) {
+	o.Sortby = sortby
+}
+
+// WithSubtype adds the subtype to the get liked content params
+func (o *GetLikedContentParams) WithSubtype(subtype *string) *GetLikedContentParams {
+	o.SetSubtype(subtype)
+	return o
+}
+
+// SetSubtype adds the subtype to the get liked content params
+func (o *GetLikedContentParams) SetSubtype(subtype *string) {
+	o.Subtype = subtype
+}
+
+// WithTags adds the tags to the get liked content params
+func (o *GetLikedContentParams) WithTags(tags []string) *GetLikedContentParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the get liked content params
+func (o *GetLikedContentParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
+// WithType adds the typeVar to the get liked content params
+func (o *GetLikedContentParams) WithType(typeVar *string) *GetLikedContentParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the get liked content params
+func (o *GetLikedContentParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -197,6 +309,22 @@ func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Isofficial != nil {
+
+		// query param isofficial
+		var qrIsofficial bool
+		if o.Isofficial != nil {
+			qrIsofficial = *o.Isofficial
+		}
+		qIsofficial := swag.FormatBool(qrIsofficial)
+		if qIsofficial != "" {
+			if err := r.SetQueryParam("isofficial", qIsofficial); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 
@@ -208,6 +336,22 @@ func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}
@@ -229,6 +373,78 @@ func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Orderby != nil {
+
+		// query param orderby
+		var qrOrderby string
+		if o.Orderby != nil {
+			qrOrderby = *o.Orderby
+		}
+		qOrderby := qrOrderby
+		if qOrderby != "" {
+			if err := r.SetQueryParam("orderby", qOrderby); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Sortby != nil {
+
+		// query param sortby
+		var qrSortby string
+		if o.Sortby != nil {
+			qrSortby = *o.Sortby
+		}
+		qSortby := qrSortby
+		if qSortby != "" {
+			if err := r.SetQueryParam("sortby", qSortby); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Subtype != nil {
+
+		// query param subtype
+		var qrSubtype string
+		if o.Subtype != nil {
+			qrSubtype = *o.Subtype
+		}
+		qSubtype := qrSubtype
+		if qSubtype != "" {
+			if err := r.SetQueryParam("subtype", qSubtype); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+			if err := r.SetQueryParam("type", qType); err != nil {
 				return err
 			}
 		}

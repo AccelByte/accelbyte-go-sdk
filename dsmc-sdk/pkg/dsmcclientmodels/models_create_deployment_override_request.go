@@ -53,6 +53,9 @@ type ModelsCreateDeploymentOverrideRequest struct {
 	// Required: true
 	Regions []string `json:"regions"`
 
+	// session timeout
+	SessionTimeout int32 `json:"session_timeout,omitempty"`
+
 	// use buffer percent
 	// Required: true
 	UseBufferPercent *bool `json:"use_buffer_percent"`

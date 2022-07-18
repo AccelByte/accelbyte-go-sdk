@@ -115,7 +115,7 @@ func NewGeneratedUserUploadContentURLBadRequest() *GeneratedUserUploadContentURL
 
 /*GeneratedUserUploadContentURLBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11121</td><td>Unable to {action}: category {category} is not valid</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>
 */
 type GeneratedUserUploadContentURLBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity

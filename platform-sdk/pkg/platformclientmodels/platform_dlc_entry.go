@@ -19,8 +19,8 @@ import (
 // swagger:model PlatformDlcEntry
 type PlatformDlcEntry struct {
 
-	// platform: steam, psn, xbl
-	// Enum: [PSN STEAM XBOX]
+	// platform: PSN, STEAM, XBOX, EPICGAMES
+	// Enum: [EPICGAMES PSN STEAM XBOX]
 	Platform string `json:"platform,omitempty"`
 
 	// key is platform product id, value is dlc id
@@ -45,7 +45,7 @@ var platformDlcEntryTypePlatformPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PSN","STEAM","XBOX"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["EPICGAMES","PSN","STEAM","XBOX"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -54,6 +54,9 @@ func init() {
 }
 
 const (
+
+	// PlatformDlcEntryPlatformEPICGAMES captures enum value "EPICGAMES"
+	PlatformDlcEntryPlatformEPICGAMES string = "EPICGAMES"
 
 	// PlatformDlcEntryPlatformPSN captures enum value "PSN"
 	PlatformDlcEntryPlatformPSN string = "PSN"

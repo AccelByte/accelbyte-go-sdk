@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..43"
+echo "1..42"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -301,48 +301,40 @@ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion1 \
     > test.out 2>&1
 eval_tap $? 38 'RetrieveSingleLocalizedPolicyVersion1' test.out
 
-#- 39 RetrievePolicyVersions
-samples/cli/sample-apps Legal retrievePolicyVersions \
-    --basePolicyId 'vkfwaSbn' \
-    --localeId 'suLCgTox' \
-    --namespace 'uVTekJgv' \
-    > test.out 2>&1
-eval_tap $? 39 'RetrievePolicyVersions' test.out
-
-#- 40 RetrieveLatestPolicies
+#- 39 RetrieveLatestPolicies
 samples/cli/sample-apps Legal retrieveLatestPolicies \
-    --countryCode 'g6h5HIpH' \
+    --countryCode 'vkfwaSbn' \
     --defaultOnEmpty 'True' \
     --policyType 'MARKETING_PREFERENCE_TYPE' \
-    --tags 'iplEk4vj' \
+    --tags 'LCgToxuV' \
     > test.out 2>&1
-eval_tap $? 40 'RetrieveLatestPolicies' test.out
+eval_tap $? 39 'RetrieveLatestPolicies' test.out
 
-#- 41 RetrieveLatestPoliciesPublic
+#- 40 RetrieveLatestPoliciesPublic
 samples/cli/sample-apps Legal retrieveLatestPoliciesPublic \
-    --namespace '3LDp4yqD' \
-    --alwaysIncludeDefault 'True' \
-    --defaultOnEmpty 'True' \
-    --policyType 'LEGAL_DOCUMENT_TYPE' \
-    --tags 'xlHasinG' \
+    --namespace 'TekJgvg6' \
+    --alwaysIncludeDefault 'False' \
+    --defaultOnEmpty 'False' \
+    --policyType 'MARKETING_PREFERENCE_TYPE' \
+    --tags 'viplEk4v' \
     > test.out 2>&1
-eval_tap $? 41 'RetrieveLatestPoliciesPublic' test.out
+eval_tap $? 40 'RetrieveLatestPoliciesPublic' test.out
 
-#- 42 RetrieveLatestPoliciesByNamespaceAndCountryPublic
+#- 41 RetrieveLatestPoliciesByNamespaceAndCountryPublic
 samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic \
-    --countryCode 'cjrkmRMt' \
-    --namespace 'tgjDSaIV' \
+    --countryCode 'j3LDp4yq' \
+    --namespace 'Dt8QUZDp' \
     --alwaysIncludeDefault 'True' \
     --defaultOnEmpty 'False' \
     --policyType 'LEGAL_DOCUMENT_TYPE' \
-    --tags 't3Udg7p9' \
+    --tags 'sinGcjrk' \
     > test.out 2>&1
-eval_tap $? 42 'RetrieveLatestPoliciesByNamespaceAndCountryPublic' test.out
+eval_tap $? 41 'RetrieveLatestPoliciesByNamespaceAndCountryPublic' test.out
 
-#- 43 CheckReadiness
+#- 42 CheckReadiness
 samples/cli/sample-apps Legal checkReadiness \
     > test.out 2>&1
-eval_tap $? 43 'CheckReadiness' test.out
+eval_tap $? 42 'CheckReadiness' test.out
 
 
 rm -f "tmp.dat"

@@ -78,6 +78,9 @@ type ModelsDeploymentWithOverride struct {
 	// Required: true
 	Regions []string `json:"regions"`
 
+	// session timeout
+	SessionTimeout int32 `json:"session_timeout,omitempty"`
+
 	// updated at
 	// Required: true
 	// Format: date-time

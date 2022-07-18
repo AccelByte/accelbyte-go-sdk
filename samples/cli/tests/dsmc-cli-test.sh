@@ -130,7 +130,7 @@ eval_tap $? 14 'GetDeployment' test.out
 
 #- 15 CreateDeployment
 samples/cli/sample-apps Dsmc createDeployment \
-    --body '{"allow_version_override": false, "buffer_count": 42, "buffer_percent": 69, "configuration": "as73ucYn", "enable_region_overrides": true, "game_version": "AJ3DK5T4", "max_count": 61, "min_count": 28, "overrides": {"gg0Y39Uo": {"buffer_count": 23, "buffer_percent": 31, "configuration": "v5bVAgts", "enable_region_overrides": true, "game_version": "hUTDUscb", "max_count": 85, "min_count": 59, "name": "jbTQuPMz", "region_overrides": {"2PTRlkyU": {"buffer_count": 82, "buffer_percent": 80, "max_count": 44, "min_count": 50, "name": "PFJ42cwm", "use_buffer_percent": true}}, "regions": ["BBSMNcoA"], "use_buffer_percent": true}}, "region_overrides": {"OjKNjfcY": {"buffer_count": 67, "buffer_percent": 25, "max_count": 0, "min_count": 100, "name": "gBU1sqjy", "use_buffer_percent": false}}, "regions": ["RSOFQBtu"], "use_buffer_percent": true}' \
+    --body '{"allow_version_override": false, "buffer_count": 42, "buffer_percent": 69, "configuration": "as73ucYn", "enable_region_overrides": true, "game_version": "AJ3DK5T4", "max_count": 61, "min_count": 28, "overrides": {"gg0Y39Uo": {"buffer_count": 23, "buffer_percent": 31, "configuration": "v5bVAgts", "enable_region_overrides": true, "game_version": "hUTDUscb", "max_count": 85, "min_count": 59, "name": "jbTQuPMz", "region_overrides": {"2PTRlkyU": {"buffer_count": 82, "buffer_percent": 80, "max_count": 44, "min_count": 50, "name": "PFJ42cwm", "use_buffer_percent": true}}, "regions": ["BBSMNcoA"], "session_timeout": 52, "use_buffer_percent": false}}, "region_overrides": {"KNjfcYHm": {"buffer_count": 0, "buffer_percent": 100, "max_count": 13, "min_count": 55, "name": "U1sqjyK0", "use_buffer_percent": false}}, "regions": ["RSOFQBtu"], "session_timeout": 86, "use_buffer_percent": true}' \
     --deployment 'Z8hRVX7L' \
     --namespace 'GOvDdYiQ' \
     > test.out 2>&1
@@ -145,7 +145,7 @@ eval_tap $? 16 'DeleteDeployment' test.out
 
 #- 17 UpdateDeployment
 samples/cli/sample-apps Dsmc updateDeployment \
-    --body '{"allow_version_override": true, "buffer_count": 75, "buffer_percent": 48, "configuration": "cTQdvln2", "enable_region_overrides": true, "game_version": "uSQWEXL6", "max_count": 74, "min_count": 62, "regions": ["E1YHo9m1"], "use_buffer_percent": false}' \
+    --body '{"allow_version_override": true, "buffer_count": 75, "buffer_percent": 48, "configuration": "cTQdvln2", "enable_region_overrides": true, "game_version": "uSQWEXL6", "max_count": 74, "min_count": 62, "regions": ["E1YHo9m1"], "session_timeout": 96, "use_buffer_percent": false}' \
     --deployment '8hHtWvbN' \
     --namespace 'YqgUqslA' \
     > test.out 2>&1
@@ -179,24 +179,24 @@ eval_tap $? 20 'UpdateRootRegionOverride' test.out
 
 #- 21 CreateDeploymentOverride
 samples/cli/sample-apps Dsmc createDeploymentOverride \
-    --body '{"buffer_count": 22, "buffer_percent": 38, "configuration": "AOXmlG6e", "enable_region_overrides": false, "game_version": "1dTdoTFp", "max_count": 55, "min_count": 69, "region_overrides": {"cuC1dQY9": {"buffer_count": 80, "buffer_percent": 70, "max_count": 26, "min_count": 70, "name": "6Te9vD8l", "use_buffer_percent": false}}, "regions": ["z7Hu8AD7"], "use_buffer_percent": false}' \
-    --deployment 'dWunvizU' \
-    --namespace '0q1pHyhh' \
-    --version 'ERoGgdry' \
+    --body '{"buffer_count": 22, "buffer_percent": 38, "configuration": "AOXmlG6e", "enable_region_overrides": false, "game_version": "1dTdoTFp", "max_count": 55, "min_count": 69, "region_overrides": {"cuC1dQY9": {"buffer_count": 80, "buffer_percent": 70, "max_count": 26, "min_count": 70, "name": "6Te9vD8l", "use_buffer_percent": false}}, "regions": ["z7Hu8AD7"], "session_timeout": 20, "use_buffer_percent": false}' \
+    --deployment 'WunvizU0' \
+    --namespace 'q1pHyhhE' \
+    --version 'RoGgdrys' \
     > test.out 2>&1
 eval_tap $? 21 'CreateDeploymentOverride' test.out
 
 #- 22 DeleteDeploymentOverride
 samples/cli/sample-apps Dsmc deleteDeploymentOverride \
-    --deployment 'sMizBGSR' \
-    --namespace 'dP2l7DNS' \
-    --version 'Z8Aq0XiP' \
+    --deployment 'MizBGSRd' \
+    --namespace 'P2l7DNSZ' \
+    --version '8Aq0XiPL' \
     > test.out 2>&1
 eval_tap $? 22 'DeleteDeploymentOverride' test.out
 
 #- 23 UpdateDeploymentOverride
 samples/cli/sample-apps Dsmc updateDeploymentOverride \
-    --body '{"buffer_count": 75, "buffer_percent": 85, "configuration": "XSe07Zdd", "enable_region_overrides": false, "game_version": "JjBwj9HJ", "max_count": 66, "min_count": 85, "regions": ["KseEdSXR"], "use_buffer_percent": true}' \
+    --body '{"buffer_count": 85, "buffer_percent": 99, "configuration": "Se07ZddO", "enable_region_overrides": false, "game_version": "JjBwj9HJ", "max_count": 66, "min_count": 85, "regions": ["KseEdSXR"], "use_buffer_percent": true}' \
     --deployment 'Svguauw1' \
     --namespace 'xT7eMwSl' \
     --version '9MLH0NnT' \

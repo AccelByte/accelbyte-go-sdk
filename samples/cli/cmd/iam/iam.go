@@ -8,12 +8,15 @@ package iam
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
+	"github.com/AccelByte/sample-apps/cmd/iam/bansDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
+	"github.com/AccelByte/sample-apps/cmd/iam/clientsDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20Extension"
 	"github.com/AccelByte/sample-apps/cmd/iam/roles"
+	"github.com/AccelByte/sample-apps/cmd/iam/rolesDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/sso"
 	"github.com/AccelByte/sample-apps/cmd/iam/ssoCredential"
 	"github.com/AccelByte/sample-apps/cmd/iam/ssoSAML20"
@@ -30,20 +33,20 @@ var IamCmd = &cobra.Command{
 }
 
 func init() {
-	IamCmd.AddCommand(bans.GetBansTypeCmd)
-	IamCmd.AddCommand(bans.GetListBanReasonCmd)
-	IamCmd.AddCommand(clients.GetClientsCmd)
-	IamCmd.AddCommand(clients.CreateClientCmd)
-	IamCmd.AddCommand(clients.GetClientCmd)
-	IamCmd.AddCommand(clients.UpdateClientCmd)
-	IamCmd.AddCommand(clients.DeleteClientCmd)
-	IamCmd.AddCommand(clients.UpdateClientPermissionCmd)
-	IamCmd.AddCommand(clients.AddClientPermissionCmd)
-	IamCmd.AddCommand(clients.DeleteClientPermissionCmd)
-	IamCmd.AddCommand(clients.UpdateClientSecretCmd)
-	IamCmd.AddCommand(clients.GetClientsbyNamespaceCmd)
-	IamCmd.AddCommand(clients.CreateClientByNamespaceCmd)
-	IamCmd.AddCommand(clients.DeleteClientByNamespaceCmd)
+	IamCmd.AddCommand(bansDeprecated.GetBansTypeCmd)
+	IamCmd.AddCommand(bansDeprecated.GetListBanReasonCmd)
+	IamCmd.AddCommand(clientsDeprecated.GetClientsCmd)
+	IamCmd.AddCommand(clientsDeprecated.CreateClientCmd)
+	IamCmd.AddCommand(clientsDeprecated.GetClientCmd)
+	IamCmd.AddCommand(clientsDeprecated.UpdateClientCmd)
+	IamCmd.AddCommand(clientsDeprecated.DeleteClientCmd)
+	IamCmd.AddCommand(clientsDeprecated.UpdateClientPermissionCmd)
+	IamCmd.AddCommand(clientsDeprecated.AddClientPermissionCmd)
+	IamCmd.AddCommand(clientsDeprecated.DeleteClientPermissionCmd)
+	IamCmd.AddCommand(clientsDeprecated.UpdateClientSecretCmd)
+	IamCmd.AddCommand(clientsDeprecated.GetClientsbyNamespaceCmd)
+	IamCmd.AddCommand(clientsDeprecated.CreateClientByNamespaceCmd)
+	IamCmd.AddCommand(clientsDeprecated.DeleteClientByNamespaceCmd)
 	IamCmd.AddCommand(users.CreateUserCmd)
 	IamCmd.AddCommand(users.GetAdminUsersByRoleIDCmd)
 	IamCmd.AddCommand(users.GetUserByLoginIDCmd)
@@ -91,23 +94,23 @@ func init() {
 	IamCmd.AddCommand(oAuth.RevokeAUserCmd)
 	IamCmd.AddCommand(oAuth.TokenGrantCmd)
 	IamCmd.AddCommand(oAuth.VerifyTokenCmd)
-	IamCmd.AddCommand(roles.GetRolesCmd)
-	IamCmd.AddCommand(roles.CreateRoleCmd)
-	IamCmd.AddCommand(roles.GetRoleCmd)
-	IamCmd.AddCommand(roles.UpdateRoleCmd)
-	IamCmd.AddCommand(roles.DeleteRoleCmd)
-	IamCmd.AddCommand(roles.GetRoleAdminStatusCmd)
-	IamCmd.AddCommand(roles.SetRoleAsAdminCmd)
-	IamCmd.AddCommand(roles.RemoveRoleAdminCmd)
-	IamCmd.AddCommand(roles.GetRoleManagersCmd)
-	IamCmd.AddCommand(roles.AddRoleManagersCmd)
-	IamCmd.AddCommand(roles.RemoveRoleManagersCmd)
-	IamCmd.AddCommand(roles.GetRoleMembersCmd)
-	IamCmd.AddCommand(roles.AddRoleMembersCmd)
-	IamCmd.AddCommand(roles.RemoveRoleMembersCmd)
-	IamCmd.AddCommand(roles.UpdateRolePermissionsCmd)
-	IamCmd.AddCommand(roles.AddRolePermissionCmd)
-	IamCmd.AddCommand(roles.DeleteRolePermissionCmd)
+	IamCmd.AddCommand(rolesDeprecated.GetRolesCmd)
+	IamCmd.AddCommand(rolesDeprecated.CreateRoleCmd)
+	IamCmd.AddCommand(rolesDeprecated.GetRoleCmd)
+	IamCmd.AddCommand(rolesDeprecated.UpdateRoleCmd)
+	IamCmd.AddCommand(rolesDeprecated.DeleteRoleCmd)
+	IamCmd.AddCommand(rolesDeprecated.GetRoleAdminStatusCmd)
+	IamCmd.AddCommand(rolesDeprecated.SetRoleAsAdminCmd)
+	IamCmd.AddCommand(rolesDeprecated.RemoveRoleAdminCmd)
+	IamCmd.AddCommand(rolesDeprecated.GetRoleManagersCmd)
+	IamCmd.AddCommand(rolesDeprecated.AddRoleManagersCmd)
+	IamCmd.AddCommand(rolesDeprecated.RemoveRoleManagersCmd)
+	IamCmd.AddCommand(rolesDeprecated.GetRoleMembersCmd)
+	IamCmd.AddCommand(rolesDeprecated.AddRoleMembersCmd)
+	IamCmd.AddCommand(rolesDeprecated.RemoveRoleMembersCmd)
+	IamCmd.AddCommand(rolesDeprecated.UpdateRolePermissionsCmd)
+	IamCmd.AddCommand(rolesDeprecated.AddRolePermissionCmd)
+	IamCmd.AddCommand(rolesDeprecated.DeleteRolePermissionCmd)
 	IamCmd.AddCommand(users.AdminGetAgeRestrictionStatusV2Cmd)
 	IamCmd.AddCommand(users.AdminUpdateAgeRestrictionConfigV2Cmd)
 	IamCmd.AddCommand(users.GetListCountryAgeRestrictionCmd)
@@ -204,6 +207,7 @@ func init() {
 	IamCmd.AddCommand(users.AdminDeleteUserRoleV3Cmd)
 	IamCmd.AddCommand(users.AdminUpdateUserStatusV3Cmd)
 	IamCmd.AddCommand(users.AdminVerifyUserWithoutVerificationCodeV3Cmd)
+	IamCmd.AddCommand(clients.AdminUpdateClientSecretV3Cmd)
 	IamCmd.AddCommand(roles.AdminGetRolesV3Cmd)
 	IamCmd.AddCommand(roles.AdminCreateRoleV3Cmd)
 	IamCmd.AddCommand(roles.AdminGetRoleV3Cmd)

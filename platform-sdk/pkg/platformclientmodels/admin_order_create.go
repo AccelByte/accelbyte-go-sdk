@@ -23,6 +23,9 @@ type AdminOrderCreate struct {
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 
+	// currency namespace, if options.skipPriceValidation is true, then this is required. If current namespace is publisher namespace, then currency namespace must be publisher namespace; if current is game namespace, currency namespace must be the same game namespace or publisher namespace
+	CurrencyNamespace string `json:"currencyNamespace,omitempty"`
+
 	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)
 	// Required: true
 	DiscountedPrice *int32 `json:"discountedPrice"`
@@ -36,6 +39,9 @@ type AdminOrderCreate struct {
 
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
+
+	// Creation options
+	Options *ADTOObjectForOrderCreationOptions `json:"options,omitempty"`
 
 	// platform
 	// Enum: [Epic GooglePlay IOS Nintendo Other Playstation Steam Xbox]
@@ -73,6 +79,10 @@ func (m *AdminOrderCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateItemID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOptions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,6 +130,24 @@ func (m *AdminOrderCreate) validateItemID(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AdminOrderCreate) validateOptions(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Options) { // not required
+		return nil
+	}
+
+	if m.Options != nil {
+		if err := m.Options.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("options")
+			}
+			return err
+		}
 	}
 
 	return nil

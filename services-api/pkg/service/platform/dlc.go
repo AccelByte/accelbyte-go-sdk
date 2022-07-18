@@ -135,6 +135,20 @@ func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfi
 	return nil
 }
 
+// Deprecated: Use SyncEpicGameDLCShort instead
+func (d *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
+	token, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use PublicSyncPsnDlcInventoryShort instead
 func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
 	token, err := d.TokenRepository.GetToken()
@@ -323,6 +337,31 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	}
 
 	_, err := d.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (d *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  d.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := d.Client.Dlc.SyncEpicGameDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

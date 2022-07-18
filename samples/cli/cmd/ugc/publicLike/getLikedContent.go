@@ -7,6 +7,8 @@
 package publicLike
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
@@ -26,12 +28,31 @@ var GetLikedContentCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		isofficial, _ := cmd.Flags().GetBool("isofficial")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		orderby, _ := cmd.Flags().GetString("orderby")
+		sortby, _ := cmd.Flags().GetString("sortby")
+		subtype, _ := cmd.Flags().GetString("subtype")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
+		type_, _ := cmd.Flags().GetString("type")
 		input := &public_like.GetLikedContentParams{
-			Namespace: namespace,
-			Limit:     &limit,
-			Offset:    &offset,
+			Namespace:  namespace,
+			Isofficial: &isofficial,
+			Limit:      &limit,
+			Name:       &name,
+			Offset:     &offset,
+			Orderby:    &orderby,
+			Sortby:     &sortby,
+			Subtype:    &subtype,
+			Tags:       tags,
+			Type:       &type_,
 		}
 		ok, err := publicLikeService.GetLikedContentShort(input)
 		if err != nil {
@@ -49,6 +70,13 @@ var GetLikedContentCmd = &cobra.Command{
 func init() {
 	GetLikedContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetLikedContentCmd.MarkFlagRequired("namespace")
+	GetLikedContentCmd.Flags().Bool("isofficial", false, "Isofficial")
 	GetLikedContentCmd.Flags().Int64("limit", 20, "Limit")
+	GetLikedContentCmd.Flags().String("name", "", "Name")
 	GetLikedContentCmd.Flags().Int64("offset", 0, "Offset")
+	GetLikedContentCmd.Flags().String("orderby", "", "Orderby")
+	GetLikedContentCmd.Flags().String("sortby", "", "Sortby")
+	GetLikedContentCmd.Flags().String("subtype", "", "Subtype")
+	GetLikedContentCmd.Flags().String("tags", "", "Tags")
+	GetLikedContentCmd.Flags().String("type", "", "Type")
 }

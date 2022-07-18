@@ -70,6 +70,7 @@
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | GET | GetPlatformDLCConfigShort | [GetPlatformDLCConfigShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [GetPlatformDLCConfigShort](../services-api/pkg/service/platform/dlc.go) | [GetPlatformDLCConfigShort](../samples/cli/cmd/platform/dlc/getPlatformDLCConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | PUT | UpdatePlatformDLCConfigShort | [UpdatePlatformDLCConfigShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [UpdatePlatformDLCConfigShort](../services-api/pkg/service/platform/dlc.go) | [UpdatePlatformDLCConfigShort](../samples/cli/cmd/platform/dlc/updatePlatformDLCConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/platformMap` | DELETE | DeletePlatformDLCConfigShort | [DeletePlatformDLCConfigShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [DeletePlatformDLCConfigShort](../services-api/pkg/service/platform/dlc.go) | [DeletePlatformDLCConfigShort](../samples/cli/cmd/platform/dlc/deletePlatformDLCConfig.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/dlc/epicgames/sync` | PUT | SyncEpicGameDLCShort | [SyncEpicGameDLCShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncEpicGameDLCShort](../services-api/pkg/service/platform/dlc.go) | [SyncEpicGameDLCShort](../samples/cli/cmd/platform/dlc/syncEpicGameDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync` | PUT | PublicSyncPsnDlcInventoryShort | [PublicSyncPsnDlcInventoryShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [PublicSyncPsnDlcInventoryShort](../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryShort](../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync` | PUT | SyncSteamDLCShort | [SyncSteamDLCShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncSteamDLCShort](../services-api/pkg/service/platform/dlc.go) | [SyncSteamDLCShort](../samples/cli/cmd/platform/dlc/syncSteamDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync` | PUT | SyncXboxDLCShort | [SyncXboxDLCShort](../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncXboxDLCShort](../services-api/pkg/service/platform/dlc.go) | [SyncXboxDLCShort](../samples/cli/cmd/platform/dlc/syncXboxDLC.go) |
@@ -368,6 +369,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam` | PUT | UnlockSteamUserAchievementShort | [UnlockSteamUserAchievementShort](../platform-sdk/pkg/platformclient/achievement_platform/achievement_platform_client.go) | [UnlockSteamUserAchievementShort](../services-api/pkg/service/platform/achievementPlatform.go) | [UnlockSteamUserAchievementShort](../samples/cli/cmd/platform/achievementPlatform/unlockSteamUserAchievement.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl` | GET | GetXblUserAchievementsShort | [GetXblUserAchievementsShort](../platform-sdk/pkg/platformclient/achievement_platform/achievement_platform_client.go) | [GetXblUserAchievementsShort](../services-api/pkg/service/platform/achievementPlatform.go) | [GetXblUserAchievementsShort](../samples/cli/cmd/platform/achievementPlatform/getXblUserAchievements.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl` | PUT | UpdateXblUserAchievementShort | [UpdateXblUserAchievementShort](../platform-sdk/pkg/platformclient/achievement_platform/achievement_platform_client.go) | [UpdateXblUserAchievementShort](../services-api/pkg/service/platform/achievementPlatform.go) | [UpdateXblUserAchievementShort](../samples/cli/cmd/platform/achievementPlatform/updateXblUserAchievement.go) |
 
 ### Anonymization Wrapper:  [Anonymization](../services-api/pkg/service/platform/anonymization.go)
@@ -452,8 +454,11 @@
 
 | Model Struct | Class |
 |---|---|
+| `A DTO object for order creation options` | [ADTOObjectForOrderCreationOptions ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_order_creation_options.go) |
+| `A DTO object for querying xbox user achievements` | [ADTOObjectForQueryingXboxUserAchievements ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_querying_xbox_user_achievements.go) |
 | `A DTO object for unlock steam achievement API` | [ADTOObjectForUnlockSteamAchievementAPI ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_unlock_steam_achievement_api.go) |
 | `A DTO object for update xbox achievement complete percentage API` | [ADTOObjectForUpdateXboxAchievementCompletePercentageAPI ](../platform-sdk/pkg/platformclientmodels/a_dto_object_for_update_xbox_achievement_complete_percentage_api.go) |
+| `AchievementInfo` | [AchievementInfo ](../platform-sdk/pkg/platformclientmodels/achievement_info.go) |
 | `AdditionalData` | [AdditionalData ](../platform-sdk/pkg/platformclientmodels/additional_data.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |
 | `AdyenConfig` | [AdyenConfig ](../platform-sdk/pkg/platformclientmodels/adyen_config.go) |
@@ -513,6 +518,7 @@
 | `EntitlementPagingSlicedResult` | [EntitlementPagingSlicedResult ](../platform-sdk/pkg/platformclientmodels/entitlement_paging_sliced_result.go) |
 | `EntitlementSummary` | [EntitlementSummary ](../platform-sdk/pkg/platformclientmodels/entitlement_summary.go) |
 | `EntitlementUpdate` | [EntitlementUpdate ](../platform-sdk/pkg/platformclientmodels/entitlement_update.go) |
+| `EpicGamesDLCSyncRequest` | [EpicGamesDLCSyncRequest ](../platform-sdk/pkg/platformclientmodels/epic_games_dlc_sync_request.go) |
 | `EpicGamesIAPConfigInfo` | [EpicGamesIAPConfigInfo ](../platform-sdk/pkg/platformclientmodels/epic_games_iap_config_info.go) |
 | `EpicGamesIAPConfigRequest` | [EpicGamesIAPConfigRequest ](../platform-sdk/pkg/platformclientmodels/epic_games_iap_config_request.go) |
 | `EpicGamesReconcileRequest` | [EpicGamesReconcileRequest ](../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_request.go) |

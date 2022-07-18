@@ -12075,7 +12075,7 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 /*
   PublicLinkPlatformAccount links a platform user account to user account
 
-  It is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+  It is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt;.
 Update Platform Account relation to current User Account.
 Note: Game progression data (statistics, reward, etc) associated with previous User Account will not be
 transferred. If the data is tight to game user ID, the user will have the game progression data.

@@ -9,6 +9,7 @@ package platform
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/achievement_platform"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -58,6 +59,23 @@ func (a *AchievementPlatformService) UnlockSteamUserAchievement(input *achieveme
 	return nil
 }
 
+// Deprecated: Use GetXblUserAchievementsShort instead
+func (a *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := a.Client.AchievementPlatform.GetXblUserAchievements(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use UpdateXblUserAchievementShort instead
 func (a *AchievementPlatformService) UpdateXblUserAchievement(input *achievement_platform.UpdateXblUserAchievementParams) error {
 	token, err := a.TokenRepository.GetToken()
@@ -98,6 +116,31 @@ func (a *AchievementPlatformService) UnlockSteamUserAchievementShort(input *achi
 	}
 
 	return nil
+}
+
+func (a *AchievementPlatformService) GetXblUserAchievementsShort(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  a.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := a.Client.AchievementPlatform.GetXblUserAchievementsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (a *AchievementPlatformService) UpdateXblUserAchievementShort(input *achievement_platform.UpdateXblUserAchievementParams) error {

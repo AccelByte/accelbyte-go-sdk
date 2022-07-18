@@ -53,6 +53,10 @@ type ModelsUpdateDeploymentRequest struct {
 	// Required: true
 	Regions []string `json:"regions"`
 
+	// session timeout
+	// Required: true
+	SessionTimeout *int32 `json:"session_timeout"`
+
 	// use buffer percent
 	// Required: true
 	UseBufferPercent *bool `json:"use_buffer_percent"`
@@ -95,6 +99,10 @@ func (m *ModelsUpdateDeploymentRequest) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSessionTimeout(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,6 +191,15 @@ func (m *ModelsUpdateDeploymentRequest) validateMinCount(formats strfmt.Registry
 func (m *ModelsUpdateDeploymentRequest) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("regions", "body", m.Regions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateSessionTimeout(formats strfmt.Registry) error {
+
+	if err := validate.Required("session_timeout", "body", m.SessionTimeout); err != nil {
 		return err
 	}
 

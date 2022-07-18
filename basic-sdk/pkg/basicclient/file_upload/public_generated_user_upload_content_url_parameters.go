@@ -24,8 +24,11 @@ import (
 // NewPublicGeneratedUserUploadContentURLParams creates a new PublicGeneratedUserUploadContentURLParams object
 // with the default values initialized.
 func NewPublicGeneratedUserUploadContentURLParams() *PublicGeneratedUserUploadContentURLParams {
-	var ()
+	var (
+		categoryDefault = string("default")
+	)
 	return &PublicGeneratedUserUploadContentURLParams{
+		Category: &categoryDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +37,11 @@ func NewPublicGeneratedUserUploadContentURLParams() *PublicGeneratedUserUploadCo
 // NewPublicGeneratedUserUploadContentURLParamsWithTimeout creates a new PublicGeneratedUserUploadContentURLParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGeneratedUserUploadContentURLParamsWithTimeout(timeout time.Duration) *PublicGeneratedUserUploadContentURLParams {
-	var ()
+	var (
+		categoryDefault = string("default")
+	)
 	return &PublicGeneratedUserUploadContentURLParams{
+		Category: &categoryDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +50,11 @@ func NewPublicGeneratedUserUploadContentURLParamsWithTimeout(timeout time.Durati
 // NewPublicGeneratedUserUploadContentURLParamsWithContext creates a new PublicGeneratedUserUploadContentURLParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGeneratedUserUploadContentURLParamsWithContext(ctx context.Context) *PublicGeneratedUserUploadContentURLParams {
-	var ()
+	var (
+		categoryDefault = string("default")
+	)
 	return &PublicGeneratedUserUploadContentURLParams{
+		Category: &categoryDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +63,11 @@ func NewPublicGeneratedUserUploadContentURLParamsWithContext(ctx context.Context
 // NewPublicGeneratedUserUploadContentURLParamsWithHTTPClient creates a new PublicGeneratedUserUploadContentURLParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGeneratedUserUploadContentURLParamsWithHTTPClient(client *http.Client) *PublicGeneratedUserUploadContentURLParams {
-	var ()
+	var (
+		categoryDefault = string("default")
+	)
 	return &PublicGeneratedUserUploadContentURLParams{
+		Category:   &categoryDefault,
 		HTTPClient: client,
 	}
 }
@@ -67,6 +79,11 @@ type PublicGeneratedUserUploadContentURLParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Category
+	  Upload category. Supported categories: default, reporting
+
+	*/
+	Category *string
 	/*FileType
 	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp
 
@@ -136,6 +153,17 @@ func (o *PublicGeneratedUserUploadContentURLParams) SetHTTPClientTransport(round
 	}
 }
 
+// WithCategory adds the category to the public generated user upload content Url params
+func (o *PublicGeneratedUserUploadContentURLParams) WithCategory(category *string) *PublicGeneratedUserUploadContentURLParams {
+	o.SetCategory(category)
+	return o
+}
+
+// SetCategory adds the category to the public generated user upload content Url params
+func (o *PublicGeneratedUserUploadContentURLParams) SetCategory(category *string) {
+	o.Category = category
+}
+
 // WithFileType adds the fileType to the public generated user upload content Url params
 func (o *PublicGeneratedUserUploadContentURLParams) WithFileType(fileType string) *PublicGeneratedUserUploadContentURLParams {
 	o.SetFileType(fileType)
@@ -176,6 +204,22 @@ func (o *PublicGeneratedUserUploadContentURLParams) WriteToRequest(r runtime.Cli
 		return err
 	}
 	var res []error
+
+	if o.Category != nil {
+
+		// query param category
+		var qrCategory string
+		if o.Category != nil {
+			qrCategory = *o.Category
+		}
+		qCategory := qrCategory
+		if qCategory != "" {
+			if err := r.SetQueryParam("category", qCategory); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// query param fileType
 	qrFileType := o.FileType

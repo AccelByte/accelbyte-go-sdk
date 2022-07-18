@@ -149,6 +149,8 @@ func RefreshTokenScheduller(service Session, loginType string) {
 					})
 					service.Refresh.RefreshIsRunningInBackground(false)
 				}()
+
+				<-done
 			}
 
 		case "client":
@@ -166,6 +168,8 @@ func RefreshTokenScheduller(service Session, loginType string) {
 					})
 					service.Refresh.RefreshIsRunningInBackground(false)
 				}()
+
+				<-done
 			}
 		}
 	}

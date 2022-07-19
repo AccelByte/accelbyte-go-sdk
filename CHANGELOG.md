@@ -1,3 +1,31 @@
+<a name="v0.23.0"></a>
+## [v0.23.0] - 2022-07-19
+
+### Chore
+- **docs:** update the readme for refresh token
+- **sdk:** move the configuration of the auto refresh
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for justice 3.27
+- **spec:** update spec files for justice 3.27
+- **test:** add the token issued time
+- **test:** change the endpoint for bans service
+- **test:** with a benchmark
+
+### Docs
+- update CHANGELOG.md for v0.23.0 release
+
+### Breaking Changes:
+There is a new method (`TokenIssuedTimeUTC`) inside the token repository interface and the example is in the fix commit:
+- **samples:** token repository interface and linter
+
+### Fix
+- **samples:** add the goroutines for the refresh token
+- **samples:** the data race with the mutex
+- **sdk:** add a time sleep and a break inside the scheduler
+- **sdk:** add the sync once in the refresh token interface
+- **sdk:** fix the warning data race
+- **sdk:** use the refresh token scheduler
+
+
 <a name="v0.22.0"></a>
 ## [v0.22.0] - 2022-07-05
 
@@ -759,6 +787,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.23.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.22.0...v0.23.0
 [v0.22.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.21.0...v0.22.0
 [v0.21.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.20.0...v0.21.0
 [v0.20.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.19.0...v0.20.0

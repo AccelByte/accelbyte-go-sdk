@@ -11,6 +11,7 @@ import (
 	"net/url"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
@@ -324,6 +325,68 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 
 	if !o.RefreshTokenRepository.DisableAutoRefresh() {
 		auth.RefreshTokenScheduler(o.GetAuthSession(), "client")
+	}
+
+	return nil
+}
+
+// LoginPlatform is a custom wrapper used to log in with clientId and clientSecret
+func (o *OAuth20Service) LoginPlatform(input *o_auth2_0.PlatformTokenGrantV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"basic"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	accessToken, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+	if accessToken == nil {
+		return errors.New("empty access token")
+	}
+	accessTokenPayload := accessToken.GetPayload()
+
+	// convert OauthmodelTokenResponse to OauthmodelTokenResponseV3
+	var accessTokenV3 iamclientmodels.OauthmodelTokenResponseV3
+	temporaryVariable, _ := json.Marshal(accessTokenPayload)
+	err = json.Unmarshal(temporaryVariable, &accessTokenV3)
+	if err != nil {
+		return err
+	}
+
+	err = o.TokenRepository.Store(accessTokenV3)
+	if err != nil {
+		return err
+	}
+
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "user")
 	}
 
 	return nil

@@ -7,7 +7,6 @@ package auth
 import (
 	"encoding/base64"
 	"fmt"
-	"sync"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -15,6 +14,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 )
@@ -25,7 +25,7 @@ type Session struct {
 	Refresh repository.RefreshTokenRepository
 }
 
-var Once sync.Once
+var Once utils.Once
 
 // AuthInfoWriter called by the existing security from the wrapper
 func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.ClientAuthInfoWriter {

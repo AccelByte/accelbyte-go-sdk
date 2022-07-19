@@ -8,7 +8,6 @@ type RefreshTokenImpl struct {
 	RefreshRate         float64
 	AutoRefresh         bool
 	IsRefreshInProgress bool
-	//SyncOnceImpl        sync.Once
 }
 
 func DefaultRefreshTokenImpl() *RefreshTokenImpl {
@@ -16,7 +15,6 @@ func DefaultRefreshTokenImpl() *RefreshTokenImpl {
 		1.0,
 		false,
 		false,
-		//&sync.Once{},
 	}
 }
 
@@ -31,7 +29,3 @@ func (r *RefreshTokenImpl) GetRefreshRate() float64 {
 func (r *RefreshTokenImpl) SetRefreshIsRunningInBackground(b bool) {
 	r.IsRefreshInProgress = b
 }
-
-//func (r *RefreshTokenImpl) SyncOnce() sync.Once {
-//	return r.SyncOnceImpl
-//}

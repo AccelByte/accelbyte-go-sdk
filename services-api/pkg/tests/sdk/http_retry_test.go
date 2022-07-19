@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"sync"
 	"testing"
 	"time"
 
@@ -113,9 +114,12 @@ func (c *MyConfigRepo) GetJusticeBaseUrl() string { return c.baseUrl }
 type MyTokenRepo struct {
 	IssuedTime  *time.Time
 	accessToken *iamclientmodels.OauthmodelTokenResponseV3
+	mu          sync.Mutex
 }
 
 func (t *MyTokenRepo) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	defer t.mu.Unlock()
+	t.mu.Lock()
 	if t.accessToken == nil {
 		return nil, fmt.Errorf("empty access Token")
 	}
@@ -124,6 +128,9 @@ func (t *MyTokenRepo) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, er
 }
 
 func (t *MyTokenRepo) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+	defer t.mu.Unlock()
+	t.mu.Lock()
+
 	timeNow := time.Now().UTC()
 	t.IssuedTime = &timeNow
 	t.accessToken = &accessToken
@@ -132,6 +139,9 @@ func (t *MyTokenRepo) Store(accessToken iamclientmodels.OauthmodelTokenResponseV
 }
 
 func (t *MyTokenRepo) RemoveToken() error {
+	defer t.mu.Unlock()
+	t.mu.Lock()
+
 	t.IssuedTime = nil
 	t.accessToken = nil
 
@@ -139,6 +149,9 @@ func (t *MyTokenRepo) RemoveToken() error {
 }
 
 func (t *MyTokenRepo) TokenIssuedTimeUTC() time.Time {
+	defer t.mu.Unlock()
+	t.mu.Lock()
+
 	return *t.IssuedTime
 }
 

@@ -200,10 +200,10 @@ func TestRetryRequest_withMaxTries(t *testing.T) {
 		},
 		Transport: &roundTripper,
 	}
-	paramsRetry := bans.GetBansTypeParams{
+	paramsRetry := bans.AdminGetBansTypeV3Params{
 		RetryPolicy: &retryPolicy,
 	}
-	_, err = iamBansService.GetBansTypeShort(&paramsRetry)
+	_, err = iamBansService.AdminGetBansTypeV3Short(&paramsRetry)
 	assert.NotNil(t, err)
 
 	numberOfRetries := roundTripper.Counter - 1

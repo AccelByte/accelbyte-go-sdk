@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var params = bans.GetBansTypeParams{}
+var params = bans.AdminGetBansTypeV3Params{}
 
 func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	// 1. request with valid Token
@@ -24,7 +24,7 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 
 	// 2. call another endpoint
-	okBan, errBan := iamBansService.GetBansTypeShort(&params)
+	okBan, errBan := iamBansService.AdminGetBansTypeV3Short(&params)
 	if errBan != nil {
 		assert.FailNow(t, errBan.Error())
 	}
@@ -60,7 +60,7 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	assert.True(t, hasIndeedExpired) // indeed expired
 
 	// 5. call again with time sleep
-	okBan2, errBan2 := iamBansService.GetBansTypeShort(&params)
+	okBan2, errBan2 := iamBansService.AdminGetBansTypeV3Short(&params)
 	if errBan2 != nil {
 		assert.FailNow(t, errBan2.Error())
 	}
@@ -80,7 +80,7 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 
 	// 2. call another endpoint
-	okBan, errBan := iamBansService.GetBansTypeShort(&params)
+	okBan, errBan := iamBansService.AdminGetBansTypeV3Short(&params)
 	if errBan != nil {
 		assert.FailNow(t, errBan.Error())
 	}
@@ -124,7 +124,7 @@ func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
 		for i := 1; i <= b.N; i++ {
 			b.RunParallel(func(pb *testing.PB) { // run with goroutines
 				t.Logf("%vth request", i)
-				okBan2, errBan2 := iamBansService.GetBansTypeShort(&params)
+				okBan2, errBan2 := iamBansService.AdminGetBansTypeV3Short(&params)
 				if errBan2 != nil {
 					assert.FailNow(t, errBan2.Error())
 				}

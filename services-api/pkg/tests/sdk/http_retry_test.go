@@ -21,6 +21,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -44,10 +45,10 @@ var (
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
-		//RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to enable the AutoRefresh functionality and change RefreshRate
-		//	RefreshRate: 0.5,
-		//	AutoRefresh: true,
-		//},
+		RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to enable the AutoRefresh functionality and change RefreshRate
+			RefreshRate: 0.5,
+			AutoRefresh: true,
+		},
 	}
 	lobbyConfigService = &lobby.ConfigService{
 		Client:          factory.NewLobbyClient(&configRepo),

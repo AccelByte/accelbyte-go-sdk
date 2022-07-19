@@ -25,7 +25,10 @@ type Session struct {
 	Refresh repository.RefreshTokenRepository
 }
 
-var Once sync.Once
+var (
+	Once   sync.Once
+	Cancel bool
+)
 
 // AuthInfoWriter called by the existing security from the wrapper
 func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.ClientAuthInfoWriter {
@@ -135,40 +138,43 @@ func RefreshTokenScheduler(service Session, loginType string) {
 	done := make(chan bool)
 
 	if !repository.HasRefreshTokenExpired(service.Token, refreshRate) {
-		switch loginType {
-		case "user": // user token have a refreshToken
-			if getToken.RefreshToken != nil {
-				service.Refresh.SetRefreshIsRunningInBackground(true)
+		if getToken.RefreshToken != nil {
+			Once.Do(func() {
 				go func() {
-					Once.Do(func() {
-						time.AfterFunc(refreshInterval, func() {
+					for {
+						switch loginType {
+						case "user": // user token have a refreshToken
+							service.Refresh.SetRefreshIsRunningInBackground(true)
 							errRefresh := UserTokenRefresher(service)
 							if errRefresh != nil {
 								return
 							}
 							done <- true
-						})
-						service.Refresh.SetRefreshIsRunningInBackground(false)
-					})
+							service.Refresh.SetRefreshIsRunningInBackground(false)
+							time.Sleep(refreshInterval)
+
+							if Cancel {
+								break
+							}
+
+						case "client":
+							service.Refresh.SetRefreshIsRunningInBackground(true)
+							errRefresh := ClientTokenRefresher(service)
+							if errRefresh != nil {
+								return
+							}
+							done <- true
+							service.Refresh.SetRefreshIsRunningInBackground(false)
+							time.Sleep(refreshInterval)
+
+							if Cancel {
+								break
+							}
+						}
+					}
 				}()
 				<-done
-			}
-
-		case "client":
-			if getToken.RefreshToken != nil {
-				service.Refresh.SetRefreshIsRunningInBackground(true)
-				Once.Do(func() {
-					time.AfterFunc(refreshInterval, func() {
-						errRefresh := ClientTokenRefresher(service)
-						if errRefresh != nil {
-							return
-						}
-						done <- true
-					})
-					service.Refresh.SetRefreshIsRunningInBackground(false)
-				})
-				<-done
-			}
+			})
 		}
 	}
 

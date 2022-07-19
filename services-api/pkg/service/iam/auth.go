@@ -364,7 +364,6 @@ func (o *OAuth20Service) Logout() error {
 		return err
 	}
 
-	auth.Cancel = true // cancel for refresh token
 	err = o.TokenRepository.RemoveToken()
 	if err != nil {
 		logrus.Error(err)

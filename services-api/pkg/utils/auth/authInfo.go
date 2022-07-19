@@ -25,10 +25,7 @@ type Session struct {
 	Refresh repository.RefreshTokenRepository
 }
 
-var (
-	Once   sync.Once
-	Cancel bool
-)
+var Once sync.Once
 
 // AuthInfoWriter called by the existing security from the wrapper
 func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.ClientAuthInfoWriter {
@@ -126,57 +123,50 @@ func Error(err error) runtime.ClientAuthInfoWriter {
 	})
 }
 
-func RefreshTokenScheduler(service Session, loginType string) {
-	getToken, err := service.Token.GetToken()
-	if err != nil {
-		return
-	}
+func RefreshTokenScheduler(session Session, loginType string) {
+	Once.Do(func() {
+		getToken, _ := session.Token.GetToken()
 
-	refreshRate := service.Refresh.GetRefreshRate()
-	expiresIn, _ := repository.GetExpiresIn(service.Token)
-	refreshInterval := time.Duration(float64(*expiresIn)*refreshRate) * time.Second
-	done := make(chan bool)
+		refreshRate := session.Refresh.GetRefreshRate()
 
-	if !repository.HasRefreshTokenExpired(service.Token, refreshRate) {
-		if getToken.RefreshToken != nil {
-			Once.Do(func() {
+		switch loginType {
+		case "user": // user token have a refreshToken
+			if getToken.RefreshToken != nil {
 				go func() {
 					for {
-						switch loginType {
-						case "user": // user token have a refreshToken
-							service.Refresh.SetRefreshIsRunningInBackground(true)
-							errRefresh := UserTokenRefresher(service)
-							if errRefresh != nil {
-								return
-							}
-							done <- true
-							service.Refresh.SetRefreshIsRunningInBackground(false)
-							time.Sleep(refreshInterval)
-
-							if Cancel {
-								break
-							}
-
-						case "client":
-							service.Refresh.SetRefreshIsRunningInBackground(true)
-							errRefresh := ClientTokenRefresher(service)
-							if errRefresh != nil {
-								return
-							}
-							done <- true
-							service.Refresh.SetRefreshIsRunningInBackground(false)
-							time.Sleep(refreshInterval)
-
-							if Cancel {
-								break
+						token, _ := session.Token.GetToken()
+						if token == nil {
+							return // Logout
+						}
+						if repository.HasTokenExpired(session.Token, refreshRate) {
+							if !repository.HasRefreshTokenExpired(session.Token, refreshRate) {
+								session.Refresh.SetRefreshIsRunningInBackground(true)
+								UserTokenRefresher(session)
+								session.Refresh.SetRefreshIsRunningInBackground(false)
 							}
 						}
+						time.Sleep(1 * time.Second)
 					}
 				}()
-				<-done
-			})
+			}
+
+		case "client":
+			go func() {
+				for {
+					token, _ := session.Token.GetToken()
+					if token == nil {
+						return // Logout
+					}
+					if repository.HasTokenExpired(session.Token, refreshRate) {
+						session.Refresh.SetRefreshIsRunningInBackground(true)
+						ClientTokenRefresher(session)
+						session.Refresh.SetRefreshIsRunningInBackground(false)
+					}
+					time.Sleep(1 * time.Second)
+				}
+			}()
 		}
-	}
+	})
 
 	fmt.Print("Token in token repository has expired, please re-login")
 }
@@ -187,7 +177,7 @@ type OAuth20RefreshService struct {
 	Token            repository.TokenRepository
 }
 
-func UserTokenRefresher(s Session) error {
+func UserTokenRefresher(s Session) {
 	token, _ := s.Token.GetToken()
 	p := &o_auth2_0.TokenGrantV3Params{
 		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
@@ -200,17 +190,15 @@ func UserTokenRefresher(s Session) error {
 	}
 	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
 	if errLogin != nil {
-		return errLogin
+		return
 	}
 	err := s.Token.Store(*newToken.Payload)
 	if err != nil {
-		return err
+		return
 	}
-
-	return nil
 }
 
-func ClientTokenRefresher(s Session) error {
+func ClientTokenRefresher(s Session) {
 	p := &o_auth2_0.TokenGrantV3Params{
 		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}
@@ -221,12 +209,10 @@ func ClientTokenRefresher(s Session) error {
 	}
 	newToken, errLogin := service.Client.OAuth20.TokenGrantV3Short(p, Basic(s.Config.GetClientId(), s.Config.GetClientSecret()))
 	if errLogin != nil {
-		return errLogin
+		return
 	}
 	err := s.Token.Store(*newToken.Payload)
 	if err != nil {
-		return err
+		return
 	}
-
-	return nil
 }

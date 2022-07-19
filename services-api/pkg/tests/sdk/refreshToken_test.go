@@ -66,6 +66,9 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 	}
 	assert.NotNil(t, okBan2)
 	assert.False(t, hasExpired)
+
+	errLogout := oAuth20Service.Logout()
+	assert.Nil(t, errLogout)
 }
 
 func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {

@@ -8,4 +8,5 @@ type RefreshTokenRepository interface {
 	DisableAutoRefresh() bool
 	GetRefreshRate() float64
 	SetRefreshIsRunningInBackground(b bool)
+	//SyncOnce() sync.Once
 }

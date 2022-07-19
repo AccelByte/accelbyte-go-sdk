@@ -123,52 +123,50 @@ func Error(err error) runtime.ClientAuthInfoWriter {
 	})
 }
 
-func RefreshTokenScheduller(service Session, loginType string) {
+func RefreshTokenScheduler(service Session, loginType string) {
 	getToken, err := service.Token.GetToken()
 	if err != nil {
 		return
 	}
 
 	refreshRate := service.Refresh.GetRefreshRate()
+	expiresIn, _ := repository.GetExpiresIn(service.Token)
+	refreshInterval := time.Duration(float64(*expiresIn)*refreshRate) * time.Second
 	done := make(chan bool)
 
 	if !repository.HasRefreshTokenExpired(service.Token, refreshRate) {
 		switch loginType {
 		case "user": // user token have a refreshToken
-			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
-				var timer = time.NewTimer(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate) * time.Second)
-				<-timer.C
+			if getToken.RefreshToken != nil {
+				service.Refresh.SetRefreshIsRunningInBackground(true)
 				go func() {
-					service.Refresh.RefreshIsRunningInBackground(true)
 					Once.Do(func() {
-						errRefresh := UserTokenRefresher(service)
-						if errRefresh != nil {
-							return
-						}
-						done <- true
+						time.AfterFunc(refreshInterval, func() {
+							errRefresh := UserTokenRefresher(service)
+							if errRefresh != nil {
+								return
+							}
+							done <- true
+						})
+						service.Refresh.SetRefreshIsRunningInBackground(false)
 					})
-					service.Refresh.RefreshIsRunningInBackground(false)
 				}()
-
 				<-done
 			}
 
 		case "client":
-			if getToken.RefreshToken != nil && !service.Refresh.DisableAutoRefresh() {
-				var timer = time.NewTimer(repository.GetSecondsTillExpiryRefresh(service.Token, refreshRate) * time.Second)
-				<-timer.C
-				go func() {
-					service.Refresh.RefreshIsRunningInBackground(true)
-					Once.Do(func() {
+			if getToken.RefreshToken != nil {
+				service.Refresh.SetRefreshIsRunningInBackground(true)
+				Once.Do(func() {
+					time.AfterFunc(refreshInterval, func() {
 						errRefresh := ClientTokenRefresher(service)
 						if errRefresh != nil {
 							return
 						}
 						done <- true
 					})
-					service.Refresh.RefreshIsRunningInBackground(false)
-				}()
-
+					service.Refresh.SetRefreshIsRunningInBackground(false)
+				})
 				<-done
 			}
 		}

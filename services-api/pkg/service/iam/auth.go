@@ -243,7 +243,24 @@ func (o *OAuth20Service) Login(username, password string) error {
 		return err
 	}
 
-	auth.RefreshTokenScheduller(o.GetAuthSession(), "user")
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "user")
+	}
 
 	return nil
 }
@@ -290,7 +307,24 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 		return err
 	}
 
-	auth.RefreshTokenScheduller(o.GetAuthSession(), "client")
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "client")
+	}
 
 	return nil
 }

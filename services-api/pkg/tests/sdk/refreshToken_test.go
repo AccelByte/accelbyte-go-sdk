@@ -16,8 +16,6 @@ import (
 var params = bans.GetBansTypeParams{}
 
 func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
-	t.Parallel()
-
 	// 1. request with valid Token
 	err := oAuth20Service.LoginUser(ConstClientId, ConstClientSecret)
 	if err != nil {
@@ -71,8 +69,6 @@ func TestAuthInfoWriterRefresh_withMockServer(t *testing.T) {
 }
 
 func TestAuthInfoWriterRefreshAsync_withMockServer(t *testing.T) {
-	t.Parallel()
-
 	// 1. request with valid Token
 	err := oAuth20Service.LoginUser(ConstClientId, ConstClientSecret)
 	if err != nil {

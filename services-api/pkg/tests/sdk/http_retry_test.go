@@ -38,16 +38,16 @@ var (
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
-		//RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to disable the AutoRefresh functionality and change RefreshRate
-		//	RefreshRate: 0,
-		//	AutoRefresh: false,
-		//},
 	}
 	// prepare
 	oAuth20Service = &iam.OAuth20Service{
 		Client:           factory.NewIamClient(&configRepo),
 		ConfigRepository: &configRepo,
 		TokenRepository:  &tokenRepo,
+		//RefreshTokenRepository: &auth.RefreshTokenImpl{ // uncomment to enable the AutoRefresh functionality and change RefreshRate
+		//	RefreshRate: 0.5,
+		//	AutoRefresh: true,
+		//},
 	}
 	lobbyConfigService = &lobby.ConfigService{
 		Client:          factory.NewLobbyClient(&configRepo),

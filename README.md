@@ -67,7 +67,7 @@ ok, err := OAuth20Service.TokenGrantV3Short(input) // call the wrapper
 
 #### Automatic Token Refresh
 
-The Automatic Token Refresg is enabled inside the SDK with the Default configuration and can be override.
+The Automatic Token Refresh is invoked by `auth.RefreshTokenScheduler` inside the `login` wrapper with the Default configuration and can be override.
 Use the following to get SDK instance with automatic token refresh functionality which is performed before each HTTP request but only if access token is almost expired.
 
 ```go
@@ -75,13 +75,13 @@ oAuth20Service = &iam.OAuth20Service{
 		Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 		ConfigRepository: &repository.ConfigRepositoryImpl{},
 		TokenRepository:  &repository.TokenRepositoryImpl{},
-		RefreshTokenRepository: &auth.RefreshTokenImpl{ // override the default refresh token. For example, disable the AutoRefresh functionality or change RefreshRate
-			RefreshRate: 0,
-			AutoRefresh: false,
+		RefreshTokenRepository: &auth.RefreshTokenImpl{ // override the default refresh token. For example, enable the AutoRefresh functionality or change RefreshRate
+			RefreshRate: 0.5,
+			AutoRefresh: true,
 		},
 	}
 ```
-Use the `GetAuthSession()` to access all the method interface for refresh token.
+Use the `repository` to access all functions for refresh token.
 
 ## Login
 
@@ -155,7 +155,7 @@ getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
         // failed to get token
     }
 	
-hasExpired := oAuth20Service.GetAuthSession().Refresh.HasTokenExpired(*getToken) // use GetAuthSession().Refresh to access all refresh method
+hasExpired := repository.HasTokenExpired(*getToken) // use the repository of the sdk to get the available functions
 ```
 
 ## Logout

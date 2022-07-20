@@ -4,7 +4,6 @@
 package repository
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
@@ -44,8 +43,6 @@ func GetSecondsTillExpiry(repository TokenRepository, refreshRate float64) time.
 	expiresAt := repository.TokenIssuedTimeUTC().Add(time.Duration(withRefreshRate) * time.Second)
 	timeNow := time.Now().UTC()
 	secondsTillExpiry := expiresAt.Sub(timeNow) // in seconds ex 1m6.995968173s
-	tmp := secondsTillExpiry.Seconds()
-	fmt.Printf("%v", tmp)
 
 	return secondsTillExpiry
 }

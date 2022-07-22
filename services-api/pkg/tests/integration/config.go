@@ -81,3 +81,44 @@ func (connManager *ConnectionManagerImpl) Close() error {
 
 	return wsConn.Conn.Close()
 }
+
+// ------------------------------------- section for phantauth token repo -----------------------------------
+
+type TokenRepositoryPhantAuthImpl struct {
+	IssuedTime *time.Time
+}
+
+type ConfigRepositoryPhantAuthImpl struct {
+}
+
+func (c *ConfigRepositoryPhantAuthImpl) GetClientId() string {
+	return "test.client"
+}
+
+func (c *ConfigRepositoryPhantAuthImpl) GetClientSecret() string {
+	return "UTBcWwt5"
+}
+
+func (c *ConfigRepositoryPhantAuthImpl) GetJusticeBaseUrl() string {
+	return "https://www.phantauth.net"
+}
+
+func (t *TokenRepositoryPhantAuthImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
+	token = accessToken
+
+	return nil
+}
+
+func (t *TokenRepositoryPhantAuthImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	return &token, nil
+}
+
+func (t *TokenRepositoryPhantAuthImpl) RemoveToken() error {
+	token = iamclientmodels.OauthmodelTokenResponseV3{}
+
+	return nil
+}
+
+func (t *TokenRepositoryPhantAuthImpl) TokenIssuedTimeUTC() time.Time {
+	return *t.IssuedTime
+}

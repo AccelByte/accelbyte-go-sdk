@@ -65,7 +65,7 @@ func Init() {
 	}
 }
 
-// Getting an authorization
+// Getting an Authorization
 func TestIntegrationAuthorizeV3(t *testing.T) {
 	t.Parallel()
 

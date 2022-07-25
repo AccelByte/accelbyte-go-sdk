@@ -73,6 +73,8 @@ var (
 func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	Init()
 	rand.Seed(time.Now().UnixNano())
+	timeNow := time.Now().UTC().AddDate(1, 0, 0)
+	startTime = timeNow.Format("2006-01-02T15:04:05Z")
 	randomString := RandStringBytes(5)
 	leaderboardCode = randomString
 

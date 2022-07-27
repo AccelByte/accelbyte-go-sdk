@@ -5,7 +5,6 @@
 package integration_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -44,6 +43,9 @@ func TestIntegrationLoginPlatform(t *testing.T) {
 
 	// assert
 	assert.Nil(t, err, "err should be nil")
+	getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
+	assert.Nil(t, errGetToken, "err should be nil")
+	assert.NotNil(t, getToken, "get token form token repository should not be nil")
 }
 
 // PostPhantauthPlatformToken is the second invoked endpoint
@@ -59,35 +61,36 @@ func PostPhantauthPlatformToken(t *testing.T) (string, error) {
 
 	// act
 	redirectUri := "http://localhost"
-	input := integration.PostAuthorizationParams{
+	input := integration.PostPhantauthParams{
 		GrantType:    "authorization_code",
-		ClientId:     clientIDPhantAuth,
+		ClientID:     clientIDPhantAuth,
 		ClientSecret: clientSecretPhantAuth,
-		RedirectUri:  redirectUri,
+		RedirectURI:  redirectUri,
 		Code:         code,
 	}
-	token, err := integration.OAuth20PhantAuthService.Client.TestOperations.Post(&input)
+	token, err := integration.OAuth20PhantAuthService.Client.ClientPhantauthService.Post(&input)
 	if err != nil {
 		assert.Fail(t, err.Error())
 	}
 	assert.NotNil(t, token, "token form phantauth should not nil")
 
-	return fmt.Sprint(token), nil
+	return *token.Payload.IDToken, nil
 }
 
 // GetPhantauthAuthorizationCode is the first invoked endpoint
 func GetPhantauthAuthorizationCode(t *testing.T) (string, error) {
 	t.Helper()
 
-	input := integration.GetAuthorizationParams{
-		Username:      "test.serversdk1",
-		Authorization: "authorization",
+	input := integration.GetPhantauthParams{
+		Username: "test.serversdk1",
+		Kind:     "authorization",
 	}
-	code, err := integration.OAuth20PhantAuthService.Client.TestOperations.Get(&input)
+	code, err := integration.OAuth20PhantAuthService.Client.ClientPhantauthService.Get(&input)
 	if err != nil {
 		assert.Fail(t, err.Error())
 	}
+
 	assert.NotNil(t, code, "code from phantauth should not nil")
 
-	return fmt.Sprint(code), nil
+	return code.Payload, nil
 }

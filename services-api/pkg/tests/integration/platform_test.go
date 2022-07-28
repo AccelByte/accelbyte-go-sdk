@@ -39,7 +39,6 @@ var (
 )
 
 func TestIntegrationStore(t *testing.T) {
-	t.Parallel()
 	Init()
 	// Creating a store
 	inputCreate := &store.CreateStoreParams{

@@ -60,7 +60,6 @@ var (
 )
 
 func TestIntegrationAchievement(t *testing.T) {
-	t.Parallel()
 	Init()
 
 	description["EN"] = "Description"

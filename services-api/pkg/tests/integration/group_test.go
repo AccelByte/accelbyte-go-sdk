@@ -72,7 +72,6 @@ var (
 )
 
 func TestIntegrationGroup(t *testing.T) {
-	t.Parallel()
 	Init()
 	ruleDetails = append(ruleDetails, ruleDetail)
 	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)

@@ -48,7 +48,6 @@ var (
 )
 
 func TestIntegrationUserProfile(t *testing.T) {
-	t.Parallel()
 	Init()
 	checkProfileExist()
 

@@ -55,7 +55,6 @@ var (
 )
 
 func TestIntegrationSession(t *testing.T) {
-	t.Parallel()
 	Init()
 	// Creating a session
 	inputCreate := &session.CreateSessionParams{

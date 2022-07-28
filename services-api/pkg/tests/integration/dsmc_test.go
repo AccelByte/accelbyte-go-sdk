@@ -45,7 +45,6 @@ func createSessionBrowser() string {
 }
 
 func TestIntegrationSessionDSMC(t *testing.T) {
-	t.Parallel()
 	Init()
 
 	SessionBrowserID := createSessionBrowser()

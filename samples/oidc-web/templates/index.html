@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.6.1/oidc-client.min.js"></script> 
+    </head>
+    <body>
+        <h1>OIDC Web</h1>
+        <button id="proceed">Proceed</button>
+        <script>
+            $('#proceed').click(function (e) {
+                $.ajax({
+                    url: "/config",
+                    method: 'GET',
+                }).done(function (config) {
+                    $.ajax({
+                        url: config.discovery_url,
+                        method: 'GET',
+                        }).done(function (resDiscovery) {
+                        const oidcClient = new Oidc.OidcClient({
+                            authority: resDiscovery.issuer,
+                            client_id: config.client_id,
+                            redirect_uri: (window.location.href + 'callback?provider=' + config.platform_id),
+                            response_type: "code",
+                            scope: config.scope,
+                            filterProtocolClaims: false,
+                            loadUserInfo: false
+                        });
+    
+                        oidcClient.createSigninRequest({
+                            state: {
+                                bar: Math.random()
+                            }
+                        }).then(function (req) {
+                            window.location = req.url;
+                        })
+                    });
+                })
+                
+            });
+        </script>
+    </body>
+</html>

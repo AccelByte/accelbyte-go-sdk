@@ -23,29 +23,29 @@ type AdminTagService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AdminTagService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AdminTagService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetTagShort instead
-func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcc
 }
 
 // Deprecated: Use AdminCreateTagShort instead
-func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) 
 }
 
 // Deprecated: Use AdminUpdateTagShort instead
-func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -118,12 +118,12 @@ func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) 
 }
 
 // Deprecated: Use AdminDeleteTagShort instead
-func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -140,24 +140,24 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	return nil
 }
 
-func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+func (aaa *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminTag.AdminGetTagShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminTag.AdminGetTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -165,24 +165,24 @@ func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (aaa *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := a.Client.AdminTag.AdminCreateTagShort(input, authInfoWriter)
+	created, err := aaa.Client.AdminTag.AdminCreateTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -190,24 +190,24 @@ func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagPar
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (aaa *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminTag.AdminUpdateTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -215,24 +215,24 @@ func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagPar
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams) error {
+func (aaa *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AdminTag.AdminDeleteTagShort(input, authInfoWriter)
+	_, err := aaa.Client.AdminTag.AdminDeleteTagShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

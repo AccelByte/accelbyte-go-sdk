@@ -23,29 +23,29 @@ type RewardService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (r *RewardService) GetAuthSession() auth.Session {
-	if r.RefreshTokenRepository != nil {
+func (aaa *RewardService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			r.TokenRepository,
-			r.ConfigRepository,
-			r.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		r.TokenRepository,
-		r.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryRewardsShort instead
-func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.QueryRewards(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Reward.QueryRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -60,12 +60,12 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seaso
 }
 
 // Deprecated: Use CreateRewardShort instead
-func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonp
 }
 
 // Deprecated: Use GetRewardShort instead
-func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.GetReward(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Reward.GetReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,12 +106,12 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpasscli
 }
 
 // Deprecated: Use DeleteRewardShort instead
-func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := r.Client.Reward.DeleteReward(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Reward.DeleteReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -129,12 +129,12 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 }
 
 // Deprecated: Use UpdateRewardShort instead
-func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.UpdateReward(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Reward.UpdateReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -155,12 +155,12 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonp
 }
 
 // Deprecated: Use PublicClaimUserRewardShort instead
-func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := r.Client.Reward.PublicClaimUserReward(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Reward.PublicClaimUserReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -178,12 +178,12 @@ func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewar
 }
 
 // Deprecated: Use PublicBulkClaimUserRewardsShort instead
-func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.PublicBulkClaimUserRewards(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Reward.PublicBulkClaimUserRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -197,24 +197,24 @@ func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaim
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
+func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.QueryRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -222,24 +222,24 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+func (aaa *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := r.Client.Reward.CreateRewardShort(input, authInfoWriter)
+	created, err := aaa.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -247,24 +247,24 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*se
 	return created.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+func (aaa *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.GetRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.GetRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -272,24 +272,24 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpa
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) error {
+func (aaa *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := r.Client.Reward.DeleteRewardShort(input, authInfoWriter)
+	_, err := aaa.Client.Reward.DeleteRewardShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -297,24 +297,24 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) erro
 	return nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+func (aaa *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -322,24 +322,24 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*se
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+func (aaa *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.PublicClaimUserRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.PublicClaimUserRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -347,24 +347,24 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+func (aaa *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.PublicBulkClaimUserRewardsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.PublicBulkClaimUserRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

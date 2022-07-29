@@ -23,29 +23,29 @@ type AchievementsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AchievementsService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AchievementsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminListAchievementsShort instead
-func (a *AchievementsService) AdminListAchievements(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminListAchievements(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminListAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminListAchievements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -66,12 +66,12 @@ func (a *AchievementsService) AdminListAchievements(input *achievements.AdminLis
 }
 
 // Deprecated: Use AdminCreateNewAchievementShort instead
-func (a *AchievementsService) AdminCreateNewAchievement(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminCreateNewAchievement(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := a.Client.Achievements.AdminCreateNewAchievement(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := aaa.Client.Achievements.AdminCreateNewAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (a *AchievementsService) AdminCreateNewAchievement(input *achievements.Admi
 }
 
 // Deprecated: Use ExportAchievementsShort instead
-func (a *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := a.Client.Achievements.ExportAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Achievements.ExportAchievements(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -112,12 +112,12 @@ func (a *AchievementsService) ExportAchievements(input *achievements.ExportAchie
 }
 
 // Deprecated: Use ImportAchievementsShort instead
-func (a *AchievementsService) ImportAchievements(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) ImportAchievements(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := a.Client.Achievements.ImportAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Achievements.ImportAchievements(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -135,12 +135,12 @@ func (a *AchievementsService) ImportAchievements(input *achievements.ImportAchie
 }
 
 // Deprecated: Use AdminGetAchievementShort instead
-func (a *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminGetAchievement(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminGetAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -161,12 +161,12 @@ func (a *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAc
 }
 
 // Deprecated: Use AdminUpdateAchievementShort instead
-func (a *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminUpdateAchievement(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminUpdateAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -187,12 +187,12 @@ func (a *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUp
 }
 
 // Deprecated: Use AdminDeleteAchievementShort instead
-func (a *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDeleteAchievementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDeleteAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminDeleteAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminDeleteAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -213,12 +213,12 @@ func (a *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDe
 }
 
 // Deprecated: Use AdminUpdateAchievementListOrderShort instead
-func (a *AchievementsService) AdminUpdateAchievementListOrder(input *achievements.AdminUpdateAchievementListOrderParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminUpdateAchievementListOrder(input *achievements.AdminUpdateAchievementListOrderParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminUpdateAchievementListOrder(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminUpdateAchievementListOrder(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -239,12 +239,12 @@ func (a *AchievementsService) AdminUpdateAchievementListOrder(input *achievement
 }
 
 // Deprecated: Use AdminListUserAchievementsShort instead
-func (a *AchievementsService) AdminListUserAchievements(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminListUserAchievements(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.AdminListUserAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.AdminListUserAchievements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -265,12 +265,12 @@ func (a *AchievementsService) AdminListUserAchievements(input *achievements.Admi
 }
 
 // Deprecated: Use AdminUnlockAchievementShort instead
-func (a *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUnlockAchievementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUnlockAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.Achievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Achievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -288,12 +288,12 @@ func (a *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUn
 }
 
 // Deprecated: Use PublicListAchievementsShort instead
-func (a *AchievementsService) PublicListAchievements(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) PublicListAchievements(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.PublicListAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.PublicListAchievements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -314,12 +314,12 @@ func (a *AchievementsService) PublicListAchievements(input *achievements.PublicL
 }
 
 // Deprecated: Use PublicGetAchievementShort instead
-func (a *AchievementsService) PublicGetAchievement(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) PublicGetAchievement(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.PublicGetAchievement(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.PublicGetAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -340,12 +340,12 @@ func (a *AchievementsService) PublicGetAchievement(input *achievements.PublicGet
 }
 
 // Deprecated: Use PublicListUserAchievementsShort instead
-func (a *AchievementsService) PublicListUserAchievements(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) PublicListUserAchievements(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Achievements.PublicListUserAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Achievements.PublicListUserAchievements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -366,12 +366,12 @@ func (a *AchievementsService) PublicListUserAchievements(input *achievements.Pub
 }
 
 // Deprecated: Use PublicUnlockAchievementShort instead
-func (a *AchievementsService) PublicUnlockAchievement(input *achievements.PublicUnlockAchievementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementsService) PublicUnlockAchievement(input *achievements.PublicUnlockAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.Achievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Achievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -388,24 +388,24 @@ func (a *AchievementsService) PublicUnlockAchievement(input *achievements.Public
 	return nil
 }
 
-func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
+func (aaa *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.AdminListAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.AdminListAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -413,24 +413,24 @@ func (a *AchievementsService) AdminListAchievementsShort(input *achievements.Adm
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (aaa *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := a.Client.Achievements.AdminCreateNewAchievementShort(input, authInfoWriter)
+	created, err := aaa.Client.Achievements.AdminCreateNewAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -438,24 +438,24 @@ func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements
 	return created.GetPayload(), nil
 }
 
-func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+func (aaa *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.ExportAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.ExportAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -463,24 +463,24 @@ func (a *AchievementsService) ExportAchievementsShort(input *achievements.Export
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
+func (aaa *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.ImportAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.ImportAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -488,24 +488,24 @@ func (a *AchievementsService) ImportAchievementsShort(input *achievements.Import
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (aaa *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.AdminGetAchievementShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.AdminGetAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -513,24 +513,24 @@ func (a *AchievementsService) AdminGetAchievementShort(input *achievements.Admin
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (aaa *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.AdminUpdateAchievementShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.AdminUpdateAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -538,24 +538,24 @@ func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.Ad
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams) error {
+func (aaa *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Achievements.AdminDeleteAchievementShort(input, authInfoWriter)
+	_, err := aaa.Client.Achievements.AdminDeleteAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -563,24 +563,24 @@ func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.Ad
 	return nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams) error {
+func (aaa *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Achievements.AdminUpdateAchievementListOrderShort(input, authInfoWriter)
+	_, err := aaa.Client.Achievements.AdminUpdateAchievementListOrderShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -588,24 +588,24 @@ func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achiev
 	return nil
 }
 
-func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+func (aaa *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.AdminListUserAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.AdminListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -613,24 +613,24 @@ func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams) error {
+func (aaa *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Achievements.AdminUnlockAchievementShort(input, authInfoWriter)
+	_, err := aaa.Client.Achievements.AdminUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -638,24 +638,24 @@ func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.Ad
 	return nil
 }
 
-func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
+func (aaa *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.PublicListAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.PublicListAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -663,24 +663,24 @@ func (a *AchievementsService) PublicListAchievementsShort(input *achievements.Pu
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
+func (aaa *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.PublicGetAchievementShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.PublicGetAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -688,24 +688,24 @@ func (a *AchievementsService) PublicGetAchievementShort(input *achievements.Publ
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+func (aaa *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Achievements.PublicListUserAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Achievements.PublicListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -713,24 +713,24 @@ func (a *AchievementsService) PublicListUserAchievementsShort(input *achievement
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams) error {
+func (aaa *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Achievements.PublicUnlockAchievementShort(input, authInfoWriter)
+	_, err := aaa.Client.Achievements.PublicUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

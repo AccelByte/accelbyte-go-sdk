@@ -34,6 +34,12 @@ func (o *PublicConsumeUserEntitlementReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPublicConsumeUserEntitlementBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicConsumeUserEntitlementNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -90,6 +96,39 @@ func (o *PublicConsumeUserEntitlementOK) readResponse(response runtime.ClientRes
 	return nil
 }
 
+// NewPublicConsumeUserEntitlementBadRequest creates a PublicConsumeUserEntitlementBadRequest with default headers values
+func NewPublicConsumeUserEntitlementBadRequest() *PublicConsumeUserEntitlementBadRequest {
+	return &PublicConsumeUserEntitlementBadRequest{}
+}
+
+/*PublicConsumeUserEntitlementBadRequest handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31121</td><td>OptionBox entitlement [{entitlementId}] use count is not 1</td></tr><tr><td>31122</td><td>OptionBox entitlement [{entitlementId}] options size is not 1</td></tr></table>
+*/
+type PublicConsumeUserEntitlementBadRequest struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublicConsumeUserEntitlementBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PublicConsumeUserEntitlementBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicConsumeUserEntitlementBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicConsumeUserEntitlementNotFound creates a PublicConsumeUserEntitlementNotFound with default headers values
 func NewPublicConsumeUserEntitlementNotFound() *PublicConsumeUserEntitlementNotFound {
 	return &PublicConsumeUserEntitlementNotFound{}
@@ -97,7 +136,7 @@ func NewPublicConsumeUserEntitlementNotFound() *PublicConsumeUserEntitlementNotF
 
 /*PublicConsumeUserEntitlementNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31141</td><td>Entitlement [{entitlementId}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31141</td><td>Entitlement [{entitlementId}] does not exist in namespace [{namespace}]</td></tr><tr><td>31145</td><td>Option [{option}] doesn't exist in OptionBox entitlement [{entitlementId}]</td></tr></table>
 */
 type PublicConsumeUserEntitlementNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

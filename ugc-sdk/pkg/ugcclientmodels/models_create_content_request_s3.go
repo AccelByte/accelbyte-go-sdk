@@ -29,9 +29,13 @@ type ModelsCreateContentRequestS3 struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// preview
+	// Preview is legacy code, please use Screenshot instead
 	// Required: true
 	Preview *string `json:"preview"`
+
+	// preview metadata
+	// Required: true
+	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata"`
 
 	// sub type
 	// Required: true
@@ -63,6 +67,10 @@ func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePreview(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreviewMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,6 +123,24 @@ func (m *ModelsCreateContentRequestS3) validatePreview(formats strfmt.Registry) 
 
 	if err := validate.Required("preview", "body", m.Preview); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentRequestS3) validatePreviewMetadata(formats strfmt.Registry) error {
+
+	if err := validate.Required("previewMetadata", "body", m.PreviewMetadata); err != nil {
+		return err
+	}
+
+	if m.PreviewMetadata != nil {
+		if err := m.PreviewMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previewMetadata")
+			}
+			return err
+		}
 	}
 
 	return nil

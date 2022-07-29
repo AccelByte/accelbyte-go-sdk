@@ -23,29 +23,29 @@ type FileUploadService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (f *FileUploadService) GetAuthSession() auth.Session {
-	if f.RefreshTokenRepository != nil {
+func (aaa *FileUploadService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			f.TokenRepository,
-			f.ConfigRepository,
-			f.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		f.TokenRepository,
-		f.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GeneratedUploadURLShort instead
-func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := f.Client.FileUpload.GeneratedUploadURL(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.FileUpload.GeneratedUploadURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -66,12 +66,12 @@ func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploa
 }
 
 // Deprecated: Use GeneratedUserUploadContentURLShort instead
-func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := f.Client.FileUpload.GeneratedUserUploadContentURL(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.FileUpload.GeneratedUserUploadContentURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -95,12 +95,12 @@ func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.Gen
 }
 
 // Deprecated: Use PublicGeneratedUploadURLShort instead
-func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := f.Client.FileUpload.PublicGeneratedUploadURL(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.FileUpload.PublicGeneratedUploadURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -121,12 +121,12 @@ func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGe
 }
 
 // Deprecated: Use PublicGeneratedUserUploadContentURLShort instead
-func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := f.Client.FileUpload.PublicGeneratedUserUploadContentURL(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.FileUpload.PublicGeneratedUserUploadContentURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -149,24 +149,24 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_uplo
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+func (aaa *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FileUpload.GeneratedUploadURLShort(input, authInfoWriter)
+	ok, err := aaa.Client.FileUpload.GeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -174,24 +174,24 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+func (aaa *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FileUpload.GeneratedUserUploadContentURLShort(input, authInfoWriter)
+	ok, err := aaa.Client.FileUpload.GeneratedUserUploadContentURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -199,24 +199,24 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+func (aaa *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FileUpload.PublicGeneratedUploadURLShort(input, authInfoWriter)
+	ok, err := aaa.Client.FileUpload.PublicGeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -224,24 +224,24 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+func (aaa *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, authInfoWriter)
+	ok, err := aaa.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

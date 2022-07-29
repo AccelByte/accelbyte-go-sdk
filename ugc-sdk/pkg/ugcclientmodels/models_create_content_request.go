@@ -25,9 +25,13 @@ type ModelsCreateContentRequest struct {
 	// Required: true
 	Payload *string `json:"payload"`
 
-	// preview
+	// Preview is legacy code, please use Screenshot instead
 	// Required: true
 	Preview *string `json:"preview"`
+
+	// preview metadata
+	// Required: true
+	PreviewMetadata *ModelsPreviewMetadata `json:"previewMetadata"`
 
 	// sub type
 	// Required: true
@@ -55,6 +59,10 @@ func (m *ModelsCreateContentRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePreview(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreviewMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +106,24 @@ func (m *ModelsCreateContentRequest) validatePreview(formats strfmt.Registry) er
 
 	if err := validate.Required("preview", "body", m.Preview); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentRequest) validatePreviewMetadata(formats strfmt.Registry) error {
+
+	if err := validate.Required("previewMetadata", "body", m.PreviewMetadata); err != nil {
+		return err
+	}
+
+	if m.PreviewMetadata != nil {
+		if err := m.PreviewMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previewMetadata")
+			}
+			return err
+		}
 	}
 
 	return nil

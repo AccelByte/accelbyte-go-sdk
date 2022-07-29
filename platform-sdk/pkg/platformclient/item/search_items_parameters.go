@@ -22,6 +22,19 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in SearchItemsParams
+const (
+	SearchItemsAPPConstant          = "APP"
+	SearchItemsBUNDLEConstant       = "BUNDLE"
+	SearchItemsCODEConstant         = "CODE"
+	SearchItemsCOINSConstant        = "COINS"
+	SearchItemsINGAMEITEMConstant   = "INGAMEITEM"
+	SearchItemsMEDIAConstant        = "MEDIA"
+	SearchItemsOPTIONBOXConstant    = "OPTIONBOX"
+	SearchItemsSEASONConstant       = "SEASON"
+	SearchItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewSearchItemsParams creates a new SearchItemsParams object
 // with the default values initialized.
 func NewSearchItemsParams() *SearchItemsParams {
@@ -98,6 +111,8 @@ type SearchItemsParams struct {
 	RetryPolicy *utils.Retry
 	/*ActiveOnly*/
 	ActiveOnly *bool
+	/*ItemType*/
+	ItemType *string
 	/*Keyword*/
 	Keyword string
 	/*Language*/
@@ -184,6 +199,17 @@ func (o *SearchItemsParams) SetActiveOnly(activeOnly *bool) {
 	o.ActiveOnly = activeOnly
 }
 
+// WithItemType adds the itemType to the search items params
+func (o *SearchItemsParams) WithItemType(itemType *string) *SearchItemsParams {
+	o.SetItemType(itemType)
+	return o
+}
+
+// SetItemType adds the itemType to the search items params
+func (o *SearchItemsParams) SetItemType(itemType *string) {
+	o.ItemType = itemType
+}
+
 // WithKeyword adds the keyword to the search items params
 func (o *SearchItemsParams) WithKeyword(keyword string) *SearchItemsParams {
 	o.SetKeyword(keyword)
@@ -268,6 +294,22 @@ func (o *SearchItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qActiveOnly := swag.FormatBool(qrActiveOnly)
 		if qActiveOnly != "" {
 			if err := r.SetQueryParam("activeOnly", qActiveOnly); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ItemType != nil {
+
+		// query param itemType
+		var qrItemType string
+		if o.ItemType != nil {
+			qrItemType = *o.ItemType
+		}
+		qItemType := qrItemType
+		if qItemType != "" {
+			if err := r.SetQueryParam("itemType", qItemType); err != nil {
 				return err
 			}
 		}

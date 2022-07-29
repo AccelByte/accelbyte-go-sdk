@@ -28,6 +28,7 @@ const (
 	GetUserEntitlementBySkuCODEConstant         = "CODE"
 	GetUserEntitlementBySkuENTITLEMENTConstant  = "ENTITLEMENT"
 	GetUserEntitlementBySkuMEDIAConstant        = "MEDIA"
+	GetUserEntitlementBySkuOPTIONBOXConstant    = "OPTIONBOX"
 	GetUserEntitlementBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 

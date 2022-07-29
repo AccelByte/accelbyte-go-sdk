@@ -23,29 +23,29 @@ type SessionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SessionService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SessionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetTotalActiveSessionShort instead
-func (s *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetTotalActiveSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.GetTotalActiveSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -60,12 +60,12 @@ func (s *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSess
 }
 
 // Deprecated: Use GetActiveCustomGameSessionsShort instead
-func (s *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveCustomGameSessions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.GetActiveCustomGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -80,12 +80,12 @@ func (s *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCus
 }
 
 // Deprecated: Use GetActiveMatchmakingGameSessionsShort instead
-func (s *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveMatchmakingGameSessions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.GetActiveMatchmakingGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -100,12 +100,12 @@ func (s *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActi
 }
 
 // Deprecated: Use AdminGetSessionShort instead
-func (s *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := s.Client.Session.AdminGetSession(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Session.AdminGetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -120,12 +120,12 @@ func (s *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (
 }
 
 // Deprecated: Use QuerySessionShort instead
-func (s *SessionService) QuerySession(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) QuerySession(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.QuerySession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.QuerySession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -140,12 +140,12 @@ func (s *SessionService) QuerySession(input *session.QuerySessionParams) (*sessi
 }
 
 // Deprecated: Use CreateSessionShort instead
-func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) CreateSession(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, conflict, internalServerError, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, forbidden, conflict, internalServerError, err := aaa.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -166,12 +166,12 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*ses
 }
 
 // Deprecated: Use GetSessionByUserIDsShort instead
-func (s *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetSessionByUserIDs(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.GetSessionByUserIDs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -186,12 +186,12 @@ func (s *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsP
 }
 
 // Deprecated: Use GetSessionShort instead
-func (s *SessionService) GetSession(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetSession(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -206,12 +206,12 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*sessionbr
 }
 
 // Deprecated: Use UpdateSessionShort instead
-func (s *SessionService) UpdateSession(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) UpdateSession(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.UpdateSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.UpdateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -229,12 +229,12 @@ func (s *SessionService) UpdateSession(input *session.UpdateSessionParams) (*ses
 }
 
 // Deprecated: Use DeleteSessionShort instead
-func (s *SessionService) DeleteSession(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) DeleteSession(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -252,12 +252,12 @@ func (s *SessionService) DeleteSession(input *session.DeleteSessionParams) (*ses
 }
 
 // Deprecated: Use JoinSessionShort instead
-func (s *SessionService) JoinSession(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) JoinSession(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, notFound, internalServerError, err := s.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -278,12 +278,12 @@ func (s *SessionService) JoinSession(input *session.JoinSessionParams) (*session
 }
 
 // Deprecated: Use DeleteSessionLocalDSShort instead
-func (s *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSessionLocalDS(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.DeleteSessionLocalDS(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -301,12 +301,12 @@ func (s *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalD
 }
 
 // Deprecated: Use AddPlayerToSessionShort instead
-func (s *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.AddPlayerToSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.AddPlayerToSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -324,12 +324,12 @@ func (s *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionPar
 }
 
 // Deprecated: Use RemovePlayerFromSessionShort instead
-func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.RemovePlayerFromSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.RemovePlayerFromSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -347,12 +347,12 @@ func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFrom
 }
 
 // Deprecated: Use UpdateSettingsShort instead
-func (s *SessionService) UpdateSettings(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) UpdateSettings(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.UpdateSettings(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Session.UpdateSettings(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -370,12 +370,12 @@ func (s *SessionService) UpdateSettings(input *session.UpdateSettingsParams) (*s
 }
 
 // Deprecated: Use GetRecentPlayerShort instead
-func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetRecentPlayer(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Session.GetRecentPlayer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -389,24 +389,24 @@ func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+func (aaa *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetTotalActiveSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetTotalActiveSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -414,24 +414,24 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+func (aaa *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetActiveCustomGameSessionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetActiveCustomGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -439,24 +439,24 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+func (aaa *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetActiveMatchmakingGameSessionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetActiveMatchmakingGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -464,24 +464,24 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+func (aaa *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.AdminGetSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.AdminGetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -489,24 +489,24 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+func (aaa *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.QuerySessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.QuerySessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -514,24 +514,24 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.CreateSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -539,24 +539,24 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+func (aaa *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetSessionByUserIDsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetSessionByUserIDsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -564,24 +564,24 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) GetSessionShort(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -589,24 +589,24 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sess
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.UpdateSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.UpdateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -614,24 +614,24 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.DeleteSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.DeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -639,24 +639,24 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.JoinSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.JoinSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -664,24 +664,24 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*se
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.DeleteSessionLocalDSShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.DeleteSessionLocalDSShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -689,24 +689,24 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+func (aaa *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.AddPlayerToSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.AddPlayerToSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -714,24 +714,24 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+func (aaa *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -739,24 +739,24 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.UpdateSettingsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.UpdateSettingsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -764,24 +764,24 @@ func (s *SessionService) UpdateSettingsShort(input *session.UpdateSettingsParams
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+func (aaa *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetRecentPlayerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetRecentPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

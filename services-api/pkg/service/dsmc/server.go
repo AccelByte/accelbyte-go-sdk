@@ -23,29 +23,29 @@ type ServerService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *ServerService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *ServerService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use DeregisterLocalServerShort instead
-func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServerParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := s.Client.Server.DeregisterLocalServer(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Server.DeregisterLocalServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -63,12 +63,12 @@ func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServe
 }
 
 // Deprecated: Use RegisterLocalServerShort instead
-func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) RegisterLocalServer(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := s.Client.Server.RegisterLocalServer(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Server.RegisterLocalServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerPar
 }
 
 // Deprecated: Use RegisterServerShort instead
-func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := s.Client.Server.RegisterServer(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Server.RegisterServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -115,12 +115,12 @@ func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsm
 }
 
 // Deprecated: Use ShutdownServerShort instead
-func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) ShutdownServer(input *server.ShutdownServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.ShutdownServer(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Server.ShutdownServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -141,12 +141,12 @@ func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error
 }
 
 // Deprecated: Use GetServerSessionShort instead
-func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) GetServerSession(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.GetServerSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Server.GetServerSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -166,24 +166,24 @@ func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams) error {
+func (aaa *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Server.DeregisterLocalServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Server.DeregisterLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -191,24 +191,24 @@ func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocal
 	return nil
 }
 
-func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
+func (aaa *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Server.RegisterLocalServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Server.RegisterLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -216,24 +216,24 @@ func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServ
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
+func (aaa *ServerService) RegisterServerShort(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Server.RegisterServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Server.RegisterServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -241,24 +241,24 @@ func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) error {
+func (aaa *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Server.ShutdownServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Server.ShutdownServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -266,24 +266,24 @@ func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) 
 	return nil
 }
 
-func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+func (aaa *ServerService) GetServerSessionShort(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Server.GetServerSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Server.GetServerSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

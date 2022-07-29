@@ -45,8 +45,8 @@ type ClientService interface {
 	GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error)
 	GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
 	GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
-	ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsOK, *ImportStatsBadRequest, error)
-	ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsOK, error)
+	ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, error)
+	ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, error)
 	QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error)
 	QueryStatsShort(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error)
 	UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatNotFound, error)
@@ -602,7 +602,7 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 
   Import stat configurations for a given namespace from file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsOK, *ImportStatsBadRequest, error) {
+func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportStatsParams()
@@ -635,7 +635,7 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 
 	switch v := result.(type) {
 
-	case *ImportStatsOK:
+	case *ImportStatsCreated:
 		return v, nil, nil
 
 	case *ImportStatsBadRequest:
@@ -646,7 +646,7 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 	}
 }
 
-func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsOK, error) {
+func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportStatsParams()
@@ -679,7 +679,7 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 
 	switch v := result.(type) {
 
-	case *ImportStatsOK:
+	case *ImportStatsCreated:
 		return v, nil
 	case *ImportStatsBadRequest:
 		return nil, v

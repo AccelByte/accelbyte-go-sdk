@@ -67,13 +67,25 @@ func NewAdminPostGameRecordHandlerV1Created() *AdminPostGameRecordHandlerV1Creat
   Record in namespace-level saved
 */
 type AdminPostGameRecordHandlerV1Created struct {
+	Payload *cloudsaveclientmodels.ModelsGameRecordResponse
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created ", 201)
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created  %+v", 201, o.Payload)
+}
+
+func (o *AdminPostGameRecordHandlerV1Created) GetPayload() *cloudsaveclientmodels.ModelsGameRecordResponse {
+	return o.Payload
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

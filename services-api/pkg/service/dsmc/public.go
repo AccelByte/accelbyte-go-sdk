@@ -23,29 +23,29 @@ type PublicService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetDefaultProviderShort instead
-func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.GetDefaultProvider(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Public.GetDefaultProvider(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParam
 }
 
 // Deprecated: Use ListProvidersShort instead
-func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]string, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicService) ListProviders(input *public.ListProvidersParams) ([]string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.ListProviders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Public.ListProviders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -68,37 +68,12 @@ func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]stri
 }
 
 // Deprecated: Use ListProvidersByRegionShort instead
-func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.ListProvidersByRegion(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := p.Client.Public.GetDefaultProviderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Public.ListProvidersByRegion(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -106,24 +81,24 @@ func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvider
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([]string, error) {
+func (aaa *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Public.ListProvidersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Public.GetDefaultProviderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -131,24 +106,49 @@ func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+func (aaa *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Public.ListProvidersByRegionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Public.ListProvidersShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Public.ListProvidersByRegionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

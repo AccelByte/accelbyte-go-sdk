@@ -23,29 +23,29 @@ type TerminatedServersService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (t *TerminatedServersService) GetAuthSession() auth.Session {
-	if t.RefreshTokenRepository != nil {
+func (aaa *TerminatedServersService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			t.TokenRepository,
-			t.ConfigRepository,
-			t.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		t.TokenRepository,
-		t.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListTerminatedServersShort instead
-func (t *TerminatedServersService) ListTerminatedServers(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TerminatedServersService) ListTerminatedServers(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := t.Client.TerminatedServers.ListTerminatedServers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.TerminatedServers.ListTerminatedServers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -63,12 +63,12 @@ func (t *TerminatedServersService) ListTerminatedServers(input *terminated_serve
 }
 
 // Deprecated: Use DownloadServerLogsShort instead
-func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams) error {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, internalServerError, err := t.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*token.AccessToken))
+	_, notFound, internalServerError, err := aaa.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -83,12 +83,12 @@ func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.
 }
 
 // Deprecated: Use CheckServerLogsShort instead
-func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TerminatedServersService) CheckServerLogs(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := t.Client.TerminatedServers.CheckServerLogs(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.TerminatedServers.CheckServerLogs(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -102,24 +102,24 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+func (aaa *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, authInfoWriter)
+	ok, err := aaa.Client.TerminatedServers.ListTerminatedServersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -127,24 +127,24 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
+func (aaa *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := t.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter)
+	_, err := aaa.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -152,24 +152,24 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 	return nil
 }
 
-func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+func (aaa *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, authInfoWriter)
+	ok, err := aaa.Client.TerminatedServers.CheckServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -23,29 +23,29 @@ type PublicLikeService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicLikeService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicLikeService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetLikedContentShort instead
-func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicLike.GetLikedContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicLike.GetLikedContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentPa
 }
 
 // Deprecated: Use UpdateContentLikeStatusShort instead
-func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := p.Client.PublicLike.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicLike.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -85,24 +85,24 @@ func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateCon
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (aaa *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicLike.GetLikedContentShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicLike.GetLikedContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -110,24 +110,24 @@ func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedCont
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+func (aaa *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicLike.UpdateContentLikeStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicLike.UpdateContentLikeStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

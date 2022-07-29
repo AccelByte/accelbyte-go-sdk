@@ -73,13 +73,25 @@ func NewPutPlayerPublicRecordHandlerV1OK() *PutPlayerPublicRecordHandlerV1OK {
   Record saved
 */
 type PutPlayerPublicRecordHandlerV1OK struct {
+	Payload *cloudsaveclientmodels.ModelsPlayerRecordResponse
 }
 
 func (o *PutPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1OK ", 200)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1OK  %+v", 200, o.Payload)
+}
+
+func (o *PutPlayerPublicRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecordResponse {
+	return o.Payload
 }
 
 func (o *PutPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecordResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -22,29 +22,29 @@ type AnonymizationService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AnonymizationService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AnonymizationService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AnonymizeCampaignShort instead
-func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeCampaignParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeCampaignParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeCampaign(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeCampaign(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -53,12 +53,12 @@ func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeC
 }
 
 // Deprecated: Use AnonymizeEntitlementShort instead
-func (a *AnonymizationService) AnonymizeEntitlement(input *anonymization.AnonymizeEntitlementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeEntitlement(input *anonymization.AnonymizeEntitlementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeEntitlement(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeEntitlement(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -67,12 +67,12 @@ func (a *AnonymizationService) AnonymizeEntitlement(input *anonymization.Anonymi
 }
 
 // Deprecated: Use AnonymizeFulfillmentShort instead
-func (a *AnonymizationService) AnonymizeFulfillment(input *anonymization.AnonymizeFulfillmentParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeFulfillment(input *anonymization.AnonymizeFulfillmentParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeFulfillment(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeFulfillment(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -81,12 +81,12 @@ func (a *AnonymizationService) AnonymizeFulfillment(input *anonymization.Anonymi
 }
 
 // Deprecated: Use AnonymizeIntegrationShort instead
-func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.AnonymizeIntegrationParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeIntegration(input *anonymization.AnonymizeIntegrationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeIntegration(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeIntegration(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -95,12 +95,12 @@ func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.Anonymi
 }
 
 // Deprecated: Use AnonymizeOrderShort instead
-func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrderParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrderParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeOrder(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeOrder(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -109,12 +109,12 @@ func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrde
 }
 
 // Deprecated: Use AnonymizePaymentShort instead
-func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePaymentParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePaymentParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizePayment(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizePayment(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -123,12 +123,12 @@ func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePa
 }
 
 // Deprecated: Use AnonymizeSubscriptionShort instead
-func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeSubscription(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Anonymization.AnonymizeSubscription(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -137,37 +137,12 @@ func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.Anonym
 }
 
 // Deprecated: Use AnonymizeWalletShort instead
-func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWalletParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWalletParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Anonymization.AnonymizeWallet(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := a.Client.Anonymization.AnonymizeCampaignShort(input, authInfoWriter)
+	_, err = aaa.Client.Anonymization.AnonymizeWallet(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -175,24 +150,24 @@ func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.Anony
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams) error {
+func (aaa *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeEntitlementShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -200,24 +175,24 @@ func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams) error {
+func (aaa *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeFulfillmentShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -225,24 +200,24 @@ func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams) error {
+func (aaa *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeIntegrationShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeFulfillmentShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -250,24 +225,24 @@ func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams) error {
+func (aaa *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeOrderShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeIntegrationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -275,24 +250,24 @@ func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.Anonymiz
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams) error {
+func (aaa *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizePaymentShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeOrderShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -300,24 +275,24 @@ func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anonym
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams) error {
+func (aaa *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeSubscriptionShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizePaymentShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -325,24 +300,49 @@ func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.A
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams) error {
+func (aaa *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeWalletShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Anonymization.AnonymizeWalletShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

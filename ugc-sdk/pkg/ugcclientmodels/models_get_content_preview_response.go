@@ -17,9 +17,12 @@ import (
 // swagger:model models.GetContentPreviewResponse
 type ModelsGetContentPreviewResponse struct {
 
-	// preview
+	// Preview is legacy code, please use Screenshot instead
 	// Required: true
 	Preview *string `json:"preview"`
+
+	// preview URL
+	PreviewURL *ModelsPreviewURL `json:"previewURL,omitempty"`
 }
 
 // Validate validates this models get content preview response
@@ -27,6 +30,10 @@ func (m *ModelsGetContentPreviewResponse) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validatePreview(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreviewURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,6 +47,24 @@ func (m *ModelsGetContentPreviewResponse) validatePreview(formats strfmt.Registr
 
 	if err := validate.Required("preview", "body", m.Preview); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetContentPreviewResponse) validatePreviewURL(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PreviewURL) { // not required
+		return nil
+	}
+
+	if m.PreviewURL != nil {
+		if err := m.PreviewURL.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previewURL")
+			}
+			return err
+		}
 	}
 
 	return nil

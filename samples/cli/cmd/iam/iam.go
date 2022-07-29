@@ -12,9 +12,9 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
 	"github.com/AccelByte/sample-apps/cmd/iam/clientsDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
-	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20Extension"
+	"github.com/AccelByte/sample-apps/cmd/iam/oAuthDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/roles"
 	"github.com/AccelByte/sample-apps/cmd/iam/rolesDeprecated"
 	"github.com/AccelByte/sample-apps/cmd/iam/sso"
@@ -85,15 +85,15 @@ func init() {
 	IamCmd.AddCommand(users.UpgradeHeadlessAccountWithVerificationCodeCmd)
 	IamCmd.AddCommand(users.UserVerificationCmd)
 	IamCmd.AddCommand(users.SendVerificationCodeCmd)
-	IamCmd.AddCommand(oAuth.AuthorizationCmd)
-	IamCmd.AddCommand(oAuth.GetJWKSCmd)
-	IamCmd.AddCommand(oAuth.PlatformTokenRequestHandlerCmd)
-	IamCmd.AddCommand(oAuth.RevokeUserCmd)
-	IamCmd.AddCommand(oAuth.GetRevocationListCmd)
-	IamCmd.AddCommand(oAuth.RevokeTokenCmd)
-	IamCmd.AddCommand(oAuth.RevokeAUserCmd)
-	IamCmd.AddCommand(oAuth.TokenGrantCmd)
-	IamCmd.AddCommand(oAuth.VerifyTokenCmd)
+	IamCmd.AddCommand(oAuthDeprecated.AuthorizationCmd)
+	IamCmd.AddCommand(oAuthDeprecated.GetJWKSCmd)
+	IamCmd.AddCommand(oAuthDeprecated.PlatformTokenRequestHandlerCmd)
+	IamCmd.AddCommand(oAuthDeprecated.RevokeUserCmd)
+	IamCmd.AddCommand(oAuthDeprecated.GetRevocationListCmd)
+	IamCmd.AddCommand(oAuthDeprecated.RevokeTokenCmd)
+	IamCmd.AddCommand(oAuthDeprecated.RevokeAUserCmd)
+	IamCmd.AddCommand(oAuthDeprecated.TokenGrantCmd)
+	IamCmd.AddCommand(oAuthDeprecated.VerifyTokenCmd)
 	IamCmd.AddCommand(rolesDeprecated.GetRolesCmd)
 	IamCmd.AddCommand(rolesDeprecated.CreateRoleCmd)
 	IamCmd.AddCommand(rolesDeprecated.GetRoleCmd)
@@ -245,9 +245,11 @@ func init() {
 	IamCmd.AddCommand(oAuth20.GetRevocationListV3Cmd)
 	IamCmd.AddCommand(oAuth20.TokenRevocationV3Cmd)
 	IamCmd.AddCommand(oAuth20.TokenGrantV3Cmd)
+	IamCmd.AddCommand(oAuth20.VerifyTokenV3Cmd)
 	IamCmd.AddCommand(oAuth20Extension.PlatformAuthenticationV3Cmd)
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationsCmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd)
+	IamCmd.AddCommand(thirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Cmd)
 	IamCmd.AddCommand(users.PublicListUserIDByPlatformUserIDsV3Cmd)
 	IamCmd.AddCommand(users.PublicGetUserByPlatformUserIDV3Cmd)
 	IamCmd.AddCommand(users.PublicGetAsyncStatusCmd)

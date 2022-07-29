@@ -23,29 +23,29 @@ type UsersService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (u *UsersService) GetAuthSession() auth.Session {
-	if u.RefreshTokenRepository != nil {
+func (aaa *UsersService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			u.TokenRepository,
-			u.ConfigRepository,
-			u.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		u.TokenRepository,
-		u.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use CreateUserShort instead
-func (u *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.CreateUser(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Users.CreateUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -66,12 +66,12 @@ func (u *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmode
 }
 
 // Deprecated: Use GetAdminUsersByRoleIDShort instead
-func (u *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleID(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.GetAdminUsersByRoleID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -95,12 +95,12 @@ func (u *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDP
 }
 
 // Deprecated: Use GetUserByLoginIDShort instead
-func (u *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := u.Client.Users.GetUserByLoginID(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Users.GetUserByLoginID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -118,12 +118,12 @@ func (u *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*i
 }
 
 // Deprecated: Use GetUserByPlatformUserIDShort instead
-func (u *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserByPlatformUserID(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetUserByPlatformUserID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -144,10 +144,10 @@ func (u *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUse
 }
 
 // Deprecated: Use ForgotPasswordShort instead
-func (u *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
-	clientID := u.ConfigRepository.GetClientId()
-	clientSecret := u.ConfigRepository.GetClientSecret()
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ForgotPassword(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.ForgotPassword(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -168,12 +168,12 @@ func (u *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
 }
 
 // Deprecated: Use GetUsersByLoginIdsShort instead
-func (u *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUsersByLoginIds(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Users.GetUsersByLoginIds(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -191,10 +191,10 @@ func (u *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams)
 }
 
 // Deprecated: Use ResetPasswordShort instead
-func (u *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
-	clientID := u.ConfigRepository.GetClientId()
-	clientSecret := u.ConfigRepository.GetClientSecret()
-	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.ResetPassword(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	_, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.Users.ResetPassword(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -215,12 +215,12 @@ func (u *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
 }
 
 // Deprecated: Use SearchUserShort instead
-func (u *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.SearchUser(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Users.SearchUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -238,12 +238,12 @@ func (u *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmode
 }
 
 // Deprecated: Use GetUserByUserIDShort instead
-func (u *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.GetUserByUserID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Users.GetUserByUserID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -258,12 +258,12 @@ func (u *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iam
 }
 
 // Deprecated: Use UpdateUserShort instead
-func (u *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.UpdateUser(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.UpdateUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -287,12 +287,12 @@ func (u *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmode
 }
 
 // Deprecated: Use DeleteUserShort instead
-func (u *UsersService) DeleteUser(input *users.DeleteUserParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DeleteUser(input *users.DeleteUserParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUser(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, err := aaa.Client.Users.DeleteUser(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -310,12 +310,12 @@ func (u *UsersService) DeleteUser(input *users.DeleteUserParams) error {
 }
 
 // Deprecated: Use BanUserShort instead
-func (u *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.BanUser(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.BanUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -339,12 +339,12 @@ func (u *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.Mod
 }
 
 // Deprecated: Use GetUserBanHistoryShort instead
-func (u *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserBanHistory(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetUserBanHistory(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -362,12 +362,12 @@ func (u *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) (
 }
 
 // Deprecated: Use DisableUserBanShort instead
-func (u *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUserBan(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.DisableUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -388,12 +388,12 @@ func (u *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamcl
 }
 
 // Deprecated: Use EnableUserBanShort instead
-func (u *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUserBan(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.EnableUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -414,12 +414,12 @@ func (u *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclie
 }
 
 // Deprecated: Use ListCrossNamespaceAccountLinkShort instead
-func (u *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNamespaceAccountLinkParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNamespaceAccountLinkParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ListCrossNamespaceAccountLink(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.ListCrossNamespaceAccountLink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -440,12 +440,12 @@ func (u *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNames
 }
 
 // Deprecated: Use DisableUserShort instead
-func (u *UsersService) DisableUser(input *users.DisableUserParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DisableUser(input *users.DisableUserParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUser(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.DisableUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -469,12 +469,12 @@ func (u *UsersService) DisableUser(input *users.DisableUserParams) error {
 }
 
 // Deprecated: Use EnableUserShort instead
-func (u *UsersService) EnableUser(input *users.EnableUserParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) EnableUser(input *users.EnableUserParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUser(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.EnableUser(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -495,12 +495,12 @@ func (u *UsersService) EnableUser(input *users.EnableUserParams) error {
 }
 
 // Deprecated: Use GetUserInformationShort instead
-func (u *UsersService) GetUserInformation(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserInformation(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserInformation(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetUserInformation(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -518,12 +518,12 @@ func (u *UsersService) GetUserInformation(input *users.GetUserInformationParams)
 }
 
 // Deprecated: Use DeleteUserInformationShort instead
-func (u *UsersService) DeleteUserInformation(input *users.DeleteUserInformationParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DeleteUserInformation(input *users.DeleteUserInformationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserInformation(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, err := aaa.Client.Users.DeleteUserInformation(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -541,12 +541,12 @@ func (u *UsersService) DeleteUserInformation(input *users.DeleteUserInformationP
 }
 
 // Deprecated: Use GetUserLoginHistoriesShort instead
-func (u *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserLoginHistories(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetUserLoginHistories(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -564,12 +564,12 @@ func (u *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesP
 }
 
 // Deprecated: Use UpdatePasswordShort instead
-func (u *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UpdatePassword(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.UpdatePassword(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -593,12 +593,12 @@ func (u *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
 }
 
 // Deprecated: Use SaveUserPermissionShort instead
-func (u *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.SaveUserPermission(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.SaveUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -619,12 +619,12 @@ func (u *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams)
 }
 
 // Deprecated: Use AddUserPermissionShort instead
-func (u *UsersService) AddUserPermission(input *users.AddUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AddUserPermission(input *users.AddUserPermissionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AddUserPermission(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AddUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -645,12 +645,12 @@ func (u *UsersService) AddUserPermission(input *users.AddUserPermissionParams) e
 }
 
 // Deprecated: Use DeleteUserPermissionShort instead
-func (u *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserPermission(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.DeleteUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -671,12 +671,12 @@ func (u *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionPar
 }
 
 // Deprecated: Use GetUserPlatformAccountsShort instead
-func (u *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserPlatformAccounts(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Users.GetUserPlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -694,12 +694,12 @@ func (u *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccou
 }
 
 // Deprecated: Use GetUserMappingShort instead
-func (u *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserMapping(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetUserMapping(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -720,12 +720,12 @@ func (u *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamcl
 }
 
 // Deprecated: Use GetUserJusticePlatformAccountShort instead
-func (u *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserJusticePlatformAccount(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Users.GetUserJusticePlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -743,12 +743,12 @@ func (u *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJustice
 }
 
 // Deprecated: Use PlatformLinkShort instead
-func (u *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PlatformLink(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.PlatformLink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -775,12 +775,12 @@ func (u *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
 }
 
 // Deprecated: Use PlatformUnlinkShort instead
-func (u *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PlatformUnlink(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PlatformUnlink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -804,12 +804,12 @@ func (u *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
 }
 
 // Deprecated: Use GetPublisherUserShort instead
-func (u *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetPublisherUser(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetPublisherUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -830,12 +830,12 @@ func (u *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*i
 }
 
 // Deprecated: Use SaveUserRolesShort instead
-func (u *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.SaveUserRoles(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.SaveUserRoles(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -859,12 +859,12 @@ func (u *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
 }
 
 // Deprecated: Use AddUserRoleShort instead
-func (u *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AddUserRole(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AddUserRole(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -888,12 +888,12 @@ func (u *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
 }
 
 // Deprecated: Use DeleteUserRoleShort instead
-func (u *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DeleteUserRole(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.DeleteUserRole(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -914,12 +914,12 @@ func (u *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
 }
 
 // Deprecated: Use UpgradeHeadlessAccountShort instead
-func (u *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccount(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, conflict, err := aaa.Client.Users.UpgradeHeadlessAccount(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -937,12 +937,12 @@ func (u *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccoun
 }
 
 // Deprecated: Use UpgradeHeadlessAccountWithVerificationCodeShort instead
-func (u *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCode(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Users.UpgradeHeadlessAccountWithVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -963,12 +963,12 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.U
 }
 
 // Deprecated: Use UserVerificationShort instead
-func (u *UsersService) UserVerification(input *users.UserVerificationParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UserVerification(input *users.UserVerificationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UserVerification(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.UserVerification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -992,12 +992,12 @@ func (u *UsersService) UserVerification(input *users.UserVerificationParams) err
 }
 
 // Deprecated: Use SendVerificationCodeShort instead
-func (u *UsersService) SendVerificationCode(input *users.SendVerificationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) SendVerificationCode(input *users.SendVerificationCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, internalServerError, err := u.Client.Users.SendVerificationCode(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, internalServerError, err := aaa.Client.Users.SendVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1027,12 +1027,12 @@ func (u *UsersService) SendVerificationCode(input *users.SendVerificationCodePar
 }
 
 // Deprecated: Use AdminGetAgeRestrictionStatusV2Short instead
-func (u *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetAgeRestrictionStatusV2(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetAgeRestrictionStatusV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1050,12 +1050,12 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRe
 }
 
 // Deprecated: Use AdminUpdateAgeRestrictionConfigV2Short instead
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminUpdateAgeRestrictionConfigV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1076,12 +1076,12 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdat
 }
 
 // Deprecated: Use GetListCountryAgeRestrictionShort instead
-func (u *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetListCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.GetListCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1099,12 +1099,12 @@ func (u *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryA
 }
 
 // Deprecated: Use UpdateCountryAgeRestrictionShort instead
-func (u *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.UpdateCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.UpdateCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1125,12 +1125,12 @@ func (u *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAge
 }
 
 // Deprecated: Use AdminSearchUsersV2Short instead
-func (u *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.AdminSearchUsersV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Users.AdminSearchUsersV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1148,12 +1148,12 @@ func (u *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params)
 }
 
 // Deprecated: Use AdminGetUserByUserIDV2Short instead
-func (u *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -1168,12 +1168,12 @@ func (u *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV
 }
 
 // Deprecated: Use AdminUpdateUserV2Short instead
-func (u *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminUpdateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1197,12 +1197,12 @@ func (u *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (
 }
 
 // Deprecated: Use AdminBanUserV2Short instead
-func (u *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminBanUserV2(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminBanUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1226,12 +1226,12 @@ func (u *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamcl
 }
 
 // Deprecated: Use AdminGetUserBanV2Short instead
-func (u *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV2(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserBanV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1249,12 +1249,12 @@ func (u *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) (
 }
 
 // Deprecated: Use AdminDisableUserV2Short instead
-func (u *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDisableUserV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDisableUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1278,12 +1278,12 @@ func (u *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params)
 }
 
 // Deprecated: Use AdminEnableUserV2Short instead
-func (u *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminEnableUserV2(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminEnableUserV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -1304,12 +1304,12 @@ func (u *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) e
 }
 
 // Deprecated: Use AdminResetPasswordV2Short instead
-func (u *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminResetPasswordV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminResetPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1333,12 +1333,12 @@ func (u *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Par
 }
 
 // Deprecated: Use AdminDeletePlatformLinkV2Short instead
-func (u *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatformLinkV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1362,12 +1362,12 @@ func (u *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatfor
 }
 
 // Deprecated: Use AdminPutUserRolesV2Short instead
-func (u *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminPutUserRolesV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminPutUserRolesV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1388,12 +1388,12 @@ func (u *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Param
 }
 
 // Deprecated: Use AdminCreateUserRolesV2Short instead
-func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminCreateUserRolesV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.AdminCreateUserRolesV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1417,12 +1417,12 @@ func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV
 }
 
 // Deprecated: Use PublicGetCountryAgeRestrictionShort instead
-func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, err := u.Client.Users.PublicGetCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, err := aaa.Client.Users.PublicGetCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1437,12 +1437,12 @@ func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCoun
 }
 
 // Deprecated: Use PublicCreateUserV2Short instead
-func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicCreateUserV2(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Users.PublicCreateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1463,12 +1463,12 @@ func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params)
 }
 
 // Deprecated: Use PublicForgotPasswordV2Short instead
-func (u *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, tooManyRequests, internalServerError, err := u.Client.Users.PublicForgotPasswordV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, tooManyRequests, internalServerError, err := aaa.Client.Users.PublicForgotPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1489,12 +1489,12 @@ func (u *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV
 }
 
 // Deprecated: Use PublicResetPasswordV2Short instead
-func (u *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.PublicResetPasswordV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicResetPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1515,12 +1515,12 @@ func (u *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2P
 }
 
 // Deprecated: Use PublicGetUserByUserIDV2Short instead
-func (u *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -1535,12 +1535,12 @@ func (u *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserI
 }
 
 // Deprecated: Use PublicUpdateUserV2Short instead
-func (u *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicUpdateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1564,12 +1564,12 @@ func (u *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params)
 }
 
 // Deprecated: Use PublicGetUserBanShort instead
-func (u *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserBan(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1587,12 +1587,12 @@ func (u *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]
 }
 
 // Deprecated: Use PublicUpdatePasswordV2Short instead
-func (u *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicUpdatePasswordV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicUpdatePasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1616,12 +1616,12 @@ func (u *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV
 }
 
 // Deprecated: Use GetListJusticePlatformAccountsShort instead
-func (u *UsersService) GetListJusticePlatformAccounts(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetListJusticePlatformAccounts(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := u.Client.Users.GetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Users.GetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1636,12 +1636,12 @@ func (u *UsersService) GetListJusticePlatformAccounts(input *users.GetListJustic
 }
 
 // Deprecated: Use PublicPlatformLinkV2Short instead
-func (u *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicPlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1668,12 +1668,12 @@ func (u *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Par
 }
 
 // Deprecated: Use PublicDeletePlatformLinkV2Short instead
-func (u *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatformLinkV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1697,12 +1697,12 @@ func (u *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatf
 }
 
 // Deprecated: Use ListAdminsV3Short instead
-func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.ListAdminsV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.ListAdminsV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1720,12 +1720,12 @@ func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclient
 }
 
 // Deprecated: Use AdminGetAgeRestrictionStatusV3Short instead
-func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetAgeRestrictionStatusV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetAgeRestrictionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1749,12 +1749,12 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRe
 }
 
 // Deprecated: Use AdminUpdateAgeRestrictionConfigV3Short instead
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminUpdateAgeRestrictionConfigV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1775,12 +1775,12 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdat
 }
 
 // Deprecated: Use AdminGetListCountryAgeRestrictionV3Short instead
-func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminGetListCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1801,12 +1801,12 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGet
 }
 
 // Deprecated: Use AdminUpdateCountryAgeRestrictionV3Short instead
-func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminUpdateCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1830,12 +1830,12 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpda
 }
 
 // Deprecated: Use AdminGetUserByPlatformUserIDV3Short instead
-func (u *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1856,12 +1856,12 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserB
 }
 
 // Deprecated: Use GetAdminUsersByRoleIDV3Short instead
-func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.GetAdminUsersByRoleIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1885,12 +1885,12 @@ func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleI
 }
 
 // Deprecated: Use AdminGetUserByEmailAddressV3Short instead
-func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1914,12 +1914,12 @@ func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByE
 }
 
 // Deprecated: Use AdminListUserIDByUserIDsV3Short instead
-func (u *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUserIDByUserIDsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminListUserIDByUserIDsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1940,12 +1940,12 @@ func (u *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDBy
 }
 
 // Deprecated: Use AdminInviteUserV3Short instead
-func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := u.Client.Users.AdminInviteUserV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminInviteUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1969,12 +1969,12 @@ func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (
 }
 
 // Deprecated: Use AdminListUsersV3Short instead
-func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUsersV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminListUsersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1995,12 +1995,12 @@ func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*i
 }
 
 // Deprecated: Use AdminSearchUserV3Short instead
-func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminSearchUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminSearchUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2021,12 +2021,12 @@ func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (
 }
 
 // Deprecated: Use AdminGetBulkUserByEmailAddressV3Short instead
-func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetBulkUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2050,12 +2050,12 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBul
 }
 
 // Deprecated: Use AdminGetUserByUserIDV3Short instead
-func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2079,12 +2079,12 @@ func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV
 }
 
 // Deprecated: Use AdminUpdateUserV3Short instead
-func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminUpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2111,12 +2111,12 @@ func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (
 }
 
 // Deprecated: Use AdminGetUserBanV3Short instead
-func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2137,12 +2137,12 @@ func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (
 }
 
 // Deprecated: Use AdminBanUserV3Short instead
-func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminBanUserV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminBanUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2163,12 +2163,12 @@ func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamcl
 }
 
 // Deprecated: Use AdminUpdateUserBanV3Short instead
-func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserBanV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminUpdateUserBanV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2192,12 +2192,12 @@ func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Par
 }
 
 // Deprecated: Use AdminSendVerificationCodeV3Short instead
-func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerificationCodeV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, err := u.Client.Users.AdminSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, err := aaa.Client.Users.AdminSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2224,12 +2224,12 @@ func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerific
 }
 
 // Deprecated: Use AdminVerifyAccountV3Short instead
-func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminVerifyAccountV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminVerifyAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2253,12 +2253,12 @@ func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Par
 }
 
 // Deprecated: Use GetUserVerificationCodeShort instead
-func (u *UsersService) GetUserVerificationCode(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetUserVerificationCode(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetUserVerificationCode(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.GetUserVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2279,12 +2279,12 @@ func (u *UsersService) GetUserVerificationCode(input *users.GetUserVerificationC
 }
 
 // Deprecated: Use AdminGetUserDeletionStatusV3Short instead
-func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2305,12 +2305,12 @@ func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDel
 }
 
 // Deprecated: Use AdminUpdateUserDeletionStatusV3Short instead
-func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUserDeletionStatusV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUserDeletionStatusV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminUpdateUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2334,12 +2334,12 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateU
 }
 
 // Deprecated: Use AdminUpgradeHeadlessAccountV3Short instead
-func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2366,12 +2366,12 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHe
 }
 
 // Deprecated: Use AdminDeleteUserInformationV3Short instead
-func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserInformationV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserInformationV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserInformationV3(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserInformationV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -2389,12 +2389,12 @@ func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUser
 }
 
 // Deprecated: Use AdminGetUserLoginHistoriesV3Short instead
-func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2412,12 +2412,12 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLog
 }
 
 // Deprecated: Use AdminUpdateUserPermissionV3Short instead
-func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserPermissionV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminUpdateUserPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2438,12 +2438,12 @@ func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserP
 }
 
 // Deprecated: Use AdminAddUserPermissionsV3Short instead
-func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermissionsV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermissionsV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminAddUserPermissionsV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminAddUserPermissionsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2464,12 +2464,12 @@ func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermis
 }
 
 // Deprecated: Use AdminDeleteUserPermissionBulkV3Short instead
-func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUserPermissionBulkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUserPermissionBulkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionBulkV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserPermissionBulkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2490,12 +2490,12 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteU
 }
 
 // Deprecated: Use AdminDeleteUserPermissionV3Short instead
-func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPermissionV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPermissionV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2516,12 +2516,12 @@ func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserP
 }
 
 // Deprecated: Use AdminGetUserPlatformAccountsV3Short instead
-func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2542,12 +2542,12 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserP
 }
 
 // Deprecated: Use AdminGetListJusticePlatformAccountsShort instead
-func (u *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2571,12 +2571,12 @@ func (u *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGet
 }
 
 // Deprecated: Use AdminCreateJusticeUserShort instead
-func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2600,12 +2600,12 @@ func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUse
 }
 
 // Deprecated: Use AdminLinkPlatformAccountShort instead
-func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAccountParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAccountParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2626,12 +2626,12 @@ func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAc
 }
 
 // Deprecated: Use AdminPlatformUnlinkV3Short instead
-func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2655,12 +2655,12 @@ func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3P
 }
 
 // Deprecated: Use AdminPlatformLinkV3Short instead
-func (u *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.AdminPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2687,12 +2687,12 @@ func (u *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Param
 }
 
 // Deprecated: Use AdminDeleteUserRolesV3Short instead
-func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRolesV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserRolesV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2713,12 +2713,12 @@ func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV
 }
 
 // Deprecated: Use AdminSaveUserRoleV3Short instead
-func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := u.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2742,12 +2742,12 @@ func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Param
 }
 
 // Deprecated: Use AdminAddUserRoleV3Short instead
-func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2771,12 +2771,12 @@ func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params)
 }
 
 // Deprecated: Use AdminDeleteUserRoleV3Short instead
-func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2797,12 +2797,12 @@ func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3P
 }
 
 // Deprecated: Use AdminUpdateUserStatusV3Short instead
-func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatusV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatusV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2823,12 +2823,12 @@ func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatu
 }
 
 // Deprecated: Use AdminVerifyUserWithoutVerificationCodeV3Short instead
-func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2852,12 +2852,12 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.Adm
 }
 
 // Deprecated: Use AdminGetMyUserV3Short instead
-func (u *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := u.Client.Users.AdminGetMyUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Users.AdminGetMyUserV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2872,12 +2872,12 @@ func (u *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*i
 }
 
 // Deprecated: Use PublicListUserIDByPlatformUserIDsV3Short instead
-func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.PublicListUserIDByPlatformUserIDsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2898,12 +2898,12 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicLi
 }
 
 // Deprecated: Use PublicGetUserByPlatformUserIDV3Short instead
-func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2924,12 +2924,12 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUse
 }
 
 // Deprecated: Use PublicGetAsyncStatusShort instead
-func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicGetAsyncStatus(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.PublicGetAsyncStatus(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2947,12 +2947,12 @@ func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusPar
 }
 
 // Deprecated: Use PublicSearchUserV3Short instead
-func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicSearchUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Users.PublicSearchUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2973,12 +2973,12 @@ func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params)
 }
 
 // Deprecated: Use PublicCreateUserV3Short instead
-func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicCreateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2999,12 +2999,12 @@ func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params)
 }
 
 // Deprecated: Use CheckUserAvailabilityShort instead
-func (u *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, err := u.Client.Users.CheckUserAvailability(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, err := aaa.Client.Users.CheckUserAvailability(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3028,12 +3028,12 @@ func (u *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityP
 }
 
 // Deprecated: Use PublicBulkGetUsersShort instead
-func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := u.Client.Users.PublicBulkGetUsers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Users.PublicBulkGetUsers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3048,12 +3048,12 @@ func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams)
 }
 
 // Deprecated: Use PublicSendRegistrationCodeShort instead
-func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistrationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistrationCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, conflict, err := u.Client.Users.PublicSendRegistrationCode(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, conflict, err := aaa.Client.Users.PublicSendRegistrationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3068,12 +3068,12 @@ func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistr
 }
 
 // Deprecated: Use PublicVerifyRegistrationCodeShort instead
-func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyRegistrationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyRegistrationCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := u.Client.Users.PublicVerifyRegistrationCode(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Users.PublicVerifyRegistrationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3085,12 +3085,12 @@ func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyReg
 }
 
 // Deprecated: Use PublicForgotPasswordV3Short instead
-func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, tooManyRequests, err := u.Client.Users.PublicForgotPasswordV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, tooManyRequests, err := aaa.Client.Users.PublicForgotPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3108,12 +3108,12 @@ func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV
 }
 
 // Deprecated: Use GetAdminInvitationV3Short instead
-func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.GetAdminInvitationV3(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.Users.GetAdminInvitationV3(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -3128,12 +3128,12 @@ func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Par
 }
 
 // Deprecated: Use CreateUserFromInvitationV3Short instead
-func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, internalServerError, err := u.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, internalServerError, err := aaa.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3151,12 +3151,12 @@ func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInv
 }
 
 // Deprecated: Use UpdateUserV3Short instead
-func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.UpdateUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Users.UpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3177,12 +3177,12 @@ func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclie
 }
 
 // Deprecated: Use PublicUpdateUserV3Short instead
-func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Users.PublicUpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3203,12 +3203,12 @@ func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params)
 }
 
 // Deprecated: Use PublicSendVerificationCodeV3Short instead
-func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerificationCodeV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err := u.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err := aaa.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3232,12 +3232,12 @@ func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerif
 }
 
 // Deprecated: Use PublicUserVerificationV3Short instead
-func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificationV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificationV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicUserVerificationV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Users.PublicUserVerificationV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3258,12 +3258,12 @@ func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificat
 }
 
 // Deprecated: Use PublicUpgradeHeadlessAccountV3Short instead
-func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3290,12 +3290,12 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgrade
 }
 
 // Deprecated: Use PublicVerifyHeadlessAccountV3Short instead
-func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicVerifyHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicVerifyHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3319,12 +3319,12 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHe
 }
 
 // Deprecated: Use PublicUpdatePasswordV3Short instead
-func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := u.Client.Users.PublicUpdatePasswordV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Users.PublicUpdatePasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3342,12 +3342,12 @@ func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV
 }
 
 // Deprecated: Use PublicCreateJusticeUserShort instead
-func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3371,12 +3371,12 @@ func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeU
 }
 
 // Deprecated: Use PublicPlatformLinkV3Short instead
-func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Users.PublicPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3400,12 +3400,12 @@ func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Par
 }
 
 // Deprecated: Use PublicPlatformUnlinkV3Short instead
-func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Users.PublicPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3426,12 +3426,12 @@ func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV
 }
 
 // Deprecated: Use PublicPlatformUnlinkAllV3Short instead
-func (u *UsersService) PublicPlatformUnlinkAllV3(input *users.PublicPlatformUnlinkAllV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicPlatformUnlinkAllV3(input *users.PublicPlatformUnlinkAllV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicPlatformUnlinkAllV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Users.PublicPlatformUnlinkAllV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3452,12 +3452,12 @@ func (u *UsersService) PublicPlatformUnlinkAllV3(input *users.PublicPlatformUnli
 }
 
 // Deprecated: Use PublicWebLinkPlatformShort instead
-func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, err := u.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, err := aaa.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3475,12 +3475,12 @@ func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformP
 }
 
 // Deprecated: Use PublicWebLinkPlatformEstablishShort instead
-func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := u.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -3489,12 +3489,12 @@ func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLink
 }
 
 // Deprecated: Use ResetPasswordV3Short instead
-func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, err := u.Client.Users.ResetPasswordV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, forbidden, notFound, err := aaa.Client.Users.ResetPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3512,12 +3512,12 @@ func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error
 }
 
 // Deprecated: Use PublicGetUserByUserIDV3Short instead
-func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3535,12 +3535,12 @@ func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserI
 }
 
 // Deprecated: Use PublicGetUserBanHistoryV3Short instead
-func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserBanHistoryV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicGetUserBanHistoryV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3564,12 +3564,12 @@ func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHi
 }
 
 // Deprecated: Use PublicListUserAllPlatformAccountsDistinctV3Short instead
-func (u *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *users.PublicListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *users.PublicListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.PublicListUserAllPlatformAccountsDistinctV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicListUserAllPlatformAccountsDistinctV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3590,12 +3590,12 @@ func (u *UsersService) PublicListUserAllPlatformAccountsDistinctV3(input *users.
 }
 
 // Deprecated: Use PublicGetUserLoginHistoriesV3Short instead
-func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3613,12 +3613,12 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserL
 }
 
 // Deprecated: Use PublicGetUserPlatformAccountsV3Short instead
-func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3639,12 +3639,12 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUse
 }
 
 // Deprecated: Use PublicLinkPlatformAccountShort instead
-func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformAccountParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformAccountParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.PublicLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3665,12 +3665,12 @@ func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatform
 }
 
 // Deprecated: Use PublicForceLinkPlatformWithProgressionShort instead
-func (u *UsersService) PublicForceLinkPlatformWithProgression(input *users.PublicForceLinkPlatformWithProgressionParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicForceLinkPlatformWithProgression(input *users.PublicForceLinkPlatformWithProgressionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicForceLinkPlatformWithProgression(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.PublicForceLinkPlatformWithProgression(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3691,12 +3691,12 @@ func (u *UsersService) PublicForceLinkPlatformWithProgression(input *users.Publi
 }
 
 // Deprecated: Use PublicValidateUserByUserIDAndPasswordV3Short instead
-func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicValidateUserByUserIDAndPasswordV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.PublicValidateUserByUserIDAndPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3720,12 +3720,12 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.Publ
 }
 
 // Deprecated: Use PublicGetMyUserV3Short instead
-func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := u.Client.Users.PublicGetMyUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Users.PublicGetMyUserV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3739,24 +3739,24 @@ func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
+func (aaa *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.CreateUserShort(input, authInfoWriter)
+	created, err := aaa.Client.Users.CreateUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3764,24 +3764,24 @@ func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclien
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
+func (aaa *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetAdminUsersByRoleIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3789,24 +3789,24 @@ func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRo
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
+func (aaa *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserByLoginIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserByLoginIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3814,24 +3814,24 @@ func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
+func (aaa *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserByPlatformUserIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserByPlatformUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3839,24 +3839,24 @@ func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatfo
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) error {
+func (aaa *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.ForgotPasswordShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.ForgotPasswordShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -3864,24 +3864,24 @@ func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) er
 	return nil
 }
 
-func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
+func (aaa *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUsersByLoginIdsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUsersByLoginIdsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3889,24 +3889,24 @@ func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsPa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) error {
+func (aaa *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.ResetPasswordShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.ResetPasswordShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -3914,24 +3914,24 @@ func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) erro
 	return nil
 }
 
-func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
+func (aaa *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.SearchUserShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.SearchUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3939,24 +3939,24 @@ func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclien
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserByUserIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserByUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3964,24 +3964,24 @@ func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) 
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.UpdateUserShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.UpdateUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3989,24 +3989,24 @@ func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclien
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
+func (aaa *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.DeleteUserShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.DeleteUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4014,24 +4014,24 @@ func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
 	return nil
 }
 
-func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.BanUserShort(input, authInfoWriter)
+	created, err := aaa.Client.Users.BanUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4039,24 +4039,24 @@ func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodel
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserBanHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserBanHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4064,24 +4064,24 @@ func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryPara
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.DisableUserBanShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.DisableUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4089,24 +4089,24 @@ func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.EnableUserBanShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.EnableUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4114,24 +4114,24 @@ func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*ia
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams) error {
+func (aaa *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.ListCrossNamespaceAccountLinkShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.ListCrossNamespaceAccountLinkShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4139,24 +4139,24 @@ func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCross
 	return nil
 }
 
-func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
+func (aaa *UsersService) DisableUserShort(input *users.DisableUserParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.DisableUserShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.DisableUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4164,24 +4164,24 @@ func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
 	return nil
 }
 
-func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
+func (aaa *UsersService) EnableUserShort(input *users.EnableUserParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.EnableUserShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.EnableUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4189,24 +4189,24 @@ func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
 	return nil
 }
 
-func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
+func (aaa *UsersService) GetUserInformationShort(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserInformationShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserInformationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4214,24 +4214,24 @@ func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationPa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams) error {
+func (aaa *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.DeleteUserInformationShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.DeleteUserInformationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4239,24 +4239,24 @@ func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInforma
 	return nil
 }
 
-func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+func (aaa *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserLoginHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserLoginHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4264,24 +4264,24 @@ func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHisto
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) error {
+func (aaa *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.UpdatePasswordShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.UpdatePasswordShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4289,24 +4289,24 @@ func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) er
 	return nil
 }
 
-func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams) error {
+func (aaa *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.SaveUserPermissionShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.SaveUserPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4314,24 +4314,24 @@ func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionPa
 	return nil
 }
 
-func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams) error {
+func (aaa *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AddUserPermissionShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.AddUserPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4339,24 +4339,24 @@ func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionPara
 	return nil
 }
 
-func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams) error {
+func (aaa *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.DeleteUserPermissionShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.DeleteUserPermissionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4364,24 +4364,24 @@ func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissi
 	return nil
 }
 
-func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
+func (aaa *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserPlatformAccountsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserPlatformAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4389,24 +4389,24 @@ func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatform
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
+func (aaa *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserMappingShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserMappingShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4414,24 +4414,24 @@ func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
+func (aaa *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserJusticePlatformAccountShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserJusticePlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4439,24 +4439,24 @@ func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJu
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error {
+func (aaa *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PlatformLinkShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PlatformLinkShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4464,24 +4464,24 @@ func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error 
 	return nil
 }
 
-func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) error {
+func (aaa *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PlatformUnlinkShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PlatformUnlinkShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4489,24 +4489,24 @@ func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) er
 	return nil
 }
 
-func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
+func (aaa *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetPublisherUserShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetPublisherUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4514,24 +4514,24 @@ func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) error {
+func (aaa *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.SaveUserRolesShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.SaveUserRolesShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4539,24 +4539,24 @@ func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) erro
 	return nil
 }
 
-func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
+func (aaa *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AddUserRoleShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.AddUserRoleShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4564,24 +4564,24 @@ func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
 	return nil
 }
 
-func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) error {
+func (aaa *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.DeleteUserRoleShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.DeleteUserRoleShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4589,24 +4589,24 @@ func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) er
 	return nil
 }
 
-func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.UpgradeHeadlessAccountShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.UpgradeHeadlessAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4614,24 +4614,24 @@ func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessA
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4639,24 +4639,24 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *us
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams) error {
+func (aaa *UsersService) UserVerificationShort(input *users.UserVerificationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.UserVerificationShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.UserVerificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4664,24 +4664,24 @@ func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams
 	return nil
 }
 
-func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams) error {
+func (aaa *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.SendVerificationCodeShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.SendVerificationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4689,24 +4689,24 @@ func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCo
 	return nil
 }
 
-func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+func (aaa *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4714,24 +4714,24 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4739,24 +4739,24 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.Admin
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+func (aaa *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetListCountryAgeRestrictionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetListCountryAgeRestrictionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4764,24 +4764,24 @@ func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCou
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
+func (aaa *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.UpdateCountryAgeRestrictionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.UpdateCountryAgeRestrictionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4789,24 +4789,24 @@ func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCount
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
+func (aaa *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminSearchUsersV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminSearchUsersV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4814,24 +4814,24 @@ func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Pa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserByUserIDV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserByUserIDV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4839,24 +4839,24 @@ func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateUserV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4864,24 +4864,24 @@ func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.AdminBanUserV2Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.AdminBanUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4889,24 +4889,24 @@ func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserBanV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserBanV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4914,24 +4914,24 @@ func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params) error {
+func (aaa *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDisableUserV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDisableUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4939,24 +4939,24 @@ func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Pa
 	return nil
 }
 
-func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params) error {
+func (aaa *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminEnableUserV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminEnableUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4964,24 +4964,24 @@ func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Para
 	return nil
 }
 
-func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params) error {
+func (aaa *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminResetPasswordV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminResetPasswordV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4989,24 +4989,24 @@ func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPassword
 	return nil
 }
 
-func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params) error {
+func (aaa *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeletePlatformLinkV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeletePlatformLinkV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5014,24 +5014,24 @@ func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePl
 	return nil
 }
 
-func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params) error {
+func (aaa *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminPutUserRolesV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminPutUserRolesV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5039,24 +5039,24 @@ func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2
 	return nil
 }
 
-func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params) error {
+func (aaa *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminCreateUserRolesV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminCreateUserRolesV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5064,24 +5064,24 @@ func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserR
 	return nil
 }
 
-func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+func (aaa *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetCountryAgeRestrictionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5089,24 +5089,24 @@ func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
+func (aaa *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.PublicCreateUserV2Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.PublicCreateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5114,24 +5114,24 @@ func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Pa
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params) error {
+func (aaa *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicForgotPasswordV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicForgotPasswordV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5139,24 +5139,24 @@ func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPass
 	return nil
 }
 
-func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params) error {
+func (aaa *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicResetPasswordV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicResetPasswordV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5164,24 +5164,24 @@ func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswo
 	return nil
 }
 
-func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserByUserIDV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserByUserIDV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5189,24 +5189,24 @@ func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserBy
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
+func (aaa *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicUpdateUserV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicUpdateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5214,24 +5214,24 @@ func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Pa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
+func (aaa *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserBanShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5239,24 +5239,24 @@ func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params) error {
+func (aaa *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicUpdatePasswordV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicUpdatePasswordV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5264,24 +5264,24 @@ func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePass
 	return nil
 }
 
-func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
+func (aaa *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetListJusticePlatformAccountsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetListJusticePlatformAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5289,24 +5289,24 @@ func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJ
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params) error {
+func (aaa *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicPlatformLinkV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicPlatformLinkV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5314,24 +5314,24 @@ func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLink
 	return nil
 }
 
-func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params) error {
+func (aaa *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicDeletePlatformLinkV2Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicDeletePlatformLinkV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5339,24 +5339,24 @@ func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDelete
 	return nil
 }
 
-func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+func (aaa *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.ListAdminsV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.ListAdminsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5364,24 +5364,24 @@ func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamc
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+func (aaa *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5389,24 +5389,24 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5414,24 +5414,24 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.Admin
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
+func (aaa *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5439,24 +5439,24 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.Adm
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
+func (aaa *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5464,24 +5464,24 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.Admi
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5489,24 +5489,24 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+func (aaa *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetAdminUsersByRoleIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5514,24 +5514,24 @@ func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersBy
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserByEmailAddressV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserByEmailAddressV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5539,24 +5539,24 @@ func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
+func (aaa *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminListUserIDByUserIDsV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminListUserIDByUserIDsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5564,24 +5564,24 @@ func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUse
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+func (aaa *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.AdminInviteUserV3Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.AdminInviteUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5589,24 +5589,24 @@ func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Para
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
+func (aaa *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminListUsersV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminListUsersV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5614,24 +5614,24 @@ func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
+func (aaa *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminSearchUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminSearchUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5639,24 +5639,24 @@ func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
+func (aaa *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5664,24 +5664,24 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminG
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserByUserIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserByUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5689,24 +5689,24 @@ func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5714,24 +5714,24 @@ func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+func (aaa *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserBanV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5739,24 +5739,24 @@ func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+func (aaa *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.AdminBanUserV3Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.AdminBanUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5764,24 +5764,24 @@ func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+func (aaa *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpdateUserBanV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpdateUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5789,24 +5789,24 @@ func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBan
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params) error {
+func (aaa *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminSendVerificationCodeV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminSendVerificationCodeV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5814,24 +5814,24 @@ func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVe
 	return nil
 }
 
-func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params) error {
+func (aaa *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminVerifyAccountV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminVerifyAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5839,24 +5839,24 @@ func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccount
 	return nil
 }
 
-func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
+func (aaa *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetUserVerificationCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetUserVerificationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5864,24 +5864,24 @@ func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifica
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
+func (aaa *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserDeletionStatusV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserDeletionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5889,24 +5889,24 @@ func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params) error {
+func (aaa *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5914,24 +5914,24 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUp
 	return nil
 }
 
-func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5939,24 +5939,24 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgr
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params) error {
+func (aaa *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeleteUserInformationV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeleteUserInformationV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5964,24 +5964,24 @@ func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDelet
 	return nil
 }
 
-func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+func (aaa *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5989,24 +5989,24 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params) error {
+func (aaa *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminUpdateUserPermissionV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminUpdateUserPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6014,24 +6014,24 @@ func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdate
 	return nil
 }
 
-func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params) error {
+func (aaa *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminAddUserPermissionsV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminAddUserPermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6039,24 +6039,24 @@ func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserP
 	return nil
 }
 
-func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params) error {
+func (aaa *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6064,24 +6064,24 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDe
 	return nil
 }
 
-func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params) error {
+func (aaa *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeleteUserPermissionV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeleteUserPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6089,24 +6089,24 @@ func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDelete
 	return nil
 }
 
-func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+func (aaa *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetUserPlatformAccountsV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetUserPlatformAccountsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6114,24 +6114,24 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
+func (aaa *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetListJusticePlatformAccountsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetListJusticePlatformAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6139,24 +6139,24 @@ func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.Adm
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+func (aaa *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.AdminCreateJusticeUserShort(input, authInfoWriter)
+	created, err := aaa.Client.Users.AdminCreateJusticeUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6164,24 +6164,24 @@ func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusti
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams) error {
+func (aaa *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminLinkPlatformAccountShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminLinkPlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6189,24 +6189,24 @@ func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatf
 	return nil
 }
 
-func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params) error {
+func (aaa *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminPlatformUnlinkV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminPlatformUnlinkV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6214,24 +6214,24 @@ func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnli
 	return nil
 }
 
-func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params) error {
+func (aaa *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminPlatformLinkV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminPlatformLinkV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6239,24 +6239,24 @@ func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3
 	return nil
 }
 
-func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params) error {
+func (aaa *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeleteUserRolesV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeleteUserRolesV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6264,24 +6264,24 @@ func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserR
 	return nil
 }
 
-func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params) error {
+func (aaa *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminSaveUserRoleV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminSaveUserRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6289,24 +6289,24 @@ func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3
 	return nil
 }
 
-func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params) error {
+func (aaa *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminAddUserRoleV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminAddUserRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6314,24 +6314,24 @@ func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Pa
 	return nil
 }
 
-func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params) error {
+func (aaa *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminDeleteUserRoleV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminDeleteUserRoleV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6339,24 +6339,24 @@ func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRo
 	return nil
 }
 
-func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params) error {
+func (aaa *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminUpdateUserStatusV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminUpdateUserStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6364,24 +6364,24 @@ func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUser
 	return nil
 }
 
-func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
+func (aaa *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6389,24 +6389,24 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *user
 	return nil
 }
 
-func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.AdminGetMyUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.AdminGetMyUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6414,24 +6414,24 @@ func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+func (aaa *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6439,24 +6439,24 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.Pub
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6464,24 +6464,24 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicG
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
+func (aaa *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetAsyncStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetAsyncStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6489,24 +6489,24 @@ func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStat
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
+func (aaa *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicSearchUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicSearchUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6514,24 +6514,24 @@ func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Pa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+func (aaa *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.PublicCreateUserV3Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.PublicCreateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6539,24 +6539,24 @@ func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Pa
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams) error {
+func (aaa *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.CheckUserAvailabilityShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.CheckUserAvailabilityShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6564,24 +6564,24 @@ func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabi
 	return nil
 }
 
-func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
+func (aaa *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicBulkGetUsersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicBulkGetUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6589,24 +6589,24 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams) error {
+func (aaa *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicSendRegistrationCodeShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicSendRegistrationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6614,24 +6614,24 @@ func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRe
 	return nil
 }
 
-func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams) error {
+func (aaa *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicVerifyRegistrationCodeShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicVerifyRegistrationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6639,24 +6639,24 @@ func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVeri
 	return nil
 }
 
-func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params) error {
+func (aaa *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicForgotPasswordV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicForgotPasswordV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6664,24 +6664,24 @@ func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPass
 	return nil
 }
 
-func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
+func (aaa *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.GetAdminInvitationV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.GetAdminInvitationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6689,24 +6689,24 @@ func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitation
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+func (aaa *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.CreateUserFromInvitationV3Short(input, authInfoWriter)
+	created, err := aaa.Client.Users.CreateUserFromInvitationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6714,24 +6714,24 @@ func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFr
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.UpdateUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.UpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6739,24 +6739,24 @@ func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*ia
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicUpdateUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicUpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6764,24 +6764,24 @@ func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Pa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params) error {
+func (aaa *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicSendVerificationCodeV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicSendVerificationCodeV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6789,24 +6789,24 @@ func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSend
 	return nil
 }
 
-func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params) error {
+func (aaa *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicUserVerificationV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicUserVerificationV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6814,24 +6814,24 @@ func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVeri
 	return nil
 }
 
-func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6839,24 +6839,24 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUp
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6864,24 +6864,24 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVer
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params) error {
+func (aaa *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicUpdatePasswordV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicUpdatePasswordV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6889,24 +6889,24 @@ func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePass
 	return nil
 }
 
-func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+func (aaa *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := u.Client.Users.PublicCreateJusticeUserShort(input, authInfoWriter)
+	created, err := aaa.Client.Users.PublicCreateJusticeUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -6914,24 +6914,24 @@ func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJus
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params) error {
+func (aaa *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicPlatformLinkV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicPlatformLinkV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6939,24 +6939,24 @@ func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLink
 	return nil
 }
 
-func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params) error {
+func (aaa *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicPlatformUnlinkV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicPlatformUnlinkV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6964,24 +6964,24 @@ func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUn
 	return nil
 }
 
-func (u *UsersService) PublicPlatformUnlinkAllV3Short(input *users.PublicPlatformUnlinkAllV3Params) error {
+func (aaa *UsersService) PublicPlatformUnlinkAllV3Short(input *users.PublicPlatformUnlinkAllV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicPlatformUnlinkAllV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicPlatformUnlinkAllV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -6989,24 +6989,24 @@ func (u *UsersService) PublicPlatformUnlinkAllV3Short(input *users.PublicPlatfor
 	return nil
 }
 
-func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
+func (aaa *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicWebLinkPlatformShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicWebLinkPlatformShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7014,24 +7014,24 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
+func (aaa *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicWebLinkPlatformEstablishShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
@@ -7039,24 +7039,24 @@ func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWe
 	return ok.Location, nil
 }
 
-func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {
+func (aaa *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.ResetPasswordV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.ResetPasswordV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -7064,24 +7064,24 @@ func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) 
 	return nil
 }
 
-func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
+func (aaa *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserByUserIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserByUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7089,24 +7089,24 @@ func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserBy
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+func (aaa *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserBanHistoryV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserBanHistoryV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7114,24 +7114,24 @@ func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUser
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicListUserAllPlatformAccountsDistinctV3Short(input *users.PublicListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3Short(input *users.PublicListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicListUserAllPlatformAccountsDistinctV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicListUserAllPlatformAccountsDistinctV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7139,24 +7139,24 @@ func (u *UsersService) PublicListUserAllPlatformAccountsDistinctV3Short(input *u
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+func (aaa *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserLoginHistoriesV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserLoginHistoriesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7164,24 +7164,24 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+func (aaa *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7189,24 +7189,24 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicG
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams) error {
+func (aaa *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicLinkPlatformAccountShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicLinkPlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -7214,24 +7214,24 @@ func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPla
 	return nil
 }
 
-func (u *UsersService) PublicForceLinkPlatformWithProgressionShort(input *users.PublicForceLinkPlatformWithProgressionParams) error {
+func (aaa *UsersService) PublicForceLinkPlatformWithProgressionShort(input *users.PublicForceLinkPlatformWithProgressionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicForceLinkPlatformWithProgressionShort(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicForceLinkPlatformWithProgressionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -7239,24 +7239,24 @@ func (u *UsersService) PublicForceLinkPlatformWithProgressionShort(input *users.
 	return nil
 }
 
-func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
+func (aaa *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -7264,24 +7264,24 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users
 	return nil
 }
 
-func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Users.PublicGetMyUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicGetMyUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

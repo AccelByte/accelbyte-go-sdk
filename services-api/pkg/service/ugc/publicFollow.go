@@ -23,29 +23,29 @@ type PublicFollowService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicFollowService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicFollowService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetFollowedContentShort instead
-func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowe
 }
 
 // Deprecated: Use GetFollowedUsersShort instead
-func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -86,12 +86,12 @@ func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedU
 }
 
 // Deprecated: Use UpdateUserFollowStatusShort instead
-func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,12 +112,12 @@ func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.Update
 }
 
 // Deprecated: Use GetPublicFollowersShort instead
-func (p *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -135,12 +135,12 @@ func (p *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicF
 }
 
 // Deprecated: Use GetPublicFollowingShort instead
-func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -157,24 +157,24 @@ func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicF
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (aaa *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicFollow.GetFollowedContentShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicFollow.GetFollowedContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -182,24 +182,24 @@ func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFo
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (aaa *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicFollow.GetFollowedUsersShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicFollow.GetFollowedUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -207,24 +207,24 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+func (aaa *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicFollow.UpdateUserFollowStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -232,24 +232,24 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (aaa *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicFollow.GetPublicFollowersShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicFollow.GetPublicFollowersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -257,24 +257,24 @@ func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPu
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (aaa *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicFollow.GetPublicFollowingShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicFollow.GetPublicFollowingShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -23,29 +23,29 @@ type FriendsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (f *FriendsService) GetAuthSession() auth.Session {
-	if f.RefreshTokenRepository != nil {
+func (aaa *FriendsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			f.TokenRepository,
-			f.ConfigRepository,
-			f.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		f.TokenRepository,
-		f.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetUserFriendsUpdatedShort instead
-func (f *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.GetUserFriendsUpdated(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserFriendsUpdated(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (f *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpda
 }
 
 // Deprecated: Use GetUserIncomingFriendsShort instead
-func (f *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.GetUserIncomingFriends(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserIncomingFriends(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,12 +98,12 @@ func (f *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFr
 }
 
 // Deprecated: Use GetUserOutgoingFriendsShort instead
-func (f *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.GetUserOutgoingFriends(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.GetUserOutgoingFriends(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -127,12 +127,12 @@ func (f *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFr
 }
 
 // Deprecated: Use UserRequestFriendShort instead
-func (f *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := f.Client.Friends.UserRequestFriend(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Friends.UserRequestFriend(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -159,12 +159,12 @@ func (f *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParam
 }
 
 // Deprecated: Use UserAcceptFriendRequestShort instead
-func (f *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriendRequestParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriendRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.UserAcceptFriendRequest(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.UserAcceptFriendRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -188,12 +188,12 @@ func (f *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriend
 }
 
 // Deprecated: Use UserCancelFriendRequestShort instead
-func (f *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriendRequestParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriendRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.UserCancelFriendRequest(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.UserCancelFriendRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -217,12 +217,12 @@ func (f *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriend
 }
 
 // Deprecated: Use UserRejectFriendRequestShort instead
-func (f *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriendRequestParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriendRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.UserRejectFriendRequest(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.UserRejectFriendRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -246,12 +246,12 @@ func (f *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriend
 }
 
 // Deprecated: Use UserGetFriendshipStatusShort instead
-func (f *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := f.Client.Friends.UserGetFriendshipStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.UserGetFriendshipStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -272,12 +272,12 @@ func (f *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshi
 }
 
 // Deprecated: Use UserUnfriendRequestShort instead
-func (f *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := f.Client.Friends.UserUnfriendRequest(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Friends.UserUnfriendRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -301,12 +301,12 @@ func (f *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestP
 }
 
 // Deprecated: Use AddFriendsWithoutConfirmationShort instead
-func (f *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriendsWithoutConfirmationParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriendsWithoutConfirmationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := f.Client.Friends.AddFriendsWithoutConfirmation(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.AddFriendsWithoutConfirmation(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -327,12 +327,12 @@ func (f *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriends
 }
 
 // Deprecated: Use GetListOfFriendsShort instead
-func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := f.Client.Friends.GetListOfFriends(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.GetListOfFriends(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -352,24 +352,24 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+func (aaa *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Friends.GetUserFriendsUpdatedShort(input, authInfoWriter)
+	ok, err := aaa.Client.Friends.GetUserFriendsUpdatedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -377,24 +377,24 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
+func (aaa *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Friends.GetUserIncomingFriendsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Friends.GetUserIncomingFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -402,24 +402,24 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
+func (aaa *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Friends.GetUserOutgoingFriendsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Friends.GetUserOutgoingFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -427,24 +427,24 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams) error {
+func (aaa *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.UserRequestFriendShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.UserRequestFriendShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -452,24 +452,24 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 	return nil
 }
 
-func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams) error {
+func (aaa *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.UserAcceptFriendRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.UserAcceptFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -477,24 +477,24 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 	return nil
 }
 
-func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams) error {
+func (aaa *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.UserCancelFriendRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.UserCancelFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -502,24 +502,24 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 	return nil
 }
 
-func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams) error {
+func (aaa *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.UserRejectFriendRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.UserRejectFriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -527,24 +527,24 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 	return nil
 }
 
-func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
+func (aaa *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Friends.UserGetFriendshipStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.Friends.UserGetFriendshipStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -552,24 +552,24 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams) error {
+func (aaa *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.UserUnfriendRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.UserUnfriendRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -577,24 +577,24 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 	return nil
 }
 
-func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams) error {
+func (aaa *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Friends.AddFriendsWithoutConfirmationShort(input, authInfoWriter)
+	_, err := aaa.Client.Friends.AddFriendsWithoutConfirmationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -602,24 +602,24 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 	return nil
 }
 
-func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
+func (aaa *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Friends.GetListOfFriendsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Friends.GetListOfFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

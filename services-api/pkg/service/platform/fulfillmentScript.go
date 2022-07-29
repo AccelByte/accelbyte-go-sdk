@@ -23,29 +23,29 @@ type FulfillmentScriptService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (f *FulfillmentScriptService) GetAuthSession() auth.Session {
-	if f.RefreshTokenRepository != nil {
+func (aaa *FulfillmentScriptService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			f.TokenRepository,
-			f.ConfigRepository,
-			f.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		f.TokenRepository,
-		f.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListFulfillmentScriptsShort instead
-func (f *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := f.Client.FulfillmentScript.ListFulfillmentScripts(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.FulfillmentScript.ListFulfillmentScripts(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (f *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_scr
 }
 
 // Deprecated: Use TestFulfillmentScriptEvalShort instead
-func (f *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := f.Client.FulfillmentScript.TestFulfillmentScriptEval(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.FulfillmentScript.TestFulfillmentScriptEval(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -68,12 +68,12 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_
 }
 
 // Deprecated: Use GetFulfillmentScriptShort instead
-func (f *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := f.Client.FulfillmentScript.GetFulfillmentScript(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.FulfillmentScript.GetFulfillmentScript(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -85,12 +85,12 @@ func (f *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_scrip
 }
 
 // Deprecated: Use CreateFulfillmentScriptShort instead
-func (f *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, err := f.Client.FulfillmentScript.CreateFulfillmentScript(input, client.BearerToken(*token.AccessToken))
+	created, conflict, err := aaa.Client.FulfillmentScript.CreateFulfillmentScript(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -102,12 +102,12 @@ func (f *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_sc
 }
 
 // Deprecated: Use DeleteFulfillmentScriptShort instead
-func (f *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = f.Client.FulfillmentScript.DeleteFulfillmentScript(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.FulfillmentScript.DeleteFulfillmentScript(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -116,12 +116,12 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_sc
 }
 
 // Deprecated: Use UpdateFulfillmentScriptShort instead
-func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := f.Client.FulfillmentScript.UpdateFulfillmentScript(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.FulfillmentScript.UpdateFulfillmentScript(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -132,24 +132,24 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_sc
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
+func (aaa *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FulfillmentScript.ListFulfillmentScriptsShort(input, authInfoWriter)
+	ok, err := aaa.Client.FulfillmentScript.ListFulfillmentScriptsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -157,24 +157,24 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
+func (aaa *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FulfillmentScript.TestFulfillmentScriptEvalShort(input, authInfoWriter)
+	ok, err := aaa.Client.FulfillmentScript.TestFulfillmentScriptEvalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -182,24 +182,24 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (aaa *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FulfillmentScript.GetFulfillmentScriptShort(input, authInfoWriter)
+	ok, err := aaa.Client.FulfillmentScript.GetFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -207,24 +207,24 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (aaa *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := f.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, authInfoWriter)
+	created, err := aaa.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -232,24 +232,24 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 	return created.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
+func (aaa *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.FulfillmentScript.DeleteFulfillmentScriptShort(input, authInfoWriter)
+	_, err := aaa.Client.FulfillmentScript.DeleteFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -257,24 +257,24 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 	return nil
 }
 
-func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (aaa *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, authInfoWriter)
+	ok, err := aaa.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

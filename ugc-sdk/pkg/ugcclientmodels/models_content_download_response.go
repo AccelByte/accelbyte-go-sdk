@@ -79,6 +79,9 @@ type ModelsContentDownloadResponse struct {
 	// payload URL
 	PayloadURL []*ModelsPayloadURL `json:"payloadURL"`
 
+	// preview URL
+	PreviewURL []*ModelsPreviewURL `json:"previewURL"`
+
 	// screenshots
 	Screenshots []*ModelsScreenshotResponse `json:"screenshots"`
 
@@ -97,6 +100,10 @@ type ModelsContentDownloadResponse struct {
 	// type
 	// Required: true
 	Type *string `json:"type"`
+
+	// updated time
+	// Required: true
+	UpdatedTime *string `json:"updatedTime"`
 
 	// user Id
 	// Required: true
@@ -163,6 +170,10 @@ func (m *ModelsContentDownloadResponse) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validatePreviewURL(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateScreenshots(formats); err != nil {
 		res = append(res, err)
 	}
@@ -180,6 +191,10 @@ func (m *ModelsContentDownloadResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedTime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -353,6 +368,31 @@ func (m *ModelsContentDownloadResponse) validatePayloadURL(formats strfmt.Regist
 	return nil
 }
 
+func (m *ModelsContentDownloadResponse) validatePreviewURL(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PreviewURL) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PreviewURL); i++ {
+		if swag.IsZero(m.PreviewURL[i]) { // not required
+			continue
+		}
+
+		if m.PreviewURL[i] != nil {
+			if err := m.PreviewURL[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("previewURL" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsContentDownloadResponse) validateScreenshots(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Screenshots) { // not required
@@ -408,6 +448,15 @@ func (m *ModelsContentDownloadResponse) validateTags(formats strfmt.Registry) er
 func (m *ModelsContentDownloadResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsContentDownloadResponse) validateUpdatedTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedTime", "body", m.UpdatedTime); err != nil {
 		return err
 	}
 

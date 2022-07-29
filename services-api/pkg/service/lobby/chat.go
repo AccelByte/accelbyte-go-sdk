@@ -23,29 +23,29 @@ type ChatService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (c *ChatService) GetAuthSession() auth.Session {
-	if c.RefreshTokenRepository != nil {
+func (aaa *ChatService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			c.TokenRepository,
-			c.ConfigRepository,
-			c.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		c.TokenRepository,
-		c.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use PersonalChatHistoryShort instead
-func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.PersonalChatHistory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Chat.PersonalChatHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams)
 }
 
 // Deprecated: Use AdminChatHistoryShort instead
-func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.AdminChatHistory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Chat.AdminChatHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,12 +98,12 @@ func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*l
 }
 
 // Deprecated: Use GetPersonalChatHistoryV1PublicShort instead
-func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.GetPersonalChatHistoryV1Public(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Chat.GetPersonalChatHistoryV1Public(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -126,24 +126,24 @@ func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChat
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (aaa *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Chat.PersonalChatHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.Chat.PersonalChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -151,24 +151,24 @@ func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryPa
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (aaa *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Chat.AdminChatHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.Chat.AdminChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -176,24 +176,24 @@ func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) 
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (aaa *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Chat.GetPersonalChatHistoryV1PublicShort(input, authInfoWriter)
+	ok, err := aaa.Client.Chat.GetPersonalChatHistoryV1PublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

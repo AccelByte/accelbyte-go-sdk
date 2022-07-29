@@ -26,29 +26,29 @@ type OAuth20Service struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (o *OAuth20Service) GetAuthSession() auth.Session {
-	if o.RefreshTokenRepository != nil {
+func (aaa *OAuth20Service) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			o.TokenRepository,
-			o.ConfigRepository,
-			o.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		o.TokenRepository,
-		o.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead
-func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -66,12 +66,12 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_aut
 }
 
 // Deprecated: Use RevokeUserV3Short instead
-func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.RevokeUserV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := aaa.Client.OAuth20.RevokeUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -89,10 +89,10 @@ func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error
 }
 
 // Deprecated: Use AuthorizeV3Short instead
-func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string, error) {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, err := aaa.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -110,10 +110,10 @@ func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string
 }
 
 // Deprecated: Use TokenIntrospectionV3Short instead
-func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, err := o.Client.OAuth20.TokenIntrospectionV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, err := aaa.Client.OAuth20.TokenIntrospectionV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -128,12 +128,12 @@ func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectio
 }
 
 // Deprecated: Use GetJWKSV3Short instead
-func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.GetJWKSV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20.GetJWKSV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -142,12 +142,12 @@ func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclient
 }
 
 // Deprecated: Use Change2FAMethodShort instead
-func (o *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := o.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -159,12 +159,12 @@ func (o *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams)
 }
 
 // Deprecated: Use Verify2FACodeShort instead
-func (o *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := o.Client.OAuth20.Verify2FACode(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, err := aaa.Client.OAuth20.Verify2FACode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -176,12 +176,12 @@ func (o *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (*i
 }
 
 // Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead
-func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := aaa.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -199,12 +199,12 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.
 }
 
 // Deprecated: Use AuthCodeRequestV3Short instead
-func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -213,10 +213,10 @@ func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Par
 }
 
 // Deprecated: Use PlatformTokenGrantV3Short instead
-func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, err := o.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, err := aaa.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -231,12 +231,12 @@ func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGran
 }
 
 // Deprecated: Use GetRevocationListV3Short instead
-func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := o.Client.OAuth20.GetRevocationListV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, err := aaa.Client.OAuth20.GetRevocationListV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -248,10 +248,10 @@ func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV
 }
 
 // Deprecated: Use TokenRevocationV3Short instead
-func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Params) error {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Params) error {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	_, badRequest, unauthorized, err := aaa.Client.OAuth20.TokenRevocationV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -266,10 +266,10 @@ func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Par
 }
 
 // Deprecated: Use TokenGrantV3Short instead
-func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -286,24 +286,16 @@ func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+// Deprecated: Use VerifyTokenV3Short instead
+func (aaa *OAuth20Service) VerifyTokenV3(input *o_auth2_0.VerifyTokenV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
 	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
+	ok, badRequest, err := aaa.Client.OAuth20.VerifyTokenV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
 	}
-
-	ok, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -311,24 +303,49 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) error {
+func (aaa *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.OAuth20.RevokeUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.OAuth20.RevokeUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -336,24 +353,24 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 	return nil
 }
 
-func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
+func (aaa *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.AuthorizeV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.AuthorizeV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
@@ -370,25 +387,25 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 	return requestID, nil
 }
 
-func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
+func (aaa *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.TokenIntrospectionV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.TokenIntrospectionV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -396,24 +413,24 @@ func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrosp
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
+func (aaa *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.GetJWKSV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.GetJWKSV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -421,24 +438,24 @@ func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamc
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams) error {
+func (aaa *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.OAuth20.Change2FAMethodShort(input, authInfoWriter)
+	_, err := aaa.Client.OAuth20.Change2FAMethodShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -446,24 +463,24 @@ func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodPa
 	return nil
 }
 
-func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.Verify2FACodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.Verify2FACodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -471,24 +488,24 @@ func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -496,24 +513,24 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_aut
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
+func (aaa *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.AuthCodeRequestV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
@@ -521,24 +538,24 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 	return ok.Location, nil
 }
 
-func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
+func (aaa *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.PlatformTokenGrantV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -546,24 +563,24 @@ func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformToke
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
+func (aaa *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.GetRevocationListV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.GetRevocationListV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -571,24 +588,24 @@ func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocation
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params) error {
+func (aaa *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.OAuth20.TokenRevocationV3Short(input, authInfoWriter)
+	_, err := aaa.Client.OAuth20.TokenRevocationV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -596,31 +613,56 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 	return nil
 }
 
-func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20.TokenGrantV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
 	if ok == nil {
 		return nil, errors.New("empty access token")
 	}
-	err = o.TokenRepository.Store(*ok.GetPayload())
+	err = aaa.TokenRepository.Store(*ok.GetPayload())
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20Service) VerifyTokenV3Short(input *o_auth2_0.VerifyTokenV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20.VerifyTokenV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -38,6 +38,7 @@ const (
 	QueryItemsCOINSConstant        = "COINS"
 	QueryItemsINGAMEITEMConstant   = "INGAMEITEM"
 	QueryItemsMEDIAConstant        = "MEDIA"
+	QueryItemsOPTIONBOXConstant    = "OPTIONBOX"
 	QueryItemsSEASONConstant       = "SEASON"
 	QueryItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )

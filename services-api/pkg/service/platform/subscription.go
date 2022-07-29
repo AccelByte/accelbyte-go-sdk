@@ -23,29 +23,29 @@ type SubscriptionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SubscriptionService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SubscriptionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QuerySubscriptionsShort instead
-func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.QuerySubscriptions(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.QuerySubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscr
 }
 
 // Deprecated: Use RecurringChargeSubscriptionShort instead
-func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) RecurringChargeSubscription(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.RecurringChargeSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.RecurringChargeSubscription(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -68,12 +68,12 @@ func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.Re
 }
 
 // Deprecated: Use QueryUserSubscriptionsShort instead
-func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.QueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.QueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -82,12 +82,12 @@ func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUs
 }
 
 // Deprecated: Use GetUserSubscriptionActivitiesShort instead
-func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) GetUserSubscriptionActivities(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionActivities(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.GetUserSubscriptionActivities(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -96,12 +96,12 @@ func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.
 }
 
 // Deprecated: Use PlatformSubscribeSubscriptionShort instead
-func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PlatformSubscribeSubscription(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, created, badRequest, notFound, unprocessableEntity, err := s.Client.Subscription.PlatformSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, created, badRequest, notFound, unprocessableEntity, err := aaa.Client.Subscription.PlatformSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
 	if created != nil {
 		return nil, created
 	}
@@ -122,12 +122,12 @@ func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.
 }
 
 // Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead
-func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.CheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -136,12 +136,12 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *s
 }
 
 // Deprecated: Use GetUserSubscriptionShort instead
-func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) GetUserSubscription(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.GetUserSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Subscription.GetUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -153,12 +153,12 @@ func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSub
 }
 
 // Deprecated: Use DeleteUserSubscriptionShort instead
-func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteUserSubscriptionParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteUserSubscriptionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = s.Client.Subscription.DeleteUserSubscription(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Subscription.DeleteUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -167,12 +167,12 @@ func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteU
 }
 
 // Deprecated: Use CancelSubscriptionShort instead
-func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) CancelSubscription(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := s.Client.Subscription.CancelSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Subscription.CancelSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -187,12 +187,12 @@ func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubsc
 }
 
 // Deprecated: Use GrantDaysToSubscriptionShort instead
-func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.GrantDaysToSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Subscription.GrantDaysToSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -204,12 +204,12 @@ func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantD
 }
 
 // Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead
-func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.GetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -218,12 +218,12 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscri
 }
 
 // Deprecated: Use ProcessUserSubscriptionNotificationShort instead
-func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscription.ProcessUserSubscriptionNotificationParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) ProcessUserSubscriptionNotification(input *subscription.ProcessUserSubscriptionNotificationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := s.Client.Subscription.ProcessUserSubscriptionNotification(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Subscription.ProcessUserSubscriptionNotification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -235,12 +235,12 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscri
 }
 
 // Deprecated: Use PublicQueryUserSubscriptionsShort instead
-func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicQueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.PublicQueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -249,12 +249,12 @@ func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.P
 }
 
 // Deprecated: Use PublicSubscribeSubscriptionShort instead
-func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.PublicSubscribeSubscriptionParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicSubscribeSubscription(input *subscription.PublicSubscribeSubscriptionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := s.Client.Subscription.PublicSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := aaa.Client.Subscription.PublicSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -278,12 +278,12 @@ func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.Pu
 }
 
 // Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead
-func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -292,12 +292,12 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(in
 }
 
 // Deprecated: Use PublicGetUserSubscriptionShort instead
-func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicGetUserSubscription(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.PublicGetUserSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Subscription.PublicGetUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -309,12 +309,12 @@ func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.Publ
 }
 
 // Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead
-func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccount(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Subscription.PublicChangeSubscriptionBillingAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -332,12 +332,12 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subs
 }
 
 // Deprecated: Use PublicCancelSubscriptionShort instead
-func (s *SubscriptionService) PublicCancelSubscription(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicCancelSubscription(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := s.Client.Subscription.PublicCancelSubscription(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Subscription.PublicCancelSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -352,37 +352,12 @@ func (s *SubscriptionService) PublicCancelSubscription(input *subscription.Publi
 }
 
 // Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead
-func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicGetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -390,24 +365,24 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
+func (aaa *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.QuerySubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -415,24 +390,24 @@ func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscripti
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+func (aaa *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -440,24 +415,24 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+func (aaa *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.QueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -465,24 +440,24 @@ func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -490,24 +465,24 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+func (aaa *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PlatformSubscribeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -515,24 +490,24 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(inp
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -540,24 +515,49 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams) error {
+func (aaa *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Subscription.DeleteUserSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.GetUserSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Subscription.DeleteUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -565,24 +565,24 @@ func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.De
 	return nil
 }
 
-func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.CancelSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -590,24 +590,24 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.GrantDaysToSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -615,24 +615,24 @@ func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.G
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+func (aaa *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -640,24 +640,24 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams) error {
+func (aaa *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, authInfoWriter)
+	_, err := aaa.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -665,24 +665,24 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 	return nil
 }
 
-func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+func (aaa *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicQueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -690,24 +690,24 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams) error {
+func (aaa *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Subscription.PublicSubscribeSubscriptionShort(input, authInfoWriter)
+	_, err := aaa.Client.Subscription.PublicSubscribeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -715,24 +715,24 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 	return nil
 }
 
-func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+func (aaa *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -740,24 +740,24 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDSho
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -765,24 +765,24 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -790,24 +790,24 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+func (aaa *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicCancelSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -815,24 +815,24 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+func (aaa *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

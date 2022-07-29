@@ -23,29 +23,29 @@ type AchievementPlatformService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AchievementPlatformService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AchievementPlatformService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use UnlockSteamUserAchievementShort instead
-func (a *AchievementPlatformService) UnlockSteamUserAchievement(input *achievement_platform.UnlockSteamUserAchievementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementPlatformService) UnlockSteamUserAchievement(input *achievement_platform.UnlockSteamUserAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, err := a.Client.AchievementPlatform.UnlockSteamUserAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.AchievementPlatform.UnlockSteamUserAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -60,12 +60,12 @@ func (a *AchievementPlatformService) UnlockSteamUserAchievement(input *achieveme
 }
 
 // Deprecated: Use GetXblUserAchievementsShort instead
-func (a *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementPlatformService) GetXblUserAchievements(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := a.Client.AchievementPlatform.GetXblUserAchievements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.AchievementPlatform.GetXblUserAchievements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,12 +77,12 @@ func (a *AchievementPlatformService) GetXblUserAchievements(input *achievement_p
 }
 
 // Deprecated: Use UpdateXblUserAchievementShort instead
-func (a *AchievementPlatformService) UpdateXblUserAchievement(input *achievement_platform.UpdateXblUserAchievementParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AchievementPlatformService) UpdateXblUserAchievement(input *achievement_platform.UpdateXblUserAchievementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := a.Client.AchievementPlatform.UpdateXblUserAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.AchievementPlatform.UpdateXblUserAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -93,24 +93,24 @@ func (a *AchievementPlatformService) UpdateXblUserAchievement(input *achievement
 	return nil
 }
 
-func (a *AchievementPlatformService) UnlockSteamUserAchievementShort(input *achievement_platform.UnlockSteamUserAchievementParams) error {
+func (aaa *AchievementPlatformService) UnlockSteamUserAchievementShort(input *achievement_platform.UnlockSteamUserAchievementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AchievementPlatform.UnlockSteamUserAchievementShort(input, authInfoWriter)
+	_, err := aaa.Client.AchievementPlatform.UnlockSteamUserAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -118,24 +118,24 @@ func (a *AchievementPlatformService) UnlockSteamUserAchievementShort(input *achi
 	return nil
 }
 
-func (a *AchievementPlatformService) GetXblUserAchievementsShort(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
+func (aaa *AchievementPlatformService) GetXblUserAchievementsShort(input *achievement_platform.GetXblUserAchievementsParams) (*platformclientmodels.ADTOObjectForQueryingXboxUserAchievements, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AchievementPlatform.GetXblUserAchievementsShort(input, authInfoWriter)
+	ok, err := aaa.Client.AchievementPlatform.GetXblUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -143,24 +143,24 @@ func (a *AchievementPlatformService) GetXblUserAchievementsShort(input *achievem
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementPlatformService) UpdateXblUserAchievementShort(input *achievement_platform.UpdateXblUserAchievementParams) error {
+func (aaa *AchievementPlatformService) UpdateXblUserAchievementShort(input *achievement_platform.UpdateXblUserAchievementParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AchievementPlatform.UpdateXblUserAchievementShort(input, authInfoWriter)
+	_, err := aaa.Client.AchievementPlatform.UpdateXblUserAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

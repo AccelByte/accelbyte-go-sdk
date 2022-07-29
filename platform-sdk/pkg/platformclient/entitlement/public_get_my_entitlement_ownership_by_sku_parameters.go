@@ -27,6 +27,7 @@ const (
 	PublicGetMyEntitlementOwnershipBySkuCODEConstant         = "CODE"
 	PublicGetMyEntitlementOwnershipBySkuENTITLEMENTConstant  = "ENTITLEMENT"
 	PublicGetMyEntitlementOwnershipBySkuMEDIAConstant        = "MEDIA"
+	PublicGetMyEntitlementOwnershipBySkuOPTIONBOXConstant    = "OPTIONBOX"
 	PublicGetMyEntitlementOwnershipBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 

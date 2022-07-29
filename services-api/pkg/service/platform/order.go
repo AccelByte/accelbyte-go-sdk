@@ -23,29 +23,29 @@ type OrderService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (o *OrderService) GetAuthSession() auth.Session {
-	if o.RefreshTokenRepository != nil {
+func (aaa *OrderService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			o.TokenRepository,
-			o.ConfigRepository,
-			o.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		o.TokenRepository,
-		o.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryOrdersShort instead
-func (o *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := o.Client.Order.QueryOrders(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.Order.QueryOrders(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -57,12 +57,12 @@ func (o *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformcli
 }
 
 // Deprecated: Use GetOrderStatisticsShort instead
-func (o *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.GetOrderStatistics(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.GetOrderStatistics(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -71,12 +71,12 @@ func (o *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams)
 }
 
 // Deprecated: Use GetOrderShort instead
-func (o *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := o.Client.Order.GetOrder(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Order.GetOrder(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -88,12 +88,12 @@ func (o *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmod
 }
 
 // Deprecated: Use RefundOrderShort instead
-func (o *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := o.Client.Order.RefundOrder(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Order.RefundOrder(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -111,12 +111,12 @@ func (o *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformcli
 }
 
 // Deprecated: Use QueryUserOrdersShort instead
-func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.QueryUserOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.QueryUserOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -125,12 +125,12 @@ func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*pla
 }
 
 // Deprecated: Use AdminCreateUserOrderShort instead
-func (o *OrderService) AdminCreateUserOrder(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) AdminCreateUserOrder(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := o.Client.Order.AdminCreateUserOrder(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := aaa.Client.Order.AdminCreateUserOrder(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -154,12 +154,12 @@ func (o *OrderService) AdminCreateUserOrder(input *order.AdminCreateUserOrderPar
 }
 
 // Deprecated: Use CountOfPurchasedItemShort instead
-func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.CountOfPurchasedItem(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.CountOfPurchasedItem(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -168,12 +168,12 @@ func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemPar
 }
 
 // Deprecated: Use GetUserOrderShort instead
-func (o *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := o.Client.Order.GetUserOrder(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Order.GetUserOrder(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -185,12 +185,12 @@ func (o *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformc
 }
 
 // Deprecated: Use UpdateUserOrderStatusShort instead
-func (o *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := o.Client.Order.UpdateUserOrderStatus(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Order.UpdateUserOrderStatus(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -208,12 +208,12 @@ func (o *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusP
 }
 
 // Deprecated: Use FulfillUserOrderShort instead
-func (o *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := o.Client.Order.FulfillUserOrder(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Order.FulfillUserOrder(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -231,12 +231,12 @@ func (o *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*p
 }
 
 // Deprecated: Use GetUserOrderGrantShort instead
-func (o *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.GetUserOrderGrant(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.GetUserOrderGrant(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -245,12 +245,12 @@ func (o *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (
 }
 
 // Deprecated: Use GetUserOrderHistoriesShort instead
-func (o *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.GetUserOrderHistories(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.GetUserOrderHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -259,12 +259,12 @@ func (o *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesP
 }
 
 // Deprecated: Use ProcessUserOrderNotificationShort instead
-func (o *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrderNotificationParams) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrderNotificationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := o.Client.Order.ProcessUserOrderNotification(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Order.ProcessUserOrderNotification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -276,12 +276,12 @@ func (o *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrde
 }
 
 // Deprecated: Use DownloadUserOrderReceiptShort instead
-func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderReceiptParams) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderReceiptParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, conflict, err := o.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
+	_, notFound, conflict, err := aaa.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -296,12 +296,12 @@ func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderRe
 }
 
 // Deprecated: Use PublicQueryUserOrdersShort instead
-func (o *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.PublicQueryUserOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.PublicQueryUserOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -310,12 +310,12 @@ func (o *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersP
 }
 
 // Deprecated: Use PublicCreateUserOrderShort instead
-func (o *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := o.Client.Order.PublicCreateUserOrder(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := aaa.Client.Order.PublicCreateUserOrder(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -339,12 +339,12 @@ func (o *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderP
 }
 
 // Deprecated: Use PublicGetUserOrderShort instead
-func (o *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := o.Client.Order.PublicGetUserOrder(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Order.PublicGetUserOrder(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -356,12 +356,12 @@ func (o *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams)
 }
 
 // Deprecated: Use PublicCancelUserOrderShort instead
-func (o *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := o.Client.Order.PublicCancelUserOrder(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Order.PublicCancelUserOrder(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -376,12 +376,12 @@ func (o *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderP
 }
 
 // Deprecated: Use PublicGetUserOrderHistoriesShort instead
-func (o *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.Order.PublicGetUserOrderHistories(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Order.PublicGetUserOrderHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -390,12 +390,12 @@ func (o *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrd
 }
 
 // Deprecated: Use PublicDownloadUserOrderReceiptShort instead
-func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloadUserOrderReceiptParams) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloadUserOrderReceiptParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, conflict, err := o.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
+	_, notFound, conflict, err := aaa.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -409,24 +409,24 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	return nil
 }
 
-func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
+func (aaa *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.QueryOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.QueryOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -434,24 +434,24 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
+func (aaa *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.GetOrderStatisticsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.GetOrderStatisticsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -459,24 +459,24 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.GetOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.GetOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -484,24 +484,24 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclie
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.RefundOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.RefundOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -509,24 +509,24 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+func (aaa *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.QueryUserOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.QueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -534,24 +534,24 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) 
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := o.Client.Order.AdminCreateUserOrderShort(input, authInfoWriter)
+	created, err := aaa.Client.Order.AdminCreateUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -559,24 +559,24 @@ func (o *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserOrd
 	return created.GetPayload(), nil
 }
 
-func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
+func (aaa *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.CountOfPurchasedItemShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.CountOfPurchasedItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -584,24 +584,24 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.GetUserOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.GetUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -609,24 +609,24 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*plat
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.UpdateUserOrderStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.UpdateUserOrderStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -634,24 +634,24 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.FulfillUserOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.FulfillUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -659,24 +659,24 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
+func (aaa *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.GetUserOrderGrantShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.GetUserOrderGrantShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -684,24 +684,24 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+func (aaa *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.GetUserOrderHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.GetUserOrderHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -709,24 +709,24 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams) error {
+func (aaa *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.Order.ProcessUserOrderNotificationShort(input, authInfoWriter)
+	_, err := aaa.Client.Order.ProcessUserOrderNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -734,24 +734,24 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 	return nil
 }
 
-func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter)
+	_, err := aaa.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -759,24 +759,24 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 	return nil
 }
 
-func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+func (aaa *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.PublicQueryUserOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.PublicQueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -784,24 +784,24 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := o.Client.Order.PublicCreateUserOrderShort(input, authInfoWriter)
+	created, err := aaa.Client.Order.PublicCreateUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -809,24 +809,24 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 	return created.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.PublicGetUserOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.PublicGetUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -834,24 +834,24 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+func (aaa *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.PublicCancelUserOrderShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.PublicCancelUserOrderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -859,24 +859,24 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+func (aaa *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.Order.PublicGetUserOrderHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Order.PublicGetUserOrderHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -884,24 +884,24 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams) error {
+func (aaa *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter)
+	_, err := aaa.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

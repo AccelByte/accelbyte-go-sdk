@@ -23,29 +23,29 @@ type ImageConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (i *ImageConfigService) GetAuthSession() auth.Session {
-	if i.RefreshTokenRepository != nil {
+func (aaa *ImageConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			i.TokenRepository,
-			i.ConfigRepository,
-			i.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		i.TokenRepository,
-		i.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use UpdateImageShort instead
-func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.UpdateImage(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.UpdateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -63,12 +63,12 @@ func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) 
 }
 
 // Deprecated: Use CreateImageShort instead
-func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -89,12 +89,12 @@ func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) 
 }
 
 // Deprecated: Use ImportImagesShort instead
-func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.ImportImages(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ImageConfig.ImportImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -115,12 +115,12 @@ func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams
 }
 
 // Deprecated: Use CreateImagePatchShort instead
-func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePatchParams) error {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePatchParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImagePatch(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.ImageConfig.CreateImagePatch(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -141,12 +141,12 @@ func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePat
 }
 
 // Deprecated: Use ListImagesShort instead
-func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.ListImages(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.ListImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -164,12 +164,12 @@ func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*
 }
 
 // Deprecated: Use DeleteImageShort instead
-func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImage(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ImageConfig.DeleteImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -193,12 +193,12 @@ func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) 
 }
 
 // Deprecated: Use ExportImagesShort instead
-func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := i.Client.ImageConfig.ExportImages(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ImageConfig.ExportImages(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -219,12 +219,12 @@ func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams
 }
 
 // Deprecated: Use GetImageLimitShort instead
-func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImageLimit(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.GetImageLimit(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -242,12 +242,12 @@ func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPara
 }
 
 // Deprecated: Use DeleteImagePatchShort instead
-func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePatchParams) error {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePatchParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImagePatch(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ImageConfig.DeleteImagePatch(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -271,12 +271,12 @@ func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePat
 }
 
 // Deprecated: Use GetImageDetailShort instead
-func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -294,12 +294,12 @@ func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailPa
 }
 
 // Deprecated: Use GetImagePatchesShort instead
-func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) GetImagePatches(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImagePatches(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.ImageConfig.GetImagePatches(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -314,12 +314,12 @@ func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatches
 }
 
 // Deprecated: Use GetImagePatchDetailShort instead
-func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImagePatchDetail(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.ImageConfig.GetImagePatchDetail(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -337,12 +337,12 @@ func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePat
 }
 
 // Deprecated: Use ImageDetailClientShort instead
-func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	token, err := i.TokenRepository.GetToken()
+func (aaa *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.ImageDetailClient(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.ImageConfig.ImageDetailClient(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -359,24 +359,24 @@ func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailCl
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams) error {
+func (aaa *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := i.Client.ImageConfig.UpdateImageShort(input, authInfoWriter)
+	_, err := aaa.Client.ImageConfig.UpdateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -384,24 +384,24 @@ func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImagePar
 	return nil
 }
 
-func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams) error {
+func (aaa *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := i.Client.ImageConfig.CreateImageShort(input, authInfoWriter)
+	_, err := aaa.Client.ImageConfig.CreateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -409,24 +409,24 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 	return nil
 }
 
-func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
+func (aaa *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.ImportImagesShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.ImportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -434,24 +434,24 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams) error {
+func (aaa *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := i.Client.ImageConfig.CreateImagePatchShort(input, authInfoWriter)
+	_, err := aaa.Client.ImageConfig.CreateImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -459,24 +459,24 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 	return nil
 }
 
-func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+func (aaa *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.ListImagesShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.ListImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -484,24 +484,24 @@ func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParam
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams) error {
+func (aaa *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := i.Client.ImageConfig.DeleteImageShort(input, authInfoWriter)
+	_, err := aaa.Client.ImageConfig.DeleteImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -509,24 +509,24 @@ func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImagePar
 	return nil
 }
 
-func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
+func (aaa *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.ExportImagesShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.ExportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -534,24 +534,24 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+func (aaa *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.GetImageLimitShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -559,24 +559,24 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams) error {
+func (aaa *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := i.Client.ImageConfig.DeleteImagePatchShort(input, authInfoWriter)
+	_, err := aaa.Client.ImageConfig.DeleteImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -584,24 +584,24 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 	return nil
 }
 
-func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+func (aaa *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.GetImageDetailShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -609,24 +609,24 @@ func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDet
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
+func (aaa *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.GetImagePatchesShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.GetImagePatchesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -634,24 +634,24 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
+func (aaa *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.GetImagePatchDetailShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.GetImagePatchDetailShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -659,24 +659,24 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+func (aaa *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(i.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  i.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, authInfoWriter)
+	ok, err := aaa.Client.ImageConfig.ImageDetailClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -49,7 +49,7 @@ func NewSyncEpicGameDLCNoContent() *SyncEpicGameDLCNoContent {
 
 /*SyncEpicGameDLCNoContent handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type SyncEpicGameDLCNoContent struct {
 }

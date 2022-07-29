@@ -23,29 +23,29 @@ type CurrencyService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (c *CurrencyService) GetAuthSession() auth.Session {
-	if c.RefreshTokenRepository != nil {
+func (aaa *CurrencyService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			c.TokenRepository,
-			c.ConfigRepository,
-			c.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		c.TokenRepository,
-		c.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListCurrenciesShort instead
-func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Currency.ListCurrencies(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Currency.ListCurrencies(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) (
 }
 
 // Deprecated: Use CreateCurrencyShort instead
-func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, conflict, unprocessableEntity, err := c.Client.Currency.CreateCurrency(input, client.BearerToken(*token.AccessToken))
+	ok, conflict, unprocessableEntity, err := aaa.Client.Currency.CreateCurrency(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -74,12 +74,12 @@ func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (
 }
 
 // Deprecated: Use UpdateCurrencyShort instead
-func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := c.Client.Currency.UpdateCurrency(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.Currency.UpdateCurrency(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -94,12 +94,12 @@ func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (
 }
 
 // Deprecated: Use DeleteCurrencyShort instead
-func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.DeleteCurrency(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Currency.DeleteCurrency(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -111,12 +111,12 @@ func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (
 }
 
 // Deprecated: Use GetCurrencyConfigShort instead
-func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.GetCurrencyConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Currency.GetCurrencyConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -128,12 +128,12 @@ func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigPar
 }
 
 // Deprecated: Use GetCurrencySummaryShort instead
-func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.GetCurrencySummary(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Currency.GetCurrencySummary(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -145,8 +145,8 @@ func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryP
 }
 
 // Deprecated: Use PublicListCurrenciesShort instead
-func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.PublicListCurrencies(input)
+func (aaa *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	ok, err := aaa.Client.Currency.PublicListCurrencies(input)
 	if err != nil {
 		return nil, err
 	}
@@ -154,24 +154,24 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+func (aaa *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.ListCurrenciesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.ListCurrenciesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -179,24 +179,24 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+func (aaa *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.CreateCurrencyShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.CreateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -204,24 +204,24 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+func (aaa *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.UpdateCurrencyShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.UpdateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -229,24 +229,24 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+func (aaa *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.DeleteCurrencyShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.DeleteCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -254,24 +254,24 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
+func (aaa *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.GetCurrencyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -279,24 +279,24 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
+func (aaa *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, authInfoWriter)
+	ok, err := aaa.Client.Currency.GetCurrencySummaryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -304,8 +304,8 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.PublicListCurrenciesShort(input)
+func (aaa *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	ok, err := aaa.Client.Currency.PublicListCurrenciesShort(input)
 	if err != nil {
 		return nil, err
 	}

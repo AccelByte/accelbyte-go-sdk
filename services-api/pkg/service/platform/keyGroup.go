@@ -23,29 +23,29 @@ type KeyGroupService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (k *KeyGroupService) GetAuthSession() auth.Session {
-	if k.RefreshTokenRepository != nil {
+func (aaa *KeyGroupService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			k.TokenRepository,
-			k.ConfigRepository,
-			k.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		k.TokenRepository,
-		k.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryKeyGroupsShort instead
-func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := k.Client.KeyGroup.QueryKeyGroups(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.KeyGroup.QueryKeyGroups(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) 
 }
 
 // Deprecated: Use CreateKeyGroupShort instead
-func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := k.Client.KeyGroup.CreateKeyGroup(input, client.BearerToken(*token.AccessToken))
+	created, conflict, unprocessableEntity, err := aaa.Client.KeyGroup.CreateKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -74,12 +74,12 @@ func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) 
 }
 
 // Deprecated: Use GetKeyGroupShort instead
-func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := k.Client.KeyGroup.GetKeyGroup(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.KeyGroup.GetKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -91,12 +91,12 @@ func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*plat
 }
 
 // Deprecated: Use UpdateKeyGroupShort instead
-func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := k.Client.KeyGroup.UpdateKeyGroup(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.KeyGroup.UpdateKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -114,12 +114,12 @@ func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) 
 }
 
 // Deprecated: Use GetKeyGroupDynamicShort instead
-func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := k.Client.KeyGroup.GetKeyGroupDynamic(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.KeyGroup.GetKeyGroupDynamic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -131,12 +131,12 @@ func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamic
 }
 
 // Deprecated: Use ListKeysShort instead
-func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := k.Client.KeyGroup.ListKeys(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.KeyGroup.ListKeys(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -145,12 +145,12 @@ func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformcl
 }
 
 // Deprecated: Use UploadKeysShort instead
-func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
-	token, err := k.TokenRepository.GetToken()
+func (aaa *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := k.Client.KeyGroup.UploadKeys(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.KeyGroup.UploadKeys(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -164,24 +164,24 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+func (aaa *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.QueryKeyGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -189,24 +189,24 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+func (aaa *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, authInfoWriter)
+	created, err := aaa.Client.KeyGroup.CreateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -214,24 +214,24 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 	return created.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+func (aaa *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.GetKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -239,24 +239,24 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+func (aaa *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.UpdateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -264,24 +264,24 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+func (aaa *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -289,24 +289,24 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
+func (aaa *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.ListKeysShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.ListKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -314,24 +314,24 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
+func (aaa *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(k.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  k.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := k.Client.KeyGroup.UploadKeysShort(input, authInfoWriter)
+	ok, err := aaa.Client.KeyGroup.UploadKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

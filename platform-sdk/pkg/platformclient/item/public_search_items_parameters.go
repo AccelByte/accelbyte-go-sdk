@@ -22,6 +22,19 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in PublicSearchItemsParams
+const (
+	PublicSearchItemsAPPConstant          = "APP"
+	PublicSearchItemsBUNDLEConstant       = "BUNDLE"
+	PublicSearchItemsCODEConstant         = "CODE"
+	PublicSearchItemsCOINSConstant        = "COINS"
+	PublicSearchItemsINGAMEITEMConstant   = "INGAMEITEM"
+	PublicSearchItemsMEDIAConstant        = "MEDIA"
+	PublicSearchItemsOPTIONBOXConstant    = "OPTIONBOX"
+	PublicSearchItemsSEASONConstant       = "SEASON"
+	PublicSearchItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
 // NewPublicSearchItemsParams creates a new PublicSearchItemsParams object
 // with the default values initialized.
 func NewPublicSearchItemsParams() *PublicSearchItemsParams {
@@ -88,6 +101,8 @@ type PublicSearchItemsParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*ItemType*/
+	ItemType *string
 	/*Keyword*/
 	Keyword string
 	/*Language*/
@@ -163,6 +178,17 @@ func (o *PublicSearchItemsParams) SetHTTPClientTransport(roundTripper http.Round
 	} else {
 		o.HTTPClient = &http.Client{Transport: roundTripper}
 	}
+}
+
+// WithItemType adds the itemType to the public search items params
+func (o *PublicSearchItemsParams) WithItemType(itemType *string) *PublicSearchItemsParams {
+	o.SetItemType(itemType)
+	return o
+}
+
+// SetItemType adds the itemType to the public search items params
+func (o *PublicSearchItemsParams) SetItemType(itemType *string) {
+	o.ItemType = itemType
 }
 
 // WithKeyword adds the keyword to the public search items params
@@ -249,6 +275,22 @@ func (o *PublicSearchItemsParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.ItemType != nil {
+
+		// query param itemType
+		var qrItemType string
+		if o.ItemType != nil {
+			qrItemType = *o.ItemType
+		}
+		qItemType := qrItemType
+		if qItemType != "" {
+			if err := r.SetQueryParam("itemType", qItemType); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// query param keyword
 	qrKeyword := o.Keyword

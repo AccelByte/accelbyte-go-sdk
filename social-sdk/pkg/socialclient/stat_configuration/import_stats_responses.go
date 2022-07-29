@@ -28,8 +28,8 @@ type ImportStatsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ImportStatsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewImportStatsOK()
+	case 201:
+		result := NewImportStatsCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -51,28 +51,28 @@ func (o *ImportStatsReader) ReadResponse(response runtime.ClientResponse, consum
 	}
 }
 
-// NewImportStatsOK creates a ImportStatsOK with default headers values
-func NewImportStatsOK() *ImportStatsOK {
-	return &ImportStatsOK{}
+// NewImportStatsCreated creates a ImportStatsCreated with default headers values
+func NewImportStatsCreated() *ImportStatsCreated {
+	return &ImportStatsCreated{}
 }
 
-/*ImportStatsOK handles this case with default header values.
+/*ImportStatsCreated handles this case with default header values.
 
   successful operation
 */
-type ImportStatsOK struct {
+type ImportStatsCreated struct {
 	Payload *socialclientmodels.StatImportInfo
 }
 
-func (o *ImportStatsOK) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsOK  %+v", 200, o.Payload)
+func (o *ImportStatsCreated) Error() string {
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsCreated  %+v", 201, o.Payload)
 }
 
-func (o *ImportStatsOK) GetPayload() *socialclientmodels.StatImportInfo {
+func (o *ImportStatsCreated) GetPayload() *socialclientmodels.StatImportInfo {
 	return o.Payload
 }
 
-func (o *ImportStatsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *ImportStatsCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(socialclientmodels.StatImportInfo)
 

@@ -23,29 +23,29 @@ type AdminChannelService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AdminChannelService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AdminChannelService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use SingleAdminGetChannelShort instead
-func (a *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.SingleAdminGetChannel(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.SingleAdminGetChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (a *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleA
 }
 
 // Deprecated: Use AdminCreateChannelShort instead
-func (a *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := a.Client.AdminChannel.AdminCreateChannel(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminChannel.AdminCreateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (a *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreat
 }
 
 // Deprecated: Use SingleAdminUpdateChannelShort instead
-func (a *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.SingleAdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.SingleAdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,12 +112,12 @@ func (a *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.Sing
 }
 
 // Deprecated: Use SingleAdminDeleteChannelShort instead
-func (a *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.SingleAdminDeleteChannelParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.SingleAdminDeleteChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -135,12 +135,12 @@ func (a *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.Sing
 }
 
 // Deprecated: Use AdminGetChannelShort instead
-func (a *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.AdminGetChannel(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.AdminGetChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -158,12 +158,12 @@ func (a *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChann
 }
 
 // Deprecated: Use AdminUpdateChannelShort instead
-func (a *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.AdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.AdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -184,12 +184,12 @@ func (a *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdat
 }
 
 // Deprecated: Use AdminDeleteChannelShort instead
-func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDeleteChannelParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDeleteChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -206,24 +206,24 @@ func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDelet
 	return nil
 }
 
-func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (aaa *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminChannel.SingleAdminGetChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminChannel.SingleAdminGetChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -231,24 +231,24 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (aaa *AdminChannelService) AdminCreateChannelShort(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := a.Client.AdminChannel.AdminCreateChannelShort(input, authInfoWriter)
+	created, err := aaa.Client.AdminChannel.AdminCreateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -256,24 +256,24 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 	return created.GetPayload(), nil
 }
 
-func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (aaa *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminChannel.SingleAdminUpdateChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminChannel.SingleAdminUpdateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -281,24 +281,24 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel.SingleAdminDeleteChannelParams) error {
+func (aaa *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel.SingleAdminDeleteChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AdminChannel.SingleAdminDeleteChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.AdminChannel.SingleAdminDeleteChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -306,24 +306,24 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 	return nil
 }
 
-func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (aaa *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminChannel.AdminGetChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminChannel.AdminGetChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -331,24 +331,24 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (aaa *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminChannel.AdminUpdateChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminChannel.AdminUpdateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -356,24 +356,24 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.AdminDeleteChannelParams) error {
+func (aaa *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.AdminDeleteChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AdminChannel.AdminDeleteChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.AdminChannel.AdminDeleteChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

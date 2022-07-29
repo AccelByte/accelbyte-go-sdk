@@ -85,7 +85,7 @@ type BundledItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// language
@@ -115,8 +115,14 @@ type BundledItemInfo struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// option box config
+	OptionBoxConfig *OptionBoxConfig `json:"optionBoxConfig,omitempty"`
+
 	// Whether can be purchased
 	Purchasable bool `json:"purchasable"`
+
+	// purchase condition
+	PurchaseCondition *PurchaseCondition `json:"purchaseCondition,omitempty"`
 
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
@@ -221,6 +227,14 @@ func (m *BundledItemInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOptionBoxConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePurchaseCondition(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -440,7 +454,7 @@ var bundledItemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -467,6 +481,9 @@ const (
 
 	// BundledItemInfoItemTypeMEDIA captures enum value "MEDIA"
 	BundledItemInfoItemTypeMEDIA string = "MEDIA"
+
+	// BundledItemInfoItemTypeOPTIONBOX captures enum value "OPTIONBOX"
+	BundledItemInfoItemTypeOPTIONBOX string = "OPTIONBOX"
 
 	// BundledItemInfoItemTypeSEASON captures enum value "SEASON"
 	BundledItemInfoItemTypeSEASON string = "SEASON"
@@ -519,6 +536,42 @@ func (m *BundledItemInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *BundledItemInfo) validateOptionBoxConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OptionBoxConfig) { // not required
+		return nil
+	}
+
+	if m.OptionBoxConfig != nil {
+		if err := m.OptionBoxConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("optionBoxConfig")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BundledItemInfo) validatePurchaseCondition(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PurchaseCondition) { // not required
+		return nil
+	}
+
+	if m.PurchaseCondition != nil {
+		if err := m.PurchaseCondition.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("purchaseCondition")
+			}
+			return err
+		}
 	}
 
 	return nil

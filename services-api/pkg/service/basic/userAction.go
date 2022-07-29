@@ -23,29 +23,29 @@ type UserActionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (u *UserActionService) GetAuthSession() auth.Session {
-	if u.RefreshTokenRepository != nil {
+func (aaa *UserActionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			u.TokenRepository,
-			u.ConfigRepository,
-			u.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		u.TokenRepository,
-		u.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetActionsShort instead
-func (u *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := u.Client.UserAction.GetActions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.UserAction.GetActions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -63,12 +63,12 @@ func (u *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*
 }
 
 // Deprecated: Use BanUsersShort instead
-func (u *UserActionService) BanUsers(input *user_action.BanUsersParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) BanUsers(input *user_action.BanUsersParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, unprocessableEntity, internalServerError, err := u.Client.UserAction.BanUsers(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAction.BanUsers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -89,12 +89,12 @@ func (u *UserActionService) BanUsers(input *user_action.BanUsersParams) error {
 }
 
 // Deprecated: Use GetBannedUsersShort instead
-func (u *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, unprocessableEntity, internalServerError, err := u.Client.UserAction.GetBannedUsers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAction.GetBannedUsers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -115,12 +115,12 @@ func (u *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersPara
 }
 
 // Deprecated: Use ReportUserShort instead
-func (u *UserActionService) ReportUser(input *user_action.ReportUserParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) ReportUser(input *user_action.ReportUserParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unprocessableEntity, err := u.Client.UserAction.ReportUser(input, client.BearerToken(*token.AccessToken))
+	_, unprocessableEntity, err := aaa.Client.UserAction.ReportUser(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return unprocessableEntity
 	}
@@ -132,12 +132,12 @@ func (u *UserActionService) ReportUser(input *user_action.ReportUserParams) erro
 }
 
 // Deprecated: Use GetUserStatusShort instead
-func (u *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, unprocessableEntity, internalServerError, err := u.Client.UserAction.GetUserStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAction.GetUserStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -158,12 +158,12 @@ func (u *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams
 }
 
 // Deprecated: Use UnBanUsersShort instead
-func (u *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, unprocessableEntity, internalServerError, err := u.Client.UserAction.UnBanUsers(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAction.UnBanUsers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -184,12 +184,12 @@ func (u *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) erro
 }
 
 // Deprecated: Use PublicReportUserShort instead
-func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUserParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserActionService) PublicReportUser(input *user_action.PublicReportUserParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unprocessableEntity, err := u.Client.UserAction.PublicReportUser(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unprocessableEntity, err := aaa.Client.UserAction.PublicReportUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -203,24 +203,24 @@ func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUser
 	return nil
 }
 
-func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
+func (aaa *UserActionService) GetActionsShort(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.UserAction.GetActionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserAction.GetActionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -228,24 +228,24 @@ func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams)
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams) error {
+func (aaa *UserActionService) BanUsersShort(input *user_action.BanUsersParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserAction.BanUsersShort(input, authInfoWriter)
+	_, err := aaa.Client.UserAction.BanUsersShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -253,24 +253,24 @@ func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams) err
 	return nil
 }
 
-func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+func (aaa *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.UserAction.GetBannedUsersShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserAction.GetBannedUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -278,24 +278,24 @@ func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUser
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams) error {
+func (aaa *UserActionService) ReportUserShort(input *user_action.ReportUserParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserAction.ReportUserShort(input, authInfoWriter)
+	_, err := aaa.Client.UserAction.ReportUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -303,24 +303,24 @@ func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams)
 	return nil
 }
 
-func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+func (aaa *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.UserAction.GetUserStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserAction.GetUserStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -328,24 +328,24 @@ func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusP
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams) error {
+func (aaa *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserAction.UnBanUsersShort(input, authInfoWriter)
+	_, err := aaa.Client.UserAction.UnBanUsersShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -353,24 +353,24 @@ func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams)
 	return nil
 }
 
-func (u *UserActionService) PublicReportUserShort(input *user_action.PublicReportUserParams) error {
+func (aaa *UserActionService) PublicReportUserShort(input *user_action.PublicReportUserParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserAction.PublicReportUserShort(input, authInfoWriter)
+	_, err := aaa.Client.UserAction.PublicReportUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

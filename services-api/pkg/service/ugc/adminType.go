@@ -23,29 +23,29 @@ type AdminTypeService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AdminTypeService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AdminTypeService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetTypeShort instead
-func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminType.AdminGetType(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminType.AdminGetType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*
 }
 
 // Deprecated: Use AdminCreateTypeShort instead
-func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := a.Client.AdminType.AdminCreateType(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.AdminType.AdminCreateType(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypePara
 }
 
 // Deprecated: Use AdminUpdateTypeShort instead
-func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := a.Client.AdminType.AdminUpdateType(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminType.AdminUpdateType(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -118,12 +118,12 @@ func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypePara
 }
 
 // Deprecated: Use AdminDeleteTypeShort instead
-func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypeParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminType.AdminDeleteType(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminType.AdminDeleteType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -140,24 +140,24 @@ func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypePara
 	return nil
 }
 
-func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+func (aaa *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminType.AdminGetTypeShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminType.AdminGetTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -165,24 +165,24 @@ func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParam
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (aaa *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := a.Client.AdminType.AdminCreateTypeShort(input, authInfoWriter)
+	created, err := aaa.Client.AdminType.AdminCreateTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -190,24 +190,24 @@ func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTyp
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (aaa *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.AdminType.AdminUpdateTypeShort(input, authInfoWriter)
+	ok, err := aaa.Client.AdminType.AdminUpdateTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -215,24 +215,24 @@ func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTyp
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams) error {
+func (aaa *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.AdminType.AdminDeleteTypeShort(input, authInfoWriter)
+	_, err := aaa.Client.AdminType.AdminDeleteTypeShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

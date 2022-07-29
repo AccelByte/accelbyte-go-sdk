@@ -23,29 +23,29 @@ type NamespaceService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (n *NamespaceService) GetAuthSession() auth.Session {
-	if n.RefreshTokenRepository != nil {
+func (aaa *NamespaceService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			n.TokenRepository,
-			n.ConfigRepository,
-			n.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		n.TokenRepository,
-		n.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetNamespacesShort instead
-func (n *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := n.Client.Namespace.GetNamespaces(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := aaa.Client.Namespace.GetNamespaces(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -60,12 +60,12 @@ func (n *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) (
 }
 
 // Deprecated: Use CreateNamespaceShort instead
-func (n *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := n.Client.Namespace.CreateNamespace(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Namespace.CreateNamespace(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (n *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParam
 }
 
 // Deprecated: Use GetNamespaceShort instead
-func (n *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Namespace.GetNamespace(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Namespace.GetNamespace(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,12 +112,12 @@ func (n *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*b
 }
 
 // Deprecated: Use DeleteNamespaceShort instead
-func (n *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Namespace.DeleteNamespace(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Namespace.DeleteNamespace(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -141,12 +141,12 @@ func (n *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParam
 }
 
 // Deprecated: Use UpdateNamespaceShort instead
-func (n *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Namespace.UpdateNamespace(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Namespace.UpdateNamespace(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -170,12 +170,12 @@ func (n *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParam
 }
 
 // Deprecated: Use GetNamespacePublisherShort instead
-func (n *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Namespace.GetNamespacePublisher(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Namespace.GetNamespacePublisher(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -196,12 +196,12 @@ func (n *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePu
 }
 
 // Deprecated: Use ChangeNamespaceStatusShort instead
-func (n *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Namespace.ChangeNamespaceStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Namespace.ChangeNamespaceStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -225,12 +225,12 @@ func (n *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespac
 }
 
 // Deprecated: Use PublicGetNamespacesShort instead
-func (n *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := n.Client.Namespace.PublicGetNamespaces(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, err := aaa.Client.Namespace.PublicGetNamespaces(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -242,12 +242,12 @@ func (n *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespa
 }
 
 // Deprecated: Use PublicGetNamespacePublisherShort instead
-func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
-	token, err := n.TokenRepository.GetToken()
+func (aaa *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Namespace.PublicGetNamespacePublisher(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Namespace.PublicGetNamespacePublisher(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -267,24 +267,24 @@ func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.GetNamespacesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.GetNamespacesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -292,24 +292,24 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := n.Client.Namespace.CreateNamespaceShort(input, authInfoWriter)
+	created, err := aaa.Client.Namespace.CreateNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -317,24 +317,24 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 	return created.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.GetNamespaceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.GetNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -342,24 +342,24 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.DeleteNamespaceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.DeleteNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -367,24 +367,24 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.UpdateNamespaceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.UpdateNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -392,24 +392,24 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+func (aaa *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.GetNamespacePublisherShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.GetNamespacePublisherShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -417,24 +417,24 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.ChangeNamespaceStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.ChangeNamespaceStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -442,24 +442,24 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+func (aaa *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.PublicGetNamespacesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.PublicGetNamespacesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -467,24 +467,24 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+func (aaa *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(n.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  n.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := n.Client.Namespace.PublicGetNamespacePublisherShort(input, authInfoWriter)
+	ok, err := aaa.Client.Namespace.PublicGetNamespacePublisherShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

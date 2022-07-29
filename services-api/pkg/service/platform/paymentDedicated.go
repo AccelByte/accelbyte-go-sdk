@@ -23,29 +23,29 @@ type PaymentDedicatedService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PaymentDedicatedService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PaymentDedicatedService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use CreatePaymentOrderByDedicatedShort instead
-func (p *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := p.Client.PaymentDedicated.CreatePaymentOrderByDedicated(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := aaa.Client.PaymentDedicated.CreatePaymentOrderByDedicated(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_d
 }
 
 // Deprecated: Use RefundPaymentOrderByDedicatedShort instead
-func (p *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, noContent, notFound, conflict, unprocessableEntity, err := p.Client.PaymentDedicated.RefundPaymentOrderByDedicated(input, client.BearerToken(*token.AccessToken))
+	ok, noContent, notFound, conflict, unprocessableEntity, err := aaa.Client.PaymentDedicated.RefundPaymentOrderByDedicated(input, client.BearerToken(*token.AccessToken))
 	if noContent != nil {
 		return nil, noContent
 	}
@@ -95,12 +95,12 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_d
 }
 
 // Deprecated: Use SyncPaymentOrdersShort instead
-func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentDedicated.SyncPaymentOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentDedicated.SyncPaymentOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -108,24 +108,24 @@ func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.Syn
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
+func (aaa *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := p.Client.PaymentDedicated.CreatePaymentOrderByDedicatedShort(input, authInfoWriter)
+	created, err := aaa.Client.PaymentDedicated.CreatePaymentOrderByDedicatedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -133,24 +133,24 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *paym
 	return created.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
+func (aaa *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentDedicated.RefundPaymentOrderByDedicatedShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentDedicated.RefundPaymentOrderByDedicatedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -158,24 +158,24 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *paym
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
+func (aaa *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentDedicated.SyncPaymentOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentDedicated.SyncPaymentOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

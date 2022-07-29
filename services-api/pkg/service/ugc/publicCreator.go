@@ -23,29 +23,52 @@ type PublicCreatorService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicCreatorService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicCreatorService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
-// Deprecated: Use GetCreatorShort instead
-func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+// Deprecated: Use PublicSearchCreatorShort instead
+func (aaa *PublicCreatorService) PublicSearchCreator(input *public_creator.PublicSearchCreatorParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicCreator.GetCreator(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicCreator.PublicSearchCreator(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use PublicGetCreatorShort instead
+func (aaa *PublicCreatorService) PublicGetCreator(input *public_creator.PublicGetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicCreator.PublicGetCreator(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -62,24 +85,49 @@ func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
+func (aaa *PublicCreatorService) PublicSearchCreatorShort(input *public_creator.PublicSearchCreatorParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicCreator.GetCreatorShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicCreator.PublicSearchCreatorShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicCreatorService) PublicGetCreatorShort(input *public_creator.PublicGetCreatorParams) (*ugcclientmodels.ModelsCreatorResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicCreator.PublicGetCreatorShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

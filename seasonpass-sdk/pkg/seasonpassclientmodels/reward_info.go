@@ -39,7 +39,7 @@ type RewardInfo struct {
 	ItemSku string `json:"itemSku,omitempty"`
 
 	// itemType, required when reward type is ITEM
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// namespace
@@ -146,7 +146,7 @@ var rewardInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -170,6 +170,12 @@ const (
 
 	// RewardInfoItemTypeINGAMEITEM captures enum value "INGAMEITEM"
 	RewardInfoItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// RewardInfoItemTypeMEDIA captures enum value "MEDIA"
+	RewardInfoItemTypeMEDIA string = "MEDIA"
+
+	// RewardInfoItemTypeOPTIONBOX captures enum value "OPTIONBOX"
+	RewardInfoItemTypeOPTIONBOX string = "OPTIONBOX"
 
 	// RewardInfoItemTypeSEASON captures enum value "SEASON"
 	RewardInfoItemTypeSEASON string = "SEASON"

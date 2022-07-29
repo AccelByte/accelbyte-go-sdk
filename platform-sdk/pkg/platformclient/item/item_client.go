@@ -51,6 +51,8 @@ type ClientService interface {
 	FeatureItemShort(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, error)
 	GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
 	GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
+	GetAvailablePredicateTypes(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, *GetAvailablePredicateTypesNotFound, error)
+	GetAvailablePredicateTypesShort(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, error)
 	GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error)
 	GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error)
 	GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, *GetItemNotFound, error)
@@ -69,22 +71,24 @@ type ClientService interface {
 	GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error)
 	ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
 	ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
-	PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
-	PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error)
+	PublicBulkGetItems(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
+	PublicBulkGetItemsShort(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, error)
 	PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error)
 	PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK, error)
-	PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *PublicGetItemNotFound, error)
-	PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItemOK, error)
-	PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error)
-	PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, error)
-	PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error)
-	PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, error)
-	PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error)
-	PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, error)
-	PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error)
-	PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQueryItemsOK, error)
-	PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error)
-	PublicSearchItemsShort(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error)
+	PublicGetItem(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, *PublicGetItemNotFound, error)
+	PublicGetItemShort(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, error)
+	PublicGetItemByAppID(params *PublicGetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error)
+	PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemByAppIDOK, error)
+	PublicGetItemBySku(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error)
+	PublicGetItemBySkuShort(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, error)
+	PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error)
+	PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemDynamicDataOK, error)
+	PublicQueryItems(params *PublicQueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error)
+	PublicQueryItemsShort(params *PublicQueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryItemsOK, error)
+	PublicSearchItems(params *PublicSearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error)
+	PublicSearchItemsShort(params *PublicSearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchItemsOK, error)
+	PublicValidateItemPurchaseCondition(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, *PublicValidateItemPurchaseConditionUnprocessableEntity, error)
+	PublicValidateItemPurchaseConditionShort(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, error)
 	QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error)
 	QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error)
 	QueryUncategorizedItems(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, *QueryUncategorizedItemsNotFound, *QueryUncategorizedItemsUnprocessableEntity, error)
@@ -99,6 +103,10 @@ type ClientService interface {
 	UpdateAppShort(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, error)
 	UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, *UpdateItemBadRequest, *UpdateItemNotFound, *UpdateItemConflict, *UpdateItemUnprocessableEntity, error)
 	UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error)
+	UpdateItemPurchaseCondition(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, *UpdateItemPurchaseConditionBadRequest, *UpdateItemPurchaseConditionNotFound, *UpdateItemPurchaseConditionConflict, *UpdateItemPurchaseConditionUnprocessableEntity, error)
+	UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, error)
+	ValidateItemPurchaseCondition(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, *ValidateItemPurchaseConditionUnprocessableEntity, error)
+	ValidateItemPurchaseConditionShort(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1066,6 +1074,98 @@ func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthIn
 }
 
 /*
+  GetAvailablePredicateTypes gets available predicate types
+
+  Get available predicate types.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:ITEM, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: available predicate types&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetAvailablePredicateTypes(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, *GetAvailablePredicateTypesNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAvailablePredicateTypesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAvailablePredicateTypes",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/predicate/types",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAvailablePredicateTypesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAvailablePredicateTypesOK:
+		return v, nil, nil
+
+	case *GetAvailablePredicateTypesNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAvailablePredicateTypesShort(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAvailablePredicateTypesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAvailablePredicateTypes",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/predicate/types",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAvailablePredicateTypesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAvailablePredicateTypesOK:
+		return v, nil
+	case *GetAvailablePredicateTypesNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetBulkItemIDBySkus gets multiple item Id by sku
 
   This API is used to get an list of itemId by list of sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
@@ -1888,7 +1988,7 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 
   This API is used to bulk get locale items. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store items)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store items)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items info&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error) {
+func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicBulkGetItemsParams()
@@ -1911,6 +2011,7 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkGetItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -1931,7 +2032,7 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 	}
 }
 
-func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error) {
+func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicBulkGetItemsParams()
@@ -1954,6 +2055,7 @@ func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*Pub
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkGetItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2068,7 +2170,7 @@ func (a *Client) PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK,
 
   This API is used to get an item in locale. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *PublicGetItemNotFound, error) {
+func (a *Client) PublicGetItem(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, *PublicGetItemNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemParams()
@@ -2091,6 +2193,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2111,7 +2214,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 	}
 }
 
-func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItemOK, error) {
+func (a *Client) PublicGetItemShort(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemParams()
@@ -2134,6 +2237,7 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItem
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2158,7 +2262,7 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItem
 
   This API is used to get item by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with that appId&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error) {
+func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemByAppIDParams()
@@ -2181,6 +2285,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemByAppIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2201,7 +2306,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 	}
 }
 
-func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, error) {
+func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemByAppIDParams()
@@ -2224,6 +2329,7 @@ func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemByAppIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2248,7 +2354,7 @@ func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (
 
   This API is used to get the item by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with sku&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error) {
+func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemBySkuParams()
@@ -2271,6 +2377,7 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemBySkuReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2291,7 +2398,7 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 	}
 }
 
-func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, error) {
+func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemBySkuParams()
@@ -2314,6 +2421,7 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*Pub
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemBySkuReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2338,7 +2446,7 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*Pub
 
   Get item dynamic data for a published item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item dynamic data&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error) {
+func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemDynamicDataParams()
@@ -2361,6 +2469,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemDynamicDataReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2381,7 +2490,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 	}
 }
 
-func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, error) {
+func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemDynamicDataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetItemDynamicDataParams()
@@ -2404,6 +2513,7 @@ func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataP
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemDynamicDataReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2428,7 +2538,7 @@ func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataP
 
   This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error) {
+func (a *Client) PublicQueryItems(params *PublicQueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicQueryItemsParams()
@@ -2451,6 +2561,7 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2474,7 +2585,7 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 	}
 }
 
-func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQueryItemsOK, error) {
+func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicQueryItemsParams()
@@ -2497,6 +2608,7 @@ func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQ
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2523,7 +2635,7 @@ func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQ
 
   This API is used to search items by keyword in title, description and long description, It&#39;s language constrained, also if item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error) {
+func (a *Client) PublicSearchItems(params *PublicSearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSearchItemsParams()
@@ -2546,6 +2658,7 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSearchItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2566,7 +2679,7 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 	}
 }
 
-func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error) {
+func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSearchItemsParams()
@@ -2589,6 +2702,7 @@ func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*Publi
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSearchItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2601,6 +2715,98 @@ func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*Publi
 	case *PublicSearchItemsOK:
 		return v, nil
 	case *PublicSearchItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicValidateItemPurchaseCondition validates user item purchase condition
+
+  This API is used to validate user item purchase condition
+*/
+func (a *Client) PublicValidateItemPurchaseCondition(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, *PublicValidateItemPurchaseConditionUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicValidateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicValidateItemPurchaseCondition",
+		Method:             "POST",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/purchase/conditions/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicValidateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicValidateItemPurchaseConditionOK:
+		return v, nil, nil
+
+	case *PublicValidateItemPurchaseConditionUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicValidateItemPurchaseConditionShort(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicValidateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicValidateItemPurchaseCondition",
+		Method:             "POST",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/purchase/conditions/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicValidateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicValidateItemPurchaseConditionOK:
+		return v, nil
+	case *PublicValidateItemPurchaseConditionUnprocessableEntity:
 		return nil, v
 
 	default:
@@ -3446,6 +3652,205 @@ func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.Clie
 	case *UpdateItemConflict:
 		return nil, v
 	case *UpdateItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateItemPurchaseCondition updates item purchase condition
+
+  This API is used to update item purchase condition
+*/
+func (a *Client) UpdateItemPurchaseCondition(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, *UpdateItemPurchaseConditionBadRequest, *UpdateItemPurchaseConditionNotFound, *UpdateItemPurchaseConditionConflict, *UpdateItemPurchaseConditionUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateItemPurchaseCondition",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateItemPurchaseConditionOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateItemPurchaseConditionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateItemPurchaseConditionNotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateItemPurchaseConditionConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateItemPurchaseConditionUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateItemPurchaseCondition",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateItemPurchaseConditionOK:
+		return v, nil
+	case *UpdateItemPurchaseConditionBadRequest:
+		return nil, v
+	case *UpdateItemPurchaseConditionNotFound:
+		return nil, v
+	case *UpdateItemPurchaseConditionConflict:
+		return nil, v
+	case *UpdateItemPurchaseConditionUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ValidateItemPurchaseCondition validates user purchase condition
+
+  This API is used to validate user purchase condition
+*/
+func (a *Client) ValidateItemPurchaseCondition(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, *ValidateItemPurchaseConditionUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewValidateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "validateItemPurchaseCondition",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/purchase/conditions/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ValidateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ValidateItemPurchaseConditionOK:
+		return v, nil, nil
+
+	case *ValidateItemPurchaseConditionUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ValidateItemPurchaseConditionShort(params *ValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateItemPurchaseConditionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewValidateItemPurchaseConditionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "validateItemPurchaseCondition",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/purchase/conditions/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ValidateItemPurchaseConditionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ValidateItemPurchaseConditionOK:
+		return v, nil
+	case *ValidateItemPurchaseConditionUnprocessableEntity:
 		return nil, v
 
 	default:

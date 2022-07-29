@@ -23,29 +23,29 @@ type EQU8ConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (e *EQU8ConfigService) GetAuthSession() auth.Session {
-	if e.RefreshTokenRepository != nil {
+func (aaa *EQU8ConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			e.TokenRepository,
-			e.ConfigRepository,
-			e.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		e.TokenRepository,
-		e.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetConfigShort instead
-func (e *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := e.Client.EqU8Config.GetConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServerError, err := aaa.Client.EqU8Config.GetConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -60,12 +60,12 @@ func (e *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*ba
 }
 
 // Deprecated: Use DeleteConfigShort instead
-func (e *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams) error {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = e.Client.EqU8Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.EqU8Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -74,12 +74,12 @@ func (e *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams
 }
 
 // Deprecated: Use UpdateConfigShort instead
-func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := e.Client.EqU8Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.EqU8Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -93,24 +93,24 @@ func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EqU8Config.GetConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.EqU8Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -118,24 +118,24 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams)
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams) error {
+func (aaa *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := e.Client.EqU8Config.DeleteConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.EqU8Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -143,24 +143,24 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 	return nil
 }
 
-func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+func (aaa *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EqU8Config.UpdateConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.EqU8Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

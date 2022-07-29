@@ -50,130 +50,130 @@ touch "tmp.dat"
 
 #- 2 GetTotalActiveSession
 samples/cli/sample-apps Sessionbrowser getTotalActiveSession \
-    --namespace 'FtBxyZcD' \
-    --sessionType 'XBpGlsQu' \
+    --namespace 'O9ewbgfQ' \
+    --sessionType 'TbQQIR3T' \
     > test.out 2>&1
 eval_tap $? 2 'GetTotalActiveSession' test.out
 
 #- 3 GetActiveCustomGameSessions
 samples/cli/sample-apps Sessionbrowser getActiveCustomGameSessions \
-    --namespace 'Ju8vMf0I' \
-    --serverRegion 'sJkTrd8I' \
-    --sessionId 'DcV2zXnT' \
+    --namespace 'ywKIlDKh' \
+    --serverRegion 'HodCznAM' \
+    --sessionId 'JoH7MVSO' \
     > test.out 2>&1
 eval_tap $? 3 'GetActiveCustomGameSessions' test.out
 
 #- 4 GetActiveMatchmakingGameSessions
 samples/cli/sample-apps Sessionbrowser getActiveMatchmakingGameSessions \
-    --namespace 'KjXY1bPq' \
-    --matchId 'amiBxx9C' \
-    --serverRegion 's18EY84e' \
-    --sessionId 'kItqRzHU' \
+    --namespace 'Nst1WrzO' \
+    --matchId '0fGXQj4X' \
+    --serverRegion '4fxQtWtT' \
+    --sessionId 'MDQ9tfCV' \
     > test.out 2>&1
 eval_tap $? 4 'GetActiveMatchmakingGameSessions' test.out
 
 #- 5 AdminGetSession
 samples/cli/sample-apps Sessionbrowser adminGetSession \
-    --namespace '1oh570KQ' \
-    --sessionID 'BVaewc72' \
+    --namespace 'WOsKpaes' \
+    --sessionID 'nssflGwC' \
     > test.out 2>&1
 eval_tap $? 5 'AdminGetSession' test.out
 
 #- 6 QuerySession
 samples/cli/sample-apps Sessionbrowser querySession \
-    --namespace 'krSha68n' \
-    --gameMode '3Ynozp1C' \
-    --gameVersion '2KmIQTuB' \
-    --joinable 'dNEUsxFb' \
-    --limit '56' \
-    --matchExist 'J17M7DJZ' \
-    --matchId 'aMSxECbZ' \
-    --offset '2' \
-    --serverStatus 'ygyoarOR' \
-    --userId 'oeNHSb8R' \
-    --sessionType 'h3kgs9qq' \
+    --namespace '8BIpvIcI' \
+    --gameMode '71GgneYP' \
+    --gameVersion 'cDx6nV7S' \
+    --joinable 'oD7Wdtt5' \
+    --limit '40' \
+    --matchExist 'hflB1OVz' \
+    --matchId 'iauo2eZr' \
+    --offset '26' \
+    --serverStatus 'mO68qm1y' \
+    --userId 'kUL9x1R2' \
+    --sessionType 'ryiglFGk' \
     > test.out 2>&1
 eval_tap $? 6 'QuerySession' test.out
 
 #- 7 CreateSession
 samples/cli/sample-apps Sessionbrowser createSession \
-    --body '{"game_session_setting": {"allow_join_in_progress": false, "current_internal_player": 27, "current_player": 85, "map_name": "soBgiVpP", "max_internal_player": 56, "max_player": 24, "mode": "3yvASUox", "num_bot": 7, "password": "xxFqmAGT", "settings": {"J8IEdagE": {}}}, "game_version": "tp4w29KO", "namespace": "u9c19R6X", "session_type": "DqWHkkP8", "username": "npLEKMfj"}' \
-    --namespace 'iX7jpkVZ' \
+    --body '{"game_session_setting": {"allow_join_in_progress": true, "current_internal_player": 4, "current_player": 19, "map_name": "kzKNlfmh", "max_internal_player": 97, "max_player": 97, "mode": "RHX5G2IN", "num_bot": 13, "password": "azmumDYw", "settings": {"UWmhlSsU": {}, "lN1VuUrG": {}, "7NC3J2jh": {}}}, "game_version": "WltMQUQQ", "namespace": "ouduoowE", "session_type": "SRWH7XYK", "username": "pUh3RgN7"}' \
+    --namespace 'ql3lCCw6' \
     > test.out 2>&1
 eval_tap $? 7 'CreateSession' test.out
 
 #- 8 GetSessionByUserIDs
 samples/cli/sample-apps Sessionbrowser getSessionByUserIDs \
-    --namespace 'k3IaQYEm' \
-    --userIds 'qGodOEGt' \
+    --namespace 'ce5dudTp' \
+    --userIds 'MlYeT2vp' \
     > test.out 2>&1
 eval_tap $? 8 'GetSessionByUserIDs' test.out
 
 #- 9 GetSession
 samples/cli/sample-apps Sessionbrowser getSession \
-    --namespace '9gPOj0c6' \
-    --sessionID 'i0JkvIas' \
+    --namespace 'k8TxHf69' \
+    --sessionID 'vQZbyoIn' \
     > test.out 2>&1
 eval_tap $? 9 'GetSession' test.out
 
 #- 10 UpdateSession
 samples/cli/sample-apps Sessionbrowser updateSession \
-    --body '{"game_current_player": 40, "game_max_player": 4}' \
-    --namespace 'YnFAJ3DK' \
-    --sessionID '5T4Eogg0' \
+    --body '{"game_current_player": 85, "game_max_player": 99}' \
+    --namespace 'fnTMKGRW' \
+    --sessionID 'feU1SOTK' \
     > test.out 2>&1
 eval_tap $? 10 'UpdateSession' test.out
 
 #- 11 DeleteSession
 samples/cli/sample-apps Sessionbrowser deleteSession \
-    --namespace 'Y39UoYlp' \
-    --sessionID 'v5bVAgts' \
+    --namespace 'wnISs7hL' \
+    --sessionID 'eFu29W53' \
     > test.out 2>&1
 eval_tap $? 11 'DeleteSession' test.out
 
 #- 12 JoinSession
 samples/cli/sample-apps Sessionbrowser joinSession \
-    --body '{"password": "DhUTDUsc"}' \
-    --namespace 'bQDjbTQu' \
-    --sessionID 'PMz2PTRl' \
+    --body '{"password": "ULbdXgE1"}' \
+    --namespace 'mxHuMCIS' \
+    --sessionID 'SWxIZGBe' \
     > test.out 2>&1
 eval_tap $? 12 'JoinSession' test.out
 
 #- 13 DeleteSessionLocalDS
 samples/cli/sample-apps Sessionbrowser deleteSessionLocalDS \
-    --namespace 'kyU89ZPO' \
-    --sessionID 'w6zPFJ42' \
+    --namespace 'lCR61mYB' \
+    --sessionID 'avgejrTs' \
     > test.out 2>&1
 eval_tap $? 13 'DeleteSessionLocalDS' test.out
 
 #- 14 AddPlayerToSession
 samples/cli/sample-apps Sessionbrowser addPlayerToSession \
-    --body '{"as_spectator": false, "user_id": "wmzBBSMN"}' \
-    --namespace 'coAAOjKN' \
-    --sessionID 'jfcYHm09' \
+    --body '{"as_spectator": false, "user_id": "soyfHS5g"}' \
+    --namespace 'b3UZjCMb' \
+    --sessionID 'bmdVOpEo' \
     > test.out 2>&1
 eval_tap $? 14 'AddPlayerToSession' test.out
 
 #- 15 RemovePlayerFromSession
 samples/cli/sample-apps Sessionbrowser removePlayerFromSession \
-    --namespace '3aYgBU1s' \
-    --sessionID 'qjyK0XH4' \
-    --userID '5PaRSOFQ' \
+    --namespace 'p6qIoFIv' \
+    --sessionID 'K2nT52QU' \
+    --userID 'PPyxhYOH' \
     > test.out 2>&1
 eval_tap $? 15 'RemovePlayerFromSession' test.out
 
 #- 16 UpdateSettings
 samples/cli/sample-apps Sessionbrowser updateSettings \
     --body '{}' \
-    --namespace 'Btu23REZ' \
-    --sessionID '8hRVX7LG' \
+    --namespace 'Van9aoNT' \
+    --sessionID 'h9xUheHY' \
     > test.out 2>&1
 eval_tap $? 16 'UpdateSettings' test.out
 
 #- 17 GetRecentPlayer
 samples/cli/sample-apps Sessionbrowser getRecentPlayer \
-    --namespace 'OvDdYiQS' \
-    --userID '9i7mV1C9' \
+    --namespace '3Lzuvhlz' \
+    --userID 'lycXE4WI' \
     > test.out 2>&1
 eval_tap $? 17 'GetRecentPlayer' test.out
 

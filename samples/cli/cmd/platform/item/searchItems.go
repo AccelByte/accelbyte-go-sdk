@@ -29,12 +29,14 @@ var SearchItemsCmd = &cobra.Command{
 		keyword, _ := cmd.Flags().GetString("keyword")
 		language, _ := cmd.Flags().GetString("language")
 		activeOnly, _ := cmd.Flags().GetBool("activeOnly")
+		itemType, _ := cmd.Flags().GetString("itemType")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.SearchItemsParams{
 			Namespace:  namespace,
 			ActiveOnly: &activeOnly,
+			ItemType:   &itemType,
 			Limit:      &limit,
 			Offset:     &offset,
 			StoreID:    &storeId,
@@ -58,6 +60,7 @@ func init() {
 	SearchItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = SearchItemsCmd.MarkFlagRequired("namespace")
 	SearchItemsCmd.Flags().Bool("activeOnly", false, "Active only")
+	SearchItemsCmd.Flags().String("itemType", "", "Item type")
 	SearchItemsCmd.Flags().Int32("limit", 20, "Limit")
 	SearchItemsCmd.Flags().Int32("offset", 0, "Offset")
 	SearchItemsCmd.Flags().String("storeId", "", "Store id")

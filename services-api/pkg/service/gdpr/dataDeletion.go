@@ -23,29 +23,29 @@ type DataDeletionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (d *DataDeletionService) GetAuthSession() auth.Session {
-	if d.RefreshTokenRepository != nil {
+func (aaa *DataDeletionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			d.TokenRepository,
-			d.ConfigRepository,
-			d.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		d.TokenRepository,
-		d.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetListDeletionDataRequestShort instead
-func (d *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataDeletion.AdminGetListDeletionDataRequest(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.AdminGetListDeletionDataRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deleti
 }
 
 // Deprecated: Use AdminGetUserAccountDeletionRequestShort instead
-func (d *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataDeletion.AdminGetUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.AdminGetUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -95,12 +95,12 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_del
 }
 
 // Deprecated: Use AdminSubmitUserAccountDeletionRequestShort instead
-func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, forbidden, notFound, conflict, internalServerError, err := d.Client.DataDeletion.AdminSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	created, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.DataDeletion.AdminSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -124,12 +124,12 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_
 }
 
 // Deprecated: Use AdminCancelUserAccountDeletionRequestShort instead
-func (d *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataDeletion.AdminCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.AdminCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -153,12 +153,12 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_
 }
 
 // Deprecated: Use PublicSubmitUserAccountDeletionRequestShort instead
-func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataDeletion.PublicSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.PublicSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -182,12 +182,12 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data
 }
 
 // Deprecated: Use PublicCancelUserAccountDeletionRequestShort instead
-func (d *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataDeletion.PublicCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.PublicCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -208,12 +208,12 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data
 }
 
 // Deprecated: Use PublicGetUserAccountDeletionStatusShort instead
-func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := d.Client.DataDeletion.PublicGetUserAccountDeletionStatus(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.DataDeletion.PublicGetUserAccountDeletionStatus(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -230,24 +230,24 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_del
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
+func (aaa *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.DataDeletion.AdminGetListDeletionDataRequestShort(input, authInfoWriter)
+	ok, err := aaa.Client.DataDeletion.AdminGetListDeletionDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -255,24 +255,24 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
+func (aaa *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.DataDeletion.AdminGetUserAccountDeletionRequestShort(input, authInfoWriter)
+	ok, err := aaa.Client.DataDeletion.AdminGetUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -280,24 +280,24 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+func (aaa *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := d.Client.DataDeletion.AdminSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
+	created, err := aaa.Client.DataDeletion.AdminSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -305,24 +305,24 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 	return created.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
+func (aaa *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.DataDeletion.AdminCancelUserAccountDeletionRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.DataDeletion.AdminCancelUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -330,24 +330,24 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 	return nil
 }
 
-func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+func (aaa *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := d.Client.DataDeletion.PublicSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
+	created, err := aaa.Client.DataDeletion.PublicSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -355,24 +355,24 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 	return created.GetPayload(), nil
 }
 
-func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
+func (aaa *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.DataDeletion.PublicCancelUserAccountDeletionRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.DataDeletion.PublicCancelUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -380,24 +380,24 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 	return nil
 }
 
-func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
+func (aaa *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.DataDeletion.PublicGetUserAccountDeletionStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.DataDeletion.PublicGetUserAccountDeletionStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

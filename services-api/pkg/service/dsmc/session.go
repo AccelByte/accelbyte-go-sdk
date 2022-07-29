@@ -23,29 +23,29 @@ type SessionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SessionService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SessionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use CreateSessionShort instead
-func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, serviceUnavailable, err := aaa.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -72,12 +72,12 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsm
 }
 
 // Deprecated: Use ClaimServerShort instead
-func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) ClaimServer(input *session.ClaimServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, conflict, tooEarly, internalServerError, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, conflict, tooEarly, internalServerError, serviceUnavailable, err := aaa.Client.Session.ClaimServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -104,12 +104,12 @@ func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
 }
 
 // Deprecated: Use GetSessionShort instead
-func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -126,24 +126,24 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.CreateSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -151,24 +151,24 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) error {
+func (aaa *SessionService) ClaimServerShort(input *session.ClaimServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Session.ClaimServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Session.ClaimServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -176,24 +176,24 @@ func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) erro
 	return nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+func (aaa *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Session.GetSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

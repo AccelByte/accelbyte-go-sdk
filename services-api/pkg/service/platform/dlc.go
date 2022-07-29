@@ -23,29 +23,29 @@ type DLCService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (d *DLCService) GetAuthSession() auth.Session {
-	if d.RefreshTokenRepository != nil {
+func (aaa *DLCService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			d.TokenRepository,
-			d.ConfigRepository,
-			d.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		d.TokenRepository,
-		d.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetDLCItemConfigShort instead
-func (d *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := d.Client.Dlc.GetDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Dlc.GetDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -57,12 +57,12 @@ func (d *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*pla
 }
 
 // Deprecated: Use UpdateDLCItemConfigShort instead
-func (d *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := d.Client.Dlc.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.Dlc.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -74,12 +74,12 @@ func (d *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams)
 }
 
 // Deprecated: Use DeleteDLCItemConfigShort instead
-func (d *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.DeleteDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Dlc.DeleteDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -88,12 +88,12 @@ func (d *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams)
 }
 
 // Deprecated: Use GetPlatformDLCConfigShort instead
-func (d *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := d.Client.Dlc.GetPlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Dlc.GetPlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -105,12 +105,12 @@ func (d *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParam
 }
 
 // Deprecated: Use UpdatePlatformDLCConfigShort instead
-func (d *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := d.Client.Dlc.UpdatePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.Dlc.UpdatePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -122,12 +122,12 @@ func (d *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfi
 }
 
 // Deprecated: Use DeletePlatformDLCConfigShort instead
-func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfigParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.DeletePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Dlc.DeletePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -136,12 +136,12 @@ func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfi
 }
 
 // Deprecated: Use SyncEpicGameDLCShort instead
-func (d *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Dlc.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -150,12 +150,12 @@ func (d *DLCService) SyncEpicGameDLC(input *d_l_c.SyncEpicGameDLCParams) error {
 }
 
 // Deprecated: Use PublicSyncPsnDlcInventoryShort instead
-func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -164,12 +164,12 @@ func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInve
 }
 
 // Deprecated: Use SyncSteamDLCShort instead
-func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := d.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -181,12 +181,12 @@ func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 }
 
 // Deprecated: Use SyncXboxDLCShort instead
-func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -194,24 +194,24 @@ func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	return nil
 }
 
-func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.Dlc.GetDLCItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Dlc.GetDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -219,24 +219,24 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) 
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (aaa *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.Dlc.UpdateDLCItemConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Dlc.UpdateDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -244,24 +244,24 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams) error {
+func (aaa *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.DeleteDLCItemConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.DeleteDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -269,24 +269,24 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 	return nil
 }
 
-func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.Dlc.GetPlatformDLCConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Dlc.GetPlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -294,24 +294,24 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.Dlc.UpdatePlatformDLCConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Dlc.UpdatePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -319,24 +319,24 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams) error {
+func (aaa *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -344,24 +344,24 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	return nil
 }
 
-func (d *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) error {
+func (aaa *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.SyncEpicGameDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.SyncEpicGameDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -369,24 +369,24 @@ func (d *DLCService) SyncEpicGameDLCShort(input *d_l_c.SyncEpicGameDLCParams) er
 	return nil
 }
 
-func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
+func (aaa *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -394,24 +394,24 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 	return nil
 }
 
-func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
+func (aaa *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.SyncSteamDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.SyncSteamDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -419,24 +419,24 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 	return nil
 }
 
-func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
+func (aaa *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := d.Client.Dlc.SyncXboxDLCShort(input, authInfoWriter)
+	_, err := aaa.Client.Dlc.SyncXboxDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

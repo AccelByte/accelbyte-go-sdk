@@ -23,29 +23,29 @@ type PublicService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListServerPerNamespaceShort instead
-func (p *PublicService) ListServerPerNamespace(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicService) ListServerPerNamespace(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := p.Client.Public.ListServerPerNamespace(input, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := aaa.Client.Public.ListServerPerNamespace(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -57,12 +57,12 @@ func (p *PublicService) ListServerPerNamespace(input *public.ListServerPerNamesp
 }
 
 // Deprecated: Use ListServerShort instead
-func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicService) ListServer(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := p.Client.Public.ListServer(input, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := aaa.Client.Public.ListServer(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -73,24 +73,24 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListServerPerNamespaceShort(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+func (aaa *PublicService) ListServerPerNamespaceShort(input *public.ListServerPerNamespaceParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Public.ListServerPerNamespaceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Public.ListServerPerNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -98,24 +98,24 @@ func (p *PublicService) ListServerPerNamespaceShort(input *public.ListServerPerN
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListServerShort(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+func (aaa *PublicService) ListServerShort(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Public.ListServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Public.ListServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

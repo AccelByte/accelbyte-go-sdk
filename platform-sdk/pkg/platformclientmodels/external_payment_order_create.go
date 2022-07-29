@@ -40,7 +40,7 @@ type ExternalPaymentOrderCreate struct {
 	ExtUserID string `json:"extUserId,omitempty"`
 
 	// item type
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType string `json:"itemType,omitempty"`
 
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
@@ -158,7 +158,7 @@ var externalPaymentOrderCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -185,6 +185,9 @@ const (
 
 	// ExternalPaymentOrderCreateItemTypeMEDIA captures enum value "MEDIA"
 	ExternalPaymentOrderCreateItemTypeMEDIA string = "MEDIA"
+
+	// ExternalPaymentOrderCreateItemTypeOPTIONBOX captures enum value "OPTIONBOX"
+	ExternalPaymentOrderCreateItemTypeOPTIONBOX string = "OPTIONBOX"
 
 	// ExternalPaymentOrderCreateItemTypeSEASON captures enum value "SEASON"
 	ExternalPaymentOrderCreateItemTypeSEASON string = "SEASON"

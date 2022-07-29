@@ -22,29 +22,29 @@ type AdminService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AdminService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AdminService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use UpdateServerConfigShort instead
-func (a *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, internalServerError, err := a.Client.Admin.UpdateServerConfig(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, internalServerError, err := aaa.Client.Admin.UpdateServerConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -62,12 +62,12 @@ func (a *AdminService) UpdateServerConfig(input *admin.UpdateServerConfigParams)
 }
 
 // Deprecated: Use DeleteServerShort instead
-func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
+	_, internalServerError, err := aaa.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return internalServerError
 	}
@@ -79,12 +79,12 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 }
 
 // Deprecated: Use SetServerAliasShort instead
-func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, internalServerError, err := a.Client.Admin.SetServerAlias(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, internalServerError, err := aaa.Client.Admin.SetServerAlias(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -101,24 +101,24 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	return nil
 }
 
-func (a *AdminService) UpdateServerConfigShort(input *admin.UpdateServerConfigParams) error {
+func (aaa *AdminService) UpdateServerConfigShort(input *admin.UpdateServerConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.UpdateServerConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.UpdateServerConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -126,24 +126,24 @@ func (a *AdminService) UpdateServerConfigShort(input *admin.UpdateServerConfigPa
 	return nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+func (aaa *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -151,24 +151,24 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	return nil
 }
 
-func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) error {
+func (aaa *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.SetServerAliasShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.SetServerAliasShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

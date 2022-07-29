@@ -23,29 +23,29 @@ type PublicGroupService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicGroupService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicGroupService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetGroupsShort instead
-func (p *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (p *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ug
 }
 
 // Deprecated: Use CreateGroupShort instead
-func (p *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := p.Client.PublicGroup.CreateGroup(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicGroup.CreateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (p *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) 
 }
 
 // Deprecated: Use GetGroupShort instead
-func (p *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicGroup.GetGroup(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -109,12 +109,12 @@ func (p *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcc
 }
 
 // Deprecated: Use UpdateGroupShort instead
-func (p *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicGroup.UpdateGroup(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.UpdateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -135,12 +135,12 @@ func (p *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) 
 }
 
 // Deprecated: Use DeleteGroupShort instead
-func (p *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) error {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := p.Client.PublicGroup.DeleteGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.DeleteGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -158,12 +158,12 @@ func (p *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) 
 }
 
 // Deprecated: Use GetGroupContentShort instead
-func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicGroupService) GetGroupContent(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -180,24 +180,24 @@ func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContent
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+func (aaa *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicGroup.GetGroupsShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicGroup.GetGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -205,24 +205,24 @@ func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams)
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (aaa *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := p.Client.PublicGroup.CreateGroupShort(input, authInfoWriter)
+	created, err := aaa.Client.PublicGroup.CreateGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -230,24 +230,24 @@ func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupPar
 	return created.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (aaa *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicGroup.GetGroupShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicGroup.GetGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -255,24 +255,24 @@ func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (aaa *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicGroup.UpdateGroupShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicGroup.UpdateGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -280,24 +280,24 @@ func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupPar
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams) error {
+func (aaa *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := p.Client.PublicGroup.DeleteGroupShort(input, authInfoWriter)
+	_, err := aaa.Client.PublicGroup.DeleteGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -305,24 +305,24 @@ func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupPar
 	return nil
 }
 
-func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (aaa *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicGroup.GetGroupContentShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicGroup.GetGroupContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

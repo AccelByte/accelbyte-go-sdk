@@ -23,29 +23,29 @@ type PassService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PassService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PassService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryPassesShort instead
-func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := p.Client.Pass.QueryPasses(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Pass.QueryPasses(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -60,12 +60,12 @@ func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassc
 }
 
 // Deprecated: Use CreatePassShort instead
-func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.CreatePass(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Pass.CreatePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 }
 
 // Deprecated: Use GetPassShort instead
-func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := p.Client.Pass.GetPass(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Pass.GetPass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,12 +106,12 @@ func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodel
 }
 
 // Deprecated: Use DeletePassShort instead
-func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) DeletePass(input *pass.DeletePassParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := p.Client.Pass.DeletePass(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Pass.DeletePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -129,12 +129,12 @@ func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
 }
 
 // Deprecated: Use UpdatePassShort instead
-func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.UpdatePass(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Pass.UpdatePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -155,12 +155,12 @@ func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclien
 }
 
 // Deprecated: Use GrantUserPassShort instead
-func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := p.Client.Pass.GrantUserPass(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Pass.GrantUserPass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -171,24 +171,24 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
+func (aaa *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Pass.QueryPassesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Pass.QueryPassesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -196,24 +196,24 @@ func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*season
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+func (aaa *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := p.Client.Pass.CreatePassShort(input, authInfoWriter)
+	created, err := aaa.Client.Pass.CreatePassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -221,24 +221,24 @@ func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpass
 	return created.GetPayload(), nil
 }
 
-func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
+func (aaa *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Pass.GetPassShort(input, authInfoWriter)
+	ok, err := aaa.Client.Pass.GetPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -246,24 +246,24 @@ func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclient
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
+func (aaa *PassService) DeletePassShort(input *pass.DeletePassParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := p.Client.Pass.DeletePassShort(input, authInfoWriter)
+	_, err := aaa.Client.Pass.DeletePassShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -271,24 +271,24 @@ func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
 	return nil
 }
 
-func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+func (aaa *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Pass.UpdatePassShort(input, authInfoWriter)
+	ok, err := aaa.Client.Pass.UpdatePassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -296,24 +296,24 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpass
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (aaa *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Pass.GrantUserPassShort(input, authInfoWriter)
+	ok, err := aaa.Client.Pass.GrantUserPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

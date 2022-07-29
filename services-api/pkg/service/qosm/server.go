@@ -22,29 +22,29 @@ type ServerService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *ServerService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *ServerService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use HeartbeatShort instead
-func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *ServerService) Heartbeat(input *server.HeartbeatParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, internalServerError, err := s.Client.Server.Heartbeat(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, internalServerError, err := aaa.Client.Server.Heartbeat(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -58,24 +58,24 @@ func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	return nil
 }
 
-func (s *ServerService) HeartbeatShort(input *server.HeartbeatParams) error {
+func (aaa *ServerService) HeartbeatShort(input *server.HeartbeatParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Server.HeartbeatShort(input, authInfoWriter)
+	_, err := aaa.Client.Server.HeartbeatShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -22,29 +22,29 @@ type AnonymizationService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AnonymizationService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AnonymizationService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AnonymizeUserProfileShort instead
-func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.AnonymizeUserProfileParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AnonymizeUserProfile(input *anonymization.AnonymizeUserProfileParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, err := a.Client.Anonymization.AnonymizeUserProfile(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := aaa.Client.Anonymization.AnonymizeUserProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -61,24 +61,24 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams) error {
+func (aaa *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AnonymizeUserProfileShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AnonymizeUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

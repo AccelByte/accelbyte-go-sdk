@@ -22,29 +22,29 @@ type SSOService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SSOService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SSOService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use LoginSSOClientShort instead
-func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = s.Client.Sso.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Sso.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -53,12 +53,12 @@ func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
 }
 
 // Deprecated: Use LogoutSSOClientShort instead
-func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, unprocessableEntity, internalServerError, err := s.Client.Sso.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, notFound, unprocessableEntity, internalServerError, err := aaa.Client.Sso.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -75,24 +75,24 @@ func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	return nil
 }
 
-func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) error {
+func (aaa *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Sso.LoginSSOClientShort(input, authInfoWriter)
+	_, err := aaa.Client.Sso.LoginSSOClientShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -100,24 +100,24 @@ func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) erro
 	return nil
 }
 
-func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) error {
+func (aaa *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Sso.LogoutSSOClientShort(input, authInfoWriter)
+	_, err := aaa.Client.Sso.LogoutSSOClientShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

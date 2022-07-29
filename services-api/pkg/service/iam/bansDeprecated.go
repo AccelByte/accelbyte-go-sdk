@@ -23,29 +23,29 @@ type BansDeprecatedService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (b *BansDeprecatedService) GetAuthSession() auth.Session {
-	if b.RefreshTokenRepository != nil {
+func (aaa *BansDeprecatedService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			b.TokenRepository,
-			b.ConfigRepository,
-			b.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		b.TokenRepository,
-		b.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetBansTypeShort instead
-func (b *BansDeprecatedService) GetBansType(input *bans_deprecated.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
-	token, err := b.TokenRepository.GetToken()
+func (aaa *BansDeprecatedService) GetBansType(input *bans_deprecated.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := b.Client.BansDeprecated.GetBansType(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := aaa.Client.BansDeprecated.GetBansType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -60,12 +60,12 @@ func (b *BansDeprecatedService) GetBansType(input *bans_deprecated.GetBansTypePa
 }
 
 // Deprecated: Use GetListBanReasonShort instead
-func (b *BansDeprecatedService) GetListBanReason(input *bans_deprecated.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
-	token, err := b.TokenRepository.GetToken()
+func (aaa *BansDeprecatedService) GetListBanReason(input *bans_deprecated.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := b.Client.BansDeprecated.GetListBanReason(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := aaa.Client.BansDeprecated.GetListBanReason(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -79,24 +79,24 @@ func (b *BansDeprecatedService) GetListBanReason(input *bans_deprecated.GetListB
 	return ok.GetPayload(), nil
 }
 
-func (b *BansDeprecatedService) GetBansTypeShort(input *bans_deprecated.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
+func (aaa *BansDeprecatedService) GetBansTypeShort(input *bans_deprecated.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  b.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := b.Client.BansDeprecated.GetBansTypeShort(input, authInfoWriter)
+	ok, err := aaa.Client.BansDeprecated.GetBansTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -104,24 +104,24 @@ func (b *BansDeprecatedService) GetBansTypeShort(input *bans_deprecated.GetBansT
 	return ok.GetPayload(), nil
 }
 
-func (b *BansDeprecatedService) GetListBanReasonShort(input *bans_deprecated.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
+func (aaa *BansDeprecatedService) GetListBanReasonShort(input *bans_deprecated.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(b.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  b.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := b.Client.BansDeprecated.GetListBanReasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.BansDeprecated.GetListBanReasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

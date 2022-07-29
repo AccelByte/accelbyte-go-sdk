@@ -26,27 +26,27 @@ type OAuth20ExtensionService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (o *OAuth20ExtensionService) GetAuthSession() auth.Session {
-	if o.RefreshTokenRepository != nil {
+func (aaa *OAuth20ExtensionService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			o.TokenRepository,
-			o.ConfigRepository,
-			o.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		o.TokenRepository,
-		o.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use UserAuthenticationV3Short instead
-func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
+func (aaa *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, err := aaa.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -68,12 +68,12 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extensio
 }
 
 // Deprecated: Use AuthenticationWithPlatformLinkV3Short instead
-func (o *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3(input *o_auth2_0_extension.AuthenticationWithPlatformLinkV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3(input *o_auth2_0_extension.AuthenticationWithPlatformLinkV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, err := o.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, err := aaa.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -91,12 +91,12 @@ func (o *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3(input *o_auth
 }
 
 // Deprecated: Use GenerateTokenByNewHeadlessAccountV3Short instead
-func (o *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o_auth2_0_extension.GenerateTokenByNewHeadlessAccountV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o_auth2_0_extension.GenerateTokenByNewHeadlessAccountV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -105,12 +105,12 @@ func (o *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o_a
 }
 
 // Deprecated: Use GetCountryLocationV3Short instead
-func (o *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20Extension.GetCountryLocationV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20Extension.GetCountryLocationV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -119,12 +119,12 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extensio
 }
 
 // Deprecated: Use LogoutShort instead
-func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams) error {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth20Extension.Logout(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.OAuth20Extension.Logout(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -133,12 +133,12 @@ func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams
 }
 
 // Deprecated: Use PlatformAuthenticationV3Short instead
-func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -146,24 +146,24 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_exte
 	return ok.Location, nil
 }
 
-func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
+func (aaa *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.UserAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
@@ -184,24 +184,24 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_ext
 	return code, nil
 }
 
-func (o *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3Short(input *o_auth2_0_extension.AuthenticationWithPlatformLinkV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3Short(input *o_auth2_0_extension.AuthenticationWithPlatformLinkV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -209,24 +209,24 @@ func (o *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3Short(input *o
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(input *o_auth2_0_extension.GenerateTokenByNewHeadlessAccountV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(input *o_auth2_0_extension.GenerateTokenByNewHeadlessAccountV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -234,24 +234,24 @@ func (o *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(input
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
+func (aaa *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20Extension.GetCountryLocationV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.GetCountryLocationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -259,24 +259,24 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_ext
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutParams) error {
+func (aaa *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := o.Client.OAuth20Extension.LogoutShort(input, authInfoWriter)
+	_, err := aaa.Client.OAuth20Extension.LogoutShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -284,24 +284,24 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 	return nil
 }
 
-func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
+func (aaa *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}

@@ -23,29 +23,29 @@ type ClientsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (c *ClientsService) GetAuthSession() auth.Session {
-	if c.RefreshTokenRepository != nil {
+func (aaa *ClientsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			c.TokenRepository,
-			c.ConfigRepository,
-			c.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		c.TokenRepository,
-		c.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetClientsByNamespaceV3Short instead
-func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := c.Client.Clients.AdminGetClientsByNamespaceV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.Clients.AdminGetClientsByNamespaceV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -63,12 +63,12 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetCli
 }
 
 // Deprecated: Use AdminCreateClientV3Short instead
-func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.AdminCreateClientV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.Clients.AdminCreateClientV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3P
 }
 
 // Deprecated: Use AdminGetClientsbyNamespacebyIDV3Short instead
-func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminGetClientsbyNamespacebyIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -115,12 +115,12 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGe
 }
 
 // Deprecated: Use AdminDeleteClientV3Short instead
-func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -144,12 +144,12 @@ func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3P
 }
 
 // Deprecated: Use AdminUpdateClientV3Short instead
-func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminUpdateClientV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -170,12 +170,12 @@ func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3P
 }
 
 // Deprecated: Use AdminUpdateClientPermissionV3Short instead
-func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientPermissionV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminUpdateClientPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -196,12 +196,12 @@ func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdat
 }
 
 // Deprecated: Use AdminAddClientPermissionsV3Short instead
-func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminAddClientPermissionsV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminAddClientPermissionsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -222,12 +222,12 @@ func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClie
 }
 
 // Deprecated: Use AdminDeleteClientPermissionV3Short instead
-func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientPermissionV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminDeleteClientPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -248,12 +248,12 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 }
 
 // Deprecated: Use AdminUpdateClientSecretV3Short instead
-func (c *ClientsService) AdminUpdateClientSecretV3(input *clients.AdminUpdateClientSecretV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ClientsService) AdminUpdateClientSecretV3(input *clients.AdminUpdateClientSecretV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientSecretV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminUpdateClientSecretV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -273,24 +273,24 @@ func (c *ClientsService) AdminUpdateClientSecretV3(input *clients.AdminUpdateCli
 	return nil
 }
 
-func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+func (aaa *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -298,24 +298,24 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (aaa *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authInfoWriter)
+	created, err := aaa.Client.Clients.AdminCreateClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -323,24 +323,24 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (aaa *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -348,24 +348,24 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.Ad
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params) error {
+func (aaa *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Clients.AdminDeleteClientV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Clients.AdminDeleteClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -373,24 +373,24 @@ func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClie
 	return nil
 }
 
-func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (aaa *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Clients.AdminUpdateClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -398,24 +398,24 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params) error {
+func (aaa *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -423,24 +423,24 @@ func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.Admin
 	return nil
 }
 
-func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params) error {
+func (aaa *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -448,24 +448,24 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 	return nil
 }
 
-func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params) error {
+func (aaa *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -473,24 +473,24 @@ func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.Admin
 	return nil
 }
 
-func (c *ClientsService) AdminUpdateClientSecretV3Short(input *clients.AdminUpdateClientSecretV3Params) error {
+func (aaa *ClientsService) AdminUpdateClientSecretV3Short(input *clients.AdminUpdateClientSecretV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Clients.AdminUpdateClientSecretV3Short(input, authInfoWriter)
+	_, err := aaa.Client.Clients.AdminUpdateClientSecretV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

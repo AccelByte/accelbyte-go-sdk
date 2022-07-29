@@ -23,29 +23,29 @@ type StoreService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *StoreService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *StoreService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListStoresShort instead
-func (s *StoreService) ListStores(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) ListStores(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Store.ListStores(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Store.ListStores(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (s *StoreService) ListStores(input *store.ListStoresParams) ([]*platformcli
 }
 
 // Deprecated: Use CreateStoreShort instead
-func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) CreateStore(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := s.Client.Store.CreateStore(input, client.BearerToken(*token.AccessToken))
+	created, conflict, unprocessableEntity, err := aaa.Client.Store.CreateStore(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -74,12 +74,12 @@ func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformcli
 }
 
 // Deprecated: Use ImportStoreShort instead
-func (s *StoreService) ImportStore(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) ImportStore(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Store.ImportStore(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Store.ImportStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -94,12 +94,12 @@ func (s *StoreService) ImportStore(input *store.ImportStoreParams) (*platformcli
 }
 
 // Deprecated: Use GetPublishedStoreShort instead
-func (s *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Store.GetPublishedStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.GetPublishedStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -111,12 +111,12 @@ func (s *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (
 }
 
 // Deprecated: Use DeletePublishedStoreShort instead
-func (s *StoreService) DeletePublishedStore(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) DeletePublishedStore(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Store.DeletePublishedStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.DeletePublishedStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -128,12 +128,12 @@ func (s *StoreService) DeletePublishedStore(input *store.DeletePublishedStorePar
 }
 
 // Deprecated: Use GetPublishedStoreBackupShort instead
-func (s *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Store.GetPublishedStoreBackup(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.GetPublishedStoreBackup(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -145,12 +145,12 @@ func (s *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBac
 }
 
 // Deprecated: Use RollbackPublishedStoreShort instead
-func (s *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Store.RollbackPublishedStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.RollbackPublishedStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -162,12 +162,12 @@ func (s *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStor
 }
 
 // Deprecated: Use GetStoreShort instead
-func (s *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Store.GetStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Store.GetStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -179,12 +179,12 @@ func (s *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmod
 }
 
 // Deprecated: Use UpdateStoreShort instead
-func (s *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := s.Client.Store.UpdateStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Store.UpdateStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -202,12 +202,12 @@ func (s *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformcli
 }
 
 // Deprecated: Use DeleteStoreShort instead
-func (s *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := s.Client.Store.DeleteStore(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Store.DeleteStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -222,12 +222,12 @@ func (s *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformcli
 }
 
 // Deprecated: Use CloneStoreShort instead
-func (s *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Store.CloneStore(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Store.CloneStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -242,12 +242,12 @@ func (s *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclien
 }
 
 // Deprecated: Use ExportStoreShort instead
-func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StoreService) ExportStore(input *store.ExportStoreParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := s.Client.Store.ExportStore(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.Store.ExportStore(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -259,8 +259,8 @@ func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
 }
 
 // Deprecated: Use PublicListStoresShort instead
-func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
-	ok, err := s.Client.Store.PublicListStores(input)
+func (aaa *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+	ok, err := aaa.Client.Store.PublicListStores(input)
 	if err != nil {
 		return nil, err
 	}
@@ -268,24 +268,24 @@ func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.ListStoresShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.ListStoresShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -293,24 +293,24 @@ func (s *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := s.Client.Store.CreateStoreShort(input, authInfoWriter)
+	created, err := aaa.Client.Store.CreateStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -318,24 +318,24 @@ func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*platfo
 	return created.GetPayload(), nil
 }
 
-func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.ImportStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.ImportStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -343,24 +343,24 @@ func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) GetPublishedStoreShort(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.GetPublishedStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.GetPublishedStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -368,24 +368,24 @@ func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePara
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.DeletePublishedStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.DeletePublishedStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -393,24 +393,24 @@ func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedSto
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
+func (aaa *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.GetPublishedStoreBackupShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.GetPublishedStoreBackupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -418,24 +418,24 @@ func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedSto
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.RollbackPublishedStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.RollbackPublishedStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -443,24 +443,24 @@ func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishe
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.GetStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.GetStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -468,24 +468,24 @@ func (s *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformclie
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.UpdateStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.UpdateStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -493,24 +493,24 @@ func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.DeleteStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.DeleteStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -518,24 +518,24 @@ func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
+func (aaa *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Store.CloneStoreShort(input, authInfoWriter)
+	ok, err := aaa.Client.Store.CloneStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -543,24 +543,24 @@ func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platform
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
+func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Store.ExportStoreShort(input, authInfoWriter)
+	_, err := aaa.Client.Store.ExportStoreShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -568,8 +568,8 @@ func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
 	return nil
 }
 
-func (s *StoreService) PublicListStoresShort(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
-	ok, err := s.Client.Store.PublicListStoresShort(input)
+func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+	ok, err := aaa.Client.Store.PublicListStoresShort(input)
 	if err != nil {
 		return nil, err
 	}

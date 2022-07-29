@@ -132,7 +132,8 @@
 ### Public Creator Wrapper:  [PublicCreator](../services-api/pkg/service/ugc/publicCreator.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/ugc/v1/public/namespaces/{namespace}/users/{userId}` | GET | GetCreatorShort | [GetCreatorShort](../ugc-sdk/pkg/ugcclient/public_creator/public_creator_client.go) | [GetCreatorShort](../services-api/pkg/service/ugc/publicCreator.go) | [GetCreatorShort](../samples/cli/cmd/ugc/publicCreator/getCreator.go) |
+| `/ugc/v1/public/namespaces/{namespace}/users` | GET | PublicSearchCreatorShort | [PublicSearchCreatorShort](../ugc-sdk/pkg/ugcclient/public_creator/public_creator_client.go) | [PublicSearchCreatorShort](../services-api/pkg/service/ugc/publicCreator.go) | [PublicSearchCreatorShort](../samples/cli/cmd/ugc/publicCreator/publicSearchCreator.go) |
+| `/ugc/v1/public/namespaces/{namespace}/users/{userId}` | GET | PublicGetCreatorShort | [PublicGetCreatorShort](../ugc-sdk/pkg/ugcclient/public_creator/public_creator_client.go) | [PublicGetCreatorShort](../services-api/pkg/service/ugc/publicCreator.go) | [PublicGetCreatorShort](../samples/cli/cmd/ugc/publicCreator/publicGetCreator.go) |
 
 ### Public Channel Wrapper:  [PublicChannel](../services-api/pkg/service/ugc/publicChannel.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -190,6 +191,7 @@
 | `models.PaginatedGroupResponse` | [ModelsPaginatedGroupResponse ](../ugc-sdk/pkg/ugcclientmodels/models_paginated_group_response.go) |
 | `models.PagingCursor` | [ModelsPagingCursor ](../ugc-sdk/pkg/ugcclientmodels/models_paging_cursor.go) |
 | `models.PayloadURL` | [ModelsPayloadURL ](../ugc-sdk/pkg/ugcclientmodels/models_payload_url.go) |
+| `models.PreviewURL` | [ModelsPreviewURL ](../ugc-sdk/pkg/ugcclientmodels/models_preview_url.go) |
 | `models.PublicGetContentBulkRequest` | [ModelsPublicGetContentBulkRequest ](../ugc-sdk/pkg/ugcclientmodels/models_public_get_content_bulk_request.go) |
 | `models.ScreenshotResponse` | [ModelsScreenshotResponse ](../ugc-sdk/pkg/ugcclientmodels/models_screenshot_response.go) |
 | `models.UpdateScreenshotRequest` | [ModelsUpdateScreenshotRequest ](../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot_request.go) |
@@ -197,5 +199,6 @@
 | `models.UserFollowRequest` | [ModelsUserFollowRequest ](../ugc-sdk/pkg/ugcclientmodels/models_user_follow_request.go) |
 | `models.UserFollowResponse` | [ModelsUserFollowResponse ](../ugc-sdk/pkg/ugcclientmodels/models_user_follow_response.go) |
 | `models.createScreenshotRequestItem` | [ModelsCreateScreenshotRequestItem ](../ugc-sdk/pkg/ugcclientmodels/models_create_screenshot_request_item.go) |
+| `models.previewMetadata` | [ModelsPreviewMetadata ](../ugc-sdk/pkg/ugcclientmodels/models_preview_metadata.go) |
 | `models.updateScreenshot` | [ModelsUpdateScreenshot ](../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot.go) |
 | `response.Error` | [ResponseError ](../ugc-sdk/pkg/ugcclientmodels/response_error.go) |

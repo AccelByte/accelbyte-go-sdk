@@ -23,29 +23,29 @@ type EventV2Service struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (e *EventV2Service) GetAuthSession() auth.Session {
-	if e.RefreshTokenRepository != nil {
+func (aaa *EventV2Service) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			e.TokenRepository,
-			e.ConfigRepository,
-			e.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		e.TokenRepository,
-		e.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryEventStreamHandlerShort instead
-func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.QueryEventStreamHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := aaa.Client.EventV2.QueryEventStreamHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -72,12 +72,12 @@ func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStrea
 }
 
 // Deprecated: Use GetEventSpecificUserV2HandlerShort instead
-func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetEventSpecificUserV2Handler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := aaa.Client.EventV2.GetEventSpecificUserV2Handler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -104,12 +104,12 @@ func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventS
 }
 
 // Deprecated: Use GetPublicEditHistoryShort instead
-func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetPublicEditHistory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := aaa.Client.EventV2.GetPublicEditHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -136,12 +136,12 @@ func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHisto
 }
 
 // Deprecated: Use GetUserEventsV2PublicShort instead
-func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetUserEventsV2Public(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := aaa.Client.EventV2.GetUserEventsV2Public(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -167,24 +167,24 @@ func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2Pu
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (aaa *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventV2.QueryEventStreamHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventV2.QueryEventStreamHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -192,24 +192,24 @@ func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEvent
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (aaa *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventV2.GetEventSpecificUserV2HandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventV2.GetEventSpecificUserV2HandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -217,24 +217,24 @@ func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetE
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (aaa *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventV2.GetPublicEditHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventV2.GetPublicEditHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -242,24 +242,24 @@ func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEdit
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (aaa *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventV2.GetUserEventsV2PublicShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventV2.GetUserEventsV2PublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -65,7 +65,7 @@ type ItemUpdate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
@@ -82,6 +82,9 @@ type ItemUpdate struct {
 
 	// Name
 	Name string `json:"name,omitempty"`
+
+	// option box config, should be empty if item type is not "OPTIONBOX"
+	OptionBoxConfig *OptionBoxConfig `json:"optionBoxConfig,omitempty"`
 
 	// Whether can be purchased
 	Purchasable bool `json:"purchasable"`
@@ -148,6 +151,10 @@ func (m *ItemUpdate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLocalizations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOptionBoxConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -311,7 +318,7 @@ var itemUpdateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -338,6 +345,9 @@ const (
 
 	// ItemUpdateItemTypeMEDIA captures enum value "MEDIA"
 	ItemUpdateItemTypeMEDIA string = "MEDIA"
+
+	// ItemUpdateItemTypeOPTIONBOX captures enum value "OPTIONBOX"
+	ItemUpdateItemTypeOPTIONBOX string = "OPTIONBOX"
 
 	// ItemUpdateItemTypeSEASON captures enum value "SEASON"
 	ItemUpdateItemTypeSEASON string = "SEASON"
@@ -385,6 +395,24 @@ func (m *ItemUpdate) validateLocalizations(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ItemUpdate) validateOptionBoxConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OptionBoxConfig) { // not required
+		return nil
+	}
+
+	if m.OptionBoxConfig != nil {
+		if err := m.OptionBoxConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("optionBoxConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

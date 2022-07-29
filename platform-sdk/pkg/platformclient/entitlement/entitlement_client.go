@@ -59,11 +59,13 @@ type ClientService interface {
 	GetUserEntitlementHistoriesShort(params *GetUserEntitlementHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementHistoriesOK, error)
 	GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIDOK, error)
 	GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIDOK, error)
+	GetUserEntitlementOwnershipByItemIds(params *GetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIdsOK, error)
+	GetUserEntitlementOwnershipByItemIdsShort(params *GetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIdsOK, error)
 	GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipBySkuOK, error)
 	GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipBySkuOK, error)
 	GrantUserEntitlement(params *GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserEntitlementCreated, *GrantUserEntitlementNotFound, *GrantUserEntitlementUnprocessableEntity, error)
 	GrantUserEntitlementShort(params *GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserEntitlementCreated, error)
-	PublicConsumeUserEntitlement(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, *PublicConsumeUserEntitlementNotFound, *PublicConsumeUserEntitlementConflict, error)
+	PublicConsumeUserEntitlement(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, *PublicConsumeUserEntitlementBadRequest, *PublicConsumeUserEntitlementNotFound, *PublicConsumeUserEntitlementConflict, error)
 	PublicConsumeUserEntitlementShort(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, error)
 	PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyMyActiveEntitlementOK, error)
 	PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyMyActiveEntitlementOK, error)
@@ -89,6 +91,8 @@ type ClientService interface {
 	PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, error)
 	PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIDOK, error)
 	PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIDOK, error)
+	PublicGetUserEntitlementOwnershipByItemIds(params *PublicGetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIdsOK, error)
+	PublicGetUserEntitlementOwnershipByItemIdsShort(params *PublicGetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIdsOK, error)
 	PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipBySkuOK, error)
 	PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipBySkuOK, error)
 	PublicQueryUserEntitlements(params *PublicQueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsOK, error)
@@ -1298,6 +1302,93 @@ func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitle
 }
 
 /*
+  GetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
+
+  Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetUserEntitlementOwnershipByItemIds(params *GetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserEntitlementOwnershipByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserEntitlementOwnershipByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserEntitlementOwnershipByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserEntitlementOwnershipByItemIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserEntitlementOwnershipByItemIdsShort(params *GetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserEntitlementOwnershipByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserEntitlementOwnershipByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserEntitlementOwnershipByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserEntitlementOwnershipByItemIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetUserEntitlementOwnershipBySku gets user entitlement ownership by sku
 
   Get user entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1484,9 +1575,9 @@ func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, a
 /*
   PublicConsumeUserEntitlement consumes user entitlement
 
-  Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
+  Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED. Client should pass item id in options if entitlement clazz is OPTIONBOX&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, *PublicConsumeUserEntitlementNotFound, *PublicConsumeUserEntitlementConflict, error) {
+func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, *PublicConsumeUserEntitlementBadRequest, *PublicConsumeUserEntitlementNotFound, *PublicConsumeUserEntitlementConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicConsumeUserEntitlementParams()
@@ -1514,22 +1605,25 @@ func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitleme
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicConsumeUserEntitlementOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PublicConsumeUserEntitlementBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PublicConsumeUserEntitlementNotFound:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PublicConsumeUserEntitlementConflict:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1568,6 +1662,8 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 
 	case *PublicConsumeUserEntitlementOK:
 		return v, nil
+	case *PublicConsumeUserEntitlementBadRequest:
+		return nil, v
 	case *PublicConsumeUserEntitlementNotFound:
 		return nil, v
 	case *PublicConsumeUserEntitlementConflict:
@@ -2664,6 +2760,93 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGe
 	switch v := result.(type) {
 
 	case *PublicGetUserEntitlementOwnershipByItemIDOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
+
+  Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) PublicGetUserEntitlementOwnershipByItemIds(params *PublicGetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementOwnershipByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementOwnershipByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementOwnershipByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementOwnershipByItemIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserEntitlementOwnershipByItemIdsShort(params *PublicGetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementOwnershipByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementOwnershipByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementOwnershipByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementOwnershipByItemIdsOK:
 		return v, nil
 
 	default:

@@ -23,29 +23,29 @@ type GlobalStatisticService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (g *GlobalStatisticService) GetAuthSession() auth.Session {
-	if g.RefreshTokenRepository != nil {
+func (aaa *GlobalStatisticService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			g.TokenRepository,
-			g.ConfigRepository,
-			g.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		g.TokenRepository,
-		g.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetGlobalStatItemsShort instead
-func (g *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := g.Client.GlobalStatistic.GetGlobalStatItems(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItems(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -53,24 +53,24 @@ func (g *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetG
 	return ok.GetPayload(), nil
 }
 
-func (g *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
+func (aaa *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GlobalStatistic.GetGlobalStatItemsShort(input, authInfoWriter)
+	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

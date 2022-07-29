@@ -15,7 +15,10 @@ import (
 // swagger:model EntitlementDecrement
 type EntitlementDecrement struct {
 
-	// the count to decrease, 1 for default
+	// options, it is only available when entitlement clazz is OPTIONBOX and value should be item id.
+	Options []string `json:"options"`
+
+	// the count to decrease, 1 for default, option box entitlement only allow 1
 	UseCount int32 `json:"useCount,omitempty"`
 }
 

@@ -115,7 +115,7 @@ func NewPublicCreateUserOrderBadRequest() *PublicCreateUserOrderBadRequest {
 
 /*PublicCreateUserOrderBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32121</td><td>Order price mismatch</td></tr><tr><td>32122</td><td>Item type [{itemType}] does not support</td></tr><tr><td>32123</td><td>Item is not purchasable</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32121</td><td>Order price mismatch</td></tr><tr><td>32122</td><td>Item type [{itemType}] does not support</td></tr><tr><td>32123</td><td>Item is not purchasable</td></tr><tr><td>32125</td><td>The user does not meet the purchase conditions</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
 */
 type PublicCreateUserOrderBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

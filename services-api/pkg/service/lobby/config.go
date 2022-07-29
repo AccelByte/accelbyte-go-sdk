@@ -23,29 +23,29 @@ type ConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (c *ConfigService) GetAuthSession() auth.Session {
-	if c.RefreshTokenRepository != nil {
+func (aaa *ConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			c.TokenRepository,
-			c.ConfigRepository,
-			c.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		c.TokenRepository,
-		c.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetAllConfigV1Short instead
-func (c *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.AdminGetAllConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.AdminGetAllConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (c *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Par
 }
 
 // Deprecated: Use AdminGetConfigV1Short instead
-func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.AdminGetConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.AdminGetConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,12 +98,12 @@ func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (
 }
 
 // Deprecated: Use AdminUpdateConfigV1Short instead
-func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := c.Client.Config.AdminUpdateConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.Config.AdminUpdateConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -130,12 +130,12 @@ func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Par
 }
 
 // Deprecated: Use AdminExportConfigV1Short instead
-func (c *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.AdminExportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Config.AdminExportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -153,12 +153,12 @@ func (c *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Par
 }
 
 // Deprecated: Use AdminImportConfigV1Short instead
-func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.AdminImportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Config.AdminImportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -175,24 +175,24 @@ func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
+func (aaa *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.AdminGetAllConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminGetAllConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -200,24 +200,24 @@ func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+func (aaa *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.AdminGetConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminGetConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -225,24 +225,24 @@ func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Para
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+func (aaa *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.AdminUpdateConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminUpdateConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -250,24 +250,24 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
+func (aaa *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.AdminExportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminExportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -275,24 +275,24 @@ func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+func (aaa *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.AdminImportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.AdminImportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

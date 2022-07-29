@@ -22,29 +22,29 @@ type SSOSAML20Service struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SSOSAML20Service) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SSOSAML20Service) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use PlatformAuthenticateSAMLV3HandlerShort instead
-func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := s.Client.Ssosaml20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Ssosaml20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -52,24 +52,24 @@ func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_
 	return ok.Location, nil
 }
 
-func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
+func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}

@@ -66,7 +66,7 @@ type ItemCreate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA SEASON SUBSCRIPTION]
+	// Enum: [APP BUNDLE CODE COINS INGAMEITEM MEDIA OPTIONBOX SEASON SUBSCRIPTION]
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
@@ -85,6 +85,9 @@ type ItemCreate struct {
 	// Name, max length is 127
 	// Required: true
 	Name *string `json:"name"`
+
+	// option box config, should be empty if item type is not "OPTIONBOX"
+	OptionBoxConfig *OptionBoxConfig `json:"optionBoxConfig,omitempty"`
 
 	// Whether can be purchased
 	Purchasable bool `json:"purchasable"`
@@ -161,6 +164,10 @@ func (m *ItemCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOptionBoxConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -333,7 +340,7 @@ var itemCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","SEASON","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","BUNDLE","CODE","COINS","INGAMEITEM","MEDIA","OPTIONBOX","SEASON","SUBSCRIPTION"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -360,6 +367,9 @@ const (
 
 	// ItemCreateItemTypeMEDIA captures enum value "MEDIA"
 	ItemCreateItemTypeMEDIA string = "MEDIA"
+
+	// ItemCreateItemTypeOPTIONBOX captures enum value "OPTIONBOX"
+	ItemCreateItemTypeOPTIONBOX string = "OPTIONBOX"
 
 	// ItemCreateItemTypeSEASON captures enum value "SEASON"
 	ItemCreateItemTypeSEASON string = "SEASON"
@@ -412,6 +422,24 @@ func (m *ItemCreate) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ItemCreate) validateOptionBoxConfig(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OptionBoxConfig) { // not required
+		return nil
+	}
+
+	if m.OptionBoxConfig != nil {
+		if err := m.OptionBoxConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("optionBoxConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

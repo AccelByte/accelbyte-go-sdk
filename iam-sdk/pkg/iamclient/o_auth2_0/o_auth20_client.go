@@ -59,6 +59,8 @@ type ClientService interface {
 	TokenRevocationV3Short(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, error)
 	Verify2FACode(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, *Verify2FACodeUnauthorized, error)
 	Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error)
+	VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, *VerifyTokenV3BadRequest, error)
+	VerifyTokenV3Short(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1104,7 +1106,7 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
   &lt;p&gt;This endpoint supports grant type:&lt;/p&gt;&lt;ol&gt;
 	 		&lt;li&gt;Grant Type == &lt;code&gt;authorization_code&lt;/code&gt;:&lt;br /&gt;
 				&amp;nbsp;&amp;nbsp;&amp;nbsp; It generates the user token by given the authorization
-				code which generated in &#34;/v3/oauth/auth&#34; API response. It should also pass
+				code which generated in &#34;/iam/v3/authenticate&#34; API response. It should also pass
 				in the redirect_uri, which should be the same as generating the
 				authorization code request.
 			&lt;/li&gt;
@@ -1552,6 +1554,98 @@ func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtim
 	case *Verify2FACodeOK:
 		return v, nil
 	case *Verify2FACodeUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  VerifyTokenV3 os auth2 token verification API
+
+  This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+*/
+func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, *VerifyTokenV3BadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyTokenV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "VerifyTokenV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyTokenV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *VerifyTokenV3OK:
+		return v, nil, nil
+
+	case *VerifyTokenV3BadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) VerifyTokenV3Short(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyTokenV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "VerifyTokenV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyTokenV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *VerifyTokenV3OK:
+		return v, nil
+	case *VerifyTokenV3BadRequest:
 		return nil, v
 
 	default:

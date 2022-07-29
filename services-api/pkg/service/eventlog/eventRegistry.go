@@ -23,29 +23,29 @@ type EventRegistryService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (e *EventRegistryService) GetAuthSession() auth.Session {
-	if e.RefreshTokenRepository != nil {
+func (aaa *EventRegistryService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			e.TokenRepository,
-			e.ConfigRepository,
-			e.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		e.TokenRepository,
-		e.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetRegisteredEventsHandlerShort instead
-func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsHandler(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.EventRegistry.GetRegisteredEventsHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -63,12 +63,12 @@ func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.
 }
 
 // Deprecated: Use RegisterEventHandlerShort instead
-func (e *EventRegistryService) RegisterEventHandler(input *event_registry.RegisterEventHandlerParams) error {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) RegisterEventHandler(input *event_registry.RegisterEventHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := e.Client.EventRegistry.RegisterEventHandler(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.EventRegistry.RegisterEventHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -92,12 +92,12 @@ func (e *EventRegistryService) RegisterEventHandler(input *event_registry.Regist
 }
 
 // Deprecated: Use GetRegisteredEventIDHandlerShort instead
-func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventIDHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.EventRegistry.GetRegisteredEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -121,12 +121,12 @@ func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry
 }
 
 // Deprecated: Use UpdateEventRegistryHandlerShort instead
-func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.UpdateEventRegistryHandlerParams) error {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.UpdateEventRegistryHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UpdateEventRegistryHandler(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.EventRegistry.UpdateEventRegistryHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -150,12 +150,12 @@ func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.
 }
 
 // Deprecated: Use UnregisterEventIDHandlerShort instead
-func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.UnregisterEventIDHandlerParams) error {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) UnregisterEventIDHandler(input *event_registry.UnregisterEventIDHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UnregisterEventIDHandler(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.EventRegistry.UnregisterEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -176,12 +176,12 @@ func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.Un
 }
 
 // Deprecated: Use GetRegisteredEventsByEventTypeHandlerShort instead
-func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	token, err := e.TokenRepository.GetToken()
+func (aaa *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.EventRegistry.GetRegisteredEventsByEventTypeHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -204,24 +204,24 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (aaa *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -229,24 +229,24 @@ func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_regi
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams) error {
+func (aaa *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := e.Client.EventRegistry.RegisterEventHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.EventRegistry.RegisterEventHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -254,24 +254,24 @@ func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.R
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (aaa *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -279,24 +279,24 @@ func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_reg
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams) error {
+func (aaa *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := e.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -304,24 +304,24 @@ func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_regi
 	return nil
 }
 
-func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams) error {
+func (aaa *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := e.Client.EventRegistry.UnregisterEventIDHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.EventRegistry.UnregisterEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -329,24 +329,24 @@ func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regist
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (aaa *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(e.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  e.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -23,29 +23,29 @@ type PublicTypeService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PublicTypeService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PublicTypeService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetTypeShort instead
-func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicType.GetType(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicType.GetType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -62,24 +62,24 @@ func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclien
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+func (aaa *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PublicType.GetTypeShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicType.GetTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

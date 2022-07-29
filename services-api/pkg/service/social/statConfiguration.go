@@ -23,29 +23,29 @@ type StatConfigurationService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *StatConfigurationService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *StatConfigurationService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetStatsShort instead
-func (s *StatConfigurationService) GetStats(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) GetStats(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.StatConfiguration.GetStats(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.StatConfiguration.GetStats(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (s *StatConfigurationService) GetStats(input *stat_configuration.GetStatsPa
 }
 
 // Deprecated: Use CreateStatShort instead
-func (s *StatConfigurationService) CreateStat(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) CreateStat(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, err := s.Client.StatConfiguration.CreateStat(input, client.BearerToken(*token.AccessToken))
+	created, conflict, err := aaa.Client.StatConfiguration.CreateStat(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -71,12 +71,12 @@ func (s *StatConfigurationService) CreateStat(input *stat_configuration.CreateSt
 }
 
 // Deprecated: Use ExportStatsShort instead
-func (s *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = s.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.StatConfiguration.ExportStats(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -85,12 +85,12 @@ func (s *StatConfigurationService) ExportStats(input *stat_configuration.ExportS
 }
 
 // Deprecated: Use ImportStatsShort instead
-func (s *StatConfigurationService) ImportStats(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) ImportStats(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.StatConfiguration.ImportStats(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, err := aaa.Client.StatConfiguration.ImportStats(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,16 +98,16 @@ func (s *StatConfigurationService) ImportStats(input *stat_configuration.ImportS
 		return nil, err
 	}
 
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
 // Deprecated: Use QueryStatsShort instead
-func (s *StatConfigurationService) QueryStats(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) QueryStats(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.StatConfiguration.QueryStats(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.StatConfiguration.QueryStats(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -116,12 +116,12 @@ func (s *StatConfigurationService) QueryStats(input *stat_configuration.QuerySta
 }
 
 // Deprecated: Use GetStatShort instead
-func (s *StatConfigurationService) GetStat(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) GetStat(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.StatConfiguration.GetStat(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.StatConfiguration.GetStat(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -133,12 +133,12 @@ func (s *StatConfigurationService) GetStat(input *stat_configuration.GetStatPara
 }
 
 // Deprecated: Use DeleteStatShort instead
-func (s *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteStatParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteStatParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := s.Client.StatConfiguration.DeleteStat(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.StatConfiguration.DeleteStat(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -150,12 +150,12 @@ func (s *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteSt
 }
 
 // Deprecated: Use UpdateStatShort instead
-func (s *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.StatConfiguration.UpdateStat(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.StatConfiguration.UpdateStat(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -167,12 +167,12 @@ func (s *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateSt
 }
 
 // Deprecated: Use CreateStat1Short instead
-func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *StatConfigurationService) CreateStat1(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, err := s.Client.StatConfiguration.CreateStat1(input, client.BearerToken(*token.AccessToken))
+	created, conflict, err := aaa.Client.StatConfiguration.CreateStat1(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -183,24 +183,24 @@ func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateS
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+func (aaa *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.StatConfiguration.GetStatsShort(input, authInfoWriter)
+	ok, err := aaa.Client.StatConfiguration.GetStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -208,24 +208,24 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
+func (aaa *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := s.Client.StatConfiguration.CreateStatShort(input, authInfoWriter)
+	created, err := aaa.Client.StatConfiguration.CreateStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -233,24 +233,24 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) error {
+func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
+	_, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -258,24 +258,49 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 	return nil
 }
 
-func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
+func (aaa *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.StatConfiguration.ImportStatsShort(input, authInfoWriter)
+	created, err := aaa.Client.StatConfiguration.ImportStatsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+func (aaa *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.StatConfiguration.QueryStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -283,24 +308,24 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+func (aaa *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.StatConfiguration.QueryStatsShort(input, authInfoWriter)
+	ok, err := aaa.Client.StatConfiguration.GetStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -308,49 +333,24 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
+func (aaa *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.StatConfiguration.GetStatShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := s.Client.StatConfiguration.DeleteStatShort(input, authInfoWriter)
+	_, err := aaa.Client.StatConfiguration.DeleteStatShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -358,24 +358,24 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 	return nil
 }
 
-func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
+func (aaa *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.StatConfiguration.UpdateStatShort(input, authInfoWriter)
+	ok, err := aaa.Client.StatConfiguration.UpdateStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -383,24 +383,24 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
+func (aaa *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := s.Client.StatConfiguration.CreateStat1Short(input, authInfoWriter)
+	created, err := aaa.Client.StatConfiguration.CreateStat1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

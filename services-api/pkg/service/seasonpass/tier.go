@@ -23,29 +23,29 @@ type TierService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (t *TierService) GetAuthSession() auth.Session {
-	if t.RefreshTokenRepository != nil {
+func (aaa *TierService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			t.TokenRepository,
-			t.ConfigRepository,
-			t.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		t.TokenRepository,
-		t.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryTiersShort instead
-func (t *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := t.Client.Tier.QueryTiers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Tier.QueryTiers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -60,12 +60,12 @@ func (t *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclien
 }
 
 // Deprecated: Use CreateTierShort instead
-func (t *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := t.Client.Tier.CreateTier(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Tier.CreateTier(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -86,12 +86,12 @@ func (t *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpasscli
 }
 
 // Deprecated: Use UpdateTierShort instead
-func (t *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := t.Client.Tier.UpdateTier(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Tier.UpdateTier(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,12 +112,12 @@ func (t *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclien
 }
 
 // Deprecated: Use DeleteTierShort instead
-func (t *TierService) DeleteTier(input *tier.DeleteTierParams) error {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) DeleteTier(input *tier.DeleteTierParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := t.Client.Tier.DeleteTier(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Tier.DeleteTier(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -135,12 +135,12 @@ func (t *TierService) DeleteTier(input *tier.DeleteTierParams) error {
 }
 
 // Deprecated: Use ReorderTierShort instead
-func (t *TierService) ReorderTier(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) ReorderTier(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := t.Client.Tier.ReorderTier(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Tier.ReorderTier(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -161,12 +161,12 @@ func (t *TierService) ReorderTier(input *tier.ReorderTierParams) (*seasonpasscli
 }
 
 // Deprecated: Use GrantUserExpShort instead
-func (t *TierService) GrantUserExp(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) GrantUserExp(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := t.Client.Tier.GrantUserExp(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Tier.GrantUserExp(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -178,12 +178,12 @@ func (t *TierService) GrantUserExp(input *tier.GrantUserExpParams) (*seasonpassc
 }
 
 // Deprecated: Use GrantUserTierShort instead
-func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := t.Client.Tier.GrantUserTier(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Tier.GrantUserTier(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -197,24 +197,24 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
+func (aaa *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Tier.QueryTiersShort(input, authInfoWriter)
+	ok, err := aaa.Client.Tier.QueryTiersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -222,24 +222,24 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpass
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
+func (aaa *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := t.Client.Tier.CreateTierShort(input, authInfoWriter)
+	created, err := aaa.Client.Tier.CreateTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -247,24 +247,24 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpa
 	return created.GetPayload(), nil
 }
 
-func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
+func (aaa *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Tier.UpdateTierShort(input, authInfoWriter)
+	ok, err := aaa.Client.Tier.UpdateTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -272,24 +272,24 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpass
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
+func (aaa *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := t.Client.Tier.DeleteTierShort(input, authInfoWriter)
+	_, err := aaa.Client.Tier.DeleteTierShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -297,24 +297,24 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
 	return nil
 }
 
-func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
+func (aaa *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Tier.ReorderTierShort(input, authInfoWriter)
+	ok, err := aaa.Client.Tier.ReorderTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -322,24 +322,24 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpa
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (aaa *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Tier.GrantUserExpShort(input, authInfoWriter)
+	ok, err := aaa.Client.Tier.GrantUserExpShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -347,24 +347,24 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*season
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (aaa *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Tier.GrantUserTierShort(input, authInfoWriter)
+	ok, err := aaa.Client.Tier.GrantUserTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

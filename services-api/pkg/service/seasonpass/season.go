@@ -23,29 +23,29 @@ type SeasonService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SeasonService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SeasonService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QuerySeasonsShort instead
-func (s *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.Season.QuerySeasons(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Season.QuerySeasons(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -57,12 +57,12 @@ func (s *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonp
 }
 
 // Deprecated: Use CreateSeasonShort instead
-func (s *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, unprocessableEntity, err := s.Client.Season.CreateSeason(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, unprocessableEntity, err := aaa.Client.Season.CreateSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -80,12 +80,12 @@ func (s *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonp
 }
 
 // Deprecated: Use GetCurrentSeasonShort instead
-func (s *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.GetCurrentSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.GetCurrentSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -100,12 +100,12 @@ func (s *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (
 }
 
 // Deprecated: Use GetSeasonShort instead
-func (s *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.GetSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.GetSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -120,12 +120,12 @@ func (s *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpasscli
 }
 
 // Deprecated: Use DeleteSeasonShort instead
-func (s *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := s.Client.Season.DeleteSeason(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Season.DeleteSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -143,12 +143,12 @@ func (s *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
 }
 
 // Deprecated: Use UpdateSeasonShort instead
-func (s *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := s.Client.Season.UpdateSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Season.UpdateSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -169,12 +169,12 @@ func (s *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonp
 }
 
 // Deprecated: Use CloneSeasonShort instead
-func (s *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, unprocessableEntity, err := s.Client.Season.CloneSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, unprocessableEntity, err := aaa.Client.Season.CloneSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -192,12 +192,12 @@ func (s *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpas
 }
 
 // Deprecated: Use PublishSeasonShort instead
-func (s *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := s.Client.Season.PublishSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Season.PublishSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -215,12 +215,12 @@ func (s *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seaso
 }
 
 // Deprecated: Use RetireSeasonShort instead
-func (s *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := s.Client.Season.RetireSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Season.RetireSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -238,12 +238,12 @@ func (s *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonp
 }
 
 // Deprecated: Use UnpublishSeasonShort instead
-func (s *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := s.Client.Season.UnpublishSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Season.UnpublishSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -261,12 +261,12 @@ func (s *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*s
 }
 
 // Deprecated: Use GetUserParticipatedSeasonsShort instead
-func (s *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.Season.GetUserParticipatedSeasons(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Season.GetUserParticipatedSeasons(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -278,12 +278,12 @@ func (s *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticip
 }
 
 // Deprecated: Use ExistsAnyPassByPassCodesShort instead
-func (s *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.Season.ExistsAnyPassByPassCodes(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Season.ExistsAnyPassByPassCodes(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -295,12 +295,12 @@ func (s *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPa
 }
 
 // Deprecated: Use GetCurrentUserSeasonProgressionShort instead
-func (s *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.GetCurrentUserSeasonProgression(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.GetCurrentUserSeasonProgression(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -315,12 +315,12 @@ func (s *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrent
 }
 
 // Deprecated: Use CheckSeasonPurchasableShort instead
-func (s *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasableParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasableParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := s.Client.Season.CheckSeasonPurchasable(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Season.CheckSeasonPurchasable(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -338,12 +338,12 @@ func (s *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasa
 }
 
 // Deprecated: Use ResetUserSeasonShort instead
-func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := s.Client.Season.ResetUserSeason(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Season.ResetUserSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -355,12 +355,12 @@ func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) err
 }
 
 // Deprecated: Use QueryUserExpGrantHistoryShort instead
-func (s *SeasonService) QueryUserExpGrantHistory(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) QueryUserExpGrantHistory(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.Season.QueryUserExpGrantHistory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Season.QueryUserExpGrantHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -372,12 +372,12 @@ func (s *SeasonService) QueryUserExpGrantHistory(input *season.QueryUserExpGrant
 }
 
 // Deprecated: Use QueryUserExpGrantHistoryTagShort instead
-func (s *SeasonService) QueryUserExpGrantHistoryTag(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) QueryUserExpGrantHistoryTag(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := s.Client.Season.QueryUserExpGrantHistoryTag(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Season.QueryUserExpGrantHistoryTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -389,12 +389,12 @@ func (s *SeasonService) QueryUserExpGrantHistoryTag(input *season.QueryUserExpGr
 }
 
 // Deprecated: Use GetUserSeasonShort instead
-func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.GetUserSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.GetUserSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -409,8 +409,8 @@ func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seaso
 }
 
 // Deprecated: Use PublicGetCurrentSeasonShort instead
-func (s *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
-	ok, badRequest, notFound, err := s.Client.Season.PublicGetCurrentSeason(input)
+func (aaa *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
+	ok, badRequest, notFound, err := aaa.Client.Season.PublicGetCurrentSeason(input)
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -425,12 +425,12 @@ func (s *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSea
 }
 
 // Deprecated: Use PublicGetCurrentUserSeasonShort instead
-func (s *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.PublicGetCurrentUserSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.PublicGetCurrentUserSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -445,12 +445,12 @@ func (s *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurren
 }
 
 // Deprecated: Use PublicGetUserSeasonShort instead
-func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Season.PublicGetUserSeason(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Season.PublicGetUserSeason(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -464,24 +464,24 @@ func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonPar
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
+func (aaa *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.QuerySeasonsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.QuerySeasonsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -489,24 +489,24 @@ func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*se
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := s.Client.Season.CreateSeasonShort(input, authInfoWriter)
+	created, err := aaa.Client.Season.CreateSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -514,24 +514,24 @@ func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*se
 	return created.GetPayload(), nil
 }
 
-func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
+func (aaa *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.GetCurrentSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.GetCurrentSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -539,24 +539,24 @@ func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPara
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.GetSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.GetSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -564,24 +564,24 @@ func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpa
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) error {
+func (aaa *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Season.DeleteSeasonShort(input, authInfoWriter)
+	_, err := aaa.Client.Season.DeleteSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -589,24 +589,24 @@ func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) erro
 	return nil
 }
 
-func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.UpdateSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.UpdateSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -614,24 +614,24 @@ func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*se
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.CloneSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.CloneSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -639,24 +639,24 @@ func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seas
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.PublishSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.PublishSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -664,24 +664,24 @@ func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.RetireSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.RetireSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -689,24 +689,24 @@ func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*se
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+func (aaa *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.UnpublishSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.UnpublishSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -714,24 +714,24 @@ func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
+func (aaa *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.GetUserParticipatedSeasonsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.GetUserParticipatedSeasonsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -739,24 +739,24 @@ func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserPar
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
+func (aaa *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.ExistsAnyPassByPassCodesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.ExistsAnyPassByPassCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -764,24 +764,24 @@ func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPas
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (aaa *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.GetCurrentUserSeasonProgressionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.GetCurrentUserSeasonProgressionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -789,24 +789,24 @@ func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCu
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPurchasableParams) error {
+func (aaa *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPurchasableParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Season.CheckSeasonPurchasableShort(input, authInfoWriter)
+	_, err := aaa.Client.Season.CheckSeasonPurchasableShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -814,24 +814,24 @@ func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPur
 	return nil
 }
 
-func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams) error {
+func (aaa *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Season.ResetUserSeasonShort(input, authInfoWriter)
+	_, err := aaa.Client.Season.ResetUserSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -839,24 +839,24 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 	return nil
 }
 
-func (s *SeasonService) QueryUserExpGrantHistoryShort(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
+func (aaa *SeasonService) QueryUserExpGrantHistoryShort(input *season.QueryUserExpGrantHistoryParams) (*seasonpassclientmodels.ExpGrantHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.QueryUserExpGrantHistoryShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.QueryUserExpGrantHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -864,24 +864,24 @@ func (s *SeasonService) QueryUserExpGrantHistoryShort(input *season.QueryUserExp
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) QueryUserExpGrantHistoryTagShort(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
+func (aaa *SeasonService) QueryUserExpGrantHistoryTagShort(input *season.QueryUserExpGrantHistoryTagParams) (*seasonpassclientmodels.ReasonTagsResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.QueryUserExpGrantHistoryTagShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.QueryUserExpGrantHistoryTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -889,24 +889,24 @@ func (s *SeasonService) QueryUserExpGrantHistoryTagShort(input *season.QueryUser
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (aaa *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.GetUserSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.GetUserSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -914,8 +914,8 @@ func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
-	ok, err := s.Client.Season.PublicGetCurrentSeasonShort(input)
+func (aaa *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
+	ok, err := aaa.Client.Season.PublicGetCurrentSeasonShort(input)
 	if err != nil {
 		return nil, err
 	}
@@ -923,24 +923,24 @@ func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurre
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (aaa *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.PublicGetCurrentUserSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.PublicGetCurrentUserSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -948,24 +948,24 @@ func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetC
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (aaa *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Season.PublicGetUserSeasonShort(input, authInfoWriter)
+	ok, err := aaa.Client.Season.PublicGetUserSeasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

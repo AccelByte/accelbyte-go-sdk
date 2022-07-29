@@ -23,29 +23,29 @@ type OrderDedicatedService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (o *OrderDedicatedService) GetAuthSession() auth.Session {
-	if o.RefreshTokenRepository != nil {
+func (aaa *OrderDedicatedService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			o.TokenRepository,
-			o.ConfigRepository,
-			o.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		o.TokenRepository,
-		o.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use SyncOrdersShort instead
-func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
-	token, err := o.TokenRepository.GetToken()
+func (aaa *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OrderDedicated.SyncOrders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OrderDedicated.SyncOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -53,24 +53,24 @@ func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersPara
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
+func (aaa *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  o.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := o.Client.OrderDedicated.SyncOrdersShort(input, authInfoWriter)
+	ok, err := aaa.Client.OrderDedicated.SyncOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

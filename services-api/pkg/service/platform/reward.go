@@ -23,29 +23,29 @@ type RewardService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (r *RewardService) GetAuthSession() auth.Session {
-	if r.RefreshTokenRepository != nil {
+func (aaa *RewardService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			r.TokenRepository,
-			r.ConfigRepository,
-			r.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		r.TokenRepository,
-		r.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use CreateRewardShort instead
-func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := r.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -63,12 +63,12 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platfor
 }
 
 // Deprecated: Use QueryRewardsShort instead
-func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := r.Client.Reward.QueryRewards(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.Reward.QueryRewards(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -80,12 +80,12 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platfor
 }
 
 // Deprecated: Use ExportRewardsShort instead
-func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = r.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.Reward.ExportRewards(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -94,12 +94,12 @@ func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
 }
 
 // Deprecated: Use ImportRewardsShort instead
-func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := r.Client.Reward.ImportRewards(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Reward.ImportRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -111,12 +111,12 @@ func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
 }
 
 // Deprecated: Use GetRewardShort instead
-func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) GetReward(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := r.Client.Reward.GetReward(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Reward.GetReward(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -128,12 +128,12 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclien
 }
 
 // Deprecated: Use UpdateRewardShort instead
-func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := r.Client.Reward.UpdateReward(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, err := aaa.Client.Reward.UpdateReward(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -148,12 +148,12 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platfor
 }
 
 // Deprecated: Use DeleteRewardShort instead
-func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := r.Client.Reward.DeleteReward(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Reward.DeleteReward(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -165,12 +165,12 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platfor
 }
 
 // Deprecated: Use CheckEventConditionShort instead
-func (r *RewardService) CheckEventCondition(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) CheckEventCondition(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := r.Client.Reward.CheckEventCondition(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Reward.CheckEventCondition(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -182,12 +182,12 @@ func (r *RewardService) CheckEventCondition(input *reward.CheckEventConditionPar
 }
 
 // Deprecated: Use GetRewardByCodeShort instead
-func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := r.Client.Reward.GetRewardByCode(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Reward.GetRewardByCode(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -199,12 +199,12 @@ func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*p
 }
 
 // Deprecated: Use QueryRewards1Short instead
-func (r *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := r.Client.Reward.QueryRewards1(input, client.BearerToken(*token.AccessToken))
+	ok, unprocessableEntity, err := aaa.Client.Reward.QueryRewards1(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -216,12 +216,12 @@ func (r *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platf
 }
 
 // Deprecated: Use GetReward1Short instead
-func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
-	token, err := r.TokenRepository.GetToken()
+func (aaa *RewardService) GetReward1(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := r.Client.Reward.GetReward1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Reward.GetReward1(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -232,24 +232,24 @@ func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.CreateRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -257,24 +257,24 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.QueryRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -282,24 +282,24 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) error {
+func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := r.Client.Reward.ExportRewardsShort(input, authInfoWriter)
+	_, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -307,24 +307,24 @@ func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) er
 	return nil
 }
 
-func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) error {
+func (aaa *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := r.Client.Reward.ImportRewardsShort(input, authInfoWriter)
+	_, err := aaa.Client.Reward.ImportRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -332,24 +332,24 @@ func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) er
 	return nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.GetRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.GetRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -357,24 +357,24 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platform
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -382,24 +382,24 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.DeleteRewardShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.DeleteRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -407,24 +407,24 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
+func (aaa *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.CheckEventConditionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.CheckEventConditionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -432,24 +432,24 @@ func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditi
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.GetRewardByCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.GetRewardByCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -457,24 +457,24 @@ func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (aaa *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.QueryRewards1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.QueryRewards1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -482,24 +482,24 @@ func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
+func (aaa *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(r.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  r.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := r.Client.Reward.GetReward1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Reward.GetReward1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

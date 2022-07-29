@@ -23,29 +23,29 @@ type AdminService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AdminService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AdminService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListServerShort instead
-func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.ListServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -60,12 +60,12 @@ func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmod
 }
 
 // Deprecated: Use CountServerShort instead
-func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.CountServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -80,12 +80,12 @@ func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientm
 }
 
 // Deprecated: Use CountServerDetailedShort instead
-func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.CountServerDetailed(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -100,12 +100,12 @@ func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParam
 }
 
 // Deprecated: Use ListLocalServerShort instead
-func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.ListLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -120,12 +120,12 @@ func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsm
 }
 
 // Deprecated: Use DeleteLocalServerShort instead
-func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := aaa.Client.Admin.DeleteLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -140,12 +140,12 @@ func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) e
 }
 
 // Deprecated: Use GetServerShort instead
-func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.Admin.GetServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -163,12 +163,12 @@ func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodel
 }
 
 // Deprecated: Use DeleteServerShort instead
-func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -186,12 +186,12 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 }
 
 // Deprecated: Use GetServerLogsShort instead
-func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -212,12 +212,12 @@ func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmccli
 }
 
 // Deprecated: Use ListSessionShort instead
-func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.ListSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -232,12 +232,12 @@ func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientm
 }
 
 // Deprecated: Use CountSessionShort instead
-func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Admin.CountSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -252,12 +252,12 @@ func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclien
 }
 
 // Deprecated: Use DeleteSessionShort instead
-func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := aaa.Client.Admin.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -271,24 +271,24 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	return nil
 }
 
-func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+func (aaa *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.ListServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.ListServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -296,24 +296,24 @@ func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclie
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+func (aaa *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.CountServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.CountServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -321,24 +321,24 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+func (aaa *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.CountServerDetailedShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.CountServerDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -346,24 +346,24 @@ func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailed
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+func (aaa *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.ListLocalServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.ListLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -371,24 +371,24 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) 
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams) error {
+func (aaa *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.DeleteLocalServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.DeleteLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -396,24 +396,24 @@ func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerPara
 	return nil
 }
 
-func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
+func (aaa *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.GetServerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.GetServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -421,24 +421,24 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclient
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+func (aaa *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -446,24 +446,24 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	return nil
 }
 
-func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+func (aaa *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.GetServerLogsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.GetServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -471,24 +471,24 @@ func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*ds
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+func (aaa *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.ListSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.ListSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -496,24 +496,24 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+func (aaa *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := a.Client.Admin.CountSessionShort(input, authInfoWriter)
+	ok, err := aaa.Client.Admin.CountSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -521,24 +521,24 @@ func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmc
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) error {
+func (aaa *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Admin.DeleteSessionShort(input, authInfoWriter)
+	_, err := aaa.Client.Admin.DeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

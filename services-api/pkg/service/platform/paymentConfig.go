@@ -23,29 +23,29 @@ type PaymentConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PaymentConfigService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PaymentConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use TestAdyenConfigShort instead
-func (p *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestAdyenConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestAdyenConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (p *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenCo
 }
 
 // Deprecated: Use TestAliPayConfigShort instead
-func (p *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestAliPayConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestAliPayConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -68,12 +68,12 @@ func (p *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPay
 }
 
 // Deprecated: Use TestCheckoutConfigShort instead
-func (p *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestCheckoutConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestCheckoutConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -82,12 +82,12 @@ func (p *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestChec
 }
 
 // Deprecated: Use DebugMatchedPaymentMerchantConfigShort instead
-func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.DebugMatchedPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.DebugMatchedPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -99,12 +99,12 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_
 }
 
 // Deprecated: Use TestPayPalConfigShort instead
-func (p *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestPayPalConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestPayPalConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -113,12 +113,12 @@ func (p *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPal
 }
 
 // Deprecated: Use TestStripeConfigShort instead
-func (p *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestStripeConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestStripeConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -127,12 +127,12 @@ func (p *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripe
 }
 
 // Deprecated: Use TestWxPayConfigShort instead
-func (p *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestWxPayConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestWxPayConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -141,12 +141,12 @@ func (p *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayCo
 }
 
 // Deprecated: Use TestXsollaConfigShort instead
-func (p *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.TestXsollaConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.TestXsollaConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -155,12 +155,12 @@ func (p *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsolla
 }
 
 // Deprecated: Use GetPaymentMerchantConfigShort instead
-func (p *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.GetPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -172,12 +172,12 @@ func (p *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.Ge
 }
 
 // Deprecated: Use UpdateAdyenConfigShort instead
-func (p *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateAdyenConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateAdyenConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -189,12 +189,12 @@ func (p *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdy
 }
 
 // Deprecated: Use TestAdyenConfigByIDShort instead
-func (p *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestAdyenConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestAdyenConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -206,12 +206,12 @@ func (p *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdy
 }
 
 // Deprecated: Use UpdateAliPayConfigShort instead
-func (p *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateAliPayConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateAliPayConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -223,12 +223,12 @@ func (p *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAl
 }
 
 // Deprecated: Use TestAliPayConfigByIDShort instead
-func (p *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestAliPayConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestAliPayConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -240,12 +240,12 @@ func (p *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAl
 }
 
 // Deprecated: Use UpdateCheckoutConfigShort instead
-func (p *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateCheckoutConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateCheckoutConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -257,12 +257,12 @@ func (p *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.Update
 }
 
 // Deprecated: Use TestCheckoutConfigByIDShort instead
-func (p *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestCheckoutConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestCheckoutConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -274,12 +274,12 @@ func (p *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.Test
 }
 
 // Deprecated: Use UpdatePayPalConfigShort instead
-func (p *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdatePayPalConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdatePayPalConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -291,12 +291,12 @@ func (p *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePa
 }
 
 // Deprecated: Use TestPayPalConfigByIDShort instead
-func (p *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestPayPalConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestPayPalConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -308,12 +308,12 @@ func (p *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPa
 }
 
 // Deprecated: Use UpdateStripeConfigShort instead
-func (p *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateStripeConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateStripeConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -325,12 +325,12 @@ func (p *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateSt
 }
 
 // Deprecated: Use TestStripeConfigByIDShort instead
-func (p *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestStripeConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestStripeConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -342,12 +342,12 @@ func (p *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestSt
 }
 
 // Deprecated: Use UpdateWxPayConfigShort instead
-func (p *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateWxPayConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateWxPayConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -359,12 +359,12 @@ func (p *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxP
 }
 
 // Deprecated: Use UpdateWxPayConfigCertShort instead
-func (p *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateWxPayConfigCert(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateWxPayConfigCert(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -376,12 +376,12 @@ func (p *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.Updat
 }
 
 // Deprecated: Use TestWxPayConfigByIDShort instead
-func (p *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestWxPayConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestWxPayConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -393,12 +393,12 @@ func (p *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxP
 }
 
 // Deprecated: Use UpdateXsollaConfigShort instead
-func (p *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateXsollaConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateXsollaConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -410,12 +410,12 @@ func (p *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXs
 }
 
 // Deprecated: Use TestXsollaConfigByIDShort instead
-func (p *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.TestXsollaConfigByID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.TestXsollaConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -427,12 +427,12 @@ func (p *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXs
 }
 
 // Deprecated: Use UpdateXsollaUIConfigShort instead
-func (p *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.UpdateXsollaUIConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateXsollaUIConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -444,12 +444,12 @@ func (p *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.Update
 }
 
 // Deprecated: Use QueryPaymentProviderConfigShort instead
-func (p *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.QueryPaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.QueryPaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -458,12 +458,12 @@ func (p *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.
 }
 
 // Deprecated: Use CreatePaymentProviderConfigShort instead
-func (p *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, conflict, unprocessableEntity, err := p.Client.PaymentConfig.CreatePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, unprocessableEntity, err := aaa.Client.PaymentConfig.CreatePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -481,12 +481,12 @@ func (p *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config
 }
 
 // Deprecated: Use GetAggregatePaymentProvidersShort instead
-func (p *PaymentConfigService) GetAggregatePaymentProviders(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) GetAggregatePaymentProviders(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.GetAggregatePaymentProviders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.GetAggregatePaymentProviders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -495,12 +495,12 @@ func (p *PaymentConfigService) GetAggregatePaymentProviders(input *payment_confi
 }
 
 // Deprecated: Use DebugMatchedPaymentProviderConfigShort instead
-func (p *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.PaymentConfig.DebugMatchedPaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.DebugMatchedPaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -512,12 +512,12 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_
 }
 
 // Deprecated: Use GetSpecialPaymentProvidersShort instead
-func (p *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.GetSpecialPaymentProviders(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.GetSpecialPaymentProviders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -526,12 +526,12 @@ func (p *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.
 }
 
 // Deprecated: Use UpdatePaymentProviderConfigShort instead
-func (p *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.PaymentConfig.UpdatePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.PaymentConfig.UpdatePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -552,12 +552,12 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config
 }
 
 // Deprecated: Use DeletePaymentProviderConfigShort instead
-func (p *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config.DeletePaymentProviderConfigParams) error {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config.DeletePaymentProviderConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := p.Client.PaymentConfig.DeletePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.PaymentConfig.DeletePaymentProviderConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -569,12 +569,12 @@ func (p *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config
 }
 
 // Deprecated: Use GetPaymentTaxConfigShort instead
-func (p *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentConfig.GetPaymentTaxConfig(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.PaymentConfig.GetPaymentTaxConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -583,12 +583,12 @@ func (p *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaym
 }
 
 // Deprecated: Use UpdatePaymentTaxConfigShort instead
-func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unprocessableEntity, err := p.Client.PaymentConfig.UpdatePaymentTaxConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unprocessableEntity, err := aaa.Client.PaymentConfig.UpdatePaymentTaxConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -602,24 +602,24 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestAdyenConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestAdyenConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -627,24 +627,24 @@ func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestAliPayConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestAliPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -652,24 +652,24 @@ func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestA
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestCheckoutConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestCheckoutConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -677,24 +677,24 @@ func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.Tes
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -702,24 +702,24 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *pay
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestPayPalConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestPayPalConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -727,24 +727,24 @@ func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestP
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestStripeConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestStripeConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -752,24 +752,24 @@ func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestS
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestWxPayConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestWxPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -777,24 +777,24 @@ func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWx
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestXsollaConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestXsollaConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -802,24 +802,24 @@ func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestX
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -827,24 +827,24 @@ func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_conf
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateAdyenConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateAdyenConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -852,24 +852,24 @@ func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestAdyenConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestAdyenConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -877,24 +877,24 @@ func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.Te
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateAliPayConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateAliPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -902,24 +902,24 @@ func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestAliPayConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestAliPayConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -927,24 +927,24 @@ func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateCheckoutConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateCheckoutConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -952,24 +952,24 @@ func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.U
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -977,24 +977,24 @@ func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdatePayPalConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdatePayPalConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1002,24 +1002,24 @@ func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestPayPalConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestPayPalConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1027,24 +1027,24 @@ func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateStripeConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateStripeConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1052,24 +1052,24 @@ func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestStripeConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestStripeConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1077,24 +1077,24 @@ func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateWxPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1102,24 +1102,24 @@ func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigCertShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateWxPayConfigCertShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1127,24 +1127,24 @@ func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestWxPayConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestWxPayConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1152,24 +1152,24 @@ func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.Te
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateXsollaConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateXsollaConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1177,24 +1177,24 @@ func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
+func (aaa *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.TestXsollaConfigByIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.TestXsollaConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1202,24 +1202,24 @@ func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdateXsollaUIConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdateXsollaUIConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1227,24 +1227,24 @@ func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.U
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
+func (aaa *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.QueryPaymentProviderConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.QueryPaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1252,24 +1252,24 @@ func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_co
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+func (aaa *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.CreatePaymentProviderConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.CreatePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1277,24 +1277,24 @@ func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_c
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
+func (aaa *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.GetAggregatePaymentProvidersShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.GetAggregatePaymentProvidersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1302,24 +1302,24 @@ func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+func (aaa *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentProviderConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.DebugMatchedPaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1327,24 +1327,24 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *pay
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
+func (aaa *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.GetSpecialPaymentProvidersShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.GetSpecialPaymentProvidersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1352,24 +1352,24 @@ func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_co
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdatePaymentProviderConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdatePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1377,24 +1377,24 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_c
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_config.DeletePaymentProviderConfigParams) error {
+func (aaa *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_config.DeletePaymentProviderConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := p.Client.PaymentConfig.DeletePaymentProviderConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.PaymentConfig.DeletePaymentProviderConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1402,24 +1402,24 @@ func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_c
 	return nil
 }
 
-func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+func (aaa *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.GetPaymentTaxConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.GetPaymentTaxConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1427,24 +1427,24 @@ func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.Ge
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+func (aaa *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PaymentConfig.UpdatePaymentTaxConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.UpdatePaymentTaxConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

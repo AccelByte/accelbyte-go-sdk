@@ -25,29 +25,29 @@ type SlotService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (s *SlotService) GetAuthSession() auth.Session {
-	if s.RefreshTokenRepository != nil {
+func (aaa *SlotService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			s.TokenRepository,
-			s.ConfigRepository,
-			s.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		s.TokenRepository,
-		s.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetUserNamespaceSlotsShort instead
-func (s *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Slot.GetUserNamespaceSlots(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Slot.GetUserNamespaceSlots(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -56,12 +56,12 @@ func (s *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsPar
 }
 
 // Deprecated: Use GetSlotDataShort instead
-func (s *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Slot.GetSlotData(input, client.BearerToken(*token.AccessToken), writer)
+	ok, notFound, err := aaa.Client.Slot.GetSlotData(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -73,12 +73,12 @@ func (s *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Write
 }
 
 // Deprecated: Use PublicGetUserNamespaceSlotsShort instead
-func (s *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Slot.PublicGetUserNamespaceSlots(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Slot.PublicGetUserNamespaceSlots(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -87,12 +87,12 @@ func (s *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNames
 }
 
 // Deprecated: Use PublicCreateUserNamespaceSlotShort instead
-func (s *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUserNamespaceSlotParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUserNamespaceSlotParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, conflict, err := s.Client.Slot.PublicCreateUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, conflict, err := aaa.Client.Slot.PublicCreateUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -107,12 +107,12 @@ func (s *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUser
 }
 
 // Deprecated: Use PublicGetSlotDataShort instead
-func (s *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Slot.PublicGetSlotData(input, client.BearerToken(*token.AccessToken), writer)
+	ok, notFound, err := aaa.Client.Slot.PublicGetSlotData(input, client.BearerToken(*token.AccessToken), writer)
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -124,12 +124,12 @@ func (s *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, wri
 }
 
 // Deprecated: Use PublicUpdateUserNamespaceSlotShort instead
-func (s *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := s.Client.Slot.PublicUpdateUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.Slot.PublicUpdateUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -144,12 +144,12 @@ func (s *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUser
 }
 
 // Deprecated: Use PublicDeleteUserNamespaceSlotShort instead
-func (s *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUserNamespaceSlotParams) error {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUserNamespaceSlotParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := s.Client.Slot.PublicDeleteUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.Slot.PublicDeleteUserNamespaceSlot(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -161,12 +161,12 @@ func (s *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUser
 }
 
 // Deprecated: Use PublicUpdateUserNamespaceSlotMetadataShort instead
-func (s *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
-	token, err := s.TokenRepository.GetToken()
+func (aaa *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Slot.PublicUpdateUserNamespaceSlotMetadata(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Slot.PublicUpdateUserNamespaceSlotMetadata(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -177,24 +177,24 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUp
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+func (aaa *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.GetUserNamespaceSlotsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Slot.GetUserNamespaceSlotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -202,24 +202,24 @@ func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlo
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
+func (aaa *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.GetSlotDataShort(input, authInfoWriter, writer)
+	ok, err := aaa.Client.Slot.GetSlotDataShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}
@@ -227,24 +227,24 @@ func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+func (aaa *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.PublicGetUserNamespaceSlotsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Slot.PublicGetUserNamespaceSlotsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -252,24 +252,24 @@ func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUser
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreateUserNamespaceSlotParams) error {
+func (aaa *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreateUserNamespaceSlotParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Slot.PublicCreateUserNamespaceSlotShort(input, authInfoWriter)
+	_, err := aaa.Client.Slot.PublicCreateUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -277,24 +277,24 @@ func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreat
 	return nil
 }
 
-func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
+func (aaa *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.PublicGetSlotDataShort(input, authInfoWriter, writer)
+	ok, err := aaa.Client.Slot.PublicGetSlotDataShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}
@@ -302,24 +302,24 @@ func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
+func (aaa *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.PublicUpdateUserNamespaceSlotShort(input, authInfoWriter)
+	ok, err := aaa.Client.Slot.PublicUpdateUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -327,24 +327,24 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdat
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDeleteUserNamespaceSlotParams) error {
+func (aaa *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDeleteUserNamespaceSlotParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := s.Client.Slot.PublicDeleteUserNamespaceSlotShort(input, authInfoWriter)
+	_, err := aaa.Client.Slot.PublicDeleteUserNamespaceSlotShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -352,24 +352,24 @@ func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDelet
 	return nil
 }
 
-func (s *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
+func (aaa *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(s.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  s.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := s.Client.Slot.PublicUpdateUserNamespaceSlotMetadataShort(input, authInfoWriter)
+	ok, err := aaa.Client.Slot.PublicUpdateUserNamespaceSlotMetadataShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

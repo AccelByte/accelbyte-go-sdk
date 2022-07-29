@@ -178,6 +178,7 @@ func (a *Client) CreateContentDirectShort(params *CreateContentDirectParams, aut
 				All request body are required except payload, preview, tags, and contentType.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) CreateContentS3(params *CreateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateContentS3Created, *CreateContentS3BadRequest, *CreateContentS3Unauthorized, *CreateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -693,7 +694,7 @@ func (a *Client) PublicDownloadContentByContentIDShort(params *PublicDownloadCon
 /*
   PublicDownloadContentPreview gets content preview
 
-  Requires valid user token
+  &lt;p&gt;Requires valid user token&lt;/p&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) PublicDownloadContentPreview(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, *PublicDownloadContentPreviewUnauthorized, *PublicDownloadContentPreviewNotFound, *PublicDownloadContentPreviewInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1000,7 +1001,27 @@ func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, a
 /*
   PublicSearchContent searches contents
 
-  Public user can access without token or if token specified, requires valid user token
+  Public user can access without token or if token specified, requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
 */
 func (a *Client) PublicSearchContent(params *PublicSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchContentOK, *PublicSearchContentUnauthorized, *PublicSearchContentNotFound, *PublicSearchContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1102,7 +1123,27 @@ func (a *Client) PublicSearchContentShort(params *PublicSearchContentParams, aut
 /*
   SearchChannelSpecificContent searches contents specific to a channel
 
-  Requires valid user token
+  Requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
 */
 func (a *Client) SearchChannelSpecificContent(params *SearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*SearchChannelSpecificContentOK, *SearchChannelSpecificContentUnauthorized, *SearchChannelSpecificContentNotFound, *SearchChannelSpecificContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1317,6 +1358,7 @@ func (a *Client) UpdateContentDirectShort(params *UpdateContentDirectParams, aut
 				All request body are required except payload, preview, tags, and contentType.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, *UpdateContentS3BadRequest, *UpdateContentS3Unauthorized, *UpdateContentS3NotFound, *UpdateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending

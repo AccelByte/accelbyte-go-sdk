@@ -41,11 +41,13 @@ var AdminPostGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := adminGameRecordService.AdminPostGameRecordHandlerV1Short(input)
-		if errInput != nil {
-			logrus.Error(errInput)
+		ok, err := adminGameRecordService.AdminPostGameRecordHandlerV1Short(input)
+		if err != nil {
+			logrus.Error(err)
 
-			return errInput
+			return err
+		} else {
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 
 		return nil

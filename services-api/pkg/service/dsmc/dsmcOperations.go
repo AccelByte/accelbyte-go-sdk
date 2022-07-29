@@ -23,29 +23,29 @@ type DsmcOperationsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (d *DsmcOperationsService) GetAuthSession() auth.Session {
-	if d.RefreshTokenRepository != nil {
+func (aaa *DsmcOperationsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			d.TokenRepository,
-			d.ConfigRepository,
-			d.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		d.TokenRepository,
-		d.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use PublicGetMessagesShort instead
-func (d *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
-	token, err := d.TokenRepository.GetToken()
+func (aaa *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := d.Client.DsmcOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := aaa.Client.DsmcOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -56,24 +56,24 @@ func (d *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicG
 	return ok.GetPayload(), nil
 }
 
-func (d *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
+func (aaa *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(d.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  d.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := d.Client.DsmcOperations.PublicGetMessagesShort(input, authInfoWriter)
+	ok, err := aaa.Client.DsmcOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

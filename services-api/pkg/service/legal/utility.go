@@ -23,29 +23,29 @@ type UtilityService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (u *UtilityService) GetAuthSession() auth.Session {
-	if u.RefreshTokenRepository != nil {
+func (aaa *UtilityService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			u.TokenRepository,
-			u.ConfigRepository,
-			u.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		u.TokenRepository,
-		u.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use CheckReadinessShort instead
-func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Utility.CheckReadiness(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Utility.CheckReadiness(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -53,24 +53,24 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	return ok.GetPayload(), nil
 }
 
-func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+func (aaa *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.Utility.CheckReadinessShort(input, authInfoWriter)
+	ok, err := aaa.Client.Utility.CheckReadinessShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

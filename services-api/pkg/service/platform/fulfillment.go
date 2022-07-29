@@ -23,29 +23,29 @@ type FulfillmentService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (f *FulfillmentService) GetAuthSession() auth.Session {
-	if f.RefreshTokenRepository != nil {
+func (aaa *FulfillmentService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			f.TokenRepository,
-			f.ConfigRepository,
-			f.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		f.TokenRepository,
-		f.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use QueryFulfillmentHistoriesShort instead
-func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := f.Client.Fulfillment.QueryFulfillmentHistories(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Fulfillment.QueryFulfillmentHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryF
 }
 
 // Deprecated: Use FulfillItemShort instead
-func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillItem(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.FulfillItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,12 +77,12 @@ func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (
 }
 
 // Deprecated: Use RedeemCodeShort instead
-func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.RedeemCode(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.RedeemCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -100,12 +100,12 @@ func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*p
 }
 
 // Deprecated: Use FulfillRewardsShort instead
-func (f *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsParams) error {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillRewards(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.FulfillRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -123,12 +123,12 @@ func (f *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsPar
 }
 
 // Deprecated: Use PublicRedeemCodeShort instead
-func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	token, err := f.TokenRepository.GetToken()
+func (aaa *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -145,24 +145,24 @@ func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCod
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
+func (aaa *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Fulfillment.QueryFulfillmentHistoriesShort(input, authInfoWriter)
+	ok, err := aaa.Client.Fulfillment.QueryFulfillmentHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -170,24 +170,24 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
+func (aaa *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Fulfillment.FulfillItemShort(input, authInfoWriter)
+	ok, err := aaa.Client.Fulfillment.FulfillItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -195,24 +195,24 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+func (aaa *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Fulfillment.RedeemCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.Fulfillment.RedeemCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -220,24 +220,24 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams) error {
+func (aaa *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := f.Client.Fulfillment.FulfillRewardsShort(input, authInfoWriter)
+	_, err := aaa.Client.Fulfillment.FulfillRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -245,24 +245,24 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 	return nil
 }
 
-func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+func (aaa *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(f.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  f.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := f.Client.Fulfillment.PublicRedeemCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.Fulfillment.PublicRedeemCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

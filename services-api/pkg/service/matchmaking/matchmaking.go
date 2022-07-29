@@ -23,29 +23,29 @@ type MatchmakingService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (m *MatchmakingService) GetAuthSession() auth.Session {
-	if m.RefreshTokenRepository != nil {
+func (aaa *MatchmakingService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			m.TokenRepository,
-			m.ConfigRepository,
-			m.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		m.TokenRepository,
-		m.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetAllChannelsHandlerShort instead
-func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.GetAllChannelsHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Matchmaking.GetAllChannelsHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChan
 }
 
 // Deprecated: Use CreateChannelHandlerShort instead
-func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.CreateChannelHandler(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Matchmaking.CreateChannelHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,12 +98,12 @@ func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChann
 }
 
 // Deprecated: Use DeleteChannelHandlerShort instead
-func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChannelHandlerParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChannelHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.DeleteChannelHandler(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.DeleteChannelHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -121,12 +121,12 @@ func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChann
 }
 
 // Deprecated: Use StoreMatchResultsShort instead
-func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.StoreMatchResults(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.StoreMatchResults(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -147,12 +147,12 @@ func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResu
 }
 
 // Deprecated: Use RebalanceShort instead
-func (m *MatchmakingService) Rebalance(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) Rebalance(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.Rebalance(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.Rebalance(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -176,12 +176,12 @@ func (m *MatchmakingService) Rebalance(input *matchmaking.RebalanceParams) (*mat
 }
 
 // Deprecated: Use QueueSessionHandlerShort instead
-func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSessionHandlerParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSessionHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.QueueSessionHandler(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.QueueSessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -202,12 +202,12 @@ func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSession
 }
 
 // Deprecated: Use DequeueSessionHandlerShort instead
-func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSessionHandlerParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSessionHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DequeueSessionHandler(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.DequeueSessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -231,12 +231,12 @@ func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSes
 }
 
 // Deprecated: Use QuerySessionHandlerShort instead
-func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.QuerySessionHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.QuerySessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -260,12 +260,12 @@ func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySession
 }
 
 // Deprecated: Use GetAllPartyInAllChannelShort instead
-func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetAllPartyInAllChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.GetAllPartyInAllChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -289,12 +289,12 @@ func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPa
 }
 
 // Deprecated: Use BulkGetSessionsShort instead
-func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.BulkGetSessions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.BulkGetSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -318,12 +318,12 @@ func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsP
 }
 
 // Deprecated: Use ExportChannelsShort instead
-func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.ExportChannels(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.ExportChannels(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -341,12 +341,12 @@ func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsPar
 }
 
 // Deprecated: Use ImportChannelsShort instead
-func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.ImportChannels(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Matchmaking.ImportChannels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -367,12 +367,12 @@ func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsPar
 }
 
 // Deprecated: Use GetSingleMatchmakingChannelShort instead
-func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.GetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -396,12 +396,12 @@ func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetS
 }
 
 // Deprecated: Use UpdateMatchmakingChannelShort instead
-func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateMatchmakingChannelParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateMatchmakingChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.UpdateMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.UpdateMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -425,12 +425,12 @@ func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateM
 }
 
 // Deprecated: Use GetAllPartyInChannelShort instead
-func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetAllPartyInChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.GetAllPartyInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -454,12 +454,12 @@ func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllParty
 }
 
 // Deprecated: Use GetAllSessionsInChannelShort instead
-func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetAllSessionsInChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.GetAllSessionsInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -483,12 +483,12 @@ func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSe
 }
 
 // Deprecated: Use AddUserIntoSessionInChannelShort instead
-func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddUserIntoSessionInChannelParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddUserIntoSessionInChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.AddUserIntoSessionInChannel(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.AddUserIntoSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -512,12 +512,12 @@ func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddU
 }
 
 // Deprecated: Use DeleteSessionInChannelShort instead
-func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSessionInChannelParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSessionInChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DeleteSessionInChannel(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.DeleteSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -541,12 +541,12 @@ func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSes
 }
 
 // Deprecated: Use DeleteUserFromSessionInChannelShort instead
-func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DeleteUserFromSessionInChannel(input, client.BearerToken(*token.AccessToken))
+	_, noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.DeleteUserFromSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if noContent != nil {
 		return noContent
 	}
@@ -573,12 +573,12 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.D
 }
 
 // Deprecated: Use SearchSessionsShort instead
-func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.SearchSessions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.SearchSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -602,12 +602,12 @@ func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsPar
 }
 
 // Deprecated: Use GetSessionHistoryDetailedShort instead
-func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetSessionHistoryDetailed(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.GetSessionHistoryDetailed(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -631,12 +631,12 @@ func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSes
 }
 
 // Deprecated: Use PublicGetAllMatchmakingChannelShort instead
-func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Matchmaking.PublicGetAllMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -660,12 +660,12 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.P
 }
 
 // Deprecated: Use PublicGetSingleMatchmakingChannelShort instead
-func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.PublicGetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -689,12 +689,12 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmakin
 }
 
 // Deprecated: Use SearchSessionsV2Short instead
-func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.SearchSessionsV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Matchmaking.SearchSessionsV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -717,24 +717,24 @@ func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+func (aaa *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -742,24 +742,24 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+func (aaa *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := m.Client.Matchmaking.CreateChannelHandlerShort(input, authInfoWriter)
+	created, err := aaa.Client.Matchmaking.CreateChannelHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -767,24 +767,24 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 	return created.GetPayload(), nil
 }
 
-func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams) error {
+func (aaa *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.DeleteChannelHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.DeleteChannelHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -792,24 +792,24 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 	return nil
 }
 
-func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+func (aaa *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.StoreMatchResultsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.StoreMatchResultsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -817,24 +817,24 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
+func (aaa *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams) (*matchmakingclientmodels.ModelsRebalanceResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.RebalanceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.RebalanceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -842,24 +842,24 @@ func (m *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams) 
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams) error {
+func (aaa *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.QueueSessionHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.QueueSessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -867,24 +867,24 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 	return nil
 }
 
-func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams) error {
+func (aaa *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.DequeueSessionHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.DequeueSessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -892,24 +892,24 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 	return nil
 }
 
-func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (aaa *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.QuerySessionHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.QuerySessionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -917,24 +917,24 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
+func (aaa *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetAllPartyInAllChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetAllPartyInAllChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -942,24 +942,24 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (aaa *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.BulkGetSessionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.BulkGetSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -967,24 +967,24 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -992,24 +992,24 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+func (aaa *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.ImportChannelsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.ImportChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1017,24 +1017,24 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1042,24 +1042,24 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams) error {
+func (aaa *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.UpdateMatchmakingChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.UpdateMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1067,24 +1067,24 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 	return nil
 }
 
-func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+func (aaa *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetAllPartyInChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetAllPartyInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1092,24 +1092,24 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (aaa *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetAllSessionsInChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetAllSessionsInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1117,24 +1117,24 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams) error {
+func (aaa *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1142,24 +1142,24 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 	return nil
 }
 
-func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams) error {
+func (aaa *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.DeleteSessionInChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.DeleteSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1167,24 +1167,24 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 	return nil
 }
 
-func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
+func (aaa *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1192,24 +1192,24 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 	return nil
 }
 
-func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+func (aaa *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.SearchSessionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.SearchSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1217,24 +1217,24 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+func (aaa *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.GetSessionHistoryDetailedShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.GetSessionHistoryDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1242,24 +1242,24 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1267,24 +1267,24 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+func (aaa *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1292,24 +1292,24 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+func (aaa *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.Matchmaking.SearchSessionsV2Short(input, authInfoWriter)
+	ok, err := aaa.Client.Matchmaking.SearchSessionsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

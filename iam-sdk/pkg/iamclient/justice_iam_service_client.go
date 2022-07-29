@@ -22,9 +22,9 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients_deprecated"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth_deprecated"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles_deprecated"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
@@ -98,9 +98,9 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Clients = clients.New(transport, formats)
 	cli.ClientsDeprecated = clients_deprecated.New(transport, formats)
 	cli.InputValidations = input_validations.New(transport, formats)
-	cli.OAuth = o_auth.New(transport, formats)
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
+	cli.OAuthDeprecated = o_auth_deprecated.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
 	cli.RolesDeprecated = roles_deprecated.New(transport, formats)
 	cli.Sso = s_s_o.New(transport, formats)
@@ -179,11 +179,11 @@ type JusticeIamService struct {
 
 	InputValidations input_validations.ClientService
 
-	OAuth o_auth.ClientService
-
 	OAuth20 o_auth2_0.ClientService
 
 	OAuth20Extension o_auth2_0_extension.ClientService
+
+	OAuthDeprecated o_auth_deprecated.ClientService
 
 	Roles roles.ClientService
 
@@ -213,9 +213,9 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Clients.SetTransport(transport)
 	c.ClientsDeprecated.SetTransport(transport)
 	c.InputValidations.SetTransport(transport)
-	c.OAuth.SetTransport(transport)
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)
+	c.OAuthDeprecated.SetTransport(transport)
 	c.Roles.SetTransport(transport)
 	c.RolesDeprecated.SetTransport(transport)
 	c.Sso.SetTransport(transport)

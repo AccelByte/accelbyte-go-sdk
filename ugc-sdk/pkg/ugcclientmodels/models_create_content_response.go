@@ -61,9 +61,12 @@ type ModelsCreateContentResponse struct {
 	// payload URL
 	PayloadURL []*ModelsPayloadURL `json:"payloadURL"`
 
-	// preview
+	// Preview is legacy code, please use Screenshot instead
 	// Required: true
 	Preview *string `json:"preview"`
+
+	// preview URL
+	PreviewURL []*ModelsPreviewURL `json:"previewURL"`
 
 	// share code
 	// Required: true
@@ -80,6 +83,10 @@ type ModelsCreateContentResponse struct {
 	// type
 	// Required: true
 	Type *string `json:"type"`
+
+	// updated time
+	// Required: true
+	UpdatedTime *string `json:"updatedTime"`
 
 	// user Id
 	// Required: true
@@ -134,6 +141,10 @@ func (m *ModelsCreateContentResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePreviewURL(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateShareCode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -147,6 +158,10 @@ func (m *ModelsCreateContentResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedTime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -275,6 +290,31 @@ func (m *ModelsCreateContentResponse) validatePreview(formats strfmt.Registry) e
 	return nil
 }
 
+func (m *ModelsCreateContentResponse) validatePreviewURL(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PreviewURL) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PreviewURL); i++ {
+		if swag.IsZero(m.PreviewURL[i]) { // not required
+			continue
+		}
+
+		if m.PreviewURL[i] != nil {
+			if err := m.PreviewURL[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("previewURL" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsCreateContentResponse) validateShareCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("shareCode", "body", m.ShareCode); err != nil {
@@ -305,6 +345,15 @@ func (m *ModelsCreateContentResponse) validateTags(formats strfmt.Registry) erro
 func (m *ModelsCreateContentResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateContentResponse) validateUpdatedTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedTime", "body", m.UpdatedTime); err != nil {
 		return err
 	}
 

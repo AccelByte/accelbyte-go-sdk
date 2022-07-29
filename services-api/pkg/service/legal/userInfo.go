@@ -23,29 +23,29 @@ type UserInfoService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (u *UserInfoService) GetAuthSession() auth.Session {
-	if u.RefreshTokenRepository != nil {
+func (aaa *UserInfoService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			u.TokenRepository,
-			u.ConfigRepository,
-			u.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		u.TokenRepository,
-		u.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetUserInfoStatusShort instead
-func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusPa
 }
 
 // Deprecated: Use SyncUserInfoShort instead
-func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -68,12 +68,12 @@ func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) erro
 }
 
 // Deprecated: Use InvalidateUserInfoCacheShort instead
-func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (aaa *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -81,24 +81,24 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	return nil
 }
 
-func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+func (aaa *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserInfo.GetUserInfoStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -106,24 +106,24 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams) error {
+func (aaa *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserInfo.SyncUserInfoShort(input, authInfoWriter)
+	_, err := aaa.Client.UserInfo.SyncUserInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -131,24 +131,24 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams)
 	return nil
 }
 
-func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams) error {
+func (aaa *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(u.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  u.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := u.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfoWriter)
+	_, err := aaa.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

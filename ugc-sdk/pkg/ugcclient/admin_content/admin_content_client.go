@@ -286,7 +286,7 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 /*
   AdminDownloadContentPreview gets content preview
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) AdminDownloadContentPreview(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, *AdminDownloadContentPreviewUnauthorized, *AdminDownloadContentPreviewNotFound, *AdminDownloadContentPreviewInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -695,6 +695,26 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
   AdminSearchChannelSpecificContent searches contents specific to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
 */
 func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentNotFound, *AdminSearchChannelSpecificContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -797,6 +817,26 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
   AdminSearchContent searches contents
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
 */
 func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1011,6 +1051,7 @@ func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectP
 				All request body are required except payload, preview, tags, and contentType.
 				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1334,7 +1375,7 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 				All request body are required except preview, tags, and contentType.
 				contentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.
 				If not specified, it will use fileExtension value.
-
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1866,6 +1907,7 @@ func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateCo
 					All request body are required except payload, preview, tags, and contentType.
 					contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
 					If not specified, it will use fileExtension value.
+					&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
 */
 func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending

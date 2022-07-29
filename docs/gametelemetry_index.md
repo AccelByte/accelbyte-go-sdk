@@ -4,6 +4,11 @@
 
 ## Operations
 
+### Operations Wrapper:  [Operations](../services-api/pkg/service/gametelemetry/operations.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/game-telemetry/v1/admin/namespaces/{namespace}/events` | GET | GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../gametelemetry-sdk/pkg/gametelemetryclient/operations/operations_client.go) | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../services-api/pkg/service/gametelemetry/operations.go) | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../samples/cli/cmd/gametelemetry/operations/getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet.go) |
+
 ### Gametelemetry Operations Wrapper:  [GametelemetryOperations](../services-api/pkg/service/gametelemetry/gametelemetryOperations.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|

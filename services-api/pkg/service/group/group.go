@@ -23,29 +23,29 @@ type GroupService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (g *GroupService) GetAuthSession() auth.Session {
-	if g.RefreshTokenRepository != nil {
+func (aaa *GroupService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			g.TokenRepository,
-			g.ConfigRepository,
-			g.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		g.TokenRepository,
-		g.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetGroupListAdminV1Short instead
-func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.Client.Group.GetGroupListAdminV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Group.GetGroupListAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -66,12 +66,12 @@ func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Param
 }
 
 // Deprecated: Use GetSingleGroupAdminV1Short instead
-func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.GetSingleGroupAdminV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.GetSingleGroupAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -95,12 +95,12 @@ func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1P
 }
 
 // Deprecated: Use DeleteGroupAdminV1Short instead
-func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params) error {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupAdminV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.DeleteGroupAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -124,12 +124,12 @@ func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params)
 }
 
 // Deprecated: Use GetGroupListPublicV1Short instead
-func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.Client.Group.GetGroupListPublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Group.GetGroupListPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -150,12 +150,12 @@ func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Par
 }
 
 // Deprecated: Use CreateNewGroupPublicV1Short instead
-func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := g.Client.Group.CreateNewGroupPublicV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Group.CreateNewGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -179,12 +179,12 @@ func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV
 }
 
 // Deprecated: Use GetSingleGroupPublicV1Short instead
-func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.GetSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.GetSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -208,12 +208,12 @@ func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV
 }
 
 // Deprecated: Use UpdateSingleGroupV1Short instead
-func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateSingleGroupV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.UpdateSingleGroupV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -237,12 +237,12 @@ func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Param
 }
 
 // Deprecated: Use DeleteGroupPublicV1Short instead
-func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Params) error {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupPublicV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.DeleteGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -266,12 +266,12 @@ func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Param
 }
 
 // Deprecated: Use UpdatePatchSingleGroupPublicV1Short instead
-func (g *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdatePatchSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.UpdatePatchSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -295,12 +295,12 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSi
 }
 
 // Deprecated: Use UpdateGroupCustomAttributesPublicV1Short instead
-func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupCustomAttributesPublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.UpdateGroupCustomAttributesPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -324,12 +324,12 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGr
 }
 
 // Deprecated: Use UpdateGroupCustomRulePublicV1Short instead
-func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupCustomRulePublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.UpdateGroupCustomRulePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -353,12 +353,12 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCus
 }
 
 // Deprecated: Use UpdateGroupPredefinedRulePublicV1Short instead
-func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.UpdateGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -382,12 +382,12 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGrou
 }
 
 // Deprecated: Use DeleteGroupPredefinedRulePublicV1Short instead
-func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Group.DeleteGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -410,24 +410,24 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGrou
 	return nil
 }
 
-func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+func (aaa *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.GetGroupListAdminV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.GetGroupListAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -435,24 +435,24 @@ func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.GetSingleGroupAdminV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.GetSingleGroupAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -460,24 +460,24 @@ func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdm
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params) error {
+func (aaa *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := g.Client.Group.DeleteGroupAdminV1Short(input, authInfoWriter)
+	_, err := aaa.Client.Group.DeleteGroupAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -485,24 +485,24 @@ func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Pa
 	return nil
 }
 
-func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+func (aaa *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.GetGroupListPublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.GetGroupListPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -510,24 +510,24 @@ func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublic
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := g.Client.Group.CreateNewGroupPublicV1Short(input, authInfoWriter)
+	created, err := aaa.Client.Group.CreateNewGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -535,24 +535,24 @@ func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPu
 	return created.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.GetSingleGroupPublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.GetSingleGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -560,24 +560,24 @@ func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPu
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.UpdateSingleGroupV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.UpdateSingleGroupV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -585,24 +585,24 @@ func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params) error {
+func (aaa *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := g.Client.Group.DeleteGroupPublicV1Short(input, authInfoWriter)
+	_, err := aaa.Client.Group.DeleteGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -610,24 +610,24 @@ func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1
 	return nil
 }
 
-func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.UpdatePatchSingleGroupPublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.UpdatePatchSingleGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -635,24 +635,24 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePa
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.UpdateGroupCustomAttributesPublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.UpdateGroupCustomAttributesPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -660,24 +660,24 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.Upd
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.UpdateGroupCustomRulePublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.UpdateGroupCustomRulePublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -685,24 +685,24 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGro
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (aaa *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.Group.UpdateGroupPredefinedRulePublicV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Group.UpdateGroupPredefinedRulePublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -710,24 +710,24 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.Updat
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
+func (aaa *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := g.Client.Group.DeleteGroupPredefinedRulePublicV1Short(input, authInfoWriter)
+	_, err := aaa.Client.Group.DeleteGroupPredefinedRulePublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

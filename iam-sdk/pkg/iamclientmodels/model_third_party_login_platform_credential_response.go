@@ -31,9 +31,16 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
+	// allowed clients that can show this login method
+	// Required: true
+	AllowedClients []string `json:"AllowedClients"`
+
 	// app Id
 	// Required: true
 	AppID *string `json:"AppId"`
+
+	// third party authorization endpoint to obtain authorization code
+	AuthorizationEndpoint string `json:"AuthorizationEndpoint,omitempty"`
 
 	// client Id
 	// Required: true
@@ -106,6 +113,9 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
 
+	// third party token endpoint to obtain token
+	TokenEndpoint string `json:"TokenEndpoint,omitempty"`
+
 	// registered domains
 	// Required: true
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"registeredDomains"`
@@ -124,6 +134,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateAWSCognitoUserPool(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAllowedClients(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -234,6 +248,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAWSCognitoRegio
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAWSCognitoUserPool(formats strfmt.Registry) error {
 
 	if err := validate.Required("AWSCognitoUserPool", "body", m.AWSCognitoUserPool); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAllowedClients(formats strfmt.Registry) error {
+
+	if err := validate.Required("AllowedClients", "body", m.AllowedClients); err != nil {
 		return err
 	}
 

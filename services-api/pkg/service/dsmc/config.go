@@ -23,29 +23,29 @@ type ConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (c *ConfigService) GetAuthSession() auth.Session {
-	if c.RefreshTokenRepository != nil {
+func (aaa *ConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			c.TokenRepository,
-			c.ConfigRepository,
-			c.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		c.TokenRepository,
-		c.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use ListConfigShort instead
-func (c *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := c.Client.Config.ListConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := aaa.Client.Config.ListConfig(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -60,12 +60,12 @@ func (c *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientm
 }
 
 // Deprecated: Use SaveConfigShort instead
-func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := c.Client.Config.SaveConfig(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Config.SaveConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -83,12 +83,12 @@ func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 }
 
 // Deprecated: Use GetConfigShort instead
-func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := c.Client.Config.GetConfig(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.Config.GetConfig(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -106,12 +106,12 @@ func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmod
 }
 
 // Deprecated: Use CreateConfigShort instead
-func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := c.Client.Config.CreateConfig(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Config.CreateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -132,12 +132,12 @@ func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmccli
 }
 
 // Deprecated: Use DeleteConfigShort instead
-func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -158,12 +158,12 @@ func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 }
 
 // Deprecated: Use UpdateConfigShort instead
-func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -184,12 +184,12 @@ func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmccli
 }
 
 // Deprecated: Use ClearCacheShort instead
-func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) ClearCache(input *config.ClearCacheParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := c.Client.Config.ClearCache(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := aaa.Client.Config.ClearCache(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -204,12 +204,12 @@ func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 }
 
 // Deprecated: Use AddPortShort instead
-func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := c.Client.Config.AddPort(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.Config.AddPort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -233,12 +233,12 @@ func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.
 }
 
 // Deprecated: Use DeletePortShort instead
-func (c *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.DeletePort(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Config.DeletePort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -259,12 +259,12 @@ func (c *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientm
 }
 
 // Deprecated: Use UpdatePortShort instead
-func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.UpdatePort(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Config.UpdatePort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -285,12 +285,12 @@ func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientm
 }
 
 // Deprecated: Use ExportConfigV1Short instead
-func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.ExportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.ExportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -311,12 +311,12 @@ func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsm
 }
 
 // Deprecated: Use ImportConfigV1Short instead
-func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (aaa *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.ImportConfigV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Config.ImportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -339,24 +339,24 @@ func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsm
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
+func (aaa *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.ListConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Config.ListConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -364,24 +364,24 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
+func (aaa *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Config.SaveConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.Config.SaveConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -389,24 +389,24 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
 	return nil
 }
 
-func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.GetConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -414,24 +414,24 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclie
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := c.Client.Config.CreateConfigShort(input, authInfoWriter)
+	created, err := aaa.Client.Config.CreateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -439,24 +439,24 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*ds
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) error {
+func (aaa *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Config.DeleteConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -464,24 +464,24 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) erro
 	return nil
 }
 
-func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.UpdateConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -489,24 +489,24 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*ds
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
+func (aaa *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := c.Client.Config.ClearCacheShort(input, authInfoWriter)
+	_, err := aaa.Client.Config.ClearCacheShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -514,24 +514,24 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
 	return nil
 }
 
-func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := c.Client.Config.AddPortShort(input, authInfoWriter)
+	created, err := aaa.Client.Config.AddPortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -539,24 +539,24 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmo
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.DeletePortShort(input, authInfoWriter)
+	ok, err := aaa.Client.Config.DeletePortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -564,24 +564,24 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (aaa *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.UpdatePortShort(input, authInfoWriter)
+	ok, err := aaa.Client.Config.UpdatePortShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -589,24 +589,24 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+func (aaa *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.ExportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.ExportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -614,24 +614,24 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) 
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
+func (aaa *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(c.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  c.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := c.Client.Config.ImportConfigV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.ImportConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

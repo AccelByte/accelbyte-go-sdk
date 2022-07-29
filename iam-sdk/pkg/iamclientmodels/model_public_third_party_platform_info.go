@@ -36,6 +36,10 @@ type ModelPublicThirdPartyPlatformInfo struct {
 	// platform Id
 	// Required: true
 	PlatformID *string `json:"PlatformId"`
+
+	// platform name
+	// Required: true
+	PlatformName *string `json:"PlatformName"`
 }
 
 // Validate validates this model public third party platform info
@@ -59,6 +63,10 @@ func (m *ModelPublicThirdPartyPlatformInfo) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validatePlatformID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePlatformName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -107,6 +115,15 @@ func (m *ModelPublicThirdPartyPlatformInfo) validateIsActive(formats strfmt.Regi
 func (m *ModelPublicThirdPartyPlatformInfo) validatePlatformID(formats strfmt.Registry) error {
 
 	if err := validate.Required("PlatformId", "body", m.PlatformID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelPublicThirdPartyPlatformInfo) validatePlatformName(formats strfmt.Registry) error {
+
+	if err := validate.Required("PlatformName", "body", m.PlatformName); err != nil {
 		return err
 	}
 

@@ -23,29 +23,29 @@ type MatchmakingOperationsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (m *MatchmakingOperationsService) GetAuthSession() auth.Session {
-	if m.RefreshTokenRepository != nil {
+func (aaa *MatchmakingOperationsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			m.TokenRepository,
-			m.ConfigRepository,
-			m.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		m.TokenRepository,
-		m.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetHealthcheckInfoShort instead
-func (m *MatchmakingOperationsService) GetHealthcheckInfo(input *matchmaking_operations.GetHealthcheckInfoParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingOperationsService) GetHealthcheckInfo(input *matchmaking_operations.GetHealthcheckInfoParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = m.Client.MatchmakingOperations.GetHealthcheckInfo(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.MatchmakingOperations.GetHealthcheckInfo(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -54,12 +54,12 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfo(input *matchmaking_ope
 }
 
 // Deprecated: Use HandlerV3HealthzShort instead
-func (m *MatchmakingOperationsService) HandlerV3Healthz(input *matchmaking_operations.HandlerV3HealthzParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingOperationsService) HandlerV3Healthz(input *matchmaking_operations.HandlerV3HealthzParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = m.Client.MatchmakingOperations.HandlerV3Healthz(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.MatchmakingOperations.HandlerV3Healthz(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -68,12 +68,12 @@ func (m *MatchmakingOperationsService) HandlerV3Healthz(input *matchmaking_opera
 }
 
 // Deprecated: Use PublicGetMessagesShort instead
-func (m *MatchmakingOperationsService) PublicGetMessages(input *matchmaking_operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingOperationsService) PublicGetMessages(input *matchmaking_operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := m.Client.MatchmakingOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := aaa.Client.MatchmakingOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -85,37 +85,12 @@ func (m *MatchmakingOperationsService) PublicGetMessages(input *matchmaking_oper
 }
 
 // Deprecated: Use VersionCheckHandlerShort instead
-func (m *MatchmakingOperationsService) VersionCheckHandler(input *matchmaking_operations.VersionCheckHandlerParams) error {
-	token, err := m.TokenRepository.GetToken()
+func (aaa *MatchmakingOperationsService) VersionCheckHandler(input *matchmaking_operations.VersionCheckHandlerParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = m.Client.MatchmakingOperations.VersionCheckHandler(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmaking_operations.GetHealthcheckInfoParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	_, err := m.Client.MatchmakingOperations.GetHealthcheckInfoShort(input, authInfoWriter)
+	_, err = aaa.Client.MatchmakingOperations.VersionCheckHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -123,24 +98,24 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmakin
 	return nil
 }
 
-func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_operations.HandlerV3HealthzParams) error {
+func (aaa *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmaking_operations.GetHealthcheckInfoParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.MatchmakingOperations.HandlerV3HealthzShort(input, authInfoWriter)
+	_, err := aaa.Client.MatchmakingOperations.GetHealthcheckInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -148,24 +123,49 @@ func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_
 	return nil
 }
 
-func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking_operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+func (aaa *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_operations.HandlerV3HealthzParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := m.Client.MatchmakingOperations.PublicGetMessagesShort(input, authInfoWriter)
+	_, err := aaa.Client.MatchmakingOperations.HandlerV3HealthzShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking_operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchmakingOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -173,24 +173,24 @@ func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaking_operations.VersionCheckHandlerParams) error {
+func (aaa *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaking_operations.VersionCheckHandlerParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(m.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  m.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := m.Client.MatchmakingOperations.VersionCheckHandlerShort(input, authInfoWriter)
+	_, err := aaa.Client.MatchmakingOperations.VersionCheckHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

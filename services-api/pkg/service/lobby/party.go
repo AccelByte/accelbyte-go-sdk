@@ -23,29 +23,29 @@ type PartyService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PartyService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PartyService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminGetPartyDataV1Short instead
-func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.AdminGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.AdminGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -69,12 +69,12 @@ func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Param
 }
 
 // Deprecated: Use AdminGetUserPartyV1Short instead
-func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.AdminGetUserPartyV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.AdminGetUserPartyV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -98,12 +98,12 @@ func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Param
 }
 
 // Deprecated: Use PublicGetPartyDataV1Short instead
-func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.PublicGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -127,12 +127,12 @@ func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Par
 }
 
 // Deprecated: Use PublicUpdatePartyAttributesV1Short instead
-func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := p.Client.Party.PublicUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.Party.PublicUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -159,12 +159,12 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 }
 
 // Deprecated: Use PublicSetPartyLimitV1Short instead
-func (p *PartyService) PublicSetPartyLimitV1(input *party.PublicSetPartyLimitV1Params) error {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PartyService) PublicSetPartyLimitV1(input *party.PublicSetPartyLimitV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.PublicSetPartyLimitV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicSetPartyLimitV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -187,24 +187,24 @@ func (p *PartyService) PublicSetPartyLimitV1(input *party.PublicSetPartyLimitV1P
 	return nil
 }
 
-func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+func (aaa *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Party.AdminGetPartyDataV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Party.AdminGetPartyDataV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -212,24 +212,24 @@ func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+func (aaa *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Party.AdminGetUserPartyV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Party.AdminGetUserPartyV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -237,24 +237,24 @@ func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+func (aaa *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Party.PublicGetPartyDataV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Party.PublicGetPartyDataV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -262,24 +262,24 @@ func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyData
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+func (aaa *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.Party.PublicUpdatePartyAttributesV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Party.PublicUpdatePartyAttributesV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -287,24 +287,24 @@ func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicSetPartyLimitV1Short(input *party.PublicSetPartyLimitV1Params) error {
+func (aaa *PartyService) PublicSetPartyLimitV1Short(input *party.PublicSetPartyLimitV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := p.Client.Party.PublicSetPartyLimitV1Short(input, authInfoWriter)
+	_, err := aaa.Client.Party.PublicSetPartyLimitV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

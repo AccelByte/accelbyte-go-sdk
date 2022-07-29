@@ -36,6 +36,7 @@ const (
 	PublicQueryUserEntitlementsCODEConstant         = "CODE"
 	PublicQueryUserEntitlementsENTITLEMENTConstant  = "ENTITLEMENT"
 	PublicQueryUserEntitlementsMEDIAConstant        = "MEDIA"
+	PublicQueryUserEntitlementsOPTIONBOXConstant    = "OPTIONBOX"
 	PublicQueryUserEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 

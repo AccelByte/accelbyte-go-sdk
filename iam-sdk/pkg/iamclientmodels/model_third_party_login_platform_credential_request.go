@@ -6,6 +6,8 @@ package iamclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -29,9 +31,17 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
+	// allowed clients that can show this login method
+	// Required: true
+	AllowedClients []string `json:"AllowedClients"`
+
 	// app Id
 	// Required: true
 	AppID *string `json:"AppId"`
+
+	// third party authorization endpoint to obtain authorization code
+	// Required: true
+	AuthorizationEndpoint *string `json:"AuthorizationEndpoint"`
 
 	// client Id
 	// Required: true
@@ -81,6 +91,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	RedirectURI *string `json:"RedirectUri"`
 
+	// domains that are allowed to create user and grant roles
+	// Required: true
+	RegisteredDomains []*AccountcommonRegisteredDomain `json:"RegisteredDomains"`
+
 	// secret
 	// Required: true
 	Secret *string `json:"Secret"`
@@ -96,6 +110,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
 	// Required: true
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
+
+	// third party token endpoint to obtain token
+	// Required: true
+	TokenEndpoint *string `json:"TokenEndpoint"`
 }
 
 // Validate validates this model third party login platform credential request
@@ -114,7 +132,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateAllowedClients(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAppID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,6 +192,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateRegisteredDomains(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSecret(formats); err != nil {
 		res = append(res, err)
 	}
@@ -179,6 +209,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateTokenClaimsMapping(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -215,9 +249,27 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAWSCognitoUserPo
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAllowedClients(formats strfmt.Registry) error {
+
+	if err := validate.Required("AllowedClients", "body", m.AllowedClients); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAppID(formats strfmt.Registry) error {
 
 	if err := validate.Required("AppId", "body", m.AppID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAuthorizationEndpoint(formats strfmt.Registry) error {
+
+	if err := validate.Required("AuthorizationEndpoint", "body", m.AuthorizationEndpoint); err != nil {
 		return err
 	}
 
@@ -341,6 +393,31 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateRedirectURI(form
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateRegisteredDomains(formats strfmt.Registry) error {
+
+	if err := validate.Required("RegisteredDomains", "body", m.RegisteredDomains); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.RegisteredDomains); i++ {
+		if swag.IsZero(m.RegisteredDomains[i]) { // not required
+			continue
+		}
+
+		if m.RegisteredDomains[i] != nil {
+			if err := m.RegisteredDomains[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("RegisteredDomains" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("Secret", "body", m.Secret); err != nil {
@@ -369,6 +446,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenAuthenticat
 }
 
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenClaimsMapping(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTokenEndpoint(formats strfmt.Registry) error {
+
+	if err := validate.Required("TokenEndpoint", "body", m.TokenEndpoint); err != nil {
+		return err
+	}
 
 	return nil
 }

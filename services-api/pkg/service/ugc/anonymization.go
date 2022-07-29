@@ -22,29 +22,29 @@ type AnonymizationService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (a *AnonymizationService) GetAuthSession() auth.Session {
-	if a.RefreshTokenRepository != nil {
+func (aaa *AnonymizationService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			a.TokenRepository,
-			a.ConfigRepository,
-			a.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		a.TokenRepository,
-		a.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminDeleteAllUserChannelsShort instead
-func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.AdminDeleteAllUserChannelsParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.AdminDeleteAllUserChannelsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserChannels(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserChannels(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -62,12 +62,12 @@ func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.A
 }
 
 // Deprecated: Use AdminDeleteAllUserContentsShort instead
-func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.AdminDeleteAllUserContentsParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.AdminDeleteAllUserContentsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -85,12 +85,12 @@ func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.A
 }
 
 // Deprecated: Use AdminDeleteAllUserGroupShort instead
-func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.AdminDeleteAllUserGroupParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.AdminDeleteAllUserGroupParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -108,12 +108,12 @@ func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.Admi
 }
 
 // Deprecated: Use AdminDeleteAllUserStatesShort instead
-func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.AdminDeleteAllUserStatesParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.AdminDeleteAllUserStatesParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -131,12 +131,12 @@ func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.Adm
 }
 
 // Deprecated: Use DeleteAllUserChannelShort instead
-func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteAllUserChannelParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteAllUserChannelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.DeleteAllUserChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -154,12 +154,12 @@ func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteA
 }
 
 // Deprecated: Use DeleteAllUserContentsShort instead
-func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.DeleteAllUserContentsParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) DeleteAllUserContents(input *anonymization.DeleteAllUserContentsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.DeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -177,12 +177,12 @@ func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.Delete
 }
 
 // Deprecated: Use DeleteAllUserGroupShort instead
-func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAllUserGroupParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAllUserGroupParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.DeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -200,12 +200,12 @@ func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAll
 }
 
 // Deprecated: Use DeleteAllUserStatesShort instead
-func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAllUserStatesParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (aaa *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAllUserStatesParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.Anonymization.DeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Anonymization.DeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -222,24 +222,24 @@ func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAl
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams) error {
+func (aaa *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -247,24 +247,24 @@ func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymizat
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams) error {
+func (aaa *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AdminDeleteAllUserContentsShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AdminDeleteAllUserContentsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -272,24 +272,24 @@ func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymizat
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams) error {
+func (aaa *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AdminDeleteAllUserGroupShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AdminDeleteAllUserGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -297,24 +297,24 @@ func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams) error {
+func (aaa *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.AdminDeleteAllUserStatesShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.AdminDeleteAllUserStatesShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -322,24 +322,24 @@ func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymizatio
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams) error {
+func (aaa *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.DeleteAllUserChannelShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.DeleteAllUserChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -347,24 +347,24 @@ func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.De
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams) error {
+func (aaa *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.DeleteAllUserContentsShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.DeleteAllUserContentsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -372,24 +372,24 @@ func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.D
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams) error {
+func (aaa *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.DeleteAllUserGroupShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.DeleteAllUserGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -397,24 +397,24 @@ func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.Dele
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams) error {
+func (aaa *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(a.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  a.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := a.Client.Anonymization.DeleteAllUserStatesShort(input, authInfoWriter)
+	_, err := aaa.Client.Anonymization.DeleteAllUserStatesShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

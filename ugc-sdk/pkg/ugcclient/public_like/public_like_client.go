@@ -44,7 +44,27 @@ type ClientService interface {
 /*
   GetLikedContent gets liked contents
 
-  Requires valid user token
+  Requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
 */
 func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentUnauthorized, *GetLikedContentNotFound, *GetLikedContentInternalServerError, error) {
 	// TODO: Validate the params before sending

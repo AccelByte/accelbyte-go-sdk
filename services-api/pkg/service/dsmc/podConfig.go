@@ -23,29 +23,29 @@ type PodConfigService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (p *PodConfigService) GetAuthSession() auth.Session {
-	if p.RefreshTokenRepository != nil {
+func (aaa *PodConfigService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			p.TokenRepository,
-			p.ConfigRepository,
-			p.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		p.TokenRepository,
-		p.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetAllPodConfigShort instead
-func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := p.Client.PodConfig.GetAllPodConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PodConfig.GetAllPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -63,12 +63,12 @@ func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigPara
 }
 
 // Deprecated: Use GetPodConfigShort instead
-func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PodConfig.GetPodConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PodConfig.GetPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -89,12 +89,12 @@ func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*
 }
 
 // Deprecated: Use CreatePodConfigShort instead
-func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := p.Client.PodConfig.CreatePodConfig(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.PodConfig.CreatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -115,12 +115,12 @@ func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigPara
 }
 
 // Deprecated: Use DeletePodConfigShort instead
-func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.DeletePodConfig(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.PodConfig.DeletePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -144,12 +144,12 @@ func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigPara
 }
 
 // Deprecated: Use UpdatePodConfigShort instead
-func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := p.TokenRepository.GetToken()
+func (aaa *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.UpdatePodConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.PodConfig.UpdatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -172,24 +172,24 @@ func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+func (aaa *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PodConfig.GetAllPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -197,24 +197,24 @@ func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfi
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (aaa *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PodConfig.GetPodConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PodConfig.GetPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -222,24 +222,24 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (aaa *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	created, err := p.Client.PodConfig.CreatePodConfigShort(input, authInfoWriter)
+	created, err := aaa.Client.PodConfig.CreatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -247,24 +247,24 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 	return created.GetPayload(), nil
 }
 
-func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams) error {
+func (aaa *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := p.Client.PodConfig.DeletePodConfigShort(input, authInfoWriter)
+	_, err := aaa.Client.PodConfig.DeletePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -272,24 +272,24 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 	return nil
 }
 
-func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (aaa *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(p.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  p.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PodConfig.UpdatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

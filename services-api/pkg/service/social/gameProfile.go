@@ -23,29 +23,29 @@ type GameProfileService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (g *GameProfileService) GetAuthSession() auth.Session {
-	if g.RefreshTokenRepository != nil {
+func (aaa *GameProfileService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			g.TokenRepository,
-			g.ConfigRepository,
-			g.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		g.TokenRepository,
-		g.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetUserProfilesShort instead
-func (g *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := g.Client.GameProfile.GetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.GameProfile.GetUserProfiles(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -54,12 +54,12 @@ func (g *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfiles
 }
 
 // Deprecated: Use GetProfileShort instead
-func (g *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := g.Client.GameProfile.GetProfile(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.GameProfile.GetProfile(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -71,12 +71,12 @@ func (g *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*
 }
 
 // Deprecated: Use PublicGetUserGameProfilesShort instead
-func (g *GameProfileService) PublicGetUserGameProfiles(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicGetUserGameProfiles(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := g.Client.GameProfile.PublicGetUserGameProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.GameProfile.PublicGetUserGameProfiles(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -88,12 +88,12 @@ func (g *GameProfileService) PublicGetUserGameProfiles(input *game_profile.Publi
 }
 
 // Deprecated: Use PublicGetUserProfilesShort instead
-func (g *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := g.Client.GameProfile.PublicGetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.GameProfile.PublicGetUserProfiles(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -102,12 +102,12 @@ func (g *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGet
 }
 
 // Deprecated: Use PublicCreateProfileShort instead
-func (g *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreateProfileParams) error {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreateProfileParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unprocessableEntity, err := g.Client.GameProfile.PublicCreateProfile(input, client.BearerToken(*token.AccessToken))
+	_, unprocessableEntity, err := aaa.Client.GameProfile.PublicCreateProfile(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return unprocessableEntity
 	}
@@ -119,12 +119,12 @@ func (g *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreat
 }
 
 // Deprecated: Use PublicGetProfileShort instead
-func (g *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := g.Client.GameProfile.PublicGetProfile(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.GameProfile.PublicGetProfile(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -136,12 +136,12 @@ func (g *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfi
 }
 
 // Deprecated: Use PublicUpdateProfileShort instead
-func (g *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := g.Client.GameProfile.PublicUpdateProfile(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.GameProfile.PublicUpdateProfile(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -156,12 +156,12 @@ func (g *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdat
 }
 
 // Deprecated: Use PublicDeleteProfileShort instead
-func (g *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDeleteProfileParams) error {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDeleteProfileParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := g.Client.GameProfile.PublicDeleteProfile(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := aaa.Client.GameProfile.PublicDeleteProfile(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -173,12 +173,12 @@ func (g *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDelet
 }
 
 // Deprecated: Use PublicGetProfileAttributeShort instead
-func (g *GameProfileService) PublicGetProfileAttribute(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicGetProfileAttribute(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := g.Client.GameProfile.PublicGetProfileAttribute(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.GameProfile.PublicGetProfileAttribute(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -190,12 +190,12 @@ func (g *GameProfileService) PublicGetProfileAttribute(input *game_profile.Publi
 }
 
 // Deprecated: Use PublicUpdateAttributeShort instead
-func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
-	token, err := g.TokenRepository.GetToken()
+func (aaa *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := g.Client.GameProfile.PublicUpdateAttribute(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.GameProfile.PublicUpdateAttribute(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -209,24 +209,24 @@ func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+func (aaa *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.GetUserProfilesShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.GetUserProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -234,24 +234,24 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+func (aaa *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.GetProfileShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.GetProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -259,24 +259,24 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
+func (aaa *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicGetUserGameProfilesShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicGetUserGameProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -284,24 +284,24 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+func (aaa *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicGetUserProfilesShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicGetUserProfilesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -309,24 +309,24 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams) error {
+func (aaa *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := g.Client.GameProfile.PublicCreateProfileShort(input, authInfoWriter)
+	_, err := aaa.Client.GameProfile.PublicCreateProfileShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -334,24 +334,24 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+func (aaa *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicGetProfileShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicGetProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -359,24 +359,24 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+func (aaa *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicUpdateProfileShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicUpdateProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -384,24 +384,24 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams) error {
+func (aaa *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := g.Client.GameProfile.PublicDeleteProfileShort(input, authInfoWriter)
+	_, err := aaa.Client.GameProfile.PublicDeleteProfileShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -409,24 +409,24 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
+func (aaa *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicGetProfileAttributeShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicGetProfileAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -434,24 +434,24 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
+func (aaa *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  g.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := g.Client.GameProfile.PublicUpdateAttributeShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameProfile.PublicUpdateAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

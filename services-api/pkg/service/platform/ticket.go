@@ -23,29 +23,29 @@ type TicketService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (t *TicketService) GetAuthSession() auth.Session {
-	if t.RefreshTokenRepository != nil {
+func (aaa *TicketService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			t.TokenRepository,
-			t.ConfigRepository,
-			t.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		t.TokenRepository,
-		t.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use GetTicketDynamicShort instead
-func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -57,12 +57,12 @@ func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (
 }
 
 // Deprecated: Use DecreaseTicketSaleShort instead
-func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, unprocessableEntity, err := t.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*token.AccessToken))
+	_, notFound, unprocessableEntity, err := aaa.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -77,12 +77,12 @@ func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParam
 }
 
 // Deprecated: Use GetTicketBoothIDShort instead
-func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -94,12 +94,12 @@ func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (
 }
 
 // Deprecated: Use IncreaseTicketSaleShort instead
-func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := t.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -114,12 +114,12 @@ func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParam
 }
 
 // Deprecated: Use AcquireUserTicketShort instead
-func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
-	token, err := t.TokenRepository.GetToken()
+func (aaa *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := t.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := aaa.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -136,24 +136,24 @@ func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
+func (aaa *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Ticket.GetTicketDynamicShort(input, authInfoWriter)
+	ok, err := aaa.Client.Ticket.GetTicketDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -161,24 +161,24 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams) error {
+func (aaa *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := t.Client.Ticket.DecreaseTicketSaleShort(input, authInfoWriter)
+	_, err := aaa.Client.Ticket.DecreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -186,24 +186,24 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 	return nil
 }
 
-func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
+func (aaa *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.Ticket.GetTicketBoothIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -211,24 +211,24 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
+func (aaa *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, authInfoWriter)
+	ok, err := aaa.Client.Ticket.IncreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -236,24 +236,24 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
+func (aaa *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(t.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  t.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := t.Client.Ticket.AcquireUserTicketShort(input, authInfoWriter)
+	ok, err := aaa.Client.Ticket.AcquireUserTicketShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

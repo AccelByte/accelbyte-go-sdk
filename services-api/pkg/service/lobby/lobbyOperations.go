@@ -23,29 +23,29 @@ type LobbyOperationsService struct {
 	RefreshTokenRepository repository.RefreshTokenRepository
 }
 
-func (l *LobbyOperationsService) GetAuthSession() auth.Session {
-	if l.RefreshTokenRepository != nil {
+func (aaa *LobbyOperationsService) GetAuthSession() auth.Session {
+	if aaa.RefreshTokenRepository != nil {
 		return auth.Session{
-			l.TokenRepository,
-			l.ConfigRepository,
-			l.RefreshTokenRepository,
+			aaa.TokenRepository,
+			aaa.ConfigRepository,
+			aaa.RefreshTokenRepository,
 		}
 	}
 
 	return auth.Session{
-		l.TokenRepository,
-		l.ConfigRepository,
+		aaa.TokenRepository,
+		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
 }
 
 // Deprecated: Use AdminUpdatePartyAttributesV1Short instead
-func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (aaa *LobbyOperationsService) AdminUpdatePartyAttributesV1(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := l.Client.LobbyOperations.AdminUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.LobbyOperations.AdminUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -72,12 +72,12 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1(input *lobby_opera
 }
 
 // Deprecated: Use AdminJoinPartyV1Short instead
-func (l *LobbyOperationsService) AdminJoinPartyV1(input *lobby_operations.AdminJoinPartyV1Params) error {
-	token, err := l.TokenRepository.GetToken()
+func (aaa *LobbyOperationsService) AdminJoinPartyV1(input *lobby_operations.AdminJoinPartyV1Params) error {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := l.Client.LobbyOperations.AdminJoinPartyV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.LobbyOperations.AdminJoinPartyV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -104,12 +104,12 @@ func (l *LobbyOperationsService) AdminJoinPartyV1(input *lobby_operations.AdminJ
 }
 
 // Deprecated: Use PublicGetMessagesShort instead
-func (l *LobbyOperationsService) PublicGetMessages(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
-	token, err := l.TokenRepository.GetToken()
+func (aaa *LobbyOperationsService) PublicGetMessages(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := l.Client.LobbyOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := aaa.Client.LobbyOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -120,24 +120,24 @@ func (l *LobbyOperationsService) PublicGetMessages(input *lobby_operations.Publi
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+func (aaa *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  l.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := l.Client.LobbyOperations.AdminUpdatePartyAttributesV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.LobbyOperations.AdminUpdatePartyAttributesV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -145,24 +145,24 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.AdminJoinPartyV1Params) error {
+func (aaa *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.AdminJoinPartyV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  l.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	_, err := l.Client.LobbyOperations.AdminJoinPartyV1Short(input, authInfoWriter)
+	_, err := aaa.Client.LobbyOperations.AdminJoinPartyV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -170,24 +170,24 @@ func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.A
 	return nil
 }
 
-func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+func (aaa *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(l.GetAuthSession(), security, "")
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
 			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  l.Client.Runtime.Transport,
+			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
 	}
 
-	ok, err := l.Client.LobbyOperations.PublicGetMessagesShort(input, authInfoWriter)
+	ok, err := aaa.Client.LobbyOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

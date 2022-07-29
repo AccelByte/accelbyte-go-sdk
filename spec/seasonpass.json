@@ -4124,6 +4124,8 @@
             "CODE",
             "COINS",
             "INGAMEITEM",
+            "MEDIA",
+            "OPTIONBOX",
             "SEASON",
             "SUBSCRIPTION"
           ],

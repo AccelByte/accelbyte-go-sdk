@@ -3354,7 +3354,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "The endpoint supports two response types:\u0026lt;br/\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;1. Response Type == \u0026#34;code\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The basic header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The bearer header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Following are the responses returned by the endpoint:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information: ?code={authorization code}\u0026amp;state={state}\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\t \u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;2. Response Type == \u0026#34;token\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;#access_token={accesstoken}\u0026amp;expires_in={expiration duration in seconds}\u0026amp;token_type=Bearer\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\tThe endpoint supports two response types:\u0026lt;br/\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;1. Response Type == \u0026#34;code\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The basic header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The bearer header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Following are the responses returned by the endpoint:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information: ?code={authorization code}\u0026amp;state={state}\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;2. Response Type == \u0026#34;token\u0026#34; (Implicit) is deprecated. \u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/authorize  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: \u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt;1. V3 is standard OAuth2 flow and support PKCE\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\t\u0026lt;dd\u0026gt;2. Will not support implicit flow in v3.\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
         "operationId": "Authorization",
         "parameters": [
           {
@@ -3429,8 +3429,9 @@
         ],
         "summary": "OAuth2 authorize API",
         "tags": [
-          "OAuth"
-        ]
+          "OAuth(Deprecated)"
+        ],
+        "x-location-query": "PLACEHOLDER"
       }
     },
     "/iam/oauth/jwks": {
@@ -3438,7 +3439,7 @@
         "consumes": [
           ""
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When a client application wants to verify a JWT token, it needs to get the \u0026#39;kid\u0026#39; value found in the JWT token header and use it\n\t\t\tto look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;A client application might cache the keys so it doesn\u0026#39;t need to do request every time it needs to verify a JWT token. If a client application\n\t\t\tcaches the keys and a key with the same \u0026#39;kid\u0026#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this\n\t\t\tendpoint again.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When a client application wants to verify a JWT token, it needs to get the \u0026#39;kid\u0026#39; value found in the JWT token header and use it\n\t\t\tto look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;A client application might cache the keys so it doesn\u0026#39;t need to do request every time it needs to verify a JWT token. If a client application\n\t\t\tcaches the keys and a key with the same \u0026#39;kid\u0026#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this\n\t\t\tendpoint again.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/jwks  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "GetJWKS",
         "produces": [
           "application/json"
@@ -3458,7 +3459,7 @@
         ],
         "summary": "JSON Web Key Set for verifying JWT",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3467,8 +3468,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated at 2 July, 2018. Please use this instead: oauth/platforms/{platformId}/token\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\t\talong with platform_token parameter against publisher namespace.\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tSupported platforms:\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /iam/bans.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\t\talong with platform_token parameter against publisher namespace.\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tSupported platforms:\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /iam/bans.\u0026lt;/p\u0026gt;.\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "PlatformTokenRequestHandler",
         "parameters": [
           {
@@ -3528,7 +3528,7 @@
         ],
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3537,7 +3537,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint requires all requests to have authorization header set with bearer token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user\u0026#39;s access tokens and refresh tokens generated before some period of time.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have authorization header set with bearer token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user\u0026#39;s access tokens and refresh tokens generated before some period of time.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeUser",
         "parameters": [
           {
@@ -3576,7 +3576,7 @@
         ],
         "summary": "Revokes user's tokens'",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3585,7 +3585,7 @@
         "consumes": [
           ""
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/revocationlist  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "GetRevocationList",
         "produces": [
           "application/json"
@@ -3603,7 +3603,7 @@
         },
         "summary": "OAuth2 revocation list API",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3612,8 +3612,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "deprecated": true,
-        "description": "\u0026lt;h1\u0026gt;Deprecated at August 30, 2019. Please use the /v3/oauth/revoke endpoint instead\u0026lt;/h1\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;Revokes a token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;Revokes a token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/v3/oauth/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeToken",
         "parameters": [
           {
@@ -3645,7 +3644,7 @@
         ],
         "summary": "OAuth2 token revocation API",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3654,8 +3653,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated at 21 August, 2018. Please use this instead: oauth/namespaces/{namespace}/users/{userId}/revoke\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint revokes a user. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. \u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint revokes a user. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeAUser",
         "parameters": [
           {
@@ -3690,7 +3688,7 @@
         ],
         "summary": "OAuth2 user revocation API",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3699,7 +3697,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint requires all requests to have \u0026lt;code\u0026gt;Authorization\u0026lt;/code\u0026gt; header set with \u0026lt;code\u0026gt;Basic\u0026lt;/code\u0026gt; access authentication\n\t\t\tconstructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint supports different \u0026lt;strong\u0026gt;grant types\u0026lt;/strong\u0026gt;:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; This endpoint will check the client credentials provided through Authorization header.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\tor through platform.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t \t\tcode which generated in \u0026#34;/authorize\u0026#34; API response. It should also pass\n\t \t\tin the redirect_uri, which should be the same as generating the\n\t \t\tauthorization code request.\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t \t\t\u0026lt;p\u0026gt;For platform authentication, use grant type \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;.\n\t \t\tThe \u0026lt;code\u0026gt;username\u0026lt;/code\u0026gt; field would be in form of\n\t \t\t\u0026lt;code\u0026gt;platform:\u0026amp;lt;platform type\u0026amp;gt;\u0026lt;/code\u0026gt;, for example\n\t \t\t\u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; for Steam. For the \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;\n\t \t\tfield, set it to the authentication/authorization ticket or token obtainable through the\n\t \t\trespective platform SDK after authenticated the user to the platform. Supported platforms:\u0026lt;/p\u0026gt;\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; as the username and use the authentication ticket obtained\n\t\t\tfrom Steam through the Steam SDK as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:ps4\u0026lt;/code\u0026gt; as the username and use the authorization code\n\t\t\tobtained from the PlayStation Network through a player PS4 unit as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:live\u0026lt;/code\u0026gt; as the username and use token obtained from \n\t\t\tXbox Secure Token Service (XSTS) as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:oculus\u0026lt;/code\u0026gt; as the username and use the \u0026lt;code\u0026gt;user_id:nonce\u0026lt;/code\u0026gt;\n\t\t\tas password obtained from Oculus through the Oculus SDK.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The access token and refresh token are in form of JWT token.\n\t \t\tAn access token JWT contains data which structure is similar to the\n\t \t\tResponse Class below, but without OAuth-related data. To verify a token, use the public keys\n\t\t\tobtained from the \u0026lt;code\u0026gt;/jwks\u0026lt;/code\u0026gt; endpoint below.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the client ID.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;sub\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: difference in V3 response:\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\t\u0026lt;dd\u0026gt;1. format difference（Pascal case =\u0026gt; Camel case): permissions field from Action =\u0026gt; action, Resource =\u0026gt; resource \u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have \u0026lt;code\u0026gt;Authorization\u0026lt;/code\u0026gt; header set with \u0026lt;code\u0026gt;Basic\u0026lt;/code\u0026gt; access authentication\n\t\t\tconstructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint supports different \u0026lt;strong\u0026gt;grant types\u0026lt;/strong\u0026gt;:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; This endpoint will check the client credentials provided through Authorization header.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\tor through platform.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t \t\tcode which generated in \u0026#34;/authorize\u0026#34; API response. It should also pass\n\t \t\tin the redirect_uri, which should be the same as generating the\n\t \t\tauthorization code request.\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t \t\t\u0026lt;p\u0026gt;For platform authentication, use grant type \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;.\n\t \t\tThe \u0026lt;code\u0026gt;username\u0026lt;/code\u0026gt; field would be in form of\n\t \t\t\u0026lt;code\u0026gt;platform:\u0026amp;lt;platform type\u0026amp;gt;\u0026lt;/code\u0026gt;, for example\n\t \t\t\u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; for Steam. For the \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;\n\t \t\tfield, set it to the authentication/authorization ticket or token obtainable through the\n\t \t\trespective platform SDK after authenticated the user to the platform. Supported platforms:\u0026lt;/p\u0026gt;\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; as the username and use the authentication ticket obtained\n\t\t\tfrom Steam through the Steam SDK as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:ps4\u0026lt;/code\u0026gt; as the username and use the authorization code\n\t\t\tobtained from the PlayStation Network through a player PS4 unit as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:live\u0026lt;/code\u0026gt; as the username and use token obtained from \n\t\t\tXbox Secure Token Service (XSTS) as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:oculus\u0026lt;/code\u0026gt; as the username and use the \u0026lt;code\u0026gt;user_id:nonce\u0026lt;/code\u0026gt;\n\t\t\tas password obtained from Oculus through the Oculus SDK.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The access token and refresh token are in form of JWT token.\n\t \t\tAn access token JWT contains data which structure is similar to the\n\t \t\tResponse Class below, but without OAuth-related data. To verify a token, use the public keys\n\t\t\tobtained from the \u0026lt;code\u0026gt;/jwks\u0026lt;/code\u0026gt; endpoint below.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the client ID.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;sub\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;",
         "operationId": "TokenGrant",
         "parameters": [
           {
@@ -3796,7 +3794,7 @@
         ],
         "summary": "OAuth2 access token generation endpoint",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -3805,7 +3803,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/verify  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: difference in V3 response:\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\t\u0026lt;dd\u0026gt;1. format difference（Pascal case =\u0026gt; Camel case): permissions field from Action =\u0026gt; action, Resource =\u0026gt; resource \u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "VerifyToken",
         "parameters": [
           {
@@ -3832,7 +3830,7 @@
         },
         "summary": "OAuth2 token verification API",
         "tags": [
-          "OAuth"
+          "OAuth(Deprecated)"
         ]
       }
     },
@@ -12864,7 +12862,8 @@
         "summary": "Authentication API",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-location-query": "code"
       }
     },
     "/iam/v3/authenticateWithLink": {
@@ -13281,7 +13280,8 @@
         "summary": "OAuth2 authorize API",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-location-query": "request_id"
       }
     },
     "/iam/v3/oauth/introspect": {
@@ -13607,7 +13607,8 @@
         "summary": "Generate url to request auth code from third party platform.",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-location-query": "code"
       }
     },
     "/iam/v3/oauth/platforms/{platformId}/token": {
@@ -13763,7 +13764,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/v3/oauth/auth\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\t\tor through platform.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
+        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\t\tor through platform.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
         "operationId": "TokenGrantV3",
         "parameters": [
           {
@@ -13866,6 +13867,47 @@
           }
         },
         "summary": "OAuth2 access token generation endpoint",
+        "tags": [
+          "OAuth2.0"
+        ]
+      }
+    },
+    "/iam/v3/oauth/verify": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.",
+        "operationId": "VerifyTokenV3",
+        "parameters": [
+          {
+            "description": "Token to be verified",
+            "in": "formData",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Access Token verified",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "400": {
+            "description": "Access Token not exist or expired"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "OAuth2 token verification API",
         "tags": [
           "OAuth2.0"
         ]
@@ -13988,7 +14030,8 @@
         "summary": "Platform Authentication API",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-location-query": "PLACEHOLDER"
       }
     },
     "/iam/v3/public/inputValidations": {
@@ -14093,6 +14136,69 @@
           }
         ],
         "summary": "Get All Active Third Party Platform Active Credential for Public Usage",
+        "tags": [
+          "Third Party Credential"
+        ]
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/platforms/clients/oidc": {
+      "get": {
+        "description": "This is the Public API to Get All Active OIDC Platform Credential By Client ID",
+        "operationId": "RetrieveActiveOIDCClientsPublicV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Client ID",
+            "in": "query",
+            "name": "clientId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All Active OIDC Credential Retrieved",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.PublicThirdPartyPlatformInfo"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "OIDC Credential Not Found",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Active OIDC Platform Credential By Client ID",
         "tags": [
           "Third Party Credential"
         ]
@@ -15770,7 +15876,8 @@
         "summary": "Establish Link Progress ",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-location-query": "PLACEHOLDER"
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/reset": {
@@ -16611,7 +16718,8 @@
         "summary": "SAML platform Authentication API",
         "tags": [
           "SSO SAML 2.0"
-        ]
+        ],
+        "x-location-query": "PLACEHOLDER"
       }
     },
     "/iam/v3/sso/{platformId}": {
@@ -22828,6 +22936,9 @@
         },
         "PlatformId": {
           "type": "string"
+        },
+        "PlatformName": {
+          "type": "string"
         }
       },
       "required": [
@@ -22835,7 +22946,8 @@
         "ClientId",
         "Environment",
         "IsActive",
-        "PlatformId"
+        "PlatformId",
+        "PlatformName"
       ]
     },
     "model.PublicUserInformationResponseV3": {
@@ -23820,7 +23932,18 @@
           "description": "AWSCognitoUserPool is aws cognito user pool id",
           "type": "string"
         },
+        "AllowedClients": {
+          "description": "allowed clients that can show this login method",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "AppId": {
+          "type": "string"
+        },
+        "AuthorizationEndpoint": {
+          "description": "third party authorization endpoint to obtain authorization code",
           "type": "string"
         },
         "ClientId": {
@@ -23866,6 +23989,13 @@
         "RedirectUri": {
           "type": "string"
         },
+        "RegisteredDomains": {
+          "description": "domains that are allowed to create user and grant roles",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RegisteredDomain"
+          },
+          "type": "array"
+        },
         "Secret": {
           "type": "string"
         },
@@ -23883,13 +24013,19 @@
           },
           "description": "A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]",
           "type": "object"
+        },
+        "TokenEndpoint": {
+          "description": "third party token endpoint to obtain token",
+          "type": "string"
         }
       },
       "required": [
         "ACSURL",
         "AWSCognitoRegion",
         "AWSCognitoUserPool",
+        "AllowedClients",
         "AppId",
+        "AuthorizationEndpoint",
         "ClientId",
         "Environment",
         "FederationMetadataURL",
@@ -23902,10 +24038,12 @@
         "OrganizationId",
         "PlatformName",
         "RedirectUri",
+        "RegisteredDomains",
         "Secret",
         "TeamID",
         "TokenAuthenticationType",
-        "TokenClaimsMapping"
+        "TokenClaimsMapping",
+        "TokenEndpoint"
       ]
     },
     "model.ThirdPartyLoginPlatformCredentialResponse": {
@@ -23922,7 +24060,18 @@
           "description": "AWSCognitoUserPool is aws cognito user pool id",
           "type": "string"
         },
+        "AllowedClients": {
+          "description": "allowed clients that can show this login method",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "AppId": {
+          "type": "string"
+        },
+        "AuthorizationEndpoint": {
+          "description": "third party authorization endpoint to obtain authorization code",
           "type": "string"
         },
         "ClientId": {
@@ -23992,6 +24141,10 @@
           "description": "A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.",
           "type": "object"
         },
+        "TokenEndpoint": {
+          "description": "third party token endpoint to obtain token",
+          "type": "string"
+        },
         "registeredDomains": {
           "items": {
             "$ref": "#/definitions/accountcommon.RegisteredDomain"
@@ -24003,6 +24156,7 @@
         "ACSURL",
         "AWSCognitoRegion",
         "AWSCognitoUserPool",
+        "AllowedClients",
         "AppId",
         "ClientId",
         "Environment",

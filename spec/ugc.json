@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.2.1"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
@@ -427,7 +427,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\t\t",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AdminUploadContentS3",
         "parameters": [
           {
@@ -501,7 +501,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\t\tIf not specified, it will use fileExtension value.",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "SingleAdminUpdateContentS3",
         "parameters": [
           {
@@ -588,7 +588,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;\n\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g: \n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\n\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
         "operationId": "AdminSearchChannelSpecificContent",
         "parameters": [
           {
@@ -955,7 +955,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;\n\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g: \n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\n\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
         "operationId": "AdminSearchContent",
         "parameters": [
           {
@@ -1152,7 +1152,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AdminDownloadContentPreview",
         "parameters": [
           {
@@ -2753,7 +2753,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateContentS3",
         "parameters": [
           {
@@ -3757,7 +3757,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Requires valid user token.\n\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g: \n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\n\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
         "operationId": "SearchChannelSpecificContent",
         "parameters": [
           {
@@ -3893,7 +3893,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Public user can access without token or if token specified, requires valid user token",
+        "description": "Public user can access without token or if token specified, requires valid user token.\n\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g: \n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\n\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
         "operationId": "PublicSearchContent",
         "parameters": [
           {
@@ -4161,7 +4161,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Requires valid user token.\n\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g: \n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\n\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
         "operationId": "GetLikedContent",
         "parameters": [
           {
@@ -4549,7 +4549,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "\u0026lt;p\u0026gt;Requires valid user token\u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "PublicDownloadContentPreview",
         "parameters": [
           {
@@ -4749,6 +4749,89 @@
         ]
       }
     },
+    "/ugc/v1/public/namespaces/{namespace}/users": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Public user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicSearchCreator",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1000,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "sorting order: asc, desc. default=desc",
+            "in": "query",
+            "name": "orderby",
+            "type": "string"
+          },
+          {
+            "description": "sorting criteria: followCount, totalLikedContent. default=object id",
+            "in": "query",
+            "name": "sortby",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedCreatorOverviewResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Search creator",
+        "tags": [
+          "Public Creator"
+        ]
+      }
+    },
     "/ugc/v1/public/namespaces/{namespace}/users/followed": {
       "get": {
         "consumes": [
@@ -4827,7 +4910,7 @@
           "application/octet-stream"
         ],
         "description": "Public user can access without token or if token specified, requires valid user token",
-        "operationId": "GetCreator",
+        "operationId": "PublicGetCreator",
         "parameters": [
           {
             "description": "namespace of the game",
@@ -5346,7 +5429,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "CreateContentS3",
         "parameters": [
           {
@@ -5428,7 +5511,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.",
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except payload, preview, tags, and contentType.\n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "UpdateContentS3",
         "parameters": [
           {
@@ -7017,6 +7100,12 @@
           },
           "type": "array"
         },
+        "previewURL": {
+          "items": {
+            "$ref": "#/definitions/models.PreviewURL"
+          },
+          "type": "array"
+        },
         "screenshots": {
           "items": {
             "$ref": "#/definitions/models.ScreenshotResponse"
@@ -7036,6 +7125,9 @@
           "type": "array"
         },
         "type": {
+          "type": "string"
+        },
+        "updatedTime": {
           "type": "string"
         },
         "userId": {
@@ -7059,6 +7151,7 @@
         "subType",
         "tags",
         "type",
+        "updatedTime",
         "userId"
       ]
     },
@@ -7097,7 +7190,11 @@
           "type": "string"
         },
         "preview": {
+          "description": "Preview is legacy code, please use Screenshot instead",
           "type": "string"
+        },
+        "previewMetadata": {
+          "$ref": "#/definitions/models.previewMetadata"
         },
         "subType": {
           "type": "string"
@@ -7116,6 +7213,7 @@
         "name",
         "payload",
         "preview",
+        "previewMetadata",
         "subType",
         "tags",
         "type"
@@ -7133,7 +7231,11 @@
           "type": "string"
         },
         "preview": {
+          "description": "Preview is legacy code, please use Screenshot instead",
           "type": "string"
+        },
+        "previewMetadata": {
+          "$ref": "#/definitions/models.previewMetadata"
         },
         "subType": {
           "type": "string"
@@ -7153,6 +7255,7 @@
         "fileExtension",
         "name",
         "preview",
+        "previewMetadata",
         "subType",
         "tags",
         "type"
@@ -7199,7 +7302,14 @@
           "type": "array"
         },
         "preview": {
+          "description": "Preview is legacy code, please use Screenshot instead",
           "type": "string"
+        },
+        "previewURL": {
+          "items": {
+            "$ref": "#/definitions/models.PreviewURL"
+          },
+          "type": "array"
         },
         "shareCode": {
           "type": "string"
@@ -7214,6 +7324,9 @@
           "type": "array"
         },
         "type": {
+          "type": "string"
+        },
+        "updatedTime": {
           "type": "string"
         },
         "userId": {
@@ -7235,6 +7348,7 @@
         "subType",
         "tags",
         "type",
+        "updatedTime",
         "userId"
       ]
     },
@@ -7470,7 +7584,11 @@
     "models.GetContentPreviewResponse": {
       "properties": {
         "preview": {
+          "description": "Preview is legacy code, please use Screenshot instead",
           "type": "string"
+        },
+        "previewURL": {
+          "$ref": "#/definitions/models.PreviewURL"
         }
       },
       "required": [
@@ -7641,6 +7759,16 @@
         "url"
       ]
     },
+    "models.PreviewURL": {
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
     "models.PublicGetContentBulkRequest": {
       "properties": {
         "contentIds": {
@@ -7759,6 +7887,20 @@
         "contentType",
         "description",
         "fileExtension"
+      ]
+    },
+    "models.previewMetadata": {
+      "properties": {
+        "previewContentType": {
+          "type": "string"
+        },
+        "previewFileExtension": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "previewContentType",
+        "previewFileExtension"
       ]
     },
     "models.updateScreenshot": {

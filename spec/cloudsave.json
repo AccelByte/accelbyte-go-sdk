@@ -383,7 +383,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record in namespace-level saved"
+            "description": "Record in namespace-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordResponse"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -450,7 +453,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordResponse"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -1003,7 +1009,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record in user-level saved"
+            "description": "Record in user-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -1077,7 +1086,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record in user-level saved"
+            "description": "Record in user-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -1298,7 +1310,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record saved "
+            "description": "Record saved ",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -1377,7 +1392,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record in user-level saved"
+            "description": "Record in user-level saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -1662,7 +1680,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -1728,7 +1749,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.GameRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -2287,7 +2311,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -2372,7 +2399,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -2533,7 +2563,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -2612,7 +2645,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Record saved"
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",

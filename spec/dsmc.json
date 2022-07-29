@@ -6478,6 +6478,10 @@
           },
           "type": "array"
         },
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6492,6 +6496,7 @@
         "max_count",
         "min_count",
         "regions",
+        "session_timeout",
         "use_buffer_percent"
       ]
     },

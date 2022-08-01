@@ -1,3 +1,28 @@
+<a name="v0.24.0"></a>
+## [v0.24.0] - 2022-08-02
+
+### Chore
+- **sdk:** clean up code
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for justice 3.29
+- **spec:** update spec files for justice 3.28
+- **test:** linter and code
+
+### Docs
+- update CHANGELOG.md for v0.24.0 release
+
+### Feat
+- **sdk:** add a wrapper for login platform
+- **test:** add helper for phantauth
+- **test:** integrating with phantauth oidc connect
+
+### Fix
+- **samples:** trim the newline suffix for cli
+- **sdk:** user agent reduntdant + data race
+- **test:** add a returned value for cloudsave integration
+- **test:** remove parallel test for 403 error
+- **test:** outdated start time
+
+
 <a name="v0.23.0"></a>
 ## [v0.23.0] - 2022-07-19
 
@@ -787,6 +812,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.24.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.23.0...v0.24.0
 [v0.23.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.22.0...v0.23.0
 [v0.22.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.21.0...v0.22.0
 [v0.21.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.20.0...v0.21.0

@@ -477,7 +477,8 @@ func serve() {
 
 func serveStandalone() {
 	args := os.Args
-	getArgs := strings.Split(args[2], "\\n")
+	tmpArgs := strings.TrimSuffix(args[2], "\\n")
+	getArgs := strings.Split(tmpArgs, "\\n")
 	getType := strings.Split(getArgs[0], " ")
 	command := getType[1]
 	switch command {

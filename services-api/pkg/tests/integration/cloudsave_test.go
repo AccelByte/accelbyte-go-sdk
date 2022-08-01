@@ -31,11 +31,12 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
+	ok, err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
 
+	assert.NotNil(t, ok, "err should not be nil")
 	assert.Nil(t, err, "err should be nil")
 }
 
@@ -62,10 +63,11 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
+	post, err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	assert.NotNil(t, post, "err should not be nil")
 
 	inputRecord := &public_game_record.GetGameRecordHandlerV1Params{
 		Key:       key,
@@ -88,10 +90,11 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PutGameRecordHandlerV1Short(input)
+	ok, err := publicGameRecordService.PutGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	assert.NotNil(t, ok, "err should not be nil")
 
 	inputDelete := &public_game_record.DeleteGameRecordHandlerV1Params{
 		Key:       key,

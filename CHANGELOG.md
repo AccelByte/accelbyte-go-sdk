@@ -9,8 +9,10 @@
 
 ### Docs
 - update CHANGELOG.md for v0.24.0 release
+- **samples:** add oidc web README.md
 
 ### Feat
+- **samples:** oidc web
 - **sdk:** add a wrapper for login platform
 - **test:** add helper for phantauth
 - **test:** integrating with phantauth oidc connect

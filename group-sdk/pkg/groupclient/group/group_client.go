@@ -64,6 +64,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateNewGroupPublicV1Short instead.
+
   CreateNewGroupPublicV1 creates new group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -140,6 +142,27 @@ func (a *Client) CreateNewGroupPublicV1(params *CreateNewGroupPublicV1Params, au
 	}
 }
 
+/*
+  CreateNewGroupPublicV1Short creates new group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to create new group&lt;/p&gt;
+			&lt;p&gt;There are some fields that needs to be fulfilled&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;groupDescription&lt;/b&gt;: the description of the group (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupIcon&lt;/b&gt;: group icon URL link (optional)&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupName&lt;/b&gt;: name of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRegion&lt;/b&gt;: region of the group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;groupRules&lt;/b&gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;allowedAction&lt;/b&gt;: available action in group service. It consist of joinGroup and inviteGroup&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;customAttributes&lt;/b&gt;: additional custom group attributes (optional)&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73304&lt;/p&gt;
+
+*/
 func (a *Client) CreateNewGroupPublicV1Short(params *CreateNewGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNewGroupPublicV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -192,6 +215,8 @@ func (a *Client) CreateNewGroupPublicV1Short(params *CreateNewGroupPublicV1Param
 }
 
 /*
+Deprecated: Use DeleteGroupAdminV1Short instead.
+
   DeleteGroupAdminV1 deletes existing group
 
   &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]&#34;&lt;/p&gt;
@@ -255,6 +280,14 @@ func (a *Client) DeleteGroupAdminV1(params *DeleteGroupAdminV1Params, authInfo r
 	}
 }
 
+/*
+  DeleteGroupAdminV1Short deletes existing group
+
+  &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73302&lt;/p&gt;
+
+*/
 func (a *Client) DeleteGroupAdminV1Short(params *DeleteGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupAdminV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -307,6 +340,8 @@ func (a *Client) DeleteGroupAdminV1Short(params *DeleteGroupAdminV1Params, authI
 }
 
 /*
+Deprecated: Use DeleteGroupPredefinedRulePublicV1Short instead.
+
   DeleteGroupPredefinedRulePublicV1 deletes group predefined rule
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -373,6 +408,17 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1(params *DeleteGroupPredefined
 	}
 }
 
+/*
+  DeleteGroupPredefinedRulePublicV1Short deletes group predefined rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73309&lt;/p&gt;
+
+*/
 func (a *Client) DeleteGroupPredefinedRulePublicV1Short(params *DeleteGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPredefinedRulePublicV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -425,6 +471,8 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1Short(params *DeleteGroupPrede
 }
 
 /*
+Deprecated: Use DeleteGroupPublicV1Short instead.
+
   DeleteGroupPublicV1 deletes existing group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -491,6 +539,17 @@ func (a *Client) DeleteGroupPublicV1(params *DeleteGroupPublicV1Params, authInfo
 	}
 }
 
+/*
+  DeleteGroupPublicV1Short deletes existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [DELETE]&#34;&lt;/p&gt;
+			&lt;p&gt;Delete existing group. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73305&lt;/p&gt;
+
+*/
 func (a *Client) DeleteGroupPublicV1Short(params *DeleteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupPublicV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -543,6 +602,8 @@ func (a *Client) DeleteGroupPublicV1Short(params *DeleteGroupPublicV1Params, aut
 }
 
 /*
+Deprecated: Use GetGroupListAdminV1Short instead.
+
   GetGroupListAdminV1 gets list of groups
 
   &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34; &lt;/p&gt;
@@ -603,6 +664,14 @@ func (a *Client) GetGroupListAdminV1(params *GetGroupListAdminV1Params, authInfo
 	}
 }
 
+/*
+  GetGroupListAdminV1Short gets list of groups
+
+  &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34; &lt;/p&gt;
+			&lt;p&gt;Get list of groups. This endpoint will show any types of group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73301&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupListAdminV1Short(params *GetGroupListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -653,6 +722,8 @@ func (a *Client) GetGroupListAdminV1Short(params *GetGroupListAdminV1Params, aut
 }
 
 /*
+Deprecated: Use GetGroupListPublicV1Short instead.
+
   GetGroupListPublicV1 gets list of groups
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -713,6 +784,14 @@ func (a *Client) GetGroupListPublicV1(params *GetGroupListPublicV1Params, authIn
 	}
 }
 
+/*
+  GetGroupListPublicV1Short gets list of groups
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the &#34;groupName&#34; query parameter&lt;/p&gt;
+			&lt;p&gt;Action Code: 73303&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupListPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -763,6 +842,8 @@ func (a *Client) GetGroupListPublicV1Short(params *GetGroupListPublicV1Params, a
 }
 
 /*
+Deprecated: Use GetSingleGroupAdminV1Short instead.
+
   GetSingleGroupAdminV1 gets single group
 
   &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34;&lt;/p&gt;
@@ -826,6 +907,14 @@ func (a *Client) GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, auth
 	}
 }
 
+/*
+  GetSingleGroupAdminV1Short gets single group
+
+  &lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;Get single group information. This endpoint will show the group information by the groupId&lt;/p&gt;
+			&lt;p&gt;Action Code: 73306&lt;/p&gt;
+
+*/
 func (a *Client) GetSingleGroupAdminV1Short(params *GetSingleGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -878,6 +967,8 @@ func (a *Client) GetSingleGroupAdminV1Short(params *GetSingleGroupAdminV1Params,
 }
 
 /*
+Deprecated: Use GetSingleGroupPublicV1Short instead.
+
   GetSingleGroupPublicV1 gets single group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -941,6 +1032,14 @@ func (a *Client) GetSingleGroupPublicV1(params *GetSingleGroupPublicV1Params, au
 	}
 }
 
+/*
+  GetSingleGroupPublicV1Short gets single group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Get single group information. This endpoint will show the group information by the groupId&lt;/p&gt;
+			&lt;p&gt;Action Code: 73306&lt;/p&gt;
+
+*/
 func (a *Client) GetSingleGroupPublicV1Short(params *GetSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleGroupPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -993,6 +1092,8 @@ func (a *Client) GetSingleGroupPublicV1Short(params *GetSingleGroupPublicV1Param
 }
 
 /*
+Deprecated: Use UpdateGroupCustomAttributesPublicV1Short instead.
+
   UpdateGroupCustomAttributesPublicV1 updates group custom attributes
 
   &lt;p&gt;Requires valid user authentication &lt;/p&gt;
@@ -1059,6 +1160,17 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1(params *UpdateGroupCustomAt
 	}
 }
 
+/*
+  UpdateGroupCustomAttributesPublicV1Short updates group custom attributes
+
+  &lt;p&gt;Requires valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint replaces current group custom attributes entirely.
+			This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73311&lt;/p&gt;
+
+*/
 func (a *Client) UpdateGroupCustomAttributesPublicV1Short(params *UpdateGroupCustomAttributesPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomAttributesPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1111,6 +1223,8 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1Short(params *UpdateGroupCus
 }
 
 /*
+Deprecated: Use UpdateGroupCustomRulePublicV1Short instead.
+
   UpdateGroupCustomRulePublicV1 updates group custom rule
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1176,6 +1290,16 @@ func (a *Client) UpdateGroupCustomRulePublicV1(params *UpdateGroupCustomRulePubl
 	}
 }
 
+/*
+  UpdateGroupCustomRulePublicV1Short updates group custom rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based
+			on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73308&lt;/p&gt;
+
+*/
 func (a *Client) UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1228,6 +1352,8 @@ func (a *Client) UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRul
 }
 
 /*
+Deprecated: Use UpdateGroupPredefinedRulePublicV1Short instead.
+
   UpdateGroupPredefinedRulePublicV1 updates predefined group rule
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1295,6 +1421,18 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefined
 	}
 }
 
+/*
+  UpdateGroupPredefinedRulePublicV1Short updates predefined group rule
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token
+			and compare it with the group ID in path parameter. It will also check the member role of the user based on
+			the access token&lt;/p&gt;
+			&lt;p&gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule&lt;/p&gt;
+			&lt;p&gt;Action Code: 73310&lt;/p&gt;
+
+*/
 func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1347,6 +1485,8 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPrede
 }
 
 /*
+Deprecated: Use UpdatePatchSingleGroupPublicV1Short instead.
+
   UpdatePatchSingleGroupPublicV1 updates existing group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1412,6 +1552,16 @@ func (a *Client) UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPu
 	}
 }
 
+/*
+  UpdatePatchSingleGroupPublicV1Short updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
 func (a *Client) UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1464,6 +1614,8 @@ func (a *Client) UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGr
 }
 
 /*
+Deprecated: Use UpdateSingleGroupV1Short instead.
+
   UpdateSingleGroupV1 updates existing group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1529,6 +1681,16 @@ func (a *Client) UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo
 	}
 }
 
+/*
+  UpdateSingleGroupV1Short updates existing group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token&lt;/p&gt;
+			&lt;p&gt;Action Code: 73307&lt;/p&gt;
+
+*/
 func (a *Client) UpdateSingleGroupV1Short(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

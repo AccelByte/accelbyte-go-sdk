@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use HeartbeatShort instead.
+
   Heartbeat sends heartbeat
 
   ```
@@ -97,6 +99,17 @@ func (a *Client) Heartbeat(params *HeartbeatParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  HeartbeatShort sends heartbeat
+
+  ```
+Required permission: QOS:SERVER [CREATE][UPDATE]
+Required scope: social
+
+This endpoint is intended to be called by QoS service
+to register and periodically let QoS Manager know that it is still alive.
+```
+*/
 func (a *Client) HeartbeatShort(params *HeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*HeartbeatNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

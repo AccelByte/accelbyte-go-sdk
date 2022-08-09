@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use FulfillItemShort instead.
+
   FulfillItem fulfills item
 
   Fulfill item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
@@ -102,6 +104,11 @@ func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  FulfillItemShort fulfills item
+
+  Fulfill item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -150,6 +157,8 @@ func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use FulfillRewardsShort instead.
+
   FulfillRewards fulfills rewards
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Fulfill rewards.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
@@ -204,6 +213,11 @@ func (a *Client) FulfillRewards(params *FulfillRewardsParams, authInfo runtime.C
 	}
 }
 
+/*
+  FulfillRewardsShort fulfills rewards
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Fulfill rewards.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -252,6 +266,8 @@ func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runt
 }
 
 /*
+Deprecated: Use PublicRedeemCodeShort instead.
+
   PublicRedeemCode redeems campaign code
 
   Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
@@ -306,6 +322,11 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 	}
 }
 
+/*
+  PublicRedeemCodeShort redeems campaign code
+
+  Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -354,6 +375,8 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 }
 
 /*
+Deprecated: Use QueryFulfillmentHistoriesShort instead.
+
   QueryFulfillmentHistories queries fulfillment histories
 
   Query fulfillment histories in a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query fulfillment history&lt;/li&gt;&lt;/ul&gt;
@@ -399,6 +422,11 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 	}
 }
 
+/*
+  QueryFulfillmentHistoriesShort queries fulfillment histories
+
+  Query fulfillment histories in a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query fulfillment history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -441,6 +469,8 @@ func (a *Client) QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistorie
 }
 
 /*
+Deprecated: Use RedeemCodeShort instead.
+
   RedeemCode redeems campaign code
 
   Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
@@ -495,6 +525,11 @@ func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  RedeemCodeShort redeems campaign code
+
+  Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

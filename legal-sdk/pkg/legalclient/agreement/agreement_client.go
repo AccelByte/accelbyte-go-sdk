@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AcceptVersionedPolicyShort instead.
+
   AcceptVersionedPolicy accepts a policy version
 
   Accepts a legal policy version. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
@@ -101,6 +103,11 @@ func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, auth
 	}
 }
 
+/*
+  AcceptVersionedPolicyShort accepts a policy version
+
+  Accepts a legal policy version. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -143,6 +150,8 @@ func (a *Client) AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams,
 }
 
 /*
+Deprecated: Use BulkAcceptVersionedPolicyShort instead.
+
   BulkAcceptVersionedPolicy bulks accept policy versions
 
   Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
@@ -188,6 +197,11 @@ func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyPara
 	}
 }
 
+/*
+  BulkAcceptVersionedPolicyShort bulks accept policy versions
+
+  Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -230,6 +244,8 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 }
 
 /*
+Deprecated: Use ChangePreferenceConsentShort instead.
+
   ChangePreferenceConsent change preference consent API
 */
 func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error) {
@@ -273,6 +289,9 @@ func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, 
 	}
 }
 
+/*
+  ChangePreferenceConsentShort change preference consent API
+*/
 func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -315,6 +334,8 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 }
 
 /*
+Deprecated: Use ChangePreferenceConsent1Short instead.
+
   ChangePreferenceConsent1 accepts revoke marketing preference consent
 
   Change marketing preference consent.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
@@ -363,6 +384,11 @@ func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params
 	}
 }
 
+/*
+  ChangePreferenceConsent1Short accepts revoke marketing preference consent
+
+  Change marketing preference consent.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -407,6 +433,8 @@ func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1P
 }
 
 /*
+Deprecated: Use IndirectBulkAcceptVersionedPolicyV2Short instead.
+
   IndirectBulkAcceptVersionedPolicyV2 bulks accept policy versions indirect
 
   &lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -452,6 +480,11 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptV
 	}
 }
 
+/*
+  IndirectBulkAcceptVersionedPolicyV2Short bulks accept policy versions indirect
+
+  &lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -494,6 +527,8 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAc
 }
 
 /*
+Deprecated: Use IndirectBulkAcceptVersionedPolicy1Short instead.
+
   IndirectBulkAcceptVersionedPolicy1 bulks accept policy versions indirect
 
   Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
@@ -539,6 +574,11 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 	}
 }
 
+/*
+  IndirectBulkAcceptVersionedPolicy1Short bulks accept policy versions indirect
+
+  Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -581,6 +621,8 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 }
 
 /*
+Deprecated: Use RetrieveAcceptedAgreementsShort instead.
+
   RetrieveAcceptedAgreements retrieves accepted legal agreements
 
   This API will return all accepted Legal Agreements for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -626,6 +668,11 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 	}
 }
 
+/*
+  RetrieveAcceptedAgreementsShort retrieves accepted legal agreements
+
+  This API will return all accepted Legal Agreements for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -668,6 +715,8 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 }
 
 /*
+Deprecated: Use RetrieveAgreementsPublicShort instead.
+
   RetrieveAgreementsPublic retrieves the accepted legal agreements
 
   Retrieve accepted Legal Agreements.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
@@ -713,6 +762,11 @@ func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams
 	}
 }
 
+/*
+  RetrieveAgreementsPublicShort retrieves the accepted legal agreements
+
+  Retrieve accepted Legal Agreements.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -755,6 +809,8 @@ func (a *Client) RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicP
 }
 
 /*
+Deprecated: Use RetrieveAllUsersByPolicyVersionShort instead.
+
   RetrieveAllUsersByPolicyVersion retrieves all users accepting legal agreements
 
   This API will return all users who has accepted a specific policy version.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -803,6 +859,11 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 	}
 }
 
+/*
+  RetrieveAllUsersByPolicyVersionShort retrieves all users accepting legal agreements
+
+  This API will return all users who has accepted a specific policy version.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

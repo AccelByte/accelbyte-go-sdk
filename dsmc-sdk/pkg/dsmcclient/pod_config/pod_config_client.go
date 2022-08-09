@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreatePodConfigShort instead.
+
   CreatePodConfig creates pod config
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -109,6 +111,15 @@ func (a *Client) CreatePodConfig(params *CreatePodConfigParams, authInfo runtime
 	}
 }
 
+/*
+  CreatePodConfigShort creates pod config
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers pod config in a namespace.
+*/
 func (a *Client) CreatePodConfigShort(params *CreatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -159,6 +170,8 @@ func (a *Client) CreatePodConfigShort(params *CreatePodConfigParams, authInfo ru
 }
 
 /*
+Deprecated: Use DeletePodConfigShort instead.
+
   DeletePodConfig deletes pod config
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
@@ -223,6 +236,15 @@ func (a *Client) DeletePodConfig(params *DeletePodConfigParams, authInfo runtime
 	}
 }
 
+/*
+  DeletePodConfigShort deletes pod config
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server pod config in a namespace
+*/
 func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -275,6 +297,8 @@ func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetAllPodConfigShort instead.
+
   GetAllPodConfig gets all pod configs
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -335,6 +359,17 @@ func (a *Client) GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime
 	}
 }
 
+/*
+  GetAllPodConfigShort gets all pod configs
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all pod configs in a namespace
+
+Parameter Offset and Count is Required
+*/
 func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -383,6 +418,8 @@ func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetPodConfigShort instead.
+
   GetPodConfig gets pod config
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -444,6 +481,15 @@ func (a *Client) GetPodConfig(params *GetPodConfigParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetPodConfigShort gets pod config
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated server pod config in a namespace
+*/
 func (a *Client) GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -494,6 +540,8 @@ func (a *Client) GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use UpdatePodConfigShort instead.
+
   UpdatePodConfig updates pod config
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -558,6 +606,15 @@ func (a *Client) UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime
 	}
 }
 
+/*
+  UpdatePodConfigShort updates pod config
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint update a dedicated servers pod config in a namespace.
+*/
 func (a *Client) UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CheckServerLogsShort instead.
+
   CheckServerLogs checks dedicated server log files existence
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
@@ -99,6 +101,15 @@ func (a *Client) CheckServerLogs(params *CheckServerLogsParams, authInfo runtime
 	}
 }
 
+/*
+  CheckServerLogsShort checks dedicated server log files existence
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
+
+Required scope: social
+
+This endpoint will check log file existence before download file.
+*/
 func (a *Client) CheckServerLogsShort(params *CheckServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*CheckServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -145,6 +156,8 @@ func (a *Client) CheckServerLogsShort(params *CheckServerLogsParams, authInfo ru
 }
 
 /*
+Deprecated: Use DownloadServerLogsShort instead.
+
   DownloadServerLogs downloads dedicated server log files
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
@@ -200,6 +213,15 @@ func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo r
 	}
 }
 
+/*
+  DownloadServerLogsShort downloads dedicated server log files
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
+
+Required scope: social
+
+This endpoint will download dedicated server&#39;s log file (.log).
+*/
 func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -246,6 +268,8 @@ func (a *Client) DownloadServerLogsShort(params *DownloadServerLogsParams, authI
 }
 
 /*
+Deprecated: Use ListTerminatedServersShort instead.
+
   ListTerminatedServers retrieves all terminated servers
 
   ```
@@ -304,6 +328,15 @@ func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, auth
 	}
 }
 
+/*
+  ListTerminatedServersShort retrieves all terminated servers
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
+
+This endpoint used to retrieve terminated servers in a namespace
+```
+*/
 func (a *Client) ListTerminatedServersShort(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetFollowedContentShort instead.
+
   GetFollowedContent gets contents from followed creators
 
   Requires valid user token
@@ -102,6 +104,11 @@ func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo r
 	}
 }
 
+/*
+  GetFollowedContentShort gets contents from followed creators
+
+  Requires valid user token
+*/
 func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -150,6 +157,8 @@ func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authI
 }
 
 /*
+Deprecated: Use GetFollowedUsersShort instead.
+
   GetFollowedUsers gets followed creators
 
   Requires valid user token
@@ -204,6 +213,11 @@ func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runti
 	}
 }
 
+/*
+  GetFollowedUsersShort gets followed creators
+
+  Requires valid user token
+*/
 func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -252,6 +266,8 @@ func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo 
 }
 
 /*
+Deprecated: Use GetPublicFollowersShort instead.
+
   GetPublicFollowers gets list of followers
 */
 func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersUnauthorized, *GetPublicFollowersNotFound, *GetPublicFollowersInternalServerError, error) {
@@ -304,6 +320,9 @@ func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo r
 	}
 }
 
+/*
+  GetPublicFollowersShort gets list of followers
+*/
 func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -352,6 +371,8 @@ func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authI
 }
 
 /*
+Deprecated: Use GetPublicFollowingShort instead.
+
   GetPublicFollowing gets list of following
 */
 func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingUnauthorized, *GetPublicFollowingNotFound, *GetPublicFollowingInternalServerError, error) {
@@ -404,6 +425,9 @@ func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo r
 	}
 }
 
+/*
+  GetPublicFollowingShort gets list of following
+*/
 func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -452,6 +476,8 @@ func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authI
 }
 
 /*
+Deprecated: Use UpdateUserFollowStatusShort instead.
+
   UpdateUserFollowStatus updates follow unfollow status to a user
 
   Requires valid user token
@@ -509,6 +535,11 @@ func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, au
 	}
 }
 
+/*
+  UpdateUserFollowStatusShort updates follow unfollow status to a user
+
+  Requires valid user token
+*/
 func (a *Client) UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

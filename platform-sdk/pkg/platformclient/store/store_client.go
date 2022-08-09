@@ -64,6 +64,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CloneStoreShort instead.
+
   CloneStore clones a store
 
   This API is used to clone a store. Usually clone a draft store to published store because published store can&#39;t directly edit content.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: clone store info&lt;/li&gt;&lt;/ul&gt;
@@ -115,6 +117,11 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CloneStoreShort clones a store
+
+  This API is used to clone a store. Usually clone a draft store to published store because published store can&#39;t directly edit content.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: clone store info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -161,6 +168,8 @@ func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use CreateStoreShort instead.
+
   CreateStore creates a store
 
   This API is used to create a non published store in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created store data&lt;/li&gt;&lt;/ul&gt;
@@ -212,6 +221,11 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CreateStoreShort creates a store
+
+  This API is used to create a non published store in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created store data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -258,6 +272,8 @@ func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DeletePublishedStoreShort instead.
+
   DeletePublishedStore deletes published store
 
   This API is used to delete published store including category and items before release to public.&lt;p&gt;&lt;b&gt;Warning: Please do not use this API once published to public user.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -306,6 +322,11 @@ func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authIn
 	}
 }
 
+/*
+  DeletePublishedStoreShort deletes published store
+
+  This API is used to delete published store including category and items before release to public.&lt;p&gt;&lt;b&gt;Warning: Please do not use this API once published to public user.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -350,6 +371,8 @@ func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, a
 }
 
 /*
+Deprecated: Use DeleteStoreShort instead.
+
   DeleteStore deletes a store
 
   This API is used to delete a store. Only non published store can be deleted.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store&lt;/li&gt;&lt;/ul&gt;
@@ -401,6 +424,11 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  DeleteStoreShort deletes a store
+
+  This API is used to delete a store. Only non published store can be deleted.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -447,6 +475,8 @@ func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use ExportStoreShort instead.
+
   ExportStore exports a store
 
   This API is used to export a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -495,6 +525,11 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ExportStoreShort exports a store
+
+  This API is used to export a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -539,6 +574,8 @@ func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetPublishedStoreShort instead.
+
   GetPublishedStore gets published store
 
   This API is used to get a published store basic info, exclude category and item information.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
@@ -587,6 +624,11 @@ func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo run
 	}
 }
 
+/*
+  GetPublishedStoreShort gets published store
+
+  This API is used to get a published store basic info, exclude category and item information.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -631,6 +673,8 @@ func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInf
 }
 
 /*
+Deprecated: Use GetPublishedStoreBackupShort instead.
+
   GetPublishedStoreBackup gets a published store s backup
 
   This API is used to get a store&#39;s backup. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store backup info&lt;/li&gt;&lt;/ul&gt;
@@ -679,6 +723,11 @@ func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, 
 	}
 }
 
+/*
+  GetPublishedStoreBackupShort gets a published store s backup
+
+  This API is used to get a store&#39;s backup. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store backup info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -723,6 +772,8 @@ func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupPar
 }
 
 /*
+Deprecated: Use GetStoreShort instead.
+
   GetStore gets a store
 
   This API is used to get a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
@@ -771,6 +822,11 @@ func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  GetStoreShort gets a store
+
+  This API is used to get a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -815,6 +871,8 @@ func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use ImportStoreShort instead.
+
   ImportStore imports a store
 
   This API is used to import a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -866,6 +924,11 @@ func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ImportStoreShort imports a store
+
+  This API is used to import a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -912,6 +975,8 @@ func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use ListStoresShort instead.
+
   ListStores lists stores
 
   This API is used to list stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
@@ -957,6 +1022,11 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  ListStoresShort lists stores
+
+  This API is used to list stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -999,6 +1069,8 @@ func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use PublicListStoresShort instead.
+
   PublicListStores lists all stores
 
   This API is used to list all stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
@@ -1043,6 +1115,11 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 	}
 }
 
+/*
+  PublicListStoresShort lists all stores
+
+  This API is used to list all stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicListStoresShort(params *PublicListStoresParams) (*PublicListStoresOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1084,6 +1161,8 @@ func (a *Client) PublicListStoresShort(params *PublicListStoresParams) (*PublicL
 }
 
 /*
+Deprecated: Use RollbackPublishedStoreShort instead.
+
   RollbackPublishedStore rollbacks a published store
 
   This API is used to rollback a published store. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store info&lt;/li&gt;&lt;/ul&gt;
@@ -1132,6 +1211,11 @@ func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, au
 	}
 }
 
+/*
+  RollbackPublishedStoreShort rollbacks a published store
+
+  This API is used to rollback a published store. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1176,6 +1260,8 @@ func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParam
 }
 
 /*
+Deprecated: Use UpdateStoreShort instead.
+
   UpdateStore updates a store
 
   This API is used to Update a store basic info.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store data&lt;/li&gt;&lt;/ul&gt;
@@ -1230,6 +1316,11 @@ func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  UpdateStoreShort updates a store
+
+  This API is used to Update a store basic info.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateStoreShort(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

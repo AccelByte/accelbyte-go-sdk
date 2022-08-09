@@ -64,6 +64,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateCategoryShort instead.
+
   CreateCategory creates category
 
   This API is used to create category.&lt;p&gt;A category is a path separated by &#34;/&#34;. A category also has localized display names. Example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
@@ -124,6 +126,14 @@ func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.C
 	}
 }
 
+/*
+  CreateCategoryShort creates category
+
+  This API is used to create category.&lt;p&gt;A category is a path separated by &#34;/&#34;. A category also has localized display names. Example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+	&#34;categoryPath&#34;: &#34;/games&#34;,
+	&#34;localizationDisplayNames&#34;: \{&#34;en&#34; : &#34;Games&#34;}
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCategoryCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -174,6 +184,8 @@ func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runt
 }
 
 /*
+Deprecated: Use DeleteCategoryShort instead.
+
   DeleteCategory deletes category
 
   This API is used to delete category by category path. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the deleted category data&lt;/li&gt;&lt;/ul&gt;
@@ -225,6 +237,11 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 	}
 }
 
+/*
+  DeleteCategoryShort deletes category
+
+  This API is used to delete category by category path. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the deleted category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCategoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -271,6 +288,8 @@ func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runt
 }
 
 /*
+Deprecated: Use DownloadCategoriesShort instead.
+
   DownloadCategories downloads store s structured categories
 
   This API is used to download store&#39;s structured categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: structured categories&lt;/li&gt;&lt;/ul&gt;
@@ -318,6 +337,11 @@ func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*Download
 	}
 }
 
+/*
+  DownloadCategoriesShort downloads store s structured categories
+
+  This API is used to download store&#39;s structured categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: structured categories&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*DownloadCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -361,6 +385,8 @@ func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*Dow
 }
 
 /*
+Deprecated: Use GetCategoryShort instead.
+
   GetCategory gets category
 
   This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
@@ -409,6 +435,11 @@ func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  GetCategoryShort gets category
+
+  This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCategoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -453,6 +484,8 @@ func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetChildCategoriesShort instead.
+
   GetChildCategories gets child categories
 
   This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
@@ -498,6 +531,11 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 	}
 }
 
+/*
+  GetChildCategoriesShort gets child categories
+
+  This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -540,6 +578,8 @@ func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authI
 }
 
 /*
+Deprecated: Use GetDescendantCategoriesShort instead.
+
   GetDescendantCategories gets descendant categories
 
   This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
@@ -585,6 +625,11 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 	}
 }
 
+/*
+  GetDescendantCategoriesShort gets descendant categories
+
+  This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDescendantCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -627,6 +672,8 @@ func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesPar
 }
 
 /*
+Deprecated: Use GetRootCategoriesShort instead.
+
   GetRootCategories gets root categories
 
   This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
@@ -672,6 +719,11 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 	}
 }
 
+/*
+  GetRootCategoriesShort gets root categories
+
+  This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRootCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -714,6 +766,8 @@ func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInf
 }
 
 /*
+Deprecated: Use ListCategoriesBasicShort instead.
+
   ListCategoriesBasic lists categories basic info
 
   This API is used to list all categories&#39; basic info of a store ordered by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of categories&#39; paths&lt;/li&gt;&lt;/ul&gt;
@@ -759,6 +813,11 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 	}
 }
 
+/*
+  ListCategoriesBasicShort lists categories basic info
+
+  This API is used to list all categories&#39; basic info of a store ordered by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of categories&#39; paths&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) (*ListCategoriesBasicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -801,6 +860,8 @@ func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, aut
 }
 
 /*
+Deprecated: Use PublicGetCategoryShort instead.
+
   PublicGetCategory gets category
 
   This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)(user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
@@ -848,6 +909,11 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 	}
 }
 
+/*
+  PublicGetCategoryShort gets category
+
+  This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)(user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*PublicGetCategoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -891,6 +957,8 @@ func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*Publi
 }
 
 /*
+Deprecated: Use PublicGetChildCategoriesShort instead.
+
   PublicGetChildCategories gets child categories
 
   This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
@@ -935,6 +1003,11 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 	}
 }
 
+/*
+  PublicGetChildCategoriesShort gets child categories
+
+  This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -976,6 +1049,8 @@ func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesP
 }
 
 /*
+Deprecated: Use PublicGetDescendantCategoriesShort instead.
+
   PublicGetDescendantCategories gets descendant categories
 
   This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
@@ -1020,6 +1095,11 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 	}
 }
 
+/*
+  PublicGetDescendantCategoriesShort gets descendant categories
+
+  This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1061,6 +1141,8 @@ func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantC
 }
 
 /*
+Deprecated: Use PublicGetRootCategoriesShort instead.
+
   PublicGetRootCategories gets root categories
 
   This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
@@ -1105,6 +1187,11 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 	}
 }
 
+/*
+  PublicGetRootCategoriesShort gets root categories
+
+  This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1146,6 +1233,8 @@ func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesPar
 }
 
 /*
+Deprecated: Use UpdateCategoryShort instead.
+
   UpdateCategory updates category
 
   This API is used to update category. &lt;p&gt; The category update data is a category object, example as:&lt;pre&gt;&lt;code&gt;{
@@ -1206,6 +1295,14 @@ func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.C
 	}
 }
 
+/*
+  UpdateCategoryShort updates category
+
+  This API is used to update category. &lt;p&gt; The category update data is a category object, example as:&lt;pre&gt;&lt;code&gt;{
+	&#34;storeId&#34;: &#34;store-id&#34;,
+	&#34;localizationDisplayNames&#34;: {&#34;en&#34; : &#34;Games&#34;}
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the updated category data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateCategoryShort(params *UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCategoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

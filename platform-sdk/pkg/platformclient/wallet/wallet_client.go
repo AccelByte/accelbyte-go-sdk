@@ -74,6 +74,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CheckWalletShort instead.
+
   CheckWallet checks wallet by balance origin and currency code
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Check wallet by balance origin and currency code whether it&#39;s inactive.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -128,6 +130,11 @@ func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CheckWalletShort checks wallet by balance origin and currency code
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Check wallet by balance origin and currency code whether it&#39;s inactive.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -176,6 +183,8 @@ func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use CreditUserWalletShort instead.
+
   CreditUserWallet credits a user wallet by currency code and balance origin
 
   Credit a user wallet by currency code and balance origin, if wallet not exists, it will create a new wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -227,6 +236,11 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 	}
 }
 
+/*
+  CreditUserWalletShort credits a user wallet by currency code and balance origin
+
+  Credit a user wallet by currency code and balance origin, if wallet not exists, it will create a new wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -273,6 +287,8 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 }
 
 /*
+Deprecated: Use DebitUserWalletShort instead.
+
   DebitUserWallet debits a user wallet
 
   Debit a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -330,6 +346,11 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 	}
 }
 
+/*
+  DebitUserWalletShort debits a user wallet
+
+  Debit a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -380,6 +401,8 @@ func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo ru
 }
 
 /*
+Deprecated: Use DisableUserWalletShort instead.
+
   DisableUserWallet disables a user wallet
 
   disable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -431,6 +454,11 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 	}
 }
 
+/*
+  DisableUserWalletShort disables a user wallet
+
+  disable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -477,6 +505,8 @@ func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInf
 }
 
 /*
+Deprecated: Use EnableUserWalletShort instead.
+
   EnableUserWallet enables a user wallet
 
   enable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -528,6 +558,11 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 	}
 }
 
+/*
+  EnableUserWalletShort enables a user wallet
+
+  enable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -574,6 +609,8 @@ func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo 
 }
 
 /*
+Deprecated: Use GetPlatformWalletConfigShort instead.
+
   GetPlatformWalletConfig gets platform wallet config list
 
   Get platform wallet config list.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
@@ -619,6 +656,11 @@ func (a *Client) GetPlatformWalletConfig(params *GetPlatformWalletConfigParams, 
 	}
 }
 
+/*
+  GetPlatformWalletConfigShort gets platform wallet config list
+
+  Get platform wallet config list.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPlatformWalletConfigShort(params *GetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -661,6 +703,8 @@ func (a *Client) GetPlatformWalletConfigShort(params *GetPlatformWalletConfigPar
 }
 
 /*
+Deprecated: Use GetUserWalletShort instead.
+
   GetUserWallet gets a user wallet
 
   get a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
@@ -709,6 +753,11 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetUserWalletShort gets a user wallet
+
+  get a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -753,6 +802,8 @@ func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtim
 }
 
 /*
+Deprecated: Use GetWalletShort instead.
+
   GetWallet gets a wallet by wallet id
 
   get a wallet by wallet id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
@@ -801,6 +852,11 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetWalletShort gets a wallet by wallet id
+
+  get a wallet by wallet id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -845,6 +901,8 @@ func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use ListUserCurrencyTransactionsShort instead.
+
   ListUserCurrencyTransactions lists user currency transactions
 
   List user currency transactions ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency transaction info&lt;/li&gt;&lt;/ul&gt;
@@ -893,6 +951,11 @@ func (a *Client) ListUserCurrencyTransactions(params *ListUserCurrencyTransactio
 	}
 }
 
+/*
+  ListUserCurrencyTransactionsShort lists user currency transactions
+
+  List user currency transactions ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency transaction info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserCurrencyTransactionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -937,6 +1000,8 @@ func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTrans
 }
 
 /*
+Deprecated: Use ListUserWalletTransactionsShort instead.
+
   ListUserWalletTransactions lists user wallet transactions
 
   List user wallet transactions ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet transaction info&lt;/li&gt;&lt;/ul&gt;
@@ -985,6 +1050,11 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 	}
 }
 
+/*
+  ListUserWalletTransactionsShort lists user wallet transactions
+
+  List user wallet transactions ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet transaction info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1029,6 +1099,8 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 }
 
 /*
+Deprecated: Use PayWithUserWalletShort instead.
+
   PayWithUserWallet pays with user wallet by currency code and client platform
 
   Pay with user wallet by currency code and client platform.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -1080,6 +1152,11 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 	}
 }
 
+/*
+  PayWithUserWalletShort pays with user wallet by currency code and client platform
+
+  Pay with user wallet by currency code and client platform.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1126,6 +1203,8 @@ func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInf
 }
 
 /*
+Deprecated: Use PublicGetMyWalletShort instead.
+
   PublicGetMyWallet gets my wallet by currency code and namespace
 
   get my wallet by currency code and namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;   &lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher user wallet&lt;/b&gt;&lt;/li&gt;   &lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game user wallet&lt;/b&gt;&lt;/li&gt;   &lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -1171,6 +1250,11 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 	}
 }
 
+/*
+  PublicGetMyWalletShort gets my wallet by currency code and namespace
+
+  get my wallet by currency code and namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;   &lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher user wallet&lt;/b&gt;&lt;/li&gt;   &lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game user wallet&lt;/b&gt;&lt;/li&gt;   &lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1213,6 +1297,8 @@ func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInf
 }
 
 /*
+Deprecated: Use PublicGetWalletShort instead.
+
   PublicGetWallet gets a wallet by currency code
 
   get a wallet by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
@@ -1258,6 +1344,11 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 	}
 }
 
+/*
+  PublicGetWalletShort gets a wallet by currency code
+
+  get a wallet by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1300,6 +1391,8 @@ func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo ru
 }
 
 /*
+Deprecated: Use PublicListUserWalletTransactionsShort instead.
+
   PublicListUserWalletTransactions lists wallet transactions by currency code
 
   List wallet transactions by currency code ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency transaction info&lt;/li&gt;&lt;/ul&gt;
@@ -1345,6 +1438,11 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 	}
 }
 
+/*
+  PublicListUserWalletTransactionsShort lists wallet transactions by currency code
+
+  List wallet transactions by currency code ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency transaction info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1387,6 +1485,8 @@ func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWal
 }
 
 /*
+Deprecated: Use QueryUserCurrencyWalletsShort instead.
+
   QueryUserCurrencyWallets gets user currency wallet summary
 
   Get user currency wallet summary.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency wallet summary&lt;/li&gt;&lt;/ul&gt;
@@ -1432,6 +1532,11 @@ func (a *Client) QueryUserCurrencyWallets(params *QueryUserCurrencyWalletsParams
 	}
 }
 
+/*
+  QueryUserCurrencyWalletsShort gets user currency wallet summary
+
+  Get user currency wallet summary.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: currency wallet summary&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserCurrencyWalletsShort(params *QueryUserCurrencyWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserCurrencyWalletsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1474,6 +1579,8 @@ func (a *Client) QueryUserCurrencyWalletsShort(params *QueryUserCurrencyWalletsP
 }
 
 /*
+Deprecated: Use QueryWalletsShort instead.
+
   QueryWallets queries wallets
 
   Query wallets.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated wallets info&lt;/li&gt;&lt;/ul&gt;
@@ -1519,6 +1626,11 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  QueryWalletsShort queries wallets
+
+  Query wallets.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated wallets info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1561,6 +1673,8 @@ func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use ResetPlatformWalletConfigShort instead.
+
   ResetPlatformWalletConfig resets platform wallet config
 
   Reset platform wallet config to default config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: platform wallet config&lt;/li&gt;&lt;/ul&gt;
@@ -1606,6 +1720,11 @@ func (a *Client) ResetPlatformWalletConfig(params *ResetPlatformWalletConfigPara
 	}
 }
 
+/*
+  ResetPlatformWalletConfigShort resets platform wallet config
+
+  Reset platform wallet config to default config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: platform wallet config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ResetPlatformWalletConfigShort(params *ResetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1648,6 +1767,8 @@ func (a *Client) ResetPlatformWalletConfigShort(params *ResetPlatformWalletConfi
 }
 
 /*
+Deprecated: Use UpdatePlatformWalletConfigShort instead.
+
   UpdatePlatformWalletConfig updates platform wallet config
 
   Update platform wallet config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: platform wallet config&lt;/li&gt;&lt;/ul&gt;
@@ -1693,6 +1814,11 @@ func (a *Client) UpdatePlatformWalletConfig(params *UpdatePlatformWalletConfigPa
 	}
 }
 
+/*
+  UpdatePlatformWalletConfigShort updates platform wallet config
+
+  Update platform wallet config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: platform wallet config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdatePlatformWalletConfigShort(params *UpdatePlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

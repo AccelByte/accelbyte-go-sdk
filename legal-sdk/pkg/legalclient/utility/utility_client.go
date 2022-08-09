@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CheckReadinessShort instead.
+
   CheckReadiness checks legal data readiness
 
   Readiness status defined as at least one legal basePolicy is present and having active basePolicy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -85,6 +87,11 @@ func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.C
 	}
 }
 
+/*
+  CheckReadinessShort checks legal data readiness
+
+  Readiness status defined as at least one legal basePolicy is present and having active basePolicy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CheckReadinessShort(params *CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*CheckReadinessOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

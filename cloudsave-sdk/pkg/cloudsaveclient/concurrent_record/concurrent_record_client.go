@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use PutGameRecordConcurrentHandlerV1Short instead.
+
   PutGameRecordConcurrentHandlerV1 creates or replace game record
 
   &lt;table&gt;
@@ -145,6 +147,55 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 	}
 }
 
+/*
+  PutGameRecordConcurrentHandlerV1Short creates or replace game record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new game record or replace the existing game record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -195,6 +246,8 @@ func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConc
 }
 
 /*
+Deprecated: Use PutPlayerPublicRecordConcurrentHandlerV1Short instead.
+
   PutPlayerPublicRecordConcurrentHandlerV1 creates or replace player public record
 
   &lt;table&gt;
@@ -296,6 +349,55 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 	}
 }
 
+/*
+  PutPlayerPublicRecordConcurrentHandlerV1Short creates or replace player public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -346,6 +448,8 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayer
 }
 
 /*
+Deprecated: Use PutPlayerRecordConcurrentHandlerV1Short instead.
+
   PutPlayerRecordConcurrentHandlerV1 creates or replace player private record
 
   &lt;table&gt;
@@ -447,6 +551,55 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcu
 	}
 }
 
+/*
+  PutPlayerRecordConcurrentHandlerV1Short creates or replace player private record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player record or replace the existing player record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

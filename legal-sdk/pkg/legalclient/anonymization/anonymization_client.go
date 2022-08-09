@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AnonymizeUserAgreementShort instead.
+
   AnonymizeUserAgreement anonymizes user s agreement record
 
   This API will anonymize agreement record for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -88,6 +90,11 @@ func (a *Client) AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, au
 	}
 }
 
+/*
+  AnonymizeUserAgreementShort anonymizes user s agreement record
+
+  This API will anonymize agreement record for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeUserAgreementShort(params *AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserAgreementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

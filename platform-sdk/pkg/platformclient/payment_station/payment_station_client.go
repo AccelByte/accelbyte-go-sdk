@@ -59,6 +59,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetPaymentCustomizationShort instead.
+
   GetPaymentCustomization gets payment provider customization
 
   Get payment provider customization, at current only Adyen provide customization. This api has been deprecated, pls use /public/namespaces/{namespace}/payment/publicconfig to get adyen config&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: customization&lt;/li&gt;&lt;/ul&gt;
@@ -103,6 +105,11 @@ func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) 
 	}
 }
 
+/*
+  GetPaymentCustomizationShort gets payment provider customization
+
+  Get payment provider customization, at current only Adyen provide customization. This api has been deprecated, pls use /public/namespaces/{namespace}/payment/publicconfig to get adyen config&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: customization&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPaymentCustomizationShort(params *GetPaymentCustomizationParams) (*GetPaymentCustomizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -144,6 +151,8 @@ func (a *Client) GetPaymentCustomizationShort(params *GetPaymentCustomizationPar
 }
 
 /*
+Deprecated: Use GetPaymentPublicConfigShort instead.
+
   GetPaymentPublicConfig gets payment provider public config
 
   Get payment provider public config, at current only Strip provide public config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Public config&lt;/li&gt;&lt;/ul&gt;
@@ -188,6 +197,11 @@ func (a *Client) GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*
 	}
 }
 
+/*
+  GetPaymentPublicConfigShort gets payment provider public config
+
+  Get payment provider public config, at current only Strip provide public config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Public config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParams) (*GetPaymentPublicConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -229,6 +243,8 @@ func (a *Client) GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParam
 }
 
 /*
+Deprecated: Use GetPaymentTaxValueShort instead.
+
   GetPaymentTaxValue gets tax result of a payment order
 
   Check and get a payment order&#39;s should pay tax.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: tax result&lt;/li&gt;&lt;/ul&gt;
@@ -279,6 +295,11 @@ func (a *Client) GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPayme
 	}
 }
 
+/*
+  GetPaymentTaxValueShort gets tax result of a payment order
+
+  Check and get a payment order&#39;s should pay tax.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: tax result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPaymentTaxValueShort(params *GetPaymentTaxValueParams) (*GetPaymentTaxValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -324,6 +345,8 @@ func (a *Client) GetPaymentTaxValueShort(params *GetPaymentTaxValueParams) (*Get
 }
 
 /*
+Deprecated: Use PayShort instead.
+
   Pay dos payment
 
   Do payment(For now, this only support checkout.com).&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment process result&lt;/li&gt;&lt;/ul&gt;
@@ -377,6 +400,11 @@ func (a *Client) Pay(params *PayParams) (*PayOK, *PayBadRequest, *PayNotFound, *
 	}
 }
 
+/*
+  PayShort dos payment
+
+  Do payment(For now, this only support checkout.com).&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment process result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PayShort(params *PayParams) (*PayOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -424,6 +452,8 @@ func (a *Client) PayShort(params *PayParams) (*PayOK, error) {
 }
 
 /*
+Deprecated: Use PublicCheckPaymentOrderPaidStatusShort instead.
+
   PublicCheckPaymentOrderPaidStatus checks payment order paid status
 
   Check payment order paid status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment order paid result&lt;/li&gt;&lt;/ul&gt;
@@ -471,6 +501,11 @@ func (a *Client) PublicCheckPaymentOrderPaidStatus(params *PublicCheckPaymentOrd
 	}
 }
 
+/*
+  PublicCheckPaymentOrderPaidStatusShort checks payment order paid status
+
+  Check payment order paid status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment order paid result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPaymentOrderPaidStatusParams) (*PublicCheckPaymentOrderPaidStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -514,6 +549,8 @@ func (a *Client) PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPayme
 }
 
 /*
+Deprecated: Use PublicGetPaymentMethodsShort instead.
+
   PublicGetPaymentMethods gets payment methods
 
   Get payment methods.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment method list&lt;/li&gt;&lt;/ul&gt;
@@ -561,6 +598,11 @@ func (a *Client) PublicGetPaymentMethods(params *PublicGetPaymentMethodsParams) 
 	}
 }
 
+/*
+  PublicGetPaymentMethodsShort gets payment methods
+
+  Get payment methods.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment method list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetPaymentMethodsShort(params *PublicGetPaymentMethodsParams) (*PublicGetPaymentMethodsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -604,6 +646,8 @@ func (a *Client) PublicGetPaymentMethodsShort(params *PublicGetPaymentMethodsPar
 }
 
 /*
+Deprecated: Use PublicGetPaymentURLShort instead.
+
   PublicGetPaymentURL gets payment url
 
   Get payment url.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Get payment link&lt;/li&gt;&lt;/ul&gt;
@@ -657,6 +701,11 @@ func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*Public
 	}
 }
 
+/*
+  PublicGetPaymentURLShort gets payment url
+
+  Get payment url.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Get payment link&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*PublicGetPaymentURLOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -704,6 +753,8 @@ func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*P
 }
 
 /*
+Deprecated: Use PublicGetQRCodeShort instead.
+
   PublicGetQRCode gets qrcode
 
   Get qrcode.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: QRCode image stream&lt;/li&gt;&lt;/ul&gt;
@@ -748,6 +799,11 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 	}
 }
 
+/*
+  PublicGetQRCodeShort gets qrcode
+
+  Get qrcode.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: QRCode image stream&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.Writer) (*PublicGetQRCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -789,6 +845,8 @@ func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.W
 }
 
 /*
+Deprecated: Use PublicGetUnpaidPaymentOrderShort instead.
+
   PublicGetUnpaidPaymentOrder gets payment order info
 
   Get payment order info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment order details&lt;/li&gt;&lt;/ul&gt;
@@ -839,6 +897,11 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 	}
 }
 
+/*
+  PublicGetUnpaidPaymentOrderShort gets payment order info
+
+  Get payment order info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment order details&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUnpaidPaymentOrderShort(params *PublicGetUnpaidPaymentOrderParams) (*PublicGetUnpaidPaymentOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -884,6 +947,8 @@ func (a *Client) PublicGetUnpaidPaymentOrderShort(params *PublicGetUnpaidPayment
 }
 
 /*
+Deprecated: Use PublicNormalizePaymentReturnURLShort instead.
+
   PublicNormalizePaymentReturnURL normalizes payment return url
 
   Normalize payment return url for payment provider&lt;br&gt;Payment response: &lt;table&gt;&lt;tr&gt;&lt;td&gt;Field&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;orderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;order no&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentStatus&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;&lt;ul&gt;&lt;li&gt;DONE: The payment was successfully completed.&lt;/li&gt;&lt;li&gt;CANCELLED: The payment was cancelled by the shopper before completion, or the shopper returned to the merchant&#39;s site before completing the transaction.&lt;/li&gt;&lt;li&gt;PENDING: Inform the shopper that you&#39;ve received their order, and are waiting for the payment to be completed.
@@ -933,6 +998,13 @@ func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentR
 	}
 }
 
+/*
+  PublicNormalizePaymentReturnURLShort normalizes payment return url
+
+  Normalize payment return url for payment provider&lt;br&gt;Payment response: &lt;table&gt;&lt;tr&gt;&lt;td&gt;Field&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;orderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;order no&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentStatus&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;&lt;ul&gt;&lt;li&gt;DONE: The payment was successfully completed.&lt;/li&gt;&lt;li&gt;CANCELLED: The payment was cancelled by the shopper before completion, or the shopper returned to the merchant&#39;s site before completing the transaction.&lt;/li&gt;&lt;li&gt;PENDING: Inform the shopper that you&#39;ve received their order, and are waiting for the payment to be completed.
+
+When the shopper has completed the payment you will receive a successful AUTHORISATION.&lt;/li&gt;&lt;li&gt;RECEIVED: Inform the shopper that you&#39;ve received their order, and are waiting for the payment to clear.&lt;/li&gt;&lt;li&gt;UNKNOWN: An error occurred during the payment processing.&lt;/li&gt;&lt;li&gt;FAILED: Shopper paid failed because of various reasons.&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;reason&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;payment status reason&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;xsolla&lt;/i&gt;: parameters &#39;user_id&#39;, &#39;foreinginvoice&#39;, &#39;invoice_id&#39; and &#39;status&#39; will be automatically added to the link&lt;/li&gt;&lt;li&gt;&lt;i&gt;adyen&lt;/i&gt;: https://docs.adyen.com/developers/checkout/web-sdk&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicNormalizePaymentReturnURLShort(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateTagShort instead.
+
   AdminCreateTag creates tags
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
@@ -104,6 +106,12 @@ func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.C
 	}
 }
 
+/*
+  AdminCreateTagShort creates tags
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
+				creates a new tag
+*/
 func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -154,6 +162,8 @@ func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runt
 }
 
 /*
+Deprecated: Use AdminDeleteTagShort instead.
+
   AdminDeleteTag deletes tags
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
@@ -208,6 +218,11 @@ func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.C
 	}
 }
 
+/*
+  AdminDeleteTagShort deletes tags
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+*/
 func (a *Client) AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -256,6 +271,8 @@ func (a *Client) AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runt
 }
 
 /*
+Deprecated: Use AdminGetTagShort instead.
+
   AdminGetTag gets tags
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
@@ -310,6 +327,11 @@ func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  AdminGetTagShort gets tags
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+*/
 func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -358,6 +380,8 @@ func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use AdminUpdateTagShort instead.
+
   AdminUpdateTag updates tag
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
@@ -419,6 +443,12 @@ func (a *Client) AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.C
 	}
 }
 
+/*
+  AdminUpdateTagShort updates tag
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
+				updates a tag
+*/
 func (a *Client) AdminUpdateTagShort(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

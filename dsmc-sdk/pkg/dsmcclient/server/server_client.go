@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeregisterLocalServerShort instead.
+
   DeregisterLocalServer deregisters local d s
 
   ```
@@ -109,6 +111,18 @@ func (a *Client) DeregisterLocalServer(params *DeregisterLocalServerParams, auth
 	}
 }
 
+/*
+  DeregisterLocalServerShort deregisters local d s
+
+  ```
+Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
+Required scope: social
+
+This endpoint is intended to be called by local dedicated server
+to let DSM know that it is shutting down.
+
+Calling this will remove the server records from DB.```
+*/
 func (a *Client) DeregisterLocalServerShort(params *DeregisterLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeregisterLocalServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -157,6 +171,8 @@ func (a *Client) DeregisterLocalServerShort(params *DeregisterLocalServerParams,
 }
 
 /*
+Deprecated: Use GetServerSessionShort instead.
+
   GetServerSession gets session ID
 
   ```
@@ -221,6 +237,18 @@ func (a *Client) GetServerSession(params *GetServerSessionParams, authInfo runti
 	}
 }
 
+/*
+  GetServerSessionShort gets session ID
+
+  ```
+Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
+Required scope: social
+
+This endpoint is intended to be called by dedicated server
+to query its session ID.
+DS should call this when it first receive player connection,
+to see if it is actually claimed```
+*/
 func (a *Client) GetServerSessionShort(params *GetServerSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -271,6 +299,8 @@ func (a *Client) GetServerSessionShort(params *GetServerSessionParams, authInfo 
 }
 
 /*
+Deprecated: Use RegisterLocalServerShort instead.
+
   RegisterLocalServer registers a local d s
 
   ```
@@ -339,6 +369,22 @@ func (a *Client) RegisterLocalServer(params *RegisterLocalServerParams, authInfo
 	}
 }
 
+/*
+  RegisterLocalServerShort registers a local d s
+
+  ```
+Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
+Required scope: social
+
+Use the alternative GET of the same endpoint to upgrade DS connection to DSM via websocket.
+
+This endpoint is intended to be called by local dedicated server to let DSM know that it is ready for use.
+Use local DS only for development purposes since DSM wouldn&#39;t be able to properly manage local DS in production.
+This MUST be called by DS after it is ready to accept match data and incoming client connections.
+
+Upon successfully calling this endpoint, the dedicated
+server is listed under READY local servers.```
+*/
 func (a *Client) RegisterLocalServerShort(params *RegisterLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*RegisterLocalServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -389,6 +435,8 @@ func (a *Client) RegisterLocalServerShort(params *RegisterLocalServerParams, aut
 }
 
 /*
+Deprecated: Use RegisterServerShort instead.
+
   RegisterServer registers a d s
 
   ```
@@ -454,6 +502,19 @@ func (a *Client) RegisterServer(params *RegisterServerParams, authInfo runtime.C
 	}
 }
 
+/*
+  RegisterServerShort registers a d s
+
+  ```
+Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
+Required scope: social
+
+This endpoint is intended to be called by dedicated server to let DSM know that it is ready for use.
+This MUST be called by DS after it is ready to accept match data and incoming client connections.
+
+Upon successfully calling this endpoint, the dedicated
+server is listed under READY servers.```
+*/
 func (a *Client) RegisterServerShort(params *RegisterServerParams, authInfo runtime.ClientAuthInfoWriter) (*RegisterServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -504,6 +565,8 @@ func (a *Client) RegisterServerShort(params *RegisterServerParams, authInfo runt
 }
 
 /*
+Deprecated: Use ShutdownServerShort instead.
+
   ShutdownServer marks a d s is shutting down
 
   Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
@@ -565,6 +628,15 @@ func (a *Client) ShutdownServer(params *ShutdownServerParams, authInfo runtime.C
 	}
 }
 
+/*
+  ShutdownServerShort marks a d s is shutting down
+
+  Required permission: NAMESPACE:{namespace}:DSM:SERVER [UPDATE]
+
+Required scope: social
+
+This endpoint is intended to be called by dedicated server to let DSM know that it is shutting down. Calling this will remove the server and session records from DB.Set &#39;kill_me&#39; in request to &#39;true&#39; if the DS cannot shut itself down.
+*/
 func (a *Client) ShutdownServerShort(params *ShutdownServerParams, authInfo runtime.ClientAuthInfoWriter) (*ShutdownServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

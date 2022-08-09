@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetTypeShort instead.
+
   GetType gets types
 
   Requires valid user token
@@ -94,6 +96,11 @@ func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  GetTypeShort gets types
+
+  Requires valid user token
+*/
 func (a *Client) GetTypeShort(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

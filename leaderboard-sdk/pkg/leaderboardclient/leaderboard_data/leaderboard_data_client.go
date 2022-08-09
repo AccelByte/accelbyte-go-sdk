@@ -78,6 +78,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead.
+
   AdminGetArchivedLeaderboardRankingDataV1Handler admins get signed url for archive all time leaderboard ranking data
 
   &lt;p&gt;Admin Get signed url in an all time leaderboard that archived. Notes: This will be a bulk endpoint to get sign url&lt;/p&gt;
@@ -139,6 +141,12 @@ func (a *Client) AdminGetArchivedLeaderboardRankingDataV1Handler(params *AdminGe
 	}
 }
 
+/*
+  AdminGetArchivedLeaderboardRankingDataV1HandlerShort admins get signed url for archive all time leaderboard ranking data
+
+  &lt;p&gt;Admin Get signed url in an all time leaderboard that archived. Notes: This will be a bulk endpoint to get sign url&lt;/p&gt;
+
+*/
 func (a *Client) AdminGetArchivedLeaderboardRankingDataV1HandlerShort(params *AdminGetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetArchivedLeaderboardRankingDataV1HandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -191,6 +199,8 @@ func (a *Client) AdminGetArchivedLeaderboardRankingDataV1HandlerShort(params *Ad
 }
 
 /*
+Deprecated: Use CreateArchivedLeaderboardRankingDataV1HandlerShort instead.
+
   CreateArchivedLeaderboardRankingDataV1Handler archives a leadeboard data ranking
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]&#39;&lt;/p&gt;
@@ -254,6 +264,14 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArc
 	}
 }
 
+/*
+  CreateArchivedLeaderboardRankingDataV1HandlerShort archives a leadeboard data ranking
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Archive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,
+			remove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint&lt;/p&gt;
+
+*/
 func (a *Client) CreateArchivedLeaderboardRankingDataV1HandlerShort(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -306,6 +324,8 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1HandlerShort(params *Crea
 }
 
 /*
+Deprecated: Use GetAllTimeLeaderboardRankingAdminV1Short instead.
+
   GetAllTimeLeaderboardRankingAdminV1 gets all time leaderboard ranking data
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -368,6 +388,13 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboa
 	}
 }
 
+/*
+  GetAllTimeLeaderboardRankingAdminV1Short gets all time leaderboard ranking data
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get rankings in an all time leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -420,6 +447,8 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLead
 }
 
 /*
+Deprecated: Use GetAllTimeLeaderboardRankingPublicV1Short instead.
+
   GetAllTimeLeaderboardRankingPublicV1 gets all time leaderboard ranking data
 
   	&lt;p&gt;Get rankings in an all time leaderboard.&lt;/p&gt;
@@ -475,6 +504,12 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderbo
 	}
 }
 
+/*
+  GetAllTimeLeaderboardRankingPublicV1Short gets all time leaderboard ranking data
+
+  	&lt;p&gt;Get rankings in an all time leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -523,6 +558,8 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLea
 }
 
 /*
+Deprecated: Use GetAllTimeLeaderboardRankingPublicV2Short instead.
+
   GetAllTimeLeaderboardRankingPublicV2 gets all time leaderboard ranking data
 
   Get rankings in an all time leaderboard.
@@ -583,6 +620,11 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV2(params *GetAllTimeLeaderbo
 	}
 }
 
+/*
+  GetAllTimeLeaderboardRankingPublicV2Short gets all time leaderboard ranking data
+
+  Get rankings in an all time leaderboard.
+*/
 func (a *Client) GetAllTimeLeaderboardRankingPublicV2Short(params *GetAllTimeLeaderboardRankingPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -635,6 +677,8 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV2Short(params *GetAllTimeLea
 }
 
 /*
+Deprecated: Use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
+
   GetArchivedLeaderboardRankingDataV1Handler gets signed url for archive all time leaderboard ranking data
 
   	&lt;p&gt;Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url&lt;/p&gt;
@@ -696,6 +740,12 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1Handler(params *GetArchivedL
 	}
 }
 
+/*
+  GetArchivedLeaderboardRankingDataV1HandlerShort gets signed url for archive all time leaderboard ranking data
+
+  	&lt;p&gt;Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url&lt;/p&gt;
+
+*/
 func (a *Client) GetArchivedLeaderboardRankingDataV1HandlerShort(params *GetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetArchivedLeaderboardRankingDataV1HandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -748,6 +798,8 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1HandlerShort(params *GetArch
 }
 
 /*
+Deprecated: Use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
+
   GetCurrentMonthLeaderboardRankingAdminV1 gets current month leaderboard ranking data
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -810,6 +862,13 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1(params *GetCurrentMont
 	}
 }
 
+/*
+  GetCurrentMonthLeaderboardRankingAdminV1Short gets current month leaderboard ranking data
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get rankings in current month leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurrentMonthLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -862,6 +921,8 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurren
 }
 
 /*
+Deprecated: Use GetCurrentMonthLeaderboardRankingPublicV1Short instead.
+
   GetCurrentMonthLeaderboardRankingPublicV1 gets current month leaderboard ranking data
 
   &lt;p&gt;Get rankings in current month leaderboard.&lt;/p&gt;
@@ -916,6 +977,11 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMon
 	}
 }
 
+/*
+  GetCurrentMonthLeaderboardRankingPublicV1Short gets current month leaderboard ranking data
+
+  &lt;p&gt;Get rankings in current month leaderboard.&lt;/p&gt;
+*/
 func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1Short(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -964,6 +1030,8 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1Short(params *GetCurre
 }
 
 /*
+Deprecated: Use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
+
   GetCurrentSeasonLeaderboardRankingAdminV1 gets current season leaderboard ranking data
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -1026,6 +1094,13 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1(params *GetCurrentSea
 	}
 }
 
+/*
+  GetCurrentSeasonLeaderboardRankingAdminV1Short gets current season leaderboard ranking data
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get rankings in current season leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurrentSeasonLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1078,6 +1153,8 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurre
 }
 
 /*
+Deprecated: Use GetCurrentSeasonLeaderboardRankingPublicV1Short instead.
+
   GetCurrentSeasonLeaderboardRankingPublicV1 gets current season leaderboard ranking data
 
   &lt;p&gt;Get rankings in current season leaderboard.&lt;/p&gt;
@@ -1132,6 +1209,11 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSe
 	}
 }
 
+/*
+  GetCurrentSeasonLeaderboardRankingPublicV1Short gets current season leaderboard ranking data
+
+  &lt;p&gt;Get rankings in current season leaderboard.&lt;/p&gt;
+*/
 func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1Short(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1180,6 +1262,8 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1Short(params *GetCurr
 }
 
 /*
+Deprecated: Use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
+
   GetCurrentWeekLeaderboardRankingAdminV1 gets current week leaderboard ranking data
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -1242,6 +1326,13 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekL
 	}
 }
 
+/*
+  GetCurrentWeekLeaderboardRankingAdminV1Short gets current week leaderboard ranking data
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get rankings in current week leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1294,6 +1385,8 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrent
 }
 
 /*
+Deprecated: Use GetCurrentWeekLeaderboardRankingPublicV1Short instead.
+
   GetCurrentWeekLeaderboardRankingPublicV1 gets current week leaderboard ranking data
 
   &lt;p&gt;Get rankings in current week leaderboard.&lt;/p&gt;
@@ -1348,6 +1441,11 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeek
 	}
 }
 
+/*
+  GetCurrentWeekLeaderboardRankingPublicV1Short gets current week leaderboard ranking data
+
+  &lt;p&gt;Get rankings in current week leaderboard.&lt;/p&gt;
+*/
 func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1Short(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1396,6 +1494,8 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1Short(params *GetCurren
 }
 
 /*
+Deprecated: Use GetTodayLeaderboardRankingAdminV1Short instead.
+
   GetTodayLeaderboardRankingAdminV1 gets today leaderboard ranking data
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -1458,6 +1558,13 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1(params *GetTodayLeaderboardRa
 	}
 }
 
+/*
+  GetTodayLeaderboardRankingAdminV1Short gets today leaderboard ranking data
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get rankings in today leaderboard.&lt;/p&gt;
+
+*/
 func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1510,6 +1617,8 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderbo
 }
 
 /*
+Deprecated: Use GetTodayLeaderboardRankingPublicV1Short instead.
+
   GetTodayLeaderboardRankingPublicV1 gets today leaderboard ranking data
 
   &lt;p&gt;Get rankings in today leaderboard.&lt;/p&gt;
@@ -1564,6 +1673,11 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardR
 	}
 }
 
+/*
+  GetTodayLeaderboardRankingPublicV1Short gets today leaderboard ranking data
+
+  &lt;p&gt;Get rankings in today leaderboard.&lt;/p&gt;
+*/
 func (a *Client) GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1612,6 +1726,8 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderb
 }
 
 /*
+Deprecated: Use DeleteUserRankingAdminV1Short instead.
+
   DeleteUserRankingAdminV1 deletes user ranking
 
   Delete user ranking
@@ -1675,6 +1791,17 @@ func (a *Client) DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params
 	}
 }
 
+/*
+  DeleteUserRankingAdminV1Short deletes user ranking
+
+  Delete user ranking
+Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
+
+Remove entry with provided userId from leaderboard.
+If leaderboard with given leaderboard code not found, it will return http status not found (404).
+If the leaderboard is found and no entry found in it, it will still return success (204)
+
+*/
 func (a *Client) DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1725,6 +1852,8 @@ func (a *Client) DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1P
 }
 
 /*
+Deprecated: Use DeleteUserRankingPublicV1Short instead.
+
   DeleteUserRankingPublicV1 deletes user ranking
 
   Delete user ranking
@@ -1788,6 +1917,17 @@ func (a *Client) DeleteUserRankingPublicV1(params *DeleteUserRankingPublicV1Para
 	}
 }
 
+/*
+  DeleteUserRankingPublicV1Short deletes user ranking
+
+  Delete user ranking
+Required permission: NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]
+
+Remove entry with provided userId from leaderboard.
+If leaderboard with given leaderboard code not found, it will return http status not found (404).
+If the leaderboard is found and no entry found in it, it will still return success (204)
+
+*/
 func (a *Client) DeleteUserRankingPublicV1Short(params *DeleteUserRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingPublicV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1838,6 +1978,8 @@ func (a *Client) DeleteUserRankingPublicV1Short(params *DeleteUserRankingPublicV
 }
 
 /*
+Deprecated: Use DeleteUserRankingsAdminV1Short instead.
+
   DeleteUserRankingsAdminV1 deletes user ranking across leaderboard s
 
   Delete user ranking across leaderboard
@@ -1901,6 +2043,17 @@ func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Para
 	}
 }
 
+/*
+  DeleteUserRankingsAdminV1Short deletes user ranking across leaderboard s
+
+  Delete user ranking across leaderboard
+Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
+
+Remove entry with provided userId from leaderboard.
+If leaderboard with given leaderboard code not found, it will return http status not found (404).
+If the leaderboard is found and no entry found in it, it will still return success (204)
+
+*/
 func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1951,6 +2104,8 @@ func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV
 }
 
 /*
+Deprecated: Use GetUserRankingAdminV1Short instead.
+
   GetUserRankingAdminV1 gets user ranking
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -2010,6 +2165,13 @@ func (a *Client) GetUserRankingAdminV1(params *GetUserRankingAdminV1Params, auth
 	}
 }
 
+/*
+  GetUserRankingAdminV1Short gets user ranking
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get user ranking in leaderboard&lt;/p&gt;
+
+*/
 func (a *Client) GetUserRankingAdminV1Short(params *GetUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2060,6 +2222,8 @@ func (a *Client) GetUserRankingAdminV1Short(params *GetUserRankingAdminV1Params,
 }
 
 /*
+Deprecated: Use GetUserRankingPublicV1Short instead.
+
   GetUserRankingPublicV1 gets user ranking
 
   &lt;p&gt;Get user ranking in leaderboard&lt;/p&gt;
@@ -2117,6 +2281,11 @@ func (a *Client) GetUserRankingPublicV1(params *GetUserRankingPublicV1Params, au
 	}
 }
 
+/*
+  GetUserRankingPublicV1Short gets user ranking
+
+  &lt;p&gt;Get user ranking in leaderboard&lt;/p&gt;
+*/
 func (a *Client) GetUserRankingPublicV1Short(params *GetUserRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2167,6 +2336,8 @@ func (a *Client) GetUserRankingPublicV1Short(params *GetUserRankingPublicV1Param
 }
 
 /*
+Deprecated: Use UpdateUserPointAdminV1Short instead.
+
   UpdateUserPointAdminV1 updates user point
 
   &lt;p&gt;Update user point in a leaderboard. This endpoint uses for test utility only.&lt;/p&gt;
@@ -2233,6 +2404,17 @@ func (a *Client) UpdateUserPointAdminV1(params *UpdateUserPointAdminV1Params, au
 	}
 }
 
+/*
+  UpdateUserPointAdminV1Short updates user point
+
+  &lt;p&gt;Update user point in a leaderboard. This endpoint uses for test utility only.&lt;/p&gt;
+			&lt;p&gt;Other detail info:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Required permission: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:(userId):LEADERBOARD&#34;, action=4 (UPDATE)&lt;/li&gt;
+				&lt;li&gt;Returns: user ranking&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
 func (a *Client) UpdateUserPointAdminV1Short(params *UpdateUserPointAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserPointAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

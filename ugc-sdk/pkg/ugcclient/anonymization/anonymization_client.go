@@ -54,6 +54,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminDeleteAllUserChannelsShort instead.
+
   AdminDeleteAllUserChannels deletes all user channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
@@ -108,6 +110,11 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 	}
 }
 
+/*
+  AdminDeleteAllUserChannelsShort deletes all user channel
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
+*/
 func (a *Client) AdminDeleteAllUserChannelsShort(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -156,6 +163,8 @@ func (a *Client) AdminDeleteAllUserChannelsShort(params *AdminDeleteAllUserChann
 }
 
 /*
+Deprecated: Use AdminDeleteAllUserContentsShort instead.
+
   AdminDeleteAllUserContents deletes all user content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -210,6 +219,11 @@ func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsPa
 	}
 }
 
+/*
+  AdminDeleteAllUserContentsShort deletes all user content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+*/
 func (a *Client) AdminDeleteAllUserContentsShort(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -258,6 +272,8 @@ func (a *Client) AdminDeleteAllUserContentsShort(params *AdminDeleteAllUserConte
 }
 
 /*
+Deprecated: Use AdminDeleteAllUserGroupShort instead.
+
   AdminDeleteAllUserGroup deletes all user group
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
@@ -312,6 +328,11 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 	}
 }
 
+/*
+  AdminDeleteAllUserGroupShort deletes all user group
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+*/
 func (a *Client) AdminDeleteAllUserGroupShort(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -360,6 +381,8 @@ func (a *Client) AdminDeleteAllUserGroupShort(params *AdminDeleteAllUserGroupPar
 }
 
 /*
+Deprecated: Use AdminDeleteAllUserStatesShort instead.
+
   AdminDeleteAllUserStates removes all user related state likes downloads followers following
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]
@@ -414,6 +437,11 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 	}
 }
 
+/*
+  AdminDeleteAllUserStatesShort removes all user related state likes downloads followers following
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]
+*/
 func (a *Client) AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -462,6 +490,8 @@ func (a *Client) AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesP
 }
 
 /*
+Deprecated: Use DeleteAllUserChannelShort instead.
+
   DeleteAllUserChannel deletes all user channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
@@ -516,6 +546,11 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 	}
 }
 
+/*
+  DeleteAllUserChannelShort deletes all user channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
+*/
 func (a *Client) DeleteAllUserChannelShort(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -564,6 +599,8 @@ func (a *Client) DeleteAllUserChannelShort(params *DeleteAllUserChannelParams, a
 }
 
 /*
+Deprecated: Use DeleteAllUserContentsShort instead.
+
   DeleteAllUserContents deletes all user content
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -618,6 +655,11 @@ func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, auth
 	}
 }
 
+/*
+  DeleteAllUserContentsShort deletes all user content
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+*/
 func (a *Client) DeleteAllUserContentsShort(params *DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserContentsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -666,6 +708,8 @@ func (a *Client) DeleteAllUserContentsShort(params *DeleteAllUserContentsParams,
 }
 
 /*
+Deprecated: Use DeleteAllUserGroupShort instead.
+
   DeleteAllUserGroup deletes all user group
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
@@ -720,6 +764,11 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 	}
 }
 
+/*
+  DeleteAllUserGroupShort deletes all user group
+
+  Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+*/
 func (a *Client) DeleteAllUserGroupShort(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -768,6 +817,8 @@ func (a *Client) DeleteAllUserGroupShort(params *DeleteAllUserGroupParams, authI
 }
 
 /*
+Deprecated: Use DeleteAllUserStatesShort instead.
+
   DeleteAllUserStates removes all user related state likes downloads followers following
 
   Required permission NAMESPACE:{namespace}:USER:{userId}&#34; [DELETE]
@@ -822,6 +873,11 @@ func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo
 	}
 }
 
+/*
+  DeleteAllUserStatesShort removes all user related state likes downloads followers following
+
+  Required permission NAMESPACE:{namespace}:USER:{userId}&#34; [DELETE]
+*/
 func (a *Client) DeleteAllUserStatesShort(params *DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserStatesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

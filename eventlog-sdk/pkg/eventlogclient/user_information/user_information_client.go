@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeleteUserActivitiesHandlerShort instead.
+
   DeleteUserActivitiesHandler deletes all user s activities
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -101,6 +103,11 @@ func (a *Client) DeleteUserActivitiesHandler(params *DeleteUserActivitiesHandler
 	}
 }
 
+/*
+  DeleteUserActivitiesHandlerShort deletes all user s activities
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) DeleteUserActivitiesHandlerShort(params *DeleteUserActivitiesHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserActivitiesHandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -151,6 +158,8 @@ func (a *Client) DeleteUserActivitiesHandlerShort(params *DeleteUserActivitiesHa
 }
 
 /*
+Deprecated: Use GetUserActivitiesHandlerShort instead.
+
   GetUserActivitiesHandler gets all user s activities
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -211,6 +220,11 @@ func (a *Client) GetUserActivitiesHandler(params *GetUserActivitiesHandlerParams
 	}
 }
 
+/*
+  GetUserActivitiesHandlerShort gets all user s activities
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetUserActivitiesHandlerShort(params *GetUserActivitiesHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserActivitiesHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -263,6 +277,8 @@ func (a *Client) GetUserActivitiesHandlerShort(params *GetUserActivitiesHandlerP
 }
 
 /*
+Deprecated: Use LastUserActivityTimeHandlerShort instead.
+
   LastUserActivityTimeHandler gets last activity time of a user in a namespace
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -320,6 +336,11 @@ func (a *Client) LastUserActivityTimeHandler(params *LastUserActivityTimeHandler
 	}
 }
 
+/*
+  LastUserActivityTimeHandlerShort gets last activity time of a user in a namespace
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) LastUserActivityTimeHandlerShort(params *LastUserActivityTimeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*LastUserActivityTimeHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

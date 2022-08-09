@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetBansTypeShort instead.
+
   GetBansType gets list of ban types
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -99,6 +101,17 @@ func (a *Client) GetBansType(params *GetBansTypeParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  GetBansTypeShort gets list of ban types
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -145,6 +158,8 @@ func (a *Client) GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetListBanReasonShort instead.
+
   GetListBanReason gets list of ban reasons
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -202,6 +217,17 @@ func (a *Client) GetListBanReason(params *GetListBanReasonParams, authInfo runti
 	}
 }
 
+/*
+  GetListBanReasonShort gets list of ban reasons
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans/reasons [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) GetListBanReasonShort(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

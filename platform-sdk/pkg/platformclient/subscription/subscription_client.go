@@ -76,6 +76,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CancelSubscriptionShort instead.
+
   CancelSubscription cancels a subscription
 
   Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Set force true, will ignore the error if subscription is during recurring charging.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
@@ -127,6 +129,11 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 	}
 }
 
+/*
+  CancelSubscriptionShort cancels a subscription
+
+  Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Set force true, will ignore the error if subscription is during recurring charging.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CancelSubscriptionShort(params *CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -173,6 +180,8 @@ func (a *Client) CancelSubscriptionShort(params *CancelSubscriptionParams, authI
 }
 
 /*
+Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead.
+
   CheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
   Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
@@ -218,6 +227,11 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 	}
 }
 
+/*
+  CheckUserSubscriptionSubscribableByItemIDShort checks user subscription subscribable
+
+  Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserSubscriptionSubscribableByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -260,6 +274,8 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUse
 }
 
 /*
+Deprecated: Use DeleteUserSubscriptionShort instead.
+
   DeleteUserSubscription deletes user subscription
 
   &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Delete user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -305,6 +321,11 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 	}
 }
 
+/*
+  DeleteUserSubscriptionShort deletes user subscription
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Delete user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -347,6 +368,8 @@ func (a *Client) DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParam
 }
 
 /*
+Deprecated: Use GetUserSubscriptionShort instead.
+
   GetUserSubscription gets user subscription
 
   Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
@@ -395,6 +418,11 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 	}
 }
 
+/*
+  GetUserSubscriptionShort gets user subscription
+
+  Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserSubscriptionShort(params *GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -439,6 +467,8 @@ func (a *Client) GetUserSubscriptionShort(params *GetUserSubscriptionParams, aut
 }
 
 /*
+Deprecated: Use GetUserSubscriptionActivitiesShort instead.
+
   GetUserSubscriptionActivities gets user subscription activity
 
   Get user subscription activity.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription activity&lt;/li&gt;&lt;/ul&gt;
@@ -484,6 +514,11 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 	}
 }
 
+/*
+  GetUserSubscriptionActivitiesShort gets user subscription activity
+
+  Get user subscription activity.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription activity&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionActivitiesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -526,6 +561,8 @@ func (a *Client) GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionA
 }
 
 /*
+Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead.
+
   GetUserSubscriptionBillingHistories gets user subscription billing histories
 
   Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription billing history&lt;/li&gt;&lt;/ul&gt;
@@ -571,6 +608,11 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 	}
 }
 
+/*
+  GetUserSubscriptionBillingHistoriesShort gets user subscription billing histories
+
+  Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription billing history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionBillingHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -613,6 +655,8 @@ func (a *Client) GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscri
 }
 
 /*
+Deprecated: Use GrantDaysToSubscriptionShort instead.
+
   GrantDaysToSubscription grants days to a subscription
 
   Grant days to a subscription, if grantDays is positive, it will add free days and push the next billing date by the amount of day.&lt;br&gt;if the grantDays is negative or zero, it only apply to active/cancelled subscription, remove days will decrease current period end, and move the next billing date closer.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
@@ -661,6 +705,11 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 	}
 }
 
+/*
+  GrantDaysToSubscriptionShort grants days to a subscription
+
+  Grant days to a subscription, if grantDays is positive, it will add free days and push the next billing date by the amount of day.&lt;br&gt;if the grantDays is negative or zero, it only apply to active/cancelled subscription, remove days will decrease current period end, and move the next billing date closer.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GrantDaysToSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -705,6 +754,8 @@ func (a *Client) GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionPar
 }
 
 /*
+Deprecated: Use PlatformSubscribeSubscriptionShort instead.
+
   PlatformSubscribeSubscription frees subscribe by platform
 
   Free subscribe by platform, can used by other justice service to redeem/reward the subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result subscription&lt;/li&gt;&lt;/ul&gt;
@@ -762,6 +813,11 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 	}
 }
 
+/*
+  PlatformSubscribeSubscriptionShort frees subscribe by platform
+
+  Free subscribe by platform, can used by other justice service to redeem/reward the subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformSubscribeSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -812,6 +868,8 @@ func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSub
 }
 
 /*
+Deprecated: Use ProcessUserSubscriptionNotificationShort instead.
+
   ProcessUserSubscriptionNotification webs hook for payment notification
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
@@ -860,6 +918,11 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 	}
 }
 
+/*
+  ProcessUserSubscriptionNotificationShort webs hook for payment notification
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ProcessUserSubscriptionNotificationShort(params *ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserSubscriptionNotificationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -904,6 +967,8 @@ func (a *Client) ProcessUserSubscriptionNotificationShort(params *ProcessUserSub
 }
 
 /*
+Deprecated: Use PublicCancelSubscriptionShort instead.
+
   PublicCancelSubscription cancels a subscription
 
   Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
@@ -955,6 +1020,11 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 	}
 }
 
+/*
+  PublicCancelSubscriptionShort cancels a subscription
+
+  Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCancelSubscriptionShort(params *PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1001,6 +1071,8 @@ func (a *Client) PublicCancelSubscriptionShort(params *PublicCancelSubscriptionP
 }
 
 /*
+Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead.
+
   PublicChangeSubscriptionBillingAccount requests to change a subscription billing account
 
   Request to change a subscription billing account, this will guide user to payment station. The actual change will happen at the 0 payment notification successfully handled.&lt;br&gt;Only ACTIVE USER subscription with real currency billing account can be changed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
@@ -1055,6 +1127,11 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 	}
 }
 
+/*
+  PublicChangeSubscriptionBillingAccountShort requests to change a subscription billing account
+
+  Request to change a subscription billing account, this will guide user to payment station. The actual change will happen at the 0 payment notification successfully handled.&lt;br&gt;Only ACTIVE USER subscription with real currency billing account can be changed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicChangeSubscriptionBillingAccountShort(params *PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangeSubscriptionBillingAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1103,6 +1180,8 @@ func (a *Client) PublicChangeSubscriptionBillingAccountShort(params *PublicChang
 }
 
 /*
+Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead.
+
   PublicCheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
   Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
@@ -1148,6 +1227,11 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 	}
 }
 
+/*
+  PublicCheckUserSubscriptionSubscribableByItemIDShort checks user subscription subscribable
+
+  Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCheckUserSubscriptionSubscribableByItemIDShort(params *PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCheckUserSubscriptionSubscribableByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1190,6 +1274,8 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemIDShort(params *Pu
 }
 
 /*
+Deprecated: Use PublicGetUserSubscriptionShort instead.
+
   PublicGetUserSubscription gets user subscription
 
   Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
@@ -1238,6 +1324,11 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 	}
 }
 
+/*
+  PublicGetUserSubscriptionShort gets user subscription
+
+  Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1282,6 +1373,8 @@ func (a *Client) PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptio
 }
 
 /*
+Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead.
+
   PublicGetUserSubscriptionBillingHistories gets user subscription billing histories
 
   Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription history&lt;/li&gt;&lt;/ul&gt;
@@ -1327,6 +1420,11 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 	}
 }
 
+/*
+  PublicGetUserSubscriptionBillingHistoriesShort gets user subscription billing histories
+
+  Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionBillingHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1369,6 +1467,8 @@ func (a *Client) PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGe
 }
 
 /*
+Deprecated: Use PublicQueryUserSubscriptionsShort instead.
+
   PublicQueryUserSubscriptions queries user subscriptions
 
   Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
@@ -1414,6 +1514,11 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 	}
 }
 
+/*
+  PublicQueryUserSubscriptionsShort queries user subscriptions
+
+  Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1456,6 +1561,8 @@ func (a *Client) PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscr
 }
 
 /*
+Deprecated: Use PublicSubscribeSubscriptionShort instead.
+
   PublicSubscribeSubscription subscribes a subscription
 
   Subscribe a subscription. Support both real and virtual payment. Need go through payment flow using the paymentOrderNo if paymentFlowRequired true.&lt;br&gt;&lt;b&gt;ACTIVE USER subscription can&#39;t do subscribe again.&lt;/b&gt;&lt;br&gt;&lt;b&gt;The next billing date will be X(default 4) hours before the current period ends if correctly subscribed.&lt;/b&gt;&lt;br&gt;User with permission SANDBOX will create sandbox subscription that not real paid.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox subscription)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created subscription&lt;/li&gt;&lt;/ul&gt;
@@ -1516,6 +1623,11 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 	}
 }
 
+/*
+  PublicSubscribeSubscriptionShort subscribes a subscription
+
+  Subscribe a subscription. Support both real and virtual payment. Need go through payment flow using the paymentOrderNo if paymentFlowRequired true.&lt;br&gt;&lt;b&gt;ACTIVE USER subscription can&#39;t do subscribe again.&lt;/b&gt;&lt;br&gt;&lt;b&gt;The next billing date will be X(default 4) hours before the current period ends if correctly subscribed.&lt;/b&gt;&lt;br&gt;User with permission SANDBOX will create sandbox subscription that not real paid.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox subscription)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubscribeSubscriptionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1568,6 +1680,8 @@ func (a *Client) PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscri
 }
 
 /*
+Deprecated: Use QuerySubscriptionsShort instead.
+
   QuerySubscriptions queries subscriptions
 
   Query subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscriptions&lt;/li&gt;&lt;/ul&gt;
@@ -1613,6 +1727,11 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 	}
 }
 
+/*
+  QuerySubscriptionsShort queries subscriptions
+
+  Query subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscriptions&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QuerySubscriptionsShort(params *QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySubscriptionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1655,6 +1774,8 @@ func (a *Client) QuerySubscriptionsShort(params *QuerySubscriptionsParams, authI
 }
 
 /*
+Deprecated: Use QueryUserSubscriptionsShort instead.
+
   QueryUserSubscriptions queries user subscriptions
 
   Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
@@ -1700,6 +1821,11 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 	}
 }
 
+/*
+  QueryUserSubscriptionsShort queries user subscriptions
+
+  Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1742,6 +1868,8 @@ func (a *Client) QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParam
 }
 
 /*
+Deprecated: Use RecurringChargeSubscriptionShort instead.
+
   RecurringChargeSubscription recurrings charge subscription
 
   &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: recurring charge result&lt;/li&gt;&lt;/ul&gt;
@@ -1787,6 +1915,11 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 	}
 }
 
+/*
+  RecurringChargeSubscriptionShort recurrings charge subscription
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: recurring charge result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RecurringChargeSubscriptionShort(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

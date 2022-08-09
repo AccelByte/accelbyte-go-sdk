@@ -52,6 +52,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateCurrencyShort instead.
+
   CreateCurrency creates a currency
 
   Create a currency.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created currency&lt;/li&gt;&lt;/ul&gt;
@@ -103,6 +105,11 @@ func (a *Client) CreateCurrency(params *CreateCurrencyParams, authInfo runtime.C
 	}
 }
 
+/*
+  CreateCurrencyShort creates a currency
+
+  Create a currency.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created currency&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCurrencyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -149,6 +156,8 @@ func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runt
 }
 
 /*
+Deprecated: Use DeleteCurrencyShort instead.
+
   DeleteCurrency deletes a currency
 
   Delete a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -197,6 +206,11 @@ func (a *Client) DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.C
 	}
 }
 
+/*
+  DeleteCurrencyShort deletes a currency
+
+  Delete a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCurrencyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -241,6 +255,8 @@ func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetCurrencyConfigShort instead.
+
   GetCurrencyConfig gets currency config
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Get currency config by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
@@ -289,6 +305,11 @@ func (a *Client) GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo run
 	}
 }
 
+/*
+  GetCurrencyConfigShort gets currency config
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Get currency config by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencyConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -333,6 +354,8 @@ func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInf
 }
 
 /*
+Deprecated: Use GetCurrencySummaryShort instead.
+
   GetCurrencySummary gets currency summary
 
   Get currency summary by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
@@ -381,6 +404,11 @@ func (a *Client) GetCurrencySummary(params *GetCurrencySummaryParams, authInfo r
 	}
 }
 
+/*
+  GetCurrencySummaryShort gets currency summary
+
+  Get currency summary by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencySummaryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -425,6 +453,8 @@ func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authI
 }
 
 /*
+Deprecated: Use ListCurrenciesShort instead.
+
   ListCurrencies lists currencies
 
   List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
@@ -470,6 +500,11 @@ func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.C
 	}
 }
 
+/*
+  ListCurrenciesShort lists currencies
+
+  List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListCurrenciesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -512,6 +547,8 @@ func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runt
 }
 
 /*
+Deprecated: Use PublicListCurrenciesShort instead.
+
   PublicListCurrencies lists currencies
 
   List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
@@ -556,6 +593,11 @@ func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*Publ
 	}
 }
 
+/*
+  PublicListCurrenciesShort lists currencies
+
+  List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (*PublicListCurrenciesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -597,6 +639,8 @@ func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (
 }
 
 /*
+Deprecated: Use UpdateCurrencyShort instead.
+
   UpdateCurrency updates a currency
 
   Update a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated currency&lt;/li&gt;&lt;/ul&gt;
@@ -648,6 +692,11 @@ func (a *Client) UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.C
 	}
 }
 
+/*
+  UpdateCurrencyShort updates a currency
+
+  Update a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated currency&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateCurrencyShort(params *UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrencyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

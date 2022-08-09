@@ -50,6 +50,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetRegisteredEventIDHandlerShort instead.
+
   GetRegisteredEventIDHandler gets registered event ID data from the event registry
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -110,6 +112,11 @@ func (a *Client) GetRegisteredEventIDHandler(params *GetRegisteredEventIDHandler
 	}
 }
 
+/*
+  GetRegisteredEventIDHandlerShort gets registered event ID data from the event registry
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetRegisteredEventIDHandlerShort(params *GetRegisteredEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegisteredEventIDHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -162,6 +169,8 @@ func (a *Client) GetRegisteredEventIDHandlerShort(params *GetRegisteredEventIDHa
 }
 
 /*
+Deprecated: Use GetRegisteredEventsByEventTypeHandlerShort instead.
+
   GetRegisteredEventsByEventTypeHandler gets registered event ID data from the event registry based on the event type
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -222,6 +231,11 @@ func (a *Client) GetRegisteredEventsByEventTypeHandler(params *GetRegisteredEven
 	}
 }
 
+/*
+  GetRegisteredEventsByEventTypeHandlerShort gets registered event ID data from the event registry based on the event type
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetRegisteredEventsByEventTypeHandlerShort(params *GetRegisteredEventsByEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegisteredEventsByEventTypeHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -274,6 +288,8 @@ func (a *Client) GetRegisteredEventsByEventTypeHandlerShort(params *GetRegistere
 }
 
 /*
+Deprecated: Use GetRegisteredEventsHandlerShort instead.
+
   GetRegisteredEventsHandler gets registered events in the event registry
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -328,6 +344,11 @@ func (a *Client) GetRegisteredEventsHandler(params *GetRegisteredEventsHandlerPa
 	}
 }
 
+/*
+  GetRegisteredEventsHandlerShort gets registered events in the event registry
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetRegisteredEventsHandlerShort(params *GetRegisteredEventsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegisteredEventsHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -376,6 +397,8 @@ func (a *Client) GetRegisteredEventsHandlerShort(params *GetRegisteredEventsHand
 }
 
 /*
+Deprecated: Use RegisterEventHandlerShort instead.
+
   RegisterEventHandler registers an event ID to the event registry
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -436,6 +459,11 @@ func (a *Client) RegisterEventHandler(params *RegisterEventHandlerParams, authIn
 	}
 }
 
+/*
+  RegisterEventHandlerShort registers an event ID to the event registry
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) RegisterEventHandlerShort(params *RegisterEventHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*RegisterEventHandlerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -488,6 +516,8 @@ func (a *Client) RegisterEventHandlerShort(params *RegisterEventHandlerParams, a
 }
 
 /*
+Deprecated: Use UnregisterEventIDHandlerShort instead.
+
   UnregisterEventIDHandler unregisters event ID from the event registry
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -545,6 +575,11 @@ func (a *Client) UnregisterEventIDHandler(params *UnregisterEventIDHandlerParams
 	}
 }
 
+/*
+  UnregisterEventIDHandlerShort unregisters event ID from the event registry
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) UnregisterEventIDHandlerShort(params *UnregisterEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnregisterEventIDHandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -595,6 +630,8 @@ func (a *Client) UnregisterEventIDHandlerShort(params *UnregisterEventIDHandlerP
 }
 
 /*
+Deprecated: Use UpdateEventRegistryHandlerShort instead.
+
   UpdateEventRegistryHandler updates an event ID data in the event registry
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -655,6 +692,11 @@ func (a *Client) UpdateEventRegistryHandler(params *UpdateEventRegistryHandlerPa
 	}
 }
 
+/*
+  UpdateEventRegistryHandlerShort updates an event ID data in the event registry
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) UpdateEventRegistryHandlerShort(params *UpdateEventRegistryHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEventRegistryHandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

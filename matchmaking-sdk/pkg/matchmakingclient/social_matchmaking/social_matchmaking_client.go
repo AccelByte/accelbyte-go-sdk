@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use UpdatePlayTimeWeightShort instead.
+
   UpdatePlayTimeWeight updates player playtime connection weight
 
   Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]
@@ -107,6 +109,18 @@ func (a *Client) UpdatePlayTimeWeight(params *UpdatePlayTimeWeightParams, authIn
 	}
 }
 
+/*
+  UpdatePlayTimeWeightShort updates player playtime connection weight
+
+  Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]
+
+Required Scope: social
+
+Update a connection weight between player and playtime.
+
+This endpoint is intended to be called by admin for debugging purpose on social matchmaking rule.
+
+*/
 func (a *Client) UpdatePlayTimeWeightShort(params *UpdatePlayTimeWeightParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlayTimeWeightOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

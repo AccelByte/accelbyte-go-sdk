@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminPutGameRecordConcurrentHandlerV1Short instead.
+
   AdminPutGameRecordConcurrentHandlerV1 creates or replace game record
 
   &lt;table&gt;
@@ -163,6 +165,73 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecor
 	}
 }
 
+/*
+  AdminPutGameRecordConcurrentHandlerV1Short creates or replace game record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new game record or replace the existing game record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Parameters Notes &lt;/h2&gt;
+1. set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+2. updatedAt (required: true)
+               Time format style: RFC3339
+3. value
+               Json
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;set_by&#34;: &#34;SERVER&#34;,
+		&#34;value&#34;: {},
+		&#34;updatedAt&#34;: &#34;2022-03-17T10:42:15.444Z&#34;
+	}
+&lt;/pre&gt;
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -213,6 +282,8 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGame
 }
 
 /*
+Deprecated: Use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead.
+
   AdminPutPlayerPublicRecordConcurrentHandlerV1 creates or replace player public record
 
   &lt;table&gt;
@@ -334,6 +405,75 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutP
 	}
 }
 
+/*
+  AdminPutPlayerPublicRecordConcurrentHandlerV1Short creates or replace player public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+
+&lt;h2&gt;Parameters Notes &lt;/h2&gt;
+1. set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+2. updatedAt (required: true)
+               Time format style: RFC3339
+3. value
+               Json
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;set_by&#34;: &#34;SERVER&#34;,
+		&#34;value&#34;: {},
+		&#34;updatedAt&#34;: &#34;2022-03-17T10:42:15.444Z&#34;
+	}
+&lt;/pre&gt;
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -384,6 +524,8 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *Admi
 }
 
 /*
+Deprecated: Use AdminPutPlayerRecordConcurrentHandlerV1Short instead.
+
   AdminPutPlayerRecordConcurrentHandlerV1 creates or replace player private record
 
   &lt;table&gt;
@@ -505,6 +647,75 @@ func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerR
 	}
 }
 
+/*
+  AdminPutPlayerRecordConcurrentHandlerV1Short creates or replace player private record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player record or replace the existing player record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+
+&lt;h2&gt;Parameters Notes &lt;/h2&gt;
+1. set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+2. updatedAt (required: true)
+               Time format style: RFC3339
+3. value
+               Json
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;set_by&#34;: &#34;SERVER&#34;,
+		&#34;value&#34;: {},
+		&#34;updatedAt&#34;: &#34;2022-03-17T10:42:15.444Z&#34;
+	}
+&lt;/pre&gt;
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
+This endpoint implement optimistic concurrency control to avoid race condition.
+If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
+and client need to redo the operation (fetch data and do update).
+Otherwise, the server will process the request.
+
+*/
 func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1Short(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

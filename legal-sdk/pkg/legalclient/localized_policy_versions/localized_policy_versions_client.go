@@ -52,6 +52,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateLocalizedPolicyVersionShort instead.
+
   CreateLocalizedPolicyVersion creates a localized version from country specific policy
 
   Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -103,6 +105,11 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 	}
 }
 
+/*
+  CreateLocalizedPolicyVersionShort creates a localized version from country specific policy
+
+  Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -149,6 +156,8 @@ func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicy
 }
 
 /*
+Deprecated: Use RequestPresignedURLShort instead.
+
   RequestPresignedURL requests presigned URL for upload document
 
   Request presigned URL for  upload attachment for a particular localized version of base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -197,6 +206,11 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 	}
 }
 
+/*
+  RequestPresignedURLShort requests presigned URL for upload document
+
+  Request presigned URL for  upload attachment for a particular localized version of base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -241,6 +255,8 @@ func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, aut
 }
 
 /*
+Deprecated: Use RetrieveLocalizedPolicyVersionsShort instead.
+
   RetrieveLocalizedPolicyVersions retrieves versions from country specific policy
 
   Retrieve versions of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -286,6 +302,11 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 	}
 }
 
+/*
+  RetrieveLocalizedPolicyVersionsShort retrieves versions from country specific policy
+
+  Retrieve versions of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -328,6 +349,8 @@ func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedP
 }
 
 /*
+Deprecated: Use RetrieveSingleLocalizedPolicyVersionShort instead.
+
   RetrieveSingleLocalizedPolicyVersion retrieves a localized version from country specific policy
 
   Retrieve a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -376,6 +399,11 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 	}
 }
 
+/*
+  RetrieveSingleLocalizedPolicyVersionShort retrieves a localized version from country specific policy
+
+  Retrieve a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -420,6 +448,8 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 }
 
 /*
+Deprecated: Use RetrieveSingleLocalizedPolicyVersion1Short instead.
+
   RetrieveSingleLocalizedPolicyVersion1 retrieves a localized version
 
   Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
@@ -467,6 +497,11 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 	}
 }
 
+/*
+  RetrieveSingleLocalizedPolicyVersion1Short retrieves a localized version
+
+  Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSingleLocalizedPolicyVersion1Params) (*RetrieveSingleLocalizedPolicyVersion1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -510,6 +545,8 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSing
 }
 
 /*
+Deprecated: Use SetDefaultPolicyShort instead.
+
   SetDefaultPolicy sets default localized policy
 
   Update a localized version policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -555,6 +592,11 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 	}
 }
 
+/*
+  SetDefaultPolicyShort sets default localized policy
+
+  Update a localized version policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -597,6 +639,8 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 }
 
 /*
+Deprecated: Use UpdateLocalizedPolicyVersionShort instead.
+
   UpdateLocalizedPolicyVersion updates a localized version from country specific policy
 
   Update a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -645,6 +689,11 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 	}
 }
 
+/*
+  UpdateLocalizedPolicyVersionShort updates a localized version from country specific policy
+
+  Update a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -118,6 +118,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeleteAppleIAPConfigShort instead.
+
   DeleteAppleIAPConfig deletes apple iap config
 
   Delete apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -163,6 +165,11 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 	}
 }
 
+/*
+  DeleteAppleIAPConfigShort deletes apple iap config
+
+  Delete apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppleIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -205,6 +212,8 @@ func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, a
 }
 
 /*
+Deprecated: Use DeleteEpicGamesIAPConfigShort instead.
+
   DeleteEpicGamesIAPConfig deletes epic games iap config
 
   Delete epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -250,6 +259,11 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 	}
 }
 
+/*
+  DeleteEpicGamesIAPConfigShort deletes epic games iap config
+
+  Delete epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -292,6 +306,8 @@ func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigP
 }
 
 /*
+Deprecated: Use DeleteGoogleIAPConfigShort instead.
+
   DeleteGoogleIAPConfig deletes google iap config
 
   Delete google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -337,6 +353,11 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 	}
 }
 
+/*
+  DeleteGoogleIAPConfigShort deletes google iap config
+
+  Delete google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -379,6 +400,8 @@ func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams,
 }
 
 /*
+Deprecated: Use DeleteIAPItemConfigShort instead.
+
   DeleteIAPItemConfig deletes a iap item config
 
   delete a iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -424,6 +447,11 @@ func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo
 	}
 }
 
+/*
+  DeleteIAPItemConfigShort deletes a iap item config
+
+  delete a iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -466,6 +494,8 @@ func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, aut
 }
 
 /*
+Deprecated: Use DeletePlaystationIAPConfigShort instead.
+
   DeletePlaystationIAPConfig deletes playstation iap config
 
   Delete playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -511,6 +541,11 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 	}
 }
 
+/*
+  DeletePlaystationIAPConfigShort deletes playstation iap config
+
+  Delete playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -553,6 +588,8 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 }
 
 /*
+Deprecated: Use DeleteStadiaIAPConfigShort instead.
+
   DeleteStadiaIAPConfig deletes stadia iap config
 
   Delete stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -598,6 +635,11 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 	}
 }
 
+/*
+  DeleteStadiaIAPConfigShort deletes stadia iap config
+
+  Delete stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -640,6 +682,8 @@ func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams,
 }
 
 /*
+Deprecated: Use DeleteSteamIAPConfigShort instead.
+
   DeleteSteamIAPConfig deletes steam iap config
 
   Delete steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -685,6 +729,11 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 	}
 }
 
+/*
+  DeleteSteamIAPConfigShort deletes steam iap config
+
+  Delete steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -727,6 +776,8 @@ func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, a
 }
 
 /*
+Deprecated: Use DeleteTwitchIAPConfigShort instead.
+
   DeleteTwitchIAPConfig deletes twitch iap config
 
   Delete twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -772,6 +823,11 @@ func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, auth
 	}
 }
 
+/*
+  DeleteTwitchIAPConfigShort deletes twitch iap config
+
+  Delete twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -814,6 +870,8 @@ func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams,
 }
 
 /*
+Deprecated: Use DeleteXblAPConfigShort instead.
+
   DeleteXblAPConfig deletes xbl iap config
 
   Delete xbl iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -859,6 +917,11 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 	}
 }
 
+/*
+  DeleteXblAPConfigShort deletes xbl iap config
+
+  Delete xbl iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -901,6 +964,8 @@ func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInf
 }
 
 /*
+Deprecated: Use GetAppleIAPConfigShort instead.
+
   GetAppleIAPConfig gets apple iap config
 
   Get apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: apple iap config&lt;/li&gt;&lt;/ul&gt;
@@ -946,6 +1011,11 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 	}
 }
 
+/*
+  GetAppleIAPConfigShort gets apple iap config
+
+  Get apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: apple iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -988,6 +1058,8 @@ func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInf
 }
 
 /*
+Deprecated: Use GetEpicGamesIAPConfigShort instead.
+
   GetEpicGamesIAPConfig gets epicgames iap config
 
   Get epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: epic games iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1033,6 +1105,11 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 	}
 }
 
+/*
+  GetEpicGamesIAPConfigShort gets epicgames iap config
+
+  Get epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: epic games iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1075,6 +1152,8 @@ func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams,
 }
 
 /*
+Deprecated: Use GetGoogleIAPConfigShort instead.
+
   GetGoogleIAPConfig gets google iap config
 
   Get google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: google iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1120,6 +1199,11 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 	}
 }
 
+/*
+  GetGoogleIAPConfigShort gets google iap config
+
+  Get google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: google iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1162,6 +1246,8 @@ func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authI
 }
 
 /*
+Deprecated: Use GetIAPItemConfigShort instead.
+
   GetIAPItemConfig gets iap item config
 
   Get iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -1210,6 +1296,11 @@ func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runti
 	}
 }
 
+/*
+  GetIAPItemConfigShort gets iap item config
+
+  Get iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1254,6 +1345,8 @@ func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo 
 }
 
 /*
+Deprecated: Use GetPlayStationIAPConfigShort instead.
+
   GetPlayStationIAPConfig gets playstation iap config
 
   Get playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: playstation iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1299,6 +1392,11 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 	}
 }
 
+/*
+  GetPlayStationIAPConfigShort gets playstation iap config
+
+  Get playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: playstation iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1341,6 +1439,8 @@ func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigPar
 }
 
 /*
+Deprecated: Use GetStadiaIAPConfigShort instead.
+
   GetStadiaIAPConfig gets stadia iap config
 
   Get stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stadia iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1386,6 +1486,11 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 	}
 }
 
+/*
+  GetStadiaIAPConfigShort gets stadia iap config
+
+  Get stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stadia iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1428,6 +1533,8 @@ func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authI
 }
 
 /*
+Deprecated: Use GetSteamIAPConfigShort instead.
+
   GetSteamIAPConfig gets steam iap config
 
   Get steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: steam iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1473,6 +1580,11 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 	}
 }
 
+/*
+  GetSteamIAPConfigShort gets steam iap config
+
+  Get steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: steam iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1515,6 +1627,8 @@ func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInf
 }
 
 /*
+Deprecated: Use GetTwitchIAPConfigShort instead.
+
   GetTwitchIAPConfig gets twitch iap config
 
   Get twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: twitch iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1560,6 +1674,11 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 	}
 }
 
+/*
+  GetTwitchIAPConfigShort gets twitch iap config
+
+  Get twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: twitch iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1602,6 +1721,8 @@ func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authI
 }
 
 /*
+Deprecated: Use GetXblIAPConfigShort instead.
+
   GetXblIAPConfig gets xbox iap config
 
   Get xbox iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: xbox iap config&lt;/li&gt;&lt;/ul&gt;
@@ -1647,6 +1768,11 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 	}
 }
 
+/*
+  GetXblIAPConfigShort gets xbox iap config
+
+  Get xbox iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: xbox iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1689,6 +1815,8 @@ func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo ru
 }
 
 /*
+Deprecated: Use MockFulfillIAPItemShort instead.
+
   MockFulfillIAPItem mocks fulfill iap item
 
   &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Mock fulfill iap item without validate receipt.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -1743,6 +1871,11 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 	}
 }
 
+/*
+  MockFulfillIAPItemShort mocks fulfill iap item
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Mock fulfill iap item without validate receipt.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1791,6 +1924,8 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 }
 
 /*
+Deprecated: Use PublicFulfillAppleIAPItemShort instead.
+
   PublicFulfillAppleIAPItem fulfills apple iap item
 
   Verify apple iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -1845,6 +1980,11 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 	}
 }
 
+/*
+  PublicFulfillAppleIAPItemShort fulfills apple iap item
+
+  Verify apple iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1893,6 +2033,8 @@ func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPIte
 }
 
 /*
+Deprecated: Use PublicFulfillGoogleIAPItemShort instead.
+
   PublicFulfillGoogleIAPItem fulfills google iap item
 
   Verify google iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -1947,6 +2089,11 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 	}
 }
 
+/*
+  PublicFulfillGoogleIAPItemShort fulfills google iap item
+
+  Verify google iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1995,6 +2142,8 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 }
 
 /*
+Deprecated: Use PublicReconcilePlayStationStoreShort instead.
+
   PublicReconcilePlayStationStore synchronizes with entitlements in p s n store
 
   Synchronize with entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
@@ -2040,6 +2189,11 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 	}
 }
 
+/*
+  PublicReconcilePlayStationStoreShort synchronizes with entitlements in p s n store
+
+  Synchronize with entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2082,6 +2236,8 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 }
 
 /*
+Deprecated: Use QueryAllUserIAPOrdersShort instead.
+
   QueryAllUserIAPOrders queries all user i a p orders
 
   Query all user IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of iap orders&lt;/li&gt;&lt;/ul&gt;
@@ -2127,6 +2283,11 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 	}
 }
 
+/*
+  QueryAllUserIAPOrdersShort queries all user i a p orders
+
+  Query all user IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of iap orders&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2169,6 +2330,8 @@ func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams,
 }
 
 /*
+Deprecated: Use QueryUserIAPOrdersShort instead.
+
   QueryUserIAPOrders queries i a p orders
 
   Query IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated iap orders&lt;/li&gt;&lt;/ul&gt;
@@ -2214,6 +2377,11 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 	}
 }
 
+/*
+  QueryUserIAPOrdersShort queries i a p orders
+
+  Query IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated iap orders&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2256,6 +2424,8 @@ func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authI
 }
 
 /*
+Deprecated: Use SyncEpicGamesInventoryShort instead.
+
   SyncEpicGamesInventory syncs epic games inventory
 
   Sync epic games inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2301,6 +2471,11 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 	}
 }
 
+/*
+  SyncEpicGamesInventoryShort syncs epic games inventory
+
+  Sync epic games inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2343,6 +2518,8 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 }
 
 /*
+Deprecated: Use SyncStadiaEntitlementShort instead.
+
   SyncStadiaEntitlement syncs stadia inventory
 
   Sync stadia entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2388,6 +2565,11 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 	}
 }
 
+/*
+  SyncStadiaEntitlementShort syncs stadia inventory
+
+  Sync stadia entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2430,6 +2612,8 @@ func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams,
 }
 
 /*
+Deprecated: Use SyncSteamInventoryShort instead.
+
   SyncSteamInventory syncs steam inventory
 
   Sync steam inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2478,6 +2662,11 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 	}
 }
 
+/*
+  SyncSteamInventoryShort syncs steam inventory
+
+  Sync steam inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2522,6 +2711,8 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 }
 
 /*
+Deprecated: Use SyncTwitchDropsEntitlementShort instead.
+
   SyncTwitchDropsEntitlement syncs twitch drops entitlements
 
   Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2567,6 +2758,11 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 	}
 }
 
+/*
+  SyncTwitchDropsEntitlementShort syncs twitch drops entitlements
+
+  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2609,6 +2805,8 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 }
 
 /*
+Deprecated: Use SyncXboxInventoryShort instead.
+
   SyncXboxInventory syncs xbox inventory
 
   Sync Xbox inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2654,6 +2852,11 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 	}
 }
 
+/*
+  SyncXboxInventoryShort syncs xbox inventory
+
+  Sync Xbox inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2696,6 +2899,8 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 }
 
 /*
+Deprecated: Use UpdateAppleIAPConfigShort instead.
+
   UpdateAppleIAPConfig updates apple iap config
 
   Update apple iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated apple iap config&lt;/li&gt;&lt;/ul&gt;
@@ -2741,6 +2946,11 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 	}
 }
 
+/*
+  UpdateAppleIAPConfigShort updates apple iap config
+
+  Update apple iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated apple iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2783,6 +2993,8 @@ func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, a
 }
 
 /*
+Deprecated: Use UpdateEpicGamesIAPConfigShort instead.
+
   UpdateEpicGamesIAPConfig updates epic games iap config
 
   Update epic games iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated epic games iap config&lt;/li&gt;&lt;/ul&gt;
@@ -2828,6 +3040,11 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 	}
 }
 
+/*
+  UpdateEpicGamesIAPConfigShort updates epic games iap config
+
+  Update epic games iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated epic games iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2870,6 +3087,8 @@ func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigP
 }
 
 /*
+Deprecated: Use UpdateGoogleIAPConfigShort instead.
+
   UpdateGoogleIAPConfig updates google iap config
 
   Update google iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
@@ -2915,6 +3134,11 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 	}
 }
 
+/*
+  UpdateGoogleIAPConfigShort updates google iap config
+
+  Update google iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2957,6 +3181,8 @@ func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams,
 }
 
 /*
+Deprecated: Use UpdateGoogleP12FileShort instead.
+
   UpdateGoogleP12File uploads google play p12 file
 
   Upload google play p12 file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3002,6 +3228,11 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 	}
 }
 
+/*
+  UpdateGoogleP12FileShort uploads google play p12 file
+
+  Upload google play p12 file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3044,6 +3275,8 @@ func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, aut
 }
 
 /*
+Deprecated: Use UpdateIAPItemConfigShort instead.
+
   UpdateIAPItemConfig updates iap item config
 
   Update iap item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated iap item config&lt;/li&gt;&lt;/ul&gt;
@@ -3092,6 +3325,11 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 	}
 }
 
+/*
+  UpdateIAPItemConfigShort updates iap item config
+
+  Update iap item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated iap item config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3136,6 +3374,8 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 }
 
 /*
+Deprecated: Use UpdatePlaystationIAPConfigShort instead.
+
   UpdatePlaystationIAPConfig updates playstation iap config
 
   Update playstation iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated playstation iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3181,6 +3421,11 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 	}
 }
 
+/*
+  UpdatePlaystationIAPConfigShort updates playstation iap config
+
+  Update playstation iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated playstation iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3223,6 +3468,8 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 }
 
 /*
+Deprecated: Use UpdateStadiaJSONConfigFileShort instead.
+
   UpdateStadiaJSONConfigFile uploads stadia json config file
 
   Upload stadia json config file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stadia iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3268,6 +3515,11 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 	}
 }
 
+/*
+  UpdateStadiaJSONConfigFileShort uploads stadia json config file
+
+  Upload stadia json config file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stadia iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3310,6 +3562,8 @@ func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigF
 }
 
 /*
+Deprecated: Use UpdateSteamIAPConfigShort instead.
+
   UpdateSteamIAPConfig updates steam iap config
 
   Update steam iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated steam iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3355,6 +3609,11 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 	}
 }
 
+/*
+  UpdateSteamIAPConfigShort updates steam iap config
+
+  Update steam iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated steam iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3397,6 +3656,8 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 }
 
 /*
+Deprecated: Use UpdateTwitchIAPConfigShort instead.
+
   UpdateTwitchIAPConfig updates twitch iap config
 
   Update twitch iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated twitch iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3442,6 +3703,11 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 	}
 }
 
+/*
+  UpdateTwitchIAPConfigShort updates twitch iap config
+
+  Update twitch iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated twitch iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3484,6 +3750,8 @@ func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams,
 }
 
 /*
+Deprecated: Use UpdateXblBPCertFileShort instead.
+
   UpdateXblBPCertFile uploads xbl business partner cert file
 
   Upload xbl business partner cert file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3529,6 +3797,11 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 	}
 }
 
+/*
+  UpdateXblBPCertFileShort uploads xbl business partner cert file
+
+  Upload xbl business partner cert file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3571,6 +3844,8 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 }
 
 /*
+Deprecated: Use UpdateXblIAPConfigShort instead.
+
   UpdateXblIAPConfig updates xbl iap config
 
   Update xbl iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
@@ -3616,6 +3891,11 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 	}
 }
 
+/*
+  UpdateXblIAPConfigShort updates xbl iap config
+
+  Update xbl iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

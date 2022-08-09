@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use PlatformAuthenticateSAMLV3HandlerShort instead.
+
   PlatformAuthenticateSAMLV3Handler s a m l platform authentication API
 
   This endpoint authenticates user platform for SAML protocol. It validates user to its
@@ -90,6 +92,16 @@ func (a *Client) PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateS
 	}
 }
 
+/*
+  PlatformAuthenticateSAMLV3HandlerShort s a m l platform authentication API
+
+  This endpoint authenticates user platform for SAML protocol. It validates user to its
+          respective platforms. Deactivated or login-banned users are unable to login. &lt;br&gt;
+          &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;azure&lt;/strong&gt;&lt;/li&gt;Microsoft login page will redirects to this endpoint after login success
+          as previously defined on authentication request SAML
+          &lt;/ul&gt;
+*/
 func (a *Client) PlatformAuthenticateSAMLV3HandlerShort(params *PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticateSAMLV3HandlerFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

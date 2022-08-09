@@ -80,6 +80,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CheckSeasonPurchasableShort instead.
+
   CheckSeasonPurchasable checks pass or tier purchasable
 
   This API is used to check pass or tier purchasable, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -134,6 +136,11 @@ func (a *Client) CheckSeasonPurchasable(params *CheckSeasonPurchasableParams, au
 	}
 }
 
+/*
+  CheckSeasonPurchasableShort checks pass or tier purchasable
+
+  This API is used to check pass or tier purchasable, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*CheckSeasonPurchasableNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -182,6 +189,8 @@ func (a *Client) CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParam
 }
 
 /*
+Deprecated: Use CloneSeasonShort instead.
+
   CloneSeason clones a season
 
   This API is used to clone a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cloned season info&lt;/li&gt;&lt;/ul&gt;
@@ -236,6 +245,11 @@ func (a *Client) CloneSeason(params *CloneSeasonParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CloneSeasonShort clones a season
+
+  This API is used to clone a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cloned season info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CloneSeasonShort(params *CloneSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*CloneSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -284,6 +298,8 @@ func (a *Client) CloneSeasonShort(params *CloneSeasonParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use CreateSeasonShort instead.
+
   CreateSeason creates a season
 
   This API is used to create a season, season only allowed in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created season&lt;/li&gt;&lt;/ul&gt;
@@ -338,6 +354,11 @@ func (a *Client) CreateSeason(params *CreateSeasonParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  CreateSeasonShort creates a season
+
+  This API is used to create a season, season only allowed in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created season&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateSeasonShort(params *CreateSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSeasonCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -386,6 +407,8 @@ func (a *Client) CreateSeasonShort(params *CreateSeasonParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use DeleteSeasonShort instead.
+
   DeleteSeason deletes a season
 
   This API is used to delete a season permanently, only draft season can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -440,6 +463,11 @@ func (a *Client) DeleteSeason(params *DeleteSeasonParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  DeleteSeasonShort deletes a season
+
+  This API is used to delete a season permanently, only draft season can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteSeasonShort(params *DeleteSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSeasonNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -488,6 +516,8 @@ func (a *Client) DeleteSeasonShort(params *DeleteSeasonParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use ExistsAnyPassByPassCodesShort instead.
+
   ExistsAnyPassByPassCodes gets ownership for any pass codes
 
   [SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ownership&lt;/li&gt;&lt;/ul&gt;
@@ -536,6 +566,11 @@ func (a *Client) ExistsAnyPassByPassCodes(params *ExistsAnyPassByPassCodesParams
 	}
 }
 
+/*
+  ExistsAnyPassByPassCodesShort gets ownership for any pass codes
+
+  [SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ownership&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ExistsAnyPassByPassCodesShort(params *ExistsAnyPassByPassCodesParams, authInfo runtime.ClientAuthInfoWriter) (*ExistsAnyPassByPassCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -580,6 +615,8 @@ func (a *Client) ExistsAnyPassByPassCodesShort(params *ExistsAnyPassByPassCodesP
 }
 
 /*
+Deprecated: Use GetCurrentSeasonShort instead.
+
   GetCurrentSeason gets current published season summary
 
   [SERVICE COMMUNICATION ONLY]This API is used to get current published season summary which includes previous published season summary if exists, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season summary data&lt;/li&gt;&lt;/ul&gt;
@@ -631,6 +668,11 @@ func (a *Client) GetCurrentSeason(params *GetCurrentSeasonParams, authInfo runti
 	}
 }
 
+/*
+  GetCurrentSeasonShort gets current published season summary
+
+  [SERVICE COMMUNICATION ONLY]This API is used to get current published season summary which includes previous published season summary if exists, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season summary data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -677,6 +719,8 @@ func (a *Client) GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo 
 }
 
 /*
+Deprecated: Use GetCurrentUserSeasonProgressionShort instead.
+
   GetCurrentUserSeasonProgression gets current user season progression
 
   This API is used to get current user season progression, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season progression&lt;/li&gt;&lt;/ul&gt;
@@ -728,6 +772,11 @@ func (a *Client) GetCurrentUserSeasonProgression(params *GetCurrentUserSeasonPro
 	}
 }
 
+/*
+  GetCurrentUserSeasonProgressionShort gets current user season progression
+
+  This API is used to get current user season progression, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season progression&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentUserSeasonProgressionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -774,6 +823,8 @@ func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeas
 }
 
 /*
+Deprecated: Use GetSeasonShort instead.
+
   GetSeason gets a season
 
   This API is used to get a season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season data&lt;/li&gt;&lt;/ul&gt;
@@ -825,6 +876,11 @@ func (a *Client) GetSeason(params *GetSeasonParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetSeasonShort gets a season
+
+  This API is used to get a season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetSeasonShort(params *GetSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -871,6 +927,8 @@ func (a *Client) GetSeasonShort(params *GetSeasonParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use GetUserParticipatedSeasonsShort instead.
+
   GetUserParticipatedSeasons gets user participated season data
 
   This API is used to get user participated season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user participated season data&lt;/li&gt;&lt;/ul&gt;
@@ -919,6 +977,11 @@ func (a *Client) GetUserParticipatedSeasons(params *GetUserParticipatedSeasonsPa
 	}
 }
 
+/*
+  GetUserParticipatedSeasonsShort gets user participated season data
+
+  This API is used to get user participated season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user participated season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserParticipatedSeasonsShort(params *GetUserParticipatedSeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserParticipatedSeasonsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -963,6 +1026,8 @@ func (a *Client) GetUserParticipatedSeasonsShort(params *GetUserParticipatedSeas
 }
 
 /*
+Deprecated: Use GetUserSeasonShort instead.
+
   GetUserSeason gets user season data
 
   This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -1014,6 +1079,11 @@ func (a *Client) GetUserSeason(params *GetUserSeasonParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetUserSeasonShort gets user season data
+
+  This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1060,6 +1130,8 @@ func (a *Client) GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtim
 }
 
 /*
+Deprecated: Use PublicGetCurrentSeasonShort instead.
+
   PublicGetCurrentSeason gets current published season
 
   This API is used to get current published season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: localized season data&lt;/li&gt;&lt;/ul&gt;
@@ -1110,6 +1182,11 @@ func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*
 	}
 }
 
+/*
+  PublicGetCurrentSeasonShort gets current published season
+
+  This API is used to get current published season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: localized season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1155,6 +1232,8 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 }
 
 /*
+Deprecated: Use PublicGetCurrentUserSeasonShort instead.
+
   PublicGetCurrentUserSeason gets current user season data
 
   This API is used to get current user season data, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -1206,6 +1285,11 @@ func (a *Client) PublicGetCurrentUserSeason(params *PublicGetCurrentUserSeasonPa
 	}
 }
 
+/*
+  PublicGetCurrentUserSeasonShort gets current user season data
+
+  This API is used to get current user season data, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentUserSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1252,6 +1336,8 @@ func (a *Client) PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSea
 }
 
 /*
+Deprecated: Use PublicGetUserSeasonShort instead.
+
   PublicGetUserSeason gets user season data
 
   This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -1303,6 +1389,11 @@ func (a *Client) PublicGetUserSeason(params *PublicGetUserSeasonParams, authInfo
 	}
 }
 
+/*
+  PublicGetUserSeasonShort gets user season data
+
+  This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserSeasonShort(params *PublicGetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1349,6 +1440,8 @@ func (a *Client) PublicGetUserSeasonShort(params *PublicGetUserSeasonParams, aut
 }
 
 /*
+Deprecated: Use PublishSeasonShort instead.
+
   PublishSeason publishes a season
 
   This API is used to publish a draft season, only one published season allowed at same time in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: published season&lt;/li&gt;&lt;/ul&gt;
@@ -1403,6 +1496,11 @@ func (a *Client) PublishSeason(params *PublishSeasonParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  PublishSeasonShort publishes a season
+
+  This API is used to publish a draft season, only one published season allowed at same time in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: published season&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublishSeasonShort(params *PublishSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1451,6 +1549,8 @@ func (a *Client) PublishSeasonShort(params *PublishSeasonParams, authInfo runtim
 }
 
 /*
+Deprecated: Use QuerySeasonsShort instead.
+
   QuerySeasons queries seasons
 
   This API is used to query seasons, seasons only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of season basic info&lt;/li&gt;&lt;/ul&gt;
@@ -1499,6 +1599,11 @@ func (a *Client) QuerySeasons(params *QuerySeasonsParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  QuerySeasonsShort queries seasons
+
+  This API is used to query seasons, seasons only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of season basic info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySeasonsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1543,6 +1648,8 @@ func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use QueryUserExpGrantHistoryShort instead.
+
   QueryUserExpGrantHistory queries user season exp acquisition history
 
   This API is used to get user exp acquisition history, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated grant history&lt;/li&gt;&lt;/ul&gt;
@@ -1591,6 +1698,11 @@ func (a *Client) QueryUserExpGrantHistory(params *QueryUserExpGrantHistoryParams
 	}
 }
 
+/*
+  QueryUserExpGrantHistoryShort queries user season exp acquisition history
+
+  This API is used to get user exp acquisition history, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated grant history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserExpGrantHistoryShort(params *QueryUserExpGrantHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1635,6 +1747,8 @@ func (a *Client) QueryUserExpGrantHistoryShort(params *QueryUserExpGrantHistoryP
 }
 
 /*
+Deprecated: Use QueryUserExpGrantHistoryTagShort instead.
+
   QueryUserExpGrantHistoryTag queries user season exp acquisition history s reason tag list
 
   This API is used to get user exp acquisition history&#39;s tag list.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: exp grant history tags list&lt;/li&gt;&lt;/ul&gt;
@@ -1683,6 +1797,11 @@ func (a *Client) QueryUserExpGrantHistoryTag(params *QueryUserExpGrantHistoryTag
 	}
 }
 
+/*
+  QueryUserExpGrantHistoryTagShort queries user season exp acquisition history s reason tag list
+
+  This API is used to get user exp acquisition history&#39;s tag list.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;default will query from current active season&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: exp grant history tags list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1727,6 +1846,8 @@ func (a *Client) QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHisto
 }
 
 /*
+Deprecated: Use ResetUserSeasonShort instead.
+
   ResetUserSeason resets user data in current season
 
   &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -1775,6 +1896,11 @@ func (a *Client) ResetUserSeason(params *ResetUserSeasonParams, authInfo runtime
 	}
 }
 
+/*
+  ResetUserSeasonShort resets user data in current season
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserSeasonNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1819,6 +1945,8 @@ func (a *Client) ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo ru
 }
 
 /*
+Deprecated: Use RetireSeasonShort instead.
+
   RetireSeason retires a season
 
   This API is used to retire a published season, if the season has not ended it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
@@ -1873,6 +2001,11 @@ func (a *Client) RetireSeason(params *RetireSeasonParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  RetireSeasonShort retires a season
+
+  This API is used to retire a published season, if the season has not ended it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetireSeasonShort(params *RetireSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*RetireSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1921,6 +2054,8 @@ func (a *Client) RetireSeasonShort(params *RetireSeasonParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use UnpublishSeasonShort instead.
+
   UnpublishSeason unpublishes a season
 
   This API is used to unpublish a published season, if the season already started it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
@@ -1975,6 +2110,11 @@ func (a *Client) UnpublishSeason(params *UnpublishSeasonParams, authInfo runtime
 	}
 }
 
+/*
+  UnpublishSeasonShort unpublishes a season
+
+  This API is used to unpublish a published season, if the season already started it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UnpublishSeasonShort(params *UnpublishSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2023,6 +2163,8 @@ func (a *Client) UnpublishSeasonShort(params *UnpublishSeasonParams, authInfo ru
 }
 
 /*
+Deprecated: Use UpdateSeasonShort instead.
+
   UpdateSeason updates a season
 
   This API is used to update a season. Only draft season can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated season&lt;/li&gt;&lt;/ul&gt;
@@ -2080,6 +2222,11 @@ func (a *Client) UpdateSeason(params *UpdateSeasonParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  UpdateSeasonShort updates a season
+
+  This API is used to update a season. Only draft season can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated season&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateSeasonShort(params *UpdateSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

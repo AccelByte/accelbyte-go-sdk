@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetXblUserAchievementsShort instead.
+
   GetXblUserAchievements gets xbox live user achievements
 
   This API is used to get xbox live user achievements(Only for test).&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -92,6 +94,11 @@ func (a *Client) GetXblUserAchievements(params *GetXblUserAchievementsParams, au
 	}
 }
 
+/*
+  GetXblUserAchievementsShort gets xbox live user achievements
+
+  This API is used to get xbox live user achievements(Only for test).&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetXblUserAchievementsShort(params *GetXblUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblUserAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -136,6 +143,8 @@ func (a *Client) GetXblUserAchievementsShort(params *GetXblUserAchievementsParam
 }
 
 /*
+Deprecated: Use UnlockSteamUserAchievementShort instead.
+
   UnlockSteamUserAchievement unlocks steam achievement
 
   This API is used to unlock steam achievement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -187,6 +196,11 @@ func (a *Client) UnlockSteamUserAchievement(params *UnlockSteamUserAchievementPa
 	}
 }
 
+/*
+  UnlockSteamUserAchievementShort unlocks steam achievement
+
+  This API is used to unlock steam achievement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UnlockSteamUserAchievementShort(params *UnlockSteamUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UnlockSteamUserAchievementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -233,6 +247,8 @@ func (a *Client) UnlockSteamUserAchievementShort(params *UnlockSteamUserAchievem
 }
 
 /*
+Deprecated: Use UpdateXblUserAchievementShort instead.
+
   UpdateXblUserAchievement updates xbox live achievements
 
   This API is used to update xbox live achievements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -281,6 +297,11 @@ func (a *Client) UpdateXblUserAchievement(params *UpdateXblUserAchievementParams
 	}
 }
 
+/*
+  UpdateXblUserAchievementShort updates xbox live achievements
+
+  This API is used to update xbox live achievements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateXblUserAchievementShort(params *UpdateXblUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblUserAchievementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

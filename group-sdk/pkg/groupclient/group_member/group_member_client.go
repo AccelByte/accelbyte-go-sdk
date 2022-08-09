@@ -62,6 +62,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CancelGroupJoinRequestV1Short instead.
+
   CancelGroupJoinRequestV1 cancels request to join group
 
   &lt;p&gt;Requires valid user authentication&lt;/p&gt;
@@ -125,6 +127,14 @@ func (a *Client) CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params
 	}
 }
 
+/*
+  CancelGroupJoinRequestV1Short cancels request to join group
+
+  &lt;p&gt;Requires valid user authentication&lt;/p&gt;
+			&lt;p&gt;This endpoint allows user to cancel request to join specific group.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73411&lt;/p&gt;
+
+*/
 func (a *Client) CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*CancelGroupJoinRequestV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -177,6 +187,8 @@ func (a *Client) CancelGroupJoinRequestV1Short(params *CancelGroupJoinRequestV1P
 }
 
 /*
+Deprecated: Use JoinGroupV1Short instead.
+
   JoinGroupV1 joins to group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -248,6 +260,22 @@ func (a *Client) JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientA
 	}
 }
 
+/*
+  JoinGroupV1Short joins to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to join as group member&lt;/p&gt;
+			&lt;p&gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.&lt;/p&gt;
+			&lt;p&gt;Additional Information:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;User cannot join to the group with PRIVATE type&lt;/li&gt;
+				&lt;li&gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member&lt;/li&gt;
+				&lt;li&gt;Joining OPEN group type will make this user become member of that group immediately&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73403&lt;/p&gt;
+
+*/
 func (a *Client) JoinGroupV1Short(params *JoinGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*JoinGroupV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -300,6 +328,8 @@ func (a *Client) JoinGroupV1Short(params *JoinGroupV1Params, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use AcceptGroupInvitationPublicV1Short instead.
+
   AcceptGroupInvitationPublicV1 accepts group invitation
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -370,6 +400,18 @@ func (a *Client) AcceptGroupInvitationPublicV1(params *AcceptGroupInvitationPubl
 	}
 }
 
+/*
+  AcceptGroupInvitationPublicV1Short accepts group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group invitation.&lt;/p&gt;
+			&lt;p&gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the user who access this endpoint is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint&lt;/p&gt;
+			&lt;p&gt;Existing members will receive notification of newly accepted member.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73401&lt;/p&gt;
+
+*/
 func (a *Client) AcceptGroupInvitationPublicV1Short(params *AcceptGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupInvitationPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -424,6 +466,8 @@ func (a *Client) AcceptGroupInvitationPublicV1Short(params *AcceptGroupInvitatio
 }
 
 /*
+Deprecated: Use AcceptGroupJoinRequestPublicV1Short instead.
+
   AcceptGroupJoinRequestPublicV1 accepts group join request
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -493,6 +537,17 @@ func (a *Client) AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPu
 	}
 }
 
+/*
+  AcceptGroupJoinRequestPublicV1Short accepts group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to accept group join request.&lt;/p&gt;
+			&lt;p&gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73407&lt;/p&gt;
+
+*/
 func (a *Client) AcceptGroupJoinRequestPublicV1Short(params *AcceptGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -547,6 +602,8 @@ func (a *Client) AcceptGroupJoinRequestPublicV1Short(params *AcceptGroupJoinRequ
 }
 
 /*
+Deprecated: Use GetGroupMembersListAdminV1Short instead.
+
   GetGroupMembersListAdminV1 gets list of group members
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] &lt;/p&gt;
@@ -610,6 +667,14 @@ func (a *Client) GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Pa
 	}
 }
 
+/*
+  GetGroupMembersListAdminV1Short gets list of group members
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get list of group members.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73410&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupMembersListAdminV1Short(params *GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -662,6 +727,8 @@ func (a *Client) GetGroupMembersListAdminV1Short(params *GetGroupMembersListAdmi
 }
 
 /*
+Deprecated: Use GetGroupMembersListPublicV1Short instead.
+
   GetGroupMembersListPublicV1 gets list of group members
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -725,6 +792,14 @@ func (a *Client) GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1
 	}
 }
 
+/*
+  GetGroupMembersListPublicV1Short gets list of group members
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get list of group members.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73410&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupMembersListPublicV1Short(params *GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -777,6 +852,8 @@ func (a *Client) GetGroupMembersListPublicV1Short(params *GetGroupMembersListPub
 }
 
 /*
+Deprecated: Use GetUserGroupInformationPublicV1Short instead.
+
   GetUserGroupInformationPublicV1 gets user group information
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -847,6 +924,21 @@ func (a *Client) GetUserGroupInformationPublicV1(params *GetUserGroupInformation
 	}
 }
 
+/*
+  GetUserGroupInformationPublicV1Short gets user group information
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get user group information.&lt;/p&gt;
+			&lt;p&gt;Get user group information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Group Member Status:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;JOIN : status of user requested to join group &lt;/li&gt;
+				&lt;li&gt;INVITE: status of user invited to a group &lt;/li&gt;
+				&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Action Code: 73405&lt;/p&gt;
+
+*/
 func (a *Client) GetUserGroupInformationPublicV1Short(params *GetUserGroupInformationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -899,6 +991,8 @@ func (a *Client) GetUserGroupInformationPublicV1Short(params *GetUserGroupInform
 }
 
 /*
+Deprecated: Use InviteGroupPublicV1Short instead.
+
   InviteGroupPublicV1 invites user to group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -973,6 +1067,22 @@ func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo
 	}
 }
 
+/*
+  InviteGroupPublicV1Short invites user to group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to invite specific user to the group.&lt;/p&gt;
+			&lt;p&gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected&lt;/p&gt;
+			&lt;p&gt;Invited user will receive notification through lobby.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73406&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:INVITE&#34;&lt;/p&gt;
+			&lt;p&gt;The invited user will have a permission to invite another user to the group&lt;p/&gt;
+
+*/
 func (a *Client) InviteGroupPublicV1Short(params *InviteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1027,6 +1137,8 @@ func (a *Client) InviteGroupPublicV1Short(params *InviteGroupPublicV1Params, aut
 }
 
 /*
+Deprecated: Use KickGroupMemberPublicV1Short instead.
+
   KickGroupMemberPublicV1 kicks group member
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1092,6 +1204,16 @@ func (a *Client) KickGroupMemberPublicV1(params *KickGroupMemberPublicV1Params, 
 	}
 }
 
+/*
+  KickGroupMemberPublicV1Short kicks group member
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:KICK [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to kick group member.&lt;/p&gt;
+			&lt;p&gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73409&lt;/p&gt;
+
+*/
 func (a *Client) KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*KickGroupMemberPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1144,6 +1266,8 @@ func (a *Client) KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Par
 }
 
 /*
+Deprecated: Use LeaveGroupPublicV1Short instead.
+
   LeaveGroupPublicV1 leaves group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1208,6 +1332,15 @@ func (a *Client) LeaveGroupPublicV1(params *LeaveGroupPublicV1Params, authInfo r
 	}
 }
 
+/*
+  LeaveGroupPublicV1Short leaves group
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to leave from group.&lt;/p&gt;
+			&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73404&lt;/p&gt;
+
+*/
 func (a *Client) LeaveGroupPublicV1Short(params *LeaveGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*LeaveGroupPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1260,6 +1393,8 @@ func (a *Client) LeaveGroupPublicV1Short(params *LeaveGroupPublicV1Params, authI
 }
 
 /*
+Deprecated: Use RejectGroupInvitationPublicV1Short instead.
+
   RejectGroupInvitationPublicV1 rejects group invitation
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1327,6 +1462,15 @@ func (a *Client) RejectGroupInvitationPublicV1(params *RejectGroupInvitationPubl
 	}
 }
 
+/*
+  RejectGroupInvitationPublicV1Short rejects group invitation
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group invitation.&lt;/p&gt;
+			&lt;p&gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;
+			&lt;p&gt;Action Code: 73402&lt;/p&gt;
+
+*/
 func (a *Client) RejectGroupInvitationPublicV1Short(params *RejectGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupInvitationPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1381,6 +1525,8 @@ func (a *Client) RejectGroupInvitationPublicV1Short(params *RejectGroupInvitatio
 }
 
 /*
+Deprecated: Use RejectGroupJoinRequestPublicV1Short instead.
+
   RejectGroupJoinRequestPublicV1 rejects group join request
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -1450,6 +1596,17 @@ func (a *Client) RejectGroupJoinRequestPublicV1(params *RejectGroupJoinRequestPu
 	}
 }
 
+/*
+  RejectGroupJoinRequestPublicV1Short rejects group join request
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to reject group join request.&lt;/p&gt;
+			&lt;p&gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;
+			&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;
+			&lt;p&gt;Action Code: 73408&lt;/p&gt;
+
+*/
 func (a *Client) RejectGroupJoinRequestPublicV1Short(params *RejectGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*RejectGroupJoinRequestPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

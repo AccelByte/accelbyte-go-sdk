@@ -50,6 +50,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AuthenticationWithPlatformLinkV3Short instead.
+
   AuthenticationWithPlatformLinkV3 authentications with platform link
 
   &lt;p&gt;This endpoint is being used to authenticate a user account and perform platform link.
@@ -106,6 +108,13 @@ func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlat
 	}
 }
 
+/*
+  AuthenticationWithPlatformLinkV3Short authentications with platform link
+
+  &lt;p&gt;This endpoint is being used to authenticate a user account and perform platform link.
+					It validates user&#39;s email / username and password. If user already enable 2FA,
+					invoke &#39;&#39;/mfa/verify&#39; with response&#39;s mfa_token&#39;&lt;/p&gt;
+*/
 func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -154,6 +163,8 @@ func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWit
 }
 
 /*
+Deprecated: Use GenerateTokenByNewHeadlessAccountV3Short instead.
+
   GenerateTokenByNewHeadlessAccountV3 creates headless account and response token
 
   &lt;p&gt;This endpoint is being used to create headless account after 3rd platform authenticated, and response token .
@@ -201,6 +212,13 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewH
 	}
 }
 
+/*
+  GenerateTokenByNewHeadlessAccountV3Short creates headless account and response token
+
+  &lt;p&gt;This endpoint is being used to create headless account after 3rd platform authenticated, and response token .
+					The &#39;linkingToken&#39; in request body is received from &#34;/platforms/{platformId}/token&#34;
+					when 3rd platform account is not linked to justice account yet.&#39;&lt;/p&gt;
+*/
 func (a *Client) GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -243,6 +261,8 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenB
 }
 
 /*
+Deprecated: Use GetCountryLocationV3Short instead.
+
   GetCountryLocationV3 gets country location
 
   &lt;p&gt;This endpoint get country location based on the request.&lt;/p&gt;
@@ -288,6 +308,11 @@ func (a *Client) GetCountryLocationV3(params *GetCountryLocationV3Params, authIn
 	}
 }
 
+/*
+  GetCountryLocationV3Short gets country location
+
+  &lt;p&gt;This endpoint get country location based on the request.&lt;/p&gt;
+*/
 func (a *Client) GetCountryLocationV3Short(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -330,6 +355,8 @@ func (a *Client) GetCountryLocationV3Short(params *GetCountryLocationV3Params, a
 }
 
 /*
+Deprecated: Use LogoutShort instead.
+
   Logout logouts
 
   &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt; cookie and &lt;b&gt;refresh_token&lt;/b&gt; cookie.&lt;/p&gt;
@@ -375,6 +402,11 @@ func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWri
 	}
 }
 
+/*
+  LogoutShort logouts
+
+  &lt;p&gt;This endpoint is used to remove &lt;b&gt;access_token&lt;/b&gt; cookie and &lt;b&gt;refresh_token&lt;/b&gt; cookie.&lt;/p&gt;
+*/
 func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -417,6 +449,8 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
 }
 
 /*
+Deprecated: Use PlatformAuthenticationV3Short instead.
+
   PlatformAuthenticationV3 platforms authentication API
 
   This endpoint authenticates user platform. It validates user to its
@@ -485,6 +519,34 @@ func (a *Client) PlatformAuthenticationV3(params *PlatformAuthenticationV3Params
 	}
 }
 
+/*
+  PlatformAuthenticationV3Short platforms authentication API
+
+  This endpoint authenticates user platform. It validates user to its
+          respective platforms. Deactivated or login-banned users are unable to login. &lt;br&gt;
+		  &lt;p&gt;If already linked with justice account or match SSO condition, will redirect to client&#39;s redirect url with code. then invoke &#39;/iam/v3/oauth/token&#39; with grant_type=authorization_code&lt;/p&gt;
+		  &lt;p&gt;If already not linked with justice account and not match SSO condition, will redirect to client&#39;s account linking page&lt;/p&gt;
+          &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;Steam login page will redirects to this endpoint after login success
+          as previously defined on openID request parameter &lt;code&gt;openid.return_to&lt;/code&gt; when request login to steam
+          https://openid.net/specs/openid-authentication-2_0.html#anchor27
+          &lt;li&gt;&lt;strong&gt;ps4web&lt;/strong&gt;&lt;/li&gt;PS4 login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+		  https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode
+          &lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;&lt;/li&gt;XBL login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+          &lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;Epicgames login page will redirects to this endpoint after login success
+          or an error occurred. If error, it redirects to the login page.
+          &lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;Twitch login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+          &lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;Facebook login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+          &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;Google login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+		  &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;Snapchat login page will redirects to this endpoint after login success
+          as previously defined on authorize request parameter &lt;code&gt;redirect_uri&lt;/code&gt;
+          &lt;/ul&gt; action code : 10709
+*/
 func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -527,6 +589,8 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 }
 
 /*
+Deprecated: Use UserAuthenticationV3Short instead.
+
   UserAuthenticationV3 authentications API
 
   &lt;p&gt;This endpoint is being used to authenticate a user account.
@@ -576,6 +640,15 @@ func (a *Client) UserAuthenticationV3(params *UserAuthenticationV3Params, authIn
 	}
 }
 
+/*
+  UserAuthenticationV3Short authentications API
+
+  &lt;p&gt;This endpoint is being used to authenticate a user account.
+					It validates user&#39;s email / username and password. Deactivated or login-banned users are unable to login
+					Redirect URI and Client ID must be specified as a pair and only used to redirect to the specified
+					redirect URI in case the requestId is no longer valid.&lt;/p&gt;
+					&lt;br&gt;action code: 10801
+*/
 func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

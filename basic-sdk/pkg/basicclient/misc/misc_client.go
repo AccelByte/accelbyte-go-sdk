@@ -60,6 +60,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddCountryGroupShort instead.
+
   AddCountryGroup adds a country group
 
   Add a country groups&lt;br&gt;Country code must follow ISO3166-1 alpha-2.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11201&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: newly created country group&lt;/li&gt;&lt;/ul&gt;
@@ -117,6 +119,11 @@ func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime
 	}
 }
 
+/*
+  AddCountryGroupShort adds a country group
+
+  Add a country groups&lt;br&gt;Country code must follow ISO3166-1 alpha-2.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11201&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: newly created country group&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AddCountryGroupCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -167,6 +174,8 @@ func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo ru
 }
 
 /*
+Deprecated: Use DeleteCountryGroupShort instead.
+
   DeleteCountryGroup deletes a country group
 
   Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -224,6 +233,11 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 	}
 }
 
+/*
+  DeleteCountryGroupShort deletes a country group
+
+  Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -274,6 +288,8 @@ func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authI
 }
 
 /*
+Deprecated: Use GetCountriesShort instead.
+
   GetCountries lists countries
 
   List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11204&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;
@@ -325,6 +341,11 @@ func (a *Client) GetCountries(params *GetCountriesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetCountriesShort lists countries
+
+  List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11204&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -371,6 +392,8 @@ func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GetCountryGroupsShort instead.
+
   GetCountryGroups lists country groups
 
   List country groups. Will return all available country groups if the query param is not specified&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11203&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of country groups&lt;/li&gt;&lt;/ul&gt;
@@ -428,6 +451,11 @@ func (a *Client) GetCountryGroups(params *GetCountryGroupsParams, authInfo runti
 	}
 }
 
+/*
+  GetCountryGroupsShort lists country groups
+
+  List country groups. Will return all available country groups if the query param is not specified&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11203&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of country groups&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountryGroupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -478,6 +506,8 @@ func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo 
 }
 
 /*
+Deprecated: Use GetLanguagesShort instead.
+
   GetLanguages lists languages
 
   List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11206&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;
@@ -529,6 +559,11 @@ func (a *Client) GetLanguages(params *GetLanguagesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetLanguagesShort lists languages
+
+  List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11206&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.ClientAuthInfoWriter) (*GetLanguagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -575,6 +610,8 @@ func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GetTimeZonesShort instead.
+
   GetTimeZones lists time zones
 
   List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11205&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;
@@ -626,6 +663,11 @@ func (a *Client) GetTimeZones(params *GetTimeZonesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetTimeZonesShort lists time zones
+
+  List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11205&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.ClientAuthInfoWriter) (*GetTimeZonesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -672,6 +714,8 @@ func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use PublicGetCountriesShort instead.
+
   PublicGetCountries lists countries
 
   List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;
@@ -719,6 +763,11 @@ func (a *Client) PublicGetCountries(params *PublicGetCountriesParams) (*PublicGe
 	}
 }
 
+/*
+  PublicGetCountriesShort lists countries
+
+  List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetCountriesShort(params *PublicGetCountriesParams) (*PublicGetCountriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -762,6 +811,8 @@ func (a *Client) PublicGetCountriesShort(params *PublicGetCountriesParams) (*Pub
 }
 
 /*
+Deprecated: Use PublicGetLanguagesShort instead.
+
   PublicGetLanguages lists languages
 
   List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;
@@ -809,6 +860,11 @@ func (a *Client) PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGe
 	}
 }
 
+/*
+  PublicGetLanguagesShort lists languages
+
+  List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetLanguagesShort(params *PublicGetLanguagesParams) (*PublicGetLanguagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -852,6 +908,8 @@ func (a *Client) PublicGetLanguagesShort(params *PublicGetLanguagesParams) (*Pub
 }
 
 /*
+Deprecated: Use PublicGetTimeShort instead.
+
   PublicGetTime gets server time
 
   Get server time
@@ -896,6 +954,11 @@ func (a *Client) PublicGetTime(params *PublicGetTimeParams) (*PublicGetTimeOK, e
 	}
 }
 
+/*
+  PublicGetTimeShort gets server time
+
+  Get server time
+*/
 func (a *Client) PublicGetTimeShort(params *PublicGetTimeParams) (*PublicGetTimeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -937,6 +1000,8 @@ func (a *Client) PublicGetTimeShort(params *PublicGetTimeParams) (*PublicGetTime
 }
 
 /*
+Deprecated: Use PublicGetTimeZonesShort instead.
+
   PublicGetTimeZones lists time zones
 
   List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;
@@ -984,6 +1049,11 @@ func (a *Client) PublicGetTimeZones(params *PublicGetTimeZonesParams) (*PublicGe
 	}
 }
 
+/*
+  PublicGetTimeZonesShort lists time zones
+
+  List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetTimeZonesShort(params *PublicGetTimeZonesParams) (*PublicGetTimeZonesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1027,6 +1097,8 @@ func (a *Client) PublicGetTimeZonesShort(params *PublicGetTimeZonesParams) (*Pub
 }
 
 /*
+Deprecated: Use UpdateCountryGroupShort instead.
+
   UpdateCountryGroup updates a country group
 
   Update a country groups. The countryGroupCode must be exist beforehand.&lt;br&gt;Valid update behaviour :&lt;br/&gt;- To update &lt;i&gt;countryGroupName&lt;/i&gt; only, do not include &lt;i&gt;countries&lt;/i&gt; key or just specify it with empty array.&lt;br/&gt;- To update &lt;i&gt;countries&lt;/i&gt; only, do not include &lt;i&gt;countryGroupName&lt;/i&gt; key or just specify it with blank value.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11202&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated country group&lt;/li&gt;&lt;/ul&gt;
@@ -1084,6 +1156,11 @@ func (a *Client) UpdateCountryGroup(params *UpdateCountryGroupParams, authInfo r
 	}
 }
 
+/*
+  UpdateCountryGroupShort updates a country group
+
+  Update a country groups. The countryGroupCode must be exist beforehand.&lt;br&gt;Valid update behaviour :&lt;br/&gt;- To update &lt;i&gt;countryGroupName&lt;/i&gt; only, do not include &lt;i&gt;countries&lt;/i&gt; key or just specify it with empty array.&lt;br/&gt;- To update &lt;i&gt;countries&lt;/i&gt; only, do not include &lt;i&gt;countryGroupName&lt;/i&gt; key or just specify it with blank value.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11202&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated country group&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateCountryGroupShort(params *UpdateCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

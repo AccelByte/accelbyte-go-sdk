@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetUserInfoStatusShort instead.
+
   GetUserInfoStatus gets user info cache status
 
   Get user info cache last updated time per namespace.&lt;br&gt;The query parameter namespaces can be a list of namespace separated by comma.&lt;br&gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -89,6 +91,11 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 	}
 }
 
+/*
+  GetUserInfoStatusShort gets user info cache status
+
+  Get user info cache last updated time per namespace.&lt;br&gt;The query parameter namespaces can be a list of namespace separated by comma.&lt;br&gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -131,6 +138,8 @@ func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInf
 }
 
 /*
+Deprecated: Use InvalidateUserInfoCacheShort instead.
+
   InvalidateUserInfoCache invalidates user info cache
 
   &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Invalidate user info cache in agreement service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -176,6 +185,11 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 	}
 }
 
+/*
+  InvalidateUserInfoCacheShort invalidates user info cache
+
+  &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Invalidate user info cache in agreement service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -218,6 +232,8 @@ func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCachePar
 }
 
 /*
+Deprecated: Use SyncUserInfoShort instead.
+
   SyncUserInfo syncs user info with iam service
 
   &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Sync user info cache in agreement service with iam service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -263,6 +279,11 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  SyncUserInfoShort syncs user info with iam service
+
+  &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Sync user info cache in agreement service with iam service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

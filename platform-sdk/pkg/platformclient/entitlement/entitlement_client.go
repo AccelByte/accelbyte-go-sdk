@@ -116,6 +116,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use ConsumeUserEntitlementShort instead.
+
   ConsumeUserEntitlement consumes user entitlement
 
   Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -167,6 +169,11 @@ func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, au
 	}
 }
 
+/*
+  ConsumeUserEntitlementShort consumes user entitlement
+
+  Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -213,6 +220,8 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 }
 
 /*
+Deprecated: Use DisableUserEntitlementShort instead.
+
   DisableUserEntitlement disables user entitlement
 
   Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can&#39;t consume.&lt;br&gt;&lt;b&gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disable entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -264,6 +273,11 @@ func (a *Client) DisableUserEntitlement(params *DisableUserEntitlementParams, au
 	}
 }
 
+/*
+  DisableUserEntitlementShort disables user entitlement
+
+  Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can&#39;t consume.&lt;br&gt;&lt;b&gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disable entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DisableUserEntitlementShort(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -310,6 +324,8 @@ func (a *Client) DisableUserEntitlementShort(params *DisableUserEntitlementParam
 }
 
 /*
+Deprecated: Use EnableUserEntitlementShort instead.
+
   EnableUserEntitlement enables user entitlement
 
   Enable user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: enable entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -361,6 +377,11 @@ func (a *Client) EnableUserEntitlement(params *EnableUserEntitlementParams, auth
 	}
 }
 
+/*
+  EnableUserEntitlementShort enables user entitlement
+
+  Enable user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: enable entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) EnableUserEntitlementShort(params *EnableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -407,6 +428,8 @@ func (a *Client) EnableUserEntitlementShort(params *EnableUserEntitlementParams,
 }
 
 /*
+Deprecated: Use ExistsAnyUserActiveEntitlementShort instead.
+
   ExistsAnyUserActiveEntitlement exists any user active entitlement
 
   Exists any user active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -452,6 +475,11 @@ func (a *Client) ExistsAnyUserActiveEntitlement(params *ExistsAnyUserActiveEntit
 	}
 }
 
+/*
+  ExistsAnyUserActiveEntitlementShort exists any user active entitlement
+
+  Exists any user active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ExistsAnyUserActiveEntitlementShort(params *ExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ExistsAnyUserActiveEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -494,6 +522,8 @@ func (a *Client) ExistsAnyUserActiveEntitlementShort(params *ExistsAnyUserActive
 }
 
 /*
+Deprecated: Use ExistsAnyUserActiveEntitlementByItemIdsShort instead.
+
   ExistsAnyUserActiveEntitlementByItemIds exists any user active entitlement
 
   Exists any user active entitlement of specified items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -539,6 +569,11 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIds(params *ExistsAnyUserAc
 	}
 }
 
+/*
+  ExistsAnyUserActiveEntitlementByItemIdsShort exists any user active entitlement
+
+  Exists any user active entitlement of specified items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ExistsAnyUserActiveEntitlementByItemIdsShort(params *ExistsAnyUserActiveEntitlementByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*ExistsAnyUserActiveEntitlementByItemIdsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -581,6 +616,8 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIdsShort(params *ExistsAnyU
 }
 
 /*
+Deprecated: Use GetEntitlementShort instead.
+
   GetEntitlement gets entitlement
 
   Get entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -629,6 +666,11 @@ func (a *Client) GetEntitlement(params *GetEntitlementParams, authInfo runtime.C
 	}
 }
 
+/*
+  GetEntitlementShort gets entitlement
+
+  Get entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -673,6 +715,8 @@ func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetUserAppEntitlementByAppIDShort instead.
+
   GetUserAppEntitlementByAppID gets user app entitlement by app Id
 
   Get user app entitlement by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -721,6 +765,11 @@ func (a *Client) GetUserAppEntitlementByAppID(params *GetUserAppEntitlementByApp
 	}
 }
 
+/*
+  GetUserAppEntitlementByAppIDShort gets user app entitlement by app Id
+
+  Get user app entitlement by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserAppEntitlementByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -765,6 +814,8 @@ func (a *Client) GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlement
 }
 
 /*
+Deprecated: Use GetUserAppEntitlementOwnershipByAppIDShort instead.
+
   GetUserAppEntitlementOwnershipByAppID gets user app entitlement ownership by app Id
 
   Get user app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -810,6 +861,11 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppID(params *GetUserAppEntitle
 	}
 }
 
+/*
+  GetUserAppEntitlementOwnershipByAppIDShort gets user app entitlement ownership by app Id
+
+  Get user app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserAppEntitlementOwnershipByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -852,6 +908,8 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEn
 }
 
 /*
+Deprecated: Use GetUserEntitlementShort instead.
+
   GetUserEntitlement gets user entitlement
 
   Get user entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -900,6 +958,11 @@ func (a *Client) GetUserEntitlement(params *GetUserEntitlementParams, authInfo r
 	}
 }
 
+/*
+  GetUserEntitlementShort gets user entitlement
+
+  Get user entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementShort(params *GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -944,6 +1007,8 @@ func (a *Client) GetUserEntitlementShort(params *GetUserEntitlementParams, authI
 }
 
 /*
+Deprecated: Use GetUserEntitlementByItemIDShort instead.
+
   GetUserEntitlementByItemID gets user entitlement by item Id
 
   Get user entitlement by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -992,6 +1057,11 @@ func (a *Client) GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDPa
 	}
 }
 
+/*
+  GetUserEntitlementByItemIDShort gets user entitlement by item Id
+
+  Get user entitlement by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementByItemIDShort(params *GetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1036,6 +1106,8 @@ func (a *Client) GetUserEntitlementByItemIDShort(params *GetUserEntitlementByIte
 }
 
 /*
+Deprecated: Use GetUserEntitlementBySkuShort instead.
+
   GetUserEntitlementBySku gets user entitlement by sku
 
   Get user entitlement by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1084,6 +1156,11 @@ func (a *Client) GetUserEntitlementBySku(params *GetUserEntitlementBySkuParams, 
 	}
 }
 
+/*
+  GetUserEntitlementBySkuShort gets user entitlement by sku
+
+  Get user entitlement by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementBySkuShort(params *GetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1128,6 +1205,8 @@ func (a *Client) GetUserEntitlementBySkuShort(params *GetUserEntitlementBySkuPar
 }
 
 /*
+Deprecated: Use GetUserEntitlementHistoriesShort instead.
+
   GetUserEntitlementHistories gets user entitlement history
 
   Get user entitlement histories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of entitlement history&lt;/li&gt;&lt;/ul&gt;
@@ -1173,6 +1252,11 @@ func (a *Client) GetUserEntitlementHistories(params *GetUserEntitlementHistories
 	}
 }
 
+/*
+  GetUserEntitlementHistoriesShort gets user entitlement history
+
+  Get user entitlement histories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of entitlement history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementHistoriesShort(params *GetUserEntitlementHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1215,6 +1299,8 @@ func (a *Client) GetUserEntitlementHistoriesShort(params *GetUserEntitlementHist
 }
 
 /*
+Deprecated: Use GetUserEntitlementOwnershipByItemIDShort instead.
+
   GetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
 
   Get user entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1260,6 +1346,11 @@ func (a *Client) GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementO
 	}
 }
 
+/*
+  GetUserEntitlementOwnershipByItemIDShort gets user entitlement ownership by item Id
+
+  Get user entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1302,6 +1393,8 @@ func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitle
 }
 
 /*
+Deprecated: Use GetUserEntitlementOwnershipByItemIdsShort instead.
+
   GetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
 
   Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1347,6 +1440,11 @@ func (a *Client) GetUserEntitlementOwnershipByItemIds(params *GetUserEntitlement
 	}
 }
 
+/*
+  GetUserEntitlementOwnershipByItemIdsShort gets user entitlement ownership by item ids
+
+  Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementOwnershipByItemIdsShort(params *GetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIdsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1389,6 +1487,8 @@ func (a *Client) GetUserEntitlementOwnershipByItemIdsShort(params *GetUserEntitl
 }
 
 /*
+Deprecated: Use GetUserEntitlementOwnershipBySkuShort instead.
+
   GetUserEntitlementOwnershipBySku gets user entitlement ownership by sku
 
   Get user entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1434,6 +1534,11 @@ func (a *Client) GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwne
 	}
 }
 
+/*
+  GetUserEntitlementOwnershipBySkuShort gets user entitlement ownership by sku
+
+  Get user entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1476,6 +1581,8 @@ func (a *Client) GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlemen
 }
 
 /*
+Deprecated: Use GrantUserEntitlementShort instead.
+
   GrantUserEntitlement grants user entitlement
 
   Grant user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: granted entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -1527,6 +1634,11 @@ func (a *Client) GrantUserEntitlement(params *GrantUserEntitlementParams, authIn
 	}
 }
 
+/*
+  GrantUserEntitlementShort grants user entitlement
+
+  Grant user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: granted entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserEntitlementCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1573,6 +1685,8 @@ func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, a
 }
 
 /*
+Deprecated: Use PublicConsumeUserEntitlementShort instead.
+
   PublicConsumeUserEntitlement consumes user entitlement
 
   Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED. Client should pass item id in options if entitlement clazz is OPTIONBOX&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -1627,6 +1741,11 @@ func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitleme
 	}
 }
 
+/*
+  PublicConsumeUserEntitlementShort consumes user entitlement
+
+  Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED. Client should pass item id in options if entitlement clazz is OPTIONBOX&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: consumed entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1675,6 +1794,8 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 }
 
 /*
+Deprecated: Use PublicExistsAnyMyActiveEntitlementShort instead.
+
   PublicExistsAnyMyActiveEntitlement exists any my active entitlement
 
   Exists any my active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1720,6 +1841,11 @@ func (a *Client) PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyAct
 	}
 }
 
+/*
+  PublicExistsAnyMyActiveEntitlementShort exists any my active entitlement
+
+  Exists any my active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyMyActiveEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1762,6 +1888,8 @@ func (a *Client) PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAny
 }
 
 /*
+Deprecated: Use PublicExistsAnyUserActiveEntitlementShort instead.
+
   PublicExistsAnyUserActiveEntitlement exists any user active entitlement
 
   Exists any user active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -1807,6 +1935,11 @@ func (a *Client) PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUse
 	}
 }
 
+/*
+  PublicExistsAnyUserActiveEntitlementShort exists any user active entitlement
+
+  Exists any user active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyUserActiveEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1849,6 +1982,8 @@ func (a *Client) PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsA
 }
 
 /*
+Deprecated: Use PublicGetEntitlementOwnershipTokenShort instead.
+
   PublicGetEntitlementOwnershipToken gets an entitlement ownership token
 
   Gets an entitlement ownership token of specified itemIds, skus and appIds&lt;p&gt;The decoded ownership token header like below:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
@@ -1923,6 +2058,40 @@ func (a *Client) PublicGetEntitlementOwnershipToken(params *PublicGetEntitlement
 	}
 }
 
+/*
+  PublicGetEntitlementOwnershipTokenShort gets an entitlement ownership token
+
+  Gets an entitlement ownership token of specified itemIds, skus and appIds&lt;p&gt;The decoded ownership token header like below:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;kid&#34;: &#34;9fd4cd5f991cebe3323605cd12d3b8bfdfc73fa4&#34;,
+  &#34;typ&#34;: &#34;JWT&#34;,
+  &#34;alg&#34;: &#34;RS256&#34;
+}
+&lt;/code&gt;&lt;/pre&gt;That you can get the jwks by api &lt;baseUrl&gt;/platform/jwks, if the configured private key is same as IAM, &lt;p&gt;you can also get jwks from IAM endpoint. &lt;p&gt;The decoded ownership token payload like below:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+ &#34;namespace&#34;: &#34;accelbyte&#34;,
+ &#34;entitlements&#34;: [
+  {
+    &#34;itemId&#34;: &#34;4c1296291f604c199f7bb7f0ee02e5f8&#34;,
+    &#34;appType&#34;: null,
+    &#34;appId&#34;: null,
+    &#34;namespace&#34;: &#34;accelbyte&#34;,
+    &#34;itemNamespace&#34;: &#34;accelbyte&#34;,
+    &#34;sku&#34;: &#34;prime-plus&#34;
+  },
+  {
+    &#34;itemId&#34;: &#34;e8f4974cf45c4e1f8d4f0c6990c518bd&#34;,
+    &#34;appType&#34;: &#34;GAME&#34;,
+    &#34;appId&#34;: &#34;omeganebula&#34;,
+    &#34;namespace&#34;: &#34;accelbyte&#34;,
+    &#34;itemNamespace&#34;: &#34;accelbyte&#34;,
+    &#34;sku&#34;: &#34;APPG005ON&#34;
+  }
+ ],
+&#34;sub&#34;: &#34;66459eb6a4e44e6fb0040bd20c1079a5&#34;,
+&#34;exp&#34;: 1619624360,
+&#34;iat&#34;: 1619624060
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;b&gt;if there&#39;s no active entitlement for the specific params, the entitlements section will be omitted&lt;/b&gt;.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetEntitlementOwnershipTokenShort(params *PublicGetEntitlementOwnershipTokenParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEntitlementOwnershipTokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1965,6 +2134,8 @@ func (a *Client) PublicGetEntitlementOwnershipTokenShort(params *PublicGetEntitl
 }
 
 /*
+Deprecated: Use PublicGetMyAppEntitlementOwnershipByAppIDShort instead.
+
   PublicGetMyAppEntitlementOwnershipByAppID gets my app entitlement ownership by app Id
 
   Get my app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace app entitlement ownership&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -2010,6 +2181,11 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAp
 	}
 }
 
+/*
+  PublicGetMyAppEntitlementOwnershipByAppIDShort gets my app entitlement ownership by app Id
+
+  Get my app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace app entitlement ownership&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetMyAppEntitlementOwnershipByAppIDShort(params *PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyAppEntitlementOwnershipByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2052,6 +2228,8 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppIDShort(params *PublicGe
 }
 
 /*
+Deprecated: Use PublicGetMyEntitlementOwnershipByItemIDShort instead.
+
   PublicGetMyEntitlementOwnershipByItemID gets my entitlement ownership by item Id
 
   Get my entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -2097,6 +2275,11 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemID(params *PublicGetMyEnti
 	}
 }
 
+/*
+  PublicGetMyEntitlementOwnershipByItemIDShort gets my entitlement ownership by item Id
+
+  Get my entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetMyEntitlementOwnershipByItemIDShort(params *PublicGetMyEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2139,6 +2322,8 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemIDShort(params *PublicGetM
 }
 
 /*
+Deprecated: Use PublicGetMyEntitlementOwnershipBySkuShort instead.
+
   PublicGetMyEntitlementOwnershipBySku gets my entitlement ownership by sku
 
   Get my entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -2184,6 +2369,11 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitle
 	}
 }
 
+/*
+  PublicGetMyEntitlementOwnershipBySkuShort gets my entitlement ownership by sku
+
+  Get my entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game namespace entitlement ownership by sku&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetMyEntitlementOwnershipBySkuShort(params *PublicGetMyEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2226,6 +2416,8 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySkuShort(params *PublicGetMyEn
 }
 
 /*
+Deprecated: Use PublicGetUserAppEntitlementByAppIDShort instead.
+
   PublicGetUserAppEntitlementByAppID gets user app entitlement by app Id
 
   Get user app entitlement by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2274,6 +2466,11 @@ func (a *Client) PublicGetUserAppEntitlementByAppID(params *PublicGetUserAppEnti
 	}
 }
 
+/*
+  PublicGetUserAppEntitlementByAppIDShort gets user app entitlement by app Id
+
+  Get user app entitlement by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2318,6 +2515,8 @@ func (a *Client) PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAp
 }
 
 /*
+Deprecated: Use PublicGetUserAppEntitlementOwnershipByAppIDShort instead.
+
   PublicGetUserAppEntitlementOwnershipByAppID gets user app entitlement ownership by app Id
 
   Get user app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2363,6 +2562,11 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUs
 	}
 }
 
+/*
+  PublicGetUserAppEntitlementOwnershipByAppIDShort gets user app entitlement ownership by app Id
+
+  Get user app entitlement ownership by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementOwnershipByAppIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2405,6 +2609,8 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *Public
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementShort instead.
+
   PublicGetUserEntitlement gets user entitlement
 
   Get user entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -2453,6 +2659,11 @@ func (a *Client) PublicGetUserEntitlement(params *PublicGetUserEntitlementParams
 	}
 }
 
+/*
+  PublicGetUserEntitlementShort gets user entitlement
+
+  Get user entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementShort(params *PublicGetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2497,6 +2708,8 @@ func (a *Client) PublicGetUserEntitlementShort(params *PublicGetUserEntitlementP
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementByItemIDShort instead.
+
   PublicGetUserEntitlementByItemID gets user entitlement by item Id
 
   Get user entitlement by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2545,6 +2758,11 @@ func (a *Client) PublicGetUserEntitlementByItemID(params *PublicGetUserEntitleme
 	}
 }
 
+/*
+  PublicGetUserEntitlementByItemIDShort gets user entitlement by item Id
+
+  Get user entitlement by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2589,6 +2807,8 @@ func (a *Client) PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEnti
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementBySkuShort instead.
+
   PublicGetUserEntitlementBySku gets user entitlement by sku
 
   Get user entitlement by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2637,6 +2857,11 @@ func (a *Client) PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementB
 	}
 }
 
+/*
+  PublicGetUserEntitlementBySkuShort gets user entitlement by sku
+
+  Get user entitlement by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2681,6 +2906,8 @@ func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitle
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementOwnershipByItemIDShort instead.
+
   PublicGetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
 
   Get user entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2726,6 +2953,11 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUser
 	}
 }
 
+/*
+  PublicGetUserEntitlementOwnershipByItemIDShort gets user entitlement ownership by item Id
+
+  Get user entitlement ownership by itemId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2768,6 +3000,8 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGe
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementOwnershipByItemIdsShort instead.
+
   PublicGetUserEntitlementOwnershipByItemIds gets user entitlement ownership by item ids
 
   Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2813,6 +3047,11 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIds(params *PublicGetUse
 	}
 }
 
+/*
+  PublicGetUserEntitlementOwnershipByItemIdsShort gets user entitlement ownership by item ids
+
+  Get user entitlement ownership by itemIds.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementOwnershipByItemIdsShort(params *PublicGetUserEntitlementOwnershipByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIdsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2855,6 +3094,8 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIdsShort(params *PublicG
 }
 
 /*
+Deprecated: Use PublicGetUserEntitlementOwnershipBySkuShort instead.
+
   PublicGetUserEntitlementOwnershipBySku gets user entitlement ownership by sku
 
   Get user entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2900,6 +3141,11 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEnt
 	}
 }
 
+/*
+  PublicGetUserEntitlementOwnershipBySkuShort gets user entitlement ownership by sku
+
+  Get user entitlement ownership by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipBySkuOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2942,6 +3188,8 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUs
 }
 
 /*
+Deprecated: Use PublicQueryUserEntitlementsShort instead.
+
   PublicQueryUserEntitlements queries user entitlements
 
   Query user entitlements for a specific user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
@@ -2987,6 +3235,11 @@ func (a *Client) PublicQueryUserEntitlements(params *PublicQueryUserEntitlements
 	}
 }
 
+/*
+  PublicQueryUserEntitlementsShort queries user entitlements
+
+  Query user entitlements for a specific user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3029,6 +3282,8 @@ func (a *Client) PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitle
 }
 
 /*
+Deprecated: Use PublicQueryUserEntitlementsByAppTypeShort instead.
+
   PublicQueryUserEntitlementsByAppType queries app entitlements by app type
 
   Query app entitlements by appType.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app entitlement pagination&lt;/li&gt;&lt;/ul&gt;
@@ -3074,6 +3329,11 @@ func (a *Client) PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEnt
 	}
 }
 
+/*
+  PublicQueryUserEntitlementsByAppTypeShort queries app entitlements by app type
+
+  Query app entitlements by appType.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app entitlement pagination&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3116,6 +3376,8 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 }
 
 /*
+Deprecated: Use QueryEntitlementsShort instead.
+
   QueryEntitlements queries entitlements
 
   Query entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
@@ -3161,6 +3423,11 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 	}
 }
 
+/*
+  QueryEntitlementsShort queries entitlements
+
+  Query entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3203,6 +3470,8 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 }
 
 /*
+Deprecated: Use QueryUserEntitlementsShort instead.
+
   QueryUserEntitlements queries user entitlements
 
   Query entitlements for a specific user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
@@ -3248,6 +3517,11 @@ func (a *Client) QueryUserEntitlements(params *QueryUserEntitlementsParams, auth
 	}
 }
 
+/*
+  QueryUserEntitlementsShort queries user entitlements
+
+  Query entitlements for a specific user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserEntitlementsShort(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3290,6 +3564,8 @@ func (a *Client) QueryUserEntitlementsShort(params *QueryUserEntitlementsParams,
 }
 
 /*
+Deprecated: Use QueryUserEntitlementsByAppTypeShort instead.
+
   QueryUserEntitlementsByAppType queries app entitlements by app type
 
   Query app entitlements by appType.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app entitlement pagination&lt;/li&gt;&lt;/ul&gt;
@@ -3335,6 +3611,11 @@ func (a *Client) QueryUserEntitlementsByAppType(params *QueryUserEntitlementsByA
 	}
 }
 
+/*
+  QueryUserEntitlementsByAppTypeShort queries app entitlements by app type
+
+  Query app entitlements by appType.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app entitlement pagination&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsByAppTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3377,6 +3658,8 @@ func (a *Client) QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlemen
 }
 
 /*
+Deprecated: Use RevokeUserEntitlementShort instead.
+
   RevokeUserEntitlement revokes user entitlement
 
   Revoke user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -3425,6 +3708,11 @@ func (a *Client) RevokeUserEntitlement(params *RevokeUserEntitlementParams, auth
 	}
 }
 
+/*
+  RevokeUserEntitlementShort revokes user entitlement
+
+  Revoke user entitlement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3469,6 +3757,8 @@ func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams,
 }
 
 /*
+Deprecated: Use RevokeUserEntitlementsShort instead.
+
   RevokeUserEntitlements revokes user s entitlements by ids
 
   Revoke user&#39;s entitlements by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlements count&lt;/li&gt;&lt;/ul&gt;
@@ -3514,6 +3804,11 @@ func (a *Client) RevokeUserEntitlements(params *RevokeUserEntitlementsParams, au
 	}
 }
 
+/*
+  RevokeUserEntitlementsShort revokes user s entitlements by ids
+
+  Revoke user&#39;s entitlements by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: revoke entitlements count&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3556,6 +3851,8 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 }
 
 /*
+Deprecated: Use UpdateUserEntitlementShort instead.
+
   UpdateUserEntitlement updates user entitlement
 
   Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -3610,6 +3907,11 @@ func (a *Client) UpdateUserEntitlement(params *UpdateUserEntitlementParams, auth
 	}
 }
 
+/*
+  UpdateUserEntitlementShort updates user entitlement
+
+  Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated entitlement&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateUserEntitlementShort(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

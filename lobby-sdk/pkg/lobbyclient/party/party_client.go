@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminGetPartyDataV1Short instead.
+
   AdminGetPartyDataV1 admins get party data
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -109,6 +111,12 @@ func (a *Client) AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo
 	}
 }
 
+/*
+  AdminGetPartyDataV1Short admins get party data
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get party data in a namespace.
+*/
 func (a *Client) AdminGetPartyDataV1Short(params *AdminGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartyDataV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -161,6 +169,8 @@ func (a *Client) AdminGetPartyDataV1Short(params *AdminGetPartyDataV1Params, aut
 }
 
 /*
+Deprecated: Use AdminGetUserPartyV1Short instead.
+
   AdminGetUserPartyV1 admins get user party data
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -222,6 +232,12 @@ func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo
 	}
 }
 
+/*
+  AdminGetUserPartyV1Short admins get user party data
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get party data in a namespace.
+*/
 func (a *Client) AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPartyV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -274,6 +290,8 @@ func (a *Client) AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, aut
 }
 
 /*
+Deprecated: Use PublicGetPartyDataV1Short instead.
+
   PublicGetPartyDataV1 gets party data by party id
 
   Required valid user authorization &lt;br/&gt;
@@ -336,6 +354,13 @@ func (a *Client) PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authIn
 	}
 }
 
+/*
+  PublicGetPartyDataV1Short gets party data by party id
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load personal party data in a namespace based on Party ID &lt;br/&gt;
+			Action Code: 50101
+*/
 func (a *Client) PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -388,6 +413,8 @@ func (a *Client) PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, a
 }
 
 /*
+Deprecated: Use PublicSetPartyLimitV1Short instead.
+
   PublicSetPartyLimitV1 sets party limit
 
   Required valid user authorization &lt;br/&gt;
@@ -449,6 +476,12 @@ func (a *Client) PublicSetPartyLimitV1(params *PublicSetPartyLimitV1Params, auth
 	}
 }
 
+/*
+  PublicSetPartyLimitV1Short sets party limit
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;Set party limit, only party leader can call this endpoint.
+*/
 func (a *Client) PublicSetPartyLimitV1Short(params *PublicSetPartyLimitV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSetPartyLimitV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -501,6 +534,8 @@ func (a *Client) PublicSetPartyLimitV1Short(params *PublicSetPartyLimitV1Params,
 }
 
 /*
+Deprecated: Use PublicUpdatePartyAttributesV1Short instead.
+
   PublicUpdatePartyAttributesV1 updates party attributes
 
   Required valid user authorization &lt;br/&gt;
@@ -565,6 +600,12 @@ func (a *Client) PublicUpdatePartyAttributesV1(params *PublicUpdatePartyAttribut
 	}
 }
 
+/*
+  PublicUpdatePartyAttributesV1Short updates party attributes
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;update party attributes in a namespace.
+*/
 func (a *Client) PublicUpdatePartyAttributesV1Short(params *PublicUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyAttributesV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

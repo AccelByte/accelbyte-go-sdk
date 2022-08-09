@@ -52,6 +52,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCancelUserAccountDeletionRequestShort instead.
+
   AdminCancelUserAccountDeletionRequest cancels user s account deletion request
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -112,6 +114,11 @@ func (a *Client) AdminCancelUserAccountDeletionRequest(params *AdminCancelUserAc
 	}
 }
 
+/*
+  AdminCancelUserAccountDeletionRequestShort cancels user s account deletion request
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminCancelUserAccountDeletionRequestShort(params *AdminCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserAccountDeletionRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -164,6 +171,8 @@ func (a *Client) AdminCancelUserAccountDeletionRequestShort(params *AdminCancelU
 }
 
 /*
+Deprecated: Use AdminGetListDeletionDataRequestShort instead.
+
   AdminGetListDeletionDataRequest retrieves all user s account deletion requests in specified date
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -224,6 +233,11 @@ func (a *Client) AdminGetListDeletionDataRequest(params *AdminGetListDeletionDat
 	}
 }
 
+/*
+  AdminGetListDeletionDataRequestShort retrieves all user s account deletion requests in specified date
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGetListDeletionDataRequestShort(params *AdminGetListDeletionDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListDeletionDataRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -276,6 +290,8 @@ func (a *Client) AdminGetListDeletionDataRequestShort(params *AdminGetListDeleti
 }
 
 /*
+Deprecated: Use AdminGetUserAccountDeletionRequestShort instead.
+
   AdminGetUserAccountDeletionRequest retrieves specific user s account deletion request
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -333,6 +349,11 @@ func (a *Client) AdminGetUserAccountDeletionRequest(params *AdminGetUserAccountD
 	}
 }
 
+/*
+  AdminGetUserAccountDeletionRequestShort retrieves specific user s account deletion request
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGetUserAccountDeletionRequestShort(params *AdminGetUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserAccountDeletionRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -383,6 +404,8 @@ func (a *Client) AdminGetUserAccountDeletionRequestShort(params *AdminGetUserAcc
 }
 
 /*
+Deprecated: Use AdminSubmitUserAccountDeletionRequestShort instead.
+
   AdminSubmitUserAccountDeletionRequest submits user s account deletion requests
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -443,6 +466,11 @@ func (a *Client) AdminSubmitUserAccountDeletionRequest(params *AdminSubmitUserAc
 	}
 }
 
+/*
+  AdminSubmitUserAccountDeletionRequestShort submits user s account deletion requests
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitUserAccountDeletionRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -495,6 +523,8 @@ func (a *Client) AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitU
 }
 
 /*
+Deprecated: Use PublicCancelUserAccountDeletionRequestShort instead.
+
   PublicCancelUserAccountDeletionRequest cancels user s account deletion request
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -552,6 +582,11 @@ func (a *Client) PublicCancelUserAccountDeletionRequest(params *PublicCancelUser
 	}
 }
 
+/*
+  PublicCancelUserAccountDeletionRequestShort cancels user s account deletion request
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicCancelUserAccountDeletionRequestShort(params *PublicCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserAccountDeletionRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -602,6 +637,8 @@ func (a *Client) PublicCancelUserAccountDeletionRequestShort(params *PublicCance
 }
 
 /*
+Deprecated: Use PublicGetUserAccountDeletionStatusShort instead.
+
   PublicGetUserAccountDeletionStatus retrieves specific user s account deletion status
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -656,6 +693,11 @@ func (a *Client) PublicGetUserAccountDeletionStatus(params *PublicGetUserAccount
 	}
 }
 
+/*
+  PublicGetUserAccountDeletionStatusShort retrieves specific user s account deletion status
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicGetUserAccountDeletionStatusShort(params *PublicGetUserAccountDeletionStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAccountDeletionStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -704,6 +746,8 @@ func (a *Client) PublicGetUserAccountDeletionStatusShort(params *PublicGetUserAc
 }
 
 /*
+Deprecated: Use PublicSubmitUserAccountDeletionRequestShort instead.
+
   PublicSubmitUserAccountDeletionRequest submits user s account deletion requests
 
   &lt;p&gt;Requires valid user access token and password
@@ -764,6 +808,11 @@ func (a *Client) PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUser
 	}
 }
 
+/*
+  PublicSubmitUserAccountDeletionRequestShort submits user s account deletion requests
+
+  &lt;p&gt;Requires valid user access token and password
+*/
 func (a *Client) PublicSubmitUserAccountDeletionRequestShort(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

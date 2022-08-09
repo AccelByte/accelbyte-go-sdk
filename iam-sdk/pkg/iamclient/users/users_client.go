@@ -322,6 +322,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddUserPermissionShort instead.
+
   AddUserPermission adds user permission
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -406,6 +408,38 @@ func (a *Client) AddUserPermission(params *AddUserPermissionParams, authInfo run
 	}
 }
 
+/*
+  AddUserPermissionShort adds user permission
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+
+*/
 func (a *Client) AddUserPermissionShort(params *AddUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -456,6 +490,8 @@ func (a *Client) AddUserPermissionShort(params *AddUserPermissionParams, authInf
 }
 
 /*
+Deprecated: Use AddUserRoleShort instead.
+
   AddUserRole adds user role
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
@@ -516,6 +552,11 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  AddUserRoleShort adds user role
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -568,6 +609,8 @@ func (a *Client) AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use AdminAddUserPermissionsV3Short instead.
+
   AdminAddUserPermissionsV3 adds user permissions
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]&#39;&lt;/p&gt;
@@ -652,6 +695,38 @@ func (a *Client) AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Para
 	}
 }
 
+/*
+  AdminAddUserPermissionsV3Short adds user permissions
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will APPEND user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+
+*/
 func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -702,6 +777,8 @@ func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV
 }
 
 /*
+Deprecated: Use AdminAddUserRoleV3Short instead.
+
   AdminAddUserRoleV3 adds user role
 
   &lt;p&gt;This endpoint adds role to user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&lt;/p&gt;
@@ -764,6 +841,13 @@ func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo r
 	}
 }
 
+/*
+  AdminAddUserRoleV3Short adds user role
+
+  &lt;p&gt;This endpoint adds role to user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&lt;/p&gt;
+&lt;p&gt;action code: 10109&lt;/p&gt;
+
+*/
 func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -816,6 +900,8 @@ func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authI
 }
 
 /*
+Deprecated: Use AdminBanUserV2Short instead.
+
   AdminBanUserV2 bans a single user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
@@ -876,6 +962,11 @@ func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.C
 	}
 }
 
+/*
+  AdminBanUserV2Short bans a single user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
+*/
 func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -928,6 +1019,8 @@ func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runt
 }
 
 /*
+Deprecated: Use AdminBanUserV3Short instead.
+
   AdminBanUserV3 bans a single user
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.&lt;/p&gt;
@@ -988,6 +1081,14 @@ func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.C
 	}
 }
 
+/*
+  AdminBanUserV3Short bans a single user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Bans a user with specific type of ban. Ban types and reason can be queried. &lt;/p&gt;
+&lt;p&gt;action code : 10141 &lt;/p&gt;
+
+*/
 func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1038,6 +1139,8 @@ func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runt
 }
 
 /*
+Deprecated: Use AdminCreateJusticeUserShort instead.
+
   AdminCreateJusticeUser creates justice user from publisher user
 
   Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]
@@ -1101,6 +1204,14 @@ func (a *Client) AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, au
 	}
 }
 
+/*
+  AdminCreateJusticeUserShort creates justice user from publisher user
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]
+
+Create Justice User from Publisher User information. It will check first if Justice User on target namespace already exist.
+
+*/
 func (a *Client) AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1153,6 +1264,8 @@ func (a *Client) AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParam
 }
 
 /*
+Deprecated: Use AdminCreateUserRolesV2Short instead.
+
   AdminCreateUserRolesV2 saves user roles
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
@@ -1213,6 +1326,11 @@ func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, au
 	}
 }
 
+/*
+  AdminCreateUserRolesV2Short saves user roles
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1265,6 +1383,8 @@ func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Param
 }
 
 /*
+Deprecated: Use AdminDeletePlatformLinkV2Short instead.
+
   AdminDeletePlatformLinkV2 deletes the link of user s account with platform
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
@@ -1340,6 +1460,26 @@ func (a *Client) AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Para
 	}
 }
 
+/*
+  AdminDeletePlatformLinkV2Short deletes the link of user s account with platform
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Delete link of user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Delete link of justice platform will enable password token grant and password update. &lt;/p&gt;
+*/
 func (a *Client) AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformLinkV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1392,6 +1532,8 @@ func (a *Client) AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV
 }
 
 /*
+Deprecated: Use AdminDeleteUserInformationV3Short instead.
+
   AdminDeleteUserInformationV3 deletes user s information
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
@@ -1446,6 +1588,11 @@ func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformation
 	}
 }
 
+/*
+  AdminDeleteUserInformationV3Short deletes user s information
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
+*/
 func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1494,6 +1641,8 @@ func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInform
 }
 
 /*
+Deprecated: Use AdminDeleteUserPermissionBulkV3Short instead.
+
   AdminDeleteUserPermissionBulkV3 deletes user permission
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
@@ -1551,6 +1700,11 @@ func (a *Client) AdminDeleteUserPermissionBulkV3(params *AdminDeleteUserPermissi
 	}
 }
 
+/*
+  AdminDeleteUserPermissionBulkV3Short deletes user permission
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1601,6 +1755,8 @@ func (a *Client) AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPer
 }
 
 /*
+Deprecated: Use AdminDeleteUserPermissionV3Short instead.
+
   AdminDeleteUserPermissionV3 deletes user permission
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
@@ -1658,6 +1814,11 @@ func (a *Client) AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3
 	}
 }
 
+/*
+  AdminDeleteUserPermissionV3Short deletes user permission
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1708,6 +1869,8 @@ func (a *Client) AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermiss
 }
 
 /*
+Deprecated: Use AdminDeleteUserRoleV3Short instead.
+
   AdminDeleteUserRoleV3 deletes user role
 
   &lt;p&gt;This endpoint removes role from user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&lt;/p&gt;
@@ -1767,6 +1930,13 @@ func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, auth
 	}
 }
 
+/*
+  AdminDeleteUserRoleV3Short deletes user role
+
+  &lt;p&gt;This endpoint removes role from user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&lt;/p&gt;
+&lt;p&gt;action code: 10110&lt;/p&gt;
+
+*/
 func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1817,6 +1987,8 @@ func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params,
 }
 
 /*
+Deprecated: Use AdminDeleteUserRolesV3Short instead.
+
   AdminDeleteUserRolesV3 deletes user roles
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
@@ -1874,6 +2046,11 @@ func (a *Client) AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, au
 	}
 }
 
+/*
+  AdminDeleteUserRolesV3Short deletes user roles
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1924,6 +2101,8 @@ func (a *Client) AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Param
 }
 
 /*
+Deprecated: Use AdminDisableUserV2Short instead.
+
   AdminDisableUserV2 disables a user
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
@@ -1989,6 +2168,16 @@ func (a *Client) AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo r
 	}
 }
 
+/*
+  AdminDisableUserV2Short disables a user
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your deletion request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
+*/
 func (a *Client) AdminDisableUserV2Short(params *AdminDisableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2041,6 +2230,8 @@ func (a *Client) AdminDisableUserV2Short(params *AdminDisableUserV2Params, authI
 }
 
 /*
+Deprecated: Use AdminEnableUserV2Short instead.
+
   AdminEnableUserV2 enables a user
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
@@ -2098,6 +2289,11 @@ func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo run
 	}
 }
 
+/*
+  AdminEnableUserV2Short enables a user
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2148,6 +2344,8 @@ func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInf
 }
 
 /*
+Deprecated: Use AdminGetAgeRestrictionStatusV2Short instead.
+
   AdminGetAgeRestrictionStatusV2 gets age restriction status
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
@@ -2202,6 +2400,11 @@ func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionSt
 	}
 }
 
+/*
+  AdminGetAgeRestrictionStatusV2Short gets age restriction status
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+*/
 func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2250,6 +2453,8 @@ func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrict
 }
 
 /*
+Deprecated: Use AdminGetAgeRestrictionStatusV3Short instead.
+
   AdminGetAgeRestrictionStatusV3 gets age restriction status
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;&lt;br&gt;action code: 10138
@@ -2310,6 +2515,11 @@ func (a *Client) AdminGetAgeRestrictionStatusV3(params *AdminGetAgeRestrictionSt
 	}
 }
 
+/*
+  AdminGetAgeRestrictionStatusV3Short gets age restriction status
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;&lt;br&gt;action code: 10138
+*/
 func (a *Client) AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrictionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2362,6 +2572,8 @@ func (a *Client) AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrict
 }
 
 /*
+Deprecated: Use AdminGetBulkUserByEmailAddressV3Short instead.
+
   AdminGetBulkUserByEmailAddressV3 gets bulk user by email address
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
@@ -2424,6 +2636,13 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3(params *AdminGetBulkUserByEmai
 	}
 }
 
+/*
+  AdminGetBulkUserByEmailAddressV3Short gets bulk user by email address
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search user by the list of email addresses&lt;/p&gt;
+			&lt;br&gt;action code : 10132
+*/
 func (a *Client) AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserByEmailAddressV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2476,6 +2695,8 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserB
 }
 
 /*
+Deprecated: Use AdminGetListCountryAgeRestrictionV3Short instead.
+
   AdminGetListCountryAgeRestrictionV3 gets list country age restriction
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&lt;br&gt;action code : 10139
@@ -2533,6 +2754,11 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3(params *AdminGetListCountry
 	}
 }
 
+/*
+  AdminGetListCountryAgeRestrictionV3Short gets list country age restriction
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&lt;br&gt;action code : 10139
+*/
 func (a *Client) AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListCountryAgeRestrictionV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2583,6 +2809,8 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCo
 }
 
 /*
+Deprecated: Use AdminGetListJusticePlatformAccountsShort instead.
+
   AdminGetListJusticePlatformAccounts gets user justice platform accounts
 
   This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
@@ -2643,6 +2871,11 @@ func (a *Client) AdminGetListJusticePlatformAccounts(params *AdminGetListJustice
 	}
 }
 
+/*
+  AdminGetListJusticePlatformAccountsShort gets user justice platform accounts
+
+  This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
+*/
 func (a *Client) AdminGetListJusticePlatformAccountsShort(params *AdminGetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListJusticePlatformAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2695,6 +2928,8 @@ func (a *Client) AdminGetListJusticePlatformAccountsShort(params *AdminGetListJu
 }
 
 /*
+Deprecated: Use AdminGetMyUserV3Short instead.
+
   AdminGetMyUserV3 gets my user
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
@@ -2746,6 +2981,11 @@ func (a *Client) AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runti
 	}
 }
 
+/*
+  AdminGetMyUserV3Short gets my user
+
+  &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
+*/
 func (a *Client) AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2792,6 +3032,8 @@ func (a *Client) AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo 
 }
 
 /*
+Deprecated: Use AdminGetUserBanV2Short instead.
+
   AdminGetUserBanV2 gets user s bans
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
@@ -2846,6 +3088,11 @@ func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo run
 	}
 }
 
+/*
+  AdminGetUserBanV2Short gets user s bans
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
+*/
 func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2894,6 +3141,8 @@ func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInf
 }
 
 /*
+Deprecated: Use AdminGetUserBanV3Short instead.
+
   AdminGetUserBanV3 gets user s bans
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;&lt;/p&gt;
@@ -2954,6 +3203,14 @@ func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo run
 	}
 }
 
+/*
+  AdminGetUserBanV3Short gets user s bans
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;&lt;/p&gt;
+&lt;p&gt;This endpoint retrieve the first page of the data if after and before parameters is empty&lt;/p&gt;
+&lt;p&gt;action code : 10126&lt;/p&gt;
+
+*/
 func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3004,6 +3261,8 @@ func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInf
 }
 
 /*
+Deprecated: Use AdminGetUserByEmailAddressV3Short instead.
+
   AdminGetUserByEmailAddressV3 gets user by email address
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
@@ -3066,6 +3325,13 @@ func (a *Client) AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddress
 	}
 }
 
+/*
+  AdminGetUserByEmailAddressV3Short gets user by email address
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search user who owns the given email address&lt;/p&gt;
+			&lt;br&gt;action code : 10132
+*/
 func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3118,6 +3384,8 @@ func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAd
 }
 
 /*
+Deprecated: Use AdminGetUserByPlatformUserIDV3Short instead.
+
   AdminGetUserByPlatformUserIDV3 admins get user by platform user ID
 
   Get User By Platform User ID
@@ -3180,6 +3448,16 @@ func (a *Client) AdminGetUserByPlatformUserIDV3(params *AdminGetUserByPlatformUs
 	}
 }
 
+/*
+  AdminGetUserByPlatformUserIDV3Short admins get user by platform user ID
+
+  Get User By Platform User ID
+
+This endpoint return user information by given platform ID and platform user ID
+
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+*/
 func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3230,6 +3508,8 @@ func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatf
 }
 
 /*
+Deprecated: Use AdminGetUserByUserIDV2Short instead.
+
   AdminGetUserByUserIDV2 gets user by user Id
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
@@ -3281,6 +3561,11 @@ func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, au
 	}
 }
 
+/*
+  AdminGetUserByUserIDV2Short gets user by user Id
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
+*/
 func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3327,6 +3612,8 @@ func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Param
 }
 
 /*
+Deprecated: Use AdminGetUserByUserIDV3Short instead.
+
   AdminGetUserByUserIDV3 admins get user by user Id
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
@@ -3387,6 +3674,11 @@ func (a *Client) AdminGetUserByUserIDV3(params *AdminGetUserByUserIDV3Params, au
 	}
 }
 
+/*
+  AdminGetUserByUserIDV3Short admins get user by user Id
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
+*/
 func (a *Client) AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3439,6 +3731,8 @@ func (a *Client) AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Param
 }
 
 /*
+Deprecated: Use AdminGetUserDeletionStatusV3Short instead.
+
   AdminGetUserDeletionStatusV3 gets user deletion status
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]&#39; &lt;br&gt;action code : 10145
@@ -3496,6 +3790,11 @@ func (a *Client) AdminGetUserDeletionStatusV3(params *AdminGetUserDeletionStatus
 	}
 }
 
+/*
+  AdminGetUserDeletionStatusV3Short gets user deletion status
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]&#39; &lt;br&gt;action code : 10145
+*/
 func (a *Client) AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3546,6 +3845,8 @@ func (a *Client) AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionS
 }
 
 /*
+Deprecated: Use AdminGetUserLoginHistoriesV3Short instead.
+
   AdminGetUserLoginHistoriesV3 gets user s login histories
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
@@ -3600,6 +3901,11 @@ func (a *Client) AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistories
 	}
 }
 
+/*
+  AdminGetUserLoginHistoriesV3Short gets user s login histories
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
+*/
 func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3648,6 +3954,8 @@ func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHist
 }
 
 /*
+Deprecated: Use AdminGetUserPlatformAccountsV3Short instead.
+
   AdminGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
@@ -3710,6 +4018,16 @@ func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAcco
 	}
 }
 
+/*
+  AdminGetUserPlatformAccountsV3Short gets platform accounts linked to the user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
+			&lt;h2&gt;Justice Platform Account&lt;/h2&gt;
+			&lt;p&gt;The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ]
+				is required in order to read the UserID who linked with the user.&lt;/p&gt;
+			&lt;br&gt;Gets platform accounts that are already linked with user account
+        	&lt;br&gt;action code : 10128
+*/
 func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3760,6 +4078,8 @@ func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatfor
 }
 
 /*
+Deprecated: Use AdminInviteUserV3Short instead.
+
   AdminInviteUserV3 invites user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]
@@ -3828,6 +4148,19 @@ func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo run
 	}
 }
 
+/*
+  AdminInviteUserV3Short invites user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]
+
+Use this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace.
+Substitute the namespace in path parameter to desired role&#39;s namespace&#39;. An admin user can only
+assign role to namespaces that the admin user has the required permission.
+Role is optional, if not specified then it will only assign User role
+
+The invited admin will also assigned with &#34;User&#34; role by default.
+
+*/
 func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3880,6 +4213,8 @@ func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInf
 }
 
 /*
+Deprecated: Use AdminLinkPlatformAccountShort instead.
+
   AdminLinkPlatformAccount links a platform user account to user account
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -3939,6 +4274,13 @@ func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams
 	}
 }
 
+/*
+  AdminLinkPlatformAccountShort links a platform user account to user account
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+Force linking platform account to user User Account. This endpoint intended for admin to forcefully link account to user.
+
+*/
 func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3989,6 +4331,8 @@ func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountP
 }
 
 /*
+Deprecated: Use AdminListUserIDByUserIDsV3Short instead.
+
   AdminListUserIDByUserIDsV3 lists user by user ID
 
   List User By User ID
@@ -4049,6 +4393,14 @@ func (a *Client) AdminListUserIDByUserIDsV3(params *AdminListUserIDByUserIDsV3Pa
 	}
 }
 
+/*
+  AdminListUserIDByUserIDsV3Short lists user by user ID
+
+  List User By User ID
+This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
+This endpoint intended to list user information from the given list of userID and namespace
+
+*/
 func (a *Client) AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4099,6 +4451,8 @@ func (a *Client) AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserID
 }
 
 /*
+Deprecated: Use AdminListUsersV3Short instead.
+
   AdminListUsersV3 admins list users v3
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
@@ -4160,6 +4514,15 @@ func (a *Client) AdminListUsersV3(params *AdminListUsersV3Params, authInfo runti
 	}
 }
 
+/*
+  AdminListUsersV3Short admins list users v3
+
+  This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
+
+Returns list of users ID and namespace with their Justice platform account, under a namespace. If user
+doesn&#39;t have Justice platform account, the linkedPlatforms will be empty array.&#39;
+
+*/
 func (a *Client) AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4210,6 +4573,8 @@ func (a *Client) AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo 
 }
 
 /*
+Deprecated: Use AdminPlatformLinkV3Short instead.
+
   AdminPlatformLinkV3 links user s account with platform
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
@@ -4292,6 +4657,30 @@ func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo
 	}
 }
 
+/*
+  AdminPlatformLinkV3Short links user s account with platform
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+			&lt;/ul&gt;
+*/
 func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4346,6 +4735,8 @@ func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, aut
 }
 
 /*
+Deprecated: Use AdminPlatformUnlinkV3Short instead.
+
   AdminPlatformUnlinkV3 unlinks user s account from specific platform
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.
@@ -4433,6 +4824,38 @@ func (a *Client) AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, auth
 	}
 }
 
+/*
+  AdminPlatformUnlinkV3Short unlinks user s account from specific platform
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
+			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;
+			&lt;br&gt;Unlink user&#39;s account from justice platform will enable password token grant and password update.
+			&lt;br&gt;
+			&lt;br&gt;If you want to unlink user&#39;s account in a game namespace, you have to specify &lt;i&gt;platformNamespace&lt;/i&gt; to that game namespace.
+			&lt;br&gt;
+			&lt;br&gt;action code : 10121 &lt;/p&gt;
+*/
 func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4485,6 +4908,8 @@ func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params,
 }
 
 /*
+Deprecated: Use AdminPutUserRolesV2Short instead.
+
   AdminPutUserRolesV2 updates user roles will replace all the existing roles
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
@@ -4542,6 +4967,11 @@ func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo
 	}
 }
 
+/*
+  AdminPutUserRolesV2Short updates user roles will replace all the existing roles
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4592,6 +5022,8 @@ func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, aut
 }
 
 /*
+Deprecated: Use AdminResetPasswordV2Short instead.
+
   AdminResetPasswordV2 updates user password
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
@@ -4652,6 +5084,11 @@ func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authIn
 	}
 }
 
+/*
+  AdminResetPasswordV2Short updates user password
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4704,6 +5141,8 @@ func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, a
 }
 
 /*
+Deprecated: Use AdminSaveUserRoleV3Short instead.
+
   AdminSaveUserRoleV3 admins save user role v3
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE] permission.
@@ -4768,6 +5207,15 @@ func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo
 	}
 }
 
+/*
+  AdminSaveUserRoleV3Short admins save user role v3
+
+  This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE] permission.
+
+User&#39;s roles will be updated with given roles (replacing current user&#39;s role). Request body need to specify allowed namespace for given role to support new role restriction.
+Skipped the check whether the user performing the request is a role manager / assigner since there is a plan to discard the role manager / assigner.
+
+*/
 func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4820,6 +5268,8 @@ func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, aut
 }
 
 /*
+Deprecated: Use AdminSearchUserV3Short instead.
+
   AdminSearchUserV3 searches user
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]&lt;/p&gt;
@@ -4889,6 +5339,23 @@ func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo run
 	}
 }
 
+/*
+  AdminSearchUserV3Short searches user
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]&lt;/p&gt;
+               &lt;p&gt;Endpoint behavior :
+               &lt;ul&gt;&lt;li&gt;by default this endpoint searches all users on the specified namespace&lt;/li&gt;
+               &lt;li&gt;if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query&lt;/li&gt;
+               &lt;li&gt;if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range&lt;/li&gt;
+               &lt;li&gt;if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range&lt;/li&gt;
+               &lt;li&gt;if startDate parameter is defined, endpoint will search users that created start from the defined date&lt;/li&gt;
+               &lt;li&gt;if endDate parameter is defined, endpoint will search users that created until the defined date&lt;/li&gt;
+&lt;li&gt;if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to &lt;/li&gt;
+&lt;li&gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName&lt;/li&gt;
+               &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+             &lt;br&gt;action code : 10133
+*/
 func (a *Client) AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -4939,6 +5406,8 @@ func (a *Client) AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInf
 }
 
 /*
+Deprecated: Use AdminSearchUsersV2Short instead.
+
   AdminSearchUsersV2 searches users
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
@@ -4993,6 +5462,11 @@ func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo r
 	}
 }
 
+/*
+  AdminSearchUsersV2Short searches users
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
+*/
 func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5041,6 +5515,8 @@ func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authI
 }
 
 /*
+Deprecated: Use AdminSendVerificationCodeV3Short instead.
+
   AdminSendVerificationCodeV3 sends verification code to user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
@@ -5121,6 +5597,28 @@ func (a *Client) AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3
 	}
 }
 
+/*
+  AdminSendVerificationCodeV3Short sends verification code to user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+&lt;p&gt;The verification code is sent to email address.&lt;/p&gt;
+&lt;p&gt;Available contexts for use : &lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;
+		&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
+		&lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;
+		&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;
+		&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+			If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;action code: 10116&lt;/p&gt;
+
+*/
 func (a *Client) AdminSendVerificationCodeV3Short(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5175,6 +5673,8 @@ func (a *Client) AdminSendVerificationCodeV3Short(params *AdminSendVerificationC
 }
 
 /*
+Deprecated: Use AdminUpdateAgeRestrictionConfigV2Short instead.
+
   AdminUpdateAgeRestrictionConfigV2 updates age restriction config value
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
@@ -5232,6 +5732,11 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestric
 	}
 }
 
+/*
+  AdminUpdateAgeRestrictionConfigV2Short updates age restriction config value
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+*/
 func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5282,6 +5787,8 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRe
 }
 
 /*
+Deprecated: Use AdminUpdateAgeRestrictionConfigV3Short instead.
+
   AdminUpdateAgeRestrictionConfigV3 updates age restriction config value
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39; &lt;br&gt; action code: 10122
@@ -5339,6 +5846,11 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3(params *AdminUpdateAgeRestric
 	}
 }
 
+/*
+  AdminUpdateAgeRestrictionConfigV3Short updates age restriction config value
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39; &lt;br&gt; action code: 10122
+*/
 func (a *Client) AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRestrictionConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5389,6 +5901,8 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRe
 }
 
 /*
+Deprecated: Use AdminUpdateCountryAgeRestrictionV3Short instead.
+
   AdminUpdateCountryAgeRestrictionV3 updates country s age restriction
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;&lt;br&gt;action code: 10123
@@ -5449,6 +5963,11 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAg
 	}
 }
 
+/*
+  AdminUpdateCountryAgeRestrictionV3Short updates country s age restriction
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;&lt;br&gt;action code: 10123
+*/
 func (a *Client) AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5501,6 +6020,8 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCoun
 }
 
 /*
+Deprecated: Use AdminUpdateUserBanV3Short instead.
+
   AdminUpdateUserBanV3 enables or disable ban for a single user
 
   Required permission ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId}
@@ -5565,6 +6086,15 @@ func (a *Client) AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authIn
 	}
 }
 
+/*
+  AdminUpdateUserBanV3Short enables or disable ban for a single user
+
+  Required permission ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId}
+[UPDATE] &lt;br&gt;Set ban status for a single user for a specific ban. Retrieve
+user ban and choose the ban ID. Set the form parameter to true/false to enable
+or disable the ban. &lt;br&gt;action code : 10142&#39;
+
+*/
 func (a *Client) AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5617,6 +6147,8 @@ func (a *Client) AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, a
 }
 
 /*
+Deprecated: Use AdminUpdateUserDeletionStatusV3Short instead.
+
   AdminUpdateUserDeletionStatusV3 updates user deletion status
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]&#39; &lt;br&gt;action code : 10144
@@ -5677,6 +6209,11 @@ func (a *Client) AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletion
 	}
 }
 
+/*
+  AdminUpdateUserDeletionStatusV3Short updates user deletion status
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]&#39; &lt;br&gt;action code : 10144
+*/
 func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5729,6 +6266,8 @@ func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDel
 }
 
 /*
+Deprecated: Use AdminUpdateUserPermissionV3Short instead.
+
   AdminUpdateUserPermissionV3 updates user permissions
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -5813,6 +6352,38 @@ func (a *Client) AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3
 	}
 }
 
+/*
+  AdminUpdateUserPermissionV3Short updates user permissions
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+
+*/
 func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5863,6 +6434,8 @@ func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermiss
 }
 
 /*
+Deprecated: Use AdminUpdateUserStatusV3Short instead.
+
   AdminUpdateUserStatusV3 updates user status
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
@@ -5927,6 +6500,18 @@ func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, 
 	}
 }
 
+/*
+  AdminUpdateUserStatusV3Short updates user status
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+		&lt;p&gt;This endpoint disable or enable user account. Set the enable status on the request body to true to enable user account or set to false to disable it. &lt;/p&gt;
+		&lt;p&gt;Disable user for &lt;strong&gt;Account Disable &lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your disable account request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;Enable user ignore field &#39;reason&#39; in the request body. &lt;/p&gt;
+		&lt;br&gt;action code : 10143
+*/
 func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -5977,6 +6562,8 @@ func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Par
 }
 
 /*
+Deprecated: Use AdminUpdateUserV2Short instead.
+
   AdminUpdateUserV2 updates user
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
@@ -6037,6 +6624,11 @@ func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo run
 	}
 }
 
+/*
+  AdminUpdateUserV2Short updates user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+*/
 func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6089,6 +6681,8 @@ func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInf
 }
 
 /*
+Deprecated: Use AdminUpdateUserV3Short instead.
+
   AdminUpdateUserV3 updates user
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -6161,6 +6755,20 @@ func (a *Client) AdminUpdateUserV3(params *AdminUpdateUserV3Params, authInfo run
 	}
 }
 
+/*
+  AdminUpdateUserV3Short updates user
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
+*/
 func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6215,6 +6823,8 @@ func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInf
 }
 
 /*
+Deprecated: Use AdminUpgradeHeadlessAccountV3Short instead.
+
   AdminUpgradeHeadlessAccountV3 verifies or consume verification code
 
   &lt;p&gt;If validateOnly is set false, will upgrade headless account with verification code&lt;/p&gt;
@@ -6291,6 +6901,24 @@ func (a *Client) AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccou
 	}
 }
 
+/*
+  AdminUpgradeHeadlessAccountV3Short verifies or consume verification code
+
+  &lt;p&gt;If validateOnly is set false, will upgrade headless account with verification code&lt;/p&gt;
+Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+     	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+	By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+     	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+	In order to get a verification code for the endpoint, please check the send verification code endpoint. &lt;/p&gt;
+     	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
+	Supported user data fields :
+	&lt;ul&gt;
+		&lt;li&gt;displayName&lt;/li&gt;
+		&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+		&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;br&gt;action code : 10124&lt;/p&gt;
+*/
 func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6345,6 +6973,8 @@ func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadless
 }
 
 /*
+Deprecated: Use AdminVerifyAccountV3Short instead.
+
   AdminVerifyAccountV3 verifies or consume verification code sent to user
 
   &lt;p&gt;Will verify account and consume code if validateOnly is set false in request body&lt;/p&gt;
@@ -6408,6 +7038,14 @@ func (a *Client) AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authIn
 	}
 }
 
+/*
+  AdminVerifyAccountV3Short verifies or consume verification code sent to user
+
+  &lt;p&gt;Will verify account and consume code if validateOnly is set false in request body&lt;/p&gt;
+&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
+&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
+*/
 func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6460,6 +7098,8 @@ func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, a
 }
 
 /*
+Deprecated: Use AdminVerifyUserWithoutVerificationCodeV3Short instead.
+
   AdminVerifyUserWithoutVerificationCodeV3 verifies user without verification code
 
   &lt;p&gt;This endpoint force verify user. Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&lt;/p&gt;
@@ -6522,6 +7162,13 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUse
 	}
 }
 
+/*
+  AdminVerifyUserWithoutVerificationCodeV3Short verifies user without verification code
+
+  &lt;p&gt;This endpoint force verify user. Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&lt;/p&gt;
+&lt;p&gt;action code: 10118&lt;/p&gt;
+
+*/
 func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6574,6 +7221,8 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVeri
 }
 
 /*
+Deprecated: Use BanUserShort instead.
+
   BanUser bans a single user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
@@ -6634,6 +7283,11 @@ func (a *Client) BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  BanUserShort bans a single user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
+*/
 func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6686,6 +7340,8 @@ func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuth
 }
 
 /*
+Deprecated: Use CheckUserAvailabilityShort instead.
+
   CheckUserAvailability checks user s account availability
 
   Check user&#39;s account availability.
@@ -6756,6 +7412,21 @@ func (a *Client) CheckUserAvailability(params *CheckUserAvailabilityParams, auth
 	}
 }
 
+/*
+  CheckUserAvailabilityShort checks user s account availability
+
+  Check user&#39;s account availability.
+Available field :
+	- displayName
+
+If request include access token with user ID data, that user ID will be excluded from availability check.
+For example, in case user update his emailAddress, he can use his own emailAddress to update his account.
+
+Response Code :
+	- Account Available : 404 (not found)
+	- Account Not Available : 204 (no content)
+
+*/
 func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6808,6 +7479,8 @@ func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams,
 }
 
 /*
+Deprecated: Use CreateUserShort instead.
+
   CreateUser creates user
 
   &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER [CREATE]&#39;.&lt;/p&gt;
@@ -6872,6 +7545,18 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CreateUserShort creates user
+
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PHONEPASSWD&lt;/strong&gt;: an authentication type used for new user registration through phone number.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+
+*/
 func (a *Client) CreateUserShort(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -6922,6 +7607,8 @@ func (a *Client) CreateUserShort(params *CreateUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use CreateUserFromInvitationV3Short instead.
+
   CreateUserFromInvitationV3 creates user from invitation
 
   This endpoint create user from saved roles when creating invitation and submitted data.
@@ -6985,6 +7672,20 @@ func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Pa
 	}
 }
 
+/*
+  CreateUserFromInvitationV3Short creates user from invitation
+
+  This endpoint create user from saved roles when creating invitation and submitted data.
+User will be able to login after completing submitting the data through this endpoint.
+Available Authentication Types:
+
+	EMAILPASSWD: an authentication type used for new user registration through email.
+
+Country use ISO3166-1 alpha-2 two letter, e.g. US.
+
+Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
+
+*/
 func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7033,6 +7734,8 @@ func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitatio
 }
 
 /*
+Deprecated: Use DeleteUserShort instead.
+
   DeleteUser deletes user
 
   Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;
@@ -7087,6 +7790,11 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  DeleteUserShort deletes user
+
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) DeleteUserShort(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7135,6 +7843,8 @@ func (a *Client) DeleteUserShort(params *DeleteUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use DeleteUserInformationShort instead.
+
   DeleteUserInformation deletes user s information
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
@@ -7189,6 +7899,11 @@ func (a *Client) DeleteUserInformation(params *DeleteUserInformationParams, auth
 	}
 }
 
+/*
+  DeleteUserInformationShort deletes user s information
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
+*/
 func (a *Client) DeleteUserInformationShort(params *DeleteUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserInformationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7237,6 +7952,8 @@ func (a *Client) DeleteUserInformationShort(params *DeleteUserInformationParams,
 }
 
 /*
+Deprecated: Use DeleteUserPermissionShort instead.
+
   DeleteUserPermission deletes user permission
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
@@ -7294,6 +8011,11 @@ func (a *Client) DeleteUserPermission(params *DeleteUserPermissionParams, authIn
 	}
 }
 
+/*
+  DeleteUserPermissionShort deletes user permission
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) DeleteUserPermissionShort(params *DeleteUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7344,6 +8066,8 @@ func (a *Client) DeleteUserPermissionShort(params *DeleteUserPermissionParams, a
 }
 
 /*
+Deprecated: Use DeleteUserRoleShort instead.
+
   DeleteUserRole deletes user role
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
@@ -7401,6 +8125,11 @@ func (a *Client) DeleteUserRole(params *DeleteUserRoleParams, authInfo runtime.C
 	}
 }
 
+/*
+  DeleteUserRoleShort deletes user role
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
+*/
 func (a *Client) DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRoleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7451,6 +8180,8 @@ func (a *Client) DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runt
 }
 
 /*
+Deprecated: Use DisableUserShort instead.
+
   DisableUser disables a user
 
   &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/disable&lt;/h2&gt;
@@ -7517,6 +8248,17 @@ func (a *Client) DisableUser(params *DisableUserParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  DisableUserShort disables a user
+
+  &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/disable&lt;/h2&gt;
++				&lt;p&gt;Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;&lt;p&gt;
+		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your deletion request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
+*/
 func (a *Client) DisableUserShort(params *DisableUserParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7569,6 +8311,8 @@ func (a *Client) DisableUserShort(params *DisableUserParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DisableUserBanShort instead.
+
   DisableUserBan disables ban for a single user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Notes for using IAM in publisher - game studio scenarios&lt;/b&gt;&lt;br&gt;&lt;p&gt;The endpoint allows:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;li&gt;The admin user in game namespace disables user’s ban in game namespace.&lt;/li&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Other scenarios are not supported and will return 403: Forbidden.&lt;/p&gt;
@@ -7626,6 +8370,11 @@ func (a *Client) DisableUserBan(params *DisableUserBanParams, authInfo runtime.C
 	}
 }
 
+/*
+  DisableUserBanShort disables ban for a single user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Notes for using IAM in publisher - game studio scenarios&lt;/b&gt;&lt;br&gt;&lt;p&gt;The endpoint allows:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;li&gt;The admin user in game namespace disables user’s ban in game namespace.&lt;/li&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Other scenarios are not supported and will return 403: Forbidden.&lt;/p&gt;
+*/
 func (a *Client) DisableUserBanShort(params *DisableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserBanOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7676,6 +8425,8 @@ func (a *Client) DisableUserBanShort(params *DisableUserBanParams, authInfo runt
 }
 
 /*
+Deprecated: Use EnableUserShort instead.
+
   EnableUser enables a user
 
   &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/enable&lt;/h2&gt;
@@ -7734,6 +8485,12 @@ func (a *Client) EnableUser(params *EnableUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  EnableUserShort enables a user
+
+  &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/enable&lt;/h2&gt;
+				&lt;p&gt;Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;&lt;p&gt;
+*/
 func (a *Client) EnableUserShort(params *EnableUserParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7784,6 +8541,8 @@ func (a *Client) EnableUserShort(params *EnableUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use EnableUserBanShort instead.
+
   EnableUserBan enables ban for a single user
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.
@@ -7841,6 +8600,11 @@ func (a *Client) EnableUserBan(params *EnableUserBanParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  EnableUserBanShort enables ban for a single user
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.
+*/
 func (a *Client) EnableUserBanShort(params *EnableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserBanOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7891,6 +8655,8 @@ func (a *Client) EnableUserBanShort(params *EnableUserBanParams, authInfo runtim
 }
 
 /*
+Deprecated: Use ForgotPasswordShort instead.
+
   ForgotPassword requests password reset code
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header&lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
@@ -7948,6 +8714,11 @@ func (a *Client) ForgotPassword(params *ForgotPasswordParams, authInfo runtime.C
 	}
 }
 
+/*
+  ForgotPasswordShort requests password reset code
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header&lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+*/
 func (a *Client) ForgotPasswordShort(params *ForgotPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ForgotPasswordNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -7998,6 +8769,8 @@ func (a *Client) ForgotPasswordShort(params *ForgotPasswordParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetAdminInvitationV3Short instead.
+
   GetAdminInvitationV3 gets user invitation
 
   Endpoint to validate user invitation. When not found, it could also means the invitation has expired.
@@ -8050,6 +8823,12 @@ func (a *Client) GetAdminInvitationV3(params *GetAdminInvitationV3Params, authIn
 	}
 }
 
+/*
+  GetAdminInvitationV3Short gets user invitation
+
+  Endpoint to validate user invitation. When not found, it could also means the invitation has expired.
+
+*/
 func (a *Client) GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8096,6 +8875,8 @@ func (a *Client) GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, a
 }
 
 /*
+Deprecated: Use GetAdminUsersByRoleIDShort instead.
+
   GetAdminUsersByRoleID gets admin users by role Id
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
@@ -8159,6 +8940,14 @@ func (a *Client) GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, auth
 	}
 }
 
+/*
+  GetAdminUsersByRoleIDShort gets admin users by role Id
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
+			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
+			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
+*/
 func (a *Client) GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8211,6 +9000,8 @@ func (a *Client) GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams,
 }
 
 /*
+Deprecated: Use GetAdminUsersByRoleIDV3Short instead.
+
   GetAdminUsersByRoleIDV3 gets admin users by role Id
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
@@ -8275,6 +9066,15 @@ func (a *Client) GetAdminUsersByRoleIDV3(params *GetAdminUsersByRoleIDV3Params, 
 	}
 }
 
+/*
+  GetAdminUsersByRoleIDV3Short gets admin users by role Id
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
+			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
+			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
+			&lt;br&gt;action code : 10140
+*/
 func (a *Client) GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8327,6 +9127,8 @@ func (a *Client) GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Par
 }
 
 /*
+Deprecated: Use GetListCountryAgeRestrictionShort instead.
+
   GetListCountryAgeRestriction gets list country age restriction
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
@@ -8381,6 +9183,11 @@ func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestricti
 	}
 }
 
+/*
+  GetListCountryAgeRestrictionShort gets list country age restriction
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
+*/
 func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8429,6 +9236,8 @@ func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRest
 }
 
 /*
+Deprecated: Use GetListJusticePlatformAccountsShort instead.
+
   GetListJusticePlatformAccounts gets user justice platform accounts
 
   This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
@@ -8480,6 +9289,11 @@ func (a *Client) GetListJusticePlatformAccounts(params *GetListJusticePlatformAc
 	}
 }
 
+/*
+  GetListJusticePlatformAccountsShort gets user justice platform accounts
+
+  This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
+*/
 func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8526,6 +9340,8 @@ func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatf
 }
 
 /*
+Deprecated: Use GetPublisherUserShort instead.
+
   GetPublisherUser gets publisher user
 
   &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].&lt;/p&gt;
@@ -8585,6 +9401,13 @@ func (a *Client) GetPublisherUser(params *GetPublisherUserParams, authInfo runti
 	}
 }
 
+/*
+  GetPublisherUserShort gets publisher user
+
+  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;Restriction:&lt;/strong&gt;
+		Path Parameter &lt;strong&gt;namespace&lt;/strong&gt; can be provided only with game namespace&lt;/p&gt;
+*/
 func (a *Client) GetPublisherUserShort(params *GetPublisherUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8635,6 +9458,8 @@ func (a *Client) GetPublisherUserShort(params *GetPublisherUserParams, authInfo 
 }
 
 /*
+Deprecated: Use GetUserBanHistoryShort instead.
+
   GetUserBanHistory gets user s bans history
 
   Required permissions &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
@@ -8689,6 +9514,11 @@ func (a *Client) GetUserBanHistory(params *GetUserBanHistoryParams, authInfo run
 	}
 }
 
+/*
+  GetUserBanHistoryShort gets user s bans history
+
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
+*/
 func (a *Client) GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserBanHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8737,6 +9567,8 @@ func (a *Client) GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInf
 }
 
 /*
+Deprecated: Use GetUserByLoginIDShort instead.
+
   GetUserByLoginID gets user by login Id
 
   Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
@@ -8791,6 +9623,11 @@ func (a *Client) GetUserByLoginID(params *GetUserByLoginIDParams, authInfo runti
 	}
 }
 
+/*
+  GetUserByLoginIDShort gets user by login Id
+
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
+*/
 func (a *Client) GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByLoginIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8839,6 +9676,8 @@ func (a *Client) GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo 
 }
 
 /*
+Deprecated: Use GetUserByPlatformUserIDShort instead.
+
   GetUserByPlatformUserID gets user by platform user ID
 
   Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
@@ -8896,6 +9735,11 @@ func (a *Client) GetUserByPlatformUserID(params *GetUserByPlatformUserIDParams, 
 	}
 }
 
+/*
+  GetUserByPlatformUserIDShort gets user by platform user ID
+
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
+*/
 func (a *Client) GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByPlatformUserIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -8946,6 +9790,8 @@ func (a *Client) GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDPar
 }
 
 /*
+Deprecated: Use GetUserByUserIDShort instead.
+
   GetUserByUserID gets user by user Id
 
   Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
@@ -8997,6 +9843,11 @@ func (a *Client) GetUserByUserID(params *GetUserByUserIDParams, authInfo runtime
 	}
 }
 
+/*
+  GetUserByUserIDShort gets user by user Id
+
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
+*/
 func (a *Client) GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByUserIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9043,6 +9894,8 @@ func (a *Client) GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetUserInformationShort instead.
+
   GetUserInformation gets user s information
 
   Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
@@ -9097,6 +9950,11 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo r
 	}
 }
 
+/*
+  GetUserInformationShort gets user s information
+
+  Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
+*/
 func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9145,6 +10003,8 @@ func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authI
 }
 
 /*
+Deprecated: Use GetUserJusticePlatformAccountShort instead.
+
   GetUserJusticePlatformAccount gets the justice linked accounts on the designated namespace
 
   &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -9204,6 +10064,16 @@ func (a *Client) GetUserJusticePlatformAccount(params *GetUserJusticePlatformAcc
 	}
 }
 
+/*
+  GetUserJusticePlatformAccountShort gets the justice linked accounts on the designated namespace
+
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It is going to be removed on November 26th, 2018&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The endpoint returns user Justice platform account linked with the given user. If the user Justice platform account doesn&#39;t exist in the designated namespace, the endpoint is going to &lt;strong&gt;create and return the new Justice platform account.&lt;/strong&gt;
+The newly user Justice platform account is going to be forced to perform token grant through the given user and can&#39;t perform password update&lt;/p&gt;
+&lt;h3&gt;Read Justice Platform Account UserID&lt;/h3&gt;
+&lt;p&gt;In order to read the Justice platform account UserID, it is required to have the permission: &lt;strong&gt;NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&lt;/strong&gt;, otherwise the UserID is going to be censored and replaced with “Redacted” text.&lt;/p&gt;
+*/
 func (a *Client) GetUserJusticePlatformAccountShort(params *GetUserJusticePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJusticePlatformAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9252,6 +10122,8 @@ func (a *Client) GetUserJusticePlatformAccountShort(params *GetUserJusticePlatfo
 }
 
 /*
+Deprecated: Use GetUserLoginHistoriesShort instead.
+
   GetUserLoginHistories gets user s login histories
 
   Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
@@ -9306,6 +10178,11 @@ func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, auth
 	}
 }
 
+/*
+  GetUserLoginHistoriesShort gets user s login histories
+
+  Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
+*/
 func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9354,6 +10231,8 @@ func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams,
 }
 
 /*
+Deprecated: Use GetUserMappingShort instead.
+
   GetUserMapping gets user mapping
 
   &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
@@ -9414,6 +10293,14 @@ func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.C
 	}
 }
 
+/*
+  GetUserMappingShort gets user mapping
+
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
+*/
 func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9464,6 +10351,8 @@ func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetUserPlatformAccountsShort instead.
+
   GetUserPlatformAccounts gets platform accounts linked to the user
 
 
@@ -9522,6 +10411,15 @@ func (a *Client) GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, 
 	}
 }
 
+/*
+  GetUserPlatformAccountsShort gets platform accounts linked to the user
+
+
+&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
+&lt;h2&gt;Justice Platform Account&lt;/h2&gt;
+&lt;p&gt;The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ] is required in order to read the UserID who linked with the user.&lt;/p&gt;
+
+*/
 func (a *Client) GetUserPlatformAccountsShort(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9570,6 +10468,8 @@ func (a *Client) GetUserPlatformAccountsShort(params *GetUserPlatformAccountsPar
 }
 
 /*
+Deprecated: Use GetUsersByLoginIdsShort instead.
+
   GetUsersByLoginIds gets a list of users by their login Id
 
   Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
@@ -9624,6 +10524,11 @@ func (a *Client) GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo r
 	}
 }
 
+/*
+  GetUsersByLoginIdsShort gets a list of users by their login Id
+
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
+*/
 func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9672,6 +10577,8 @@ func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authI
 }
 
 /*
+Deprecated: Use ListAdminsV3Short instead.
+
   ListAdminsV3 lists user admins
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
@@ -9729,6 +10636,14 @@ func (a *Client) ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.Clien
 	}
 }
 
+/*
+  ListAdminsV3Short lists user admins
+
+  This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
+
+List all users that has admin role (role that has admin_role attribute set to true).
+
+*/
 func (a *Client) ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9777,6 +10692,8 @@ func (a *Client) ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.
 }
 
 /*
+Deprecated: Use ListCrossNamespaceAccountLinkShort instead.
+
   ListCrossNamespaceAccountLink links existing account with another account in different namespace
 
   &lt;h2&gt;The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link&lt;/h2&gt;
@@ -9840,6 +10757,17 @@ func (a *Client) ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccount
 	}
 }
 
+/*
+  ListCrossNamespaceAccountLinkShort links existing account with another account in different namespace
+
+  &lt;h2&gt;The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link&lt;/h2&gt;
+&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+&lt;p&gt;
+	Access token from original namespace is needed as authorization header. Access token from designated account needed as form parameter to verify the ownership of that account.
+	When platformID (device platfom ID) is specified, platform login method for that specific platform ID is removed.
+	This means to protect account from second hand device usage.
+&lt;/p&gt;
+*/
 func (a *Client) ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -9890,6 +10818,8 @@ func (a *Client) ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAc
 }
 
 /*
+Deprecated: Use PlatformLinkShort instead.
+
   PlatformLink links user s account with platform
 
   &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
@@ -9968,6 +10898,26 @@ func (a *Client) PlatformLink(params *PlatformLinkParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  PlatformLinkShort links user s account with platform
+
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
+*/
 func (a *Client) PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10022,6 +10972,8 @@ func (a *Client) PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use PlatformUnlinkShort instead.
+
   PlatformUnlink unlinks user s account with platform
 
   &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
@@ -10097,6 +11049,26 @@ func (a *Client) PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.C
 	}
 }
 
+/*
+  PlatformUnlinkShort unlinks user s account with platform
+
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: A user might have several &#39;justice’ platform on different namespaces. That’s why the platform_namespace need to be specified when the platform ID is ‘justice’. The platform_namespace is the designated user’s namespace.&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Unlinking justice platform will enable password token grant and password update. &lt;/p&gt;
+*/
 func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10149,6 +11121,8 @@ func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runt
 }
 
 /*
+Deprecated: Use PublicBulkGetUsersShort instead.
+
   PublicBulkGetUsers bulks get users basic info by user Id
 
   &lt;p&gt;Notes:&lt;/p&gt;
@@ -10206,6 +11180,17 @@ func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo r
 	}
 }
 
+/*
+  PublicBulkGetUsersShort bulks get users basic info by user Id
+
+  &lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint bulk get users&#39; basic info by userId, max allowed 100 at a time&lt;/li&gt;
+			&lt;li&gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;Result will include displayName(if it exists)&lt;/strong&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+*/
 func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10252,6 +11237,8 @@ func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authI
 }
 
 /*
+Deprecated: Use PublicCreateJusticeUserShort instead.
+
   PublicCreateJusticeUser creates justice user from publisher user
 
   Create Justice User from Publisher User information. It will check first if Justice User on target namespace already exist.
@@ -10313,6 +11300,12 @@ func (a *Client) PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, 
 	}
 }
 
+/*
+  PublicCreateJusticeUserShort creates justice user from publisher user
+
+  Create Justice User from Publisher User information. It will check first if Justice User on target namespace already exist.
+
+*/
 func (a *Client) PublicCreateJusticeUserShort(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10365,6 +11358,8 @@ func (a *Client) PublicCreateJusticeUserShort(params *PublicCreateJusticeUserPar
 }
 
 /*
+Deprecated: Use PublicCreateUserV2Short instead.
+
   PublicCreateUserV2 creates user
 
 
@@ -10428,6 +11423,17 @@ func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo r
 	}
 }
 
+/*
+  PublicCreateUserV2Short creates user
+
+
+&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+
+*/
 func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV2Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10478,6 +11484,8 @@ func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authI
 }
 
 /*
+Deprecated: Use PublicCreateUserV3Short instead.
+
   PublicCreateUserV3 creates user
 
 
@@ -10542,6 +11550,18 @@ func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo r
 	}
 }
 
+/*
+  PublicCreateUserV3Short creates user
+
+
+		&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+			&lt;ol&gt;
+				&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+		&lt;/ol&gt;
+		&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+		&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
+*/
 func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10592,6 +11612,8 @@ func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authI
 }
 
 /*
+Deprecated: Use PublicDeletePlatformLinkV2Short instead.
+
   PublicDeletePlatformLinkV2 deletes the link of user s account with platform
 
   &lt;h2&gt;Supported platforms:&lt;/h2&gt;
@@ -10666,6 +11688,25 @@ func (a *Client) PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Pa
 	}
 }
 
+/*
+  PublicDeletePlatformLinkV2Short deletes the link of user s account with platform
+
+  &lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Delete link of user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Delete link of justice platform will enable password token grant and password update. &lt;/p&gt;
+*/
 func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10718,6 +11759,8 @@ func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLin
 }
 
 /*
+Deprecated: Use PublicForceLinkPlatformWithProgressionShort instead.
+
   PublicForceLinkPlatformWithProgression forces link 3rd platform account and transfer progression
 
   Force update other account&#39;s Platform Account relation to current User Account. &lt;br&gt;
@@ -10778,6 +11821,14 @@ func (a *Client) PublicForceLinkPlatformWithProgression(params *PublicForceLinkP
 	}
 }
 
+/*
+  PublicForceLinkPlatformWithProgressionShort forces link 3rd platform account and transfer progression
+
+  Force update other account&#39;s Platform Account relation to current User Account. &lt;br&gt;
+This endpoint can transfer progression from 3rd platform binding account&#39;s to current account.
+This endpoint need the same requestID which also used in &lt;a href=&#34;#operations-Users-PublicGetAsyncStatus&#34;&gt;Get link status&lt;/a&gt;.
+
+*/
 func (a *Client) PublicForceLinkPlatformWithProgressionShort(params *PublicForceLinkPlatformWithProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicForceLinkPlatformWithProgressionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10828,6 +11879,8 @@ func (a *Client) PublicForceLinkPlatformWithProgressionShort(params *PublicForce
 }
 
 /*
+Deprecated: Use PublicForgotPasswordV2Short instead.
+
   PublicForgotPasswordV2 requests password reset code
 
   &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
@@ -10885,6 +11938,11 @@ func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, au
 	}
 }
 
+/*
+  PublicForgotPasswordV2Short requests password reset code
+
+  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+*/
 func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -10935,6 +11993,8 @@ func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Param
 }
 
 /*
+Deprecated: Use PublicForgotPasswordV3Short instead.
+
   PublicForgotPasswordV3 requests password reset code
 
   &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt;
@@ -10994,6 +12054,16 @@ func (a *Client) PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, au
 	}
 }
 
+/*
+  PublicForgotPasswordV3Short requests password reset code
+
+  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt;
+Game Client should provide game namespace path parameter and Publisher
+Client should provide publisher namespace path parameter. &lt;/p&gt;
+&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+&lt;p&gt;action code : 10104 &lt;/p&gt;
+
+*/
 func (a *Client) PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11042,6 +12112,8 @@ func (a *Client) PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Param
 }
 
 /*
+Deprecated: Use PublicGetAsyncStatusShort instead.
+
   PublicGetAsyncStatus gets linking progress status
 
   This endpoint is used to get linking status.
@@ -11096,6 +12168,11 @@ func (a *Client) PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authIn
 	}
 }
 
+/*
+  PublicGetAsyncStatusShort gets linking progress status
+
+  This endpoint is used to get linking status.
+*/
 func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11144,6 +12221,8 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 }
 
 /*
+Deprecated: Use PublicGetCountryAgeRestrictionShort instead.
+
   PublicGetCountryAgeRestriction publics get age restriction by country code
 */
 func (a *Client) PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, *PublicGetCountryAgeRestrictionUnauthorized, *PublicGetCountryAgeRestrictionNotFound, error) {
@@ -11193,6 +12272,9 @@ func (a *Client) PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestr
 	}
 }
 
+/*
+  PublicGetCountryAgeRestrictionShort publics get age restriction by country code
+*/
 func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11239,6 +12321,8 @@ func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAge
 }
 
 /*
+Deprecated: Use PublicGetMyUserV3Short instead.
+
   PublicGetMyUserV3 gets my user
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
@@ -11290,6 +12374,11 @@ func (a *Client) PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo run
 	}
 }
 
+/*
+  PublicGetMyUserV3Short gets my user
+
+  &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
+*/
 func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11336,6 +12425,8 @@ func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInf
 }
 
 /*
+Deprecated: Use PublicGetUserBanShort instead.
+
   PublicGetUserBan gets user s bans
 */
 func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, *PublicGetUserBanUnauthorized, *PublicGetUserBanForbidden, *PublicGetUserBanNotFound, error) {
@@ -11388,6 +12479,9 @@ func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runti
 	}
 }
 
+/*
+  PublicGetUserBanShort gets user s bans
+*/
 func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11436,6 +12530,8 @@ func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo 
 }
 
 /*
+Deprecated: Use PublicGetUserBanHistoryV3Short instead.
+
   PublicGetUserBanHistoryV3 gets user s bans
 
   Required valid user authorization.
@@ -11502,6 +12598,17 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 	}
 }
 
+/*
+  PublicGetUserBanHistoryV3Short gets user s bans
+
+  Required valid user authorization.
+		&lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint retrieve the first page of the data if after and before parameters is empty&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;The pagination is not working yet&lt;/strong&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+*/
 func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11554,6 +12661,8 @@ func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV
 }
 
 /*
+Deprecated: Use PublicGetUserByPlatformUserIDV3Short instead.
+
   PublicGetUserByPlatformUserIDV3 gets user by platform user ID
 
   Get User By Platform User ID
@@ -11616,6 +12725,16 @@ func (a *Client) PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatform
 	}
 }
 
+/*
+  PublicGetUserByPlatformUserIDV3Short gets user by platform user ID
+
+  Get User By Platform User ID
+
+This endpoint return user information by given platform ID and platform user ID
+
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+*/
 func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11666,6 +12785,8 @@ func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPla
 }
 
 /*
+Deprecated: Use PublicGetUserByUserIDV2Short instead.
+
   PublicGetUserByUserIDV2 gets user by user ID
 */
 func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, *PublicGetUserByUserIDV2NotFound, *PublicGetUserByUserIDV2InternalServerError, error) {
@@ -11715,6 +12836,9 @@ func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, 
 	}
 }
 
+/*
+  PublicGetUserByUserIDV2Short gets user by user ID
+*/
 func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11761,6 +12885,8 @@ func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Par
 }
 
 /*
+Deprecated: Use PublicGetUserByUserIDV3Short instead.
+
   PublicGetUserByUserIDV3 gets user by user ID
 
   &lt;p&gt;This endpoint retrieve user attributes. action code: 10129&lt;/p&gt;
@@ -11815,6 +12941,11 @@ func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, 
 	}
 }
 
+/*
+  PublicGetUserByUserIDV3Short gets user by user ID
+
+  &lt;p&gt;This endpoint retrieve user attributes. action code: 10129&lt;/p&gt;
+*/
 func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11863,6 +12994,8 @@ func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Par
 }
 
 /*
+Deprecated: Use PublicGetUserLoginHistoriesV3Short instead.
+
   PublicGetUserLoginHistoriesV3 gets user s login histories
 
   Required valid user authorization.&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
@@ -11917,6 +13050,11 @@ func (a *Client) PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistori
 	}
 }
 
+/*
+  PublicGetUserLoginHistoriesV3Short gets user s login histories
+
+  Required valid user authorization.&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
+*/
 func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -11965,6 +13103,8 @@ func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHi
 }
 
 /*
+Deprecated: Use PublicGetUserPlatformAccountsV3Short instead.
+
   PublicGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
   &lt;p&gt;This endpoint retrieves platform accounts linked to user. Required valid user authorization.
@@ -12023,6 +13163,12 @@ func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAc
 	}
 }
 
+/*
+  PublicGetUserPlatformAccountsV3Short gets platform accounts linked to the user
+
+  &lt;p&gt;This endpoint retrieves platform accounts linked to user. Required valid user authorization.
+					&lt;br&gt;action code: 10128 &lt;/p&gt;
+*/
 func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12073,6 +13219,8 @@ func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatf
 }
 
 /*
+Deprecated: Use PublicLinkPlatformAccountShort instead.
+
   PublicLinkPlatformAccount links a platform user account to user account
 
   It is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt;.
@@ -12134,6 +13282,15 @@ func (a *Client) PublicLinkPlatformAccount(params *PublicLinkPlatformAccountPara
 	}
 }
 
+/*
+  PublicLinkPlatformAccountShort links a platform user account to user account
+
+  It is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt;.
+Update Platform Account relation to current User Account.
+Note: Game progression data (statistics, reward, etc) associated with previous User Account will not be
+transferred. If the data is tight to game user ID, the user will have the game progression data.
+
+*/
 func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12184,6 +13341,8 @@ func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccoun
 }
 
 /*
+Deprecated: Use PublicListUserAllPlatformAccountsDistinctV3Short instead.
+
   PublicListUserAllPlatformAccountsDistinctV3 gets distinct platform accounts linked to the user
 
   &lt;p&gt;This endpoint retrieves platform accounts linked to user.
@@ -12243,6 +13402,13 @@ func (a *Client) PublicListUserAllPlatformAccountsDistinctV3(params *PublicListU
 	}
 }
 
+/*
+  PublicListUserAllPlatformAccountsDistinctV3Short gets distinct platform accounts linked to the user
+
+  &lt;p&gt;This endpoint retrieves platform accounts linked to user.
+					&lt;br&gt;It will query all linked platform accounts and result will be distinct &amp; grouped, same platform we will pick oldest linked one.
+					&lt;br&gt;Required valid user authorization.&lt;/p&gt;
+*/
 func (a *Client) PublicListUserAllPlatformAccountsDistinctV3Short(params *PublicListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAllPlatformAccountsDistinctV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12293,6 +13459,8 @@ func (a *Client) PublicListUserAllPlatformAccountsDistinctV3Short(params *Public
 }
 
 /*
+Deprecated: Use PublicListUserIDByPlatformUserIDsV3Short instead.
+
   PublicListUserIDByPlatformUserIDsV3 lists user ID by platform user ID
 
   List User ID By Platform User ID
@@ -12355,6 +13523,16 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByP
 	}
 }
 
+/*
+  PublicListUserIDByPlatformUserIDsV3Short lists user ID by platform user ID
+
+  List User ID By Platform User ID
+This endpoint intended to list game user ID from the given namespace
+This endpoint return list of user ID by given platform ID and list of platform user ID
+
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+*/
 func (a *Client) PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12405,6 +13583,8 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUser
 }
 
 /*
+Deprecated: Use PublicPlatformLinkV2Short instead.
+
   PublicPlatformLinkV2 links user s account with platform
 
   &lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
@@ -12482,6 +13662,25 @@ func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authIn
 	}
 }
 
+/*
+  PublicPlatformLinkV2Short links user s account with platform
+
+  &lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
+		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that doesn&#39;t run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
+*/
 func (a *Client) PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12536,6 +13735,8 @@ func (a *Client) PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, a
 }
 
 /*
+Deprecated: Use PublicPlatformLinkV3Short instead.
+
   PublicPlatformLinkV3 links user s account with platform
 
   Required valid user authorization.
@@ -12619,6 +13820,34 @@ func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authIn
 	}
 }
 
+/*
+  PublicPlatformLinkV3Short links user s account with platform
+
+  Required valid user authorization.
+		&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
+		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that doesn&#39;t run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4web&lt;/strong&gt;: The ticket’s value is the authorization code returned by PSN OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The ticket’s value is the authorization code returned by XBox Live OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;br&gt;action code : 10144
+*/
 func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12671,6 +13900,8 @@ func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, a
 }
 
 /*
+Deprecated: Use PublicPlatformUnlinkAllV3Short instead.
+
   PublicPlatformUnlinkAllV3 unlinks user s account from specific platform
 
   Required valid user authorization.
@@ -12729,6 +13960,12 @@ func (a *Client) PublicPlatformUnlinkAllV3(params *PublicPlatformUnlinkAllV3Para
 	}
 }
 
+/*
+  PublicPlatformUnlinkAllV3Short unlinks user s account from specific platform
+
+  Required valid user authorization.
+			&lt;p&gt;Unlink user&#39;s account from for all third platforms. &lt;/p&gt;
+*/
 func (a *Client) PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12779,6 +14016,8 @@ func (a *Client) PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV
 }
 
 /*
+Deprecated: Use PublicPlatformUnlinkV3Short instead.
+
   PublicPlatformUnlinkV3 unlinks user s account from specific platform
 
   Required valid user authorization.
@@ -12862,6 +14101,37 @@ func (a *Client) PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, au
 	}
 }
 
+/*
+  PublicPlatformUnlinkV3Short unlinks user s account from specific platform
+
+  Required valid user authorization.
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
+			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;
+			&lt;br&gt;Unlink user&#39;s account from justice platform will enable password token grant and password update.
+			&lt;br&gt;
+			&lt;br&gt;If you want to unlink user&#39;s account in a game namespace, you have to specify &lt;i&gt;platformNamespace&lt;/i&gt; to that game namespace.
+			&lt;br&gt;
+			&lt;br&gt;action code : 10121 &lt;/p&gt;
+*/
 func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -12912,6 +14182,8 @@ func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Param
 }
 
 /*
+Deprecated: Use PublicResetPasswordV2Short instead.
+
   PublicResetPasswordV2 resets user password
 */
 func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, *PublicResetPasswordV2BadRequest, *PublicResetPasswordV2Forbidden, *PublicResetPasswordV2NotFound, *PublicResetPasswordV2InternalServerError, error) {
@@ -12967,6 +14239,9 @@ func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, auth
 	}
 }
 
+/*
+  PublicResetPasswordV2Short resets user password
+*/
 func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13017,6 +14292,8 @@ func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params,
 }
 
 /*
+Deprecated: Use PublicSearchUserV3Short instead.
+
   PublicSearchUserV3 searches user
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -13077,6 +14354,14 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
 	}
 }
 
+/*
+  PublicSearchUserV3Short searches user
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+			&lt;p&gt;This endpoint search all users on the specified namespace that match the query on these fields: display name, and username.
+			The query length should greater than 1，otherwise will not query the database. The default limit value is 100&lt;/p&gt;
+			&lt;br&gt;action code : 10132
+*/
 func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13127,6 +14412,8 @@ func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authI
 }
 
 /*
+Deprecated: Use PublicSendRegistrationCodeShort instead.
+
   PublicSendRegistrationCode sends verification code to new unregistered account s email address
 
   This endpoint will validate the request&#39;s email address.
@@ -13184,6 +14471,17 @@ func (a *Client) PublicSendRegistrationCode(params *PublicSendRegistrationCodePa
 	}
 }
 
+/*
+  PublicSendRegistrationCodeShort sends verification code to new unregistered account s email address
+
+  This endpoint will validate the request&#39;s email address.
+
+If it already been used, will response 409.
+
+If it is available, we will send a verification code to this email address.
+This code can be verified by this &lt;a href=&#34;#operations-Users-PublicVerifyRegistrationCode&#34;&gt;endpoint&lt;/a&gt;.
+
+*/
 func (a *Client) PublicSendRegistrationCodeShort(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13230,6 +14528,8 @@ func (a *Client) PublicSendRegistrationCodeShort(params *PublicSendRegistrationC
 }
 
 /*
+Deprecated: Use PublicSendVerificationCodeV3Short instead.
+
   PublicSendVerificationCodeV3 sends verification code to user
 
   Required valid user authorization
@@ -13309,6 +14609,30 @@ func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCode
 	}
 }
 
+/*
+  PublicSendVerificationCodeV3Short sends verification code to user
+
+  Required valid user authorization
+&lt;p&gt;The verification code is sent to email address&lt;/p&gt;
+&lt;p&gt;Available contexts for use : &lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;
+		&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;
+		&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
+		&lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;
+		&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;
+		&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+		If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;action code: 10116&lt;/p&gt;
+
+*/
 func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13361,6 +14685,8 @@ func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificatio
 }
 
 /*
+Deprecated: Use PublicUpdatePasswordV2Short instead.
+
   PublicUpdatePasswordV2 updates user password
 
   This endpoint need a valid user access token
@@ -13421,6 +14747,11 @@ func (a *Client) PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, au
 	}
 }
 
+/*
+  PublicUpdatePasswordV2Short updates user password
+
+  This endpoint need a valid user access token
+*/
 func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13473,6 +14804,8 @@ func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Param
 }
 
 /*
+Deprecated: Use PublicUpdatePasswordV3Short instead.
+
   PublicUpdatePasswordV3 updates user password
 
   Required valid user authorization. &lt;br&gt; action code: 10107
@@ -13527,6 +14860,11 @@ func (a *Client) PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, au
 	}
 }
 
+/*
+  PublicUpdatePasswordV3Short updates user password
+
+  Required valid user authorization. &lt;br&gt; action code: 10107
+*/
 func (a *Client) PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13575,6 +14913,8 @@ func (a *Client) PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Param
 }
 
 /*
+Deprecated: Use PublicUpdateUserV2Short instead.
+
   PublicUpdateUserV2 updates user
 
   &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
@@ -13635,6 +14975,11 @@ func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo r
 	}
 }
 
+/*
+  PublicUpdateUserV2Short updates user
+
+  &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
+*/
 func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13687,6 +15032,8 @@ func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authI
 }
 
 /*
+Deprecated: Use PublicUpdateUserV3Short instead.
+
   PublicUpdateUserV3 updates user
 
   &lt;p&gt;Requires valid user access token &lt;/p&gt;
@@ -13753,6 +15100,20 @@ func (a *Client) PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo r
 	}
 }
 
+/*
+  PublicUpdateUserV3Short updates user
+
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth, avatarUrl}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
+*/
 func (a *Client) PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13803,6 +15164,8 @@ func (a *Client) PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authI
 }
 
 /*
+Deprecated: Use PublicUpgradeHeadlessAccountV3Short instead.
+
   PublicUpgradeHeadlessAccountV3 verifies or consume verification code
 
   &lt;p&gt;If validateOnly is set false, consume code and upgrade headless account and automatically verified the email address if it is succeeded&lt;/p&gt;
@@ -13879,6 +15242,24 @@ func (a *Client) PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAcc
 	}
 }
 
+/*
+  PublicUpgradeHeadlessAccountV3Short verifies or consume verification code
+
+  &lt;p&gt;If validateOnly is set false, consume code and upgrade headless account and automatically verified the email address if it is succeeded&lt;/p&gt;
+Require valid user access token.
+     	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+     	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
+     	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
+	Supported user data fields :
+	&lt;ul&gt;
+		&lt;li&gt;displayName&lt;/li&gt;
+		&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+		&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+	&lt;/ul&gt;
+     	&lt;br&gt;action code : 10124&lt;/p&gt;
+*/
 func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -13933,6 +15314,8 @@ func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadle
 }
 
 /*
+Deprecated: Use PublicUserVerificationV3Short instead.
+
   PublicUserVerificationV3 validates or consume verification code sent to user
 
   &lt;p&gt;Will consume code if validateOnly is set false&lt;/p&gt;
@@ -13995,6 +15378,16 @@ func (a *Client) PublicUserVerificationV3(params *PublicUserVerificationV3Params
 	}
 }
 
+/*
+  PublicUserVerificationV3Short validates or consume verification code sent to user
+
+  &lt;p&gt;Will consume code if validateOnly is set false&lt;/p&gt;
+&lt;p&gt;Required valid user authorization&lt;/p&gt;
+&lt;p&gt;Redeems a verification code sent to a user to verify the user&#39;s contact address is correct&lt;/p&gt;
+&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;action code: 10107&lt;/p&gt;
+
+*/
 func (a *Client) PublicUserVerificationV3Short(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14045,6 +15438,8 @@ func (a *Client) PublicUserVerificationV3Short(params *PublicUserVerificationV3P
 }
 
 /*
+Deprecated: Use PublicValidateUserByUserIDAndPasswordV3Short instead.
+
   PublicValidateUserByUserIDAndPasswordV3 validates user password by user ID and password
 
   This endpoint is used to validate the user password. Required valid user authorization and valid user ID.
@@ -14110,6 +15505,16 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateU
 	}
 }
 
+/*
+  PublicValidateUserByUserIDAndPasswordV3Short validates user password by user ID and password
+
+  This endpoint is used to validate the user password. Required valid user authorization and valid user ID.
+		&lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint validate the user password by specifying the userId and password&lt;/li&gt;
+		&lt;/ul&gt;
+
+*/
 func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14162,6 +15567,8 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicVali
 }
 
 /*
+Deprecated: Use PublicVerifyHeadlessAccountV3Short instead.
+
   PublicVerifyHeadlessAccountV3 upgrades user account to full account with email
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;action code : 10124 &lt;/p&gt;
@@ -14222,6 +15629,11 @@ func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccou
 	}
 }
 
+/*
+  PublicVerifyHeadlessAccountV3Short upgrades user account to full account with email
+
+  &lt;p&gt;Require valid user authorization&lt;br&gt;action code : 10124 &lt;/p&gt;
+*/
 func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14274,6 +15686,8 @@ func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadless
 }
 
 /*
+Deprecated: Use PublicVerifyRegistrationCodeShort instead.
+
   PublicVerifyRegistrationCode verifies the registration code
 
   &lt;p&gt;Verify the registration code&lt;/p&gt;
@@ -14323,6 +15737,12 @@ func (a *Client) PublicVerifyRegistrationCode(params *PublicVerifyRegistrationCo
 	}
 }
 
+/*
+  PublicVerifyRegistrationCodeShort verifies the registration code
+
+  &lt;p&gt;Verify the registration code&lt;/p&gt;
+
+*/
 func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14367,6 +15787,8 @@ func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrat
 }
 
 /*
+Deprecated: Use PublicWebLinkPlatformShort instead.
+
   PublicWebLinkPlatform creates public web linking
 
   This endpoint is used to generate third party login page which will redirected to establish endpoint.
@@ -14421,6 +15843,11 @@ func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, auth
 	}
 }
 
+/*
+  PublicWebLinkPlatformShort creates public web linking
+
+  This endpoint is used to generate third party login page which will redirected to establish endpoint.
+*/
 func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14469,6 +15896,8 @@ func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams,
 }
 
 /*
+Deprecated: Use PublicWebLinkPlatformEstablishShort instead.
+
   PublicWebLinkPlatformEstablish establishes link progress
 
   This endpoint is used by third party to redirect the code for the purpose of linking the account third party to IAM account.
@@ -14514,6 +15943,11 @@ func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEst
 	}
 }
 
+/*
+  PublicWebLinkPlatformEstablishShort establishes link progress
+
+  This endpoint is used by third party to redirect the code for the purpose of linking the account third party to IAM account.
+*/
 func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14556,6 +15990,8 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 }
 
 /*
+Deprecated: Use ResetPasswordShort instead.
+
   ResetPassword resets user password
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header
@@ -14613,6 +16049,11 @@ func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  ResetPasswordShort resets user password
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header
+*/
 func (a *Client) ResetPasswordShort(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14663,6 +16104,8 @@ func (a *Client) ResetPasswordShort(params *ResetPasswordParams, authInfo runtim
 }
 
 /*
+Deprecated: Use ResetPasswordV3Short instead.
+
   ResetPasswordV3 resets user password
 
   &lt;p&gt;action code: 10105&lt;/p&gt;
@@ -14717,6 +16160,11 @@ func (a *Client) ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime
 	}
 }
 
+/*
+  ResetPasswordV3Short resets user password
+
+  &lt;p&gt;action code: 10105&lt;/p&gt;
+*/
 func (a *Client) ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14765,6 +16213,8 @@ func (a *Client) ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo ru
 }
 
 /*
+Deprecated: Use SaveUserPermissionShort instead.
+
   SaveUserPermission saves user permissions
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -14849,6 +16299,38 @@ func (a *Client) SaveUserPermission(params *SaveUserPermissionParams, authInfo r
 	}
 }
 
+/*
+  SaveUserPermissionShort saves user permissions
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+
+*/
 func (a *Client) SaveUserPermissionShort(params *SaveUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -14899,6 +16381,8 @@ func (a *Client) SaveUserPermissionShort(params *SaveUserPermissionParams, authI
 }
 
 /*
+Deprecated: Use SaveUserRolesShort instead.
+
   SaveUserRoles saves user roles
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
@@ -14959,6 +16443,11 @@ func (a *Client) SaveUserRoles(params *SaveUserRolesParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  SaveUserRolesShort saves user roles
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserRolesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15011,6 +16500,8 @@ func (a *Client) SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtim
 }
 
 /*
+Deprecated: Use SearchUserShort instead.
+
   SearchUser searches users
 
   &lt;h2&gt;The endpoint is deprecated. Please use this instead: iam/v3/admin/namespaces/{namespace}/users/search&lt;/h2&gt;
@@ -15068,6 +16559,14 @@ func (a *Client) SearchUser(params *SearchUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  SearchUserShort searches users
+
+  &lt;h2&gt;The endpoint is deprecated. Please use this instead: iam/v3/admin/namespaces/{namespace}/users/search&lt;/h2&gt;
+&lt;p&gt;Search all users that match the query on these fields: all login IDs (email address, phone number, and platform user id),
+userID, display name, and on the specified namespace. If the query is not defined, then it searches all users on the specified namespace.
+Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:* [READ]&#39;&lt;/p&gt;
+*/
 func (a *Client) SearchUserShort(params *SearchUserParams, authInfo runtime.ClientAuthInfoWriter) (*SearchUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15116,6 +16615,8 @@ func (a *Client) SearchUserShort(params *SearchUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use SendVerificationCodeShort instead.
+
   SendVerificationCode sends verification code to user
 
   Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
@@ -15189,6 +16690,18 @@ func (a *Client) SendVerificationCode(params *SendVerificationCodeParams, authIn
 	}
 }
 
+/*
+  SendVerificationCodeShort sends verification code to user
+
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+			&lt;p&gt;The verification code is sent to either the phone number or email address. It depends on the LoginID&#39;s value.&lt;/p&gt;
+			&lt;p&gt;Available contexts for use : &lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified. &lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  If this context used, IAM rejects the request if the loginId field&#39;s value is already used by others by returning HTTP Status Code 409.&lt;/p&gt;&lt;/li&gt;
+			&lt;/ol&gt;
+*/
 func (a *Client) SendVerificationCodeShort(params *SendVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendVerificationCodeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15245,6 +16758,8 @@ func (a *Client) SendVerificationCodeShort(params *SendVerificationCodeParams, a
 }
 
 /*
+Deprecated: Use UpdateCountryAgeRestrictionShort instead.
+
   UpdateCountryAgeRestriction updates country s age restriction
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
@@ -15302,6 +16817,11 @@ func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestriction
 	}
 }
 
+/*
+  UpdateCountryAgeRestrictionShort updates country s age restriction
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
+*/
 func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15352,6 +16872,8 @@ func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestri
 }
 
 /*
+Deprecated: Use UpdatePasswordShort instead.
+
   UpdatePassword updates user password
 
   &lt;h2&gt;The endpoint is going to be deprecated. Admin user please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/password&lt;/h2&gt;
@@ -15413,6 +16935,12 @@ func (a *Client) UpdatePassword(params *UpdatePasswordParams, authInfo runtime.C
 	}
 }
 
+/*
+  UpdatePasswordShort updates user password
+
+  &lt;h2&gt;The endpoint is going to be deprecated. Admin user please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/password&lt;/h2&gt;
++				&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;&lt;p&gt;
+*/
 func (a *Client) UpdatePasswordShort(params *UpdatePasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePasswordNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15465,6 +16993,8 @@ func (a *Client) UpdatePasswordShort(params *UpdatePasswordParams, authInfo runt
 }
 
 /*
+Deprecated: Use UpdateUserShort instead.
+
   UpdateUser updates user
 
   &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
@@ -15525,6 +17055,11 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UpdateUserShort updates user
+
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+*/
 func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15577,6 +17112,8 @@ func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use UpdateUserV3Short instead.
+
   UpdateUserV3 updates user
 
   &lt;p&gt;Requires valid user access token &lt;/p&gt;
@@ -15646,6 +17183,23 @@ func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.Clien
 	}
 }
 
+/*
+  UpdateUserV3Short updates user
+
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth, avatarUrl}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;br&gt;&lt;b&gt;Important notes:&lt;/b&gt;
+&lt;br&gt;&lt;p&gt;This endpoint provides support for client that doesn&#39;t have PATCH support, i.e. UE4 before v4.23 released.
+&lt;br&gt;If the client support PATCH method, use [PATCH] /iam/v3/public/namespaces/{namespace}/users/me instead&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
+*/
 func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15696,6 +17250,8 @@ func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.
 }
 
 /*
+Deprecated: Use UpgradeHeadlessAccountWithVerificationCodeShort instead.
+
   UpgradeHeadlessAccountWithVerificationCode upgrades headless account and automatically verified the email address if it is succeeded
 
   Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
@@ -15755,6 +17311,13 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadl
 	}
 }
 
+/*
+  UpgradeHeadlessAccountWithVerificationCodeShort upgrades headless account and automatically verified the email address if it is succeeded
+
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM.
+The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
+*/
 func (a *Client) UpgradeHeadlessAccountWithVerificationCodeShort(params *UpgradeHeadlessAccountWithVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountWithVerificationCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15805,6 +17368,8 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCodeShort(params *Upgrade
 }
 
 /*
+Deprecated: Use UserVerificationShort instead.
+
   UserVerification redeems verification code sent to user
 
   &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
@@ -15867,6 +17432,13 @@ func (a *Client) UserVerification(params *UserVerificationParams, authInfo runti
 	}
 }
 
+/*
+  UserVerificationShort redeems verification code sent to user
+
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
+			&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
+*/
 func (a *Client) UserVerificationShort(params *UserVerificationParams, authInfo runtime.ClientAuthInfoWriter) (*UserVerificationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -15919,6 +17491,8 @@ func (a *Client) UserVerificationShort(params *UserVerificationParams, authInfo 
 }
 
 /*
+Deprecated: Use GetUserVerificationCodeShort instead.
+
   GetUserVerificationCode gets verification code sent to user
 
   [WARNING] This endpoint is only for testing purpose. &lt;br&gt;This endpoint get active user verification
@@ -15979,6 +17553,14 @@ func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, 
 	}
 }
 
+/*
+  GetUserVerificationCodeShort gets verification code sent to user
+
+  [WARNING] This endpoint is only for testing purpose. &lt;br&gt;This endpoint get active user verification
+		code. There are 3 scenario of getting verification codes : after account registration, after reset password
+		request, and after headless account upgrade. All of them will be returned on this endpoint. Required permission
+ 		&#39;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE&#39; [READ] &lt;br&gt;action code: 10146
+*/
 func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -16029,6 +17611,8 @@ func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodePar
 }
 
 /*
+Deprecated: Use UpgradeHeadlessAccountShort instead.
+
   UpgradeHeadlessAccount upgrades user account to full account with email
 
   Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
@@ -16083,6 +17667,11 @@ func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, au
 	}
 }
 
+/*
+  UpgradeHeadlessAccountShort upgrades user account to full account with email
+
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+*/
 func (a *Client) UpgradeHeadlessAccountShort(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

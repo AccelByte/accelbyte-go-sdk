@@ -74,6 +74,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminDeleteContentShort instead.
+
   AdminDeleteContent deletes content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -128,6 +130,11 @@ func (a *Client) AdminDeleteContent(params *AdminDeleteContentParams, authInfo r
 	}
 }
 
+/*
+  AdminDeleteContentShort deletes content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+*/
 func (a *Client) AdminDeleteContentShort(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -176,6 +183,8 @@ func (a *Client) AdminDeleteContentShort(params *AdminDeleteContentParams, authI
 }
 
 /*
+Deprecated: Use AdminDeleteContentScreenshotShort instead.
+
   AdminDeleteContentScreenshot deletes screenshots content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -234,6 +243,12 @@ func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreensh
 	}
 }
 
+/*
+  AdminDeleteContentScreenshotShort deletes screenshots content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+
+*/
 func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -284,6 +299,8 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 }
 
 /*
+Deprecated: Use AdminDownloadContentPreviewShort instead.
+
   AdminDownloadContentPreview gets content preview
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -338,6 +355,11 @@ func (a *Client) AdminDownloadContentPreview(params *AdminDownloadContentPreview
 	}
 }
 
+/*
+  AdminDownloadContentPreviewShort gets content preview
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminDownloadContentPreviewShort(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -386,6 +408,8 @@ func (a *Client) AdminDownloadContentPreviewShort(params *AdminDownloadContentPr
 }
 
 /*
+Deprecated: Use AdminGetContentShort instead.
+
   AdminGetContent gets user s generated contents
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -440,6 +464,11 @@ func (a *Client) AdminGetContent(params *AdminGetContentParams, authInfo runtime
 	}
 }
 
+/*
+  AdminGetContentShort gets user s generated contents
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -488,6 +517,8 @@ func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo ru
 }
 
 /*
+Deprecated: Use AdminGetSpecificContentShort instead.
+
   AdminGetSpecificContent gets user specific content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
@@ -542,6 +573,11 @@ func (a *Client) AdminGetSpecificContent(params *AdminGetSpecificContentParams, 
 	}
 }
 
+/*
+  AdminGetSpecificContentShort gets user specific content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) AdminGetSpecificContentShort(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -590,6 +626,8 @@ func (a *Client) AdminGetSpecificContentShort(params *AdminGetSpecificContentPar
 }
 
 /*
+Deprecated: Use AdminHideUserContentShort instead.
+
   AdminHideUserContent hides unhide user s generated contents
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
@@ -644,6 +682,11 @@ func (a *Client) AdminHideUserContent(params *AdminHideUserContentParams, authIn
 	}
 }
 
+/*
+  AdminHideUserContentShort hides unhide user s generated contents
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.
+*/
 func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -692,6 +735,8 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
 }
 
 /*
+Deprecated: Use AdminSearchChannelSpecificContentShort instead.
+
   AdminSearchChannelSpecificContent searches contents specific to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
@@ -766,6 +811,31 @@ func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpe
 	}
 }
 
+/*
+  AdminSearchChannelSpecificContentShort searches contents specific to a channel
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
+*/
 func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -814,6 +884,8 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
 }
 
 /*
+Deprecated: Use AdminSearchContentShort instead.
+
   AdminSearchContent searches contents
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
@@ -888,6 +960,31 @@ func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo r
 	}
 }
 
+/*
+  AdminSearchContentShort searches contents
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
+*/
 func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -936,6 +1033,8 @@ func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authI
 }
 
 /*
+Deprecated: Use AdminUpdateContentDirectShort instead.
+
   AdminUpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -995,6 +1094,13 @@ func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams
 	}
 }
 
+/*
+  AdminUpdateContentDirectShort updates content to a channel
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+					All request body are required except preview and tags.
+
+*/
 func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1045,6 +1151,8 @@ func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectP
 }
 
 /*
+Deprecated: Use AdminUpdateContentS3Short instead.
+
   AdminUpdateContentS3 updates content to s3 bucket
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1106,6 +1214,15 @@ func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authIn
 	}
 }
 
+/*
+  AdminUpdateContentS3Short updates content to s3 bucket
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+				All request body are required except payload, preview, tags, and contentType.
+				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1156,6 +1273,8 @@ func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, a
 }
 
 /*
+Deprecated: Use AdminUpdateScreenshotsShort instead.
+
   AdminUpdateScreenshots updates screenshot of content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1215,6 +1334,13 @@ func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, au
 	}
 }
 
+/*
+  AdminUpdateScreenshotsShort updates screenshot of content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+					Maximum description length: 1024.
+
+*/
 func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1265,6 +1391,8 @@ func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParam
 }
 
 /*
+Deprecated: Use AdminUploadContentDirectShort instead.
+
   AdminUploadContentDirect uploads content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -1321,6 +1449,13 @@ func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams
 	}
 }
 
+/*
+  AdminUploadContentDirectShort uploads content to a channel
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+				All request body are required except preview and tags.
+
+*/
 func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1369,6 +1504,8 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 }
 
 /*
+Deprecated: Use AdminUploadContentS3Short instead.
+
   AdminUploadContentS3 uploads content to s3 bucket
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -1427,6 +1564,15 @@ func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authIn
 	}
 }
 
+/*
+  AdminUploadContentS3Short uploads content to s3 bucket
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+				All request body are required except preview, tags, and contentType.
+				contentType values is used to enforce the Content-Type header needed by the client when uploading the content using the S3 presigned URL.
+				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1475,6 +1621,8 @@ func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, a
 }
 
 /*
+Deprecated: Use AdminUploadContentScreenshotShort instead.
+
   AdminUploadContentScreenshot uploads screenshots for content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -1538,6 +1686,17 @@ func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreensh
 	}
 }
 
+/*
+  AdminUploadContentScreenshotShort uploads screenshots for content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+				All request body are required except for contentType field.
+				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
+				If not specified, it will use fileExtension value.
+				Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png. \n
+				Maximum description length: 1024.
+
+*/
 func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1588,6 +1747,8 @@ func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScr
 }
 
 /*
+Deprecated: Use SingleAdminDeleteContentShort instead.
+
   SingleAdminDeleteContent deletes content
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -1642,6 +1803,11 @@ func (a *Client) SingleAdminDeleteContent(params *SingleAdminDeleteContentParams
 	}
 }
 
+/*
+  SingleAdminDeleteContentShort deletes content
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+*/
 func (a *Client) SingleAdminDeleteContentShort(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1690,6 +1856,8 @@ func (a *Client) SingleAdminDeleteContentShort(params *SingleAdminDeleteContentP
 }
 
 /*
+Deprecated: Use SingleAdminGetContentShort instead.
+
   SingleAdminGetContent gets user s generated contents
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -1744,6 +1912,11 @@ func (a *Client) SingleAdminGetContent(params *SingleAdminGetContentParams, auth
 	}
 }
 
+/*
+  SingleAdminGetContentShort gets user s generated contents
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) SingleAdminGetContentShort(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1792,6 +1965,8 @@ func (a *Client) SingleAdminGetContentShort(params *SingleAdminGetContentParams,
 }
 
 /*
+Deprecated: Use SingleAdminUpdateContentDirectShort instead.
+
   SingleAdminUpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1851,6 +2026,13 @@ func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContent
 	}
 }
 
+/*
+  SingleAdminUpdateContentDirectShort updates content to a channel
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+					All request body are required except preview and tags.
+
+*/
 func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1901,6 +2083,8 @@ func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateCo
 }
 
 /*
+Deprecated: Use SingleAdminUpdateContentS3Short instead.
+
   SingleAdminUpdateContentS3 updates content to s3 bucket
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1962,6 +2146,15 @@ func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Pa
 	}
 }
 
+/*
+  SingleAdminUpdateContentS3Short updates content to s3 bucket
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+					All request body are required except payload, preview, tags, and contentType.
+					contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+					If not specified, it will use fileExtension value.
+					&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) SingleAdminUpdateContentS3Short(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

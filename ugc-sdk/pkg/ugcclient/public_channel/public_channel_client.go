@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateChannelShort instead.
+
   CreateChannel creates channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
@@ -100,6 +102,11 @@ func (a *Client) CreateChannel(params *CreateChannelParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  CreateChannelShort creates channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]&lt;/b&gt;
+*/
 func (a *Client) CreateChannelShort(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -148,6 +155,8 @@ func (a *Client) CreateChannelShort(params *CreateChannelParams, authInfo runtim
 }
 
 /*
+Deprecated: Use DeleteChannelShort instead.
+
   DeleteChannel deletes channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
@@ -202,6 +211,11 @@ func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  DeleteChannelShort deletes channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]&lt;/b&gt;
+*/
 func (a *Client) DeleteChannelShort(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -250,6 +264,8 @@ func (a *Client) DeleteChannelShort(params *DeleteChannelParams, authInfo runtim
 }
 
 /*
+Deprecated: Use GetChannelsShort instead.
+
   GetChannels gets channels
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]&lt;/b&gt;
@@ -304,6 +320,11 @@ func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  GetChannelsShort gets channels
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]&lt;/b&gt;
+*/
 func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -352,6 +373,8 @@ func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use UpdateChannelShort instead.
+
   UpdateChannel updates channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]&lt;/b&gt;
@@ -409,6 +432,11 @@ func (a *Client) UpdateChannel(params *UpdateChannelParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  UpdateChannelShort updates channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]&lt;/b&gt;
+*/
 func (a *Client) UpdateChannelShort(params *UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChannelOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

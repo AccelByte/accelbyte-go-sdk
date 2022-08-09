@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use BatchDownloadServerLogsShort instead.
+
   BatchDownloadServerLogs batches download dedicated server log files
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
@@ -97,6 +99,15 @@ func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, 
 	}
 }
 
+/*
+  BatchDownloadServerLogsShort batches download dedicated server log files
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
+
+Required scope: social
+
+This endpoint will download dedicated server&#39;s log file (.zip).
+*/
 func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -143,6 +154,8 @@ func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsPar
 }
 
 /*
+Deprecated: Use ListAllTerminatedServersShort instead.
+
   ListAllTerminatedServers retrieves all terminated servers
 
   ```
@@ -201,6 +214,15 @@ func (a *Client) ListAllTerminatedServers(params *ListAllTerminatedServersParams
 	}
 }
 
+/*
+  ListAllTerminatedServersShort retrieves all terminated servers
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
+
+This endpoint used to retrieve terminated servers in all namespace
+```
+*/
 func (a *Client) ListAllTerminatedServersShort(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

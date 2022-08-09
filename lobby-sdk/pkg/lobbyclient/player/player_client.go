@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminBulkBlockPlayersV1Short instead.
+
   AdminBulkBlockPlayersV1 admins bulk blocks player by list user id
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -114,6 +116,12 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 	}
 }
 
+/*
+  AdminBulkBlockPlayersV1Short admins bulk blocks player by list user id
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Bulk block player in a namespace by list of user id
+*/
 func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -164,6 +172,8 @@ func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Par
 }
 
 /*
+Deprecated: Use AdminGetAllPlayerSessionAttributeShort instead.
+
   AdminGetAllPlayerSessionAttribute admins get all player s session attribute
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -219,6 +229,12 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 	}
 }
 
+/*
+  AdminGetAllPlayerSessionAttributeShort admins get all player s session attribute
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get all player&#39;s session attribute by user id in a namespace.
+*/
 func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -267,6 +283,8 @@ func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlaye
 }
 
 /*
+Deprecated: Use AdminGetLobbyCCUShort instead.
+
   AdminGetLobbyCCU admins get number of players currently connected to the lobby
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -328,6 +346,12 @@ func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runti
 	}
 }
 
+/*
+  AdminGetLobbyCCUShort admins get number of players currently connected to the lobby
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get the number of players connected to the Lobby in the given namespace.
+*/
 func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -380,6 +404,8 @@ func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo 
 }
 
 /*
+Deprecated: Use AdminGetPlayerBlockedByPlayersV1Short instead.
+
   AdminGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -441,6 +467,12 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 	}
 }
 
+/*
+  AdminGetPlayerBlockedByPlayersV1Short gets players who blocked this player by user id
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;load get players who blocked this player in a namespace based on user id
+*/
 func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -493,6 +525,8 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlo
 }
 
 /*
+Deprecated: Use AdminGetPlayerBlockedPlayersV1Short instead.
+
   AdminGetPlayerBlockedPlayersV1 admins get blocked players by user id
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -554,6 +588,12 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 	}
 }
 
+/*
+  AdminGetPlayerBlockedPlayersV1Short admins get blocked players by user id
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get blocked players data by user id in a namespace.
+*/
 func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -606,6 +646,8 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlock
 }
 
 /*
+Deprecated: Use AdminGetPlayerSessionAttributeShort instead.
+
   AdminGetPlayerSessionAttribute admins get player s session attribute
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -667,6 +709,12 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 	}
 }
 
+/*
+  AdminGetPlayerSessionAttributeShort admins get player s session attribute
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get player&#39;s specific session attribute by user id in a namespace.
+*/
 func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -719,6 +767,8 @@ func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessi
 }
 
 /*
+Deprecated: Use AdminSetPlayerSessionAttributeShort instead.
+
   AdminSetPlayerSessionAttribute admins set player s session attribute
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -780,6 +830,12 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 	}
 }
 
+/*
+  AdminSetPlayerSessionAttributeShort admins set player s session attribute
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;set player&#39;s session attribute by user id in a namespace.
+*/
 func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -832,6 +888,8 @@ func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessi
 }
 
 /*
+Deprecated: Use PublicGetPlayerBlockedByPlayersV1Short instead.
+
   PublicGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
   Required valid user authorization &lt;br/&gt;
@@ -894,6 +952,13 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 	}
 }
 
+/*
+  PublicGetPlayerBlockedByPlayersV1Short gets players who blocked this player by user id
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load get players who blocked this player in a namespace based on user id &lt;br/&gt;
+			Action Code: 50101
+*/
 func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -946,6 +1011,8 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerB
 }
 
 /*
+Deprecated: Use PublicGetPlayerBlockedPlayersV1Short instead.
+
   PublicGetPlayerBlockedPlayersV1 gets blocked players by user id
 
   Required valid user authorization &lt;br/&gt;
@@ -1008,6 +1075,13 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 	}
 }
 
+/*
+  PublicGetPlayerBlockedPlayersV1Short gets blocked players by user id
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load blocked players in a namespace based on user id &lt;br/&gt;
+			Action Code: 50101
+*/
 func (a *Client) PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

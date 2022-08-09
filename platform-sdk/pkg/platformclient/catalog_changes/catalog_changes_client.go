@@ -54,6 +54,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetStatisticShort instead.
+
   GetStatistic gets catalog changes statistics
 
   This API is used to query catalog changes statistics .&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: catalog changes statistics changes&lt;/li&gt;&lt;/ul&gt;
@@ -99,6 +101,11 @@ func (a *Client) GetStatistic(params *GetStatisticParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetStatisticShort gets catalog changes statistics
+
+  This API is used to query catalog changes statistics .&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: catalog changes statistics changes&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetStatisticShort(params *GetStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -141,6 +148,8 @@ func (a *Client) GetStatisticShort(params *GetStatisticParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use PublishAllShort instead.
+
   PublishAll publishes all unpublished changes
 
   This API is used to publish all unpublished changes.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/ul&gt;
@@ -192,6 +201,11 @@ func (a *Client) PublishAll(params *PublishAllParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  PublishAllShort publishes all unpublished changes
+
+  This API is used to publish all unpublished changes.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublishAllShort(params *PublishAllParams, authInfo runtime.ClientAuthInfoWriter) (*PublishAllOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -238,6 +252,8 @@ func (a *Client) PublishAllShort(params *PublishAllParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use PublishSelectedShort instead.
+
   PublishSelected publishes selected unpublished changes
 
   This API is used to publish selected unpublished changes.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/ul&gt;
@@ -289,6 +305,11 @@ func (a *Client) PublishSelected(params *PublishSelectedParams, authInfo runtime
 	}
 }
 
+/*
+  PublishSelectedShort publishes selected unpublished changes
+
+  This API is used to publish selected unpublished changes.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublishSelectedShort(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -335,6 +356,8 @@ func (a *Client) PublishSelectedShort(params *PublishSelectedParams, authInfo ru
 }
 
 /*
+Deprecated: Use QueryChangesShort instead.
+
   QueryChanges queries catalog changes
 
   This API is used to query changes .&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the pagination of changes&lt;/li&gt;&lt;/ul&gt;
@@ -380,6 +403,11 @@ func (a *Client) QueryChanges(params *QueryChangesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  QueryChangesShort queries catalog changes
+
+  This API is used to query changes .&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the pagination of changes&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryChangesShort(params *QueryChangesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryChangesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -422,6 +450,8 @@ func (a *Client) QueryChangesShort(params *QueryChangesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use SelectAllRecordsShort instead.
+
   SelectAllRecords selects all changes
 
   Select all changes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -470,6 +500,11 @@ func (a *Client) SelectAllRecords(params *SelectAllRecordsParams, authInfo runti
 	}
 }
 
+/*
+  SelectAllRecordsShort selects all changes
+
+  Select all changes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SelectAllRecordsShort(params *SelectAllRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -514,6 +549,8 @@ func (a *Client) SelectAllRecordsShort(params *SelectAllRecordsParams, authInfo 
 }
 
 /*
+Deprecated: Use SelectRecordShort instead.
+
   SelectRecord selects a change
 
   Select a change, it will be included when partial publish.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -562,6 +599,11 @@ func (a *Client) SelectRecord(params *SelectRecordParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  SelectRecordShort selects a change
+
+  Select a change, it will be included when partial publish.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SelectRecordShort(params *SelectRecordParams, authInfo runtime.ClientAuthInfoWriter) (*SelectRecordNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -606,6 +648,8 @@ func (a *Client) SelectRecordShort(params *SelectRecordParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use UnselectAllRecordsShort instead.
+
   UnselectAllRecords unselects all changes
 
   Unselect all change.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -654,6 +698,11 @@ func (a *Client) UnselectAllRecords(params *UnselectAllRecordsParams, authInfo r
 	}
 }
 
+/*
+  UnselectAllRecordsShort unselects all changes
+
+  Unselect all change.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UnselectAllRecordsShort(params *UnselectAllRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*UnselectAllRecordsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -698,6 +747,8 @@ func (a *Client) UnselectAllRecordsShort(params *UnselectAllRecordsParams, authI
 }
 
 /*
+Deprecated: Use UnselectRecordShort instead.
+
   UnselectRecord unselects a change
 
   Unselect a change, it will not be included when partial publish.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -749,6 +800,11 @@ func (a *Client) UnselectRecord(params *UnselectRecordParams, authInfo runtime.C
 	}
 }
 
+/*
+  UnselectRecordShort unselects a change
+
+  Unselect a change, it will not be included when partial publish.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UnselectRecordShort(params *UnselectRecordParams, authInfo runtime.ClientAuthInfoWriter) (*UnselectRecordNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateTypeShort instead.
+
   AdminCreateType creates types
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
@@ -104,6 +106,12 @@ func (a *Client) AdminCreateType(params *AdminCreateTypeParams, authInfo runtime
 	}
 }
 
+/*
+  AdminCreateTypeShort creates types
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
+			creates a new type and subtype
+*/
 func (a *Client) AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -154,6 +162,8 @@ func (a *Client) AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo ru
 }
 
 /*
+Deprecated: Use AdminDeleteTypeShort instead.
+
   AdminDeleteType deletes types
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
@@ -208,6 +218,11 @@ func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime
 	}
 }
 
+/*
+  AdminDeleteTypeShort deletes types
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+*/
 func (a *Client) AdminDeleteTypeShort(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -256,6 +271,8 @@ func (a *Client) AdminDeleteTypeShort(params *AdminDeleteTypeParams, authInfo ru
 }
 
 /*
+Deprecated: Use AdminGetTypeShort instead.
+
   AdminGetType gets types
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
@@ -310,6 +327,11 @@ func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  AdminGetTypeShort gets types
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+*/
 func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -358,6 +380,8 @@ func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use AdminUpdateTypeShort instead.
+
   AdminUpdateType updates types
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
@@ -419,6 +443,12 @@ func (a *Client) AdminUpdateType(params *AdminUpdateTypeParams, authInfo runtime
 	}
 }
 
+/*
+  AdminUpdateTypeShort updates types
+
+  Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
+			updates a type and subtype
+*/
 func (a *Client) AdminUpdateTypeShort(params *AdminUpdateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTypeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

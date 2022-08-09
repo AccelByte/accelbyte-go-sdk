@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminDeleteGameRecordHandlerV1Short instead.
+
   AdminDeleteGameRecordHandlerV1 deletes game record
 
   Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;
@@ -103,6 +105,15 @@ func (a *Client) AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHan
 	}
 }
 
+/*
+  AdminDeleteGameRecordHandlerV1Short deletes game record
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+This endpoints delete game record in namespace-level
+*/
 func (a *Client) AdminDeleteGameRecordHandlerV1Short(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -149,6 +160,8 @@ func (a *Client) AdminDeleteGameRecordHandlerV1Short(params *AdminDeleteGameReco
 }
 
 /*
+Deprecated: Use AdminGetGameRecordHandlerV1Short instead.
+
   AdminGetGameRecordHandlerV1 gets game record
 
   Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
@@ -207,6 +220,15 @@ func (a *Client) AdminGetGameRecordHandlerV1(params *AdminGetGameRecordHandlerV1
 	}
 }
 
+/*
+  AdminGetGameRecordHandlerV1Short gets game record
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Get a record by its key in namespace-level.
+*/
 func (a *Client) AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -255,6 +277,8 @@ func (a *Client) AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHand
 }
 
 /*
+Deprecated: Use AdminPostGameRecordHandlerV1Short instead.
+
   AdminPostGameRecordHandlerV1 creates or append game record
 
   Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
@@ -354,6 +378,59 @@ func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandler
 	}
 }
 
+/*
+  AdminPostGameRecordHandlerV1Short creates or append game record
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new game record or append the existing game record.
+
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;__META&#34;: {
+			&#34;set_by&#34;: &#34;SERVER&#34;
+		}
+		...
+	}
+&lt;/pre&gt;
+
+*/
 func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -400,6 +477,8 @@ func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHa
 }
 
 /*
+Deprecated: Use AdminPutGameRecordHandlerV1Short instead.
+
   AdminPutGameRecordHandlerV1 creates or replace game record
 
   Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
@@ -492,6 +571,52 @@ func (a *Client) AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1
 	}
 }
 
+/*
+  AdminPutGameRecordHandlerV1Short creates or replace game record
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new game record or replace the existing game record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;__META&#34;: {
+			&#34;set_by&#34;: &#34;SERVER&#34;
+		}
+		...
+	}
+&lt;/pre&gt;
+
+*/
 func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -538,6 +663,8 @@ func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHand
 }
 
 /*
+Deprecated: Use ListGameRecordsHandlerV1Short instead.
+
   ListGameRecordsHandlerV1 queries game records
 
   Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
@@ -593,6 +720,15 @@ func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params
 	}
 }
 
+/*
+  ListGameRecordsHandlerV1Short queries game records
+
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
+
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Retrieve list of records key by namespace
+*/
 func (a *Client) ListGameRecordsHandlerV1Short(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

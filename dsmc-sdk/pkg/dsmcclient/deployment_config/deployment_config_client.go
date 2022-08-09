@@ -66,6 +66,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateDeploymentShort instead.
+
   CreateDeployment creates deployment
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -127,6 +129,15 @@ func (a *Client) CreateDeployment(params *CreateDeploymentParams, authInfo runti
 	}
 }
 
+/*
+  CreateDeploymentShort creates deployment
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers deployment in a namespace.
+*/
 func (a *Client) CreateDeploymentShort(params *CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -177,6 +188,8 @@ func (a *Client) CreateDeploymentShort(params *CreateDeploymentParams, authInfo 
 }
 
 /*
+Deprecated: Use CreateDeploymentOverrideShort instead.
+
   CreateDeploymentOverride creates deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -241,6 +254,15 @@ func (a *Client) CreateDeploymentOverride(params *CreateDeploymentOverrideParams
 	}
 }
 
+/*
+  CreateDeploymentOverrideShort creates deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers deployment override in a namespace.
+*/
 func (a *Client) CreateDeploymentOverrideShort(params *CreateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentOverrideCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -293,6 +315,8 @@ func (a *Client) CreateDeploymentOverrideShort(params *CreateDeploymentOverrideP
 }
 
 /*
+Deprecated: Use CreateOverrideRegionOverrideShort instead.
+
   CreateOverrideRegionOverride creates region override for deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -357,6 +381,15 @@ func (a *Client) CreateOverrideRegionOverride(params *CreateOverrideRegionOverri
 	}
 }
 
+/*
+  CreateOverrideRegionOverrideShort creates region override for deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint creates a dedicated servers deployment override in a namespace in a region for deployment overrides.
+*/
 func (a *Client) CreateOverrideRegionOverrideShort(params *CreateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOverrideRegionOverrideCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -409,6 +442,8 @@ func (a *Client) CreateOverrideRegionOverrideShort(params *CreateOverrideRegionO
 }
 
 /*
+Deprecated: Use CreateRootRegionOverrideShort instead.
+
   CreateRootRegionOverride creates region override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -473,6 +508,15 @@ func (a *Client) CreateRootRegionOverride(params *CreateRootRegionOverrideParams
 	}
 }
 
+/*
+  CreateRootRegionOverrideShort creates region override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint creates a dedicated servers deployment override in a namespace in a region for root deployment.
+*/
 func (a *Client) CreateRootRegionOverrideShort(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -525,6 +569,8 @@ func (a *Client) CreateRootRegionOverrideShort(params *CreateRootRegionOverrideP
 }
 
 /*
+Deprecated: Use DeleteDeploymentShort instead.
+
   DeleteDeployment deletes deployment
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -586,6 +632,15 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 	}
 }
 
+/*
+  DeleteDeploymentShort deletes deployment
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment in a namespace
+*/
 func (a *Client) DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -636,6 +691,8 @@ func (a *Client) DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo 
 }
 
 /*
+Deprecated: Use DeleteDeploymentOverrideShort instead.
+
   DeleteDeploymentOverride deletes deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
@@ -697,6 +754,15 @@ func (a *Client) DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams
 	}
 }
 
+/*
+  DeleteDeploymentOverrideShort deletes deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment override in a namespace
+*/
 func (a *Client) DeleteDeploymentOverrideShort(params *DeleteDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -747,6 +813,8 @@ func (a *Client) DeleteDeploymentOverrideShort(params *DeleteDeploymentOverrideP
 }
 
 /*
+Deprecated: Use DeleteOverrideRegionOverrideShort instead.
+
   DeleteOverrideRegionOverride deletes region override for deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
@@ -808,6 +876,15 @@ func (a *Client) DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverri
 	}
 }
 
+/*
+  DeleteOverrideRegionOverrideShort deletes region override for deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment override in a namespace in a region for deployment overrides
+*/
 func (a *Client) DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -858,6 +935,8 @@ func (a *Client) DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionO
 }
 
 /*
+Deprecated: Use DeleteRootRegionOverrideShort instead.
+
   DeleteRootRegionOverride deletes region override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
@@ -919,6 +998,15 @@ func (a *Client) DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams
 	}
 }
 
+/*
+  DeleteRootRegionOverrideShort deletes region override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint delete a dedicated server deployment override in a namespace in a region for root deployment
+*/
 func (a *Client) DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRootRegionOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -969,6 +1057,8 @@ func (a *Client) DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideP
 }
 
 /*
+Deprecated: Use GetAllDeploymentShort instead.
+
   GetAllDeployment gets all deployments
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -1029,6 +1119,17 @@ func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runti
 	}
 }
 
+/*
+  GetAllDeploymentShort gets all deployments
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a all deployments in a namespace
+
+Parameter Offset and Count is Required
+*/
 func (a *Client) GetAllDeploymentShort(params *GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1077,6 +1178,8 @@ func (a *Client) GetAllDeploymentShort(params *GetAllDeploymentParams, authInfo 
 }
 
 /*
+Deprecated: Use GetDeploymentShort instead.
+
   GetDeployment gets deployment
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -1138,6 +1241,15 @@ func (a *Client) GetDeployment(params *GetDeploymentParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetDeploymentShort gets deployment
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated server deployment in a namespace
+*/
 func (a *Client) GetDeploymentShort(params *GetDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1188,6 +1300,8 @@ func (a *Client) GetDeploymentShort(params *GetDeploymentParams, authInfo runtim
 }
 
 /*
+Deprecated: Use UpdateDeploymentShort instead.
+
   UpdateDeployment updates deployment
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -1249,6 +1363,15 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 	}
 }
 
+/*
+  UpdateDeploymentShort updates deployment
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint update a dedicated servers deployment in a namespace.
+*/
 func (a *Client) UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1299,6 +1422,8 @@ func (a *Client) UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo 
 }
 
 /*
+Deprecated: Use UpdateDeploymentOverrideShort instead.
+
   UpdateDeploymentOverride updates deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -1360,6 +1485,15 @@ func (a *Client) UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams
 	}
 }
 
+/*
+  UpdateDeploymentOverrideShort updates deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint update a dedicated servers deployment override in a namespace.
+*/
 func (a *Client) UpdateDeploymentOverrideShort(params *UpdateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1410,6 +1544,8 @@ func (a *Client) UpdateDeploymentOverrideShort(params *UpdateDeploymentOverrideP
 }
 
 /*
+Deprecated: Use UpdateOverrideRegionOverrideShort instead.
+
   UpdateOverrideRegionOverride updates region override for deployment override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -1471,6 +1607,15 @@ func (a *Client) UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverri
 	}
 }
 
+/*
+  UpdateOverrideRegionOverrideShort updates region override for deployment override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint update a dedicated servers deployment override in a namespace in a region for deployment overrides.
+*/
 func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1521,6 +1666,8 @@ func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionO
 }
 
 /*
+Deprecated: Use UpdateRootRegionOverrideShort instead.
+
   UpdateRootRegionOverride updates region override
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -1582,6 +1729,15 @@ func (a *Client) UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams
 	}
 }
 
+/*
+  UpdateRootRegionOverrideShort updates region override
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint update a dedicated servers deployment override in a namespace in a region for root deployment.
+*/
 func (a *Client) UpdateRootRegionOverrideShort(params *UpdateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRootRegionOverrideOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

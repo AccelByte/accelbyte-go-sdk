@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
+
   GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet gets events
 */
 func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error) {
@@ -86,6 +88,9 @@ func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(param
 	}
 }
 
+/*
+  GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort gets events
+*/
 func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

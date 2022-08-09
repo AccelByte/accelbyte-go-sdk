@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead.
+
   BulkGetPlayerPublicRecordHandlerV1 bulks get player public records
 
   &lt;table&gt;
@@ -127,6 +129,25 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicR
 	}
 }
 
+/*
+  BulkGetPlayerPublicRecordHandlerV1Short bulks get player public records
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Bulk get other player&#39;s record that is public by userIds, max allowed 20 at a time. Only record with &lt;code&gt;isPublic=true&lt;/code&gt; that can be
+retrieved using this endpoint.
+
+*/
 func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -177,6 +198,8 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPu
 }
 
 /*
+Deprecated: Use DeletePlayerRecordHandlerV1Short instead.
+
   DeletePlayerRecordHandlerV1 deletes player record
 
   &lt;table&gt;
@@ -248,6 +271,25 @@ func (a *Client) DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1
 	}
 }
 
+/*
+  DeletePlayerRecordHandlerV1Short deletes player record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Delete player record by its key.
+Only user that own the player record could delete it.
+
+*/
 func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -298,6 +340,8 @@ func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHand
 }
 
 /*
+Deprecated: Use GetPlayerPublicRecordHandlerV1Short instead.
+
   GetPlayerPublicRecordHandlerV1 gets player public record
 
   &lt;table&gt;
@@ -366,6 +410,25 @@ func (a *Client) GetPlayerPublicRecordHandlerV1(params *GetPlayerPublicRecordHan
 	}
 }
 
+/*
+  GetPlayerPublicRecordHandlerV1Short gets player public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Get other player&#39;s record that is public. Only record with &lt;code&gt;isPublic=true&lt;/code&gt; that can be
+retrieved using this endpoint.
+
+*/
 func (a *Client) GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerPublicRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -414,6 +477,8 @@ func (a *Client) GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicReco
 }
 
 /*
+Deprecated: Use GetPlayerRecordHandlerV1Short instead.
+
   GetPlayerRecordHandlerV1 gets player record
 
   &lt;table&gt;
@@ -484,6 +549,24 @@ func (a *Client) GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params
 	}
 }
 
+/*
+  GetPlayerRecordHandlerV1Short gets player record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Get player record by its key.
+&lt;b&gt;Private Record:&lt;/b&gt; Only user that own the player record could retrieve it.
+*/
 func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -534,6 +617,8 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 }
 
 /*
+Deprecated: Use PostPlayerPublicRecordHandlerV1Short instead.
+
   PostPlayerPublicRecordHandlerV1 creates or append player public record
 
   &lt;table&gt;
@@ -641,6 +726,64 @@ func (a *Client) PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordH
 	}
 }
 
+/*
+  PostPlayerPublicRecordHandlerV1Short creates or append player public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or append the existing player public record.
+
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
+
+*/
 func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -689,6 +832,8 @@ func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRe
 }
 
 /*
+Deprecated: Use PostPlayerRecordHandlerV1Short instead.
+
   PostPlayerRecordHandlerV1 creates or append player record
 
   Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
@@ -794,6 +939,59 @@ func (a *Client) PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Para
 	}
 }
 
+/*
+  PostPlayerRecordHandlerV1Short creates or append player record
+
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player record or append the existing player record.
+Only user that own the existing player record could modify.
+
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;__META&#34;: {
+			&#34;is_public&#34;: true
+		}
+		...
+	}
+&lt;/pre&gt;
+
+*/
 func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -844,6 +1042,8 @@ func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV
 }
 
 /*
+Deprecated: Use PublicDeletePlayerPublicRecordHandlerV1Short instead.
+
   PublicDeletePlayerPublicRecordHandlerV1 deletes player public record
 
   Required valid user authorization
@@ -915,6 +1115,25 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePla
 	}
 }
 
+/*
+  PublicDeletePlayerPublicRecordHandlerV1Short deletes player public record
+
+  Required valid user authorization
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+Delete player public record.
+
+
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
+
+*/
 func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -965,6 +1184,8 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 }
 
 /*
+Deprecated: Use PutPlayerPublicRecordHandlerV1Short instead.
+
   PutPlayerPublicRecordHandlerV1 creates or replace player public record
 
   &lt;table&gt;
@@ -1065,6 +1286,57 @@ func (a *Client) PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHan
 	}
 }
 
+/*
+  PutPlayerPublicRecordHandlerV1Short creates or replace player public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
+
+*/
 func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1113,6 +1385,8 @@ func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicReco
 }
 
 /*
+Deprecated: Use PutPlayerRecordHandlerV1Short instead.
+
   PutPlayerRecordHandlerV1 creates or replace player record
 
   Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
@@ -1211,6 +1485,52 @@ func (a *Client) PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params
 	}
 }
 
+/*
+  PutPlayerRecordHandlerV1Short creates or replace player record
+
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player record or replace the existing player record.
+Only user that own the existing player record could modify it.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;__META&#34;: {
+			&#34;is_public&#34;: true
+		}
+		...
+	}
+&lt;/pre&gt;
+
+*/
 func (a *Client) PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

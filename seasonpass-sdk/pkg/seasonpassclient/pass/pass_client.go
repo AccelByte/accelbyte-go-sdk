@@ -50,6 +50,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreatePassShort instead.
+
   CreatePass creates a pass
 
   This API is used to create a pass for a draft season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created pass&lt;/li&gt;&lt;/ul&gt;
@@ -107,6 +109,11 @@ func (a *Client) CreatePass(params *CreatePassParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CreatePassShort creates a pass
+
+  This API is used to create a pass for a draft season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created pass&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePassCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -157,6 +164,8 @@ func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use DeletePassShort instead.
+
   DeletePass deletes a pass
 
   This API is used to delete a pass permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -211,6 +220,11 @@ func (a *Client) DeletePass(params *DeletePassParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  DeletePassShort deletes a pass
+
+  This API is used to delete a pass permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePassNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -259,6 +273,8 @@ func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GetPassShort instead.
+
   GetPass gets a pass
 
   This API is used to get a pass for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: pass data&lt;/li&gt;&lt;/ul&gt;
@@ -310,6 +326,11 @@ func (a *Client) GetPass(params *GetPassParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  GetPassShort gets a pass
+
+  This API is used to get a pass for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: pass data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuthInfoWriter) (*GetPassOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -356,6 +377,8 @@ func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuth
 }
 
 /*
+Deprecated: Use GrantUserPassShort instead.
+
   GrantUserPass grants pass to user
 
   This API is used to grant pass to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -404,6 +427,11 @@ func (a *Client) GrantUserPass(params *GrantUserPassParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GrantUserPassShort grants pass to user
+
+  This API is used to grant pass to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserPassOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -448,6 +476,8 @@ func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtim
 }
 
 /*
+Deprecated: Use QueryPassesShort instead.
+
   QueryPasses queries all passes for a season
 
   This API is used to query all passes for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
@@ -499,6 +529,11 @@ func (a *Client) QueryPasses(params *QueryPassesParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  QueryPassesShort queries all passes for a season
+
+  This API is used to query all passes for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPassesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -545,6 +580,8 @@ func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use UpdatePassShort instead.
+
   UpdatePass updates a pass
 
   This API is used to update a pass. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated pass&lt;/li&gt;&lt;/ul&gt;
@@ -602,6 +639,11 @@ func (a *Client) UpdatePass(params *UpdatePassParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UpdatePassShort updates a pass
+
+  This API is used to update a pass. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated pass&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdatePassShort(params *UpdatePassParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePassOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

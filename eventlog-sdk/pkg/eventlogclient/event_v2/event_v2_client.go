@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetEventSpecificUserV2HandlerShort instead.
+
   GetEventSpecificUserV2Handler gets events from a specific user
 
   Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -109,6 +111,11 @@ func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2Han
 	}
 }
 
+/*
+  GetEventSpecificUserV2HandlerShort gets events from a specific user
+
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -163,6 +170,8 @@ func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUser
 }
 
 /*
+Deprecated: Use GetPublicEditHistoryShort instead.
+
   GetPublicEditHistory gets a user edit history based on the provided type
 
   &lt;p&gt;Available Type: &lt;/p&gt;
@@ -235,6 +244,20 @@ func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authIn
 	}
 }
 
+/*
+  GetPublicEditHistoryShort gets a user edit history based on the provided type
+
+  &lt;p&gt;Available Type: &lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;email&lt;/li&gt;
+				&lt;li&gt;password&lt;/li&gt;
+				&lt;li&gt;displayname&lt;/li&gt;
+				&lt;li&gt;dateofbirth&lt;/li&gt;
+				&lt;li&gt;country&lt;/li&gt;
+				&lt;li&gt;language&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Requires a valid user access token&lt;/p&gt;
+*/
 func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -289,6 +312,8 @@ func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, a
 }
 
 /*
+Deprecated: Use GetUserEventsV2PublicShort instead.
+
   GetUserEventsV2Public gets events from a specific user
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -352,6 +377,11 @@ func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, auth
 	}
 }
 
+/*
+  GetUserEventsV2PublicShort gets events from a specific user
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -406,6 +436,8 @@ func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams,
 }
 
 /*
+Deprecated: Use QueryEventStreamHandlerShort instead.
+
   QueryEventStreamHandler as generic query to get a set of events based on the provided filters
 
   &lt;p&gt;This endpoint is using POST which is somewhat unfamiliar,
@@ -472,6 +504,14 @@ func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, 
 	}
 }
 
+/*
+  QueryEventStreamHandlerShort as generic query to get a set of events based on the provided filters
+
+  &lt;p&gt;This endpoint is using POST which is somewhat unfamiliar,
+			but it&#39;s logical that we have to send/post a filter (search term) in order to get the data.&lt;/p&gt;
+			&lt;p&gt;This endpoint will not return anything if you give it an empty filters in the request body. &lt;/p&gt;
+			&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt; and scope &lt;code&gt;&#34;+scope+&#34;&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) QueryEventStreamHandlerShort(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

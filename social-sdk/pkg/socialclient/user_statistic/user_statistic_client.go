@@ -116,6 +116,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use BulkCreateUserStatItemsShort instead.
+
   BulkCreateUserStatItems bulks create user s stat items
 
   Bulk create user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;
@@ -164,6 +166,11 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 	}
 }
 
+/*
+  BulkCreateUserStatItemsShort bulks create user s stat items
+
+  Bulk create user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;
+*/
 func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -208,6 +215,8 @@ func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsPar
 }
 
 /*
+Deprecated: Use BulkFetchOrDefaultStatItemsShort instead.
+
   BulkFetchOrDefaultStatItems bulks fetch user stat item values
 
   Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
@@ -262,6 +271,14 @@ func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItems
 	}
 }
 
+/*
+  BulkFetchOrDefaultStatItemsShort bulks fetch user stat item values
+
+  Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
+NOTE: If stat item does not exist, will return default value. Other detail info:
++ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
++ *Returns*: list of user&#39;s stat item values
+*/
 func (a *Client) BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -308,6 +325,8 @@ func (a *Client) BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStat
 }
 
 /*
+Deprecated: Use BulkFetchOrDefaultStatItems1Short instead.
+
   BulkFetchOrDefaultStatItems1 bulks fetch user stat item values
 
   Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
@@ -362,6 +381,14 @@ func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItem
 	}
 }
 
+/*
+  BulkFetchOrDefaultStatItems1Short bulks fetch user stat item values
+
+  Bulk fetch multiple user&#39;s stat item values for a given namespace and statCode.
+NOTE: If stat item does not exist, will return default value. Other detail info:
++ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
++ *Returns*: list of user&#39;s stat item values
+*/
 func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -408,6 +435,8 @@ func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultSta
 }
 
 /*
+Deprecated: Use BulkFetchStatItemsShort instead.
+
   BulkFetchStatItems bulks fetch statitems value
 
   Bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
@@ -459,6 +488,14 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 	}
 }
 
+/*
+  BulkFetchStatItemsShort bulks fetch statitems value
+
+  Bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)
++ *Returns*: list of user&#39;s statItem
+*/
 func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -503,6 +540,8 @@ func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authI
 }
 
 /*
+Deprecated: Use BulkFetchStatItems1Short instead.
+
   BulkFetchStatItems1 publics bulk fetch statitems value
 
   Public bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
@@ -554,6 +593,14 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 	}
 }
 
+/*
+  BulkFetchStatItems1Short publics bulk fetch statitems value
+
+  Public bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)
++ *Returns*: list of user&#39;s statItem
+*/
 func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -598,6 +645,8 @@ func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, aut
 }
 
 /*
+Deprecated: Use BulkIncUserStatItemShort instead.
+
   BulkIncUserStatItem bulks update multiple user s statitems value
 
   Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -646,6 +695,11 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 	}
 }
 
+/*
+  BulkIncUserStatItemShort bulks update multiple user s statitems value
+
+  Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -690,6 +744,8 @@ func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, aut
 }
 
 /*
+Deprecated: Use BulkIncUserStatItemValueShort instead.
+
   BulkIncUserStatItemValue bulks update multiple user s statitems value
 
   Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -738,6 +794,11 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 	}
 }
 
+/*
+  BulkIncUserStatItemValueShort bulks update multiple user s statitems value
+
+  Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -782,6 +843,8 @@ func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueP
 }
 
 /*
+Deprecated: Use BulkIncUserStatItemValue1Short instead.
+
   BulkIncUserStatItemValue1 bulks update user s statitems value
 
   Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -830,6 +893,11 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 	}
 }
 
+/*
+  BulkIncUserStatItemValue1Short bulks update user s statitems value
+
+  Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -874,6 +942,8 @@ func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue
 }
 
 /*
+Deprecated: Use BulkIncUserStatItemValue2Short instead.
+
   BulkIncUserStatItemValue2 publics bulk update user s statitems value
 
   Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;
@@ -922,6 +992,11 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 	}
 }
 
+/*
+  BulkIncUserStatItemValue2Short publics bulk update user s statitems value
+
+  Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;
+*/
 func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -966,6 +1041,8 @@ func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue
 }
 
 /*
+Deprecated: Use BulkIncUserStatItem1Short instead.
+
   BulkIncUserStatItem1 bulks update user s statitems value
 
   Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -1014,6 +1091,11 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 	}
 }
 
+/*
+  BulkIncUserStatItem1Short bulks update user s statitems value
+
+  Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1058,6 +1140,8 @@ func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, a
 }
 
 /*
+Deprecated: Use BulkResetUserStatItemShort instead.
+
   BulkResetUserStatItem bulks reset multiple user s statitems value
 
   Bulk reset multiple user&#39;s statitems value.
@@ -1111,6 +1195,16 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 	}
 }
 
+/*
+  BulkResetUserStatItemShort bulks reset multiple user s statitems value
+
+  Bulk reset multiple user&#39;s statitems value.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
+
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1155,6 +1249,8 @@ func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams,
 }
 
 /*
+Deprecated: Use BulkResetUserStatItemValuesShort instead.
+
   BulkResetUserStatItemValues bulks reset user s statitem values
 
   Bulk reset user&#39;s statitem values for given namespace and user.
@@ -1206,6 +1302,14 @@ func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValues
 	}
 }
 
+/*
+  BulkResetUserStatItemValuesShort bulks reset user s statitem values
+
+  Bulk reset user&#39;s statitem values for given namespace and user.
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1250,6 +1354,8 @@ func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemV
 }
 
 /*
+Deprecated: Use BulkResetUserStatItem1Short instead.
+
   BulkResetUserStatItem1 bulks reset user s statitems value
 
   Bulk reset user&#39;s statitems value for given namespace and user.
@@ -1301,6 +1407,14 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 	}
 }
 
+/*
+  BulkResetUserStatItem1Short bulks reset user s statitems value
+
+  Bulk reset user&#39;s statitems value for given namespace and user.
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1345,6 +1459,8 @@ func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Param
 }
 
 /*
+Deprecated: Use BulkResetUserStatItem2Short instead.
+
   BulkResetUserStatItem2 publics bulk reset multiple user s statitems value
 
   Bulk reset multiple user&#39;s statitems value.
@@ -1398,6 +1514,16 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 	}
 }
 
+/*
+  BulkResetUserStatItem2Short publics bulk reset multiple user s statitems value
+
+  Bulk reset multiple user&#39;s statitems value.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
+
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1442,6 +1568,8 @@ func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Param
 }
 
 /*
+Deprecated: Use BulkResetUserStatItem3Short instead.
+
   BulkResetUserStatItem3 publics bulk reset user s statitems value
 
   Public bulk reset user&#39;s statitems value for given namespace and user.
@@ -1493,6 +1621,14 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 	}
 }
 
+/*
+  BulkResetUserStatItem3Short publics bulk reset user s statitems value
+
+  Public bulk reset user&#39;s statitems value for given namespace and user.
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1537,6 +1673,8 @@ func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Param
 }
 
 /*
+Deprecated: Use BulkUpdateUserStatItemShort instead.
+
   BulkUpdateUserStatItem bulks update user s statitems value
 
   Bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
@@ -1597,6 +1735,23 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 	}
 }
 
+/*
+  BulkUpdateUserStatItemShort bulks update user s statitems value
+
+  Bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
+
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1641,6 +1796,8 @@ func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParam
 }
 
 /*
+Deprecated: Use BulkUpdateUserStatItemV2Short instead.
+
   BulkUpdateUserStatItemV2 bulks update multiple user s statitems value
 
   Bulk update multiple user&#39;s statitems value with specific update strategy.
@@ -1698,6 +1855,20 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 	}
 }
 
+/*
+  BulkUpdateUserStatItemV2Short bulks update multiple user s statitems value
+
+  Bulk update multiple user&#39;s statitems value with specific update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1742,6 +1913,8 @@ func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2P
 }
 
 /*
+Deprecated: Use BulkUpdateUserStatItem1Short instead.
+
   BulkUpdateUserStatItem1 publics bulk update multiple user s statitems value
 
   Public bulk update multiple user&#39;s statitems value with specific update strategy.
@@ -1799,6 +1972,20 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 	}
 }
 
+/*
+  BulkUpdateUserStatItem1Short publics bulk update multiple user s statitems value
+
+  Public bulk update multiple user&#39;s statitems value with specific update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1843,6 +2030,8 @@ func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Par
 }
 
 /*
+Deprecated: Use BulkUpdateUserStatItem2Short instead.
+
   BulkUpdateUserStatItem2 publics bulk update user s statitems value
 
   Public bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
@@ -1903,6 +2092,23 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 	}
 }
 
+/*
+  BulkUpdateUserStatItem2Short publics bulk update user s statitems value
+
+  Public bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
+
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
 func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1947,6 +2153,8 @@ func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Par
 }
 
 /*
+Deprecated: Use CreateUserStatItemShort instead.
+
   CreateUserStatItem creates user s stat item
 
   Create statItem for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
@@ -1998,6 +2206,11 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 	}
 }
 
+/*
+  CreateUserStatItemShort creates user s stat item
+
+  Create statItem for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2044,6 +2257,8 @@ func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authI
 }
 
 /*
+Deprecated: Use DeleteUserStatItemsShort instead.
+
   DeleteUserStatItems deletes user s stat items
 
   This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
@@ -2098,6 +2313,11 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 	}
 }
 
+/*
+  DeleteUserStatItemsShort deletes user s stat items
+
+  This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
+*/
 func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2146,6 +2366,8 @@ func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, aut
 }
 
 /*
+Deprecated: Use DeleteUserStatItems1Short instead.
+
   DeleteUserStatItems1 deletes user s stat items
 
   Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
@@ -2200,6 +2422,11 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 	}
 }
 
+/*
+  DeleteUserStatItems1Short deletes user s stat items
+
+  Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
+*/
 func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2248,6 +2475,8 @@ func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, a
 }
 
 /*
+Deprecated: Use DeleteUserStatItems2Short instead.
+
   DeleteUserStatItems2 deletes user s stat items
 
   Delete user&#39;s stat items for given namespace, statCode, and user Id.
@@ -2305,6 +2534,14 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 	}
 }
 
+/*
+  DeleteUserStatItems2Short deletes user s stat items
+
+  Delete user&#39;s stat items for given namespace, statCode, and user Id.
+If query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName).
+Otherwise, it will delete all stat items related to the user Id.
+&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
+*/
 func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2353,6 +2590,8 @@ func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, a
 }
 
 /*
+Deprecated: Use GetUserStatItemsShort instead.
+
   GetUserStatItems lists user s stat items
 
   List user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
@@ -2398,6 +2637,11 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 	}
 }
 
+/*
+  GetUserStatItemsShort lists user s stat items
+
+  List user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2440,6 +2684,8 @@ func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo 
 }
 
 /*
+Deprecated: Use IncUserStatItemValueShort instead.
+
   IncUserStatItemValue updates user s statitem value
 
   Update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
@@ -2494,6 +2740,11 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 	}
 }
 
+/*
+  IncUserStatItemValueShort updates user s statitem value
+
+  Update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2542,6 +2793,8 @@ func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, a
 }
 
 /*
+Deprecated: Use PublicBulkCreateUserStatItemsShort instead.
+
   PublicBulkCreateUserStatItems bulks create user s stat items
 
   Bulk create statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;&lt;/ul&gt;
@@ -2590,6 +2843,11 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 	}
 }
 
+/*
+  PublicBulkCreateUserStatItemsShort bulks create user s stat items
+
+  Bulk create statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2634,6 +2892,8 @@ func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUser
 }
 
 /*
+Deprecated: Use PublicBulkIncUserStatItemShort instead.
+
   PublicBulkIncUserStatItem publics bulk update multiple user s statitems value
 
   Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -2682,6 +2942,11 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 	}
 }
 
+/*
+  PublicBulkIncUserStatItemShort publics bulk update multiple user s statitems value
+
+  Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2726,6 +2991,8 @@ func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatIte
 }
 
 /*
+Deprecated: Use PublicBulkIncUserStatItemValueShort instead.
+
   PublicBulkIncUserStatItemValue publics bulk update multiple user s statitems value
 
   Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -2774,6 +3041,11 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 	}
 }
 
+/*
+  PublicBulkIncUserStatItemValueShort publics bulk update multiple user s statitems value
+
+  Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2818,6 +3090,8 @@ func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserSt
 }
 
 /*
+Deprecated: Use PublicBulkIncUserStatItem1Short instead.
+
   PublicBulkIncUserStatItem1 publics bulk update user s statitems value
 
   Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
@@ -2866,6 +3140,11 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 	}
 }
 
+/*
+  PublicBulkIncUserStatItem1Short publics bulk update user s statitems value
+
+  Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -2910,6 +3189,8 @@ func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatIt
 }
 
 /*
+Deprecated: Use PublicCreateUserStatItemShort instead.
+
   PublicCreateUserStatItem creates user s stat item
 
   Create user&#39;s statItem.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
@@ -2961,6 +3242,11 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 	}
 }
 
+/*
+  PublicCreateUserStatItemShort creates user s stat item
+
+  Create user&#39;s statItem.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3007,6 +3293,8 @@ func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemP
 }
 
 /*
+Deprecated: Use PublicIncUserStatItemShort instead.
+
   PublicIncUserStatItem publics update user s statitem value
 
   Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
@@ -3061,6 +3349,11 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 	}
 }
 
+/*
+  PublicIncUserStatItemShort publics update user s statitem value
+
+  Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3109,6 +3402,8 @@ func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams,
 }
 
 /*
+Deprecated: Use PublicIncUserStatItemValueShort instead.
+
   PublicIncUserStatItemValue publics update user s statitem value
 
   Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
@@ -3163,6 +3458,11 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 	}
 }
 
+/*
+  PublicIncUserStatItemValueShort publics update user s statitem value
+
+  Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3211,6 +3511,8 @@ func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemVa
 }
 
 /*
+Deprecated: Use PublicQueryUserStatItemsShort instead.
+
   PublicQueryUserStatItems publics list user s stat items
 
   Public list all statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
@@ -3256,6 +3558,11 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 	}
 }
 
+/*
+  PublicQueryUserStatItemsShort publics list user s stat items
+
+  Public list all statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3298,6 +3605,8 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 }
 
 /*
+Deprecated: Use PublicQueryUserStatItems1Short instead.
+
   PublicQueryUserStatItems1 publics list user s stat items
 
   Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
@@ -3352,6 +3661,11 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 	}
 }
 
+/*
+  PublicQueryUserStatItems1Short publics list user s stat items
+
+  Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3400,6 +3714,8 @@ func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems
 }
 
 /*
+Deprecated: Use PublicQueryUserStatItems2Short instead.
+
   PublicQueryUserStatItems2 publics list user s stat items
 
   Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
@@ -3454,6 +3770,11 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 	}
 }
 
+/*
+  PublicQueryUserStatItems2Short publics list user s stat items
+
+  Public list all statItems of user.&lt;br&gt;NOTE: &lt;li&gt;If stat code does not exist, will ignore this stat code.&lt;/li&gt;&lt;li&gt;If stat item does not exist, will return default value&lt;/li&gt;&lt;/ul&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3502,6 +3823,8 @@ func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems
 }
 
 /*
+Deprecated: Use ResetUserStatItemValueShort instead.
+
   ResetUserStatItemValue resets user s statitem value
 
   Reset user&#39;s statitem value for a given namespace and user.
@@ -3558,6 +3881,16 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 	}
 }
 
+/*
+  ResetUserStatItemValueShort resets user s statitem value
+
+  Reset user&#39;s statitem value for a given namespace and user.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
+
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
+*/
 func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3604,6 +3937,8 @@ func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParam
 }
 
 /*
+Deprecated: Use ResetUserStatItemValue1Short instead.
+
   ResetUserStatItemValue1 publics reset user s statitem value
 
   Reset user&#39;s statitem value for a given namespace and user.
@@ -3660,6 +3995,16 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 	}
 }
 
+/*
+  ResetUserStatItemValue1Short publics reset user s statitem value
+
+  Reset user&#39;s statitem value for a given namespace and user.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
+
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
+*/
 func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3706,6 +4051,8 @@ func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Par
 }
 
 /*
+Deprecated: Use UpdateUserStatItemValueShort instead.
+
   UpdateUserStatItemValue updates user s statitem value
 
   Update user&#39;s statitem value for a given namespace and user with a certain update strategy.
@@ -3775,6 +4122,23 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 	}
 }
 
+/*
+  UpdateUserStatItemValueShort updates user s statitem value
+
+  Update user&#39;s statitem value for a given namespace and user with a certain update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
+
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
+*/
 func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -3825,6 +4189,8 @@ func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValuePar
 }
 
 /*
+Deprecated: Use UpdateUserStatItemValue1Short instead.
+
   UpdateUserStatItemValue1 publics update user s statitem value
 
   Public update user&#39;s statitem value for a given namespace and user with a certain update strategy.
@@ -3894,6 +4260,23 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 	}
 }
 
+/*
+  UpdateUserStatItemValue1Short publics update user s statitem value
+
+  Public update user&#39;s statitem value for a given namespace and user with a certain update strategy.
+There are four supported update strategies:
++ *OVERRIDE*: update user statitem with the new value
++ *INCREMENT*: increment user statitem with the specified value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
+
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
+
+Other detail info:
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
+*/
 func (a *Client) UpdateUserStatItemValue1Short(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

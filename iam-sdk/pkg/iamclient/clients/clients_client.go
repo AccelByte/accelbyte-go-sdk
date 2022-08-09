@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminAddClientPermissionsV3Short instead.
+
   AdminAddClientPermissionsV3 adds client permissions
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT&#39; [UPDATE]&#39;&lt;/p&gt;
@@ -115,6 +117,13 @@ func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3
 	}
 }
 
+/*
+  AdminAddClientPermissionsV3Short adds client permissions
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT&#39; [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;action code: 10303&lt;/p&gt;
+
+*/
 func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -165,6 +174,8 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 }
 
 /*
+Deprecated: Use AdminCreateClientV3Short instead.
+
   AdminCreateClientV3 creates client
 
   Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&lt;br&gt;
@@ -255,6 +266,44 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
 	}
 }
 
+/*
+  AdminCreateClientV3Short creates client
+
+  Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&lt;br&gt;
+		A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.&lt;br&gt;
+		action code: 10301&lt;br&gt;
+		&lt;p&gt;&lt;strong&gt;Fields Description:&lt;/strong&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;clientId&lt;/strong&gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientName&lt;/strong&gt; : The client name. e.g E-commerce&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;secret&lt;/strong&gt; : The client&#39;s secret. It&#39;s empty if the client&#39;s type is a public client. Otherwise, the client secret is required&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;namespace&lt;/strong&gt; : The namespace where the client lives. e.g sample-game&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;redirectUri&lt;/strong&gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;oauthClientType&lt;/strong&gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not.
+					A public client type doesn&#39;t have a client secret and should use PKCE flow.
+					A confidential client type has a client secret and don&#39;t use PKCE flow
+			&lt;ul&gt;Supported oAuthClientType :
+				&lt;li&gt;&lt;strong&gt;Public&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;Confidential&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;audiences&lt;/strong&gt; : List of target client IDs who is intended to receive the token. e.g [&#34;eaaa65618fe24293b00a61454182b435&#34;, &#34;40073ee9bc3446d3a051a71b48509a5d&#34;]&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). default value: true&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPlatform&lt;/strong&gt;: available client platform (optional). default value: &#34;&#34;
+  			&lt;ul&gt;
+				&lt;li&gt;Playstation&lt;/li&gt;
+				&lt;li&gt;Xbox&lt;/li&gt;
+				&lt;li&gt;Steam&lt;/li&gt;
+				&lt;li&gt;Epic&lt;/li&gt;
+				&lt;li&gt;IOS&lt;/li&gt;
+				&lt;li&gt;GooglePlay&lt;/li&gt;
+				&lt;li&gt;Nintendo&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+
+*/
 func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -305,6 +354,8 @@ func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, aut
 }
 
 /*
+Deprecated: Use AdminDeleteClientPermissionV3Short instead.
+
   AdminDeleteClientPermissionV3 deletes client permission
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;br&gt;action code : 10304
@@ -362,6 +413,11 @@ func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissi
 	}
 }
 
+/*
+  AdminDeleteClientPermissionV3Short deletes client permission
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;br&gt;action code : 10304
+*/
 func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -412,6 +468,8 @@ func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPer
 }
 
 /*
+Deprecated: Use AdminDeleteClientV3Short instead.
+
   AdminDeleteClientV3 deletes client
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]&#39;&lt;br&gt;action code : 10310
@@ -472,6 +530,11 @@ func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo
 	}
 }
 
+/*
+  AdminDeleteClientV3Short deletes client
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]&#39;&lt;br&gt;action code : 10310
+*/
 func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -524,6 +587,8 @@ func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, aut
 }
 
 /*
+Deprecated: Use AdminGetClientsByNamespaceV3Short instead.
+
   AdminGetClientsByNamespaceV3 gets clients by namespace
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;/p&gt;
@@ -580,6 +645,13 @@ func (a *Client) AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespace
 	}
 }
 
+/*
+  AdminGetClientsByNamespaceV3Short gets clients by namespace
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;/p&gt;
+&lt;p&gt;action code: 10308&lt;/p&gt;
+
+*/
 func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -628,6 +700,8 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 }
 
 /*
+Deprecated: Use AdminGetClientsbyNamespacebyIDV3Short instead.
+
   AdminGetClientsbyNamespacebyIDV3 gets clients by namespace and client id
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;br&gt;action code: 10309
@@ -685,6 +759,11 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNames
 	}
 }
 
+/*
+  AdminGetClientsbyNamespacebyIDV3Short gets clients by namespace and client id
+
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [READ]&#39;&lt;br&gt;action code: 10309
+*/
 func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsbyNamespacebyIDV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -735,6 +814,8 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsby
 }
 
 /*
+Deprecated: Use AdminUpdateClientPermissionV3Short instead.
+
   AdminUpdateClientPermissionV3 updates client permissions
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;/p&gt;
@@ -794,6 +875,13 @@ func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissi
 	}
 }
 
+/*
+  AdminUpdateClientPermissionV3Short updates client permissions
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;action code: 10307&lt;/p&gt;
+
+*/
 func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientPermissionV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -844,6 +932,8 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 }
 
 /*
+Deprecated: Use AdminUpdateClientSecretV3Short instead.
+
   AdminUpdateClientSecretV3 updates client secret
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;/br&gt;
@@ -901,6 +991,11 @@ func (a *Client) AdminUpdateClientSecretV3(params *AdminUpdateClientSecretV3Para
 	}
 }
 
+/*
+  AdminUpdateClientSecretV3Short updates client secret
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]&#39;&lt;/br&gt;
+*/
 func (a *Client) AdminUpdateClientSecretV3Short(params *AdminUpdateClientSecretV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientSecretV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -951,6 +1046,8 @@ func (a *Client) AdminUpdateClientSecretV3Short(params *AdminUpdateClientSecretV
 }
 
 /*
+Deprecated: Use AdminUpdateClientV3Short instead.
+
   AdminUpdateClientV3 updates client
 
   Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
@@ -1032,6 +1129,35 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
 	}
 }
 
+/*
+  AdminUpdateClientV3Short updates client
+
+  Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
+				Specify only the fields you want to update in the request payload, e.g. {&#34;ClientName&#34;:&#34;E-commerce&#34;, &#34;BaseUri&#34;:&#34;https://example.net&#34;}
+		&lt;br&gt; action code: 10302&lt;br&gt;
+		&lt;p&gt;&lt;strong&gt;Fields Description:&lt;/strong&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;clientName&lt;/strong&gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;namespace&lt;/strong&gt; : The namespace where the client lives. e.g sample-game&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;redirectUri&lt;/strong&gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;audiences&lt;/strong&gt; : List of target client IDs who is intended to receive the token. e.g [&#34;eaaa65618fe24293b00a61454182b435&#34;, &#34;40073ee9bc3446d3a051a71b48509a5d&#34;]&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). e.g. true&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;clientPlatform&lt;/strong&gt; : available client platform (optional). default value: &#34;&#34;.
+  			&lt;ul&gt;
+				&lt;li&gt;Playstation&lt;/li&gt;
+				&lt;li&gt;Xbox&lt;/li&gt;
+				&lt;li&gt;Steam&lt;/li&gt;
+				&lt;li&gt;Epic&lt;/li&gt;
+				&lt;li&gt;IOS&lt;/li&gt;
+				&lt;li&gt;GooglePlay&lt;/li&gt;
+				&lt;li&gt;Nintendo&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
 func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

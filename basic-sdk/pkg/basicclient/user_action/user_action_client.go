@@ -52,6 +52,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use BanUsersShort instead.
+
   BanUsers bans user temporarily or permanently
 
   Ban user.&lt;br&gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -109,6 +111,11 @@ func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  BanUsersShort bans user temporarily or permanently
+
+  Ban user.&lt;br&gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*BanUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -159,6 +166,8 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use GetActionsShort instead.
+
   GetActions gets configured actions
 
   Get configured actions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -213,6 +222,11 @@ func (a *Client) GetActions(params *GetActionsParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  GetActionsShort gets configured actions
+
+  Get configured actions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetActionsShort(params *GetActionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -261,6 +275,8 @@ func (a *Client) GetActionsShort(params *GetActionsParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GetBannedUsersShort instead.
+
   GetBannedUsers gets banned user
 
   Get banned status.&lt;br&gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -318,6 +334,11 @@ func (a *Client) GetBannedUsers(params *GetBannedUsersParams, authInfo runtime.C
 	}
 }
 
+/*
+  GetBannedUsersShort gets banned user
+
+  Get banned status.&lt;br&gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetBannedUsersShort(params *GetBannedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetBannedUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -368,6 +389,8 @@ func (a *Client) GetBannedUsersShort(params *GetBannedUsersParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetUserStatusShort instead.
+
   GetUserStatus gets user status
 
   Get user status.&lt;br&gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -425,6 +448,11 @@ func (a *Client) GetUserStatus(params *GetUserStatusParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetUserStatusShort gets user status
+
+  Get user status.&lt;br&gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -475,6 +503,8 @@ func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtim
 }
 
 /*
+Deprecated: Use PublicReportUserShort instead.
+
   PublicReportUser reports a game user
 
   This API is used to report a game user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -526,6 +556,11 @@ func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runti
 	}
 }
 
+/*
+  PublicReportUserShort reports a game user
+
+  This API is used to report a game user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReportUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -572,6 +607,8 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 }
 
 /*
+Deprecated: Use ReportUserShort instead.
+
   ReportUser reports a game player for game service
 
   This API is for game service to report a game player.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -620,6 +657,11 @@ func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  ReportUserShort reports a game player for game service
+
+  This API is for game service to report a game player.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.ClientAuthInfoWriter) (*ReportUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -664,6 +706,8 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use UnBanUsersShort instead.
+
   UnBanUsers unbans user
 
   Unban user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -721,6 +765,11 @@ func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UnBanUsersShort unbans user
+
+  Unban user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.ClientAuthInfoWriter) (*UnBanUsersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

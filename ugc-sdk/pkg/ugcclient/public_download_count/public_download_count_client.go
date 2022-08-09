@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddDownloadCountShort instead.
+
   AddDownloadCount adds unique download count to a content
 
   Requires valid user token
@@ -97,6 +99,11 @@ func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runti
 	}
 }
 
+/*
+  AddDownloadCountShort adds unique download count to a content
+
+  Requires valid user token
+*/
 func (a *Client) AddDownloadCountShort(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

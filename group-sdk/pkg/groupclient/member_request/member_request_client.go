@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetGroupInvitationRequestPublicV1Short instead.
+
   GetGroupInvitationRequestPublicV1 gets group invitation request list
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -103,6 +105,15 @@ func (a *Client) GetGroupInvitationRequestPublicV1(params *GetGroupInvitationReq
 	}
 }
 
+/*
+  GetGroupInvitationRequestPublicV1Short gets group invitation request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Invitation Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Invitation Request List for the user calling this endpoint. It will check any group invitation for this user&lt;/p&gt;
+			&lt;p&gt;Action Code: 73502&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -153,6 +164,8 @@ func (a *Client) GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitati
 }
 
 /*
+Deprecated: Use GetGroupJoinRequestPublicV1Short instead.
+
   GetGroupJoinRequestPublicV1 gets group join request list
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
@@ -215,6 +228,16 @@ func (a *Client) GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1
 	}
 }
 
+/*
+  GetGroupJoinRequestPublicV1Short gets group join request list
+
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Join Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

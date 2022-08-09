@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetHealthcheckInfoShort instead.
+
   GetHealthcheckInfo get healthcheck info API
 */
 func (a *Client) GetHealthcheckInfo(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error) {
@@ -89,6 +91,9 @@ func (a *Client) GetHealthcheckInfo(params *GetHealthcheckInfoParams, authInfo r
 	}
 }
 
+/*
+  GetHealthcheckInfoShort get healthcheck info API
+*/
 func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -131,6 +136,8 @@ func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authI
 }
 
 /*
+Deprecated: Use HandlerV3HealthzShort instead.
+
   HandlerV3Healthz handler v3 healthz API
 */
 func (a *Client) HandlerV3Healthz(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error) {
@@ -174,6 +181,9 @@ func (a *Client) HandlerV3Healthz(params *HandlerV3HealthzParams, authInfo runti
 	}
 }
 
+/*
+  HandlerV3HealthzShort handler v3 healthz API
+*/
 func (a *Client) HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -216,6 +226,8 @@ func (a *Client) HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo 
 }
 
 /*
+Deprecated: Use PublicGetMessagesShort instead.
+
   PublicGetMessages gets service messages
 
   get the list of messages.
@@ -264,6 +276,11 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 	}
 }
 
+/*
+  PublicGetMessagesShort gets service messages
+
+  get the list of messages.
+*/
 func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -308,6 +325,8 @@ func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInf
 }
 
 /*
+Deprecated: Use VersionCheckHandlerShort instead.
+
   VersionCheckHandler version check handler API
 */
 func (a *Client) VersionCheckHandler(params *VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*VersionCheckHandlerOK, error) {
@@ -351,6 +370,9 @@ func (a *Client) VersionCheckHandler(params *VersionCheckHandlerParams, authInfo
 	}
 }
 
+/*
+  VersionCheckHandlerShort version check handler API
+*/
 func (a *Client) VersionCheckHandlerShort(params *VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*VersionCheckHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

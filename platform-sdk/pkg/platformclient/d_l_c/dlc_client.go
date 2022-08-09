@@ -58,6 +58,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeleteDLCItemConfigShort instead.
+
   DeleteDLCItemConfig deletes a d l c item config
 
   delete a DLC item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -103,6 +105,11 @@ func (a *Client) DeleteDLCItemConfig(params *DeleteDLCItemConfigParams, authInfo
 	}
 }
 
+/*
+  DeleteDLCItemConfigShort deletes a d l c item config
+
+  delete a DLC item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDLCItemConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -145,6 +152,8 @@ func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, aut
 }
 
 /*
+Deprecated: Use DeletePlatformDLCConfigShort instead.
+
   DeletePlatformDLCConfig deletes a platform d l c config
 
   delete a Platform DLC config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -190,6 +199,11 @@ func (a *Client) DeletePlatformDLCConfig(params *DeletePlatformDLCConfigParams, 
 	}
 }
 
+/*
+  DeletePlatformDLCConfigShort deletes a platform d l c config
+
+  delete a Platform DLC config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlatformDLCConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -232,6 +246,8 @@ func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigPar
 }
 
 /*
+Deprecated: Use GetDLCItemConfigShort instead.
+
   GetDLCItemConfig gets d l c item config
 
   Get DLC item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -280,6 +296,11 @@ func (a *Client) GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runti
 	}
 }
 
+/*
+  GetDLCItemConfigShort gets d l c item config
+
+  Get DLC item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -324,6 +345,8 @@ func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo 
 }
 
 /*
+Deprecated: Use GetPlatformDLCConfigShort instead.
+
   GetPlatformDLCConfig gets platform d l c config
 
   Get Platform DLC config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -372,6 +395,11 @@ func (a *Client) GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authIn
 	}
 }
 
+/*
+  GetPlatformDLCConfigShort gets platform d l c config
+
+  Get Platform DLC config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -416,6 +444,8 @@ func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, a
 }
 
 /*
+Deprecated: Use PublicSyncPsnDlcInventoryShort instead.
+
   PublicSyncPsnDlcInventory synchronizes with dlc entitlements in p s n store
 
   Synchronize with dlc entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
@@ -461,6 +491,11 @@ func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryPara
 	}
 }
 
+/*
+  PublicSyncPsnDlcInventoryShort synchronizes with dlc entitlements in p s n store
+
+  Synchronize with dlc entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDlcInventoryNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -503,6 +538,8 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 }
 
 /*
+Deprecated: Use SyncEpicGameDLCShort instead.
+
   SyncEpicGameDLC syncs epic games dlc items
 
   Sync epic games dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -548,6 +585,11 @@ func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime
 	}
 }
 
+/*
+  SyncEpicGameDLCShort syncs epic games dlc items
+
+  Sync epic games dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -590,6 +632,8 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 }
 
 /*
+Deprecated: Use SyncSteamDLCShort instead.
+
   SyncSteamDLC syncs steam dlc
 
   Sync steam dlc.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -638,6 +682,11 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  SyncSteamDLCShort syncs steam dlc
+
+  Sync steam dlc.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -682,6 +731,8 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use SyncXboxDLCShort instead.
+
   SyncXboxDLC syncs xbox dlc items
 
   Sync Xbox inventory&#39;s dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -727,6 +778,11 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  SyncXboxDLCShort syncs xbox dlc items
+
+  Sync Xbox inventory&#39;s dlc items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -769,6 +825,8 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use UpdateDLCItemConfigShort instead.
+
   UpdateDLCItemConfig updates d l c item config
 
   Update DLC item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated DLC item config&lt;/li&gt;&lt;/ul&gt;
@@ -817,6 +875,11 @@ func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo
 	}
 }
 
+/*
+  UpdateDLCItemConfigShort updates d l c item config
+
+  Update DLC item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated DLC item config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -861,6 +924,8 @@ func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, aut
 }
 
 /*
+Deprecated: Use UpdatePlatformDLCConfigShort instead.
+
   UpdatePlatformDLCConfig updates platform d l c config
 
   Update Platform DLC config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated Platform DLC config&lt;/li&gt;&lt;/ul&gt;
@@ -909,6 +974,11 @@ func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, 
 	}
 }
 
+/*
+  UpdatePlatformDLCConfigShort updates platform d l c config
+
+  Update Platform DLC config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:DLC:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated Platform DLC config&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdatePlatformDLCConfigShort(params *UpdatePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformDLCConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

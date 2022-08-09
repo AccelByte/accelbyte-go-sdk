@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreatePolicyVersionShort instead.
+
   CreatePolicyVersion creates a version from country specific policy
 
   Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -94,6 +96,11 @@ func (a *Client) CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo
 	}
 }
 
+/*
+  CreatePolicyVersionShort creates a version from country specific policy
+
+  Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -138,6 +145,8 @@ func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, aut
 }
 
 /*
+Deprecated: Use PublishPolicyVersionShort instead.
+
   PublishPolicyVersion manuallies publish a version from country specific policy
 
   Manually publish a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -186,6 +195,11 @@ func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authIn
 	}
 }
 
+/*
+  PublishPolicyVersionShort manuallies publish a version from country specific policy
+
+  Manually publish a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -230,6 +244,8 @@ func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, a
 }
 
 /*
+Deprecated: Use RetrieveSinglePolicyVersionShort instead.
+
   RetrieveSinglePolicyVersion retrieves a version from country specific policy
 
   Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -278,6 +294,11 @@ func (a *Client) RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersion
 	}
 }
 
+/*
+  RetrieveSinglePolicyVersionShort retrieves a version from country specific policy
+
+  Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -322,6 +343,8 @@ func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVe
 }
 
 /*
+Deprecated: Use UpdatePolicyVersionShort instead.
+
   UpdatePolicyVersion updates a version of policy
 
   Update a particular policy version.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -370,6 +393,11 @@ func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo
 	}
 }
 
+/*
+  UpdatePolicyVersionShort updates a version of policy
+
+  Update a particular policy version.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use SyncOrdersShort instead.
+
   SyncOrders syncs orders
 
   Sync orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: sync orders&lt;/li&gt;&lt;/ul&gt;
@@ -85,6 +87,11 @@ func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  SyncOrdersShort syncs orders
+
+  Sync orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: sync orders&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) SyncOrdersShort(params *SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

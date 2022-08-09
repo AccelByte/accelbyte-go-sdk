@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetDefaultProviderShort instead.
+
   GetDefaultProvider gets default provider
 
   This endpoints returns the default provider.
@@ -89,6 +91,11 @@ func (a *Client) GetDefaultProvider(params *GetDefaultProviderParams, authInfo r
 	}
 }
 
+/*
+  GetDefaultProviderShort gets default provider
+
+  This endpoints returns the default provider.
+*/
 func (a *Client) GetDefaultProviderShort(params *GetDefaultProviderParams, authInfo runtime.ClientAuthInfoWriter) (*GetDefaultProviderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -131,6 +138,8 @@ func (a *Client) GetDefaultProviderShort(params *GetDefaultProviderParams, authI
 }
 
 /*
+Deprecated: Use ListProvidersShort instead.
+
   ListProviders lists all supported providers
 
   This endpoints returns list of supported providers. Armada is the default provider.
@@ -176,6 +185,11 @@ func (a *Client) ListProviders(params *ListProvidersParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  ListProvidersShort lists all supported providers
+
+  This endpoints returns list of supported providers. Armada is the default provider.
+*/
 func (a *Client) ListProvidersShort(params *ListProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -218,6 +232,8 @@ func (a *Client) ListProvidersShort(params *ListProvidersParams, authInfo runtim
 }
 
 /*
+Deprecated: Use ListProvidersByRegionShort instead.
+
   ListProvidersByRegion lists providers by region
 
   This endpoint returns the providers by region.
@@ -263,6 +279,11 @@ func (a *Client) ListProvidersByRegion(params *ListProvidersByRegionParams, auth
 	}
 }
 
+/*
+  ListProvidersByRegionShort lists providers by region
+
+  This endpoint returns the providers by region.
+*/
 func (a *Client) ListProvidersByRegionShort(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

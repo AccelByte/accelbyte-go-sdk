@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use PublicGetCreatorShort instead.
+
   PublicGetCreator gets creator stats number of total like by other user number of total following and follower user
 
   Public user can access without token or if token specified, requires valid user token
@@ -96,6 +98,11 @@ func (a *Client) PublicGetCreator(params *PublicGetCreatorParams, authInfo runti
 	}
 }
 
+/*
+  PublicGetCreatorShort gets creator stats number of total like by other user number of total following and follower user
+
+  Public user can access without token or if token specified, requires valid user token
+*/
 func (a *Client) PublicGetCreatorShort(params *PublicGetCreatorParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCreatorOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -144,6 +151,8 @@ func (a *Client) PublicGetCreatorShort(params *PublicGetCreatorParams, authInfo 
 }
 
 /*
+Deprecated: Use PublicSearchCreatorShort instead.
+
   PublicSearchCreator searches creator
 
   Public user can access without token or if token specified, requires valid user token
@@ -198,6 +207,11 @@ func (a *Client) PublicSearchCreator(params *PublicSearchCreatorParams, authInfo
 	}
 }
 
+/*
+  PublicSearchCreatorShort searches creator
+
+  Public user can access without token or if token specified, requires valid user token
+*/
 func (a *Client) PublicSearchCreatorShort(params *PublicSearchCreatorParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchCreatorOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

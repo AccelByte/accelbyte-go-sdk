@@ -60,6 +60,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddFriendsWithoutConfirmationShort instead.
+
   AddFriendsWithoutConfirmation adds friends without confirmation
 
   Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -118,6 +120,12 @@ func (a *Client) AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirma
 	}
 }
 
+/*
+  AddFriendsWithoutConfirmationShort adds friends without confirmation
+
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;friends request in a namespace.
+*/
 func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -168,6 +176,8 @@ func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutCon
 }
 
 /*
+Deprecated: Use GetListOfFriendsShort instead.
+
   GetListOfFriends gets list of friends
 
   Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -226,6 +236,12 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 	}
 }
 
+/*
+  GetListOfFriendsShort gets list of friends
+
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+&lt;br&gt;get list of friends in a namespace.
+*/
 func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -276,6 +292,8 @@ func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo 
 }
 
 /*
+Deprecated: Use GetUserFriendsUpdatedShort instead.
+
   GetUserFriendsUpdated gets list of friends
 */
 func (a *Client) GetUserFriendsUpdated(params *GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsUpdatedOK, *GetUserFriendsUpdatedBadRequest, *GetUserFriendsUpdatedUnauthorized, *GetUserFriendsUpdatedForbidden, *GetUserFriendsUpdatedNotFound, *GetUserFriendsUpdatedInternalServerError, error) {
@@ -334,6 +352,9 @@ func (a *Client) GetUserFriendsUpdated(params *GetUserFriendsUpdatedParams, auth
 	}
 }
 
+/*
+  GetUserFriendsUpdatedShort gets list of friends
+*/
 func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsUpdatedOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -386,6 +407,8 @@ func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams,
 }
 
 /*
+Deprecated: Use GetUserIncomingFriendsShort instead.
+
   GetUserIncomingFriends gets list of incoming friends
 */
 func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, *GetUserIncomingFriendsBadRequest, *GetUserIncomingFriendsUnauthorized, *GetUserIncomingFriendsForbidden, *GetUserIncomingFriendsNotFound, *GetUserIncomingFriendsInternalServerError, error) {
@@ -444,6 +467,9 @@ func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, au
 	}
 }
 
+/*
+  GetUserIncomingFriendsShort gets list of incoming friends
+*/
 func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -496,6 +522,8 @@ func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParam
 }
 
 /*
+Deprecated: Use GetUserOutgoingFriendsShort instead.
+
   GetUserOutgoingFriends gets list of outgoing friends
 */
 func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, *GetUserOutgoingFriendsBadRequest, *GetUserOutgoingFriendsUnauthorized, *GetUserOutgoingFriendsForbidden, *GetUserOutgoingFriendsNotFound, *GetUserOutgoingFriendsInternalServerError, error) {
@@ -554,6 +582,9 @@ func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, au
 	}
 }
 
+/*
+  GetUserOutgoingFriendsShort gets list of outgoing friends
+*/
 func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -606,6 +637,8 @@ func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParam
 }
 
 /*
+Deprecated: Use UserAcceptFriendRequestShort instead.
+
   UserAcceptFriendRequest users accept friend
 */
 func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error) {
@@ -664,6 +697,9 @@ func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, 
 	}
 }
 
+/*
+  UserAcceptFriendRequestShort users accept friend
+*/
 func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -716,6 +752,8 @@ func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestPar
 }
 
 /*
+Deprecated: Use UserCancelFriendRequestShort instead.
+
   UserCancelFriendRequest users cancel a friend request
 */
 func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, *UserCancelFriendRequestBadRequest, *UserCancelFriendRequestUnauthorized, *UserCancelFriendRequestForbidden, *UserCancelFriendRequestNotFound, *UserCancelFriendRequestInternalServerError, error) {
@@ -774,6 +812,9 @@ func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, 
 	}
 }
 
+/*
+  UserCancelFriendRequestShort users cancel a friend request
+*/
 func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -826,6 +867,8 @@ func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestPar
 }
 
 /*
+Deprecated: Use UserGetFriendshipStatusShort instead.
+
   UserGetFriendshipStatus users get friendship status
 */
 func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, *UserGetFriendshipStatusBadRequest, *UserGetFriendshipStatusUnauthorized, *UserGetFriendshipStatusForbidden, *UserGetFriendshipStatusInternalServerError, error) {
@@ -881,6 +924,9 @@ func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, 
 	}
 }
 
+/*
+  UserGetFriendshipStatusShort users get friendship status
+*/
 func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -931,6 +977,8 @@ func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusPar
 }
 
 /*
+Deprecated: Use UserRejectFriendRequestShort instead.
+
   UserRejectFriendRequest users reject a friend request
 */
 func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, *UserRejectFriendRequestBadRequest, *UserRejectFriendRequestUnauthorized, *UserRejectFriendRequestForbidden, *UserRejectFriendRequestNotFound, *UserRejectFriendRequestInternalServerError, error) {
@@ -989,6 +1037,9 @@ func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, 
 	}
 }
 
+/*
+  UserRejectFriendRequestShort users reject a friend request
+*/
 func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1041,6 +1092,8 @@ func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestPar
 }
 
 /*
+Deprecated: Use UserRequestFriendShort instead.
+
   UserRequestFriend users add friend
 
   Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.
@@ -1104,6 +1157,11 @@ func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo run
 	}
 }
 
+/*
+  UserRequestFriendShort users add friend
+
+  Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.
+*/
 func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1158,6 +1216,8 @@ func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInf
 }
 
 /*
+Deprecated: Use UserUnfriendRequestShort instead.
+
   UserUnfriendRequest users unfriend a friend
 */
 func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, *UserUnfriendRequestBadRequest, *UserUnfriendRequestUnauthorized, *UserUnfriendRequestForbidden, *UserUnfriendRequestNotFound, *UserUnfriendRequestInternalServerError, error) {
@@ -1216,6 +1276,9 @@ func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo
 	}
 }
 
+/*
+  UserUnfriendRequestShort users unfriend a friend
+*/
 func (a *Client) UserUnfriendRequestShort(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetLeaderboardConfigurationsPublicV2Short instead.
+
   GetLeaderboardConfigurationsPublicV2 lists all leaderboards by given namespace
 
   This endpoint return all leaderboard configurations
@@ -113,6 +115,11 @@ func (a *Client) GetLeaderboardConfigurationsPublicV2(params *GetLeaderboardConf
 	}
 }
 
+/*
+  GetLeaderboardConfigurationsPublicV2Short lists all leaderboards by given namespace
+
+  This endpoint return all leaderboard configurations
+*/
 func (a *Client) GetLeaderboardConfigurationsPublicV2Short(params *GetLeaderboardConfigurationsPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsPublicV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -163,6 +170,8 @@ func (a *Client) GetLeaderboardConfigurationsPublicV2Short(params *GetLeaderboar
 }
 
 /*
+Deprecated: Use CreateLeaderboardConfigurationAdminV1Short instead.
+
   CreateLeaderboardConfigurationAdminV1 creates new leaderboard
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]&#39;&lt;/p&gt;
@@ -235,6 +244,23 @@ func (a *Client) CreateLeaderboardConfigurationAdminV1(params *CreateLeaderboard
 	}
 }
 
+/*
+  CreateLeaderboardConfigurationAdminV1Short creates new leaderboard
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;&lt;b&gt;Fields :&lt;/b&gt;&lt;/p&gt;
+			&lt;ul&gt;&lt;li&gt;LeaderboardConfig code must be lowercase and maximum length is 48 characters. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+				&lt;li&gt;Maximum length for leaderboard name is 128 characters. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+				&lt;li&gt;Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z&lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+				&lt;li&gt;Season period must be greater than 31 days.&lt;/li&gt;
+				&lt;li&gt;If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.&lt;/li&gt;
+				&lt;li&gt;Reset Date must be a number 1 - 31. Default is &#39;1&#39;.&lt;/li&gt;
+				&lt;li&gt;Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is &#39;0&#39;.&lt;/li&gt;
+				&lt;li&gt;Reset time must be &lt;b&gt;hours:minutes&lt;/b&gt; in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is &#39;00:00&#39;.&lt;/li&gt;
+				&lt;li&gt;Stat Code is related with statistic code in statistic service. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
 func (a *Client) CreateLeaderboardConfigurationAdminV1Short(params *CreateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateLeaderboardConfigurationAdminV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -287,6 +313,8 @@ func (a *Client) CreateLeaderboardConfigurationAdminV1Short(params *CreateLeader
 }
 
 /*
+Deprecated: Use CreateLeaderboardConfigurationPublicV1Short instead.
+
   CreateLeaderboardConfigurationPublicV1 creates new leaderboard
 
   Public endpoint to create a new leaderboard.
@@ -361,6 +389,25 @@ func (a *Client) CreateLeaderboardConfigurationPublicV1(params *CreateLeaderboar
 	}
 }
 
+/*
+  CreateLeaderboardConfigurationPublicV1Short creates new leaderboard
+
+  Public endpoint to create a new leaderboard.
+
+&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:LEADERBOARD [CREATE]&#39;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Fields :&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;LeaderboardConfig code must be lowercase and maximum length is 48 characters. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+	&lt;li&gt;Maximum length for leaderboard name is 128 characters. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+	&lt;li&gt;Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z&lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+	&lt;li&gt;Season period must be greater than 31 days.&lt;/li&gt;
+	&lt;li&gt;If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.&lt;/li&gt;
+	&lt;li&gt;Reset Date must be a number 1 - 31. Default is &#39;1&#39;.&lt;/li&gt;
+	&lt;li&gt;Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is &#39;0&#39;.&lt;/li&gt;
+	&lt;li&gt;Reset time must be &lt;b&gt;hours:minutes&lt;/b&gt; in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is &#39;00:00&#39;.&lt;/li&gt;
+	&lt;li&gt;Stat Code is related with statistic code in statistic service. &lt;b&gt;(required)&lt;/b&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+*/
 func (a *Client) CreateLeaderboardConfigurationPublicV1Short(params *CreateLeaderboardConfigurationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateLeaderboardConfigurationPublicV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -413,6 +460,8 @@ func (a *Client) CreateLeaderboardConfigurationPublicV1Short(params *CreateLeade
 }
 
 /*
+Deprecated: Use DeleteBulkLeaderboardConfigurationAdminV1Short instead.
+
   DeleteBulkLeaderboardConfigurationAdminV1 deletes bulk leaderboards response body will contains failed leaderboard with the reason why it s failed to delete
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
@@ -472,6 +521,13 @@ func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1(params *DeleteBulkLea
 	}
 }
 
+/*
+  DeleteBulkLeaderboardConfigurationAdminV1Short deletes bulk leaderboards response body will contains failed leaderboard with the reason why it s failed to delete
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint delete multiple leaderboards configuration in one request&lt;/p&gt;
+
+*/
 func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1Short(params *DeleteBulkLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -522,6 +578,8 @@ func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1Short(params *DeleteBu
 }
 
 /*
+Deprecated: Use DeleteLeaderboardConfigurationAdminV1Short instead.
+
   DeleteLeaderboardConfigurationAdminV1 deletes leaderboard by leaderboard code
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
@@ -584,6 +642,13 @@ func (a *Client) DeleteLeaderboardConfigurationAdminV1(params *DeleteLeaderboard
 	}
 }
 
+/*
+  DeleteLeaderboardConfigurationAdminV1Short deletes leaderboard by leaderboard code
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint delete a leaderboard configuration&lt;/p&gt;
+
+*/
 func (a *Client) DeleteLeaderboardConfigurationAdminV1Short(params *DeleteLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLeaderboardConfigurationAdminV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -636,6 +701,8 @@ func (a *Client) DeleteLeaderboardConfigurationAdminV1Short(params *DeleteLeader
 }
 
 /*
+Deprecated: Use GetLeaderboardConfigurationAdminV1Short instead.
+
   GetLeaderboardConfigurationAdminV1 gets leaderboard by leaderboard code
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -698,6 +765,13 @@ func (a *Client) GetLeaderboardConfigurationAdminV1(params *GetLeaderboardConfig
 	}
 }
 
+/*
+  GetLeaderboardConfigurationAdminV1Short gets leaderboard by leaderboard code
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint returns a leaderboard configuration&lt;/p&gt;
+
+*/
 func (a *Client) GetLeaderboardConfigurationAdminV1Short(params *GetLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -750,6 +824,8 @@ func (a *Client) GetLeaderboardConfigurationAdminV1Short(params *GetLeaderboardC
 }
 
 /*
+Deprecated: Use GetLeaderboardConfigurationsAdminV1Short instead.
+
   GetLeaderboardConfigurationsAdminV1 lists all leaderboards by given namespace
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -809,6 +885,13 @@ func (a *Client) GetLeaderboardConfigurationsAdminV1(params *GetLeaderboardConfi
 	}
 }
 
+/*
+  GetLeaderboardConfigurationsAdminV1Short lists all leaderboards by given namespace
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint return all leaderboard configurations&lt;/p&gt;
+
+*/
 func (a *Client) GetLeaderboardConfigurationsAdminV1Short(params *GetLeaderboardConfigurationsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -859,6 +942,8 @@ func (a *Client) GetLeaderboardConfigurationsAdminV1Short(params *GetLeaderboard
 }
 
 /*
+Deprecated: Use GetLeaderboardConfigurationsPublicV1Short instead.
+
   GetLeaderboardConfigurationsPublicV1 lists all leaderboards by given namespace
 
   &lt;p&gt;This endpoint return all leaderboard configurations&lt;/p&gt;
@@ -917,6 +1002,12 @@ func (a *Client) GetLeaderboardConfigurationsPublicV1(params *GetLeaderboardConf
 	}
 }
 
+/*
+  GetLeaderboardConfigurationsPublicV1Short lists all leaderboards by given namespace
+
+  &lt;p&gt;This endpoint return all leaderboard configurations&lt;/p&gt;
+
+*/
 func (a *Client) GetLeaderboardConfigurationsPublicV1Short(params *GetLeaderboardConfigurationsPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationsPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -967,6 +1058,8 @@ func (a *Client) GetLeaderboardConfigurationsPublicV1Short(params *GetLeaderboar
 }
 
 /*
+Deprecated: Use UpdateLeaderboardConfigurationAdminV1Short instead.
+
   UpdateLeaderboardConfigurationAdminV1 updates leaderboard by leaderboard code
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]&#39;&lt;/p&gt;
@@ -1038,6 +1131,22 @@ func (a *Client) UpdateLeaderboardConfigurationAdminV1(params *UpdateLeaderboard
 	}
 }
 
+/*
+  UpdateLeaderboardConfigurationAdminV1Short updates leaderboard by leaderboard code
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;&lt;b&gt;Fields :&lt;/b&gt;&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Maximum length for leaderboard name is 128 characters.&lt;/li&gt;
+				&lt;li&gt;Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z&lt;/li&gt;
+				&lt;li&gt;Season period must be greater than 31 days.&lt;/li&gt;
+				&lt;li&gt;If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.&lt;/li&gt;
+				&lt;li&gt;Reset Date must be a number 1 - 31. Default is &#39;1&#39;.&lt;/li&gt;
+				&lt;li&gt;Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is &#39;0&#39;.&lt;/li&gt;
+				&lt;li&gt;Reset time must be &lt;b&gt;hours:minutes&lt;/b&gt; in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.&lt;/li&gt;
+			&lt;/ul&gt;
+
+*/
 func (a *Client) UpdateLeaderboardConfigurationAdminV1Short(params *UpdateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

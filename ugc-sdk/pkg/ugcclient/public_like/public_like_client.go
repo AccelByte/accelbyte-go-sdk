@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetLikedContentShort instead.
+
   GetLikedContent gets liked contents
 
   Requires valid user token.
@@ -116,6 +118,31 @@ func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime
 	}
 }
 
+/*
+  GetLikedContentShort gets liked contents
+
+  Requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
+*/
 func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -164,6 +191,8 @@ func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo ru
 }
 
 /*
+Deprecated: Use UpdateContentLikeStatusShort instead.
+
   UpdateContentLikeStatus updates like unlike status to a content
 
   Requires valid user token
@@ -218,6 +247,11 @@ func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, 
 	}
 }
 
+/*
+  UpdateContentLikeStatusShort updates like unlike status to a content
+
+  Requires valid user token
+*/
 func (a *Client) UpdateContentLikeStatusShort(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

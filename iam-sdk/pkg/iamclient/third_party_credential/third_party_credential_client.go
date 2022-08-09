@@ -58,6 +58,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddThirdPartyLoginPlatformCredentialV3Short instead.
+
   AddThirdPartyLoginPlatformCredentialV3 adds third party platform credential
 
   &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
@@ -141,6 +143,37 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 	}
 }
 
+/*
+  AddThirdPartyLoginPlatformCredentialV3Short adds third party platform credential
+
+  &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;awscognito&lt;/strong&gt;, we only need to configure AWS Cognito Region and User Pool&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;discord&lt;/strong&gt; is client secret of the twitch client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;epicgames&lt;/strong&gt; is client secret of the epicgames client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;facebook&lt;/strong&gt; is client secret of the facebook client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;google&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;nintendo&lt;/strong&gt;, we only need to configure app id of the game&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;live&lt;/strong&gt; is the Relying Party Private Key in base64 encode PEM format.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
+					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
+					 &lt;ul&gt;
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
+					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 &lt;/ul&gt;
+
+*/
 func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -191,6 +224,8 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPar
 }
 
 /*
+Deprecated: Use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
+
   DeleteThirdPartyLoginPlatformCredentialV3 deletes third party platform credential
 
   This is the API to Delete 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE] resource
@@ -248,6 +283,11 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 	}
 }
 
+/*
+  DeleteThirdPartyLoginPlatformCredentialV3Short deletes third party platform credential
+
+  This is the API to Delete 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE] resource
+*/
 func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -298,6 +338,8 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteTh
 }
 
 /*
+Deprecated: Use DeleteThirdPartyLoginPlatformDomainV3Short instead.
+
   DeleteThirdPartyLoginPlatformDomainV3 unregisters third party platform credential s domain
 
   &lt;p&gt;This is the API to unregister 3rd Platform domain.&lt;/p&gt;
@@ -360,6 +402,13 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyL
 	}
 }
 
+/*
+  DeleteThirdPartyLoginPlatformDomainV3Short unregisters third party platform credential s domain
+
+  &lt;p&gt;This is the API to unregister 3rd Platform domain.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE] resource.&lt;/p&gt;
+
+*/
 func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -412,6 +461,8 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdP
 }
 
 /*
+Deprecated: Use RetrieveActiveOIDCClientsPublicV3Short instead.
+
   RetrieveActiveOIDCClientsPublicV3 gets active o ID c platform credential by client ID
 
   This is the Public API to Get All Active OIDC Platform Credential By Client ID
@@ -469,6 +520,11 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCCli
 	}
 }
 
+/*
+  RetrieveActiveOIDCClientsPublicV3Short gets active o ID c platform credential by client ID
+
+  This is the Public API to Get All Active OIDC Platform Credential By Client ID
+*/
 func (a *Client) RetrieveActiveOIDCClientsPublicV3Short(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -519,6 +575,8 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3Short(params *RetrieveActiveOI
 }
 
 /*
+Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
+
   RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 gets all active third party platform active credential for public usage
 
   This is the Public API to Get All Active 3rd Platform Credential.
@@ -576,6 +634,11 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(para
 	}
 }
 
+/*
+  RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short gets all active third party platform active credential for public usage
+
+  This is the Public API to Get All Active 3rd Platform Credential.
+*/
 func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -626,6 +689,8 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short
 }
 
 /*
+Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
+
   RetrieveAllActiveThirdPartyLoginPlatformCredentialV3 gets all active third party platform active credential
 
   This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
@@ -683,6 +748,11 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 	}
 }
 
+/*
+  RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short gets all active third party platform active credential
+
+  This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+*/
 func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -733,6 +803,8 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(param
 }
 
 /*
+Deprecated: Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
+
   RetrieveAllThirdPartyLoginPlatformCredentialV3 gets all third party platform credential
 
   This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
@@ -790,6 +862,11 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 	}
 }
 
+/*
+  RetrieveAllThirdPartyLoginPlatformCredentialV3Short gets all third party platform credential
+
+  This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+*/
 func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -840,6 +917,8 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *Ret
 }
 
 /*
+Deprecated: Use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
+
   RetrieveThirdPartyLoginPlatformCredentialV3 retrieves third party platform credential
 
   This is the API to Get 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ] resource
@@ -897,6 +976,11 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 	}
 }
 
+/*
+  RetrieveThirdPartyLoginPlatformCredentialV3Short retrieves third party platform credential
+
+  This is the API to Get 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ] resource
+*/
 func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -947,6 +1031,8 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *Retrie
 }
 
 /*
+Deprecated: Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
+
   UpdateThirdPartyLoginPlatformCredentialV3 updates third party platform credential
 
   &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
@@ -1033,6 +1119,37 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 	}
 }
 
+/*
+  UpdateThirdPartyLoginPlatformCredentialV3Short updates third party platform credential
+
+  &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;awscognito&lt;/strong&gt;, we only need to configure AWS Cognito Region and User Pool&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;discord&lt;/strong&gt; is client secret of the twitch client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;epicgames&lt;/strong&gt; is client secret of the epicgames client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;facebook&lt;/strong&gt; is client secret of the facebook client id.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;google&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;nintendo&lt;/strong&gt;, we only need to configure app id of the game&lt;/p&gt;
+					 &lt;p&gt;No secret for &lt;strong&gt;netflix&lt;/strong&gt;, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;oculus&lt;/strong&gt; is app secret of the oculus app.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;ps4, ps5, and ps4web&lt;/strong&gt; is client secret of the psn web server.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;stadia&lt;/strong&gt; is the google cloud service account in base64 encode JSON format.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;stadiaweb&lt;/strong&gt; is client secret of the google OAuth client.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;steam&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;steamopenid&lt;/strong&gt; is the Steam Web API Key.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;twitch&lt;/strong&gt; is client secret of the twitch client.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;live&lt;/strong&gt; is the Relying Party Private Key in base64 encode PEM format.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;xblwebapi&lt;/strong&gt; is client secret of the xbl client.&lt;/p&gt;
+					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
+					 &lt;ul&gt;
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarUrl&lt;/code&gt;
+					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 &lt;/ul&gt;
+
+*/
 func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1085,6 +1202,8 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateTh
 }
 
 /*
+Deprecated: Use UpdateThirdPartyLoginPlatformDomainV3Short instead.
+
   UpdateThirdPartyLoginPlatformDomainV3 sets third party platform credential s domain
 
   &lt;p&gt;This is the API to set 3rd Platform domain.&lt;/p&gt;
@@ -1147,6 +1266,13 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyL
 	}
 }
 
+/*
+  UpdateThirdPartyLoginPlatformDomainV3Short sets third party platform credential s domain
+
+  &lt;p&gt;This is the API to set 3rd Platform domain.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE] resource.&lt;/p&gt;
+
+*/
 func (a *Client) UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

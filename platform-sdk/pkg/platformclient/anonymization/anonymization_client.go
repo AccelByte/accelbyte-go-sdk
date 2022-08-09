@@ -54,6 +54,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AnonymizeCampaignShort instead.
+
   AnonymizeCampaign anonymizes campaign
 
   Anonymize campaign. At current it will only anonymize redeem history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -99,6 +101,11 @@ func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo run
 	}
 }
 
+/*
+  AnonymizeCampaignShort anonymizes campaign
+
+  Anonymize campaign. At current it will only anonymize redeem history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeCampaignNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -141,6 +148,8 @@ func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInf
 }
 
 /*
+Deprecated: Use AnonymizeEntitlementShort instead.
+
   AnonymizeEntitlement anonymizes entitlement
 
   Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -186,6 +195,11 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 	}
 }
 
+/*
+  AnonymizeEntitlementShort anonymizes entitlement
+
+  Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -228,6 +242,8 @@ func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, a
 }
 
 /*
+Deprecated: Use AnonymizeFulfillmentShort instead.
+
   AnonymizeFulfillment anonymizes fulfillment
 
   Anonymize fulfillment. At current it will only anonymize fulfillment history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -273,6 +289,11 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 	}
 }
 
+/*
+  AnonymizeFulfillmentShort anonymizes fulfillment
+
+  Anonymize fulfillment. At current it will only anonymize fulfillment history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeFulfillmentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -315,6 +336,8 @@ func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, a
 }
 
 /*
+Deprecated: Use AnonymizeIntegrationShort instead.
+
   AnonymizeIntegration anonymizes integrations
 
   Anonymize integrations. At current it will only anonymize iap histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -360,6 +383,11 @@ func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authIn
 	}
 }
 
+/*
+  AnonymizeIntegrationShort anonymizes integrations
+
+  Anonymize integrations. At current it will only anonymize iap histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeIntegrationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -402,6 +430,8 @@ func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, a
 }
 
 /*
+Deprecated: Use AnonymizeOrderShort instead.
+
   AnonymizeOrder anonymizes order
 
   Anonymize order. At current it will only anonymize order, order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -447,6 +477,11 @@ func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.C
 	}
 }
 
+/*
+  AnonymizeOrderShort anonymizes order
+
+  Anonymize order. At current it will only anonymize order, order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -489,6 +524,8 @@ func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runt
 }
 
 /*
+Deprecated: Use AnonymizePaymentShort instead.
+
   AnonymizePayment anonymizes payment
 
   Anonymize payment. At current it will only anonymize payment order, payment order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -534,6 +571,11 @@ func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runti
 	}
 }
 
+/*
+  AnonymizePaymentShort anonymizes payment
+
+  Anonymize payment. At current it will only anonymize payment order, payment order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -576,6 +618,8 @@ func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo 
 }
 
 /*
+Deprecated: Use AnonymizeSubscriptionShort instead.
+
   AnonymizeSubscription anonymizes subscription
 
   Anonymize subscription. At current it will anonymize subscription, billing history and subscription activity.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -621,6 +665,11 @@ func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, auth
 	}
 }
 
+/*
+  AnonymizeSubscriptionShort anonymizes subscription
+
+  Anonymize subscription. At current it will anonymize subscription, billing history and subscription activity.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -663,6 +712,8 @@ func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams,
 }
 
 /*
+Deprecated: Use AnonymizeWalletShort instead.
+
   AnonymizeWallet anonymizes wallet
 
   Anonymize wallet. At current it will only anonymize wallet, wallet transaction.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -708,6 +759,11 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 	}
 }
 
+/*
+  AnonymizeWalletShort anonymizes wallet
+
+  Anonymize wallet. At current it will only anonymize wallet, wallet transaction.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AnonymizeWalletShort(params *AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeWalletNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

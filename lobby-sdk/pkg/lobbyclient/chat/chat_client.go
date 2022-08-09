@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminChatHistoryShort instead.
+
   AdminChatHistory admins get chat history
 
   Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -105,6 +107,12 @@ func (a *Client) AdminChatHistory(params *AdminChatHistoryParams, authInfo runti
 	}
 }
 
+/*
+  AdminChatHistoryShort admins get chat history
+
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get chat history in a namespace.
+*/
 func (a *Client) AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChatHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -157,6 +165,8 @@ func (a *Client) AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo 
 }
 
 /*
+Deprecated: Use GetPersonalChatHistoryV1PublicShort instead.
+
   GetPersonalChatHistoryV1Public loads personal chat history
 
   Required valid user authorization &lt;br/&gt;
@@ -219,6 +229,13 @@ func (a *Client) GetPersonalChatHistoryV1Public(params *GetPersonalChatHistoryV1
 	}
 }
 
+/*
+  GetPersonalChatHistoryV1PublicShort loads personal chat history
+
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load personal chat history in a namespace based on Friend User ID &lt;br/&gt;
+			Action Code: 50101
+*/
 func (a *Client) GetPersonalChatHistoryV1PublicShort(params *GetPersonalChatHistoryV1PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetPersonalChatHistoryV1PublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -271,6 +288,8 @@ func (a *Client) GetPersonalChatHistoryV1PublicShort(params *GetPersonalChatHist
 }
 
 /*
+Deprecated: Use PersonalChatHistoryShort instead.
+
   PersonalChatHistory loads personal chat history
 
   Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -332,6 +351,12 @@ func (a *Client) PersonalChatHistory(params *PersonalChatHistoryParams, authInfo
 	}
 }
 
+/*
+  PersonalChatHistoryShort loads personal chat history
+
+  Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;load personal chat history in a namespace.
+*/
 func (a *Client) PersonalChatHistoryShort(params *PersonalChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PersonalChatHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

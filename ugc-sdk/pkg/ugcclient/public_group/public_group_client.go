@@ -50,6 +50,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateGroupShort instead.
+
   CreateGroup creates groups
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
@@ -104,6 +106,11 @@ func (a *Client) CreateGroup(params *CreateGroupParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CreateGroupShort creates groups
+
+  Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
+*/
 func (a *Client) CreateGroupShort(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -152,6 +159,8 @@ func (a *Client) CreateGroupShort(params *CreateGroupParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DeleteGroupShort instead.
+
   DeleteGroup deletes group
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
@@ -206,6 +215,11 @@ func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  DeleteGroupShort deletes group
+
+  Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+*/
 func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -254,6 +268,8 @@ func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetGroupShort instead.
+
   GetGroup gets user s groups
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -308,6 +324,11 @@ func (a *Client) GetGroup(params *GetGroupParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  GetGroupShort gets user s groups
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) GetGroupShort(params *GetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -356,6 +377,8 @@ func (a *Client) GetGroupShort(params *GetGroupParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use GetGroupContentShort instead.
+
   GetGroupContent gets contents belong to a group
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -410,6 +433,11 @@ func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime
 	}
 }
 
+/*
+  GetGroupContentShort gets contents belong to a group
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -458,6 +486,8 @@ func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetGroupsShort instead.
+
   GetGroups gets all user groups
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -512,6 +542,11 @@ func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetGroupsShort gets all user groups
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -560,6 +595,8 @@ func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use UpdateGroupShort instead.
+
   UpdateGroup updates group
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
@@ -618,6 +655,12 @@ func (a *Client) UpdateGroup(params *UpdateGroupParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  UpdateGroupShort updates group
+
+  Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
+				replace group name and contents with new ones
+*/
 func (a *Client) UpdateGroupShort(params *UpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

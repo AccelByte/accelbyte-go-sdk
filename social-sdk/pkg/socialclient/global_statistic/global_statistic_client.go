@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetGlobalStatItemsShort instead.
+
   GetGlobalStatItems lists global stat items
 
   List global statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;ul
@@ -85,6 +87,11 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 	}
 }
 
+/*
+  GetGlobalStatItemsShort lists global stat items
+
+  List global statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;ul
+*/
 func (a *Client) GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

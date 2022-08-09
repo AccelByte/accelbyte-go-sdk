@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AcquireUserTicketShort instead.
+
   AcquireUserTicket acquires ticket
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Acquire ticket(code/key) based on booth name.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: acquire result&lt;/li&gt;&lt;/ul&gt;
@@ -102,6 +104,11 @@ func (a *Client) AcquireUserTicket(params *AcquireUserTicketParams, authInfo run
 	}
 }
 
+/*
+  AcquireUserTicketShort acquires ticket
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Acquire ticket(code/key) based on booth name.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: acquire result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireUserTicketOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -150,6 +157,8 @@ func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInf
 }
 
 /*
+Deprecated: Use DecreaseTicketSaleShort instead.
+
   DecreaseTicketSale decreases ticket sale
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Decrease ticket(code/key) sale if requested orderNo is already increased.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -201,6 +210,11 @@ func (a *Client) DecreaseTicketSale(params *DecreaseTicketSaleParams, authInfo r
 	}
 }
 
+/*
+  DecreaseTicketSaleShort decreases ticket sale
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Decrease ticket(code/key) sale if requested orderNo is already increased.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*DecreaseTicketSaleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -247,6 +261,8 @@ func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authI
 }
 
 /*
+Deprecated: Use GetTicketBoothIDShort instead.
+
   GetTicketBoothID gets ticket booth ID
 
   Get ticket(code/key) booth ID.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ticket booth id&lt;/li&gt;&lt;/ul&gt;
@@ -295,6 +311,11 @@ func (a *Client) GetTicketBoothID(params *GetTicketBoothIDParams, authInfo runti
 	}
 }
 
+/*
+  GetTicketBoothIDShort gets ticket booth ID
+
+  Get ticket(code/key) booth ID.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ticket booth id&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketBoothIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -339,6 +360,8 @@ func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo 
 }
 
 /*
+Deprecated: Use GetTicketDynamicShort instead.
+
   GetTicketDynamic gets ticket dynamic
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Get ticket(code/key) dynamic based on booth name.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ticket dynamic&lt;/li&gt;&lt;/ul&gt;
@@ -387,6 +410,11 @@ func (a *Client) GetTicketDynamic(params *GetTicketDynamicParams, authInfo runti
 	}
 }
 
+/*
+  GetTicketDynamicShort gets ticket dynamic
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Get ticket(code/key) dynamic based on booth name.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ticket dynamic&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDynamicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -431,6 +459,8 @@ func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo 
 }
 
 /*
+Deprecated: Use IncreaseTicketSaleShort instead.
+
   IncreaseTicketSale increases ticket sale
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; increase ticket(code/key) sale.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Ticket sale increment result&lt;/li&gt;&lt;/ul&gt;
@@ -482,6 +512,11 @@ func (a *Client) IncreaseTicketSale(params *IncreaseTicketSaleParams, authInfo r
 	}
 }
 
+/*
+  IncreaseTicketSaleShort increases ticket sale
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; increase ticket(code/key) sale.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:TICKET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Ticket sale increment result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) IncreaseTicketSaleShort(params *IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*IncreaseTicketSaleOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

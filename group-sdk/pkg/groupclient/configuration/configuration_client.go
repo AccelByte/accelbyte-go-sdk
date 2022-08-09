@@ -54,6 +54,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateGroupConfigurationAdminV1Short instead.
+
   CreateGroupConfigurationAdminV1 creates new configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;
@@ -124,6 +126,21 @@ func (a *Client) CreateGroupConfigurationAdminV1(params *CreateGroupConfiguratio
 	}
 }
 
+/*
+  CreateGroupConfigurationAdminV1Short creates new configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.&lt;/p&gt;
+			&lt;p&gt;For each of the global rule, it will be the rule detail that consists of these fields: &lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Allowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is &lt;b&gt;&#34;createGroup&#34;&lt;/b&gt;&lt;/p&gt;
+			&lt;p&gt;Action Code: 73103&lt;/p&gt;
+
+*/
 func (a *Client) CreateGroupConfigurationAdminV1Short(params *CreateGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupConfigurationAdminV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -176,6 +193,8 @@ func (a *Client) CreateGroupConfigurationAdminV1Short(params *CreateGroupConfigu
 }
 
 /*
+Deprecated: Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead.
+
   DeleteGroupConfigurationGlobalRuleAdminV1 deletes existing configuration global rule based on allowed action
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
@@ -239,6 +258,14 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1(params *DeleteGroupCo
 	}
 }
 
+/*
+  DeleteGroupConfigurationGlobalRuleAdminV1Short deletes existing configuration global rule based on allowed action
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule&lt;/p&gt;
+			&lt;p&gt;Action Code: 73105&lt;/p&gt;
+
+*/
 func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1Short(params *DeleteGroupConfigurationGlobalRuleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupConfigurationGlobalRuleAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -291,6 +318,8 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1Short(params *DeleteGr
 }
 
 /*
+Deprecated: Use DeleteGroupConfigurationV1Short instead.
+
   DeleteGroupConfigurationV1 deletes group configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]&#39;&lt;/p&gt;
@@ -354,6 +383,14 @@ func (a *Client) DeleteGroupConfigurationV1(params *DeleteGroupConfigurationV1Pa
 	}
 }
 
+/*
+  DeleteGroupConfigurationV1Short deletes group configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to delete group configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;Action Code: 73101&lt;/p&gt;
+
+*/
 func (a *Client) DeleteGroupConfigurationV1Short(params *DeleteGroupConfigurationV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupConfigurationV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -406,6 +443,8 @@ func (a *Client) DeleteGroupConfigurationV1Short(params *DeleteGroupConfiguratio
 }
 
 /*
+Deprecated: Use GetGroupConfigurationAdminV1Short instead.
+
   GetGroupConfigurationAdminV1 gets existing configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
@@ -469,6 +508,14 @@ func (a *Client) GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdmin
 	}
 }
 
+/*
+  GetGroupConfigurationAdminV1Short gets existing configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;Action Code: 73101&lt;/p&gt;
+
+*/
 func (a *Client) GetGroupConfigurationAdminV1Short(params *GetGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -521,6 +568,8 @@ func (a *Client) GetGroupConfigurationAdminV1Short(params *GetGroupConfiguration
 }
 
 /*
+Deprecated: Use InitiateGroupConfigurationAdminV1Short instead.
+
   InitiateGroupConfigurationAdminV1 initiates configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;
@@ -588,6 +637,21 @@ func (a *Client) InitiateGroupConfigurationAdminV1(params *InitiateGroupConfigur
 	}
 }
 
+/*
+  InitiateGroupConfigurationAdminV1Short initiates configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission&lt;/p&gt;
+			&lt;p&gt;Default Permission for admin role will cover these permission: &lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Permission to invite user to group&lt;/li&gt;
+				&lt;li&gt;Permission to accept or reject join request&lt;/li&gt;
+				&lt;li&gt;Permission to kick group member&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Default max member value will be 50 and global rules will be empty&lt;/p&gt;
+			&lt;p&gt;Action Code: 73104&lt;/p&gt;
+
+*/
 func (a *Client) InitiateGroupConfigurationAdminV1Short(params *InitiateGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*InitiateGroupConfigurationAdminV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -638,6 +702,8 @@ func (a *Client) InitiateGroupConfigurationAdminV1Short(params *InitiateGroupCon
 }
 
 /*
+Deprecated: Use ListGroupConfigurationAdminV1Short instead.
+
   ListGroupConfigurationAdminV1 lists group configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
@@ -701,6 +767,14 @@ func (a *Client) ListGroupConfigurationAdminV1(params *ListGroupConfigurationAdm
 	}
 }
 
+/*
+  ListGroupConfigurationAdminV1Short lists group configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;Action Code: 73101&lt;/p&gt;
+
+*/
 func (a *Client) ListGroupConfigurationAdminV1Short(params *ListGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGroupConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -753,6 +827,8 @@ func (a *Client) ListGroupConfigurationAdminV1Short(params *ListGroupConfigurati
 }
 
 /*
+Deprecated: Use UpdateGroupConfigurationAdminV1Short instead.
+
   UpdateGroupConfigurationAdminV1 updates existing configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
@@ -816,6 +892,14 @@ func (a *Client) UpdateGroupConfigurationAdminV1(params *UpdateGroupConfiguratio
 	}
 }
 
+/*
+  UpdateGroupConfigurationAdminV1Short updates existing configuration
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won&#39;t be able to be updated. User can try to change the member role permission instead for each of those member role&lt;/p&gt;
+			&lt;p&gt;Action Code: 73102&lt;/p&gt;
+
+*/
 func (a *Client) UpdateGroupConfigurationAdminV1Short(params *UpdateGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupConfigurationAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -868,6 +952,8 @@ func (a *Client) UpdateGroupConfigurationAdminV1Short(params *UpdateGroupConfigu
 }
 
 /*
+Deprecated: Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead.
+
   UpdateGroupConfigurationGlobalRuleAdminV1 updates existing configuration global rule
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
@@ -931,6 +1017,14 @@ func (a *Client) UpdateGroupConfigurationGlobalRuleAdminV1(params *UpdateGroupCo
 	}
 }
 
+/*
+  UpdateGroupConfigurationGlobalRuleAdminV1Short updates existing configuration global rule
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request&lt;/p&gt;
+			&lt;p&gt;Action Code: 73106&lt;/p&gt;
+
+*/
 func (a *Client) UpdateGroupConfigurationGlobalRuleAdminV1Short(params *UpdateGroupConfigurationGlobalRuleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupConfigurationGlobalRuleAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

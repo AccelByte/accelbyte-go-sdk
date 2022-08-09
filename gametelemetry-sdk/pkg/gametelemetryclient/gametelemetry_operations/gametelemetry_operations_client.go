@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead.
+
   ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet protecteds get playtime
 
   This endpoint requires valid JWT token.
@@ -97,6 +99,16 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 }
 
+/*
+  ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort protecteds get playtime
+
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
+
+This endpoint retrieves player&#39;s total playtime in Steam for a specific game (AppId) and store them in service&#39;s cache.
+
+Players&#39; Steam account must be set into public to enable the service fetch their total playtime data.
+*/
 func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -141,6 +153,8 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 }
 
 /*
+Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead.
+
   ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost protecteds save events
 
   This endpoint requires valid JWT token.
@@ -205,6 +219,27 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *P
 	}
 }
 
+/*
+  ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort protecteds save events
+
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
+
+This endpoint send events into designated streaming pipeline and each request can contain single or multiple events.
+&lt;p&gt; Format of the event:
+
+- **EventNamespace (required)**: namespace of the relevant game with domain name format.
+                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
+                &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
+                &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
+
+- **EventName (required)**: name of the event.
+                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
+                &lt;p&gt; It is encouraged to use alphanumeric only characters. &lt;b&gt;_.-&lt;/b&gt; will be deprecated soon &lt;p&gt;
+                &lt;p&gt; Example: player_killed, mission_accomplished &lt;/p&gt;
+
+- **Payload (required)**: an arbitrary json with the payload of the said event
+*/
 func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -249,6 +284,8 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(para
 }
 
 /*
+Deprecated: Use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead.
+
   ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut protecteds update playtime
 
   This endpoint requires valid JWT token.
@@ -300,6 +337,14 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	}
 }
 
+/*
+  ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort protecteds update playtime
+
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
+
+This endpoint update player&#39;s total playtime in a specific game (AppId) from service&#39;s cache.
+*/
 func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

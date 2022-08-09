@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeleteConfigShort instead.
+
   DeleteConfig deletes equ8 config
 
   Delete equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -89,6 +91,11 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  DeleteConfigShort deletes equ8 config
+
+  Delete equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -131,6 +138,8 @@ func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GetConfigShort instead.
+
   GetConfig gets equ8 config
 
   Get equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -182,6 +191,11 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetConfigShort gets equ8 config
+
+  Get equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -228,6 +242,8 @@ func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use UpdateConfigShort instead.
+
   UpdateConfig creates or update equ8 config
 
   Update equ8 config, create if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
@@ -279,6 +295,11 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  UpdateConfigShort creates or update equ8 config
+
+  Update equ8 config, create if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

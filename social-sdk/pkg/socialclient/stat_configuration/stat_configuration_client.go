@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateStatShort instead.
+
   CreateStat creates stat
 
   Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;li&gt;default minimum value is 0&lt;/li&gt;&lt;li&gt;default maximum value is 1.7976931348623157e+308&lt;/li&gt;&lt;/ul&gt;
@@ -104,6 +106,11 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CreateStatShort creates stat
+
+  Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;li&gt;default minimum value is 0&lt;/li&gt;&lt;li&gt;default maximum value is 1.7976931348623157e+308&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -148,6 +155,8 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use CreateStat1Short instead.
+
   CreateStat1 creates stat
 
   Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;li&gt;default minimum value is 0&lt;/li&gt;&lt;li&gt;default maximum value is 1.7976931348623157e+308&lt;/li&gt;&lt;/ul&gt;
@@ -196,6 +205,11 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CreateStat1Short creates stat
+
+  Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;li&gt;default minimum value is 0&lt;/li&gt;&lt;li&gt;default maximum value is 1.7976931348623157e+308&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -240,6 +254,8 @@ func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DeleteStatShort instead.
+
   DeleteStat deletes stat
 
   Deletes stat template.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -288,6 +304,11 @@ func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  DeleteStatShort deletes stat
+
+  Deletes stat template.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -332,6 +353,8 @@ func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use ExportStatsShort instead.
+
   ExportStats exports all stat configurations
 
   Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -377,6 +400,11 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ExportStatsShort exports all stat configurations
+
+  Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStatsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -419,6 +447,8 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetStatShort instead.
+
   GetStat gets stat by stat code
 
   Get stat by statCode.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat info&lt;/ul&gt;
@@ -467,6 +497,11 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  GetStatShort gets stat by stat code
+
+  Get stat by statCode.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat info&lt;/ul&gt;
+*/
 func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -511,6 +546,8 @@ func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuth
 }
 
 /*
+Deprecated: Use GetStatsShort instead.
+
   GetStats lists stats
 
   List stats by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stats&lt;/li&gt;&lt;/ul&gt;
@@ -556,6 +593,11 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  GetStatsShort lists stats
+
+  List stats by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stats&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -598,6 +640,8 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use ImportStatsShort instead.
+
   ImportStats imports stat configurations
 
   Import stat configurations for a given namespace from file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -646,6 +690,11 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ImportStatsShort imports stat configurations
+
+  Import stat configurations for a given namespace from file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -690,6 +739,8 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use QueryStatsShort instead.
+
   QueryStats queries stats by keyword
 
   Query stats stats by keyword.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;i&gt;: stats&lt;/li&gt;&lt;/ul&gt;
@@ -735,6 +786,11 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  QueryStatsShort queries stats by keyword
+
+  Query stats stats by keyword.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;i&gt;: stats&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -777,6 +833,8 @@ func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use UpdateStatShort instead.
+
   UpdateStat updates stat
 
   Update stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat&lt;/li&gt;&lt;/ul&gt;
@@ -825,6 +883,11 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UpdateStatShort updates stat
+
+  Update stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

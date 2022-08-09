@@ -62,6 +62,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddClientPermissionShort instead.
+
   AddClientPermission adds client permission
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -125,6 +127,17 @@ func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo
 	}
 }
 
+/*
+  AddClientPermissionShort adds client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -175,6 +188,8 @@ func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, aut
 }
 
 /*
+Deprecated: Use CreateClientShort instead.
+
   CreateClient creates client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -238,6 +253,17 @@ func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  CreateClientShort creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;CLIENT:ADMIN [CREATE]&#39;. &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -288,6 +314,8 @@ func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use CreateClientByNamespaceShort instead.
+
   CreateClientByNamespace creates client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -351,6 +379,17 @@ func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, 
 	}
 }
 
+/*
+  CreateClientByNamespaceShort creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+				Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -401,6 +440,8 @@ func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespacePar
 }
 
 /*
+Deprecated: Use DeleteClientShort instead.
+
   DeleteClient deletes client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -462,6 +503,18 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  DeleteClientShort deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [DELETE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
 func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -510,6 +563,8 @@ func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use DeleteClientByNamespaceShort instead.
+
   DeleteClientByNamespace deletes client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -570,6 +625,17 @@ func (a *Client) DeleteClientByNamespace(params *DeleteClientByNamespaceParams, 
 	}
 }
 
+/*
+  DeleteClientByNamespaceShort deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -618,6 +684,8 @@ func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespacePar
 }
 
 /*
+Deprecated: Use DeleteClientPermissionShort instead.
+
   DeleteClientPermission deletes client permission
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -682,6 +750,18 @@ func (a *Client) DeleteClientPermission(params *DeleteClientPermissionParams, au
 	}
 }
 
+/*
+  DeleteClientPermissionShort deletes client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
 func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -732,6 +812,8 @@ func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParam
 }
 
 /*
+Deprecated: Use GetClientShort instead.
+
   GetClient gets client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -792,6 +874,17 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetClientShort gets client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -840,6 +933,8 @@ func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use GetClientsShort instead.
+
   GetClients gets all clients
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -897,6 +992,17 @@ func (a *Client) GetClients(params *GetClientsParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  GetClientsShort gets all clients
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39;.&lt;br/&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -943,6 +1049,8 @@ func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GetClientsbyNamespaceShort instead.
+
   GetClientsbyNamespace gets clients by namespace
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1001,6 +1109,18 @@ func (a *Client) GetClientsbyNamespace(params *GetClientsbyNamespaceParams, auth
 	}
 }
 
+/*
+  GetClientsbyNamespaceShort gets clients by namespace
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;NAMESPACE:{namespace}:CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+*/
 func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1047,6 +1167,8 @@ func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams,
 }
 
 /*
+Deprecated: Use UpdateClientShort instead.
+
   UpdateClient updates client
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1111,6 +1233,18 @@ func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  UpdateClientShort updates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [PATCH]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
 func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1161,6 +1295,8 @@ func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use UpdateClientPermissionShort instead.
+
   UpdateClientPermission updates client permissions
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1224,6 +1360,17 @@ func (a *Client) UpdateClientPermission(params *UpdateClientPermissionParams, au
 	}
 }
 
+/*
+  UpdateClientPermissionShort updates client permissions
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
 func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1274,6 +1421,8 @@ func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParam
 }
 
 /*
+Deprecated: Use UpdateClientSecretShort instead.
+
   UpdateClientSecret updates client secret
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1338,6 +1487,18 @@ func (a *Client) UpdateClientSecret(params *UpdateClientSecretParams, authInfo r
 	}
 }
 
+/*
+  UpdateClientSecretShort updates client secret
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/{clientId}/secret  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;
+*/
 func (a *Client) UpdateClientSecretShort(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

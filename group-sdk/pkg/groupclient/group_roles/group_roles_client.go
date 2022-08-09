@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateMemberRoleAdminV1Short instead.
+
   CreateMemberRoleAdminV1 creates new member role
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]&lt;/p&gt;
@@ -121,6 +123,19 @@ func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, 
 	}
 }
 
+/*
+  CreateMemberRoleAdminV1Short creates new member role
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to create new member role&lt;/p&gt;
+			&lt;p&gt;Action Code: 73202&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:ROLE&#34;&lt;/p&gt;
+			&lt;p&gt;The changes will give user with that role have a permission to create a role for new group member&lt;p/&gt;
+
+*/
 func (a *Client) CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateMemberRoleAdminV1Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -171,6 +186,8 @@ func (a *Client) CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Par
 }
 
 /*
+Deprecated: Use DeleteMemberRoleAdminV1Short instead.
+
   DeleteMemberRoleAdminV1 deletes member role
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]&lt;/p&gt;
@@ -234,6 +251,14 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 	}
 }
 
+/*
+  DeleteMemberRoleAdminV1Short deletes member role
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to delete member role. Any member role can&#39;t be deleted if the specific role is applied to the configuration (admin and member role)&lt;/p&gt;
+			&lt;p&gt;Action Code: 73207&lt;/p&gt;
+
+*/
 func (a *Client) DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRoleAdminV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -286,6 +311,8 @@ func (a *Client) DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Par
 }
 
 /*
+Deprecated: Use DeleteMemberRolePublicV1Short instead.
+
   DeleteMemberRolePublicV1 removes role from group member
 
   Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&#34;&lt;/p&gt;
@@ -351,6 +378,13 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 	}
 }
 
+/*
+  DeleteMemberRolePublicV1Short removes role from group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
 func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -405,6 +439,8 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 }
 
 /*
+Deprecated: Use GetMemberRolesListAdminV1Short instead.
+
   GetMemberRolesListAdminV1 gets all list of member roles
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;
@@ -465,6 +501,14 @@ func (a *Client) GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Para
 	}
 }
 
+/*
+  GetMemberRolesListAdminV1Short gets all list of member roles
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;
+			&lt;p&gt;Action Code: 73201&lt;/p&gt;
+
+*/
 func (a *Client) GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -515,6 +559,8 @@ func (a *Client) GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV
 }
 
 /*
+Deprecated: Use GetMemberRolesListPublicV1Short instead.
+
   GetMemberRolesListPublicV1 gets all list of member roles
 
   &lt;p&gt;Required Member Role Permission: &#34;GROUP:ROLE [READ]&#34;&lt;/p&gt;
@@ -575,6 +621,14 @@ func (a *Client) GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Pa
 	}
 }
 
+/*
+  GetMemberRolesListPublicV1Short gets all list of member roles
+
+  &lt;p&gt;Required Member Role Permission: &#34;GROUP:ROLE [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;
+			&lt;p&gt;Action Code: 73201&lt;/p&gt;
+
+*/
 func (a *Client) GetMemberRolesListPublicV1Short(params *GetMemberRolesListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -625,6 +679,8 @@ func (a *Client) GetMemberRolesListPublicV1Short(params *GetMemberRolesListPubli
 }
 
 /*
+Deprecated: Use GetSingleMemberRoleAdminV1Short instead.
+
   GetSingleMemberRoleAdminV1 gets member role
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;
@@ -688,6 +744,14 @@ func (a *Client) GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Pa
 	}
 }
 
+/*
+  GetSingleMemberRoleAdminV1Short gets member role
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get member role based on the role ID&lt;/p&gt;
+			&lt;p&gt;Action Code: 73203&lt;/p&gt;
+
+*/
 func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMemberRoleAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -740,6 +804,8 @@ func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdmi
 }
 
 /*
+Deprecated: Use UpdateMemberRoleAdminV1Short instead.
+
   UpdateMemberRoleAdminV1 updates member role
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
@@ -803,6 +869,14 @@ func (a *Client) UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, 
 	}
 }
 
+/*
+  UpdateMemberRoleAdminV1Short updates member role
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to update member role&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+
+*/
 func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRoleAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -855,6 +929,8 @@ func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Par
 }
 
 /*
+Deprecated: Use UpdateMemberRolePermissionAdminV1Short instead.
+
   UpdateMemberRolePermissionAdminV1 updates member role permission
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
@@ -923,6 +999,19 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 	}
 }
 
+/*
+  UpdateMemberRolePermissionAdminV1Short updates member role permission
+
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73205&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 2&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:ROLE&#34;&lt;/p&gt;
+			&lt;p&gt;The changes will update user role to be able to read a role of other member &lt;p/&gt;
+
+*/
 func (a *Client) UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRolePermissionAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePermissionAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -975,6 +1064,8 @@ func (a *Client) UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRole
 }
 
 /*
+Deprecated: Use UpdateMemberRolePublicV1Short instead.
+
   UpdateMemberRolePublicV1 assigns role to group member
 
   Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&lt;/p&gt;
@@ -1037,6 +1128,13 @@ func (a *Client) UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params
 	}
 }
 
+/*
+  UpdateMemberRolePublicV1Short assigns role to group member
+
+  Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to assign role to group member&lt;/p&gt;
+			&lt;p&gt;Action Code: 73204&lt;/p&gt;
+*/
 func (a *Client) UpdateMemberRolePublicV1Short(params *UpdateMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminGetInputValidationsShort instead.
+
   AdminGetInputValidations admins get input validations
 
   &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39;[READ]&lt;/p&gt;
@@ -99,6 +101,13 @@ func (a *Client) AdminGetInputValidations(params *AdminGetInputValidationsParams
 	}
 }
 
+/*
+  AdminGetInputValidationsShort admins get input validations
+
+  &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39;[READ]&lt;/p&gt;
+		&lt;p&gt;This endpoint is to get list of input validation configuration.&lt;/p&gt;
+		&lt;p&gt;&lt;code&gt;regex&lt;/code&gt; parameter will be returned if &lt;code&gt;isCustomRegex&lt;/code&gt; is true. Otherwise, it will be empty.&lt;/p&gt;
+*/
 func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInputValidationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -145,6 +154,8 @@ func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsP
 }
 
 /*
+Deprecated: Use AdminResetInputValidationsShort instead.
+
   AdminResetInputValidations admins reset input validations
 
   &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39; [DELETE]&lt;/p&gt;&lt;p&gt;This endpoint is used to reset input validation to the default input validation configurations&lt;/p&gt;
@@ -199,6 +210,11 @@ func (a *Client) AdminResetInputValidations(params *AdminResetInputValidationsPa
 	}
 }
 
+/*
+  AdminResetInputValidationsShort admins reset input validations
+
+  &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39; [DELETE]&lt;/p&gt;&lt;p&gt;This endpoint is used to reset input validation to the default input validation configurations&lt;/p&gt;
+*/
 func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -247,6 +263,8 @@ func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidati
 }
 
 /*
+Deprecated: Use AdminUpdateInputValidationsShort instead.
+
   AdminUpdateInputValidations admins update input validations
 
   &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39; [UPDATE]&lt;/p&gt;
@@ -325,6 +343,35 @@ func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidations
 	}
 }
 
+/*
+  AdminUpdateInputValidationsShort admins update input validations
+
+  &lt;p&gt;Required permission &#39;ADMIN:CONFIGURATION&#39; [UPDATE]&lt;/p&gt;
+		&lt;p&gt;This endpoint is used to update input validation configuration.&lt;/p&gt;
+		Supported &lt;code&gt;field&lt;/code&gt;:&lt;br&gt;
+		&lt;ul&gt;
+		&lt;li&gt;displayName&lt;/li&gt;
+		&lt;li&gt;password&lt;/li&gt;
+		&lt;li&gt;username&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;If &lt;code&gt;isCustomRegex&lt;/code&gt; is set to true, &lt;code&gt;regex&lt;/code&gt; parameter will be used as input validation and the other parameters will be ignored. Otherwise, &lt;code&gt;regex&lt;/code&gt; parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. &lt;/p&gt;
+		&lt;p&gt;If &lt;code&gt;allowUnicode&lt;/code&gt; is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.&lt;/p&gt;
+		Supported &lt;code&gt;letterCase&lt;/code&gt;:&lt;br&gt;
+		&lt;ul&gt;
+		&lt;li&gt;lowercase&lt;/li&gt;
+		&lt;li&gt;uppercase&lt;/li&gt;
+		&lt;li&gt;mixed: uppercase and lowercase&lt;/li&gt;
+		&lt;li&gt;mixed: uppercase and/or lowercase&lt;/li&gt;
+		&lt;/ul&gt;
+		Supported &lt;code&gt;specialCharacterLocation&lt;/code&gt;:&lt;br&gt;
+		&lt;ul&gt;
+		&lt;li&gt;anywhere&lt;/li&gt;
+		&lt;li&gt;middle&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;If &lt;code&gt;specialCharacters&lt;/code&gt; is empty, &lt;code&gt;specialCharacterLocation&lt;/code&gt; and &lt;code&gt;maxRepeatingSpecialCharacter&lt;/code&gt; will be ignored.&lt;/p&gt;
+		&lt;p&gt;&lt;code&gt;minCharType&lt;/code&gt; is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.&lt;/p&gt;
+
+*/
 func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -373,6 +420,8 @@ func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValida
 }
 
 /*
+Deprecated: Use PublicGetInputValidationsShort instead.
+
   PublicGetInputValidations publics get input validations
 
   &lt;p&gt;No role required&lt;/p&gt;
@@ -427,6 +476,14 @@ func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsPara
 	}
 }
 
+/*
+  PublicGetInputValidationsShort publics get input validations
+
+  &lt;p&gt;No role required&lt;/p&gt;
+		&lt;p&gt;This endpoint is to get list of input validation configuration.&lt;/p&gt;
+		&lt;p&gt;&lt;code&gt;regex&lt;/code&gt; parameter will be returned if &lt;code&gt;isCustomRegex&lt;/code&gt; is true. Otherwise, it will be empty.&lt;/p&gt;
+
+*/
 func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

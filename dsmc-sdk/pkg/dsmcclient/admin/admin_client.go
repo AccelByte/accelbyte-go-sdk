@@ -60,6 +60,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CountServerShort instead.
+
   CountServer counts all managed servers
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -115,6 +117,15 @@ func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CountServerShort counts all managed servers
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint counts all of dedicated servers in a namespace managed by this service.
+*/
 func (a *Client) CountServerShort(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -161,6 +172,8 @@ func (a *Client) CountServerShort(params *CountServerParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use CountServerDetailedShort instead.
+
   CountServerDetailed gets detailed count of managed servers in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -216,6 +229,15 @@ func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo
 	}
 }
 
+/*
+  CountServerDetailedShort gets detailed count of managed servers in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint counts all of dedicated servers in a region managed by this service.
+*/
 func (a *Client) CountServerDetailedShort(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -262,6 +284,8 @@ func (a *Client) CountServerDetailedShort(params *CountServerDetailedParams, aut
 }
 
 /*
+Deprecated: Use CountSessionShort instead.
+
   CountSession counts all sessions
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]
@@ -317,6 +341,15 @@ func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  CountSessionShort counts all sessions
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]
+
+Required scope: social
+
+This endpoint count all of sessions in a namespace managed by this service.
+*/
 func (a *Client) CountSessionShort(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -363,6 +396,8 @@ func (a *Client) CountSessionShort(params *CountSessionParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use DeleteLocalServerShort instead.
+
   DeleteLocalServer deletes a local server
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]
@@ -419,6 +454,16 @@ func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo run
 	}
 }
 
+/*
+  DeleteLocalServerShort deletes a local server
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]
+
+Required scope: social
+
+This endpoint deletes a specified local dedicated server from DB.
+Note that DSM has no ability to shutdown local DS.
+*/
 func (a *Client) DeleteLocalServerShort(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -465,6 +510,8 @@ func (a *Client) DeleteLocalServerShort(params *DeleteLocalServerParams, authInf
 }
 
 /*
+Deprecated: Use DeleteServerShort instead.
+
   DeleteServer deletes a server in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]
@@ -523,6 +570,15 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  DeleteServerShort deletes a server in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]
+
+Required scope: social
+
+This endpoint deletes a specified dedicated server from DB and terminates the DS pod.
+*/
 func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -571,6 +627,8 @@ func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use DeleteSessionShort instead.
+
   DeleteSession deletes a session in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]
@@ -626,6 +684,15 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  DeleteSessionShort deletes a session in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]
+
+Required scope: social
+
+This endpoint deletes a specified session and its corresponding match result from DB.
+*/
 func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -672,6 +739,8 @@ func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtim
 }
 
 /*
+Deprecated: Use GetServerShort instead.
+
   GetServer queries a server in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -730,6 +799,15 @@ func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetServerShort queries a server in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint queries a specified dedicated server from DB.
+*/
 func (a *Client) GetServerShort(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -778,6 +856,8 @@ func (a *Client) GetServerShort(params *GetServerParams, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use ListLocalServerShort instead.
+
   ListLocalServer lists all managed local servers
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -833,6 +913,15 @@ func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime
 	}
 }
 
+/*
+  ListLocalServerShort lists all managed local servers
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint lists all of local dedicated servers in a namespace managed by this service.
+*/
 func (a *Client) ListLocalServerShort(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -879,6 +968,8 @@ func (a *Client) ListLocalServerShort(params *ListLocalServerParams, authInfo ru
 }
 
 /*
+Deprecated: Use ListServerShort instead.
+
   ListServer lists all managed servers in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -936,6 +1027,17 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  ListServerShort lists all managed servers in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint lists all of dedicated servers in a namespace managed by this service.
+
+Parameter Offset and Count is Required
+*/
 func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -982,6 +1084,8 @@ func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use ListSessionShort instead.
+
   ListSession lists all managed sessions in a region
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]
@@ -1039,6 +1143,17 @@ func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ListSessionShort lists all managed sessions in a region
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]
+
+Required scope: social
+
+This endpoint lists all of sessions in a namespace managed by this service.
+
+Parameter Offset and Count is Required
+*/
 func (a *Client) ListSessionShort(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1085,6 +1200,8 @@ func (a *Client) ListSessionShort(params *ListSessionParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetServerLogsShort instead.
+
   GetServerLogs queries server logs
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
@@ -1146,6 +1263,15 @@ func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetServerLogsShort queries server logs
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint queries a specified dedicated server&#39;s logs.
+*/
 func (a *Client) GetServerLogsShort(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

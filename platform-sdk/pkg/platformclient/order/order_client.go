@@ -78,6 +78,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateUserOrderShort instead.
+
   AdminCreateUserOrder admins create an order
 
   Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;sandbox default value is &lt;b&gt;false&lt;/b&gt;&lt;/li&gt;&lt;li&gt;platform default value is &lt;b&gt;Other&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
@@ -138,6 +140,11 @@ func (a *Client) AdminCreateUserOrder(params *AdminCreateUserOrderParams, authIn
 	}
 }
 
+/*
+  AdminCreateUserOrderShort admins create an order
+
+  Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;sandbox default value is &lt;b&gt;false&lt;/b&gt;&lt;/li&gt;&lt;li&gt;platform default value is &lt;b&gt;Other&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -190,6 +197,8 @@ func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, a
 }
 
 /*
+Deprecated: Use CountOfPurchasedItemShort instead.
+
   CountOfPurchasedItem gets the count of purchased item
 
   This API is used to get the count of purchased item which is the order target.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Item purchased count&lt;/li&gt;&lt;/ul&gt;
@@ -235,6 +244,11 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 	}
 }
 
+/*
+  CountOfPurchasedItemShort gets the count of purchased item
+
+  This API is used to get the count of purchased item which is the order target.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Item purchased count&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -277,6 +291,8 @@ func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, a
 }
 
 /*
+Deprecated: Use DownloadUserOrderReceiptShort instead.
+
   DownloadUserOrderReceipt downloads user order receipt
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
@@ -328,6 +344,11 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 	}
 }
 
+/*
+  DownloadUserOrderReceiptShort downloads user order receipt
+
+  Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -374,6 +395,8 @@ func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptP
 }
 
 /*
+Deprecated: Use FulfillUserOrderShort instead.
+
   FulfillUserOrder fulfills an order
 
   Fulfill an order if the order is charged but fulfill failed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfilled order&lt;/li&gt;&lt;/ul&gt;
@@ -428,6 +451,11 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 	}
 }
 
+/*
+  FulfillUserOrderShort fulfills an order
+
+  Fulfill an order if the order is charged but fulfill failed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfilled order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -476,6 +504,8 @@ func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo 
 }
 
 /*
+Deprecated: Use GetOrderShort instead.
+
   GetOrder gets order
 
   Get order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order instance&lt;/li&gt;&lt;/ul&gt;
@@ -524,6 +554,11 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  GetOrderShort gets order
+
+  Get order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order instance&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -568,6 +603,8 @@ func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use GetOrderStatisticsShort instead.
+
   GetOrderStatistics gets order statistics
 
   Get Order Statistics.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order statistics&lt;/li&gt;&lt;/ul&gt;
@@ -613,6 +650,11 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 	}
 }
 
+/*
+  GetOrderStatisticsShort gets order statistics
+
+  Get Order Statistics.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order statistics&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -655,6 +697,8 @@ func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authI
 }
 
 /*
+Deprecated: Use GetUserOrderShort instead.
+
   GetUserOrder gets an order
 
   Get an order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
@@ -703,6 +747,11 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GetUserOrderShort gets an order
+
+  Get an order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -747,6 +796,8 @@ func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GetUserOrderGrantShort instead.
+
   GetUserOrderGrant gets user order grant
 
   Get user order grant that fulfilled by this order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order grant&lt;/li&gt;&lt;/ul&gt;
@@ -792,6 +843,11 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 	}
 }
 
+/*
+  GetUserOrderGrantShort gets user order grant
+
+  Get user order grant that fulfilled by this order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order grant&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -834,6 +890,8 @@ func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInf
 }
 
 /*
+Deprecated: Use GetUserOrderHistoriesShort instead.
+
   GetUserOrderHistories gets user order histories
 
   Get user order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
@@ -879,6 +937,11 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 	}
 }
 
+/*
+  GetUserOrderHistoriesShort gets user order histories
+
+  Get user order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -921,6 +984,8 @@ func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams,
 }
 
 /*
+Deprecated: Use ProcessUserOrderNotificationShort instead.
+
   ProcessUserOrderNotification webs hook for payment notification
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
@@ -969,6 +1034,11 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 	}
 }
 
+/*
+  ProcessUserOrderNotificationShort webs hook for payment notification
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1013,6 +1083,8 @@ func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotif
 }
 
 /*
+Deprecated: Use PublicCancelUserOrderShort instead.
+
   PublicCancelUserOrder cancels user order
 
   Cancel user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled order&lt;/li&gt;&lt;/ul&gt;
@@ -1064,6 +1136,11 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 	}
 }
 
+/*
+  PublicCancelUserOrderShort cancels user order
+
+  Cancel user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1110,6 +1187,8 @@ func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams,
 }
 
 /*
+Deprecated: Use PublicCreateUserOrderShort instead.
+
   PublicCreateUserOrder creates an order
 
   Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox order)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
@@ -1170,6 +1249,11 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 	}
 }
 
+/*
+  PublicCreateUserOrderShort creates an order
+
+  Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox order)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1222,6 +1306,8 @@ func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams,
 }
 
 /*
+Deprecated: Use PublicDownloadUserOrderReceiptShort instead.
+
   PublicDownloadUserOrderReceipt downloads user order receipt
 
   Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
@@ -1273,6 +1359,11 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 	}
 }
 
+/*
+  PublicDownloadUserOrderReceiptShort downloads user order receipt
+
+  Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1319,6 +1410,8 @@ func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserO
 }
 
 /*
+Deprecated: Use PublicGetUserOrderShort instead.
+
   PublicGetUserOrder gets user order
 
   Get user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
@@ -1367,6 +1460,11 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 	}
 }
 
+/*
+  PublicGetUserOrderShort gets user order
+
+  Get user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1411,6 +1509,8 @@ func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authI
 }
 
 /*
+Deprecated: Use PublicGetUserOrderHistoriesShort instead.
+
   PublicGetUserOrderHistories gets user order histories
 
   Get user order histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
@@ -1456,6 +1556,11 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 	}
 }
 
+/*
+  PublicGetUserOrderHistoriesShort gets user order histories
+
+  Get user order histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1498,6 +1603,8 @@ func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHist
 }
 
 /*
+Deprecated: Use PublicQueryUserOrdersShort instead.
+
   PublicQueryUserOrders queries user orders
 
   Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
@@ -1543,6 +1650,11 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 	}
 }
 
+/*
+  PublicQueryUserOrdersShort queries user orders
+
+  Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1585,6 +1697,8 @@ func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams,
 }
 
 /*
+Deprecated: Use QueryOrdersShort instead.
+
   QueryOrders queries orders
 
   Query orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query orders&lt;/li&gt;&lt;/ul&gt;
@@ -1633,6 +1747,11 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  QueryOrdersShort queries orders
+
+  Query orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query orders&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1677,6 +1796,8 @@ func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use QueryUserOrdersShort instead.
+
   QueryUserOrders queries user orders
 
   Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
@@ -1722,6 +1843,11 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 	}
 }
 
+/*
+  QueryUserOrdersShort queries user orders
+
+  Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1764,6 +1890,8 @@ func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo ru
 }
 
 /*
+Deprecated: Use RefundOrderShort instead.
+
   RefundOrder refunds order
 
   Refund order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -1818,6 +1946,11 @@ func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  RefundOrderShort refunds order
+
+  Refund order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundOrderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1866,6 +1999,8 @@ func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use UpdateUserOrderStatusShort instead.
+
   UpdateUserOrderStatus updates order status
 
   Update order status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated order&lt;/li&gt;&lt;/ul&gt;
@@ -1920,6 +2055,11 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 	}
 }
 
+/*
+  UpdateUserOrderStatusShort updates order status
+
+  Update order status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated order&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

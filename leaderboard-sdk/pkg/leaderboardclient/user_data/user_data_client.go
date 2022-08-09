@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetUserLeaderboardRankingsAdminV1Short instead.
+
   GetUserLeaderboardRankingsAdminV1 gets user rankings
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
@@ -99,6 +101,13 @@ func (a *Client) GetUserLeaderboardRankingsAdminV1(params *GetUserLeaderboardRan
 	}
 }
 
+/*
+  GetUserLeaderboardRankingsAdminV1Short gets user rankings
+
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get user leaderboard rankings&lt;/p&gt;
+
+*/
 func (a *Client) GetUserLeaderboardRankingsAdminV1Short(params *GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

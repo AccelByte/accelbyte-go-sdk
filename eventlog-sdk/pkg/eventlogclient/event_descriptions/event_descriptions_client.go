@@ -58,6 +58,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AgentTypeDescriptionHandlerShort instead.
+
   AgentTypeDescriptionHandler gets list of agent type and the descriptions
 */
 func (a *Client) AgentTypeDescriptionHandler(params *AgentTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*AgentTypeDescriptionHandlerOK, error) {
@@ -101,6 +103,9 @@ func (a *Client) AgentTypeDescriptionHandler(params *AgentTypeDescriptionHandler
 	}
 }
 
+/*
+  AgentTypeDescriptionHandlerShort gets list of agent type and the descriptions
+*/
 func (a *Client) AgentTypeDescriptionHandlerShort(params *AgentTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*AgentTypeDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -143,6 +148,8 @@ func (a *Client) AgentTypeDescriptionHandlerShort(params *AgentTypeDescriptionHa
 }
 
 /*
+Deprecated: Use EventIDDescriptionHandlerShort instead.
+
   EventIDDescriptionHandler gets list of event ID and the descriptions
 */
 func (a *Client) EventIDDescriptionHandler(params *EventIDDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventIDDescriptionHandlerOK, error) {
@@ -186,6 +193,9 @@ func (a *Client) EventIDDescriptionHandler(params *EventIDDescriptionHandlerPara
 	}
 }
 
+/*
+  EventIDDescriptionHandlerShort gets list of event ID and the descriptions
+*/
 func (a *Client) EventIDDescriptionHandlerShort(params *EventIDDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventIDDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -228,6 +238,8 @@ func (a *Client) EventIDDescriptionHandlerShort(params *EventIDDescriptionHandle
 }
 
 /*
+Deprecated: Use EventLevelDescriptionHandlerShort instead.
+
   EventLevelDescriptionHandler gets list of event level and the descriptions
 */
 func (a *Client) EventLevelDescriptionHandler(params *EventLevelDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventLevelDescriptionHandlerOK, error) {
@@ -271,6 +283,9 @@ func (a *Client) EventLevelDescriptionHandler(params *EventLevelDescriptionHandl
 	}
 }
 
+/*
+  EventLevelDescriptionHandlerShort gets list of event level and the descriptions
+*/
 func (a *Client) EventLevelDescriptionHandlerShort(params *EventLevelDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventLevelDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -313,6 +328,8 @@ func (a *Client) EventLevelDescriptionHandlerShort(params *EventLevelDescription
 }
 
 /*
+Deprecated: Use EventTypeDescriptionHandlerShort instead.
+
   EventTypeDescriptionHandler gets list of event type and the descriptions
 */
 func (a *Client) EventTypeDescriptionHandler(params *EventTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventTypeDescriptionHandlerOK, error) {
@@ -356,6 +373,9 @@ func (a *Client) EventTypeDescriptionHandler(params *EventTypeDescriptionHandler
 	}
 }
 
+/*
+  EventTypeDescriptionHandlerShort gets list of event type and the descriptions
+*/
 func (a *Client) EventTypeDescriptionHandlerShort(params *EventTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*EventTypeDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -398,6 +418,8 @@ func (a *Client) EventTypeDescriptionHandlerShort(params *EventTypeDescriptionHa
 }
 
 /*
+Deprecated: Use SpecificAgentTypeDescriptionHandlerShort instead.
+
   SpecificAgentTypeDescriptionHandler gets specific list of agent type and the descriptions by comma separated value of agent types
 */
 func (a *Client) SpecificAgentTypeDescriptionHandler(params *SpecificAgentTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificAgentTypeDescriptionHandlerOK, *SpecificAgentTypeDescriptionHandlerBadRequest, *SpecificAgentTypeDescriptionHandlerNotFound, error) {
@@ -447,6 +469,9 @@ func (a *Client) SpecificAgentTypeDescriptionHandler(params *SpecificAgentTypeDe
 	}
 }
 
+/*
+  SpecificAgentTypeDescriptionHandlerShort gets specific list of agent type and the descriptions by comma separated value of agent types
+*/
 func (a *Client) SpecificAgentTypeDescriptionHandlerShort(params *SpecificAgentTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificAgentTypeDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -493,6 +518,8 @@ func (a *Client) SpecificAgentTypeDescriptionHandlerShort(params *SpecificAgentT
 }
 
 /*
+Deprecated: Use SpecificEventIDDescriptionHandlerShort instead.
+
   SpecificEventIDDescriptionHandler gets specific list of event ID and the descriptions by comma separated value of event i ds
 */
 func (a *Client) SpecificEventIDDescriptionHandler(params *SpecificEventIDDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventIDDescriptionHandlerOK, *SpecificEventIDDescriptionHandlerBadRequest, *SpecificEventIDDescriptionHandlerNotFound, error) {
@@ -542,6 +569,9 @@ func (a *Client) SpecificEventIDDescriptionHandler(params *SpecificEventIDDescri
 	}
 }
 
+/*
+  SpecificEventIDDescriptionHandlerShort gets specific list of event ID and the descriptions by comma separated value of event i ds
+*/
 func (a *Client) SpecificEventIDDescriptionHandlerShort(params *SpecificEventIDDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventIDDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -588,6 +618,8 @@ func (a *Client) SpecificEventIDDescriptionHandlerShort(params *SpecificEventIDD
 }
 
 /*
+Deprecated: Use SpecificEventLevelDescriptionHandlerShort instead.
+
   SpecificEventLevelDescriptionHandler gets specific list of event level and the descriptions by comma separated value of event levels
 */
 func (a *Client) SpecificEventLevelDescriptionHandler(params *SpecificEventLevelDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventLevelDescriptionHandlerOK, *SpecificEventLevelDescriptionHandlerBadRequest, *SpecificEventLevelDescriptionHandlerNotFound, error) {
@@ -637,6 +669,9 @@ func (a *Client) SpecificEventLevelDescriptionHandler(params *SpecificEventLevel
 	}
 }
 
+/*
+  SpecificEventLevelDescriptionHandlerShort gets specific list of event level and the descriptions by comma separated value of event levels
+*/
 func (a *Client) SpecificEventLevelDescriptionHandlerShort(params *SpecificEventLevelDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventLevelDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -683,6 +718,8 @@ func (a *Client) SpecificEventLevelDescriptionHandlerShort(params *SpecificEvent
 }
 
 /*
+Deprecated: Use SpecificEventTypeDescriptionHandlerShort instead.
+
   SpecificEventTypeDescriptionHandler gets specific list of event type and the descriptions by comma separated value of event types
 */
 func (a *Client) SpecificEventTypeDescriptionHandler(params *SpecificEventTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventTypeDescriptionHandlerOK, *SpecificEventTypeDescriptionHandlerBadRequest, *SpecificEventTypeDescriptionHandlerNotFound, error) {
@@ -732,6 +769,9 @@ func (a *Client) SpecificEventTypeDescriptionHandler(params *SpecificEventTypeDe
 	}
 }
 
+/*
+  SpecificEventTypeDescriptionHandlerShort gets specific list of event type and the descriptions by comma separated value of event types
+*/
 func (a *Client) SpecificEventTypeDescriptionHandlerShort(params *SpecificEventTypeDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificEventTypeDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -778,6 +818,8 @@ func (a *Client) SpecificEventTypeDescriptionHandlerShort(params *SpecificEventT
 }
 
 /*
+Deprecated: Use SpecificUXDescriptionHandlerShort instead.
+
   SpecificUXDescriptionHandler gets specific list of u x and the descriptions by comma separated value of u x
 */
 func (a *Client) SpecificUXDescriptionHandler(params *SpecificUXDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificUXDescriptionHandlerOK, *SpecificUXDescriptionHandlerBadRequest, *SpecificUXDescriptionHandlerNotFound, error) {
@@ -827,6 +869,9 @@ func (a *Client) SpecificUXDescriptionHandler(params *SpecificUXDescriptionHandl
 	}
 }
 
+/*
+  SpecificUXDescriptionHandlerShort gets specific list of u x and the descriptions by comma separated value of u x
+*/
 func (a *Client) SpecificUXDescriptionHandlerShort(params *SpecificUXDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SpecificUXDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -873,6 +918,8 @@ func (a *Client) SpecificUXDescriptionHandlerShort(params *SpecificUXDescription
 }
 
 /*
+Deprecated: Use UXNameDescriptionHandlerShort instead.
+
   UXNameDescriptionHandler gets list of ux name and the descriptions
 */
 func (a *Client) UXNameDescriptionHandler(params *UXNameDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UXNameDescriptionHandlerOK, error) {
@@ -916,6 +963,9 @@ func (a *Client) UXNameDescriptionHandler(params *UXNameDescriptionHandlerParams
 	}
 }
 
+/*
+  UXNameDescriptionHandlerShort gets list of ux name and the descriptions
+*/
 func (a *Client) UXNameDescriptionHandlerShort(params *UXNameDescriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UXNameDescriptionHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -66,6 +66,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateNewAchievementShort instead.
+
   AdminCreateNewAchievement creates new achievement
 
   &lt;p&gt;Required permission
@@ -133,6 +135,24 @@ func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementPara
 	}
 }
 
+/*
+  AdminCreateNewAchievementShort creates new achievement
+
+  &lt;p&gt;Required permission
+			&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+        	Other detail info:
+          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase
+			and maximum length is 32
+          - incremental:  If the achievement is not incremental, it does not need to store a goal value
+							of a stat to be unlocked.
+                          If the achievement is incremental, it needs to set statCode and goalValue
+          - statCode: Selected statistic code, from the published statistic code event.Human readable unique
+			code to indentify the achievement. Must be lowercase and maximum length is 32
+          - goalValue: Statistics value required to unlock the achievement.
+          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US
+          - slug: specify the image they want to use, it can be file image name or something
+			to define the achievement icon.
+*/
 func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -181,6 +201,8 @@ func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievemen
 }
 
 /*
+Deprecated: Use AdminDeleteAchievementShort instead.
+
   AdminDeleteAchievement deletes an achievement
 
   &lt;p&gt;Required permission
@@ -239,6 +261,12 @@ func (a *Client) AdminDeleteAchievement(params *AdminDeleteAchievementParams, au
 	}
 }
 
+/*
+  AdminDeleteAchievementShort deletes an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminDeleteAchievementShort(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -289,6 +317,8 @@ func (a *Client) AdminDeleteAchievementShort(params *AdminDeleteAchievementParam
 }
 
 /*
+Deprecated: Use AdminGetAchievementShort instead.
+
   AdminGetAchievement gets an achievement
 
   &lt;p&gt;Required permission
@@ -347,6 +377,12 @@ func (a *Client) AdminGetAchievement(params *AdminGetAchievementParams, authInfo
 	}
 }
 
+/*
+  AdminGetAchievementShort gets an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGetAchievementShort(params *AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAchievementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -397,6 +433,8 @@ func (a *Client) AdminGetAchievementShort(params *AdminGetAchievementParams, aut
 }
 
 /*
+Deprecated: Use AdminListAchievementsShort instead.
+
   AdminListAchievements queries achievements
 
   &lt;p&gt;Required permission
@@ -455,6 +493,12 @@ func (a *Client) AdminListAchievements(params *AdminListAchievementsParams, auth
 	}
 }
 
+/*
+  AdminListAchievementsShort queries achievements
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -505,6 +549,8 @@ func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams,
 }
 
 /*
+Deprecated: Use AdminListUserAchievementsShort instead.
+
   AdminListUserAchievements queries user achievements include achieved and in progress
 
   &lt;p&gt;Required permission
@@ -564,6 +610,13 @@ func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsPara
 	}
 }
 
+/*
+  AdminListUserAchievementsShort queries user achievements include achieved and in progress
+
+  &lt;p&gt;Required permission
+			&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;p&gt;Note: user achievement status value mean: &lt;code&gt;status = 1 (in progress)&lt;/code&gt; and &lt;code&gt;status = 2 (unlocked)&lt;/p&gt;&lt;/code&gt;
+*/
 func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -614,6 +667,8 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 }
 
 /*
+Deprecated: Use AdminUnlockAchievementShort instead.
+
   AdminUnlockAchievement unlocks an achievement
 
   &lt;p&gt;Required permission
@@ -669,6 +724,12 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 	}
 }
 
+/*
+  AdminUnlockAchievementShort unlocks an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -717,6 +778,8 @@ func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParam
 }
 
 /*
+Deprecated: Use AdminUpdateAchievementShort instead.
+
   AdminUpdateAchievement updates an achievement
 
   &lt;p&gt;Required permission
@@ -775,6 +838,12 @@ func (a *Client) AdminUpdateAchievement(params *AdminUpdateAchievementParams, au
 	}
 }
 
+/*
+  AdminUpdateAchievementShort updates an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminUpdateAchievementShort(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -825,6 +894,8 @@ func (a *Client) AdminUpdateAchievementShort(params *AdminUpdateAchievementParam
 }
 
 /*
+Deprecated: Use AdminUpdateAchievementListOrderShort instead.
+
   AdminUpdateAchievementListOrder updates achievements list order
 
   &lt;p&gt;Required permission
@@ -883,6 +954,12 @@ func (a *Client) AdminUpdateAchievementListOrder(params *AdminUpdateAchievementL
 	}
 }
 
+/*
+  AdminUpdateAchievementListOrderShort updates achievements list order
+
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminUpdateAchievementListOrderShort(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -933,6 +1010,8 @@ func (a *Client) AdminUpdateAchievementListOrderShort(params *AdminUpdateAchieve
 }
 
 /*
+Deprecated: Use ExportAchievementsShort instead.
+
   ExportAchievements exports achievements configuration into a json file
 
 
@@ -991,6 +1070,15 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 	}
 }
 
+/*
+  ExportAchievementsShort exports achievements configuration into a json file
+
+
+				Required permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]
+
+				Required Scope: social
+
+*/
 func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1039,6 +1127,8 @@ func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authI
 }
 
 /*
+Deprecated: Use ImportAchievementsShort instead.
+
   ImportAchievements imports achievements from file
 
 
@@ -1102,6 +1192,20 @@ func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo r
 	}
 }
 
+/*
+  ImportAchievementsShort imports achievements from file
+
+
+				Required permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]
+
+				Required Scope: social
+
+				Import channels configuration from file. It will merge with existing channels.
+				Available import strategy:
+				- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)
+				- replace: if channel with same key exist, the imported channel will be used and existing one will be removed
+
+*/
 func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1150,6 +1254,8 @@ func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authI
 }
 
 /*
+Deprecated: Use PublicGetAchievementShort instead.
+
   PublicGetAchievement gets an achievement
 
   &lt;p&gt;Required permission
@@ -1208,6 +1314,12 @@ func (a *Client) PublicGetAchievement(params *PublicGetAchievementParams, authIn
 	}
 }
 
+/*
+  PublicGetAchievementShort gets an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) PublicGetAchievementShort(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1258,6 +1370,8 @@ func (a *Client) PublicGetAchievementShort(params *PublicGetAchievementParams, a
 }
 
 /*
+Deprecated: Use PublicListAchievementsShort instead.
+
   PublicListAchievements queries achievements
 
   &lt;p&gt;Required permission
@@ -1316,6 +1430,12 @@ func (a *Client) PublicListAchievements(params *PublicListAchievementsParams, au
 	}
 }
 
+/*
+  PublicListAchievementsShort queries achievements
+
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) PublicListAchievementsShort(params *PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1366,6 +1486,8 @@ func (a *Client) PublicListAchievementsShort(params *PublicListAchievementsParam
 }
 
 /*
+Deprecated: Use PublicListUserAchievementsShort instead.
+
   PublicListUserAchievements queries user achievements include achieved and in progress
 
   &lt;p&gt;Required permission
@@ -1425,6 +1547,13 @@ func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsPa
 	}
 }
 
+/*
+  PublicListUserAchievementsShort queries user achievements include achieved and in progress
+
+  &lt;p&gt;Required permission
+			&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+			&lt;p&gt;Note: user achievement status value mean: &lt;code&gt;status = 1 (in progress)&lt;/code&gt; and &lt;code&gt;status = 2 (unlocked)&lt;/p&gt;&lt;/code&gt;
+*/
 func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1475,6 +1604,8 @@ func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchieveme
 }
 
 /*
+Deprecated: Use PublicUnlockAchievementShort instead.
+
   PublicUnlockAchievement unlocks an achievement
 
   &lt;p&gt;Required permission
@@ -1530,6 +1661,12 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 	}
 }
 
+/*
+  PublicUnlockAchievementShort unlocks an achievement
+
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) PublicUnlockAchievementShort(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

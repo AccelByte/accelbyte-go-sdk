@@ -66,6 +66,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
+
   AdminRetrieveUserThirdPartyPlatformTokenV3 admins retrieve user third party platform token
 
   Admin Retrieve User Third Party Platform Token&lt;br/&gt;
@@ -136,6 +138,27 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetriev
 	}
 }
 
+/*
+  AdminRetrieveUserThirdPartyPlatformTokenV3Short admins retrieve user third party platform token
+
+  Admin Retrieve User Third Party Platform Token&lt;br/&gt;
+&lt;p&gt;
+This endpoint used for retrieving third party platform token for user that login using third party.
+Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
+&lt;/p&gt;
+         &lt;p&gt;Notes:&lt;/p&gt;
+       &lt;ul&gt;
+                 &lt;li&gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&lt;/li&gt;
+             &lt;/ul&gt;
+&lt;p&gt;The third party platform and platform group covered for this is:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;(psn) ps4web&lt;/li&gt;
+	&lt;li&gt;(psn) ps4&lt;/li&gt;
+	&lt;li&gt;(psn) ps5&lt;/li&gt;
+	&lt;li&gt;xbox live&lt;/li&gt;
+	&lt;li&gt;steam&lt;/li&gt;
+&lt;/ul&gt;
+*/
 func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -184,6 +207,8 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
 }
 
 /*
+Deprecated: Use AuthCodeRequestV3Short instead.
+
   AuthCodeRequestV3 generates url to request auth code from third party platform
 
   Generate url to request auth code from third party platform &lt;br&gt;
@@ -249,6 +274,31 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
 	}
 }
 
+/*
+  AuthCodeRequestV3Short generates url to request auth code from third party platform
+
+  Generate url to request auth code from third party platform &lt;br&gt;
+               &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
+               &lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to steam login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating user steam.
+               &lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to xbox login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating xbox user.
+               &lt;li&gt;&lt;strong&gt;ps4web&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to psn login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating psn user.
+               &lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to Epicgames OAuth login page. then redirect to platform
+               authenticate endpoint after successfully authenticating an Epicgames credential
+               &lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to twitch login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating twitch user.
+               &lt;li&gt;&lt;strong&gt;azure&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to azure login page, then redirect back to platform
+               authenticate(saml) endpoint after successfully authenticating azure user.
+               &lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to facebook login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating facebook user.
+               &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to google login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating google user.
+			   &lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to snapchat login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating snapchat user.
+               &lt;/ul&gt; action code : 10702&#39;
+*/
 func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -291,6 +341,8 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 }
 
 /*
+Deprecated: Use AuthorizeV3Short instead.
+
   AuthorizeV3 os auth2 authorize API
 
   Initializes OAuth2.0 authorization code flow&lt;br/&gt;
@@ -370,6 +422,45 @@ func (a *Client) AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientA
 	}
 }
 
+/*
+  AuthorizeV3Short os auth2 authorize API
+
+  Initializes OAuth2.0 authorization code flow&lt;br/&gt;
+&lt;p&gt;The endpoint stores authorization request and redirects to login page with the authorization request id.
+	The user can then do the authentication on the login page.
+	The user will be redirected back to the requesting client with authorization code if successfully authenticated.
+&lt;/p&gt;
+&lt;p&gt;Only authorization code flow supported by this endpoint, implicit flow is not supported.&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;p&gt;&lt;strong&gt;Authorize success&lt;/strong&gt;:
+		redirects to login page with the following information: ?request_id={authorization_request_id}&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;&lt;strong&gt;Authorize failure&lt;/strong&gt;:
+		redirects to the given redirect uri with the following information:
+		?error={error_code}&amp;error_description={error description}&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+	&lt;p&gt;Following are the error code based on the specification:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;p&gt;invalid_request: The request is missing a required parameter,
+		includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;server_error:
+		The authorization server encountered an unexpected condition that prevented it from fulfilling the request.&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;unauthorized_client: The client is not authorized to request a token using this method.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;access_denied: The resource owner or authorization server denied the request.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;invalid_scope: The requested scope is invalid, unknown, or malformed.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;unsupported_response_type: The authorization server does not support obtaining a token using this method.&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;temporarily_unavailable: The authorization server is currently unable to handle the request
+		due to a temporary overloading or maintenance of the server.&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+	&lt;p&gt;Please refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1&lt;/p&gt;&lt;br&gt;
+	action code: 10701
+
+
+*/
 func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -412,6 +503,8 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use Change2FAMethodShort instead.
+
   Change2FAMethod changes 2 f a method
 
   Change 2FA method&lt;br/&gt;
@@ -467,6 +560,18 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 	}
 }
 
+/*
+  Change2FAMethodShort changes 2 f a method
+
+  Change 2FA method&lt;br/&gt;
+&lt;p&gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.&lt;/p&gt;
+&lt;p&gt;Supported methods:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;authenticator&lt;/li&gt;
+	&lt;li&gt;backupCodes&lt;/li&gt;
+&lt;/ul&gt;
+
+*/
 func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -511,6 +616,8 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetJWKSV3Short instead.
+
   GetJWKSV3 JSONs web key set for verifying j w t
 
   &lt;p&gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.&lt;/p&gt;
@@ -563,6 +670,18 @@ func (a *Client) GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthI
 	}
 }
 
+/*
+  GetJWKSV3Short JSONs web key set for verifying j w t
+
+  &lt;p&gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.&lt;/p&gt;
+			&lt;p&gt;When a client application wants to verify a JWT token, it needs to get the &#39;kid&#39; value found in the JWT token header and use it
+			to look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.&lt;/p&gt;
+			&lt;p&gt;A client application might cache the keys so it doesn&#39;t need to do request every time it needs to verify a JWT token. If a client application
+			caches the keys and a key with the same &#39;kid&#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this
+			endpoint again.&lt;/p&gt;
+			&lt;p&gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517&lt;/p&gt;
+			&lt;br&gt;action code : 10709
+*/
 func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -605,6 +724,8 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 }
 
 /*
+Deprecated: Use GetRevocationListV3Short instead.
+
   GetRevocationListV3 os auth2 revocation list API
 
   &lt;p&gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.&lt;/p&gt;
@@ -656,6 +777,14 @@ func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo
 	}
 }
 
+/*
+  GetRevocationListV3Short os auth2 revocation list API
+
+  &lt;p&gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.&lt;/p&gt;
+					 &lt;p&gt;This endpoint requires authorized requests header with valid access token.&lt;/p&gt;
+					 &lt;p&gt;The bloom filter uses MurmurHash3 algorithm for hashing the values&lt;/p&gt;
+					 &lt;p&gt;action code : 10708&lt;/p&gt;
+*/
 func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -700,6 +829,8 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 }
 
 /*
+Deprecated: Use PlatformTokenGrantV3Short instead.
+
   PlatformTokenGrantV3 os auth2 access token generation specific to platform
 
   &lt;p&gt;Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.
@@ -834,6 +965,94 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 	}
 }
 
+/*
+  PlatformTokenGrantV3Short os auth2 access token generation specific to platform
+
+  &lt;p&gt;Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.
+			This endpoint requires all requests to have Authorization header set with Basic access authentication
+			constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
+			should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
+			along with platform_token parameter against publisher namespace.&lt;/p&gt;
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The platform_token’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The platform_token&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The platform_token’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Discord OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The device_id is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The device_id is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: The platform_token’s value is the designated user’s access token.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The platform_token’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The platform_token&#39;s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token or id token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt;: The platform_token’s value is xbox XSTS token&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The platform_token’s value is code returned by xbox after login&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;netflix&lt;/strong&gt;: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;snapchat&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Snapchat OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;h2&gt;Account Group&lt;/h2&gt;
+			&lt;p&gt;Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id.
+			Login using one of these platform will returns the same IAM user. &lt;/p&gt;
+			&lt;p&gt;Following is the current registered account grouping: &lt;/p&gt;
+			&lt;ul&gt;
+			&lt;li&gt; (psn) ps4web &lt;/li&gt;
+			&lt;li&gt; (psn) ps4 &lt;/li&gt;
+			&lt;li&gt; (psn) ps5 &lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;h2&gt;Access Token Content&lt;/h2&gt;
+			&lt;p&gt;Following is the access token’s content:&lt;/p&gt;
+			&lt;ul&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;namespace&lt;/strong&gt;. It is the namespace the token was generated from.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;display_name&lt;/strong&gt;. The display name of the sub. It is empty if the token is generated from the client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;roles&lt;/strong&gt;. The sub’s roles. It is empty if the token is generated from the client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;namespace_roles&lt;/strong&gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;permissions&lt;/strong&gt;. The sub or aud’ permissions&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;bans&lt;/strong&gt;. The sub’s list of bans. It is used by the IAM client for validating the token.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;jflgs&lt;/strong&gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;p&gt;1: Email Address Verified&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;2: Phone Number Verified&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;4: Anonymous&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;8: Suspicious Login&lt;/p&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;aud&lt;/strong&gt;. The aud is the client ID.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;iat&lt;/strong&gt;. The time the token issues at. It is in Epoch time format&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;exp&lt;/strong&gt;. The time the token expires. It is in Epoch time format&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;sub&lt;/strong&gt;. The UserID. The sub is omitted if the token is generated from client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;h2&gt;Bans&lt;/h2&gt;
+			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
+			&lt;br&gt;action code : 10704
+*/
 func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -880,6 +1099,8 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 }
 
 /*
+Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead.
+
   RetrieveUserThirdPartyPlatformTokenV3 retrieves user third party platform token
 
   Retrieve User Third Party Platform Token&lt;br/&gt;
@@ -947,6 +1168,24 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThird
 	}
 }
 
+/*
+  RetrieveUserThirdPartyPlatformTokenV3Short retrieves user third party platform token
+
+  Retrieve User Third Party Platform Token&lt;br/&gt;
+&lt;p&gt;
+This endpoint used for retrieving third party platform token for user that login using third party.
+Passing platform group name or it&#39;s member will return same access token that can be used across the platform members.
+&lt;/p&gt;
+&lt;p&gt;The third party platform and platform group covered for this is:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;(psn) ps4web&lt;/li&gt;
+	&lt;li&gt;(psn) ps4&lt;/li&gt;
+	&lt;li&gt;(psn) ps5&lt;/li&gt;
+	&lt;li&gt;epicgames&lt;/li&gt;
+	&lt;li&gt;twitch&lt;/li&gt;
+	&lt;li&gt;awscognito&lt;/li&gt;
+&lt;/ul&gt;
+*/
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -995,6 +1234,8 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUser
 }
 
 /*
+Deprecated: Use RevokeUserV3Short instead.
+
   RevokeUserV3 revokes user s tokens
 
   &lt;p&gt;This endpoint revokes all access tokens and refresh tokens a user has prior the revocation time.&lt;/p&gt;
@@ -1053,6 +1294,15 @@ func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.Clien
 	}
 }
 
+/*
+  RevokeUserV3Short revokes user s tokens
+
+  &lt;p&gt;This endpoint revokes all access tokens and refresh tokens a user has prior the revocation time.&lt;/p&gt;
+			&lt;p&gt;This endpoint requires authorized requests header with valid access token.&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;It is a convenient feature for the developer (or admin) who wanted to revokes all user&#39;s access tokens and refresh tokens generated before some period of time.&lt;/p&gt;
+			&lt;p&gt;action code : 10707&lt;/p&gt;
+*/
 func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1101,6 +1351,8 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 }
 
 /*
+Deprecated: Use TokenGrantV3Short instead.
+
   TokenGrantV3 os auth2 access token generation endpoint
 
   &lt;p&gt;This endpoint supports grant type:&lt;/p&gt;&lt;ol&gt;
@@ -1223,6 +1475,79 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 	}
 }
 
+/*
+  TokenGrantV3Short os auth2 access token generation endpoint
+
+  &lt;p&gt;This endpoint supports grant type:&lt;/p&gt;&lt;ol&gt;
+	 		&lt;li&gt;Grant Type == &lt;code&gt;authorization_code&lt;/code&gt;:&lt;br /&gt;
+				&amp;nbsp;&amp;nbsp;&amp;nbsp; It generates the user token by given the authorization
+				code which generated in &#34;/iam/v3/authenticate&#34; API response. It should also pass
+				in the redirect_uri, which should be the same as generating the
+				authorization code request.
+			&lt;/li&gt;
+			&lt;li&gt;Grant Type == &lt;code&gt;password&lt;/code&gt;:&lt;br /&gt;
+	 			&amp;nbsp;&amp;nbsp;&amp;nbsp; The grant type to use for authenticating a user, whether it&#39;s by email / username and password combination
+				or through platform.
+			&lt;/li&gt;
+			&lt;li&gt;Grant Type == &lt;code&gt;refresh_token&lt;/code&gt;:&lt;br /&gt;
+	 			&amp;nbsp;&amp;nbsp;&amp;nbsp; Used to get a new access token for a valid refresh token.
+			&lt;/li&gt;
+			&lt;li&gt;Grant Type == &lt;code&gt;client_credentials&lt;/code&gt;:&lt;br /&gt;
+	 			&amp;nbsp;&amp;nbsp;&amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.
+			&lt;/li&gt;&lt;/ol&gt;
+			&lt;h2&gt;Access Token Content&lt;/h2&gt;
+			&lt;p&gt;Following is the access token’s content:&lt;/p&gt;
+			&lt;ul&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;namespace&lt;/strong&gt;. It is the namespace the token was generated from.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;display_name&lt;/strong&gt;. The display name of the sub. It is empty if the token is generated from the client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;roles&lt;/strong&gt;. The sub’s roles. It is empty if the token is generated from the client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;namespace_roles&lt;/strong&gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;permissions&lt;/strong&gt;. The sub or aud’ permissions&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;bans&lt;/strong&gt;. The sub’s list of bans. It is used by the IAM client for validating the token.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;jflgs&lt;/strong&gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;p&gt;1: Email Address Verified&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;2: Phone Number Verified&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;4: Anonymous&lt;/p&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;p&gt;8: Suspicious Login&lt;/p&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;aud&lt;/strong&gt;. The aud is the targeted resource server.&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;iat&lt;/strong&gt;. The time the token issues at. It is in Epoch time format&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;exp&lt;/strong&gt;. The time the token expires. It is in Epoch time format&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;client_id&lt;/strong&gt;. The UserID. The sub is omitted if the token is generated from client credential&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;&lt;strong&gt;scope&lt;/strong&gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;h2&gt;Bans&lt;/h2&gt;
+			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
+			&lt;h2&gt;Track Login History&lt;/h2&gt;
+			&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
+			&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
+			&lt;p&gt;action code: 10703
+*/
 func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1271,6 +1596,8 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 }
 
 /*
+Deprecated: Use TokenIntrospectionV3Short instead.
+
   TokenIntrospectionV3 os auth2 token introspection API
 
   &lt;p&gt;This endpoint returns information about an access token intended to be used by resource servers or other internal servers.&lt;/p&gt;
@@ -1324,6 +1651,13 @@ func (a *Client) TokenIntrospectionV3(params *TokenIntrospectionV3Params, authIn
 	}
 }
 
+/*
+  TokenIntrospectionV3Short os auth2 token introspection API
+
+  &lt;p&gt;This endpoint returns information about an access token intended to be used by resource servers or other internal servers.&lt;/p&gt;
+					 &lt;p&gt;This endpoint requires authorized requests header with valid basic or bearer token.&lt;/p&gt;
+					 &lt;p&gt;action code : 10705&lt;/p&gt;
+*/
 func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1370,6 +1704,8 @@ func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, a
 }
 
 /*
+Deprecated: Use TokenRevocationV3Short instead.
+
   TokenRevocationV3 os auth2 token revocation API
 
   &lt;p&gt;This endpoint revokes a token.&lt;/p&gt;
@@ -1422,6 +1758,12 @@ func (a *Client) TokenRevocationV3(params *TokenRevocationV3Params, authInfo run
 	}
 }
 
+/*
+  TokenRevocationV3Short os auth2 token revocation API
+
+  &lt;p&gt;This endpoint revokes a token.&lt;/p&gt;
+					 &lt;p&gt;This endpoint requires authorized requests header with Basic Authentication from client that establish the token.&lt;/p&gt;&lt;br&gt;action code: 10706
+*/
 func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1468,6 +1810,8 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 }
 
 /*
+Deprecated: Use Verify2FACodeShort instead.
+
   Verify2FACode verifies 2 f a code
 
   Verify 2FA code&lt;br/&gt;
@@ -1518,6 +1862,13 @@ func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  Verify2FACodeShort verifies 2 f a code
+
+  Verify 2FA code&lt;br/&gt;
+&lt;p&gt;This endpoint is used for verifying 2FA code.&lt;/p&gt;
+
+*/
 func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1562,6 +1913,8 @@ func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtim
 }
 
 /*
+Deprecated: Use VerifyTokenV3Short instead.
+
   VerifyTokenV3 os auth2 token verification API
 
   This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
@@ -1610,6 +1963,11 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 	}
 }
 
+/*
+  VerifyTokenV3Short os auth2 token verification API
+
+  This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+*/
 func (a *Client) VerifyTokenV3Short(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

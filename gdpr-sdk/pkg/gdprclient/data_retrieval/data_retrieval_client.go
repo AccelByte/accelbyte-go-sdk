@@ -64,6 +64,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCancelUserPersonalDataRequestShort instead.
+
   AdminCancelUserPersonalDataRequest cancels user s personal data requests
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -121,6 +123,11 @@ func (a *Client) AdminCancelUserPersonalDataRequest(params *AdminCancelUserPerso
 	}
 }
 
+/*
+  AdminCancelUserPersonalDataRequestShort cancels user s personal data requests
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserPersonalDataRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -171,6 +178,8 @@ func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUser
 }
 
 /*
+Deprecated: Use AdminGeneratePersonalDataURLShort instead.
+
   AdminGeneratePersonalDataURL generates personal data download url
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -228,6 +237,11 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 	}
 }
 
+/*
+  AdminGeneratePersonalDataURLShort generates personal data download url
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -278,6 +292,8 @@ func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonal
 }
 
 /*
+Deprecated: Use AdminGetListPersonalDataRequestShort instead.
+
   AdminGetListPersonalDataRequest gets list personal data requests
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -338,6 +354,11 @@ func (a *Client) AdminGetListPersonalDataRequest(params *AdminGetListPersonalDat
 	}
 }
 
+/*
+  AdminGetListPersonalDataRequestShort gets list personal data requests
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGetListPersonalDataRequestShort(params *AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListPersonalDataRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -390,6 +411,8 @@ func (a *Client) AdminGetListPersonalDataRequestShort(params *AdminGetListPerson
 }
 
 /*
+Deprecated: Use AdminGetUserPersonalDataRequestsShort instead.
+
   AdminGetUserPersonalDataRequests gets user s personal data requests
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -444,6 +467,11 @@ func (a *Client) AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDa
 	}
 }
 
+/*
+  AdminGetUserPersonalDataRequestsShort gets user s personal data requests
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPersonalDataRequestsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -492,6 +520,8 @@ func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPerso
 }
 
 /*
+Deprecated: Use AdminRequestDataRetrievalShort instead.
+
   AdminRequestDataRetrieval submits user personal data retrieval request
 
   &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
@@ -547,6 +577,12 @@ func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalPara
 	}
 }
 
+/*
+  AdminRequestDataRetrievalShort submits user personal data retrieval request
+
+  &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If admin request data for themselves, password is need to be set&lt;/p&gt;
+*/
 func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -595,6 +631,8 @@ func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrieva
 }
 
 /*
+Deprecated: Use DeleteAdminEmailConfigurationShort instead.
+
   DeleteAdminEmailConfiguration deletes admin emails configurations
 
   Delete a list of admin email addresses to stop receiving personal data request notification.
@@ -656,6 +694,12 @@ func (a *Client) DeleteAdminEmailConfiguration(params *DeleteAdminEmailConfigura
 	}
 }
 
+/*
+  DeleteAdminEmailConfigurationShort deletes admin emails configurations
+
+  Delete a list of admin email addresses to stop receiving personal data request notification.
+			&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) DeleteAdminEmailConfigurationShort(params *DeleteAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -708,6 +752,8 @@ func (a *Client) DeleteAdminEmailConfigurationShort(params *DeleteAdminEmailConf
 }
 
 /*
+Deprecated: Use GetAdminEmailConfigurationShort instead.
+
   GetAdminEmailConfiguration gets admin email addresses configuration
 
   Get list of admin email address configuration.
@@ -760,6 +806,12 @@ func (a *Client) GetAdminEmailConfiguration(params *GetAdminEmailConfigurationPa
 	}
 }
 
+/*
+  GetAdminEmailConfigurationShort gets admin email addresses configuration
+
+  Get list of admin email address configuration.
+			&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) GetAdminEmailConfigurationShort(params *GetAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminEmailConfigurationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -806,6 +858,8 @@ func (a *Client) GetAdminEmailConfigurationShort(params *GetAdminEmailConfigurat
 }
 
 /*
+Deprecated: Use PublicCancelUserPersonalDataRequestShort instead.
+
   PublicCancelUserPersonalDataRequest cancels user s personal data requests
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -863,6 +917,11 @@ func (a *Client) PublicCancelUserPersonalDataRequest(params *PublicCancelUserPer
 	}
 }
 
+/*
+  PublicCancelUserPersonalDataRequestShort cancels user s personal data requests
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicCancelUserPersonalDataRequestShort(params *PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserPersonalDataRequestNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -913,6 +972,8 @@ func (a *Client) PublicCancelUserPersonalDataRequestShort(params *PublicCancelUs
 }
 
 /*
+Deprecated: Use PublicGeneratePersonalDataURLShort instead.
+
   PublicGeneratePersonalDataURL generates personal data download url
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -970,6 +1031,11 @@ func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDat
 	}
 }
 
+/*
+  PublicGeneratePersonalDataURLShort generates personal data download url
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicGeneratePersonalDataURLShort(params *PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1020,6 +1086,8 @@ func (a *Client) PublicGeneratePersonalDataURLShort(params *PublicGeneratePerson
 }
 
 /*
+Deprecated: Use PublicGetUserPersonalDataRequestsShort instead.
+
   PublicGetUserPersonalDataRequests gets user s personal data requests
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -1074,6 +1142,11 @@ func (a *Client) PublicGetUserPersonalDataRequests(params *PublicGetUserPersonal
 	}
 }
 
+/*
+  PublicGetUserPersonalDataRequestsShort gets user s personal data requests
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPersonalDataRequestsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1122,6 +1195,8 @@ func (a *Client) PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPer
 }
 
 /*
+Deprecated: Use PublicRequestDataRetrievalShort instead.
+
   PublicRequestDataRetrieval submits personal data retrieval request
 
   &lt;p&gt;Requires valid user access token&lt;/p&gt;
@@ -1176,6 +1251,11 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 	}
 }
 
+/*
+  PublicRequestDataRetrievalShort submits personal data retrieval request
+
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+*/
 func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1224,6 +1304,8 @@ func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrie
 }
 
 /*
+Deprecated: Use SaveAdminEmailConfigurationShort instead.
+
   SaveAdminEmailConfiguration adds admin email address configuration
 
   Add admin email address for receiving personal data request notification.
@@ -1279,6 +1361,12 @@ func (a *Client) SaveAdminEmailConfiguration(params *SaveAdminEmailConfiguration
 	}
 }
 
+/*
+  SaveAdminEmailConfigurationShort adds admin email address configuration
+
+  Add admin email address for receiving personal data request notification.
+			&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) SaveAdminEmailConfigurationShort(params *SaveAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*SaveAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1327,6 +1415,8 @@ func (a *Client) SaveAdminEmailConfigurationShort(params *SaveAdminEmailConfigur
 }
 
 /*
+Deprecated: Use UpdateAdminEmailConfigurationShort instead.
+
   UpdateAdminEmailConfiguration updates admin email address configuration
 
   Update admin email address for receiving personal data request notification. &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]&lt;/code&gt;&lt;/p&gt;
@@ -1381,6 +1471,11 @@ func (a *Client) UpdateAdminEmailConfiguration(params *UpdateAdminEmailConfigura
 	}
 }
 
+/*
+  UpdateAdminEmailConfigurationShort updates admin email address configuration
+
+  Update admin email address for receiving personal data request notification. &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]&lt;/code&gt;&lt;/p&gt;
+*/
 func (a *Client) UpdateAdminEmailConfigurationShort(params *UpdateAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

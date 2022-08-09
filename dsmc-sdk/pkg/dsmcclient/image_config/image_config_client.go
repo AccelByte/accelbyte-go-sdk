@@ -64,6 +64,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateImageShort instead.
+
   CreateImage creates image
 
   ```
@@ -134,6 +136,24 @@ func (a *Client) CreateImage(params *CreateImageParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CreateImageShort creates image
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+Required scope: social
+
+This endpoint will create image.
+
+Sample image:
+{
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0&#34;,
+	&#34;persistent&#34;:false
+}
+```
+*/
 func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -184,6 +204,8 @@ func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use CreateImagePatchShort instead.
+
   CreateImagePatch creates image patch
 
   ```
@@ -255,6 +277,25 @@ func (a *Client) CreateImagePatch(params *CreateImagePatchParams, authInfo runti
 	}
 }
 
+/*
+  CreateImagePatchShort creates image patch
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+Required scope: social
+
+This endpoint will create image patch.
+
+Sample image:
+{
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;patchVersion&#34;:&#34;1.0.0-patch&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0-patch&#34;,
+	&#34;persistent&#34;:false
+}
+```
+*/
 func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImagePatchCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -305,6 +346,8 @@ func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo 
 }
 
 /*
+Deprecated: Use DeleteImageShort instead.
+
   DeleteImage deletes an image
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -371,6 +414,17 @@ func (a *Client) DeleteImage(params *DeleteImageParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  DeleteImageShort deletes an image
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social.
+
+This endpoint will delete an image that specified in the request parameter.
+
+Default image is cannot be deleted and will throw error 422 (Unprocessable entity).
+*/
 func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -423,6 +477,8 @@ func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DeleteImagePatchShort instead.
+
   DeleteImagePatch deletes an image patch
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -487,6 +543,15 @@ func (a *Client) DeleteImagePatch(params *DeleteImagePatchParams, authInfo runti
 	}
 }
 
+/*
+  DeleteImagePatchShort deletes an image patch
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint will delete an image patch that specified in the request parameter
+*/
 func (a *Client) DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImagePatchNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -539,6 +604,8 @@ func (a *Client) DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo 
 }
 
 /*
+Deprecated: Use ExportImagesShort instead.
+
   ExportImages exports d s m controller images for a namespace
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -601,6 +668,16 @@ func (a *Client) ExportImages(params *ExportImagesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  ExportImagesShort exports d s m controller images for a namespace
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint export a dedicated servers images in a namespace.
+
+*/
 func (a *Client) ExportImagesShort(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -651,6 +728,8 @@ func (a *Client) ExportImagesShort(params *ExportImagesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GetImageDetailShort instead.
+
   GetImageDetail ds s image detail
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -709,6 +788,15 @@ func (a *Client) GetImageDetail(params *GetImageDetailParams, authInfo runtime.C
 	}
 }
 
+/*
+  GetImageDetailShort ds s image detail
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get specific version of dedicated servers images.
+*/
 func (a *Client) GetImageDetailShort(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -757,6 +845,8 @@ func (a *Client) GetImageDetailShort(params *GetImageDetailParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetImageLimitShort instead.
+
   GetImageLimit ds s image limit
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -815,6 +905,15 @@ func (a *Client) GetImageLimit(params *GetImageLimitParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GetImageLimitShort ds s image limit
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get ds image limit for specific namespace
+*/
 func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -863,6 +962,8 @@ func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtim
 }
 
 /*
+Deprecated: Use GetImagePatchDetailShort instead.
+
   GetImagePatchDetail ds s image patch detail
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -921,6 +1022,15 @@ func (a *Client) GetImagePatchDetail(params *GetImagePatchDetailParams, authInfo
 	}
 }
 
+/*
+  GetImagePatchDetailShort ds s image patch detail
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get specific image patch version of dedicated servers version.
+*/
 func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -969,6 +1079,8 @@ func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, aut
 }
 
 /*
+Deprecated: Use GetImagePatchesShort instead.
+
   GetImagePatches gets all image patches by version
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -1024,6 +1136,15 @@ func (a *Client) GetImagePatches(params *GetImagePatchesParams, authInfo runtime
 	}
 }
 
+/*
+  GetImagePatchesShort gets all image patches by version
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get image patches by version.
+*/
 func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1070,6 +1191,8 @@ func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo ru
 }
 
 /*
+Deprecated: Use ImageDetailClientShort instead.
+
   ImageDetailClient ds s image detail client
 
   Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -1128,6 +1251,15 @@ func (a *Client) ImageDetailClient(params *ImageDetailClientParams, authInfo run
 	}
 }
 
+/*
+  ImageDetailClientShort ds s image detail client
+
+  Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get specific version of dedicated servers images.
+*/
 func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1176,6 +1308,8 @@ func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInf
 }
 
 /*
+Deprecated: Use ImportImagesShort instead.
+
   ImportImages imports images for a namespace
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
@@ -1250,6 +1384,28 @@ func (a *Client) ImportImages(params *ImportImagesParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  ImportImagesShort imports images for a namespace
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint import a dedicated servers images in a namespace.
+
+The image will be upsert. Existing version will be replaced with imported image, will create new one if not found.
+
+Example data inside imported file
+[
+  {
+	&#34;namespace&#34;: &#34;dewa&#34;,
+	&#34;image&#34;: &#34;123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha&#34;,
+	&#34;version&#34;: &#34;0.0.1&#34;,
+	&#34;persistent&#34;: true
+  }
+]
+
+*/
 func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1300,6 +1456,8 @@ func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use ListImagesShort instead.
+
   ListImages lists all d s images
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
@@ -1360,6 +1518,17 @@ func (a *Client) ListImages(params *ListImagesParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  ListImagesShort lists all d s images
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint lists all of dedicated servers images.
+
+Parameter Offset and Count is Required
+*/
 func (a *Client) ListImagesShort(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1408,6 +1577,8 @@ func (a *Client) ListImagesShort(params *ListImagesParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use UpdateImageShort instead.
+
   UpdateImage updates image
 
   ```
@@ -1475,6 +1646,24 @@ func (a *Client) UpdateImage(params *UpdateImageParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  UpdateImageShort updates image
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+Required scope: social
+
+This endpoint will update an image name and/or image persistent flag.
+
+Sample image:
+{
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0&#34;,
+	&#34;persistent&#34;:false
+}
+```
+*/
 func (a *Client) UpdateImageShort(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

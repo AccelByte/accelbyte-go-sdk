@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use PublicGetMessagesShort instead.
+
   PublicGetMessages gets service messages
 
   get the list of messages.
@@ -88,6 +90,11 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 	}
 }
 
+/*
+  PublicGetMessagesShort gets service messages
+
+  get the list of messages.
+*/
 func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

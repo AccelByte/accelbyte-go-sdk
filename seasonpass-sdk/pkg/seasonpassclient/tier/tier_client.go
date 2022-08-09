@@ -52,6 +52,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateTierShort instead.
+
   CreateTier creates tier
 
   This API is used to create tier for a draft season, can create multiple tiers at same time.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -109,6 +111,11 @@ func (a *Client) CreateTier(params *CreateTierParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CreateTierShort creates tier
+
+  This API is used to create tier for a draft season, can create multiple tiers at same time.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTierCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -159,6 +166,8 @@ func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use DeleteTierShort instead.
+
   DeleteTier deletes a tier
 
   This API is used to delete a tier permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -213,6 +222,11 @@ func (a *Client) DeleteTier(params *DeleteTierParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  DeleteTierShort deletes a tier
+
+  This API is used to delete a tier permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTierNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -261,6 +275,8 @@ func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GrantUserExpShort instead.
+
   GrantUserExp grants exp to user
 
   This API is used to grant exp to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -309,6 +325,11 @@ func (a *Client) GrantUserExp(params *GrantUserExpParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  GrantUserExpShort grants exp to user
+
+  This API is used to grant exp to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserExpOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -353,6 +374,8 @@ func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use GrantUserTierShort instead.
+
   GrantUserTier grants tier to user
 
   This API is used to grant tier to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
@@ -404,6 +427,11 @@ func (a *Client) GrantUserTier(params *GrantUserTierParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  GrantUserTierShort grants tier to user
+
+  This API is used to grant tier to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserTierOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -450,6 +478,8 @@ func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtim
 }
 
 /*
+Deprecated: Use QueryTiersShort instead.
+
   QueryTiers queries paginated tiers for a season
 
   This API is used to query paginated tiers for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
@@ -501,6 +531,11 @@ func (a *Client) QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  QueryTiersShort queries paginated tiers for a season
+
+  This API is used to query paginated tiers for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTiersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -547,6 +582,8 @@ func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use ReorderTierShort instead.
+
   ReorderTier reorders a tier
 
   This API is used to reorder a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -604,6 +641,11 @@ func (a *Client) ReorderTier(params *ReorderTierParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ReorderTierShort reorders a tier
+
+  This API is used to reorder a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ReorderTierShort(params *ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*ReorderTierOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -654,6 +696,8 @@ func (a *Client) ReorderTierShort(params *ReorderTierParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use UpdateTierShort instead.
+
   UpdateTier updates a tier
 
   This API is used to update a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -711,6 +755,11 @@ func (a *Client) UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UpdateTierShort updates a tier
+
+  This API is used to update a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateTierShort(params *UpdateTierParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTierOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminGetBannedUsersV3Short instead.
+
   AdminGetBannedUsersV3 gets list of user filtered by ban types
 
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
@@ -98,6 +100,12 @@ func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, auth
 	}
 }
 
+/*
+  AdminGetBannedUsersV3Short gets list of user filtered by ban types
+
+  Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
+			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
+*/
 func (a *Client) AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedUsersV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -144,6 +152,8 @@ func (a *Client) AdminGetBannedUsersV3Short(params *AdminGetBannedUsersV3Params,
 }
 
 /*
+Deprecated: Use AdminGetBansTypeV3Short instead.
+
   AdminGetBansTypeV3 gets list of ban types
 
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
@@ -196,6 +206,12 @@ func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo r
 	}
 }
 
+/*
+  AdminGetBansTypeV3Short gets list of ban types
+
+  Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
+			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
+*/
 func (a *Client) AdminGetBansTypeV3Short(params *AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -242,6 +258,8 @@ func (a *Client) AdminGetBansTypeV3Short(params *AdminGetBansTypeV3Params, authI
 }
 
 /*
+Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead.
+
   AdminGetBansTypeWithNamespaceV3 gets list of ban types
 
   Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
@@ -294,6 +312,12 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNam
 	}
 }
 
+/*
+  AdminGetBansTypeWithNamespaceV3Short gets list of ban types
+
+  Required permission &#39;ADMIN:BAN [READ]&#39; &lt;br&gt;Ban type is the code
+			available for ban assignment. It is applicable globally for any namespace.  &lt;br&gt;action code : 10201
+*/
 func (a *Client) AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -340,6 +364,8 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWi
 }
 
 /*
+Deprecated: Use AdminGetListBanReasonV3Short instead.
+
   AdminGetListBanReasonV3 gets list of ban reasons
 
   &lt;p&gt;Required permission &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
@@ -393,6 +419,13 @@ func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, 
 	}
 }
 
+/*
+  AdminGetListBanReasonV3Short gets list of ban reasons
+
+  &lt;p&gt;Required permission &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+Ban reasons is the code available to justify ban assignment. It is applicable globally for any namespace.
+&lt;p&gt;action code : 10202&lt;/p&gt;
+*/
 func (a *Client) AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

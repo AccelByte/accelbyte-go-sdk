@@ -68,6 +68,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateContentDirectShort instead.
+
   CreateContentDirect uploads content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -124,6 +126,13 @@ func (a *Client) CreateContentDirect(params *CreateContentDirectParams, authInfo
 	}
 }
 
+/*
+  CreateContentDirectShort uploads content to a channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+			All request body are required except preview and tags.
+
+*/
 func (a *Client) CreateContentDirectShort(params *CreateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContentDirectCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -172,6 +181,8 @@ func (a *Client) CreateContentDirectShort(params *CreateContentDirectParams, aut
 }
 
 /*
+Deprecated: Use CreateContentS3Short instead.
+
   CreateContentS3 uploads content to s3 bucket
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -230,6 +241,15 @@ func (a *Client) CreateContentS3(params *CreateContentS3Params, authInfo runtime
 	}
 }
 
+/*
+  CreateContentS3Short uploads content to s3 bucket
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+				All request body are required except payload, preview, tags, and contentType.
+				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) CreateContentS3Short(params *CreateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateContentS3Created, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -278,6 +298,8 @@ func (a *Client) CreateContentS3Short(params *CreateContentS3Params, authInfo ru
 }
 
 /*
+Deprecated: Use DeleteContentShort instead.
+
   DeleteContent deletes content
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -332,6 +354,11 @@ func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  DeleteContentShort deletes content
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+*/
 func (a *Client) DeleteContentShort(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -380,6 +407,8 @@ func (a *Client) DeleteContentShort(params *DeleteContentParams, authInfo runtim
 }
 
 /*
+Deprecated: Use DeleteContentScreenshotShort instead.
+
   DeleteContentScreenshot deletes screenshots content
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
@@ -438,6 +467,12 @@ func (a *Client) DeleteContentScreenshot(params *DeleteContentScreenshotParams, 
 	}
 }
 
+/*
+  DeleteContentScreenshotShort deletes screenshots content
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]&lt;/b&gt;.
+
+*/
 func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -488,6 +523,8 @@ func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotPar
 }
 
 /*
+Deprecated: Use DownloadContentByShareCodeShort instead.
+
   DownloadContentByShareCode gets content by sharecode
 
   Public user can access without token or if token specified, requires valid user token
@@ -542,6 +579,11 @@ func (a *Client) DownloadContentByShareCode(params *DownloadContentByShareCodePa
 	}
 }
 
+/*
+  DownloadContentByShareCodeShort gets content by sharecode
+
+  Public user can access without token or if token specified, requires valid user token
+*/
 func (a *Client) DownloadContentByShareCodeShort(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -590,6 +632,8 @@ func (a *Client) DownloadContentByShareCodeShort(params *DownloadContentByShareC
 }
 
 /*
+Deprecated: Use PublicDownloadContentByContentIDShort instead.
+
   PublicDownloadContentByContentID gets user specific content
 
   Public user can access without token or if token specified, requires valid user token
@@ -644,6 +688,11 @@ func (a *Client) PublicDownloadContentByContentID(params *PublicDownloadContentB
 	}
 }
 
+/*
+  PublicDownloadContentByContentIDShort gets user specific content
+
+  Public user can access without token or if token specified, requires valid user token
+*/
 func (a *Client) PublicDownloadContentByContentIDShort(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -692,6 +741,8 @@ func (a *Client) PublicDownloadContentByContentIDShort(params *PublicDownloadCon
 }
 
 /*
+Deprecated: Use PublicDownloadContentPreviewShort instead.
+
   PublicDownloadContentPreview gets content preview
 
   &lt;p&gt;Requires valid user token&lt;/p&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
@@ -746,6 +797,11 @@ func (a *Client) PublicDownloadContentPreview(params *PublicDownloadContentPrevi
 	}
 }
 
+/*
+  PublicDownloadContentPreviewShort gets content preview
+
+  &lt;p&gt;Requires valid user token&lt;/p&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) PublicDownloadContentPreviewShort(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -794,6 +850,8 @@ func (a *Client) PublicDownloadContentPreviewShort(params *PublicDownloadContent
 }
 
 /*
+Deprecated: Use PublicGetContentBulkShort instead.
+
   PublicGetContentBulk gets contents by content ids
 
   Maximum requested Ids: 100.
@@ -849,6 +907,12 @@ func (a *Client) PublicGetContentBulk(params *PublicGetContentBulkParams, authIn
 	}
 }
 
+/*
+  PublicGetContentBulkShort gets contents by content ids
+
+  Maximum requested Ids: 100.
+			Public user can access without token or if token specified, requires valid user token
+*/
 func (a *Client) PublicGetContentBulkShort(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -897,6 +961,8 @@ func (a *Client) PublicGetContentBulkShort(params *PublicGetContentBulkParams, a
 }
 
 /*
+Deprecated: Use PublicGetUserContentShort instead.
+
   PublicGetUserContent gets user s generated contents
 
   Public user can access without token or if token specified, required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -951,6 +1017,11 @@ func (a *Client) PublicGetUserContent(params *PublicGetUserContentParams, authIn
 	}
 }
 
+/*
+  PublicGetUserContentShort gets user s generated contents
+
+  Public user can access without token or if token specified, required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -999,6 +1070,8 @@ func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, a
 }
 
 /*
+Deprecated: Use PublicSearchContentShort instead.
+
   PublicSearchContent searches contents
 
   Public user can access without token or if token specified, requires valid user token.
@@ -1073,6 +1146,31 @@ func (a *Client) PublicSearchContent(params *PublicSearchContentParams, authInfo
 	}
 }
 
+/*
+  PublicSearchContentShort searches contents
+
+  Public user can access without token or if token specified, requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
+*/
 func (a *Client) PublicSearchContentShort(params *PublicSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1121,6 +1219,8 @@ func (a *Client) PublicSearchContentShort(params *PublicSearchContentParams, aut
 }
 
 /*
+Deprecated: Use SearchChannelSpecificContentShort instead.
+
   SearchChannelSpecificContent searches contents specific to a channel
 
   Requires valid user token.
@@ -1195,6 +1295,31 @@ func (a *Client) SearchChannelSpecificContent(params *SearchChannelSpecificConte
 	}
 }
 
+/*
+  SearchChannelSpecificContentShort searches contents specific to a channel
+
+  Requires valid user token.
+
+For advance tag filtering supports &amp; as AND operator and | as OR operator and parentheses () for priority. e.g:
+
+&lt;code&gt;tags=red&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal&lt;/code&gt;
+
+&lt;code&gt;tags=red|animal&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;animal|wild&lt;/code&gt;
+
+&lt;code&gt;tags=red&amp;(animal|wild)&lt;/code&gt;
+
+The precedence of logical operator is AND &gt; OR, so if no parentheses, AND logical operator will be executed first.
+
+Allowed character for operand: alphanumeric, underscore &lt;code&gt;_&lt;/code&gt; and dash &lt;code&gt;-&lt;/code&gt;
+
+Allowed character for operator: &lt;code&gt;&amp;&lt;/code&gt; &lt;code&gt;|&lt;/code&gt; &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt;
+
+&lt;b&gt;Please note that value of tags query param should be URL encoded&lt;/b&gt;
+*/
 func (a *Client) SearchChannelSpecificContentShort(params *SearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*SearchChannelSpecificContentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1243,6 +1368,8 @@ func (a *Client) SearchChannelSpecificContentShort(params *SearchChannelSpecific
 }
 
 /*
+Deprecated: Use UpdateContentDirectShort instead.
+
   UpdateContentDirect updates content to a channel
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1302,6 +1429,13 @@ func (a *Client) UpdateContentDirect(params *UpdateContentDirectParams, authInfo
 	}
 }
 
+/*
+  UpdateContentDirectShort updates content to a channel
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+				All request body are required except preview and tags.
+
+*/
 func (a *Client) UpdateContentDirectShort(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1352,6 +1486,8 @@ func (a *Client) UpdateContentDirectShort(params *UpdateContentDirectParams, aut
 }
 
 /*
+Deprecated: Use UpdateContentS3Short instead.
+
   UpdateContentS3 updates content to s3 bucket
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1413,6 +1549,15 @@ func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime
 	}
 }
 
+/*
+  UpdateContentS3Short updates content to s3 bucket
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+				All request body are required except payload, preview, tags, and contentType.
+				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+				If not specified, it will use fileExtension value.
+				&lt;br&gt;&lt;p&gt;&lt;b&gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content&lt;/b&gt;&lt;/p&gt;
+*/
 func (a *Client) UpdateContentS3Short(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1463,6 +1608,8 @@ func (a *Client) UpdateContentS3Short(params *UpdateContentS3Params, authInfo ru
 }
 
 /*
+Deprecated: Use UpdateScreenshotsShort instead.
+
   UpdateScreenshots updates screenshot of content
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
@@ -1522,6 +1669,13 @@ func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo run
 	}
 }
 
+/*
+  UpdateScreenshotsShort updates screenshot of content
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]&lt;/b&gt;.\n
+					Maximum description length: 1024.
+
+*/
 func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1572,6 +1726,8 @@ func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInf
 }
 
 /*
+Deprecated: Use UploadContentScreenshotShort instead.
+
   UploadContentScreenshot uploads screenshots for content
 
   Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
@@ -1632,6 +1788,17 @@ func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, 
 	}
 }
 
+/*
+  UploadContentScreenshotShort uploads screenshots for content
+
+  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]&lt;/b&gt;.\n
+				All request body are required except for contentType field.
+				contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
+				If not specified, it will use fileExtension value.
+				Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png. \n
+				Maximum description length: 1024.
+
+*/
 func (a *Client) UploadContentScreenshotShort(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

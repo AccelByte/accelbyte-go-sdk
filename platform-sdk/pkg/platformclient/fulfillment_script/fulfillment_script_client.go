@@ -50,6 +50,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use CreateFulfillmentScriptShort instead.
+
   CreateFulfillmentScript creates fulfillment script
 
   Create fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;Fulfillment scripts are used for adding custom fulfillment logic based on &lt;b&gt;ITEM_TYPE&lt;/b&gt;: [MEDIA,INGAMEITEM] for now, and the custom scripts only cover grantDays.&lt;br&gt;Example for grantDays: &lt;br&gt;&lt;code&gt;order &amp;&amp; ((order.currency &amp;&amp; order.currency.currencyCode) == &#39;LP&#39; || order.isFree) ? 30 : -1&lt;/code&gt;&lt;br&gt;
@@ -98,6 +100,11 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 	}
 }
 
+/*
+  CreateFulfillmentScriptShort creates fulfillment script
+
+  Create fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;Fulfillment scripts are used for adding custom fulfillment logic based on &lt;b&gt;ITEM_TYPE&lt;/b&gt;: [MEDIA,INGAMEITEM] for now, and the custom scripts only cover grantDays.&lt;br&gt;Example for grantDays: &lt;br&gt;&lt;code&gt;order &amp;&amp; ((order.currency &amp;&amp; order.currency.currencyCode) == &#39;LP&#39; || order.isFree) ? 30 : -1&lt;/code&gt;&lt;br&gt;
+*/
 func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*CreateFulfillmentScriptCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -142,6 +149,8 @@ func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptPar
 }
 
 /*
+Deprecated: Use DeleteFulfillmentScriptShort instead.
+
   DeleteFulfillmentScript deletes fulfillment script
 
   Delete fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
@@ -187,6 +196,11 @@ func (a *Client) DeleteFulfillmentScript(params *DeleteFulfillmentScriptParams, 
 	}
 }
 
+/*
+  DeleteFulfillmentScriptShort deletes fulfillment script
+
+  Delete fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteFulfillmentScriptNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -229,6 +243,8 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 }
 
 /*
+Deprecated: Use GetFulfillmentScriptShort instead.
+
   GetFulfillmentScript gets fulfillment script by id
 
   Get fulfillment script by id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get fulfillment script&lt;/li&gt;&lt;/ul&gt;
@@ -277,6 +293,11 @@ func (a *Client) GetFulfillmentScript(params *GetFulfillmentScriptParams, authIn
 	}
 }
 
+/*
+  GetFulfillmentScriptShort gets fulfillment script by id
+
+  Get fulfillment script by id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get fulfillment script&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*GetFulfillmentScriptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -321,6 +342,8 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 }
 
 /*
+Deprecated: Use ListFulfillmentScriptsShort instead.
+
   ListFulfillmentScripts lists all fulfillment scripts
 
   List all fulfillment scripts.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -366,6 +389,11 @@ func (a *Client) ListFulfillmentScripts(params *ListFulfillmentScriptsParams, au
 	}
 }
 
+/*
+  ListFulfillmentScriptsShort lists all fulfillment scripts
+
+  List all fulfillment scripts.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParams, authInfo runtime.ClientAuthInfoWriter) (*ListFulfillmentScriptsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -408,6 +436,8 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 }
 
 /*
+Deprecated: Use TestFulfillmentScriptEvalShort instead.
+
   TestFulfillmentScriptEval tests eval fulfillment script
 
   &lt;b&gt;[TEST FACILITY ONLY]&lt;/b&gt;Test eval fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -453,6 +483,11 @@ func (a *Client) TestFulfillmentScriptEval(params *TestFulfillmentScriptEvalPara
 	}
 }
 
+/*
+  TestFulfillmentScriptEvalShort tests eval fulfillment script
+
+  &lt;b&gt;[TEST FACILITY ONLY]&lt;/b&gt;Test eval fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*TestFulfillmentScriptEvalOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -495,6 +530,8 @@ func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEva
 }
 
 /*
+Deprecated: Use UpdateFulfillmentScriptShort instead.
+
   UpdateFulfillmentScript updates fulfillment script
 
   Update fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
@@ -543,6 +580,11 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 	}
 }
 
+/*
+  UpdateFulfillmentScriptShort updates fulfillment script
+
+  Update fulfillment script.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:FULFILLMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateFulfillmentScriptShort(params *UpdateFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateFulfillmentScriptOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -42,6 +42,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use PublicDeletePaymentAccountShort instead.
+
   PublicDeletePaymentAccount deletes payment account
 
   Delete payment account.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;:&lt;/li&gt;&lt;/ul&gt;
@@ -87,6 +89,11 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 	}
 }
 
+/*
+  PublicDeletePaymentAccountShort deletes payment account
+
+  Delete payment account.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;:&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePaymentAccountNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -129,6 +136,8 @@ func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAcco
 }
 
 /*
+Deprecated: Use PublicGetPaymentAccountsShort instead.
+
   PublicGetPaymentAccounts gets payment accounts
 
   Get payment accounts.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment account list&lt;/li&gt;&lt;/ul&gt;
@@ -174,6 +183,11 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 	}
 }
 
+/*
+  PublicGetPaymentAccountsShort gets payment accounts
+
+  Get payment accounts.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment account list&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPaymentAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

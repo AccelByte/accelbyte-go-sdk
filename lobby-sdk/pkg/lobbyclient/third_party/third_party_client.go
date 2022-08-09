@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateThirdPartyConfigShort instead.
+
   AdminCreateThirdPartyConfig creates third party steam config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -107,6 +109,12 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 	}
 }
 
+/*
+  AdminCreateThirdPartyConfigShort creates third party steam config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;create third party config in a namespace.
+*/
 func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -159,6 +167,8 @@ func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyC
 }
 
 /*
+Deprecated: Use AdminDeleteThirdPartyConfigShort instead.
+
   AdminDeleteThirdPartyConfig deletes third party steam config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -217,6 +227,12 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 	}
 }
 
+/*
+  AdminDeleteThirdPartyConfigShort deletes third party steam config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;delete third party config in a namespace.
+*/
 func (a *Client) AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -267,6 +283,8 @@ func (a *Client) AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyC
 }
 
 /*
+Deprecated: Use AdminGetThirdPartyConfigShort instead.
+
   AdminGetThirdPartyConfig gets third party steam config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -325,6 +343,12 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 	}
 }
 
+/*
+  AdminGetThirdPartyConfigShort gets third party steam config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get third party config for specified namespace.
+*/
 func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -375,6 +399,8 @@ func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigP
 }
 
 /*
+Deprecated: Use AdminUpdateThirdPartyConfigShort instead.
+
   AdminUpdateThirdPartyConfig updates third party steam config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -433,6 +459,12 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 	}
 }
 
+/*
+  AdminUpdateThirdPartyConfigShort updates third party steam config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Update third party config in a namespace.
+*/
 func (a *Client) AdminUpdateThirdPartyConfigShort(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

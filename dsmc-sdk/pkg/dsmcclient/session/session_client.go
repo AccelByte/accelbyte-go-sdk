@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use ClaimServerShort instead.
+
   ClaimServer claims a d s for a game session
 
   Required permission: NAMESPACE:{namespace}:DSM:SESSION [UPDATE]
@@ -111,6 +113,15 @@ func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  ClaimServerShort claims a d s for a game session
+
+  Required permission: NAMESPACE:{namespace}:DSM:SESSION [UPDATE]
+
+Required scope: social
+
+This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to claim a dedicated server. The dedicated server cannot be claimed unless the status is READY
+*/
 func (a *Client) ClaimServerShort(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -165,6 +176,8 @@ func (a *Client) ClaimServerShort(params *ClaimServerParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use CreateSessionShort instead.
+
   CreateSession registers a new game session
 
   Required permission: NAMESPACE:{namespace}:DSM:SESSION [CREATE]
@@ -238,6 +251,21 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  CreateSessionShort registers a new game session
+
+  Required permission: NAMESPACE:{namespace}:DSM:SESSION [CREATE]
+
+Required scope: social
+
+This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to get a dedicated server for a game session.
+
+If a dedicated server is available, it will respond with a dedicated server details ready to be used.
+
+Otherwise it will trigger new dedicated server creation and respond with a server status CREATING. The game session manager then expected to wait and query the server readiness with GET /namespaces/{namespace}/sessions/{sessionID} endpoint until the serverstatus is READY
+
+Specify pod_name with name of local DS in the request to create a session using the registered local DS
+*/
 func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -292,6 +320,8 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 }
 
 /*
+Deprecated: Use GetSessionShort instead.
+
   GetSession queries specified session
 
   Required permission: NAMESPACE:{namespace}:DSM:SESSION [READ]
@@ -352,6 +382,17 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  GetSessionShort queries specified session
+
+  Required permission: NAMESPACE:{namespace}:DSM:SESSION [READ]
+
+Required scope: social
+
+This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to query the status of dedicated server that is created for the session.
+
+The server is ready to use when the status is READY. At which point, the game session manager can claim the server using the GET /namespaces/{namespace}/sessions/{sessionID}/claim endpoint
+*/
 func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

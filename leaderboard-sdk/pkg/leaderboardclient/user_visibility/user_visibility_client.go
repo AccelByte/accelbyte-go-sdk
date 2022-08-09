@@ -46,6 +46,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetHiddenUsersV2Short instead.
+
   GetHiddenUsersV2 gets hidden users on a leaderboard
 
   Return hidden users on a leaderboard
@@ -106,6 +108,11 @@ func (a *Client) GetHiddenUsersV2(params *GetHiddenUsersV2Params, authInfo runti
 	}
 }
 
+/*
+  GetHiddenUsersV2Short gets hidden users on a leaderboard
+
+  Return hidden users on a leaderboard
+*/
 func (a *Client) GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -158,6 +165,8 @@ func (a *Client) GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo 
 }
 
 /*
+Deprecated: Use GetUserVisibilityStatusV2Short instead.
+
   GetUserVisibilityStatusV2 gets user visibility status
 
   User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute set to true on it&#39;s leaderboard entry
@@ -218,6 +227,11 @@ func (a *Client) GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Para
 	}
 }
 
+/*
+  GetUserVisibilityStatusV2Short gets user visibility status
+
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute set to true on it&#39;s leaderboard entry
+*/
 func (a *Client) GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -270,6 +284,8 @@ func (a *Client) GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV
 }
 
 /*
+Deprecated: Use SetUserLeaderboardVisibilityStatusV2Short instead.
+
   SetUserLeaderboardVisibilityStatusV2 sets user visibility status on a specific leaderboard code
 
   User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
@@ -330,6 +346,11 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboard
 	}
 }
 
+/*
+  SetUserLeaderboardVisibilityStatusV2Short sets user visibility status on a specific leaderboard code
+
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
+*/
 func (a *Client) SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityStatusV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -382,6 +403,8 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeader
 }
 
 /*
+Deprecated: Use SetUserVisibilityStatusV2Short instead.
+
   SetUserVisibilityStatusV2 sets user visibility status on a all current leaderboard
 
   User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
@@ -442,6 +465,11 @@ func (a *Client) SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Para
 	}
 }
 
+/*
+  SetUserVisibilityStatusV2Short sets user visibility status on a all current leaderboard
+
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
+*/
 func (a *Client) SetUserVisibilityStatusV2Short(params *SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityStatusV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

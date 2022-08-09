@@ -68,6 +68,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use ApplyUserRedemptionShort instead.
+
   ApplyUserRedemption redeems code
 
   &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn&#39;t be redeemed even if its status is ACTIVE.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Redeem result&lt;/li&gt;&lt;/ul&gt;
@@ -122,6 +124,11 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 	}
 }
 
+/*
+  ApplyUserRedemptionShort redeems code
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn&#39;t be redeemed even if its status is ACTIVE.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Redeem result&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -170,6 +177,8 @@ func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, aut
 }
 
 /*
+Deprecated: Use BulkDisableCodesShort instead.
+
   BulkDisableCodes bulks disable codes
 
   Bulk disable codes.&lt;p&gt;Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually disabled&lt;/li&gt;&lt;/ul&gt;
@@ -215,6 +224,11 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 	}
 }
 
+/*
+  BulkDisableCodesShort bulks disable codes
+
+  Bulk disable codes.&lt;p&gt;Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually disabled&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -257,6 +271,8 @@ func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo 
 }
 
 /*
+Deprecated: Use BulkEnableCodesShort instead.
+
   BulkEnableCodes bulks enable codes
 
   Bulk enable campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually enabled&lt;/li&gt;&lt;/ul&gt;
@@ -302,6 +318,11 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 	}
 }
 
+/*
+  BulkEnableCodesShort bulks enable codes
+
+  Bulk enable campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually enabled&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -344,6 +365,8 @@ func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo ru
 }
 
 /*
+Deprecated: Use CreateCampaignShort instead.
+
   CreateCampaign creates campaign
 
   Create campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created campaign&lt;/li&gt;&lt;/ul&gt;
@@ -395,6 +418,11 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 	}
 }
 
+/*
+  CreateCampaignShort creates campaign
+
+  Create campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created campaign&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -441,6 +469,8 @@ func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runt
 }
 
 /*
+Deprecated: Use CreateCodesShort instead.
+
   CreateCodes creates campaign codes
 
   This API is used to create campaign codes, it will increase the batch No. based on last creation.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: number of codes created&lt;/li&gt;&lt;/ul&gt;
@@ -492,6 +522,11 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  CreateCodesShort creates campaign codes
+
+  This API is used to create campaign codes, it will increase the batch No. based on last creation.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: number of codes created&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -538,6 +573,8 @@ func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DisableCodeShort instead.
+
   DisableCode disables code
 
   Disable code.&lt;p&gt;Disable an active code, the code can&#39;t be disabled if it has already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disabled code&lt;/li&gt;&lt;/ul&gt;
@@ -586,6 +623,11 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  DisableCodeShort disables code
+
+  Disable code.&lt;p&gt;Disable an active code, the code can&#39;t be disabled if it has already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disabled code&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -630,6 +672,8 @@ func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use DownloadShort instead.
+
   Download downloads codes
 
   Download all or a batch of campaign&#39;s codes as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: codes csv file&lt;/li&gt;&lt;/ul&gt;
@@ -675,6 +719,11 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  DownloadShort downloads codes
+
+  Download all or a batch of campaign&#39;s codes as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: codes csv file&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -717,6 +766,8 @@ func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use EnableCodeShort instead.
+
   EnableCode enables code
 
   Enable code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: enabled code&lt;/li&gt;&lt;/ul&gt;
@@ -765,6 +816,11 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  EnableCodeShort enables code
+
+  Enable code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: enabled code&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -809,6 +865,8 @@ func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use GetCampaignShort instead.
+
   GetCampaign gets campaign
 
   Get campaign info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign info&lt;/li&gt;&lt;/ul&gt;
@@ -857,6 +915,11 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 	}
 }
 
+/*
+  GetCampaignShort gets campaign
+
+  Get campaign info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -901,6 +964,8 @@ func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.Cl
 }
 
 /*
+Deprecated: Use GetCampaignDynamicShort instead.
+
   GetCampaignDynamic gets campaign dynamic
 
   Get campaign dynamic.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign dynamic&lt;/li&gt;&lt;/ul&gt;
@@ -949,6 +1014,11 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 	}
 }
 
+/*
+  GetCampaignDynamicShort gets campaign dynamic
+
+  Get campaign dynamic.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign dynamic&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -993,6 +1063,8 @@ func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authI
 }
 
 /*
+Deprecated: Use GetCodeShort instead.
+
   GetCode gets code info
 
   Get campaign code, it will check code whether available to redeem if redeemable true.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: code info&lt;/li&gt;&lt;/ul&gt;
@@ -1044,6 +1116,11 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  GetCodeShort gets code info
+
+  Get campaign code, it will check code whether available to redeem if redeemable true.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: code info&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1090,6 +1167,8 @@ func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuth
 }
 
 /*
+Deprecated: Use QueryCampaignsShort instead.
+
   QueryCampaigns queries campaigns
 
   Query campaigns, if name is presented, it&#39;s fuzzy match.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of campaigns&lt;/li&gt;&lt;/ul&gt;
@@ -1135,6 +1214,11 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 	}
 }
 
+/*
+  QueryCampaignsShort queries campaigns
+
+  Query campaigns, if name is presented, it&#39;s fuzzy match.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of campaigns&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1177,6 +1261,8 @@ func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runt
 }
 
 /*
+Deprecated: Use QueryCodesShort instead.
+
   QueryCodes queries codes
 
   Query campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of codes&lt;/li&gt;&lt;/ul&gt;
@@ -1222,6 +1308,11 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  QueryCodesShort queries codes
+
+  Query campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of codes&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1264,6 +1355,8 @@ func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use QueryRedeemHistoryShort instead.
+
   QueryRedeemHistory queries redeem history
 
   Query redeem history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of redeem history&lt;/li&gt;&lt;/ul&gt;
@@ -1309,6 +1402,11 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 	}
 }
 
+/*
+  QueryRedeemHistoryShort queries redeem history
+
+  Query redeem history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of redeem history&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1351,6 +1449,8 @@ func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authI
 }
 
 /*
+Deprecated: Use UpdateCampaignShort instead.
+
   UpdateCampaign updates campaign
 
   Update campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated campaign&lt;/li&gt;&lt;/ul&gt;
@@ -1405,6 +1505,11 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 	}
 }
 
+/*
+  UpdateCampaignShort updates campaign
+
+  Update campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated campaign&lt;/li&gt;&lt;/ul&gt;
+*/
 func (a *Client) UpdateCampaignShort(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetTagShort instead.
+
   GetTag gets tags
 
   Publicly accessible
@@ -94,6 +96,11 @@ func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWri
 	}
 }
 
+/*
+  GetTagShort gets tags
+
+  Publicly accessible
+*/
 func (a *Client) GetTagShort(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

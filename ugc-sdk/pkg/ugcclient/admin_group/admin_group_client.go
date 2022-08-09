@@ -60,6 +60,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminCreateGroupShort instead.
+
   AdminCreateGroup creates groups
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
@@ -114,6 +116,11 @@ func (a *Client) AdminCreateGroup(params *AdminCreateGroupParams, authInfo runti
 	}
 }
 
+/*
+  AdminCreateGroupShort creates groups
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
+*/
 func (a *Client) AdminCreateGroupShort(params *AdminCreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGroupCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -162,6 +169,8 @@ func (a *Client) AdminCreateGroupShort(params *AdminCreateGroupParams, authInfo 
 }
 
 /*
+Deprecated: Use AdminDeleteGroupShort instead.
+
   AdminDeleteGroup deletes group
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
@@ -216,6 +225,11 @@ func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runti
 	}
 }
 
+/*
+  AdminDeleteGroupShort deletes group
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+*/
 func (a *Client) AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -264,6 +278,8 @@ func (a *Client) AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo 
 }
 
 /*
+Deprecated: Use AdminGetAllGroupsShort instead.
+
   AdminGetAllGroups gets all user groups
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -318,6 +334,11 @@ func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo run
 	}
 }
 
+/*
+  AdminGetAllGroupsShort gets all user groups
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -366,6 +387,8 @@ func (a *Client) AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInf
 }
 
 /*
+Deprecated: Use AdminGetGroupShort instead.
+
   AdminGetGroup gets specific user group
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -420,6 +443,11 @@ func (a *Client) AdminGetGroup(params *AdminGetGroupParams, authInfo runtime.Cli
 	}
 }
 
+/*
+  AdminGetGroupShort gets specific user group
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) AdminGetGroupShort(params *AdminGetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -468,6 +496,8 @@ func (a *Client) AdminGetGroupShort(params *AdminGetGroupParams, authInfo runtim
 }
 
 /*
+Deprecated: Use AdminGetGroupContentsShort instead.
+
   AdminGetGroupContents gets contents belong to a group
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -522,6 +552,11 @@ func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, auth
 	}
 }
 
+/*
+  AdminGetGroupContentsShort gets contents belong to a group
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -570,6 +605,8 @@ func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams,
 }
 
 /*
+Deprecated: Use AdminUpdateGroupShort instead.
+
   AdminUpdateGroup updates group
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
@@ -628,6 +665,12 @@ func (a *Client) AdminUpdateGroup(params *AdminUpdateGroupParams, authInfo runti
 	}
 }
 
+/*
+  AdminUpdateGroupShort updates group
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
+					replace group name and contents with new ones.
+*/
 func (a *Client) AdminUpdateGroupShort(params *AdminUpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -678,6 +721,8 @@ func (a *Client) AdminUpdateGroupShort(params *AdminUpdateGroupParams, authInfo 
 }
 
 /*
+Deprecated: Use SingleAdminDeleteGroupShort instead.
+
   SingleAdminDeleteGroup deletes group
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
@@ -732,6 +777,11 @@ func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, au
 	}
 }
 
+/*
+  SingleAdminDeleteGroupShort deletes group
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+*/
 func (a *Client) SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -780,6 +830,8 @@ func (a *Client) SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParam
 }
 
 /*
+Deprecated: Use SingleAdminGetAllGroupsShort instead.
+
   SingleAdminGetAllGroups gets all user groups
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -834,6 +886,11 @@ func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, 
 	}
 }
 
+/*
+  SingleAdminGetAllGroupsShort gets all user groups
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -882,6 +939,8 @@ func (a *Client) SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsPar
 }
 
 /*
+Deprecated: Use SingleAdminGetGroupShort instead.
+
   SingleAdminGetGroup gets specific user group
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
@@ -936,6 +995,11 @@ func (a *Client) SingleAdminGetGroup(params *SingleAdminGetGroupParams, authInfo
 	}
 }
 
+/*
+  SingleAdminGetGroupShort gets specific user group
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]&lt;/b&gt;.
+*/
 func (a *Client) SingleAdminGetGroupShort(params *SingleAdminGetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -984,6 +1048,8 @@ func (a *Client) SingleAdminGetGroupShort(params *SingleAdminGetGroupParams, aut
 }
 
 /*
+Deprecated: Use SingleAdminGetGroupContentsShort instead.
+
   SingleAdminGetGroupContents gets contents belong to a group
 
   Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
@@ -1038,6 +1104,11 @@ func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContents
 	}
 }
 
+/*
+  SingleAdminGetGroupContentsShort gets contents belong to a group
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+*/
 func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1086,6 +1157,8 @@ func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupCon
 }
 
 /*
+Deprecated: Use SingleAdminUpdateGroupShort instead.
+
   SingleAdminUpdateGroup updates group
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
@@ -1144,6 +1217,12 @@ func (a *Client) SingleAdminUpdateGroup(params *SingleAdminUpdateGroupParams, au
 	}
 }
 
+/*
+  SingleAdminUpdateGroupShort updates group
+
+  Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
+					replace group name and contents with new ones.
+*/
 func (a *Client) SingleAdminUpdateGroupShort(params *SingleAdminUpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateGroupOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

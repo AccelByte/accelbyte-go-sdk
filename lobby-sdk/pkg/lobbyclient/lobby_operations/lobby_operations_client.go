@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminJoinPartyV1Short instead.
+
   AdminJoinPartyV1 admins join a player into a party
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -108,6 +110,12 @@ func (a *Client) AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runti
 	}
 }
 
+/*
+  AdminJoinPartyV1Short admins join a player into a party
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;admin join a player into a party.
+*/
 func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -162,6 +170,8 @@ func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo 
 }
 
 /*
+Deprecated: Use AdminUpdatePartyAttributesV1Short instead.
+
   AdminUpdatePartyAttributesV1 admins update party attributes
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -226,6 +236,12 @@ func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributes
 	}
 }
 
+/*
+  AdminUpdatePartyAttributesV1Short admins update party attributes
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;update party attributes in a namespace.
+*/
 func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -280,6 +296,8 @@ func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttri
 }
 
 /*
+Deprecated: Use PublicGetMessagesShort instead.
+
   PublicGetMessages gets service messages
 
   get the list of messages.
@@ -328,6 +346,11 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 	}
 }
 
+/*
+  PublicGetMessagesShort gets service messages
+
+  get the list of messages.
+*/
 func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

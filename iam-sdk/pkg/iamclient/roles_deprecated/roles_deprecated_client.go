@@ -72,6 +72,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AddRoleManagersShort instead.
+
   AddRoleManagers adds role managers
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -136,6 +138,18 @@ func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime
 	}
 }
 
+/*
+  AddRoleManagersShort adds role managers
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+				&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;&lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/managers  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -186,6 +200,8 @@ func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo ru
 }
 
 /*
+Deprecated: Use AddRoleMembersShort instead.
+
   AddRoleMembers adds role members
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -251,6 +267,19 @@ func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.C
 	}
 }
 
+/*
+  AddRoleMembersShort adds role members
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+				&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+				&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/members  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -301,6 +330,8 @@ func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runt
 }
 
 /*
+Deprecated: Use AddRolePermissionShort instead.
+
   AddRolePermission adds role permission
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -392,6 +423,45 @@ func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo run
 	}
 }
 
+/*
+  AddRolePermissionShort adds role permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; Or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint(update): &lt;i&gt;/iam/v3/admin/roles/{roleId}/permissions  [PUT] &lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint(create): &lt;i&gt;/iam/v3/admin/roles/{roleId}/permissions  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+*/
 func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -442,6 +512,8 @@ func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInf
 }
 
 /*
+Deprecated: Use CreateRoleShort instead.
+
   CreateRole creates role
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -505,6 +577,20 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  CreateRoleShort creates role
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [CREATE]&#39; or &#39;ADMIN:ROLE [CREATE]&#39; &lt;/br&gt;
+				&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
+				&lt;p&gt;If role is an administrator role (i.e. AdminRole == true), it will list out the role&#39;s members.&lt;/p&gt;
+				&lt;p&gt;Administrator role can be created only when at least 1 manager is specified.&lt;/p&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -553,6 +639,8 @@ func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use DeleteRoleShort instead.
+
   DeleteRole deletes role
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -613,6 +701,17 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  DeleteRoleShort deletes role
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [DELETE]&#39; or &#39;ADMIN:ROLE [DELETE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -661,6 +760,8 @@ func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use DeleteRolePermissionShort instead.
+
   DeleteRolePermission deletes role permission
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -725,6 +826,18 @@ func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authIn
 	}
 }
 
+/*
+  DeleteRolePermissionShort deletes role permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v4/admin/roles/{roleId}/permissions  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -775,6 +888,8 @@ func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, a
 }
 
 /*
+Deprecated: Use GetRoleShort instead.
+
   GetRole gets role
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -835,6 +950,17 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 	}
 }
 
+/*
+  GetRoleShort gets role
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE [READ]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -883,6 +1009,8 @@ func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuth
 }
 
 /*
+Deprecated: Use GetRoleAdminStatusShort instead.
+
   GetRoleAdminStatus gets role admin status
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -947,6 +1075,18 @@ func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo r
 	}
 }
 
+/*
+  GetRoleAdminStatusShort gets role admin status
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE [READ] &lt;/br&gt;
+				&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;&lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/admin  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -997,6 +1137,8 @@ func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authI
 }
 
 /*
+Deprecated: Use GetRoleManagersShort instead.
+
   GetRoleManagers gets role managers
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1061,6 +1203,18 @@ func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime
 	}
 }
 
+/*
+  GetRoleManagersShort gets role managers
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE [READ]&#39; &lt;/br&gt;
+				&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;&lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/managers  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1111,6 +1265,8 @@ func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo ru
 }
 
 /*
+Deprecated: Use GetRoleMembersShort instead.
+
   GetRoleMembers gets role members
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1174,6 +1330,17 @@ func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.C
 	}
 }
 
+/*
+  GetRoleMembersShort gets role members
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE [READ]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/members  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1224,6 +1391,8 @@ func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runt
 }
 
 /*
+Deprecated: Use GetRolesShort instead.
+
   GetRoles gets roles
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1281,6 +1450,17 @@ func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInf
 	}
 }
 
+/*
+  GetRolesShort gets roles
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE [READ]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles  [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1327,6 +1507,8 @@ func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: Use RemoveRoleAdminShort instead.
+
   RemoveRoleAdmin removes role admin status
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1390,6 +1572,17 @@ func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime
 	}
 }
 
+/*
+  RemoveRoleAdminShort removes role admin status
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/admin  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1440,6 +1633,8 @@ func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo ru
 }
 
 /*
+Deprecated: Use RemoveRoleManagersShort instead.
+
   RemoveRoleManagers removes role managers
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1503,6 +1698,17 @@ func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo r
 	}
 }
 
+/*
+  RemoveRoleManagersShort removes role managers
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/managers  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1553,6 +1759,8 @@ func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authI
 }
 
 /*
+Deprecated: Use RemoveRoleMembersShort instead.
+
   RemoveRoleMembers removes role members
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1616,6 +1824,17 @@ func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo run
 	}
 }
 
+/*
+  RemoveRoleMembersShort removes role members
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/members  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1666,6 +1885,8 @@ func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInf
 }
 
 /*
+Deprecated: Use SetRoleAsAdminShort instead.
+
   SetRoleAsAdmin sets role as admin role
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1731,6 +1952,19 @@ func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.C
 	}
 }
 
+/*
+  SetRoleAsAdminShort sets role as admin role
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39; &lt;/br&gt;
+				&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+				&lt;p&gt;Role can be set as admin role only when it has at least 1 manager.&lt;/p&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/admin  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1781,6 +2015,8 @@ func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runt
 }
 
 /*
+Deprecated: Use UpdateRoleShort instead.
+
   UpdateRole updates role
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1844,6 +2080,17 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 	}
 }
 
+/*
+  UpdateRoleShort updates role
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE] &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}  [PATCH]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -1894,6 +2141,8 @@ func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: Use UpdateRolePermissionsShort instead.
+
   UpdateRolePermissions updates role permissions
 
   &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
@@ -1983,6 +2232,43 @@ func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, auth
 	}
 }
 
+/*
+  UpdateRolePermissionsShort updates role permissions
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE role&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/roles/{roleId}/permissions [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;b&gt;Note:   &lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
 func (a *Client) UpdateRolePermissionsShort(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

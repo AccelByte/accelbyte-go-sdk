@@ -40,6 +40,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use UsersPresenceHandlerV1Short instead.
+
   UsersPresenceHandlerV1 queries users presence
 
   Query users presence with given namespace and userIds.
@@ -94,6 +96,11 @@ func (a *Client) UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, au
 	}
 }
 
+/*
+  UsersPresenceHandlerV1Short queries users presence
+
+  Query users presence with given namespace and userIds.
+*/
 func (a *Client) UsersPresenceHandlerV1Short(params *UsersPresenceHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*UsersPresenceHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

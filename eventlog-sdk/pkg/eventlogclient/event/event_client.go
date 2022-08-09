@@ -56,6 +56,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use GetEventByEventIDHandlerShort instead.
+
   GetEventByEventIDHandler gets events from all users in a namespace with specific event ID
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -116,6 +118,11 @@ func (a *Client) GetEventByEventIDHandler(params *GetEventByEventIDHandlerParams
 	}
 }
 
+/*
+  GetEventByEventIDHandlerShort gets events from all users in a namespace with specific event ID
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByEventIDHandlerShort(params *GetEventByEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByEventIDHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -168,6 +175,8 @@ func (a *Client) GetEventByEventIDHandlerShort(params *GetEventByEventIDHandlerP
 }
 
 /*
+Deprecated: Use GetEventByEventTypeAndEventIDHandlerShort instead.
+
   GetEventByEventTypeAndEventIDHandler gets events from all users in a namespace with specific event ID and event type
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -228,6 +237,11 @@ func (a *Client) GetEventByEventTypeAndEventIDHandler(params *GetEventByEventTyp
 	}
 }
 
+/*
+  GetEventByEventTypeAndEventIDHandlerShort gets events from all users in a namespace with specific event ID and event type
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByEventTypeAndEventIDHandlerShort(params *GetEventByEventTypeAndEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByEventTypeAndEventIDHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -280,6 +294,8 @@ func (a *Client) GetEventByEventTypeAndEventIDHandlerShort(params *GetEventByEve
 }
 
 /*
+Deprecated: Use GetEventByEventTypeHandlerShort instead.
+
   GetEventByEventTypeHandler gets events from all users in a namespace with specific event type
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -340,6 +356,11 @@ func (a *Client) GetEventByEventTypeHandler(params *GetEventByEventTypeHandlerPa
 	}
 }
 
+/*
+  GetEventByEventTypeHandlerShort gets events from all users in a namespace with specific event type
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByEventTypeHandlerShort(params *GetEventByEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByEventTypeHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -392,6 +413,8 @@ func (a *Client) GetEventByEventTypeHandlerShort(params *GetEventByEventTypeHand
 }
 
 /*
+Deprecated: Use GetEventByNamespaceHandlerShort instead.
+
   GetEventByNamespaceHandler gets events from all users in a namespace
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -452,6 +475,11 @@ func (a *Client) GetEventByNamespaceHandler(params *GetEventByNamespaceHandlerPa
 	}
 }
 
+/*
+  GetEventByNamespaceHandlerShort gets events from all users in a namespace
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByNamespaceHandlerShort(params *GetEventByNamespaceHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByNamespaceHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -504,6 +532,8 @@ func (a *Client) GetEventByNamespaceHandlerShort(params *GetEventByNamespaceHand
 }
 
 /*
+Deprecated: Use GetEventByUserEventIDAndEventTypeHandlerShort instead.
+
   GetEventByUserEventIDAndEventTypeHandler gets events from specific user with specific event ID and event type
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -564,6 +594,11 @@ func (a *Client) GetEventByUserEventIDAndEventTypeHandler(params *GetEventByUser
 	}
 }
 
+/*
+  GetEventByUserEventIDAndEventTypeHandlerShort gets events from specific user with specific event ID and event type
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByUserEventIDAndEventTypeHandlerShort(params *GetEventByUserEventIDAndEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByUserEventIDAndEventTypeHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -616,6 +651,8 @@ func (a *Client) GetEventByUserEventIDAndEventTypeHandlerShort(params *GetEventB
 }
 
 /*
+Deprecated: Use GetEventByUserIDAndEventIDHandlerShort instead.
+
   GetEventByUserIDAndEventIDHandler gets events from specific user with specific event ID
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -676,6 +713,11 @@ func (a *Client) GetEventByUserIDAndEventIDHandler(params *GetEventByUserIDAndEv
 	}
 }
 
+/*
+  GetEventByUserIDAndEventIDHandlerShort gets events from specific user with specific event ID
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByUserIDAndEventIDHandlerShort(params *GetEventByUserIDAndEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByUserIDAndEventIDHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -728,6 +770,8 @@ func (a *Client) GetEventByUserIDAndEventIDHandlerShort(params *GetEventByUserID
 }
 
 /*
+Deprecated: Use GetEventByUserIDAndEventTypeHandlerShort instead.
+
   GetEventByUserIDAndEventTypeHandler gets events from specific user with specific event type
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -788,6 +832,11 @@ func (a *Client) GetEventByUserIDAndEventTypeHandler(params *GetEventByUserIDAnd
 	}
 }
 
+/*
+  GetEventByUserIDAndEventTypeHandlerShort gets events from specific user with specific event type
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByUserIDAndEventTypeHandlerShort(params *GetEventByUserIDAndEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByUserIDAndEventTypeHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -840,6 +889,8 @@ func (a *Client) GetEventByUserIDAndEventTypeHandlerShort(params *GetEventByUser
 }
 
 /*
+Deprecated: Use GetEventByUserIDHandlerShort instead.
+
   GetEventByUserIDHandler gets events from specific user
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -900,6 +951,11 @@ func (a *Client) GetEventByUserIDHandler(params *GetEventByUserIDHandlerParams, 
 	}
 }
 
+/*
+  GetEventByUserIDHandlerShort gets events from specific user
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) GetEventByUserIDHandlerShort(params *GetEventByUserIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventByUserIDHandlerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -952,6 +1008,8 @@ func (a *Client) GetEventByUserIDHandlerShort(params *GetEventByUserIDHandlerPar
 }
 
 /*
+Deprecated: Use PostEventHandlerShort instead.
+
   PostEventHandler posts an activity log
 
   Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
@@ -1009,6 +1067,11 @@ func (a *Client) PostEventHandler(params *PostEventHandlerParams, authInfo runti
 	}
 }
 
+/*
+  PostEventHandlerShort posts an activity log
+
+  Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
+*/
 func (a *Client) PostEventHandlerShort(params *PostEventHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PostEventHandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

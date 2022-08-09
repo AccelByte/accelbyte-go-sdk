@@ -44,6 +44,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use DeleteServerShort instead.
+
   DeleteServer deletes a qo s service record
 
   ```
@@ -97,6 +99,16 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 	}
 }
 
+/*
+  DeleteServerShort deletes a qo s service record
+
+  ```
+Required permission: ADMIN:QOS:SERVER [DELETE]
+Required scope: social
+
+This endpoint delete a registered QoS service record.
+```
+*/
 func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -141,6 +153,8 @@ func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.
 }
 
 /*
+Deprecated: Use SetServerAliasShort instead.
+
   SetServerAlias modifies a qo s service s region alias
 
   ```
@@ -200,6 +214,16 @@ func (a *Client) SetServerAlias(params *SetServerAliasParams, authInfo runtime.C
 	}
 }
 
+/*
+  SetServerAliasShort modifies a qo s service s region alias
+
+  ```
+Required permission: ADMIN:QOS:SERVER [UDPATE]
+Required scope: social
+
+This endpoint modifies a registered QoS service&#39;s region alias.
+```
+*/
 func (a *Client) SetServerAliasShort(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -248,6 +272,8 @@ func (a *Client) SetServerAliasShort(params *SetServerAliasParams, authInfo runt
 }
 
 /*
+Deprecated: Use UpdateServerConfigShort instead.
+
   UpdateServerConfig updates qo s service configuration
 
   ```
@@ -307,6 +333,16 @@ func (a *Client) UpdateServerConfig(params *UpdateServerConfigParams, authInfo r
 	}
 }
 
+/*
+  UpdateServerConfigShort updates qo s service configuration
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]
+Required scope: social
+
+This endpoint updates the registered QoS service&#39;s configurable configuration&#39;.
+```
+*/
 func (a *Client) UpdateServerConfigShort(params *UpdateServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServerConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

@@ -48,6 +48,8 @@ type ClientService interface {
 }
 
 /*
+Deprecated: Use AdminExportConfigV1Short instead.
+
   AdminExportConfigV1 exports lobby config to a json file
 
 
@@ -108,6 +110,17 @@ func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo
 	}
 }
 
+/*
+  AdminExportConfigV1Short exports lobby config to a json file
+
+
+				Required permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]
+
+				Required Scope: social
+
+				Export lobby configuration to a json file. The file can then be imported from the /import endpoint.
+
+*/
 func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -156,6 +169,8 @@ func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, aut
 }
 
 /*
+Deprecated: Use AdminGetAllConfigV1Short instead.
+
   AdminGetAllConfigV1 admins get all namespaces config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -217,6 +232,12 @@ func (a *Client) AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo
 	}
 }
 
+/*
+  AdminGetAllConfigV1Short admins get all namespaces config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get lobby config of all namespaces.
+*/
 func (a *Client) AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -269,6 +290,8 @@ func (a *Client) AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, aut
 }
 
 /*
+Deprecated: Use AdminGetConfigV1Short instead.
+
   AdminGetConfigV1 admins get namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -330,6 +353,12 @@ func (a *Client) AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runti
 	}
 }
 
+/*
+  AdminGetConfigV1Short admins get namespace config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get lobby config of a namespace.
+*/
 func (a *Client) AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -382,6 +411,8 @@ func (a *Client) AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo 
 }
 
 /*
+Deprecated: Use AdminImportConfigV1Short instead.
+
   AdminImportConfigV1 imports lobby config from a json file
 
 
@@ -443,6 +474,18 @@ func (a *Client) AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo
 	}
 }
 
+/*
+  AdminImportConfigV1Short imports lobby config from a json file
+
+
+				Required permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]
+
+				Required Scope: social
+
+				Import config configuration from file. The existing configuration will be replaced.
+				The json file to import can be obtained from the /export endpoint.
+
+*/
 func (a *Client) AdminImportConfigV1Short(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
@@ -491,6 +534,8 @@ func (a *Client) AdminImportConfigV1Short(params *AdminImportConfigV1Params, aut
 }
 
 /*
+Deprecated: Use AdminUpdateConfigV1Short instead.
+
   AdminUpdateConfigV1 admins update namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
@@ -555,6 +600,12 @@ func (a *Client) AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo
 	}
 }
 
+/*
+  AdminUpdateConfigV1Short admins update namespace config
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;update lobby config of a namespace.
+*/
 func (a *Client) AdminUpdateConfigV1Short(params *AdminUpdateConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {

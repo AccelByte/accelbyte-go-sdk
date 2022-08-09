@@ -103,7 +103,7 @@ if err != nil {
 }
 ```
 
-### Interacting with Justice HTTP Endpoints
+### Interacting with AccelByte Cloud HTTP Endpoints
 
 As an example, we will get current user profile info using [getMyProfileInfo](https://demo.accelbyte.io/basic/apidocs/#/UserProfile/getMyProfileInfo) endpoint available in [basic](https://demo.accelbyte.io/basic/apidocs) service.
 
@@ -142,9 +142,9 @@ Client must create a struct that implement following interface:
 
 For more details, see [repository](samples/cli/pkg/repository) for the interface and [cli samples](samples/cli/cmd) on how to use it.
 
-### Interacting with Justice WebSocket Endpoints
+### Interacting with AccelByte Cloud WebSocket Endpoints
 
-To interact with Justice services which use WebSocket endpoints e.g. Justice Lobby Service, client should implement `connectionutils/ConnectionManager` interface. 
+To interact with AccelByte Cloud services which use WebSocket endpoints e.g. AccelByte Cloud Lobby Service, client should implement `connectionutils/ConnectionManager` interface. 
 
 `ConnectionManager` manages WebSocket connection that save, get and close the WebSocket connection. In other words, client should maintain WebSocket connection using `ConnectionManager`. For reference, see [samples/cli/pkg/utils/connectionManager.go](samples/cli/pkg/utils/connectionManager.go).
 

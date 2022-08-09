@@ -8,7 +8,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"sync"
@@ -219,12 +218,16 @@ func TestRetryRequest_withMaxTries(t *testing.T) {
 func TestRetryRequest_withBigFile(t *testing.T) {
 	// Arrange
 	filePath := "test.dat"
-	mbSize := 1024
-	buf := make([]byte, mbSize*1024*1024)
-	err := ioutil.WriteFile("test.dat", buf, 0666)
+	mbSize := 100
+	f, err := os.Create(filePath)
 	if err != nil {
 		t.Skip("unable to create big file")
 	}
+	if errTrunc := f.Truncate(int64(mbSize * 1000 * 1000)); errTrunc != nil {
+		t.Skip("unable to truncate big file")
+	}
+	f.Close()
+
 	defer func() {
 		_ = os.Remove(filePath)
 	}()

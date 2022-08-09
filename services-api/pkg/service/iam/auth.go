@@ -44,17 +44,8 @@ func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 		CodeVerifier: &codeVerifier,
 		GrantType:    o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err :=
-		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
-	if badRequest != nil {
-		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
-	}
+	accessToken, err :=
+		o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -81,16 +72,7 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 		GrantType:    o_auth2_0.TokenGrantV3RefreshTokenConstant,
 		RefreshToken: &refreshToken,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
-	if badRequest != nil {
-		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
-	}
+	accessToken, err := o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -118,16 +100,7 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 		RedirectURI:  &redirectURI,
 	}
 
-	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
-	if badRequest != nil {
-		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
-	}
+	accessToken, err := o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -162,7 +135,7 @@ func (o *OAuth20Service) Authenticate(requestID, username, password string) (str
 		HTTPClient: httpClient,
 	}
 	authenticated, err :=
-		o.Client.OAuth20Extension.UserAuthenticationV3(param, client.BasicAuth(clientID, clientSecret))
+		o.Client.OAuth20Extension.UserAuthenticationV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -204,7 +177,7 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 		Scope:               &scope,
 		HTTPClient:          httpClient,
 	}
-	found, err := o.Client.OAuth20.AuthorizeV3(param, client.BasicAuth(clientID, clientSecret))
+	found, err := o.Client.OAuth20.AuthorizeV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -286,17 +259,8 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	param := &o_auth2_0.TokenGrantV3Params{
 		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err :=
-		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(*clientId, *clientSecret))
-	if badRequest != nil {
-		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
-	}
+	accessToken, err :=
+		o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(*clientId, *clientSecret))
 	if err != nil {
 		return err
 	}
@@ -408,19 +372,7 @@ func (o *OAuth20Service) Logout() error {
 	}
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientID, clientSecret))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-
-		return unauthorized
-	}
+	_, err = o.Client.OAuth20.TokenRevocationV3Short(param, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		logrus.Error(err)
 

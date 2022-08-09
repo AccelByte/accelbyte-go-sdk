@@ -89,10 +89,10 @@ pipeline {
             stage('Core Tests') {
               steps {
                 sshagent(credentials: [bitbucketCredentialsSsh]) {
-                  sh "rm -rf .justice-codegen-sdk-mock-server"
-                  sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
+                  sh "rm -rf .justice-codegen-sdk"
+                  sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk.git .justice-codegen-sdk"
                 }
-                sh "make test_core SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
+                sh "make test_core SDK_MOCK_SERVER_PATH=.justice-codegen-sdk/mock-server"
               }
             }
           }

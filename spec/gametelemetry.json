@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.7.2"
+    "version": "1.8.0"
   },
   "schemes": [
     "https"
@@ -44,7 +44,7 @@
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2022-07-21T02:38:59Z",
+            "default": "2022-08-01T03:32:26Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -52,7 +52,7 @@
             "type": "string"
           },
           {
-            "default": "2022-07-22T02:38:59Z",
+            "default": "2022-08-02T03:32:26Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",

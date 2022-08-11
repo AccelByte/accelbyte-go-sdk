@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.12.0"
+    "version": "4.12.1"
   },
   "schemes": [
     "https"
@@ -5462,7 +5462,7 @@
     },
     "/platform/admin/namespaces/{namespace}/items/{itemId}": {
       "delete": {
-        "description": "This API is used to delete an item permanently, usually for test purpose.\u0026lt;b\u0026gt;DO NOT delete already published item.\u0026lt;/b\u0026gt;\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to delete an item permanently.\u0026lt;p\u0026gt;force: the default value should be: false. When the value is: \u0026lt;li\u0026gt;\u0026lt;i\u0026gt;false:\u0026lt;i\u0026gt;only the items in the draft store that have never been published yet can be removed.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;true:\u0026lt;i\u0026gt;the item in the draft store(even been published before) can be removed.\u0026lt;/li\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteItem",
         "parameters": [
           {
@@ -5477,6 +5477,15 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "default is false",
+            "in": "query",
+            "name": "force",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "default is published store id",
@@ -5494,7 +5503,7 @@
             "description": "Delete item successfully"
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30335\u003c/td\u003e\u003ctd\u003eItem [{itemId}] can't be deleted in non-forced mode if item has been published\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -8795,6 +8804,65 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/record": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; This API is used to delete a reward condition record by reward Id and condition Name (optional). \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: 204 No Content \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteRewardConditionRecord",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "rewardId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DeleteRewardConditionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete reward success"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:REWARD [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a reward condition record",
+        "tags": [
+          "Reward"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:REWARD"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/stores": {
       "get": {
         "description": "This API is used to list stores in a namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of stores\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -11216,6 +11284,16 @@
             "name": "entitlementName",
             "required": false,
             "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "features",
+            "required": false,
+            "type": "array"
           },
           {
             "collectionFormat": "multi",
@@ -20592,6 +20670,16 @@
             "items": {
               "type": "string"
             },
+            "name": "features",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "itemId",
             "required": false,
             "type": "array"
@@ -24427,6 +24515,11 @@
           "type": "array",
           "uniqueItems": true
         },
+        "fresh": {
+          "description": "fresh",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "images": {
           "description": "images",
           "items": {
@@ -25793,6 +25886,17 @@
       "required": [
         "amount"
       ],
+      "type": "object"
+    },
+    "DeleteRewardConditionRequest": {
+      "properties": {
+        "conditionName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DetailedWalletTransactionInfo": {
@@ -28197,6 +28301,14 @@
         "sku": {
           "description": "sku",
           "type": "string"
+        },
+        "status": {
+          "description": "status",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -28281,6 +28393,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "fresh": {
+          "description": "fresh",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "images": {
           "description": "images",
@@ -32078,6 +32195,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "fresh": {
+          "description": "fresh",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "images": {
           "description": "images",

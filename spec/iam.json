@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.13.0"
+    "version": "5.14.0"
   },
   "schemes": [
     "https"
@@ -60,6 +60,7 @@
         "ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER [READ]": "ADMIN:NAMESPACE:{namespace}:USER [READ]",
+        "ADMIN:NAMESPACE:{namespace}:USER []": "ADMIN:NAMESPACE:{namespace}:USER []",
         "ADMIN:NAMESPACE:{namespace}:USER:* [READ]": "ADMIN:NAMESPACE:{namespace}:USER:* [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]",
@@ -124,7 +125,7 @@
     "/iam/bans": {
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;BAN:ADMIN [READ]\u0026#39; or \u0026#39;ADMIN:BAN [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/bans [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;BAN:ADMIN [READ]\u0026#39; or \u0026#39;ADMIN:BAN [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/bans [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "GetBansType",
         "produces": [
           "application/json"
@@ -154,14 +155,14 @@
         ],
         "summary": "Get list of ban types",
         "tags": [
-          "Bans(Deprecated)"
+          "Bans"
         ]
       }
     },
     "/iam/bans/reasons": {
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;BAN:ADMIN [READ]\u0026#39; or \u0026#39;ADMIN:BAN [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/bans/reasons [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;BAN:ADMIN [READ]\u0026#39; or \u0026#39;ADMIN:BAN [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/bans/reasons [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "GetListBanReason",
         "produces": [
           "application/json"
@@ -191,7 +192,7 @@
         ],
         "summary": "Get list of ban reasons",
         "tags": [
-          "Bans(Deprecated)"
+          "Bans"
         ]
       }
     },
@@ -201,7 +202,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT [READ]\u0026#39;.\u0026lt;br/\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT [READ]\u0026#39;.\u0026lt;br/\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "GetClients",
         "produces": [
           "application/json"
@@ -233,7 +234,7 @@
         ],
         "summary": "Get All Clients",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       },
       "post": {
@@ -241,7 +242,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [CREATE]\u0026#39;. \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [CREATE]\u0026#39;. \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "CreateClient",
         "parameters": [
           {
@@ -286,7 +287,7 @@
         ],
         "summary": "Create Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -296,7 +297,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "DeleteClient",
         "parameters": [
           {
@@ -334,7 +335,7 @@
         ],
         "summary": "Delete Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       },
       "get": {
@@ -342,7 +343,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "GetClient",
         "parameters": [
           {
@@ -383,7 +384,7 @@
         ],
         "summary": "Get Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       },
       "put": {
@@ -391,7 +392,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "UpdateClient",
         "parameters": [
           {
@@ -443,7 +444,7 @@
         ],
         "summary": "Update Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -453,7 +454,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "UpdateClientPermission",
         "parameters": [
           {
@@ -502,7 +503,7 @@
         ],
         "summary": "Update Client Permissions",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -512,7 +513,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tRequired permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tRequired permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "DeleteClientPermission",
         "parameters": [
           {
@@ -567,7 +568,7 @@
         ],
         "summary": "Delete Client Permission",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       },
       "post": {
@@ -575,7 +576,7 @@
           "*/*"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "AddClientPermission",
         "parameters": [
           {
@@ -630,7 +631,7 @@
         ],
         "summary": "Add Client Permission",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -640,7 +641,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/{clientId}/secret  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;CLIENT:ADMIN [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/{clientId}/secret  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;",
         "operationId": "UpdateClientSecret",
         "parameters": [
           {
@@ -689,7 +690,7 @@
         ],
         "summary": "Update Client Secret",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -699,7 +700,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:CLIENT [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\t\n\t\t",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:CLIENT [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\t\n\t\t",
         "operationId": "GetClientsbyNamespace",
         "parameters": [
           {
@@ -740,7 +741,7 @@
         ],
         "summary": "Get clients by namespace",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       },
       "post": {
@@ -748,7 +749,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026#39; \u0026lt;/br\u0026gt;\t\t\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/v3/admin/namespaces/{namespace}/clients  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026#39; \u0026lt;/br\u0026gt;\t\t\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/v3/admin/namespaces/{namespace}/clients  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "CreateClientByNamespace",
         "parameters": [
           {
@@ -800,7 +801,7 @@
         ],
         "summary": "Create Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -810,7 +811,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "DeleteClientByNamespace",
         "parameters": [
           {
@@ -855,7 +856,7 @@
         ],
         "summary": "Delete Client",
         "tags": [
-          "Clients(Deprecated)"
+          "Clients"
         ]
       }
     },
@@ -864,7 +865,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER [CREATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;PHONEPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through phone number.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n",
+        "deprecated": true,
+        "description": " \u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt; 1. v3 \u0026amp; v4 introduce optional verification code\u0026lt;/dd\u0026gt;\n\t\u0026lt;dd\u0026gt; 2. format difference（Pascal case =\u0026gt; Camel case)\u0026lt;/dd\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\n\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER [CREATE]\u0026#39;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;PHONEPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through phone number.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\n",
         "operationId": "CreateUser",
         "parameters": [
           {
@@ -1008,7 +1010,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
         "operationId": "GetUserByLoginID",
         "parameters": [
           {
@@ -1064,7 +1067,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Public): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Admin): \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n            \t\t\u0026lt;dd\u0026gt;1. difference in V3 response, format difference: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
         "operationId": "GetUserByPlatformUserID",
         "parameters": [
           {
@@ -1131,7 +1135,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]\u0026#39; or valid basic auth header\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Special note for publisher-game scenario:\u0026lt;/strong\u0026gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. \u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;The password reset code will be sent to the publisher account\u0026#39;s email address. \u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/forgot  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]\u0026#39; or valid basic auth header\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Special note for publisher-game scenario:\u0026lt;/strong\u0026gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. \u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;The password reset code will be sent to the publisher account\u0026#39;s email address. \u0026lt;/p\u0026gt;",
         "operationId": "ForgotPassword",
         "parameters": [
           {
@@ -1192,7 +1197,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(query by email list): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/bulk/basic  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(query by user id list): \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/search/bulk  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER [READ]\u0026#39;",
         "operationId": "GetUsersByLoginIds",
         "parameters": [
           {
@@ -1248,7 +1254,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]\u0026#39; or valid basic auth header",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/reset  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]\u0026#39; or valid basic auth header",
         "operationId": "ResetPassword",
         "parameters": [
           {
@@ -1310,7 +1317,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is deprecated. Please use this instead: iam/v3/admin/namespaces/{namespace}/users/search\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;Search all users that match the query on these fields: all login IDs (email address, phone number, and platform user id),\nuserID, display name, and on the specified namespace. If the query is not defined, then it searches all users on the specified namespace.\nRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:* [READ]\u0026#39;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/search  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Search all users that match the query on these fields: all login IDs (email address, phone number, and platform user id),\n\t\t\tuserID, display name, and on the specified namespace. If the query is not defined, then it searches all users on the specified namespace.\n\t\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:* [READ]\u0026#39;\u0026lt;/p\u0026gt;",
         "operationId": "SearchUser",
         "parameters": [
           {
@@ -1366,7 +1373,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [DELETE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/information  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [DELETE]\u0026#39;",
         "operationId": "DeleteUser",
         "parameters": [
           {
@@ -1418,7 +1426,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [READ]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Public): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/{userId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(Admin): \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:\u0026lt;/b\u0026gt;\n            \t\t\u0026lt;dd\u0026gt;format difference in response: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [READ]\u0026#39;",
         "operationId": "GetUserByUserID",
         "parameters": [
           {
@@ -1470,7 +1479,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Several case of updating email address\u0026lt;/b\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \u0026lt;/li\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PUT]): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PATCH]): \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint([PATCH]): \u0026lt;i\u0026gt;/iam/v4/public/namespaces/{namespace}/users/me  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:  \u0026lt;/b\u0026gt;\n\t\t\t\t\t\u0026lt;dd\u0026gt;1. Prefer [PATCH] if client support PATCH method\u0026lt;/dd\u0026gt;\n\t\t\t\t\t\u0026lt;dd\u0026gt;2. Difference in V3/v4 request body, format difference: Pascal case =\u0026gt; Camel case\u0026lt;/dd\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;Supported field {Country, DisplayName, LanguageTag}\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Several case of updating email address\u0026lt;/b\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;li\u0026gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;li\u0026gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \u0026lt;/li\u0026gt;",
         "operationId": "UpdateUser",
         "parameters": [
           {
@@ -1542,7 +1552,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]\u0026#39;.",
         "operationId": "BanUser",
         "parameters": [
           {
@@ -1613,7 +1624,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]\u0026#39;.",
         "operationId": "GetUserBanHistory",
         "parameters": [
           {
@@ -1673,7 +1685,8 @@
         "consumes": [
           "*/*"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]\u0026#39;.\u0026lt;br\u0026gt;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Notes for using IAM in publisher - game studio scenarios\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;The endpoint allows:\u0026lt;/p\u0026gt; \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;The admin user in publisher namespace disables user’s ban in publisher namespace.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;The admin user in game namespace disables user’s ban in game namespace.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;The admin user in publisher namespace disables user’s ban in publisher namespace.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Other scenarios are not supported and will return 403: Forbidden.\u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]\u0026#39;.\u0026lt;br\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Notes for using IAM in publisher - game studio scenarios\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;The endpoint allows:\u0026lt;/p\u0026gt; \u0026lt;ul\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;li\u0026gt;The admin user in publisher namespace disables user’s ban in publisher namespace.\u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;li\u0026gt;The admin user in game namespace disables user’s ban in game namespace.\u0026lt;/li\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;li\u0026gt;The admin user in publisher namespace disables user’s ban in publisher namespace.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026#34;+\n\t\t\t\u0026#34;\u0026lt;p\u0026gt;Other scenarios are not supported and will return 403: Forbidden.\u0026lt;/p\u0026gt;",
         "operationId": "DisableUserBan",
         "parameters": [
           {
@@ -1740,7 +1753,8 @@
         "consumes": [
           "*/*"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]\u0026#39;.",
         "operationId": "EnableUserBan",
         "parameters": [
           {
@@ -1879,7 +1893,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/disable\u0026lt;/h2\u0026gt;\n+\t\t\t\t\u0026lt;p\u0026gt;Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;\n\t\t\u0026lt;p\u0026gt;For \u0026lt;strong\u0026gt;Deletion Account\u0026lt;/strong\u0026gt; purpose fill the reason with:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;DeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from user\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;AdminDeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from admin\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;p\u0026gt;Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;\n\t\t\u0026lt;p\u0026gt;For \u0026lt;strong\u0026gt;Deletion Account\u0026lt;/strong\u0026gt; purpose fill the reason with:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;DeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from user\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;AdminDeactivateAccount\u0026lt;/strong\u0026gt; : if your deletion request comes from admin\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;",
         "operationId": "DisableUser",
         "parameters": [
           {
@@ -1948,7 +1962,7 @@
           "*/*"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/enable\u0026lt;/h2\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/status  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;",
         "operationId": "EnableUser",
         "parameters": [
           {
@@ -2005,7 +2019,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026#39;.",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/information  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permissions \u0026#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026#39;.",
         "operationId": "DeleteUserInformation",
         "parameters": [
           {
@@ -2190,7 +2205,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated. Admin user please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/password\u0026lt;/h2\u0026gt;\n+\t\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;",
+        "description": " \u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/password  [PUT]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]\u0026#39;\u0026lt;p\u0026gt;",
         "operationId": "UpdatePassword",
         "parameters": [
           {
@@ -2258,7 +2273,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will REPLACE user\u0026#39;s permissions with the ones defined in body\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will REPLACE user\u0026#39;s permissions with the ones defined in body\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t",
         "operationId": "SaveUserPermission",
         "parameters": [
           {
@@ -2323,7 +2339,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]\u0026#39;",
         "operationId": "DeleteUserPermission",
         "parameters": [
           {
@@ -2392,7 +2409,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t",
         "operationId": "AddUserPermission",
         "parameters": [
           {
@@ -2814,7 +2832,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permissions \u0026#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Restriction:\u0026lt;/strong\u0026gt;\n\t\tPath Parameter \u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; can be provided only with game namespace\u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/{userId}/publisher  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n                \u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permissions \u0026#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Restriction:\u0026lt;/strong\u0026gt;\n\t\t\tPath Parameter \u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; can be provided only with game namespace\u0026lt;/p\u0026gt;",
         "operationId": "GetPublisherUser",
         "parameters": [
           {
@@ -2877,7 +2896,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "SaveUserRoles",
         "parameters": [
           {
@@ -2949,7 +2969,8 @@
           "application/json",
           "text/plain"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]\u0026#39;",
         "operationId": "DeleteUserRole",
         "parameters": [
           {
@@ -3012,7 +3033,8 @@
           "application/json",
           "text/plain"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\tRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]\u0026#39;",
         "operationId": "AddUserRole",
         "parameters": [
           {
@@ -3212,7 +3234,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\tRedeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\n\t\t\t\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;b/\u0026gt; or \u0026lt;b\u0026gt;phone\u0026lt;b/\u0026gt; \u0026lt;/p\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/code/verify  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\tRedeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\n\t\t\t\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;b/\u0026gt; or \u0026lt;b\u0026gt;phone\u0026lt;b/\u0026gt; \u0026lt;/p\u0026gt;",
         "operationId": "UserVerification",
         "parameters": [
           {
@@ -3280,7 +3303,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\n\t\t\t\u0026lt;p\u0026gt;The verification code is sent to either the phone number or email address. It depends on the LoginID\u0026#39;s value.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Available contexts for use : \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;UserAccountRegistration\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified. \u0026lt;strong\u0026gt;\u0026lt;em\u0026gt;It is the default context if the Context field is empty\u0026lt;/em\u0026gt;\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;UpdateEmailAddress\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;a context type used for verify user before updating email address.(Without email address verified checking)\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;upgradeHeadlessAccount\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  If this context used, IAM rejects the request if the loginId field\u0026#39;s value is already used by others by returning HTTP Status Code 409.\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/public/namespaces/{namespace}/users/me/code/request  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\n\t\t\tRequired permission \u0026#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\n\t\t\t\u0026lt;p\u0026gt;The verification code is sent to either the phone number or email address. It depends on the LoginID\u0026#39;s value.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Available contexts for use : \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;UserAccountRegistration\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified. \u0026lt;strong\u0026gt;\u0026lt;em\u0026gt;It is the default context if the Context field is empty\u0026lt;/em\u0026gt;\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;UpdateEmailAddress\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;a context type used for verify user before updating email address.(Without email address verified checking)\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;upgradeHeadlessAccount\u0026lt;/strong\u0026gt;\u0026lt;p\u0026gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  If this context used, IAM rejects the request if the loginId field\u0026#39;s value is already used by others by returning HTTP Status Code 409.\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;",
         "operationId": "SendVerificationCode",
         "parameters": [
           {
@@ -3354,6 +3378,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
+        "deprecated": true,
         "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\tThe endpoint supports two response types:\u0026lt;br/\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;1. Response Type == \u0026#34;code\u0026#34;:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The basic header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;The bearer header\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;Following are the responses returned by the endpoint:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize success\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information: ?code={authorization code}\u0026amp;state={state}\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Authorize failure\u0026lt;/strong\u0026gt;: redirects to the given URL with the following information:?error=access_denied\u0026amp;error_description=...\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;2. Response Type == \u0026#34;token\u0026#34; (Implicit) is deprecated. \u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/authorize  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: \u0026lt;/b\u0026gt;\n\t\u0026lt;dd\u0026gt;1. V3 is standard OAuth2 flow and support PKCE\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\t\u0026lt;dd\u0026gt;2. Will not support implicit flow in v3.\u0026lt;dd\u0026gt;\u0026lt;/br\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
         "operationId": "Authorization",
         "parameters": [
@@ -3429,7 +3454,7 @@
         ],
         "summary": "OAuth2 authorize API",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ],
         "x-location-query": "PLACEHOLDER"
       }
@@ -3439,7 +3464,8 @@
         "consumes": [
           ""
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When a client application wants to verify a JWT token, it needs to get the \u0026#39;kid\u0026#39; value found in the JWT token header and use it\n\t\t\tto look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;A client application might cache the keys so it doesn\u0026#39;t need to do request every time it needs to verify a JWT token. If a client application\n\t\t\tcaches the keys and a key with the same \u0026#39;kid\u0026#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this\n\t\t\tendpoint again.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/jwks  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When a client application wants to verify a JWT token, it needs to get the \u0026#39;kid\u0026#39; value found in the JWT token header and use it\n\t\t\tto look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;A client application might cache the keys so it doesn\u0026#39;t need to do request every time it needs to verify a JWT token. If a client application\n\t\t\tcaches the keys and a key with the same \u0026#39;kid\u0026#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this\n\t\t\tendpoint again.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/jwks  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "GetJWKS",
         "produces": [
           "application/json"
@@ -3459,7 +3485,7 @@
         ],
         "summary": "JSON Web Key Set for verifying JWT",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3468,7 +3494,8 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\t\talong with platform_token parameter against publisher namespace.\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tSupported platforms:\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /iam/bans.\u0026lt;/p\u0026gt;.\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\t\talong with platform_token parameter against publisher namespace.\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\n\t\t\t\tSupported platforms:\n\t\t\t\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;: Steam\u0026#39;s user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /iam/bans.\u0026lt;/p\u0026gt;.\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "PlatformTokenRequestHandler",
         "parameters": [
           {
@@ -3528,7 +3555,7 @@
         ],
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3537,7 +3564,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have authorization header set with bearer token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user\u0026#39;s access tokens and refresh tokens generated before some period of time.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have authorization header set with bearer token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user\u0026#39;s access tokens and refresh tokens generated before some period of time.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeUser",
         "parameters": [
           {
@@ -3576,7 +3604,7 @@
         ],
         "summary": "Revokes user's tokens'",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3585,7 +3613,8 @@
         "consumes": [
           ""
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/revocationlist  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/revocationlist  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "GetRevocationList",
         "produces": [
           "application/json"
@@ -3603,7 +3632,7 @@
         },
         "summary": "OAuth2 revocation list API",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3612,7 +3641,8 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;Revokes a token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/v3/oauth/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;Revokes a token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/v3/oauth/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeToken",
         "parameters": [
           {
@@ -3644,7 +3674,7 @@
         ],
         "summary": "OAuth2 token revocation API",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3653,7 +3683,8 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint revokes a user. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint revokes a user. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\t\t\t\t\u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \t\u0026lt;/ul\u0026gt;",
         "operationId": "RevokeAUser",
         "parameters": [
           {
@@ -3688,7 +3719,7 @@
         ],
         "summary": "OAuth2 user revocation API",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3697,6 +3728,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
+        "deprecated": true,
         "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/platforms/{platformId}/token  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: difference in V3 response:\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\t\u0026lt;dd\u0026gt;1. format difference（Pascal case =\u0026gt; Camel case): permissions field from Action =\u0026gt; action, Resource =\u0026gt; resource \u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint requires all requests to have \u0026lt;code\u0026gt;Authorization\u0026lt;/code\u0026gt; header set with \u0026lt;code\u0026gt;Basic\u0026lt;/code\u0026gt; access authentication\n\t\t\tconstructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint supports different \u0026lt;strong\u0026gt;grant types\u0026lt;/strong\u0026gt;:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; This endpoint will check the client credentials provided through Authorization header.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\tor through platform.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\u0026lt;/li\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t \t\tcode which generated in \u0026#34;/authorize\u0026#34; API response. It should also pass\n\t \t\tin the redirect_uri, which should be the same as generating the\n\t \t\tauthorization code request.\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t \t\t\u0026lt;p\u0026gt;For platform authentication, use grant type \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;.\n\t \t\tThe \u0026lt;code\u0026gt;username\u0026lt;/code\u0026gt; field would be in form of\n\t \t\t\u0026lt;code\u0026gt;platform:\u0026amp;lt;platform type\u0026amp;gt;\u0026lt;/code\u0026gt;, for example\n\t \t\t\u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; for Steam. For the \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;\n\t \t\tfield, set it to the authentication/authorization ticket or token obtainable through the\n\t \t\trespective platform SDK after authenticated the user to the platform. Supported platforms:\u0026lt;/p\u0026gt;\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:steam\u0026lt;/code\u0026gt; as the username and use the authentication ticket obtained\n\t\t\tfrom Steam through the Steam SDK as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:ps4\u0026lt;/code\u0026gt; as the username and use the authorization code\n\t\t\tobtained from the PlayStation Network through a player PS4 unit as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:live\u0026lt;/code\u0026gt; as the username and use token obtained from \n\t\t\tXbox Secure Token Service (XSTS) as the password.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt; - use \u0026lt;code\u0026gt;platform:oculus\u0026lt;/code\u0026gt; as the username and use the \u0026lt;code\u0026gt;user_id:nonce\u0026lt;/code\u0026gt;\n\t\t\tas password obtained from Oculus through the Oculus SDK.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The access token and refresh token are in form of JWT token.\n\t \t\tAn access token JWT contains data which structure is similar to the\n\t \t\tResponse Class below, but without OAuth-related data. To verify a token, use the public keys\n\t\t\tobtained from the \u0026lt;code\u0026gt;/jwks\u0026lt;/code\u0026gt; endpoint below.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the client ID.\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;sub\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;",
         "operationId": "TokenGrant",
         "parameters": [
@@ -3794,7 +3826,7 @@
         ],
         "summary": "OAuth2 access token generation endpoint",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3803,6 +3835,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
+        "deprecated": true,
         "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\n\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/oauth/verify  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note: difference in V3 response:\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\t\u0026lt;dd\u0026gt;1. format difference（Pascal case =\u0026gt; Camel case): permissions field from Action =\u0026gt; action, Resource =\u0026gt; resource \u0026lt;/dd\u0026gt;\u0026lt;/b\u0026gt;\n\t\t\t\t\t\t\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "VerifyToken",
         "parameters": [
@@ -3830,7 +3863,7 @@
         },
         "summary": "OAuth2 token verification API",
         "tags": [
-          "OAuth(Deprecated)"
+          "OAuth"
         ]
       }
     },
@@ -3840,7 +3873,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "GetRoles",
         "parameters": [
           {
@@ -3880,7 +3913,7 @@
         ],
         "summary": "Get Roles",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "post": {
@@ -3888,7 +3921,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [CREATE]\u0026#39; or \u0026#39;ADMIN:ROLE [CREATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;If role is an administrator role (i.e. AdminRole == true), it will list out the role\u0026#39;s members.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Administrator role can be created only when at least 1 manager is specified.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [CREATE]\u0026#39; or \u0026#39;ADMIN:ROLE [CREATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;If role is an administrator role (i.e. AdminRole == true), it will list out the role\u0026#39;s members.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Administrator role can be created only when at least 1 manager is specified.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "CreateRole",
         "parameters": [
           {
@@ -3931,7 +3964,7 @@
         ],
         "summary": "Create Role",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -3941,7 +3974,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [DELETE]\u0026#39; or \u0026#39;ADMIN:ROLE [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [DELETE]\u0026#39; or \u0026#39;ADMIN:ROLE [DELETE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "DeleteRole",
         "parameters": [
           {
@@ -3980,7 +4013,7 @@
         ],
         "summary": "Delete Role",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "get": {
@@ -3988,7 +4021,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "GetRole",
         "parameters": [
           {
@@ -4029,7 +4062,7 @@
         ],
         "summary": "Get Role",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "put": {
@@ -4037,7 +4070,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE] \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE] \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}  [PATCH]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "UpdateRole",
         "parameters": [
           {
@@ -4090,7 +4123,7 @@
         ],
         "summary": "Update Role",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -4100,7 +4133,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "RemoveRoleAdmin",
         "parameters": [
           {
@@ -4142,7 +4175,7 @@
         ],
         "summary": "Remove Role Admin Status",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "get": {
@@ -4150,7 +4183,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ] \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ] \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "GetRoleAdminStatus",
         "parameters": [
           {
@@ -4194,7 +4227,7 @@
         ],
         "summary": "Get Role Admin Status",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "post": {
@@ -4202,7 +4235,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can be set as admin role only when it has at least 1 manager.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can be set as admin role only when it has at least 1 manager.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/admin  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "SetRoleAsAdmin",
         "parameters": [
           {
@@ -4244,7 +4277,7 @@
         ],
         "summary": "Set Role as Admin Role",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -4254,7 +4287,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "RemoveRoleManagers",
         "parameters": [
           {
@@ -4304,7 +4337,7 @@
         ],
         "summary": "Remove Role Managers",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "get": {
@@ -4312,7 +4345,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "GetRoleManagers",
         "parameters": [
           {
@@ -4356,7 +4389,7 @@
         ],
         "summary": "Get Role Managers",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "post": {
@@ -4364,7 +4397,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/managers  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "AddRoleManagers",
         "parameters": [
           {
@@ -4414,7 +4447,7 @@
         ],
         "summary": "Add Role Managers",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -4424,7 +4457,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "RemoveRoleMembers",
         "parameters": [
           {
@@ -4474,7 +4507,7 @@
         ],
         "summary": "Remove Role Members",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "get": {
@@ -4482,7 +4515,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE [READ]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "GetRoleMembers",
         "parameters": [
           {
@@ -4526,7 +4559,7 @@
         ],
         "summary": "Get Role Members",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "post": {
@@ -4534,7 +4567,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Admin roles has its members listed in the role.\u0026lt;/p\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;Role can only be assigned to other users by the role\u0026#39;s manager.\u0026lt;/p\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/members  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "AddRoleMembers",
         "parameters": [
           {
@@ -4584,7 +4617,7 @@
         ],
         "summary": "Add Role Members",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -4594,7 +4627,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will REPLACE role\u0026#39;s permissions with the ones defined in body\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will REPLACE role\u0026#39;s permissions with the ones defined in body\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "UpdateRolePermissions",
         "parameters": [
           {
@@ -4644,7 +4677,7 @@
         ],
         "summary": "Update Role Permissions",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -4654,7 +4687,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/admin/roles/{roleId}/permissions  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n                Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;/br\u0026gt;\n                \u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action}  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/iam/v4/admin/roles/{roleId}/permissions  [DELETE]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;",
         "operationId": "DeleteRolePermission",
         "parameters": [
           {
@@ -4710,7 +4743,7 @@
         ],
         "summary": "Delete Role Permission",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       },
       "post": {
@@ -4718,7 +4751,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; Or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(update): \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions  [PUT] \u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(create): \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Note:   \u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ROLE:ADMIN [UPDATE]\u0026#39; Or \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;In ranged schedule, first element will be start date, and second one will be end date\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Syntax reference\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Fields:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Seconds: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Minutes: 0-59 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Hours: 0-23 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of month: 1-31 * / , - L W\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Month: 1-12 JAN-DEC * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Day of week: 0-6 SUN-SAT * / , - L #\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Year: 1970-2099 * / , -\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Special characters:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ol\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;*: all values in the fields, e.g. * in seconds fields indicates every second\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;,: separate items of a list, e.g. MON,WED,FRI in day of week\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as \u0026#34;the last Friday\u0026#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: \u0026#34;the nearest business day to the 15th of the month.\u0026#34;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;#: must be followed by a number between one and five. It allows you to specify constructs such as \u0026#34;the second Friday\u0026#34; of a given month.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n                \u0026lt;ul\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(update): \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions  [PUT] \u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                        \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint(create): \u0026lt;i\u0026gt;/iam/v3/admin/roles/{roleId}/permissions  [POST]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n                \u0026lt;/ul\u0026gt;\n\t\t\t",
         "operationId": "AddRolePermission",
         "parameters": [
           {
@@ -4782,7 +4815,7 @@
         ],
         "summary": "Add Role Permission",
         "tags": [
-          "Roles(Deprecated)"
+          "Roles"
         ]
       }
     },
@@ -14978,7 +15011,7 @@
           "application/json"
         ],
         "description": "\u0026lt;p\u0026gt;Requires valid user access token \u0026lt;/p\u0026gt;\n\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This Endpoint support update user based on given data. \u0026lt;b\u0026gt;Single request can update single field or multi fields.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \n\u0026lt;p\u0026gt;Supported field {country, displayName, languageTag, dateOfBirth, avatarUrl}\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\u0026lt;/p\u0026gt;\n\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Several case of updating email address\u0026lt;/b\u0026gt;\n\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.\u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. \u0026lt;/li\u0026gt;\n\u0026lt;li\u0026gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. \u0026lt;/li\u0026gt;\n\u0026lt;p\u0026gt;action code : 10103 \u0026lt;/p\u0026gt;",
-        "operationId": "PublicUpdateUserV3",
+        "operationId": "PublicPartialUpdateUserV3",
         "parameters": [
           {
             "in": "body",
@@ -16450,6 +16483,66 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/{userId}/publisher": {
+      "get": {
+        "description": "\u0026lt;p\u0026gt;Required permissions \u0026#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Restriction:\u0026lt;/strong\u0026gt;\n\t\tPath Parameter \u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; can be provided only with game namespace\u0026lt;/p\u0026gt;",
+        "operationId": "PublicGetPublisherUserV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GetPublisherUserV3Response"
+            }
+          },
+          "400": {
+            "description": "Error Code: 7239 - Error Message: wrong namespace: required game namespace",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get Publisher User",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/validate": {
       "post": {
         "consumes": [
@@ -16806,6 +16899,73 @@
         "summary": "Logout",
         "tags": [
           "SSO"
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/test_users": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create test users and not send verification code email.\n        \u0026lt;p\u0026gt;Required Permission: ADMIN:NAMESPACE:{namespace}:USER\u0026lt;/p\u0026gt;\n\t\t",
+        "operationId": "AdminCreateTestUsersV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/account.createTestUsersRequestV4"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/account.createTestUsersResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "501": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER []"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "[TEST FACILITY ONLY]Create test Users",
+        "tags": [
+          "Users V4"
         ]
       }
     },
@@ -20473,6 +20633,79 @@
         "verified"
       ]
     },
+    "account.createTestUserResponseV4": {
+      "properties": {
+        "authType": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "authType",
+        "country",
+        "dateOfBirth",
+        "displayName",
+        "emailAddress",
+        "namespace",
+        "password",
+        "userId",
+        "username",
+        "verified"
+      ]
+    },
+    "account.createTestUsersRequestV4": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count"
+      ]
+    },
+    "account.createTestUsersResponseV4": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/account.createTestUserResponseV4"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "account.createUserRequestV4": {
       "properties": {
         "acceptedPolicies": {
@@ -21146,6 +21379,9 @@
     "accountcommon.PlatformAccount": {
       "properties": {
         "namespace": {
+          "type": "string"
+        },
+        "platformId": {
           "type": "string"
         },
         "platformUserId": {
@@ -22353,6 +22589,20 @@
       "required": [
         "Namespace",
         "UserId"
+      ]
+    },
+    "model.GetPublisherUserV3Response": {
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "userId"
       ]
     },
     "model.GetUserBanV3Response": {

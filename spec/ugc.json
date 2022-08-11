@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.3.0"
+    "version": "2.4.0"
   },
   "schemes": [
     "https"
@@ -1076,6 +1076,72 @@
           }
         ],
         "summary": "Search contents",
+        "tags": [
+          "Admin Content"
+        ]
+      }
+    },
+    "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetUserContentByShareCode",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content sharecode",
+            "in": "path",
+            "name": "shareCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by sharecode",
         "tags": [
           "Admin Content"
         ]
@@ -4280,7 +4346,7 @@
           "application/octet-stream"
         ],
         "description": "Public user can access without token or if token specified, requires valid user token",
-        "operationId": "DownloadContentByShareCode",
+        "operationId": "PublicDownloadContentByShareCode",
         "parameters": [
           {
             "description": "namespace of the game",

@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.13.1"
+    "version": "1.13.2"
   },
   "schemes": [
     "https"
@@ -3507,6 +3507,14 @@
           ],
           "type": "string"
         },
+        "tierItemId": {
+          "description": "tier item id",
+          "type": "string"
+        },
+        "tierItemName": {
+          "description": "tier item name",
+          "type": "string"
+        },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
@@ -3523,6 +3531,8 @@
         "namespace",
         "start",
         "status",
+        "tierItemId",
+        "tierItemName",
         "updatedAt"
       ],
       "type": "object"

@@ -987,7 +987,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;get lobby config of all namespaces.",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;get lobby config of all namespaces.\u0026lt;br\u0026gt;default MaxDSWaitTime is 120 (second)",
         "operationId": "adminGetAllConfigV1",
         "produces": [
           "application/json"
@@ -1052,7 +1052,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;get lobby config of a namespace.",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;get lobby config of a namespace.\u0026lt;br\u0026gt;default MaxDSWaitTime is 120 (second)",
         "operationId": "adminGetConfigV1",
         "parameters": [
           {
@@ -1124,7 +1124,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update lobby config of a namespace.",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update lobby config of a namespace.\u0026lt;br\u0026gt;MaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)",
         "operationId": "adminUpdateConfigV1",
         "parameters": [
           {
@@ -1272,7 +1272,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport config configuration from file. The existing configuration will be replaced.\n\t\t\t\tThe json file to import can be obtained from the /export endpoint. \n\t\t\t",
+        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport config configuration from file. The existing configuration will be replaced.\n\t\t\t\tThe json file to import can be obtained from the /export endpoint. \n\t\t\t\t\n\t\t\t\tMaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)\n\t\t\t",
         "operationId": "adminImportConfigV1",
         "parameters": [
           {
@@ -8116,6 +8116,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "maxDSWaitTime": {
+          "format": "integer",
+          "type": "integer"
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8131,7 +8135,10 @@
           "format": "integer",
           "type": "integer"
         }
-      }
+      },
+      "required": [
+        "maxDSWaitTime"
+      ]
     },
     "models.ConfigExport": {
       "properties": {
@@ -8194,6 +8201,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "maxDSWaitTime": {
+          "format": "integer",
+          "type": "integer"
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8226,6 +8237,7 @@
         "generalRateLimitBurst",
         "generalRateLimitDuration",
         "keepPresenceActivityOnDisconnect",
+        "maxDSWaitTime",
         "maxPartyMember",
         "namespace",
         "profanityFilter",
@@ -8305,6 +8317,10 @@
         "keepPresenceActivityOnDisconnect": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "maxDSWaitTime": {
+          "format": "integer",
+          "type": "integer"
         },
         "maxPartyMember": {
           "format": "int32",

@@ -1450,10 +1450,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "schema": {
-              "$ref": "#/definitions/models.ListPersonalDataResponse"
-            }
+            "description": "No Content"
           },
           "401": {
             "description": "Unauthorized",

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "3.4.0"
+    "version": "3.4.1"
   },
   "schemes": [
     "https"
@@ -3066,7 +3066,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get image patches by version.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get image patches by version.\n\nImage Size unit is byte.",
         "operationId": "GetImagePatches",
         "parameters": [
           {
@@ -5059,6 +5059,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5074,6 +5078,7 @@
         "min_count",
         "region_overrides",
         "regions",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5131,6 +5136,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5148,6 +5157,7 @@
         "overrides",
         "region_overrides",
         "regions",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5161,6 +5171,10 @@
         },
         "image": {
           "type": "string"
+        },
+        "imageSize": {
+          "format": "int32",
+          "type": "integer"
         },
         "namespace": {
           "type": "string"
@@ -5180,6 +5194,7 @@
         "artifactPath",
         "dockerPath",
         "image",
+        "imageSize",
         "namespace",
         "patchVersion",
         "persistent",
@@ -5197,6 +5212,10 @@
         "image": {
           "type": "string"
         },
+        "imageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "namespace": {
           "type": "string"
         },
@@ -5212,6 +5231,7 @@
         "artifactPath",
         "dockerPath",
         "image",
+        "imageSize",
         "namespace",
         "persistent",
         "version"
@@ -5266,6 +5286,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5276,6 +5300,7 @@
         "buffer_percent",
         "max_count",
         "min_count",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5557,6 +5582,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -5573,6 +5602,7 @@
         "name",
         "region_overrides",
         "regions",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -5644,6 +5674,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "updatedAt": {
           "format": "date-time",
           "type": "string",
@@ -5670,6 +5704,7 @@
         "overrides",
         "region_overrides",
         "regions",
+        "unlimited",
         "updatedAt",
         "use_buffer_percent"
       ]
@@ -5777,6 +5812,10 @@
         "image": {
           "type": "string"
         },
+        "imageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "modifiedBy": {
           "type": "string"
         },
@@ -5801,6 +5840,7 @@
         "createdAt",
         "dockerPath",
         "image",
+        "imageSize",
         "modifiedBy",
         "namespace",
         "persistent",
@@ -5997,6 +6037,10 @@
         "image": {
           "type": "string"
         },
+        "imageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "modifiedBy": {
           "type": "string"
         },
@@ -6024,6 +6068,7 @@
         "createdAt",
         "dockerPath",
         "image",
+        "imageSize",
         "modifiedBy",
         "namespace",
         "patchVersion",
@@ -6097,6 +6142,10 @@
         "name": {
           "type": "string"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6108,6 +6157,7 @@
         "max_count",
         "min_count",
         "name",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6482,6 +6532,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6497,6 +6551,7 @@
         "min_count",
         "regions",
         "session_timeout",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6542,6 +6597,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6558,6 +6617,7 @@
         "min_count",
         "regions",
         "session_timeout",
+        "unlimited",
         "use_buffer_percent"
       ]
     },
@@ -6618,6 +6678,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "unlimited": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "use_buffer_percent": {
           "type": "boolean",
           "x-omitempty": false
@@ -6628,6 +6692,7 @@
         "buffer_percent",
         "max_count",
         "min_count",
+        "unlimited",
         "use_buffer_percent"
       ]
     },

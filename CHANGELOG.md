@@ -1,3 +1,31 @@
+<a name="v0.25.0"></a>
+## [v0.25.0] - 2022-08-15
+
+### Chore
+- **makefile:** review samples target
+- **sdk:** migrate wrappers in auth to use the operation with suffix short
+- **sdk:** regenerate by adding comment for client operation short
+- **sdk:** regenerate sdk, cli sample app, cli test, doc index for AccelByte Cloud 3.29
+- **spec:** update spec for AccelByte Cloud 3.29
+- **test:** add cli cookie value
+
+### CI
+- updated mock server path
+
+### Docs
+- remove references to Justice and replaced it with AccelByte Cloud
+- update CHANGELOG.md for v0.25.0 release
+
+### Fix
+- **test:** core - enable data race detector
+- **test:** http retry - set big file to 100 mb for now
+- **test:** refresh token - data race
+
+### Test
+- **qosm:** add integration test for QoSM
+- **seasonpass:** add integration test for seasonpass
+
+
 <a name="v0.24.0"></a>
 ## [v0.24.0] - 2022-08-02
 
@@ -814,6 +842,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.25.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.24.0...v0.25.0
 [v0.24.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.23.0...v0.24.0
 [v0.23.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.22.0...v0.23.0
 [v0.22.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.21.0...v0.22.0

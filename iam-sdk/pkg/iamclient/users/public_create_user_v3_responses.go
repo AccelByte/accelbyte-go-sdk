@@ -116,7 +116,16 @@ type PublicCreateUserV3BadRequest struct {
 }
 
 func (o *PublicCreateUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3BadRequest  %+v", 400, o.ToString())
+}
+
+func (o *PublicCreateUserV3BadRequest) ToString() string {
+	bytes, err := o.Payload.MarshalBinary()
+	if err != nil {
+		return fmt.Sprintf("Failed to marshal the error response's binary. Error: %s", err.Error())
+	}
+
+	return string(bytes)
 }
 
 func (o *PublicCreateUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {

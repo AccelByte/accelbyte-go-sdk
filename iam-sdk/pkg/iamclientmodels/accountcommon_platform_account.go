@@ -21,6 +21,9 @@ type AccountcommonPlatformAccount struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// platform Id
+	PlatformID string `json:"platformId,omitempty"`
+
 	// platform user Id
 	// Required: true
 	PlatformUserID *string `json:"platformUserId"`

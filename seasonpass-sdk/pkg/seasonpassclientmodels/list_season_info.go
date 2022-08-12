@@ -63,6 +63,14 @@ type ListSeasonInfo struct {
 	// Enum: [DRAFT PUBLISHED RETIRED]
 	Status *string `json:"status"`
 
+	// tier item id
+	// Required: true
+	TierItemID *string `json:"tierItemId"`
+
+	// tier item name
+	// Required: true
+	TierItemName *string `json:"tierItemName"`
+
 	// updated at
 	// Required: true
 	// Format: date-time
@@ -110,6 +118,14 @@ func (m *ListSeasonInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTierItemID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTierItemName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -264,6 +280,24 @@ func (m *ListSeasonInfo) validateStatus(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ListSeasonInfo) validateTierItemID(formats strfmt.Registry) error {
+
+	if err := validate.Required("tierItemId", "body", m.TierItemID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ListSeasonInfo) validateTierItemName(formats strfmt.Registry) error {
+
+	if err := validate.Required("tierItemName", "body", m.TierItemName); err != nil {
 		return err
 	}
 

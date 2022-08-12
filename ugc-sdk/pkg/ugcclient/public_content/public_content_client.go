@@ -41,10 +41,10 @@ type ClientService interface {
 	DeleteContentShort(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentNoContent, error)
 	DeleteContentScreenshot(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, *DeleteContentScreenshotBadRequest, *DeleteContentScreenshotUnauthorized, *DeleteContentScreenshotNotFound, *DeleteContentScreenshotInternalServerError, error)
 	DeleteContentScreenshotShort(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, error)
-	DownloadContentByShareCode(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, *DownloadContentByShareCodeUnauthorized, *DownloadContentByShareCodeNotFound, *DownloadContentByShareCodeInternalServerError, error)
-	DownloadContentByShareCodeShort(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, error)
 	PublicDownloadContentByContentID(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, *PublicDownloadContentByContentIDUnauthorized, *PublicDownloadContentByContentIDNotFound, *PublicDownloadContentByContentIDInternalServerError, error)
 	PublicDownloadContentByContentIDShort(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, error)
+	PublicDownloadContentByShareCode(params *PublicDownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByShareCodeOK, *PublicDownloadContentByShareCodeUnauthorized, *PublicDownloadContentByShareCodeNotFound, *PublicDownloadContentByShareCodeInternalServerError, error)
+	PublicDownloadContentByShareCodeShort(params *PublicDownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByShareCodeOK, error)
 	PublicDownloadContentPreview(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, *PublicDownloadContentPreviewUnauthorized, *PublicDownloadContentPreviewNotFound, *PublicDownloadContentPreviewInternalServerError, error)
 	PublicDownloadContentPreviewShort(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, error)
 	PublicGetContentBulk(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, *PublicGetContentBulkBadRequest, *PublicGetContentBulkUnauthorized, *PublicGetContentBulkInternalServerError, error)
@@ -523,115 +523,6 @@ func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotPar
 }
 
 /*
-Deprecated: Use DownloadContentByShareCodeShort instead.
-
-  DownloadContentByShareCode gets content by sharecode
-
-  Public user can access without token or if token specified, requires valid user token
-*/
-func (a *Client) DownloadContentByShareCode(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, *DownloadContentByShareCodeUnauthorized, *DownloadContentByShareCodeNotFound, *DownloadContentByShareCodeInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDownloadContentByShareCodeParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "DownloadContentByShareCode",
-		Method:             "GET",
-		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DownloadContentByShareCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DownloadContentByShareCodeOK:
-		return v, nil, nil, nil, nil
-
-	case *DownloadContentByShareCodeUnauthorized:
-		return nil, v, nil, nil, nil
-
-	case *DownloadContentByShareCodeNotFound:
-		return nil, nil, v, nil, nil
-
-	case *DownloadContentByShareCodeInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  DownloadContentByShareCodeShort gets content by sharecode
-
-  Public user can access without token or if token specified, requires valid user token
-*/
-func (a *Client) DownloadContentByShareCodeShort(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDownloadContentByShareCodeParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "DownloadContentByShareCode",
-		Method:             "GET",
-		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DownloadContentByShareCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DownloadContentByShareCodeOK:
-		return v, nil
-	case *DownloadContentByShareCodeUnauthorized:
-		return nil, v
-	case *DownloadContentByShareCodeNotFound:
-		return nil, v
-	case *DownloadContentByShareCodeInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: Use PublicDownloadContentByContentIDShort instead.
 
   PublicDownloadContentByContentID gets user specific content
@@ -733,6 +624,115 @@ func (a *Client) PublicDownloadContentByContentIDShort(params *PublicDownloadCon
 	case *PublicDownloadContentByContentIDNotFound:
 		return nil, v
 	case *PublicDownloadContentByContentIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use PublicDownloadContentByShareCodeShort instead.
+
+  PublicDownloadContentByShareCode gets content by sharecode
+
+  Public user can access without token or if token specified, requires valid user token
+*/
+func (a *Client) PublicDownloadContentByShareCode(params *PublicDownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByShareCodeOK, *PublicDownloadContentByShareCodeUnauthorized, *PublicDownloadContentByShareCodeNotFound, *PublicDownloadContentByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDownloadContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDownloadContentByShareCode",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDownloadContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDownloadContentByShareCodeOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicDownloadContentByShareCodeUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicDownloadContentByShareCodeNotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicDownloadContentByShareCodeInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicDownloadContentByShareCodeShort gets content by sharecode
+
+  Public user can access without token or if token specified, requires valid user token
+*/
+func (a *Client) PublicDownloadContentByShareCodeShort(params *PublicDownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByShareCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDownloadContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDownloadContentByShareCode",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDownloadContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDownloadContentByShareCodeOK:
+		return v, nil
+	case *PublicDownloadContentByShareCodeUnauthorized:
+		return nil, v
+	case *PublicDownloadContentByShareCodeNotFound:
+		return nil, v
+	case *PublicDownloadContentByShareCodeInternalServerError:
 		return nil, v
 
 	default:

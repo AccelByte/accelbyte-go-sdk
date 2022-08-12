@@ -176,6 +176,7 @@ func init() {
 	PlatformCmd.AddCommand(reward.UpdateRewardCmd)
 	PlatformCmd.AddCommand(reward.DeleteRewardCmd)
 	PlatformCmd.AddCommand(reward.CheckEventConditionCmd)
+	PlatformCmd.AddCommand(reward.DeleteRewardConditionRecordCmd)
 	PlatformCmd.AddCommand(store.ListStoresCmd)
 	PlatformCmd.AddCommand(store.CreateStoreCmd)
 	PlatformCmd.AddCommand(store.ImportStoreCmd)

@@ -60,6 +60,9 @@ type ModelsConfigReq struct {
 	// keep presence activity on disconnect
 	KeepPresenceActivityOnDisconnect bool `json:"keepPresenceActivityOnDisconnect"`
 
+	// max d s wait time
+	MaxDSWaitTime int64 `json:"maxDSWaitTime,omitempty"`
+
 	// max party member
 	MaxPartyMember int32 `json:"maxPartyMember,omitempty"`
 

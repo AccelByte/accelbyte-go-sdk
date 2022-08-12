@@ -27,10 +27,12 @@ var DeleteItemCmd = &cobra.Command{
 		}
 		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		force, _ := cmd.Flags().GetBool("force")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.DeleteItemParams{
 			ItemID:    itemId,
 			Namespace: namespace,
+			Force:     &force,
 			StoreID:   &storeId,
 		}
 		errInput := itemService.DeleteItemShort(input)
@@ -49,5 +51,6 @@ func init() {
 	_ = DeleteItemCmd.MarkFlagRequired("itemId")
 	DeleteItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteItemCmd.MarkFlagRequired("namespace")
+	DeleteItemCmd.Flags().Bool("force", false, "Force")
 	DeleteItemCmd.Flags().String("storeId", "", "Store id")
 }

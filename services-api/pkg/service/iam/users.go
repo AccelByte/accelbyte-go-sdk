@@ -3176,13 +3176,13 @@ func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamcl
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicUpdateUserV3Short instead
-func (aaa *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+// Deprecated: Use PublicPartialUpdateUserV3Short instead
+func (aaa *UsersService) PublicPartialUpdateUserV3(input *users.PublicPartialUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Users.PublicUpdateUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Users.PublicPartialUpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3688,6 +3688,32 @@ func (aaa *UsersService) PublicForceLinkPlatformWithProgression(input *users.Pub
 	}
 
 	return nil
+}
+
+// Deprecated: Use PublicGetPublisherUserV3Short instead
+func (aaa *UsersService) PublicGetPublisherUserV3(input *users.PublicGetPublisherUserV3Params) (*iamclientmodels.ModelGetPublisherUserV3Response, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Users.PublicGetPublisherUserV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use PublicValidateUserByUserIDAndPasswordV3Short instead
@@ -6739,7 +6765,7 @@ func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (aaa *UsersService) PublicPartialUpdateUserV3Short(input *users.PublicPartialUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -6756,7 +6782,7 @@ func (aaa *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3
 		}
 	}
 
-	ok, err := aaa.Client.Users.PublicUpdateUserV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.Users.PublicPartialUpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -7237,6 +7263,31 @@ func (aaa *UsersService) PublicForceLinkPlatformWithProgressionShort(input *user
 	}
 
 	return nil
+}
+
+func (aaa *UsersService) PublicGetPublisherUserV3Short(input *users.PublicGetPublisherUserV3Params) (*iamclientmodels.ModelGetPublisherUserV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicGetPublisherUserV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {

@@ -263,35 +263,35 @@ func (aaa *GroupRolesService) UpdateMemberRolePublicV1(input *group_roles.Update
 }
 
 // Deprecated: Use DeleteMemberRolePublicV1Short instead
-func (aaa *GroupRolesService) DeleteMemberRolePublicV1(input *group_roles.DeleteMemberRolePublicV1Params) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
+func (aaa *GroupRolesService) DeleteMemberRolePublicV1(input *group_roles.DeleteMemberRolePublicV1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if unprocessableEntity != nil {
-		return nil, unprocessableEntity
+		return unprocessableEntity
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 func (aaa *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.GetMemberRolesListAdminV1Params) (*groupclientmodels.ModelsGetMemberRolesListResponseV1, error) {
@@ -494,7 +494,7 @@ func (aaa *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.U
 	return ok.GetPayload(), nil
 }
 
-func (aaa *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.DeleteMemberRolePublicV1Params) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
+func (aaa *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.DeleteMemberRolePublicV1Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -511,10 +511,10 @@ func (aaa *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.D
 		}
 	}
 
-	ok, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV1Short(input, authInfoWriter)
+	_, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV1Short(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }

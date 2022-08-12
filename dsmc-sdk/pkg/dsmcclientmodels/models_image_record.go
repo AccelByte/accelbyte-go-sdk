@@ -34,6 +34,10 @@ type ModelsImageRecord struct {
 	// Required: true
 	Image *string `json:"image"`
 
+	// image size
+	// Required: true
+	ImageSize *int32 `json:"imageSize"`
+
 	// modified by
 	// Required: true
 	ModifiedBy *string `json:"modifiedBy"`
@@ -73,6 +77,10 @@ func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateImage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateImageSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +144,15 @@ func (m *ModelsImageRecord) validateDockerPath(formats strfmt.Registry) error {
 func (m *ModelsImageRecord) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsImageRecord) validateImageSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("imageSize", "body", m.ImageSize); err != nil {
 		return err
 	}
 

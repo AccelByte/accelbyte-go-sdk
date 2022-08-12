@@ -70,6 +70,9 @@ type BundledItemInfo struct {
 	// Unique: true
 	Features []string `json:"features"`
 
+	// fresh
+	Fresh bool `json:"fresh"`
+
 	// images
 	Images []*Image `json:"images"`
 

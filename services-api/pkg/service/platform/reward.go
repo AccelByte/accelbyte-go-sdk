@@ -181,6 +181,20 @@ func (aaa *RewardService) CheckEventCondition(input *reward.CheckEventConditionP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteRewardConditionRecordShort instead
+func (aaa *RewardService) DeleteRewardConditionRecord(input *reward.DeleteRewardConditionRecordParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Reward.DeleteRewardConditionRecord(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use GetRewardByCodeShort instead
 func (aaa *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -430,6 +444,31 @@ func (aaa *RewardService) CheckEventConditionShort(input *reward.CheckEventCondi
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *RewardService) DeleteRewardConditionRecordShort(input *reward.DeleteRewardConditionRecordParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Reward.DeleteRewardConditionRecordShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {

@@ -43,6 +43,8 @@ type ClientService interface {
 	AdminGetContentShort(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, error)
 	AdminGetSpecificContent(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, *AdminGetSpecificContentUnauthorized, *AdminGetSpecificContentNotFound, *AdminGetSpecificContentInternalServerError, error)
 	AdminGetSpecificContentShort(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, error)
+	AdminGetUserContentByShareCode(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, *AdminGetUserContentByShareCodeUnauthorized, *AdminGetUserContentByShareCodeNotFound, *AdminGetUserContentByShareCodeInternalServerError, error)
+	AdminGetUserContentByShareCodeShort(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, error)
 	AdminHideUserContent(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, *AdminHideUserContentUnauthorized, *AdminHideUserContentNotFound, *AdminHideUserContentInternalServerError, error)
 	AdminHideUserContentShort(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, error)
 	AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentNotFound, *AdminSearchChannelSpecificContentInternalServerError, error)
@@ -618,6 +620,115 @@ func (a *Client) AdminGetSpecificContentShort(params *AdminGetSpecificContentPar
 	case *AdminGetSpecificContentNotFound:
 		return nil, v
 	case *AdminGetSpecificContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use AdminGetUserContentByShareCodeShort instead.
+
+  AdminGetUserContentByShareCode gets content by sharecode
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
+*/
+func (a *Client) AdminGetUserContentByShareCode(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, *AdminGetUserContentByShareCodeUnauthorized, *AdminGetUserContentByShareCodeNotFound, *AdminGetUserContentByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserContentByShareCode",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserContentByShareCodeOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetUserContentByShareCodeUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetUserContentByShareCodeNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetUserContentByShareCodeInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetUserContentByShareCodeShort gets content by sharecode
+
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;.
+*/
+func (a *Client) AdminGetUserContentByShareCodeShort(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserContentByShareCode",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserContentByShareCodeOK:
+		return v, nil
+	case *AdminGetUserContentByShareCodeUnauthorized:
+		return nil, v
+	case *AdminGetUserContentByShareCodeNotFound:
+		return nil, v
+	case *AdminGetUserContentByShareCodeInternalServerError:
 		return nil, v
 
 	default:

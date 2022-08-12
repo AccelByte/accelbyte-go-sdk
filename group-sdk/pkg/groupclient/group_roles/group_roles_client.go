@@ -37,8 +37,8 @@ type ClientService interface {
 	CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateMemberRoleAdminV1Created, error)
 	DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRoleAdminV1NoContent, *DeleteMemberRoleAdminV1BadRequest, *DeleteMemberRoleAdminV1Unauthorized, *DeleteMemberRoleAdminV1Forbidden, *DeleteMemberRoleAdminV1NotFound, *DeleteMemberRoleAdminV1InternalServerError, error)
 	DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRoleAdminV1NoContent, error)
-	DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error)
-	DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, error)
+	DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error)
+	DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, error)
 	GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, *GetMemberRolesListAdminV1BadRequest, *GetMemberRolesListAdminV1Unauthorized, *GetMemberRolesListAdminV1Forbidden, *GetMemberRolesListAdminV1InternalServerError, error)
 	GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, error)
 	GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListPublicV1OK, *GetMemberRolesListPublicV1BadRequest, *GetMemberRolesListPublicV1Unauthorized, *GetMemberRolesListPublicV1Forbidden, *GetMemberRolesListPublicV1InternalServerError, error)
@@ -319,7 +319,7 @@ Deprecated: Use DeleteMemberRolePublicV1Short instead.
 			&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;
 			&lt;p&gt;Action Code: 73204&lt;/p&gt;
 */
-func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error) {
+func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteMemberRolePublicV1Params()
@@ -352,7 +352,7 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 
 	switch v := result.(type) {
 
-	case *DeleteMemberRolePublicV1OK:
+	case *DeleteMemberRolePublicV1NoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *DeleteMemberRolePublicV1BadRequest:
@@ -385,7 +385,7 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 			&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;
 			&lt;p&gt;Action Code: 73204&lt;/p&gt;
 */
-func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, error) {
+func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1NoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteMemberRolePublicV1Params()
@@ -418,7 +418,7 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 
 	switch v := result.(type) {
 
-	case *DeleteMemberRolePublicV1OK:
+	case *DeleteMemberRolePublicV1NoContent:
 		return v, nil
 	case *DeleteMemberRolePublicV1BadRequest:
 		return nil, v

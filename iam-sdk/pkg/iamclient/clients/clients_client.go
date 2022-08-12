@@ -33,6 +33,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AddClientPermission(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, *AddClientPermissionBadRequest, *AddClientPermissionUnauthorized, *AddClientPermissionForbidden, *AddClientPermissionNotFound, error)
+	AddClientPermissionShort(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, error)
 	AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, *AdminAddClientPermissionsV3BadRequest, *AdminAddClientPermissionsV3Unauthorized, *AdminAddClientPermissionsV3Forbidden, *AdminAddClientPermissionsV3NotFound, error)
 	AdminAddClientPermissionsV3Short(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, error)
 	AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, *AdminCreateClientV3BadRequest, *AdminCreateClientV3Unauthorized, *AdminCreateClientV3Forbidden, *AdminCreateClientV3Conflict, error)
@@ -51,8 +53,154 @@ type ClientService interface {
 	AdminUpdateClientSecretV3Short(params *AdminUpdateClientSecretV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientSecretV3NoContent, error)
 	AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, *AdminUpdateClientV3BadRequest, *AdminUpdateClientV3Unauthorized, *AdminUpdateClientV3Forbidden, *AdminUpdateClientV3NotFound, error)
 	AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, error)
+	CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, *CreateClientBadRequest, *CreateClientUnauthorized, *CreateClientForbidden, *CreateClientConflict, error)
+	CreateClientShort(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error)
+	CreateClientByNamespace(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, *CreateClientByNamespaceBadRequest, *CreateClientByNamespaceUnauthorized, *CreateClientByNamespaceForbidden, *CreateClientByNamespaceConflict, error)
+	CreateClientByNamespaceShort(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, error)
+	DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, *DeleteClientUnauthorized, *DeleteClientForbidden, *DeleteClientNotFound, error)
+	DeleteClientShort(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error)
+	DeleteClientByNamespace(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, *DeleteClientByNamespaceUnauthorized, *DeleteClientByNamespaceForbidden, *DeleteClientByNamespaceNotFound, error)
+	DeleteClientByNamespaceShort(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, error)
+	DeleteClientPermission(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, *DeleteClientPermissionBadRequest, *DeleteClientPermissionUnauthorized, *DeleteClientPermissionForbidden, *DeleteClientPermissionNotFound, error)
+	DeleteClientPermissionShort(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, error)
+	GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, *GetClientUnauthorized, *GetClientForbidden, *GetClientNotFound, error)
+	GetClientShort(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error)
+	GetClients(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, *GetClientsUnauthorized, *GetClientsForbidden, error)
+	GetClientsShort(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, error)
+	GetClientsbyNamespace(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, *GetClientsbyNamespaceUnauthorized, *GetClientsbyNamespaceForbidden, error)
+	GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, error)
+	UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, *UpdateClientBadRequest, *UpdateClientUnauthorized, *UpdateClientForbidden, *UpdateClientNotFound, error)
+	UpdateClientShort(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error)
+	UpdateClientPermission(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, *UpdateClientPermissionBadRequest, *UpdateClientPermissionUnauthorized, *UpdateClientPermissionForbidden, *UpdateClientPermissionNotFound, error)
+	UpdateClientPermissionShort(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, error)
+	UpdateClientSecret(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, *UpdateClientSecretBadRequest, *UpdateClientSecretUnauthorized, *UpdateClientSecretForbidden, *UpdateClientSecretNotFound, error)
+	UpdateClientSecretShort(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: Use AddClientPermissionShort instead.
+
+  AddClientPermission adds client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, *AddClientPermissionBadRequest, *AddClientPermissionUnauthorized, *AddClientPermissionForbidden, *AddClientPermissionNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddClientPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddClientPermissionNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AddClientPermissionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AddClientPermissionUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AddClientPermissionForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AddClientPermissionNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AddClientPermissionShort adds client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddClientPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddClientPermissionNoContent:
+		return v, nil
+	case *AddClientPermissionBadRequest:
+		return nil, v
+	case *AddClientPermissionUnauthorized:
+		return nil, v
+	case *AddClientPermissionForbidden:
+		return nil, v
+	case *AddClientPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -1200,6 +1348,1345 @@ func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, aut
 	case *AdminUpdateClientV3Forbidden:
 		return nil, v
 	case *AdminUpdateClientV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use CreateClientShort instead.
+
+  CreateClient creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;CLIENT:ADMIN [CREATE]&#39;. &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, *CreateClientBadRequest, *CreateClientUnauthorized, *CreateClientForbidden, *CreateClientConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateClient",
+		Method:             "POST",
+		PathPattern:        "/iam/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateClientCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateClientForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreateClientConflict:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CreateClientShort creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;CLIENT:ADMIN [CREATE]&#39;. &lt;/br&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateClient",
+		Method:             "POST",
+		PathPattern:        "/iam/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateClientCreated:
+		return v, nil
+	case *CreateClientBadRequest:
+		return nil, v
+	case *CreateClientUnauthorized:
+		return nil, v
+	case *CreateClientForbidden:
+		return nil, v
+	case *CreateClientConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use CreateClientByNamespaceShort instead.
+
+  CreateClientByNamespace creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+				Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
+func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, *CreateClientByNamespaceBadRequest, *CreateClientByNamespaceUnauthorized, *CreateClientByNamespaceForbidden, *CreateClientByNamespaceConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateClientByNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateClientByNamespace",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateClientByNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateClientByNamespaceCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateClientByNamespaceBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateClientByNamespaceUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateClientByNamespaceForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreateClientByNamespaceConflict:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CreateClientByNamespaceShort creates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+				Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/v3/admin/namespaces/{namespace}/clients  [POST]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
+func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateClientByNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateClientByNamespace",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateClientByNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateClientByNamespaceCreated:
+		return v, nil
+	case *CreateClientByNamespaceBadRequest:
+		return nil, v
+	case *CreateClientByNamespaceUnauthorized:
+		return nil, v
+	case *CreateClientByNamespaceForbidden:
+		return nil, v
+	case *CreateClientByNamespaceConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteClientShort instead.
+
+  DeleteClient deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [DELETE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, *DeleteClientUnauthorized, *DeleteClientForbidden, *DeleteClientNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClient",
+		Method:             "DELETE",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientNoContent:
+		return v, nil, nil, nil, nil
+
+	case *DeleteClientUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *DeleteClientForbidden:
+		return nil, nil, v, nil, nil
+
+	case *DeleteClientNotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteClientShort deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [DELETE]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClient",
+		Method:             "DELETE",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientNoContent:
+		return v, nil
+	case *DeleteClientUnauthorized:
+		return nil, v
+	case *DeleteClientForbidden:
+		return nil, v
+	case *DeleteClientNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteClientByNamespaceShort instead.
+
+  DeleteClientByNamespace deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
+func (a *Client) DeleteClientByNamespace(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, *DeleteClientByNamespaceUnauthorized, *DeleteClientByNamespaceForbidden, *DeleteClientByNamespaceNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientByNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClientByNamespace",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientByNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientByNamespaceNoContent:
+		return v, nil, nil, nil, nil
+
+	case *DeleteClientByNamespaceUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *DeleteClientByNamespaceForbidden:
+		return nil, nil, v, nil, nil
+
+	case *DeleteClientByNamespaceNotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteClientByNamespaceShort deletes client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+                Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]&#39; &lt;/br&gt;
+                &lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+*/
+func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientByNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClientByNamespace",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientByNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientByNamespaceNoContent:
+		return v, nil
+	case *DeleteClientByNamespaceUnauthorized:
+		return nil, v
+	case *DeleteClientByNamespaceForbidden:
+		return nil, v
+	case *DeleteClientByNamespaceNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteClientPermissionShort instead.
+
+  DeleteClientPermission deletes client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) DeleteClientPermission(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, *DeleteClientPermissionBadRequest, *DeleteClientPermissionUnauthorized, *DeleteClientPermissionForbidden, *DeleteClientPermissionNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClientPermission",
+		Method:             "DELETE",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientPermissionNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *DeleteClientPermissionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *DeleteClientPermissionUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *DeleteClientPermissionForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteClientPermissionNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteClientPermissionShort deletes client permission
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}  [DELETE]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteClientPermission",
+		Method:             "DELETE",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteClientPermissionNoContent:
+		return v, nil
+	case *DeleteClientPermissionBadRequest:
+		return nil, v
+	case *DeleteClientPermissionUnauthorized:
+		return nil, v
+	case *DeleteClientPermissionForbidden:
+		return nil, v
+	case *DeleteClientPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetClientShort instead.
+
+  GetClient gets client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, *GetClientUnauthorized, *GetClientForbidden, *GetClientNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClient",
+		Method:             "GET",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientOK:
+		return v, nil, nil, nil, nil
+
+	case *GetClientUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetClientForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetClientNotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetClientShort gets client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClient",
+		Method:             "GET",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientOK:
+		return v, nil
+	case *GetClientUnauthorized:
+		return nil, v
+	case *GetClientForbidden:
+		return nil, v
+	case *GetClientNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetClientsShort instead.
+
+  GetClients gets all clients
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39;.&lt;br/&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetClients(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, *GetClientsUnauthorized, *GetClientsForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClients",
+		Method:             "GET",
+		PathPattern:        "/iam/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientsOK:
+		return v, nil, nil, nil
+
+	case *GetClientsUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetClientsForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetClientsShort gets all clients
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT [READ]&#39;.&lt;br/&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClients",
+		Method:             "GET",
+		PathPattern:        "/iam/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientsOK:
+		return v, nil
+	case *GetClientsUnauthorized:
+		return nil, v
+	case *GetClientsForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetClientsbyNamespaceShort instead.
+
+  GetClientsbyNamespace gets clients by namespace
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;NAMESPACE:{namespace}:CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+*/
+func (a *Client) GetClientsbyNamespace(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, *GetClientsbyNamespaceUnauthorized, *GetClientsbyNamespaceForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientsbyNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClientsbyNamespace",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientsbyNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientsbyNamespaceOK:
+		return v, nil, nil, nil
+
+	case *GetClientsbyNamespaceUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetClientsbyNamespaceForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetClientsbyNamespaceShort gets clients by namespace
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		Required permission &#39;NAMESPACE:{namespace}:CLIENT [READ]&#39; &lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+                &lt;ul&gt;
+                        &lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+*/
+func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientsbyNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetClientsbyNamespace",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientsbyNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetClientsbyNamespaceOK:
+		return v, nil
+	case *GetClientsbyNamespaceUnauthorized:
+		return nil, v
+	case *GetClientsbyNamespaceForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateClientShort instead.
+
+  UpdateClient updates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [PATCH]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, *UpdateClientBadRequest, *UpdateClientUnauthorized, *UpdateClientForbidden, *UpdateClientNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClient",
+		Method:             "PUT",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateClientForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateClientNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateClientShort updates client
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/clients/{clientId}  [PATCH]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/p&gt;
+*/
+func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClient",
+		Method:             "PUT",
+		PathPattern:        "/iam/clients/{clientId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientOK:
+		return v, nil
+	case *UpdateClientBadRequest:
+		return nil, v
+	case *UpdateClientUnauthorized:
+		return nil, v
+	case *UpdateClientForbidden:
+		return nil, v
+	case *UpdateClientNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateClientPermissionShort instead.
+
+  UpdateClientPermission updates client permissions
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) UpdateClientPermission(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, *UpdateClientPermissionBadRequest, *UpdateClientPermissionUnauthorized, *UpdateClientPermissionForbidden, *UpdateClientPermissionNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClientPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientPermissionNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateClientPermissionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateClientPermissionUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateClientPermissionForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateClientPermissionNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateClientPermissionShort updates client permissions
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClientPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/clients/{clientId}/clientpermissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientPermissionNoContent:
+		return v, nil
+	case *UpdateClientPermissionBadRequest:
+		return nil, v
+	case *UpdateClientPermissionUnauthorized:
+		return nil, v
+	case *UpdateClientPermissionForbidden:
+		return nil, v
+	case *UpdateClientPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use UpdateClientSecretShort instead.
+
+  UpdateClientSecret updates client secret
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/{clientId}/secret  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;
+*/
+func (a *Client) UpdateClientSecret(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, *UpdateClientSecretBadRequest, *UpdateClientSecretUnauthorized, *UpdateClientSecretForbidden, *UpdateClientSecretNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientSecretParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClientSecret",
+		Method:             "PUT",
+		PathPattern:        "/iam/clients/{clientId}/secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientSecretNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *UpdateClientSecretBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *UpdateClientSecretUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateClientSecretForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *UpdateClientSecretNotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateClientSecretShort updates client secret
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+		&lt;p&gt;Required permission &#39;CLIENT:ADMIN [UPDATE]&#39;&lt;/br&gt;
+		&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/namespaces/{namespace}/{clientId}/secret  [PUT]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;
+*/
+func (a *Client) UpdateClientSecretShort(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateClientSecretParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateClientSecret",
+		Method:             "PUT",
+		PathPattern:        "/iam/clients/{clientId}/secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateClientSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateClientSecretNoContent:
+		return v, nil
+	case *UpdateClientSecretBadRequest:
+		return nil, v
+	case *UpdateClientSecretUnauthorized:
+		return nil, v
+	case *UpdateClientSecretForbidden:
+		return nil, v
+	case *UpdateClientSecretNotFound:
 		return nil, v
 
 	default:

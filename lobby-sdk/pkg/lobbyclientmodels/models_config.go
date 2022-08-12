@@ -6,8 +6,10 @@ package lobbyclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ModelsConfig models config
@@ -60,6 +62,10 @@ type ModelsConfig struct {
 	// keep presence activity on disconnect
 	KeepPresenceActivityOnDisconnect bool `json:"keepPresenceActivityOnDisconnect"`
 
+	// max d s wait time
+	// Required: true
+	MaxDSWaitTime *int64 `json:"maxDSWaitTime"`
+
 	// max party member
 	MaxPartyMember int32 `json:"maxPartyMember,omitempty"`
 
@@ -75,6 +81,24 @@ type ModelsConfig struct {
 
 // Validate validates this models config
 func (m *ModelsConfig) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateMaxDSWaitTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ModelsConfig) validateMaxDSWaitTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("maxDSWaitTime", "body", m.MaxDSWaitTime); err != nil {
+		return err
+	}
+
 	return nil
 }
 

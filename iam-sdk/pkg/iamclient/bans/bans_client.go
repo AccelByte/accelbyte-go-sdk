@@ -41,6 +41,10 @@ type ClientService interface {
 	AdminGetBansTypeWithNamespaceV3Short(params *AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBansTypeWithNamespaceV3OK, error)
 	AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, *AdminGetListBanReasonV3Unauthorized, *AdminGetListBanReasonV3Forbidden, error)
 	AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListBanReasonV3OK, error)
+	GetBansType(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, *GetBansTypeUnauthorized, *GetBansTypeForbidden, error)
+	GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, error)
+	GetListBanReason(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, *GetListBanReasonUnauthorized, *GetListBanReasonForbidden, error)
+	GetListBanReasonShort(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -464,6 +468,234 @@ func (a *Client) AdminGetListBanReasonV3Short(params *AdminGetListBanReasonV3Par
 	case *AdminGetListBanReasonV3Unauthorized:
 		return nil, v
 	case *AdminGetListBanReasonV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetBansTypeShort instead.
+
+  GetBansType gets list of ban types
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetBansType(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, *GetBansTypeUnauthorized, *GetBansTypeForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetBansTypeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetBansType",
+		Method:             "GET",
+		PathPattern:        "/iam/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBansTypeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetBansTypeOK:
+		return v, nil, nil, nil
+
+	case *GetBansTypeUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetBansTypeForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetBansTypeShort gets list of ban types
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetBansTypeShort(params *GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetBansTypeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetBansTypeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetBansType",
+		Method:             "GET",
+		PathPattern:        "/iam/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetBansTypeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetBansTypeOK:
+		return v, nil
+	case *GetBansTypeUnauthorized:
+		return nil, v
+	case *GetBansTypeForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use GetListBanReasonShort instead.
+
+  GetListBanReason gets list of ban reasons
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans/reasons [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetListBanReason(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, *GetListBanReasonUnauthorized, *GetListBanReasonForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListBanReasonParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetListBanReason",
+		Method:             "GET",
+		PathPattern:        "/iam/bans/reasons",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListBanReasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListBanReasonOK:
+		return v, nil, nil, nil
+
+	case *GetListBanReasonUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetListBanReasonForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetListBanReasonShort gets list of ban reasons
+
+  &lt;h2&gt;The endpoint is going to be deprecated&lt;/h2&gt; &lt;/br&gt;
+			&lt;p&gt;Required permission &#39;BAN:ADMIN [READ]&#39; or &#39;ADMIN:BAN [READ]&#39;&lt;/p&gt;
+			&lt;strong&gt;Endpoint migration guide&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;b&gt;Substitute endpoint: &lt;i&gt;/iam/v3/admin/bans/reasons [GET]&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;
+			&lt;/ul&gt;&lt;/p&gt;
+*/
+func (a *Client) GetListBanReasonShort(params *GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetListBanReasonOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListBanReasonParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetListBanReason",
+		Method:             "GET",
+		PathPattern:        "/iam/bans/reasons",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListBanReasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListBanReasonOK:
+		return v, nil
+	case *GetListBanReasonUnauthorized:
+		return nil, v
+	case *GetListBanReasonForbidden:
 		return nil, v
 
 	default:

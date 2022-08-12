@@ -33,6 +33,12 @@ var QueryUserEntitlementsCmd = &cobra.Command{
 		appType, _ := cmd.Flags().GetString("appType")
 		entitlementClazz, _ := cmd.Flags().GetString("entitlementClazz")
 		entitlementName, _ := cmd.Flags().GetString("entitlementName")
+		featuresString := cmd.Flag("features").Value.String()
+		var features []string
+		errFeatures := json.Unmarshal([]byte(featuresString), &features)
+		if errFeatures != nil {
+			return errFeatures
+		}
 		itemIdString := cmd.Flag("itemId").Value.String()
 		var itemId []string
 		errItemId := json.Unmarshal([]byte(itemIdString), &itemId)
@@ -48,6 +54,7 @@ var QueryUserEntitlementsCmd = &cobra.Command{
 			AppType:          &appType,
 			EntitlementClazz: &entitlementClazz,
 			EntitlementName:  &entitlementName,
+			Features:         features,
 			ItemID:           itemId,
 			Limit:            &limit,
 			Offset:           &offset,
@@ -74,6 +81,7 @@ func init() {
 	QueryUserEntitlementsCmd.Flags().String("appType", "", "App type")
 	QueryUserEntitlementsCmd.Flags().String("entitlementClazz", "", "Entitlement clazz")
 	QueryUserEntitlementsCmd.Flags().String("entitlementName", "", "Entitlement name")
+	QueryUserEntitlementsCmd.Flags().String("features", "", "Features")
 	QueryUserEntitlementsCmd.Flags().String("itemId", "", "Item id")
 	QueryUserEntitlementsCmd.Flags().Int32("limit", 20, "Limit")
 	QueryUserEntitlementsCmd.Flags().Int32("offset", 0, "Offset")

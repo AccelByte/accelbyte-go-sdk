@@ -122,6 +122,8 @@ type QueryUserEntitlementsParams struct {
 	EntitlementClazz *string
 	/*EntitlementName*/
 	EntitlementName *string
+	/*Features*/
+	Features []string
 	/*ItemID*/
 	ItemID []string
 	/*Limit*/
@@ -228,6 +230,17 @@ func (o *QueryUserEntitlementsParams) WithEntitlementName(entitlementName *strin
 // SetEntitlementName adds the entitlementName to the query user entitlements params
 func (o *QueryUserEntitlementsParams) SetEntitlementName(entitlementName *string) {
 	o.EntitlementName = entitlementName
+}
+
+// WithFeatures adds the features to the query user entitlements params
+func (o *QueryUserEntitlementsParams) WithFeatures(features []string) *QueryUserEntitlementsParams {
+	o.SetFeatures(features)
+	return o
+}
+
+// SetFeatures adds the features to the query user entitlements params
+func (o *QueryUserEntitlementsParams) SetFeatures(features []string) {
+	o.Features = features
 }
 
 // WithItemID adds the itemID to the query user entitlements params
@@ -355,6 +368,14 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 			}
 		}
 
+	}
+
+	valuesFeatures := o.Features
+
+	joinedFeatures := swag.JoinByFormat(valuesFeatures, "multi")
+	// query array param features
+	if err := r.SetQueryParam("features", joinedFeatures...); err != nil {
+		return err
 	}
 
 	valuesItemID := o.ItemID

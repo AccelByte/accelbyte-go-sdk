@@ -174,7 +174,7 @@ Deprecated: Use AdminGetAllConfigV1Short instead.
   AdminGetAllConfigV1 admins get all namespaces config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get lobby config of all namespaces.
+			&lt;br&gt;get lobby config of all namespaces.&lt;br&gt;default MaxDSWaitTime is 120 (second)
 */
 func (a *Client) AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, *AdminGetAllConfigV1BadRequest, *AdminGetAllConfigV1Unauthorized, *AdminGetAllConfigV1Forbidden, *AdminGetAllConfigV1NotFound, *AdminGetAllConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -236,7 +236,7 @@ func (a *Client) AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo
   AdminGetAllConfigV1Short admins get all namespaces config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get lobby config of all namespaces.
+			&lt;br&gt;get lobby config of all namespaces.&lt;br&gt;default MaxDSWaitTime is 120 (second)
 */
 func (a *Client) AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, error) {
 	// TODO: Validate the params before sending
@@ -295,7 +295,7 @@ Deprecated: Use AdminGetConfigV1Short instead.
   AdminGetConfigV1 admins get namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get lobby config of a namespace.
+			&lt;br&gt;get lobby config of a namespace.&lt;br&gt;default MaxDSWaitTime is 120 (second)
 */
 func (a *Client) AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, *AdminGetConfigV1BadRequest, *AdminGetConfigV1Unauthorized, *AdminGetConfigV1Forbidden, *AdminGetConfigV1NotFound, *AdminGetConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -357,7 +357,7 @@ func (a *Client) AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runti
   AdminGetConfigV1Short admins get namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;get lobby config of a namespace.
+			&lt;br&gt;get lobby config of a namespace.&lt;br&gt;default MaxDSWaitTime is 120 (second)
 */
 func (a *Client) AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, error) {
 	// TODO: Validate the params before sending
@@ -423,6 +423,8 @@ Deprecated: Use AdminImportConfigV1Short instead.
 				Import config configuration from file. The existing configuration will be replaced.
 				The json file to import can be obtained from the /export endpoint.
 
+				MaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)
+
 */
 func (a *Client) AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, *AdminImportConfigV1Unauthorized, *AdminImportConfigV1Forbidden, *AdminImportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -485,6 +487,8 @@ func (a *Client) AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo
 				Import config configuration from file. The existing configuration will be replaced.
 				The json file to import can be obtained from the /export endpoint.
 
+				MaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)
+
 */
 func (a *Client) AdminImportConfigV1Short(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, error) {
 	// TODO: Validate the params before sending
@@ -539,7 +543,7 @@ Deprecated: Use AdminUpdateConfigV1Short instead.
   AdminUpdateConfigV1 admins update namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update lobby config of a namespace.
+			&lt;br&gt;update lobby config of a namespace.&lt;br&gt;MaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)
 */
 func (a *Client) AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigV1OK, *AdminUpdateConfigV1BadRequest, *AdminUpdateConfigV1Unauthorized, *AdminUpdateConfigV1Forbidden, *AdminUpdateConfigV1NotFound, *AdminUpdateConfigV1PreconditionFailed, *AdminUpdateConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -604,7 +608,7 @@ func (a *Client) AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo
   AdminUpdateConfigV1Short admins update namespace config
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;update lobby config of a namespace.
+			&lt;br&gt;update lobby config of a namespace.&lt;br&gt;MaxDSWaitTime value is cannot less than 1, if null it will use default value in 120 (second)
 */
 func (a *Client) AdminUpdateConfigV1Short(params *AdminUpdateConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigV1OK, error) {
 	// TODO: Validate the params before sending

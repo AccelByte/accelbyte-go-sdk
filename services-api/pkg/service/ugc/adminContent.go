@@ -229,6 +229,29 @@ func (aaa *AdminContentService) AdminSearchContent(input *admin_content.AdminSea
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetUserContentByShareCodeShort instead
+func (aaa *AdminContentService) AdminGetUserContentByShareCode(input *admin_content.AdminGetUserContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminGetUserContentByShareCode(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use AdminGetSpecificContentShort instead
 func (aaa *AdminContentService) AdminGetSpecificContent(input *admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -667,6 +690,31 @@ func (aaa *AdminContentService) AdminSearchContentShort(input *admin_content.Adm
 	}
 
 	ok, err := aaa.Client.AdminContent.AdminSearchContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentService) AdminGetUserContentByShareCodeShort(input *admin_content.AdminGetUserContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContent.AdminGetUserContentByShareCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

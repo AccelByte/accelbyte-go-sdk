@@ -740,7 +740,7 @@ Deprecated: Use DeleteItemShort instead.
 
   DeleteItem deletes an item
 
-  This API is used to delete an item permanently, usually for test purpose.&lt;b&gt;DO NOT delete already published item.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+  This API is used to delete an item permanently.&lt;p&gt;force: the default value should be: false. When the value is: &lt;li&gt;&lt;i&gt;false:&lt;i&gt;only the items in the draft store that have never been published yet can be removed.&lt;/li&gt;&lt;li&gt;&lt;i&gt;true:&lt;i&gt;the item in the draft store(even been published before) can be removed.&lt;/li&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -789,7 +789,7 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 /*
   DeleteItemShort deletes an item
 
-  This API is used to delete an item permanently, usually for test purpose.&lt;b&gt;DO NOT delete already published item.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+  This API is used to delete an item permanently.&lt;p&gt;force: the default value should be: false. When the value is: &lt;li&gt;&lt;i&gt;false:&lt;i&gt;only the items in the draft store that have never been published yet can be removed.&lt;/li&gt;&lt;li&gt;&lt;i&gt;true:&lt;i&gt;the item in the draft store(even been published before) can be removed.&lt;/li&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error) {
 	// TODO: Validate the params before sending

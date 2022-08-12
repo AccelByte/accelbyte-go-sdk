@@ -39,6 +39,29 @@ func (aaa *UsersV4Service) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: Use AdminCreateTestUsersV4Short instead
+func (aaa *UsersV4Service) AdminCreateTestUsersV4(input *users_v4.AdminCreateTestUsersV4Params) (*iamclientmodels.AccountCreateTestUsersResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, internalServerError, notImplemented, err := aaa.Client.UsersV4.AdminCreateTestUsersV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if notImplemented != nil {
+		return nil, notImplemented
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: Use AdminBulkCheckValidUserIDV4Short instead
 func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1130,6 +1153,31 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMak
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) AdminCreateTestUsersV4Short(input *users_v4.AdminCreateTestUsersV4Params) (*iamclientmodels.AccountCreateTestUsersResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.UsersV4.AdminCreateTestUsersV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {

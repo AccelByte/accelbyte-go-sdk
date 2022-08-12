@@ -41,13 +41,11 @@ var DeleteMemberRolePublicV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		ok, err := groupRolesService.DeleteMemberRolePublicV1Short(input)
-		if err != nil {
-			logrus.Error(err)
+		errInput := groupRolesService.DeleteMemberRolePublicV1Short(input)
+		if errInput != nil {
+			logrus.Error(errInput)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errInput
 		}
 
 		return nil

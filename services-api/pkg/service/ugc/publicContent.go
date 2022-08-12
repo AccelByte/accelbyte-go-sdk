@@ -108,13 +108,13 @@ func (aaa *PublicContentService) PublicGetContentBulk(input *public_content.Publ
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DownloadContentByShareCodeShort instead
-func (aaa *PublicContentService) DownloadContentByShareCode(input *public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+// Deprecated: Use PublicDownloadContentByShareCodeShort instead
+func (aaa *PublicContentService) PublicDownloadContentByShareCode(input *public_content.PublicDownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicContent.DownloadContentByShareCode(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicContent.PublicDownloadContentByShareCode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -471,7 +471,7 @@ func (aaa *PublicContentService) PublicGetContentBulkShort(input *public_content
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PublicContentService) DownloadContentByShareCodeShort(input *public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+func (aaa *PublicContentService) PublicDownloadContentByShareCodeShort(input *public_content.PublicDownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -488,7 +488,7 @@ func (aaa *PublicContentService) DownloadContentByShareCodeShort(input *public_c
 		}
 	}
 
-	ok, err := aaa.Client.PublicContent.DownloadContentByShareCodeShort(input, authInfoWriter)
+	ok, err := aaa.Client.PublicContent.PublicDownloadContentByShareCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

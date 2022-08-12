@@ -77,6 +77,10 @@ type ModelsConfigExport struct {
 	// Required: true
 	KeepPresenceActivityOnDisconnect *bool `json:"keepPresenceActivityOnDisconnect"`
 
+	// max d s wait time
+	// Required: true
+	MaxDSWaitTime *int64 `json:"maxDSWaitTime"`
+
 	// max party member
 	// Required: true
 	MaxPartyMember *int32 `json:"maxPartyMember"`
@@ -155,6 +159,10 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateKeepPresenceActivityOnDisconnect(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxDSWaitTime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -309,6 +317,15 @@ func (m *ModelsConfigExport) validateGeneralRateLimitDuration(formats strfmt.Reg
 func (m *ModelsConfigExport) validateKeepPresenceActivityOnDisconnect(formats strfmt.Registry) error {
 
 	if err := validate.Required("keepPresenceActivityOnDisconnect", "body", m.KeepPresenceActivityOnDisconnect); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsConfigExport) validateMaxDSWaitTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("maxDSWaitTime", "body", m.MaxDSWaitTime); err != nil {
 		return err
 	}
 

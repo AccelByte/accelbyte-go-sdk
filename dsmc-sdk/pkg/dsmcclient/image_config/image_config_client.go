@@ -1088,6 +1088,8 @@ Deprecated: Use GetImagePatchesShort instead.
 Required scope: social
 
 This endpoint get image patches by version.
+
+Image Size unit is byte.
 */
 func (a *Client) GetImagePatches(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, *GetImagePatchesUnauthorized, *GetImagePatchesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1144,6 +1146,8 @@ func (a *Client) GetImagePatches(params *GetImagePatchesParams, authInfo runtime
 Required scope: social
 
 This endpoint get image patches by version.
+
+Image Size unit is byte.
 */
 func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error) {
 	// TODO: Validate the params before sending

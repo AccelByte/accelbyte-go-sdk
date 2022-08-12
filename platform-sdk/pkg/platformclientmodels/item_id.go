@@ -6,6 +6,8 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +25,10 @@ type ItemID struct {
 
 	// sku
 	Sku string `json:"sku,omitempty"`
+
+	// status
+	// Enum: [ACTIVE INACTIVE]
+	Status string `json:"status,omitempty"`
 }
 
 // Validate validates this item Id
@@ -30,6 +36,10 @@ func (m *ItemID) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateItemID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,6 +52,49 @@ func (m *ItemID) Validate(formats strfmt.Registry) error {
 func (m *ItemID) validateItemID(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var itemIdTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		itemIdTypeStatusPropEnum = append(itemIdTypeStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ItemIDStatusACTIVE captures enum value "ACTIVE"
+	ItemIDStatusACTIVE string = "ACTIVE"
+
+	// ItemIDStatusINACTIVE captures enum value "INACTIVE"
+	ItemIDStatusINACTIVE string = "INACTIVE"
+)
+
+// prop value enum
+func (m *ItemID) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, itemIdTypeStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ItemID) validateStatus(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
 		return err
 	}
 

@@ -308,29 +308,29 @@ func (aaa *DataRetrievalService) PublicRequestDataRetrieval(input *data_retrieva
 }
 
 // Deprecated: Use PublicCancelUserPersonalDataRequestShort instead
-func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	noContent, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if conflict != nil {
-		return nil, conflict
+		return conflict
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 // Deprecated: Use PublicGeneratePersonalDataURLShort instead
@@ -634,7 +634,7 @@ func (aaa *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_ret
 	return created.GetPayload(), nil
 }
 
-func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -651,12 +651,12 @@ func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input 
 		}
 	}
 
-	noContent, err := aaa.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfoWriter)
+	_, err := aaa.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 func (aaa *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {

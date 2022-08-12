@@ -29,6 +29,10 @@ type ModelsCreateImageRequest struct {
 	// Required: true
 	Image *string `json:"image"`
 
+	// image size
+	// Required: true
+	ImageSize *int32 `json:"imageSize"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -55,6 +59,10 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateImage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateImageSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -97,6 +105,15 @@ func (m *ModelsCreateImageRequest) validateDockerPath(formats strfmt.Registry) e
 func (m *ModelsCreateImageRequest) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateImageRequest) validateImageSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("imageSize", "body", m.ImageSize); err != nil {
 		return err
 	}
 

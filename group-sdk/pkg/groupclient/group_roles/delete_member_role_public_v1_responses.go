@@ -28,8 +28,8 @@ type DeleteMemberRolePublicV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteMemberRolePublicV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteMemberRolePublicV1OK()
+	case 204:
+		result := NewDeleteMemberRolePublicV1NoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -81,35 +81,23 @@ func (o *DeleteMemberRolePublicV1Reader) ReadResponse(response runtime.ClientRes
 	}
 }
 
-// NewDeleteMemberRolePublicV1OK creates a DeleteMemberRolePublicV1OK with default headers values
-func NewDeleteMemberRolePublicV1OK() *DeleteMemberRolePublicV1OK {
-	return &DeleteMemberRolePublicV1OK{}
+// NewDeleteMemberRolePublicV1NoContent creates a DeleteMemberRolePublicV1NoContent with default headers values
+func NewDeleteMemberRolePublicV1NoContent() *DeleteMemberRolePublicV1NoContent {
+	return &DeleteMemberRolePublicV1NoContent{}
 }
 
-/*DeleteMemberRolePublicV1OK handles this case with default header values.
+/*DeleteMemberRolePublicV1NoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteMemberRolePublicV1OK struct {
-	Payload *groupclientmodels.ModelsUpdateMemberRoleResponseV1
+type DeleteMemberRolePublicV1NoContent struct {
 }
 
-func (o *DeleteMemberRolePublicV1OK) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1OK  %+v", 200, o.Payload)
+func (o *DeleteMemberRolePublicV1NoContent) Error() string {
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1NoContent ", 204)
 }
 
-func (o *DeleteMemberRolePublicV1OK) GetPayload() *groupclientmodels.ModelsUpdateMemberRoleResponseV1 {
-	return o.Payload
-}
-
-func (o *DeleteMemberRolePublicV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(groupclientmodels.ModelsUpdateMemberRoleResponseV1)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
+func (o *DeleteMemberRolePublicV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

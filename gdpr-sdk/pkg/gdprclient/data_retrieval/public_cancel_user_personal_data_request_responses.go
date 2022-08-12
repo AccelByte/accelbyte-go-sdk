@@ -79,25 +79,13 @@ func NewPublicCancelUserPersonalDataRequestNoContent() *PublicCancelUserPersonal
   No Content
 */
 type PublicCancelUserPersonalDataRequestNoContent struct {
-	Payload *gdprclientmodels.ModelsListPersonalDataResponse
 }
 
 func (o *PublicCancelUserPersonalDataRequestNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestNoContent  %+v", 204, o.Payload)
-}
-
-func (o *PublicCancelUserPersonalDataRequestNoContent) GetPayload() *gdprclientmodels.ModelsListPersonalDataResponse {
-	return o.Payload
+	return fmt.Sprintf("[DELETE /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] publicCancelUserPersonalDataRequestNoContent ", 204)
 }
 
 func (o *PublicCancelUserPersonalDataRequestNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(gdprclientmodels.ModelsListPersonalDataResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }

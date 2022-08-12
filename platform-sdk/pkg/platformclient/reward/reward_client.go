@@ -39,6 +39,8 @@ type ClientService interface {
 	CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, error)
 	DeleteReward(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, *DeleteRewardNotFound, error)
 	DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, error)
+	DeleteRewardConditionRecord(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error)
+	DeleteRewardConditionRecordShort(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error)
 	ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error)
 	ExportRewardsShort(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportRewardsOK, error)
 	GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardNotFound, error)
@@ -360,6 +362,100 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 		return v, nil
 	case *DeleteRewardNotFound:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: Use DeleteRewardConditionRecordShort instead.
+
+  DeleteRewardConditionRecord deletes a reward condition record
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; This API is used to delete a reward condition record by reward Id and condition Name (optional). &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:REWARD&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: 204 No Content &lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteRewardConditionRecord(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRewardConditionRecordParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteRewardConditionRecord",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/record",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRewardConditionRecordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteRewardConditionRecordNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteRewardConditionRecordShort deletes a reward condition record
+
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; This API is used to delete a reward condition record by reward Id and condition Name (optional). &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:REWARD&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: 204 No Content &lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteRewardConditionRecordShort(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRewardConditionRecordParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteRewardConditionRecord",
+		Method:             "DELETE",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/record",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRewardConditionRecordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteRewardConditionRecordNoContent:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

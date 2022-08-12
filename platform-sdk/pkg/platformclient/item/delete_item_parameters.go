@@ -19,13 +19,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewDeleteItemParams creates a new DeleteItemParams object
 // with the default values initialized.
 func NewDeleteItemParams() *DeleteItemParams {
-	var ()
+	var (
+		forceDefault = bool(false)
+	)
 	return &DeleteItemParams{
+		Force: &forceDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +38,11 @@ func NewDeleteItemParams() *DeleteItemParams {
 // NewDeleteItemParamsWithTimeout creates a new DeleteItemParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewDeleteItemParamsWithTimeout(timeout time.Duration) *DeleteItemParams {
-	var ()
+	var (
+		forceDefault = bool(false)
+	)
 	return &DeleteItemParams{
+		Force: &forceDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +51,11 @@ func NewDeleteItemParamsWithTimeout(timeout time.Duration) *DeleteItemParams {
 // NewDeleteItemParamsWithContext creates a new DeleteItemParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewDeleteItemParamsWithContext(ctx context.Context) *DeleteItemParams {
-	var ()
+	var (
+		forceDefault = bool(false)
+	)
 	return &DeleteItemParams{
+		Force: &forceDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +64,11 @@ func NewDeleteItemParamsWithContext(ctx context.Context) *DeleteItemParams {
 // NewDeleteItemParamsWithHTTPClient creates a new DeleteItemParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDeleteItemParamsWithHTTPClient(client *http.Client) *DeleteItemParams {
-	var ()
+	var (
+		forceDefault = bool(false)
+	)
 	return &DeleteItemParams{
+		Force:      &forceDefault,
 		HTTPClient: client,
 	}
 }
@@ -67,6 +80,11 @@ type DeleteItemParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Force
+	  default is false
+
+	*/
+	Force *bool
 	/*ItemID*/
 	ItemID string
 	/*Namespace
@@ -133,6 +151,17 @@ func (o *DeleteItemParams) SetHTTPClientTransport(roundTripper http.RoundTripper
 	}
 }
 
+// WithForce adds the force to the delete item params
+func (o *DeleteItemParams) WithForce(force *bool) *DeleteItemParams {
+	o.SetForce(force)
+	return o
+}
+
+// SetForce adds the force to the delete item params
+func (o *DeleteItemParams) SetForce(force *bool) {
+	o.Force = force
+}
+
 // WithItemID adds the itemID to the delete item params
 func (o *DeleteItemParams) WithItemID(itemID string) *DeleteItemParams {
 	o.SetItemID(itemID)
@@ -173,6 +202,22 @@ func (o *DeleteItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.Force != nil {
+
+		// query param force
+		var qrForce bool
+		if o.Force != nil {
+			qrForce = *o.Force
+		}
+		qForce := swag.FormatBool(qrForce)
+		if qForce != "" {
+			if err := r.SetQueryParam("force", qForce); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param itemId
 	if err := r.SetPathParam("itemId", o.ItemID); err != nil {

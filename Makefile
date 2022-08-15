@@ -30,7 +30,7 @@ lint-mod-outdated:
 
 samples:
 	rm -f samples.err
-	find -type f -name main.go -exec dirname {} \; | while read DIRECTORY; do \
+	find ./samples -type f -name main.go -exec dirname {} \; | while read DIRECTORY; do \
 		echo "# $$DIRECTORY"; \
 		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
 				sh -c "cd '$$DIRECTORY' && go build" || touch samples.err; \

@@ -78,13 +78,19 @@ type RemovePlayerFromSessionOK struct {
 }
 
 func (o *RemovePlayerFromSessionOK) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RemovePlayerFromSessionOK) ToString() string {
+func (o *RemovePlayerFromSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type RemovePlayerFromSessionBadRequest struct {
 }
 
 func (o *RemovePlayerFromSessionBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RemovePlayerFromSessionBadRequest) ToString() string {
+func (o *RemovePlayerFromSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type RemovePlayerFromSessionNotFound struct {
 }
 
 func (o *RemovePlayerFromSessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RemovePlayerFromSessionNotFound) ToString() string {
+func (o *RemovePlayerFromSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type RemovePlayerFromSessionInternalServerError struct {
 }
 
 func (o *RemovePlayerFromSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RemovePlayerFromSessionInternalServerError) ToString() string {
+func (o *RemovePlayerFromSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

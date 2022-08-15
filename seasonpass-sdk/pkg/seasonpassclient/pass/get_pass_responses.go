@@ -72,13 +72,19 @@ type GetPassOK struct {
 }
 
 func (o *GetPassOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPassOK) ToString() string {
+func (o *GetPassOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetPassBadRequest struct {
 }
 
 func (o *GetPassBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetPassBadRequest) ToString() string {
+func (o *GetPassBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetPassNotFound struct {
 }
 
 func (o *GetPassNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPassNotFound) ToString() string {
+func (o *GetPassNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

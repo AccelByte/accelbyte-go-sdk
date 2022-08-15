@@ -60,13 +60,19 @@ type UpdateStadiaJSONConfigFileOK struct {
 }
 
 func (o *UpdateStadiaJSONConfigFileOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateStadiaJSONConfigFileOK) ToString() string {
+func (o *UpdateStadiaJSONConfigFileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

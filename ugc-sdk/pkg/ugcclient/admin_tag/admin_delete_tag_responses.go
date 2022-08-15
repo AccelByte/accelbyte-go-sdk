@@ -99,13 +99,19 @@ type AdminDeleteTagUnauthorized struct {
 }
 
 func (o *AdminDeleteTagUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteTagUnauthorized) ToString() string {
+func (o *AdminDeleteTagUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type AdminDeleteTagNotFound struct {
 }
 
 func (o *AdminDeleteTagNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteTagNotFound) ToString() string {
+func (o *AdminDeleteTagNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type AdminDeleteTagInternalServerError struct {
 }
 
 func (o *AdminDeleteTagInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteTagInternalServerError) ToString() string {
+func (o *AdminDeleteTagInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

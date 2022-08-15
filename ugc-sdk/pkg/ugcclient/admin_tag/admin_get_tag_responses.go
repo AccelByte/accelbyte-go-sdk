@@ -78,13 +78,19 @@ type AdminGetTagOK struct {
 }
 
 func (o *AdminGetTagOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetTagOK) ToString() string {
+func (o *AdminGetTagOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminGetTagUnauthorized struct {
 }
 
 func (o *AdminGetTagUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetTagUnauthorized) ToString() string {
+func (o *AdminGetTagUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminGetTagNotFound struct {
 }
 
 func (o *AdminGetTagNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetTagNotFound) ToString() string {
+func (o *AdminGetTagNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminGetTagInternalServerError struct {
 }
 
 func (o *AdminGetTagInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetTagInternalServerError) ToString() string {
+func (o *AdminGetTagInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

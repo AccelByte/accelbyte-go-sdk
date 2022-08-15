@@ -84,13 +84,19 @@ type GetLocalizationTemplateOK struct {
 }
 
 func (o *GetLocalizationTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetLocalizationTemplateOK) ToString() string {
+func (o *GetLocalizationTemplateOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetLocalizationTemplateBadRequest struct {
 }
 
 func (o *GetLocalizationTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetLocalizationTemplateBadRequest) ToString() string {
+func (o *GetLocalizationTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetLocalizationTemplateUnauthorized struct {
 }
 
 func (o *GetLocalizationTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetLocalizationTemplateUnauthorized) ToString() string {
+func (o *GetLocalizationTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetLocalizationTemplateForbidden struct {
 }
 
 func (o *GetLocalizationTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetLocalizationTemplateForbidden) ToString() string {
+func (o *GetLocalizationTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetLocalizationTemplateNotFound struct {
 }
 
 func (o *GetLocalizationTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getLocalizationTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetLocalizationTemplateNotFound) ToString() string {
+func (o *GetLocalizationTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

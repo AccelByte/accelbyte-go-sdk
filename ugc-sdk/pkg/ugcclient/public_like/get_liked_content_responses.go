@@ -78,13 +78,19 @@ type GetLikedContentOK struct {
 }
 
 func (o *GetLikedContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetLikedContentOK) ToString() string {
+func (o *GetLikedContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetLikedContentUnauthorized struct {
 }
 
 func (o *GetLikedContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetLikedContentUnauthorized) ToString() string {
+func (o *GetLikedContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetLikedContentNotFound struct {
 }
 
 func (o *GetLikedContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetLikedContentNotFound) ToString() string {
+func (o *GetLikedContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetLikedContentInternalServerError struct {
 }
 
 func (o *GetLikedContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetLikedContentInternalServerError) ToString() string {
+func (o *GetLikedContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

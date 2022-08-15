@@ -72,13 +72,19 @@ type GetRecentPlayerOK struct {
 }
 
 func (o *GetRecentPlayerOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetRecentPlayerOK) ToString() string {
+func (o *GetRecentPlayerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetRecentPlayerBadRequest struct {
 }
 
 func (o *GetRecentPlayerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetRecentPlayerBadRequest) ToString() string {
+func (o *GetRecentPlayerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetRecentPlayerInternalServerError struct {
 }
 
 func (o *GetRecentPlayerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetRecentPlayerInternalServerError) ToString() string {
+func (o *GetRecentPlayerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

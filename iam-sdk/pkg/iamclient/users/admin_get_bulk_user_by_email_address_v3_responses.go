@@ -90,13 +90,19 @@ type AdminGetBulkUserByEmailAddressV3OK struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3OK) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetBulkUserByEmailAddressV3BadRequest struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3BadRequest) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetBulkUserByEmailAddressV3Unauthorized struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetBulkUserByEmailAddressV3Forbidden struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3Forbidden) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetBulkUserByEmailAddressV3NotFound struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3NotFound) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetBulkUserByEmailAddressV3InternalServerError struct {
 }
 
 func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/search/bulk][%d] adminGetBulkUserByEmailAddressV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) ToString() string {
+func (o *AdminGetBulkUserByEmailAddressV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

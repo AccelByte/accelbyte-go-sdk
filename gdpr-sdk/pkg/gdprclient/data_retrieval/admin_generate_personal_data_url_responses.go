@@ -84,13 +84,19 @@ type AdminGeneratePersonalDataURLOK struct {
 }
 
 func (o *AdminGeneratePersonalDataURLOK) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGeneratePersonalDataURLOK) ToString() string {
+func (o *AdminGeneratePersonalDataURLOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGeneratePersonalDataURLBadRequest struct {
 }
 
 func (o *AdminGeneratePersonalDataURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGeneratePersonalDataURLBadRequest) ToString() string {
+func (o *AdminGeneratePersonalDataURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGeneratePersonalDataURLUnauthorized struct {
 }
 
 func (o *AdminGeneratePersonalDataURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGeneratePersonalDataURLUnauthorized) ToString() string {
+func (o *AdminGeneratePersonalDataURLUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGeneratePersonalDataURLNotFound struct {
 }
 
 func (o *AdminGeneratePersonalDataURLNotFound) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGeneratePersonalDataURLNotFound) ToString() string {
+func (o *AdminGeneratePersonalDataURLNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGeneratePersonalDataURLInternalServerError struct {
 }
 
 func (o *AdminGeneratePersonalDataURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate][%d] adminGeneratePersonalDataUrlInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGeneratePersonalDataURLInternalServerError) ToString() string {
+func (o *AdminGeneratePersonalDataURLInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

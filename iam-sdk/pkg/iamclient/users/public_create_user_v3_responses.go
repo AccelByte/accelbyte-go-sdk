@@ -84,13 +84,19 @@ type PublicCreateUserV3Created struct {
 }
 
 func (o *PublicCreateUserV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV3Created) ToString() string {
+func (o *PublicCreateUserV3Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicCreateUserV3BadRequest struct {
 }
 
 func (o *PublicCreateUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV3BadRequest) ToString() string {
+func (o *PublicCreateUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicCreateUserV3NotFound struct {
 }
 
 func (o *PublicCreateUserV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV3NotFound) ToString() string {
+func (o *PublicCreateUserV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicCreateUserV3Conflict struct {
 }
 
 func (o *PublicCreateUserV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV3Conflict) ToString() string {
+func (o *PublicCreateUserV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicCreateUserV3InternalServerError struct {
 }
 
 func (o *PublicCreateUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users][%d] publicCreateUserV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV3InternalServerError) ToString() string {
+func (o *PublicCreateUserV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

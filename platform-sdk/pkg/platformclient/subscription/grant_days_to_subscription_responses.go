@@ -66,13 +66,19 @@ type GrantDaysToSubscriptionOK struct {
 }
 
 func (o *GrantDaysToSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GrantDaysToSubscriptionOK) ToString() string {
+func (o *GrantDaysToSubscriptionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GrantDaysToSubscriptionNotFound struct {
 }
 
 func (o *GrantDaysToSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GrantDaysToSubscriptionNotFound) ToString() string {
+func (o *GrantDaysToSubscriptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

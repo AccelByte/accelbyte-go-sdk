@@ -93,13 +93,19 @@ type PublicReportUserBadRequest struct {
 }
 
 func (o *PublicReportUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicReportUserBadRequest) ToString() string {
+func (o *PublicReportUserBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type PublicReportUserUnprocessableEntity struct {
 }
 
 func (o *PublicReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicReportUserUnprocessableEntity) ToString() string {
+func (o *PublicReportUserUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

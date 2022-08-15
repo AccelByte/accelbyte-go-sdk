@@ -66,13 +66,19 @@ type QueryUserExpGrantHistoryOK struct {
 }
 
 func (o *QueryUserExpGrantHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history][%d] queryUserExpGrantHistoryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history][%d] queryUserExpGrantHistoryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryUserExpGrantHistoryOK) ToString() string {
+func (o *QueryUserExpGrantHistoryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type QueryUserExpGrantHistoryBadRequest struct {
 }
 
 func (o *QueryUserExpGrantHistoryBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history][%d] queryUserExpGrantHistoryBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history][%d] queryUserExpGrantHistoryBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *QueryUserExpGrantHistoryBadRequest) ToString() string {
+func (o *QueryUserExpGrantHistoryBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

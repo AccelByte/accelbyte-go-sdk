@@ -72,13 +72,19 @@ type ConsumeUserEntitlementOK struct {
 }
 
 func (o *ConsumeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ConsumeUserEntitlementOK) ToString() string {
+func (o *ConsumeUserEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type ConsumeUserEntitlementNotFound struct {
 }
 
 func (o *ConsumeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ConsumeUserEntitlementNotFound) ToString() string {
+func (o *ConsumeUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type ConsumeUserEntitlementConflict struct {
 }
 
 func (o *ConsumeUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] consumeUserEntitlementConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *ConsumeUserEntitlementConflict) ToString() string {
+func (o *ConsumeUserEntitlementConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

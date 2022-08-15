@@ -105,13 +105,19 @@ type AddFriendsWithoutConfirmationBadRequest struct {
 }
 
 func (o *AddFriendsWithoutConfirmationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddFriendsWithoutConfirmationBadRequest) ToString() string {
+func (o *AddFriendsWithoutConfirmationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AddFriendsWithoutConfirmationUnauthorized struct {
 }
 
 func (o *AddFriendsWithoutConfirmationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AddFriendsWithoutConfirmationUnauthorized) ToString() string {
+func (o *AddFriendsWithoutConfirmationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AddFriendsWithoutConfirmationForbidden struct {
 }
 
 func (o *AddFriendsWithoutConfirmationForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AddFriendsWithoutConfirmationForbidden) ToString() string {
+func (o *AddFriendsWithoutConfirmationForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AddFriendsWithoutConfirmationInternalServerError struct {
 }
 
 func (o *AddFriendsWithoutConfirmationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/users/{userId}/add/bulk][%d] addFriendsWithoutConfirmationInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddFriendsWithoutConfirmationInternalServerError) ToString() string {
+func (o *AddFriendsWithoutConfirmationInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type GetAllDeploymentOK struct {
 }
 
 func (o *GetAllDeploymentOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAllDeploymentOK) ToString() string {
+func (o *GetAllDeploymentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetAllDeploymentBadRequest struct {
 }
 
 func (o *GetAllDeploymentBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetAllDeploymentBadRequest) ToString() string {
+func (o *GetAllDeploymentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetAllDeploymentUnauthorized struct {
 }
 
 func (o *GetAllDeploymentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetAllDeploymentUnauthorized) ToString() string {
+func (o *GetAllDeploymentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetAllDeploymentInternalServerError struct {
 }
 
 func (o *GetAllDeploymentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/configs/deployments][%d] getAllDeploymentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAllDeploymentInternalServerError) ToString() string {
+func (o *GetAllDeploymentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

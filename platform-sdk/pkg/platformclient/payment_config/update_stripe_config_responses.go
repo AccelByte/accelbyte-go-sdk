@@ -66,13 +66,19 @@ type UpdateStripeConfigOK struct {
 }
 
 func (o *UpdateStripeConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateStripeConfigOK) ToString() string {
+func (o *UpdateStripeConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateStripeConfigNotFound struct {
 }
 
 func (o *UpdateStripeConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateStripeConfigNotFound) ToString() string {
+func (o *UpdateStripeConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

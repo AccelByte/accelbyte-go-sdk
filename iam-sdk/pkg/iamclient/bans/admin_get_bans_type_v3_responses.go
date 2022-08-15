@@ -72,13 +72,19 @@ type AdminGetBansTypeV3OK struct {
 }
 
 func (o *AdminGetBansTypeV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeV3OK) ToString() string {
+func (o *AdminGetBansTypeV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type AdminGetBansTypeV3Unauthorized struct {
 }
 
 func (o *AdminGetBansTypeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeV3Unauthorized) ToString() string {
+func (o *AdminGetBansTypeV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type AdminGetBansTypeV3Forbidden struct {
 }
 
 func (o *AdminGetBansTypeV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/bans][%d] adminGetBansTypeV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeV3Forbidden) ToString() string {
+func (o *AdminGetBansTypeV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

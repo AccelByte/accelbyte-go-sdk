@@ -60,13 +60,19 @@ type TestStripeConfigOK struct {
 }
 
 func (o *TestStripeConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/stripeconfig/test][%d] testStripeConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/stripeconfig/test][%d] testStripeConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestStripeConfigOK) ToString() string {
+func (o *TestStripeConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

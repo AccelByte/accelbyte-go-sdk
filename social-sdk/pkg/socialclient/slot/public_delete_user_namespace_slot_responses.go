@@ -87,13 +87,19 @@ type PublicDeleteUserNamespaceSlotNotFound struct {
 }
 
 func (o *PublicDeleteUserNamespaceSlotNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDeleteUserNamespaceSlotNotFound) ToString() string {
+func (o *PublicDeleteUserNamespaceSlotNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

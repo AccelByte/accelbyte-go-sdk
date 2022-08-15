@@ -84,13 +84,19 @@ type PublicGetUserProfileInfoOK struct {
 }
 
 func (o *PublicGetUserProfileInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoOK) ToString() string {
+func (o *PublicGetUserProfileInfoOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicGetUserProfileInfoBadRequest struct {
 }
 
 func (o *PublicGetUserProfileInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoBadRequest) ToString() string {
+func (o *PublicGetUserProfileInfoBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicGetUserProfileInfoUnauthorized struct {
 }
 
 func (o *PublicGetUserProfileInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoUnauthorized) ToString() string {
+func (o *PublicGetUserProfileInfoUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicGetUserProfileInfoForbidden struct {
 }
 
 func (o *PublicGetUserProfileInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoForbidden) ToString() string {
+func (o *PublicGetUserProfileInfoForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicGetUserProfileInfoNotFound struct {
 }
 
 func (o *PublicGetUserProfileInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoNotFound) ToString() string {
+func (o *PublicGetUserProfileInfoNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

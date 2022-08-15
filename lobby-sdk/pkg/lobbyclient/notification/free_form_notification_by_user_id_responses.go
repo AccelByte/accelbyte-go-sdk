@@ -105,13 +105,19 @@ type FreeFormNotificationByUserIDBadRequest struct {
 }
 
 func (o *FreeFormNotificationByUserIDBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *FreeFormNotificationByUserIDBadRequest) ToString() string {
+func (o *FreeFormNotificationByUserIDBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type FreeFormNotificationByUserIDUnauthorized struct {
 }
 
 func (o *FreeFormNotificationByUserIDUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *FreeFormNotificationByUserIDUnauthorized) ToString() string {
+func (o *FreeFormNotificationByUserIDUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type FreeFormNotificationByUserIDForbidden struct {
 }
 
 func (o *FreeFormNotificationByUserIDForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *FreeFormNotificationByUserIDForbidden) ToString() string {
+func (o *FreeFormNotificationByUserIDForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type FreeFormNotificationByUserIDNotFound struct {
 }
 
 func (o *FreeFormNotificationByUserIDNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/users/{userId}/freeform][%d] freeFormNotificationByUserIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *FreeFormNotificationByUserIDNotFound) ToString() string {
+func (o *FreeFormNotificationByUserIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

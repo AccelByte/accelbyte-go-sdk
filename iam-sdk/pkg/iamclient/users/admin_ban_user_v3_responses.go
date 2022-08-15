@@ -84,13 +84,19 @@ type AdminBanUserV3Created struct {
 }
 
 func (o *AdminBanUserV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminBanUserV3Created) ToString() string {
+func (o *AdminBanUserV3Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminBanUserV3BadRequest struct {
 }
 
 func (o *AdminBanUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminBanUserV3BadRequest) ToString() string {
+func (o *AdminBanUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminBanUserV3Unauthorized struct {
 }
 
 func (o *AdminBanUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminBanUserV3Unauthorized) ToString() string {
+func (o *AdminBanUserV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminBanUserV3Forbidden struct {
 }
 
 func (o *AdminBanUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminBanUserV3Forbidden) ToString() string {
+func (o *AdminBanUserV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminBanUserV3NotFound struct {
 }
 
 func (o *AdminBanUserV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminBanUserV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminBanUserV3NotFound) ToString() string {
+func (o *AdminBanUserV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

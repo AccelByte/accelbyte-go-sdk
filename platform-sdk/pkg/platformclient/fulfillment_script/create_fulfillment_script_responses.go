@@ -66,13 +66,19 @@ type CreateFulfillmentScriptCreated struct {
 }
 
 func (o *CreateFulfillmentScriptCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateFulfillmentScriptCreated) ToString() string {
+func (o *CreateFulfillmentScriptCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type CreateFulfillmentScriptConflict struct {
 }
 
 func (o *CreateFulfillmentScriptConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateFulfillmentScriptConflict) ToString() string {
+func (o *CreateFulfillmentScriptConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

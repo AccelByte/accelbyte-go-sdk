@@ -78,13 +78,19 @@ type AdminHideUserContentOK struct {
 }
 
 func (o *AdminHideUserContentOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminHideUserContentOK) ToString() string {
+func (o *AdminHideUserContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminHideUserContentUnauthorized struct {
 }
 
 func (o *AdminHideUserContentUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminHideUserContentUnauthorized) ToString() string {
+func (o *AdminHideUserContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminHideUserContentNotFound struct {
 }
 
 func (o *AdminHideUserContentNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminHideUserContentNotFound) ToString() string {
+func (o *AdminHideUserContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminHideUserContentInternalServerError struct {
 }
 
 func (o *AdminHideUserContentInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminHideUserContentInternalServerError) ToString() string {
+func (o *AdminHideUserContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

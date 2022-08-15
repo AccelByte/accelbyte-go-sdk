@@ -66,13 +66,19 @@ type RollbackPublishedStoreOK struct {
 }
 
 func (o *RollbackPublishedStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RollbackPublishedStoreOK) ToString() string {
+func (o *RollbackPublishedStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RollbackPublishedStoreNotFound struct {
 }
 
 func (o *RollbackPublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RollbackPublishedStoreNotFound) ToString() string {
+func (o *RollbackPublishedStoreNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type PublicFulfillGoogleIAPItemOK struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicFulfillGoogleIAPItemOK) ToString() string {
+func (o *PublicFulfillGoogleIAPItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicFulfillGoogleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicFulfillGoogleIAPItemBadRequest) ToString() string {
+func (o *PublicFulfillGoogleIAPItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicFulfillGoogleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicFulfillGoogleIAPItemNotFound) ToString() string {
+func (o *PublicFulfillGoogleIAPItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicFulfillGoogleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicFulfillGoogleIAPItemConflict) ToString() string {
+func (o *PublicFulfillGoogleIAPItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

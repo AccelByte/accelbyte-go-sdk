@@ -66,13 +66,19 @@ type PublicGetMessagesOK struct {
 }
 
 func (o *PublicGetMessagesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/v1/messages][%d] publicGetMessagesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/v1/messages][%d] publicGetMessagesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetMessagesOK) ToString() string {
+func (o *PublicGetMessagesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetMessagesInternalServerError struct {
 }
 
 func (o *PublicGetMessagesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/v1/messages][%d] publicGetMessagesInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/v1/messages][%d] publicGetMessagesInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetMessagesInternalServerError) ToString() string {
+func (o *PublicGetMessagesInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

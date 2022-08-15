@@ -84,13 +84,19 @@ type GetCountryGroupsOK struct {
 }
 
 func (o *GetCountryGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCountryGroupsOK) ToString() string {
+func (o *GetCountryGroupsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type GetCountryGroupsBadRequest struct {
 }
 
 func (o *GetCountryGroupsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetCountryGroupsBadRequest) ToString() string {
+func (o *GetCountryGroupsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type GetCountryGroupsUnauthorized struct {
 }
 
 func (o *GetCountryGroupsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetCountryGroupsUnauthorized) ToString() string {
+func (o *GetCountryGroupsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type GetCountryGroupsForbidden struct {
 }
 
 func (o *GetCountryGroupsForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetCountryGroupsForbidden) ToString() string {
+func (o *GetCountryGroupsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type GetCountryGroupsNotFound struct {
 }
 
 func (o *GetCountryGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCountryGroupsNotFound) ToString() string {
+func (o *GetCountryGroupsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

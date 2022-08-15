@@ -141,13 +141,19 @@ type AdminUpdateInputValidationsNotFound struct {
 }
 
 func (o *AdminUpdateInputValidationsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/inputValidations][%d] adminUpdateInputValidationsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateInputValidationsNotFound) ToString() string {
+func (o *AdminUpdateInputValidationsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

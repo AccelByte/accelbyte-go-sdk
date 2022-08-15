@@ -66,13 +66,19 @@ type Verify2FACodeOK struct {
 }
 
 func (o *Verify2FACodeOK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *Verify2FACodeOK) ToString() string {
+func (o *Verify2FACodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type Verify2FACodeUnauthorized struct {
 }
 
 func (o *Verify2FACodeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/mfa/verify][%d] verify2FACodeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *Verify2FACodeUnauthorized) ToString() string {
+func (o *Verify2FACodeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

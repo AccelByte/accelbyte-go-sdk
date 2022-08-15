@@ -72,13 +72,19 @@ type ListGameRecordsHandlerV1OK struct {
 }
 
 func (o *ListGameRecordsHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListGameRecordsHandlerV1OK) ToString() string {
+func (o *ListGameRecordsHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type ListGameRecordsHandlerV1Unauthorized struct {
 }
 
 func (o *ListGameRecordsHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListGameRecordsHandlerV1Unauthorized) ToString() string {
+func (o *ListGameRecordsHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type ListGameRecordsHandlerV1InternalServerError struct {
 }
 
 func (o *ListGameRecordsHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListGameRecordsHandlerV1InternalServerError) ToString() string {
+func (o *ListGameRecordsHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -147,13 +147,19 @@ type DeleteSSOLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteSSOLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *DeleteSSOLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +195,19 @@ type DeleteSSOLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] deleteSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *DeleteSSOLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

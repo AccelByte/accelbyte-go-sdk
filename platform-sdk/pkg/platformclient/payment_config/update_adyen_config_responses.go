@@ -66,13 +66,19 @@ type UpdateAdyenConfigOK struct {
 }
 
 func (o *UpdateAdyenConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateAdyenConfigOK) ToString() string {
+func (o *UpdateAdyenConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateAdyenConfigNotFound struct {
 }
 
 func (o *UpdateAdyenConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateAdyenConfigNotFound) ToString() string {
+func (o *UpdateAdyenConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

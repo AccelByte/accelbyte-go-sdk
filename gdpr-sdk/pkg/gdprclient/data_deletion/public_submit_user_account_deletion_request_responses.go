@@ -90,13 +90,19 @@ type PublicSubmitUserAccountDeletionRequestCreated struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestCreated) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestCreated) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicSubmitUserAccountDeletionRequestBadRequest struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestBadRequest) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicSubmitUserAccountDeletionRequestUnauthorized struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicSubmitUserAccountDeletionRequestForbidden struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestForbidden) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicSubmitUserAccountDeletionRequestNotFound struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestNotFound) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicSubmitUserAccountDeletionRequestInternalServerError struct {
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) ToString() string {
+func (o *PublicSubmitUserAccountDeletionRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

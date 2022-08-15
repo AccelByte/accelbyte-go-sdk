@@ -87,13 +87,19 @@ type ReportUserUnprocessableEntity struct {
 }
 
 func (o *ReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ReportUserUnprocessableEntity) ToString() string {
+func (o *ReportUserUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

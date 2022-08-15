@@ -84,13 +84,19 @@ type GetNotificationTopicV1AdminOK struct {
 }
 
 func (o *GetNotificationTopicV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetNotificationTopicV1AdminOK) ToString() string {
+func (o *GetNotificationTopicV1AdminOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *GetNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetNotificationTopicV1AdminUnauthorized) ToString() string {
+func (o *GetNotificationTopicV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *GetNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetNotificationTopicV1AdminForbidden) ToString() string {
+func (o *GetNotificationTopicV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *GetNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetNotificationTopicV1AdminNotFound) ToString() string {
+func (o *GetNotificationTopicV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *GetNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] getNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetNotificationTopicV1AdminInternalServerError) ToString() string {
+func (o *GetNotificationTopicV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

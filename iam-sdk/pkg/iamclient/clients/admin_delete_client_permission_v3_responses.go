@@ -105,13 +105,19 @@ type AdminDeleteClientPermissionV3BadRequest struct {
 }
 
 func (o *AdminDeleteClientPermissionV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDeleteClientPermissionV3BadRequest) ToString() string {
+func (o *AdminDeleteClientPermissionV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminDeleteClientPermissionV3Unauthorized struct {
 }
 
 func (o *AdminDeleteClientPermissionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteClientPermissionV3Unauthorized) ToString() string {
+func (o *AdminDeleteClientPermissionV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminDeleteClientPermissionV3Forbidden struct {
 }
 
 func (o *AdminDeleteClientPermissionV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminDeleteClientPermissionV3Forbidden) ToString() string {
+func (o *AdminDeleteClientPermissionV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminDeleteClientPermissionV3NotFound struct {
 }
 
 func (o *AdminDeleteClientPermissionV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}][%d] adminDeleteClientPermissionV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteClientPermissionV3NotFound) ToString() string {
+func (o *AdminDeleteClientPermissionV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

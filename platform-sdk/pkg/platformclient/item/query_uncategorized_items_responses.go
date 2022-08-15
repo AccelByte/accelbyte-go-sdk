@@ -72,13 +72,19 @@ type QueryUncategorizedItemsOK struct {
 }
 
 func (o *QueryUncategorizedItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryUncategorizedItemsOK) ToString() string {
+func (o *QueryUncategorizedItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type QueryUncategorizedItemsNotFound struct {
 }
 
 func (o *QueryUncategorizedItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *QueryUncategorizedItemsNotFound) ToString() string {
+func (o *QueryUncategorizedItemsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type QueryUncategorizedItemsUnprocessableEntity struct {
 }
 
 func (o *QueryUncategorizedItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *QueryUncategorizedItemsUnprocessableEntity) ToString() string {
+func (o *QueryUncategorizedItemsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

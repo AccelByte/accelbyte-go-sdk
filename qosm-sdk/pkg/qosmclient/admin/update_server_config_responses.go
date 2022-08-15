@@ -99,13 +99,19 @@ type UpdateServerConfigBadRequest struct {
 }
 
 func (o *UpdateServerConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateServerConfigBadRequest) ToString() string {
+func (o *UpdateServerConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type UpdateServerConfigNotFound struct {
 }
 
 func (o *UpdateServerConfigNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateServerConfigNotFound) ToString() string {
+func (o *UpdateServerConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type UpdateServerConfigInternalServerError struct {
 }
 
 func (o *UpdateServerConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /qosm/admin/namespaces/{namespace}/servers/{region}][%d] updateServerConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateServerConfigInternalServerError) ToString() string {
+func (o *UpdateServerConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

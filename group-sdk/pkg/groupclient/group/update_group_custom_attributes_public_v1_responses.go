@@ -90,13 +90,19 @@ type UpdateGroupCustomAttributesPublicV1OK struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1OK) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateGroupCustomAttributesPublicV1BadRequest struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1BadRequest) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdateGroupCustomAttributesPublicV1Unauthorized struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdateGroupCustomAttributesPublicV1Forbidden struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1Forbidden) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdateGroupCustomAttributesPublicV1NotFound struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1NotFound) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdateGroupCustomAttributesPublicV1InternalServerError struct {
 }
 
 func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom][%d] updateGroupCustomAttributesPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) ToString() string {
+func (o *UpdateGroupCustomAttributesPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

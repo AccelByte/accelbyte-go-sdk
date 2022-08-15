@@ -105,13 +105,19 @@ type AdminUpdateAchievementListOrderBadRequest struct {
 }
 
 func (o *AdminUpdateAchievementListOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementListOrderBadRequest) ToString() string {
+func (o *AdminUpdateAchievementListOrderBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminUpdateAchievementListOrderUnauthorized struct {
 }
 
 func (o *AdminUpdateAchievementListOrderUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementListOrderUnauthorized) ToString() string {
+func (o *AdminUpdateAchievementListOrderUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminUpdateAchievementListOrderNotFound struct {
 }
 
 func (o *AdminUpdateAchievementListOrderNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementListOrderNotFound) ToString() string {
+func (o *AdminUpdateAchievementListOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminUpdateAchievementListOrderInternalServerError struct {
 }
 
 func (o *AdminUpdateAchievementListOrderInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementListOrderInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementListOrderInternalServerError) ToString() string {
+func (o *AdminUpdateAchievementListOrderInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -117,13 +117,19 @@ type UserRequestFriendBadRequest struct {
 }
 
 func (o *UserRequestFriendBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UserRequestFriendBadRequest) ToString() string {
+func (o *UserRequestFriendBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type UserRequestFriendUnauthorized struct {
 }
 
 func (o *UserRequestFriendUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UserRequestFriendUnauthorized) ToString() string {
+func (o *UserRequestFriendUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type UserRequestFriendForbidden struct {
 }
 
 func (o *UserRequestFriendForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UserRequestFriendForbidden) ToString() string {
+func (o *UserRequestFriendForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type UserRequestFriendNotFound struct {
 }
 
 func (o *UserRequestFriendNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UserRequestFriendNotFound) ToString() string {
+func (o *UserRequestFriendNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type UserRequestFriendUnprocessableEntity struct {
 }
 
 func (o *UserRequestFriendUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UserRequestFriendUnprocessableEntity) ToString() string {
+func (o *UserRequestFriendUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type UserRequestFriendInternalServerError struct {
 }
 
 func (o *UserRequestFriendInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request][%d] userRequestFriendInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UserRequestFriendInternalServerError) ToString() string {
+func (o *UserRequestFriendInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

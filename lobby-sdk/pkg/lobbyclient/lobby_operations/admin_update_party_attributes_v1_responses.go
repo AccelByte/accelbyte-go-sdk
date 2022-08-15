@@ -96,13 +96,19 @@ type AdminUpdatePartyAttributesV1OK struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1OK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1OK) ToString() string {
+func (o *AdminUpdatePartyAttributesV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -138,13 +144,19 @@ type AdminUpdatePartyAttributesV1BadRequest struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1BadRequest) ToString() string {
+func (o *AdminUpdatePartyAttributesV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +192,19 @@ type AdminUpdatePartyAttributesV1Unauthorized struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1Unauthorized) ToString() string {
+func (o *AdminUpdatePartyAttributesV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +240,19 @@ type AdminUpdatePartyAttributesV1Forbidden struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1Forbidden) ToString() string {
+func (o *AdminUpdatePartyAttributesV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +288,19 @@ type AdminUpdatePartyAttributesV1NotFound struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1NotFound) ToString() string {
+func (o *AdminUpdatePartyAttributesV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +336,19 @@ type AdminUpdatePartyAttributesV1PreconditionFailed struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1PreconditionFailed) ToString() string {
+func (o *AdminUpdatePartyAttributesV1PreconditionFailed) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -348,13 +384,19 @@ type AdminUpdatePartyAttributesV1InternalServerError struct {
 }
 
 func (o *AdminUpdatePartyAttributesV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] adminUpdatePartyAttributesV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdatePartyAttributesV1InternalServerError) ToString() string {
+func (o *AdminUpdatePartyAttributesV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

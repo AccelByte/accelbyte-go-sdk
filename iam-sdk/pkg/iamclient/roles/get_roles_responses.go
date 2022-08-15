@@ -72,13 +72,19 @@ type GetRolesOK struct {
 }
 
 func (o *GetRolesOK) Error() string {
-	return fmt.Sprintf("[GET /iam/roles][%d] getRolesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/roles][%d] getRolesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetRolesOK) ToString() string {
+func (o *GetRolesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

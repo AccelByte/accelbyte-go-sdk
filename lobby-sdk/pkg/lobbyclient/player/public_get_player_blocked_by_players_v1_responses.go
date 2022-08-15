@@ -90,13 +90,19 @@ type PublicGetPlayerBlockedByPlayersV1OK struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1OK) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicGetPlayerBlockedByPlayersV1BadRequest struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicGetPlayerBlockedByPlayersV1Unauthorized struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicGetPlayerBlockedByPlayersV1Forbidden struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicGetPlayerBlockedByPlayersV1NotFound struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1NotFound) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicGetPlayerBlockedByPlayersV1InternalServerError struct {
 }
 
 func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by][%d] publicGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) ToString() string {
+func (o *PublicGetPlayerBlockedByPlayersV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

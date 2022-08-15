@@ -90,13 +90,19 @@ type GetAllTimeLeaderboardRankingPublicV2OK struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2OK) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetAllTimeLeaderboardRankingPublicV2BadRequest struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2BadRequest) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetAllTimeLeaderboardRankingPublicV2Unauthorized struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2Unauthorized) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetAllTimeLeaderboardRankingPublicV2Forbidden struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2Forbidden) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetAllTimeLeaderboardRankingPublicV2NotFound struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2NotFound) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetAllTimeLeaderboardRankingPublicV2InternalServerError struct {
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime][%d] getAllTimeLeaderboardRankingPublicV2InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAllTimeLeaderboardRankingPublicV2InternalServerError) ToString() string {
+func (o *GetAllTimeLeaderboardRankingPublicV2InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

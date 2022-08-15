@@ -60,13 +60,19 @@ type PublicQueryUserStatItemsOK struct {
 }
 
 func (o *PublicQueryUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems][%d] publicQueryUserStatItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems][%d] publicQueryUserStatItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicQueryUserStatItemsOK) ToString() string {
+func (o *PublicQueryUserStatItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

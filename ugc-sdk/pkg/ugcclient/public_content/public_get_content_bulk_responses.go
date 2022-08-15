@@ -78,13 +78,19 @@ type PublicGetContentBulkOK struct {
 }
 
 func (o *PublicGetContentBulkOK) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetContentBulkOK) ToString() string {
+func (o *PublicGetContentBulkOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -118,13 +124,19 @@ type PublicGetContentBulkBadRequest struct {
 }
 
 func (o *PublicGetContentBulkBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetContentBulkBadRequest) ToString() string {
+func (o *PublicGetContentBulkBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -160,13 +172,19 @@ type PublicGetContentBulkUnauthorized struct {
 }
 
 func (o *PublicGetContentBulkUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetContentBulkUnauthorized) ToString() string {
+func (o *PublicGetContentBulkUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -202,13 +220,19 @@ type PublicGetContentBulkInternalServerError struct {
 }
 
 func (o *PublicGetContentBulkInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/bulk][%d] publicGetContentBulkInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetContentBulkInternalServerError) ToString() string {
+func (o *PublicGetContentBulkInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

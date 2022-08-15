@@ -72,13 +72,19 @@ type PublishSelectedOK struct {
 }
 
 func (o *PublishSelectedOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublishSelectedOK) ToString() string {
+func (o *PublishSelectedOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublishSelectedBadRequest struct {
 }
 
 func (o *PublishSelectedBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublishSelectedBadRequest) ToString() string {
+func (o *PublishSelectedBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublishSelectedNotFound struct {
 }
 
 func (o *PublishSelectedNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishSelected][%d] publishSelectedNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublishSelectedNotFound) ToString() string {
+func (o *PublishSelectedNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

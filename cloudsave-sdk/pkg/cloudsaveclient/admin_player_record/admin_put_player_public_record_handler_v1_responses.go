@@ -78,13 +78,19 @@ type AdminPutPlayerPublicRecordHandlerV1OK struct {
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1OK) ToString() string {
+func (o *AdminPutPlayerPublicRecordHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminPutPlayerPublicRecordHandlerV1BadRequest struct {
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) ToString() string {
+func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminPutPlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminPutPlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

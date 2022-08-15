@@ -111,13 +111,19 @@ type CreateArchivedLeaderboardRankingDataV1HandlerBadRequest struct {
 }
 
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest) ToString() string {
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized struct {
 }
 
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized) ToString() string {
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type CreateArchivedLeaderboardRankingDataV1HandlerForbidden struct {
 }
 
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerForbidden) ToString() string {
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type CreateArchivedLeaderboardRankingDataV1HandlerNotFound struct {
 }
 
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) ToString() string {
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError struct {
 }
 
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError) ToString() string {
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

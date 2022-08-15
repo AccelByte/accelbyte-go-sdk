@@ -93,13 +93,19 @@ type ClearCacheUnauthorized struct {
 }
 
 func (o *ClearCacheUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ClearCacheUnauthorized) ToString() string {
+func (o *ClearCacheUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type ClearCacheInternalServerError struct {
 }
 
 func (o *ClearCacheInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/cache][%d] clearCacheInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ClearCacheInternalServerError) ToString() string {
+func (o *ClearCacheInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

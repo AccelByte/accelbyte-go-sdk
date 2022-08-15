@@ -90,13 +90,19 @@ type CreateRootRegionOverrideCreated struct {
 }
 
 func (o *CreateRootRegionOverrideCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideCreated) ToString() string {
+func (o *CreateRootRegionOverrideCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateRootRegionOverrideBadRequest struct {
 }
 
 func (o *CreateRootRegionOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideBadRequest) ToString() string {
+func (o *CreateRootRegionOverrideBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateRootRegionOverrideUnauthorized struct {
 }
 
 func (o *CreateRootRegionOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideUnauthorized) ToString() string {
+func (o *CreateRootRegionOverrideUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateRootRegionOverrideNotFound struct {
 }
 
 func (o *CreateRootRegionOverrideNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideNotFound) ToString() string {
+func (o *CreateRootRegionOverrideNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateRootRegionOverrideConflict struct {
 }
 
 func (o *CreateRootRegionOverrideConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideConflict) ToString() string {
+func (o *CreateRootRegionOverrideConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateRootRegionOverrideInternalServerError struct {
 }
 
 func (o *CreateRootRegionOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] createRootRegionOverrideInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateRootRegionOverrideInternalServerError) ToString() string {
+func (o *CreateRootRegionOverrideInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

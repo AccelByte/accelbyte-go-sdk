@@ -60,13 +60,19 @@ type UpdateSteamIAPConfigOK struct {
 }
 
 func (o *UpdateSteamIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/steam][%d] updateSteamIAPConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/steam][%d] updateSteamIAPConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateSteamIAPConfigOK) ToString() string {
+func (o *UpdateSteamIAPConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

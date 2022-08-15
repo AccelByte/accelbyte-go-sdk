@@ -66,13 +66,19 @@ type GetPublishedStoreOK struct {
 }
 
 func (o *GetPublishedStoreOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPublishedStoreOK) ToString() string {
+func (o *GetPublishedStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetPublishedStoreNotFound struct {
 }
 
 func (o *GetPublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPublishedStoreNotFound) ToString() string {
+func (o *GetPublishedStoreNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

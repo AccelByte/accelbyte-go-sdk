@@ -111,13 +111,19 @@ type AdminUpdateUserEmailAddressV4BadRequest struct {
 }
 
 func (o *AdminUpdateUserEmailAddressV4BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserEmailAddressV4BadRequest) ToString() string {
+func (o *AdminUpdateUserEmailAddressV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminUpdateUserEmailAddressV4Unauthorized struct {
 }
 
 func (o *AdminUpdateUserEmailAddressV4Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserEmailAddressV4Unauthorized) ToString() string {
+func (o *AdminUpdateUserEmailAddressV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminUpdateUserEmailAddressV4NotFound struct {
 }
 
 func (o *AdminUpdateUserEmailAddressV4NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserEmailAddressV4NotFound) ToString() string {
+func (o *AdminUpdateUserEmailAddressV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminUpdateUserEmailAddressV4Conflict struct {
 }
 
 func (o *AdminUpdateUserEmailAddressV4Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserEmailAddressV4Conflict) ToString() string {
+func (o *AdminUpdateUserEmailAddressV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminUpdateUserEmailAddressV4InternalServerError struct {
 }
 
 func (o *AdminUpdateUserEmailAddressV4InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/email][%d] adminUpdateUserEmailAddressV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserEmailAddressV4InternalServerError) ToString() string {
+func (o *AdminUpdateUserEmailAddressV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

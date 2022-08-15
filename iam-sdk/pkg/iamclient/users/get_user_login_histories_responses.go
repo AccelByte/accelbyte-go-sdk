@@ -78,13 +78,19 @@ type GetUserLoginHistoriesOK struct {
 }
 
 func (o *GetUserLoginHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/logins/histories][%d] getUserLoginHistoriesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/{userId}/logins/histories][%d] getUserLoginHistoriesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserLoginHistoriesOK) ToString() string {
+func (o *GetUserLoginHistoriesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

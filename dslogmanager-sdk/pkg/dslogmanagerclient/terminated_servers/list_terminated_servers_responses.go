@@ -78,13 +78,19 @@ type ListTerminatedServersOK struct {
 }
 
 func (o *ListTerminatedServersOK) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListTerminatedServersOK) ToString() string {
+func (o *ListTerminatedServersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ListTerminatedServersBadRequest struct {
 }
 
 func (o *ListTerminatedServersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ListTerminatedServersBadRequest) ToString() string {
+func (o *ListTerminatedServersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ListTerminatedServersUnauthorized struct {
 }
 
 func (o *ListTerminatedServersUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListTerminatedServersUnauthorized) ToString() string {
+func (o *ListTerminatedServersUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ListTerminatedServersInternalServerError struct {
 }
 
 func (o *ListTerminatedServersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/search][%d] listTerminatedServersInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListTerminatedServersInternalServerError) ToString() string {
+func (o *ListTerminatedServersInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

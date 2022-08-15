@@ -72,13 +72,19 @@ type QuerySessionOK struct {
 }
 
 func (o *QuerySessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QuerySessionOK) ToString() string {
+func (o *QuerySessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type QuerySessionBadRequest struct {
 }
 
 func (o *QuerySessionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *QuerySessionBadRequest) ToString() string {
+func (o *QuerySessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type QuerySessionInternalServerError struct {
 }
 
 func (o *QuerySessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession][%d] querySessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *QuerySessionInternalServerError) ToString() string {
+func (o *QuerySessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

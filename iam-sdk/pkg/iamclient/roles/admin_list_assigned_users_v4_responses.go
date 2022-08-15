@@ -84,13 +84,19 @@ type AdminListAssignedUsersV4OK struct {
 }
 
 func (o *AdminListAssignedUsersV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminListAssignedUsersV4OK) ToString() string {
+func (o *AdminListAssignedUsersV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminListAssignedUsersV4BadRequest struct {
 }
 
 func (o *AdminListAssignedUsersV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminListAssignedUsersV4BadRequest) ToString() string {
+func (o *AdminListAssignedUsersV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminListAssignedUsersV4Unauthorized struct {
 }
 
 func (o *AdminListAssignedUsersV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminListAssignedUsersV4Unauthorized) ToString() string {
+func (o *AdminListAssignedUsersV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminListAssignedUsersV4Forbidden struct {
 }
 
 func (o *AdminListAssignedUsersV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminListAssignedUsersV4Forbidden) ToString() string {
+func (o *AdminListAssignedUsersV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminListAssignedUsersV4NotFound struct {
 }
 
 func (o *AdminListAssignedUsersV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/roles/{roleId}/users][%d] adminListAssignedUsersV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminListAssignedUsersV4NotFound) ToString() string {
+func (o *AdminListAssignedUsersV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

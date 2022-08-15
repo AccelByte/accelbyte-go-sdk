@@ -78,13 +78,19 @@ type UpdateCampaignOK struct {
 }
 
 func (o *UpdateCampaignOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCampaignOK) ToString() string {
+func (o *UpdateCampaignOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateCampaignNotFound struct {
 }
 
 func (o *UpdateCampaignNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateCampaignNotFound) ToString() string {
+func (o *UpdateCampaignNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateCampaignConflict struct {
 }
 
 func (o *UpdateCampaignConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateCampaignConflict) ToString() string {
+func (o *UpdateCampaignConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateCampaignUnprocessableEntity struct {
 }
 
 func (o *UpdateCampaignUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateCampaignUnprocessableEntity) ToString() string {
+func (o *UpdateCampaignUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -90,13 +90,19 @@ type GetTodayLeaderboardRankingAdminV1OK struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1OK) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetTodayLeaderboardRankingAdminV1BadRequest struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1BadRequest) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetTodayLeaderboardRankingAdminV1Unauthorized struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetTodayLeaderboardRankingAdminV1Forbidden struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1Forbidden) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetTodayLeaderboardRankingAdminV1NotFound struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1NotFound) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetTodayLeaderboardRankingAdminV1InternalServerError struct {
 }
 
 func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today][%d] getTodayLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) ToString() string {
+func (o *GetTodayLeaderboardRankingAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

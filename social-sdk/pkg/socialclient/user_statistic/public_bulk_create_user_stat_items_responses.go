@@ -66,13 +66,19 @@ type PublicBulkCreateUserStatItemsOK struct {
 }
 
 func (o *PublicBulkCreateUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicBulkCreateUserStatItemsOK) ToString() string {
+func (o *PublicBulkCreateUserStatItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicBulkCreateUserStatItemsUnprocessableEntity struct {
 }
 
 func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] publicBulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) ToString() string {
+func (o *PublicBulkCreateUserStatItemsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

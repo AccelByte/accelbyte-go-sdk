@@ -66,13 +66,19 @@ type PublicGetCountriesOK struct {
 }
 
 func (o *PublicGetCountriesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetCountriesOK) ToString() string {
+func (o *PublicGetCountriesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetCountriesBadRequest struct {
 }
 
 func (o *PublicGetCountriesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetCountriesBadRequest) ToString() string {
+func (o *PublicGetCountriesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

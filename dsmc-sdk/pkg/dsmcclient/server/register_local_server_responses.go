@@ -84,13 +84,19 @@ type RegisterLocalServerOK struct {
 }
 
 func (o *RegisterLocalServerOK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RegisterLocalServerOK) ToString() string {
+func (o *RegisterLocalServerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type RegisterLocalServerBadRequest struct {
 }
 
 func (o *RegisterLocalServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RegisterLocalServerBadRequest) ToString() string {
+func (o *RegisterLocalServerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type RegisterLocalServerUnauthorized struct {
 }
 
 func (o *RegisterLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *RegisterLocalServerUnauthorized) ToString() string {
+func (o *RegisterLocalServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type RegisterLocalServerConflict struct {
 }
 
 func (o *RegisterLocalServerConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *RegisterLocalServerConflict) ToString() string {
+func (o *RegisterLocalServerConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type RegisterLocalServerInternalServerError struct {
 }
 
 func (o *RegisterLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/register][%d] registerLocalServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RegisterLocalServerInternalServerError) ToString() string {
+func (o *RegisterLocalServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

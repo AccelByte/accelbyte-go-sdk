@@ -90,13 +90,19 @@ type AdminGetListJusticePlatformAccountsOK struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsOK) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type AdminGetListJusticePlatformAccountsBadRequest struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsBadRequest) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type AdminGetListJusticePlatformAccountsUnauthorized struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsUnauthorized) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type AdminGetListJusticePlatformAccountsForbidden struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsForbidden) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type AdminGetListJusticePlatformAccountsNotFound struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsNotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsNotFound) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type AdminGetListJusticePlatformAccountsInternalServerError struct {
 }
 
 func (o *AdminGetListJusticePlatformAccountsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice][%d] adminGetListJusticePlatformAccountsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetListJusticePlatformAccountsInternalServerError) ToString() string {
+func (o *AdminGetListJusticePlatformAccountsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

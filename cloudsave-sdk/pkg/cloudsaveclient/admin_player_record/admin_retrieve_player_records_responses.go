@@ -78,13 +78,19 @@ type AdminRetrievePlayerRecordsOK struct {
 }
 
 func (o *AdminRetrievePlayerRecordsOK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminRetrievePlayerRecordsOK) ToString() string {
+func (o *AdminRetrievePlayerRecordsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminRetrievePlayerRecordsBadRequest struct {
 }
 
 func (o *AdminRetrievePlayerRecordsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminRetrievePlayerRecordsBadRequest) ToString() string {
+func (o *AdminRetrievePlayerRecordsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminRetrievePlayerRecordsUnauthorized struct {
 }
 
 func (o *AdminRetrievePlayerRecordsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminRetrievePlayerRecordsUnauthorized) ToString() string {
+func (o *AdminRetrievePlayerRecordsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminRetrievePlayerRecordsInternalServerError struct {
 }
 
 func (o *AdminRetrievePlayerRecordsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminRetrievePlayerRecordsInternalServerError) ToString() string {
+func (o *AdminRetrievePlayerRecordsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

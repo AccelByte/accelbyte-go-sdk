@@ -60,13 +60,19 @@ type GetUserNamespaceSlotsOK struct {
 }
 
 func (o *GetUserNamespaceSlotsOK) Error() string {
-	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots][%d] getUserNamespaceSlotsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots][%d] getUserNamespaceSlotsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserNamespaceSlotsOK) ToString() string {
+func (o *GetUserNamespaceSlotsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

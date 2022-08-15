@@ -72,13 +72,19 @@ type ListConfigOK struct {
 }
 
 func (o *ListConfigOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListConfigOK) ToString() string {
+func (o *ListConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type ListConfigUnauthorized struct {
 }
 
 func (o *ListConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListConfigUnauthorized) ToString() string {
+func (o *ListConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type ListConfigInternalServerError struct {
 }
 
 func (o *ListConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/configs][%d] listConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListConfigInternalServerError) ToString() string {
+func (o *ListConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type UpdateAliPayConfigOK struct {
 }
 
 func (o *UpdateAliPayConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateAliPayConfigOK) ToString() string {
+func (o *UpdateAliPayConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateAliPayConfigNotFound struct {
 }
 
 func (o *UpdateAliPayConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateAliPayConfigNotFound) ToString() string {
+func (o *UpdateAliPayConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

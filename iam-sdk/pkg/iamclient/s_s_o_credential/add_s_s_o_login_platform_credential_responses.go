@@ -84,13 +84,19 @@ type AddSSOLoginPlatformCredentialCreated struct {
 }
 
 func (o *AddSSOLoginPlatformCredentialCreated) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AddSSOLoginPlatformCredentialCreated) ToString() string {
+func (o *AddSSOLoginPlatformCredentialCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AddSSOLoginPlatformCredentialBadRequest struct {
 }
 
 func (o *AddSSOLoginPlatformCredentialBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddSSOLoginPlatformCredentialBadRequest) ToString() string {
+func (o *AddSSOLoginPlatformCredentialBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +222,19 @@ type AddSSOLoginPlatformCredentialInternalServerError struct {
 }
 
 func (o *AddSSOLoginPlatformCredentialInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] addSSOLoginPlatformCredentialInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddSSOLoginPlatformCredentialInternalServerError) ToString() string {
+func (o *AddSSOLoginPlatformCredentialInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type PayWithUserWalletOK struct {
 }
 
 func (o *PayWithUserWalletOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PayWithUserWalletOK) ToString() string {
+func (o *PayWithUserWalletOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PayWithUserWalletBadRequest struct {
 }
 
 func (o *PayWithUserWalletBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PayWithUserWalletBadRequest) ToString() string {
+func (o *PayWithUserWalletBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PayWithUserWalletUnprocessableEntity struct {
 }
 
 func (o *PayWithUserWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PayWithUserWalletUnprocessableEntity) ToString() string {
+func (o *PayWithUserWalletUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

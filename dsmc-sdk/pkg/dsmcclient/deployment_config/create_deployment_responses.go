@@ -84,13 +84,19 @@ type CreateDeploymentCreated struct {
 }
 
 func (o *CreateDeploymentCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateDeploymentCreated) ToString() string {
+func (o *CreateDeploymentCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreateDeploymentBadRequest struct {
 }
 
 func (o *CreateDeploymentBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateDeploymentBadRequest) ToString() string {
+func (o *CreateDeploymentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreateDeploymentUnauthorized struct {
 }
 
 func (o *CreateDeploymentUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateDeploymentUnauthorized) ToString() string {
+func (o *CreateDeploymentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreateDeploymentConflict struct {
 }
 
 func (o *CreateDeploymentConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateDeploymentConflict) ToString() string {
+func (o *CreateDeploymentConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreateDeploymentInternalServerError struct {
 }
 
 func (o *CreateDeploymentInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] createDeploymentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateDeploymentInternalServerError) ToString() string {
+func (o *CreateDeploymentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

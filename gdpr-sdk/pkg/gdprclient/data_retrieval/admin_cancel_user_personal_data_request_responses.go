@@ -105,13 +105,19 @@ type AdminCancelUserPersonalDataRequestUnauthorized struct {
 }
 
 func (o *AdminCancelUserPersonalDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCancelUserPersonalDataRequestUnauthorized) ToString() string {
+func (o *AdminCancelUserPersonalDataRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminCancelUserPersonalDataRequestNotFound struct {
 }
 
 func (o *AdminCancelUserPersonalDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminCancelUserPersonalDataRequestNotFound) ToString() string {
+func (o *AdminCancelUserPersonalDataRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminCancelUserPersonalDataRequestConflict struct {
 }
 
 func (o *AdminCancelUserPersonalDataRequestConflict) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminCancelUserPersonalDataRequestConflict) ToString() string {
+func (o *AdminCancelUserPersonalDataRequestConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminCancelUserPersonalDataRequestInternalServerError struct {
 }
 
 func (o *AdminCancelUserPersonalDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}][%d] adminCancelUserPersonalDataRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCancelUserPersonalDataRequestInternalServerError) ToString() string {
+func (o *AdminCancelUserPersonalDataRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

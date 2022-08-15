@@ -72,13 +72,19 @@ type GetListJusticePlatformAccountsOK struct {
 }
 
 func (o *GetListJusticePlatformAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice][%d] getListJusticePlatformAccountsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetListJusticePlatformAccountsOK) ToString() string {
+func (o *GetListJusticePlatformAccountsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

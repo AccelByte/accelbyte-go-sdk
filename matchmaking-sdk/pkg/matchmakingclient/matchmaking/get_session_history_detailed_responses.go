@@ -90,13 +90,19 @@ type GetSessionHistoryDetailedOK struct {
 }
 
 func (o *GetSessionHistoryDetailedOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedOK) ToString() string {
+func (o *GetSessionHistoryDetailedOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type GetSessionHistoryDetailedBadRequest struct {
 }
 
 func (o *GetSessionHistoryDetailedBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedBadRequest) ToString() string {
+func (o *GetSessionHistoryDetailedBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type GetSessionHistoryDetailedUnauthorized struct {
 }
 
 func (o *GetSessionHistoryDetailedUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedUnauthorized) ToString() string {
+func (o *GetSessionHistoryDetailedUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type GetSessionHistoryDetailedForbidden struct {
 }
 
 func (o *GetSessionHistoryDetailedForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedForbidden) ToString() string {
+func (o *GetSessionHistoryDetailedForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type GetSessionHistoryDetailedNotFound struct {
 }
 
 func (o *GetSessionHistoryDetailedNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedNotFound) ToString() string {
+func (o *GetSessionHistoryDetailedNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type GetSessionHistoryDetailedInternalServerError struct {
 }
 
 func (o *GetSessionHistoryDetailedInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed][%d] getSessionHistoryDetailedInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetSessionHistoryDetailedInternalServerError) ToString() string {
+func (o *GetSessionHistoryDetailedInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

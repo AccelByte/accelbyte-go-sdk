@@ -69,13 +69,19 @@ type GetSlotDataOK struct {
 }
 
 func (o *GetSlotDataOK) Error() string {
-	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] getSlotDataOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] getSlotDataOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSlotDataOK) ToString() string {
+func (o *GetSlotDataOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -109,13 +115,19 @@ type GetSlotDataNotFound struct {
 }
 
 func (o *GetSlotDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] getSlotDataNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] getSlotDataNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSlotDataNotFound) ToString() string {
+func (o *GetSlotDataNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

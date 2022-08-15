@@ -78,13 +78,19 @@ type ChargePaymentOrderOK struct {
 }
 
 func (o *ChargePaymentOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ChargePaymentOrderOK) ToString() string {
+func (o *ChargePaymentOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ChargePaymentOrderBadRequest struct {
 }
 
 func (o *ChargePaymentOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ChargePaymentOrderBadRequest) ToString() string {
+func (o *ChargePaymentOrderBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ChargePaymentOrderNotFound struct {
 }
 
 func (o *ChargePaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ChargePaymentOrderNotFound) ToString() string {
+func (o *ChargePaymentOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ChargePaymentOrderConflict struct {
 }
 
 func (o *ChargePaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *ChargePaymentOrderConflict) ToString() string {
+func (o *ChargePaymentOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

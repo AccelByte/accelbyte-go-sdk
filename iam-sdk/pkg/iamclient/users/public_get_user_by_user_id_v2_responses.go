@@ -72,13 +72,19 @@ type PublicGetUserByUserIDV2OK struct {
 }
 
 func (o *PublicGetUserByUserIDV2OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}][%d] publicGetUserByUserIdV2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v2/public/namespaces/{namespace}/users/{userId}][%d] publicGetUserByUserIdV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserByUserIDV2OK) ToString() string {
+func (o *PublicGetUserByUserIDV2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

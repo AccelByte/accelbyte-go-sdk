@@ -111,13 +111,19 @@ type AdminSetProfanityRuleForNamespaceBadRequest struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminSetProfanityRuleForNamespaceBadRequest) ToString() string {
+func (o *AdminSetProfanityRuleForNamespaceBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminSetProfanityRuleForNamespaceUnauthorized struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminSetProfanityRuleForNamespaceUnauthorized) ToString() string {
+func (o *AdminSetProfanityRuleForNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminSetProfanityRuleForNamespaceForbidden struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminSetProfanityRuleForNamespaceForbidden) ToString() string {
+func (o *AdminSetProfanityRuleForNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminSetProfanityRuleForNamespaceNotFound struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminSetProfanityRuleForNamespaceNotFound) ToString() string {
+func (o *AdminSetProfanityRuleForNamespaceNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminSetProfanityRuleForNamespaceInternalServerError struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminSetProfanityRuleForNamespaceInternalServerError) ToString() string {
+func (o *AdminSetProfanityRuleForNamespaceInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

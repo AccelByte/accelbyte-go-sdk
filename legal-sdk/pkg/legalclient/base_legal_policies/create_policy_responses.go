@@ -72,13 +72,19 @@ type CreatePolicyCreated struct {
 }
 
 func (o *CreatePolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreatePolicyCreated) ToString() string {
+func (o *CreatePolicyCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CreatePolicyConflict struct {
 }
 
 func (o *CreatePolicyConflict) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreatePolicyConflict) ToString() string {
+func (o *CreatePolicyConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CreatePolicyUnprocessableEntity struct {
 }
 
 func (o *CreatePolicyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreatePolicyUnprocessableEntity) ToString() string {
+func (o *CreatePolicyUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

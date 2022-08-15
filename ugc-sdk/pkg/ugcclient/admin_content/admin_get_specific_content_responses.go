@@ -78,13 +78,19 @@ type AdminGetSpecificContentOK struct {
 }
 
 func (o *AdminGetSpecificContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetSpecificContentOK) ToString() string {
+func (o *AdminGetSpecificContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminGetSpecificContentUnauthorized struct {
 }
 
 func (o *AdminGetSpecificContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetSpecificContentUnauthorized) ToString() string {
+func (o *AdminGetSpecificContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminGetSpecificContentNotFound struct {
 }
 
 func (o *AdminGetSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetSpecificContentNotFound) ToString() string {
+func (o *AdminGetSpecificContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminGetSpecificContentInternalServerError struct {
 }
 
 func (o *AdminGetSpecificContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}][%d] adminGetSpecificContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetSpecificContentInternalServerError) ToString() string {
+func (o *AdminGetSpecificContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

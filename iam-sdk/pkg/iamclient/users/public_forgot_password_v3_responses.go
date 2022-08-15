@@ -99,13 +99,19 @@ type PublicForgotPasswordV3BadRequest struct {
 }
 
 func (o *PublicForgotPasswordV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicForgotPasswordV3BadRequest) ToString() string {
+func (o *PublicForgotPasswordV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type PublicForgotPasswordV3NotFound struct {
 }
 
 func (o *PublicForgotPasswordV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicForgotPasswordV3NotFound) ToString() string {
+func (o *PublicForgotPasswordV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type PublicForgotPasswordV3TooManyRequests struct {
 }
 
 func (o *PublicForgotPasswordV3TooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3TooManyRequests  %+v", 429, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/forgot][%d] publicForgotPasswordV3TooManyRequests  %+v", 429, o.ToJSONString())
 }
 
-func (o *PublicForgotPasswordV3TooManyRequests) ToString() string {
+func (o *PublicForgotPasswordV3TooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

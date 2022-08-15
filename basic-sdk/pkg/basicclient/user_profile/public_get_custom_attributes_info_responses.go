@@ -72,13 +72,19 @@ type PublicGetCustomAttributesInfoOK struct {
 }
 
 func (o *PublicGetCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetCustomAttributesInfoOK) ToString() string {
+func (o *PublicGetCustomAttributesInfoOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -112,13 +118,19 @@ type PublicGetCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *PublicGetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetCustomAttributesInfoUnauthorized) ToString() string {
+func (o *PublicGetCustomAttributesInfoUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -154,13 +166,19 @@ type PublicGetCustomAttributesInfoNotFound struct {
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetCustomAttributesInfoNotFound) ToString() string {
+func (o *PublicGetCustomAttributesInfoNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type QueryOrdersOK struct {
 }
 
 func (o *QueryOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryOrdersOK) ToString() string {
+func (o *QueryOrdersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type QueryOrdersUnprocessableEntity struct {
 }
 
 func (o *QueryOrdersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders][%d] queryOrdersUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *QueryOrdersUnprocessableEntity) ToString() string {
+func (o *QueryOrdersUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

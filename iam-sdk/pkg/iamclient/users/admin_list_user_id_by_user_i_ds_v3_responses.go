@@ -84,13 +84,19 @@ type AdminListUserIDByUserIDsV3OK struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminListUserIDByUserIDsV3OK) ToString() string {
+func (o *AdminListUserIDByUserIDsV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminListUserIDByUserIDsV3BadRequest struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminListUserIDByUserIDsV3BadRequest) ToString() string {
+func (o *AdminListUserIDByUserIDsV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminListUserIDByUserIDsV3Unauthorized struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminListUserIDByUserIDsV3Unauthorized) ToString() string {
+func (o *AdminListUserIDByUserIDsV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminListUserIDByUserIDsV3Forbidden struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminListUserIDByUserIDsV3Forbidden) ToString() string {
+func (o *AdminListUserIDByUserIDsV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminListUserIDByUserIDsV3InternalServerError struct {
 }
 
 func (o *AdminListUserIDByUserIDsV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/bulk][%d] adminListUserIdByUserIDsV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminListUserIDByUserIDsV3InternalServerError) ToString() string {
+func (o *AdminListUserIDByUserIDsV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

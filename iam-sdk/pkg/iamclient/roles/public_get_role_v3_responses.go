@@ -72,13 +72,19 @@ type PublicGetRoleV3OK struct {
 }
 
 func (o *PublicGetRoleV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetRoleV3OK) ToString() string {
+func (o *PublicGetRoleV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicGetRoleV3BadRequest struct {
 }
 
 func (o *PublicGetRoleV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetRoleV3BadRequest) ToString() string {
+func (o *PublicGetRoleV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicGetRoleV3NotFound struct {
 }
 
 func (o *PublicGetRoleV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/roles/{roleId}][%d] publicGetRoleV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetRoleV3NotFound) ToString() string {
+func (o *PublicGetRoleV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

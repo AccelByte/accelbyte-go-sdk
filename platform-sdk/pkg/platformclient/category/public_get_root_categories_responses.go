@@ -60,13 +60,19 @@ type PublicGetRootCategoriesOK struct {
 }
 
 func (o *PublicGetRootCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories][%d] publicGetRootCategoriesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories][%d] publicGetRootCategoriesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetRootCategoriesOK) ToString() string {
+func (o *PublicGetRootCategoriesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

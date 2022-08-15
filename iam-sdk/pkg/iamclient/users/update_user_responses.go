@@ -90,13 +90,19 @@ type UpdateUserOK struct {
 }
 
 func (o *UpdateUserOK) Error() string {
-	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}][%d] updateUserOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /iam/namespaces/{namespace}/users/{userId}][%d] updateUserOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserOK) ToString() string {
+func (o *UpdateUserOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

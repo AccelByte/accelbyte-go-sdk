@@ -96,13 +96,19 @@ type GetPublicEditHistoryOK struct {
 }
 
 func (o *GetPublicEditHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /event/v2/public/namespaces/{namespace}/users/{userId}/edithistory][%d] getPublicEditHistoryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/v2/public/namespaces/{namespace}/users/{userId}/edithistory][%d] getPublicEditHistoryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPublicEditHistoryOK) ToString() string {
+func (o *GetPublicEditHistoryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

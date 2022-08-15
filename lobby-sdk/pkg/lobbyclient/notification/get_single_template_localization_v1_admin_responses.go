@@ -84,13 +84,19 @@ type GetSingleTemplateLocalizationV1AdminOK struct {
 }
 
 func (o *GetSingleTemplateLocalizationV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSingleTemplateLocalizationV1AdminOK) ToString() string {
+func (o *GetSingleTemplateLocalizationV1AdminOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetSingleTemplateLocalizationV1AdminUnauthorized struct {
 }
 
 func (o *GetSingleTemplateLocalizationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetSingleTemplateLocalizationV1AdminUnauthorized) ToString() string {
+func (o *GetSingleTemplateLocalizationV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetSingleTemplateLocalizationV1AdminForbidden struct {
 }
 
 func (o *GetSingleTemplateLocalizationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetSingleTemplateLocalizationV1AdminForbidden) ToString() string {
+func (o *GetSingleTemplateLocalizationV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetSingleTemplateLocalizationV1AdminNotFound struct {
 }
 
 func (o *GetSingleTemplateLocalizationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSingleTemplateLocalizationV1AdminNotFound) ToString() string {
+func (o *GetSingleTemplateLocalizationV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetSingleTemplateLocalizationV1AdminInternalServerError struct {
 }
 
 func (o *GetSingleTemplateLocalizationV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] getSingleTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetSingleTemplateLocalizationV1AdminInternalServerError) ToString() string {
+func (o *GetSingleTemplateLocalizationV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type PostGameRecordHandlerV1Created struct {
 }
 
 func (o *PostGameRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PostGameRecordHandlerV1Created) ToString() string {
+func (o *PostGameRecordHandlerV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PostGameRecordHandlerV1BadRequest struct {
 }
 
 func (o *PostGameRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PostGameRecordHandlerV1BadRequest) ToString() string {
+func (o *PostGameRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PostGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PostGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PostGameRecordHandlerV1InternalServerError) ToString() string {
+func (o *PostGameRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

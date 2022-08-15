@@ -72,13 +72,19 @@ type PublicGetUnpaidPaymentOrderOK struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUnpaidPaymentOrderOK) ToString() string {
+func (o *PublicGetUnpaidPaymentOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicGetUnpaidPaymentOrderNotFound struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUnpaidPaymentOrderNotFound) ToString() string {
+func (o *PublicGetUnpaidPaymentOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicGetUnpaidPaymentOrderConflict struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicGetUnpaidPaymentOrderConflict) ToString() string {
+func (o *PublicGetUnpaidPaymentOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

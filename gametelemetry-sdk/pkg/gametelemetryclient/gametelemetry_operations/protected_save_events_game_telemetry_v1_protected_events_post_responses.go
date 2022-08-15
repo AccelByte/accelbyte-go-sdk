@@ -87,13 +87,19 @@ type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity st
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) ToString() string {
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

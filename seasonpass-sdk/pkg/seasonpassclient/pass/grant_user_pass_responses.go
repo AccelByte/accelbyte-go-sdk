@@ -66,13 +66,19 @@ type GrantUserPassOK struct {
 }
 
 func (o *GrantUserPassOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GrantUserPassOK) ToString() string {
+func (o *GrantUserPassOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GrantUserPassBadRequest struct {
 }
 
 func (o *GrantUserPassBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GrantUserPassBadRequest) ToString() string {
+func (o *GrantUserPassBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

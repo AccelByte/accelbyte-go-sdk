@@ -84,13 +84,19 @@ type AdminUpdateScreenshotsOK struct {
 }
 
 func (o *AdminUpdateScreenshotsOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateScreenshotsOK) ToString() string {
+func (o *AdminUpdateScreenshotsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUpdateScreenshotsBadRequest struct {
 }
 
 func (o *AdminUpdateScreenshotsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateScreenshotsBadRequest) ToString() string {
+func (o *AdminUpdateScreenshotsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUpdateScreenshotsUnauthorized struct {
 }
 
 func (o *AdminUpdateScreenshotsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateScreenshotsUnauthorized) ToString() string {
+func (o *AdminUpdateScreenshotsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUpdateScreenshotsNotFound struct {
 }
 
 func (o *AdminUpdateScreenshotsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateScreenshotsNotFound) ToString() string {
+func (o *AdminUpdateScreenshotsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUpdateScreenshotsInternalServerError struct {
 }
 
 func (o *AdminUpdateScreenshotsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateScreenshotsInternalServerError) ToString() string {
+func (o *AdminUpdateScreenshotsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -90,13 +90,19 @@ type DeleteNamespaceOK struct {
 }
 
 func (o *DeleteNamespaceOK) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceOK) ToString() string {
+func (o *DeleteNamespaceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type DeleteNamespaceBadRequest struct {
 }
 
 func (o *DeleteNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceBadRequest) ToString() string {
+func (o *DeleteNamespaceBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type DeleteNamespaceUnauthorized struct {
 }
 
 func (o *DeleteNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceUnauthorized) ToString() string {
+func (o *DeleteNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type DeleteNamespaceForbidden struct {
 }
 
 func (o *DeleteNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceForbidden) ToString() string {
+func (o *DeleteNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type DeleteNamespaceNotFound struct {
 }
 
 func (o *DeleteNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceNotFound) ToString() string {
+func (o *DeleteNamespaceNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type DeleteNamespaceConflict struct {
 }
 
 func (o *DeleteNamespaceConflict) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeleteNamespaceConflict) ToString() string {
+func (o *DeleteNamespaceConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

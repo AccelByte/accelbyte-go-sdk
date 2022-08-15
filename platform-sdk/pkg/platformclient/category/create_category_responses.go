@@ -84,13 +84,19 @@ type CreateCategoryCreated struct {
 }
 
 func (o *CreateCategoryCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateCategoryCreated) ToString() string {
+func (o *CreateCategoryCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreateCategoryBadRequest struct {
 }
 
 func (o *CreateCategoryBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateCategoryBadRequest) ToString() string {
+func (o *CreateCategoryBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreateCategoryNotFound struct {
 }
 
 func (o *CreateCategoryNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateCategoryNotFound) ToString() string {
+func (o *CreateCategoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreateCategoryConflict struct {
 }
 
 func (o *CreateCategoryConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateCategoryConflict) ToString() string {
+func (o *CreateCategoryConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreateCategoryUnprocessableEntity struct {
 }
 
 func (o *CreateCategoryUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateCategoryUnprocessableEntity) ToString() string {
+func (o *CreateCategoryUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

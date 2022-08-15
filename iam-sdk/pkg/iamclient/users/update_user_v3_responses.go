@@ -84,13 +84,19 @@ type UpdateUserV3OK struct {
 }
 
 func (o *UpdateUserV3OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserV3OK) ToString() string {
+func (o *UpdateUserV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type UpdateUserV3BadRequest struct {
 }
 
 func (o *UpdateUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserV3BadRequest) ToString() string {
+func (o *UpdateUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type UpdateUserV3Unauthorized struct {
 }
 
 func (o *UpdateUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateUserV3Unauthorized) ToString() string {
+func (o *UpdateUserV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type UpdateUserV3Conflict struct {
 }
 
 func (o *UpdateUserV3Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateUserV3Conflict) ToString() string {
+func (o *UpdateUserV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

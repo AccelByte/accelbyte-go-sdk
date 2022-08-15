@@ -66,13 +66,19 @@ type PublicGetCategoryOK struct {
 }
 
 func (o *PublicGetCategoryOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}][%d] publicGetCategoryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}][%d] publicGetCategoryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetCategoryOK) ToString() string {
+func (o *PublicGetCategoryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetCategoryNotFound struct {
 }
 
 func (o *PublicGetCategoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}][%d] publicGetCategoryNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}][%d] publicGetCategoryNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetCategoryNotFound) ToString() string {
+func (o *PublicGetCategoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

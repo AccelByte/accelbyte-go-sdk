@@ -138,13 +138,19 @@ type DeleteUserFromSessionInChannelBadRequest struct {
 }
 
 func (o *DeleteUserFromSessionInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteUserFromSessionInChannelBadRequest) ToString() string {
+func (o *DeleteUserFromSessionInChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +186,19 @@ type DeleteUserFromSessionInChannelUnauthorized struct {
 }
 
 func (o *DeleteUserFromSessionInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteUserFromSessionInChannelUnauthorized) ToString() string {
+func (o *DeleteUserFromSessionInChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +234,19 @@ type DeleteUserFromSessionInChannelForbidden struct {
 }
 
 func (o *DeleteUserFromSessionInChannelForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteUserFromSessionInChannelForbidden) ToString() string {
+func (o *DeleteUserFromSessionInChannelForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +282,19 @@ type DeleteUserFromSessionInChannelNotFound struct {
 }
 
 func (o *DeleteUserFromSessionInChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteUserFromSessionInChannelNotFound) ToString() string {
+func (o *DeleteUserFromSessionInChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +330,19 @@ type DeleteUserFromSessionInChannelInternalServerError struct {
 }
 
 func (o *DeleteUserFromSessionInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}][%d] deleteUserFromSessionInChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteUserFromSessionInChannelInternalServerError) ToString() string {
+func (o *DeleteUserFromSessionInChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -60,13 +60,19 @@ type PublicGetEntitlementOwnershipTokenOK struct {
 }
 
 func (o *PublicGetEntitlementOwnershipTokenOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken][%d] publicGetEntitlementOwnershipTokenOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken][%d] publicGetEntitlementOwnershipTokenOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetEntitlementOwnershipTokenOK) ToString() string {
+func (o *PublicGetEntitlementOwnershipTokenOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

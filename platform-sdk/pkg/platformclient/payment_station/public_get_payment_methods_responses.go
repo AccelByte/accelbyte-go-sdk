@@ -66,13 +66,19 @@ type PublicGetPaymentMethodsOK struct {
 }
 
 func (o *PublicGetPaymentMethodsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentMethodsOK) ToString() string {
+func (o *PublicGetPaymentMethodsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetPaymentMethodsNotFound struct {
 }
 
 func (o *PublicGetPaymentMethodsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/methods][%d] publicGetPaymentMethodsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentMethodsNotFound) ToString() string {
+func (o *PublicGetPaymentMethodsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type RequestPresignedURLCreated struct {
 }
 
 func (o *RequestPresignedURLCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *RequestPresignedURLCreated) ToString() string {
+func (o *RequestPresignedURLCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RequestPresignedURLBadRequest struct {
 }
 
 func (o *RequestPresignedURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RequestPresignedURLBadRequest) ToString() string {
+func (o *RequestPresignedURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -105,13 +105,19 @@ type NotificationWithTemplateBadRequest struct {
 }
 
 func (o *NotificationWithTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *NotificationWithTemplateBadRequest) ToString() string {
+func (o *NotificationWithTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type NotificationWithTemplateUnauthorized struct {
 }
 
 func (o *NotificationWithTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *NotificationWithTemplateUnauthorized) ToString() string {
+func (o *NotificationWithTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type NotificationWithTemplateForbidden struct {
 }
 
 func (o *NotificationWithTemplateForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *NotificationWithTemplateForbidden) ToString() string {
+func (o *NotificationWithTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type NotificationWithTemplateNotFound struct {
 }
 
 func (o *NotificationWithTemplateNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templated][%d] notificationWithTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *NotificationWithTemplateNotFound) ToString() string {
+func (o *NotificationWithTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

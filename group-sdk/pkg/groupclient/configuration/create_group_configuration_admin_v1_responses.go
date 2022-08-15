@@ -90,13 +90,19 @@ type CreateGroupConfigurationAdminV1Created struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1Created) ToString() string {
+func (o *CreateGroupConfigurationAdminV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateGroupConfigurationAdminV1BadRequest struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1BadRequest) ToString() string {
+func (o *CreateGroupConfigurationAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1Unauthorized) ToString() string {
+func (o *CreateGroupConfigurationAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1Forbidden) ToString() string {
+func (o *CreateGroupConfigurationAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateGroupConfigurationAdminV1Conflict struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1Conflict) ToString() string {
+func (o *CreateGroupConfigurationAdminV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *CreateGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration][%d] createGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateGroupConfigurationAdminV1InternalServerError) ToString() string {
+func (o *CreateGroupConfigurationAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

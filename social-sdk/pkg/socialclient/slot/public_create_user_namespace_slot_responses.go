@@ -93,13 +93,19 @@ type PublicCreateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateUserNamespaceSlotBadRequest) ToString() string {
+func (o *PublicCreateUserNamespaceSlotBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type PublicCreateUserNamespaceSlotConflict struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) Error() string {
-	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCreateUserNamespaceSlotConflict) ToString() string {
+func (o *PublicCreateUserNamespaceSlotConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

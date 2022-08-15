@@ -72,13 +72,19 @@ type PlatformTokenRequestHandlerOK struct {
 }
 
 func (o *PlatformTokenRequestHandlerOK) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PlatformTokenRequestHandlerOK) ToString() string {
+func (o *PlatformTokenRequestHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PlatformTokenRequestHandlerBadRequest struct {
 }
 
 func (o *PlatformTokenRequestHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PlatformTokenRequestHandlerBadRequest) ToString() string {
+func (o *PlatformTokenRequestHandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PlatformTokenRequestHandlerUnauthorized struct {
 }
 
 func (o *PlatformTokenRequestHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/namespaces/{namespace}/platforms/{platformId}/token][%d] platformTokenRequestHandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PlatformTokenRequestHandlerUnauthorized) ToString() string {
+func (o *PlatformTokenRequestHandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

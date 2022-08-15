@@ -90,13 +90,19 @@ type PublicCreateUserOrderCreated struct {
 }
 
 func (o *PublicCreateUserOrderCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderCreated) ToString() string {
+func (o *PublicCreateUserOrderCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicCreateUserOrderBadRequest struct {
 }
 
 func (o *PublicCreateUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderBadRequest) ToString() string {
+func (o *PublicCreateUserOrderBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicCreateUserOrderForbidden struct {
 }
 
 func (o *PublicCreateUserOrderForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderForbidden) ToString() string {
+func (o *PublicCreateUserOrderForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicCreateUserOrderNotFound struct {
 }
 
 func (o *PublicCreateUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderNotFound) ToString() string {
+func (o *PublicCreateUserOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicCreateUserOrderConflict struct {
 }
 
 func (o *PublicCreateUserOrderConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderConflict) ToString() string {
+func (o *PublicCreateUserOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicCreateUserOrderUnprocessableEntity struct {
 }
 
 func (o *PublicCreateUserOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicCreateUserOrderUnprocessableEntity) ToString() string {
+func (o *PublicCreateUserOrderUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type UpdateContentS3OK struct {
 }
 
 func (o *UpdateContentS3OK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateContentS3OK) ToString() string {
+func (o *UpdateContentS3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateContentS3BadRequest struct {
 }
 
 func (o *UpdateContentS3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateContentS3BadRequest) ToString() string {
+func (o *UpdateContentS3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateContentS3Unauthorized struct {
 }
 
 func (o *UpdateContentS3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateContentS3Unauthorized) ToString() string {
+func (o *UpdateContentS3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateContentS3NotFound struct {
 }
 
 func (o *UpdateContentS3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateContentS3NotFound) ToString() string {
+func (o *UpdateContentS3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateContentS3InternalServerError struct {
 }
 
 func (o *UpdateContentS3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateContentS3InternalServerError) ToString() string {
+func (o *UpdateContentS3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

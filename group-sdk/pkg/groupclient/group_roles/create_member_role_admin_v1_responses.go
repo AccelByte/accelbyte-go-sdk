@@ -84,13 +84,19 @@ type CreateMemberRoleAdminV1Created struct {
 }
 
 func (o *CreateMemberRoleAdminV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateMemberRoleAdminV1Created) ToString() string {
+func (o *CreateMemberRoleAdminV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreateMemberRoleAdminV1BadRequest struct {
 }
 
 func (o *CreateMemberRoleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateMemberRoleAdminV1BadRequest) ToString() string {
+func (o *CreateMemberRoleAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreateMemberRoleAdminV1Unauthorized struct {
 }
 
 func (o *CreateMemberRoleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateMemberRoleAdminV1Unauthorized) ToString() string {
+func (o *CreateMemberRoleAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreateMemberRoleAdminV1Forbidden struct {
 }
 
 func (o *CreateMemberRoleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateMemberRoleAdminV1Forbidden) ToString() string {
+func (o *CreateMemberRoleAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreateMemberRoleAdminV1InternalServerError struct {
 }
 
 func (o *CreateMemberRoleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/roles][%d] createMemberRoleAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateMemberRoleAdminV1InternalServerError) ToString() string {
+func (o *CreateMemberRoleAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

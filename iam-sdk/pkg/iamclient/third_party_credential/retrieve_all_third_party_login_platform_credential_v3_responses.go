@@ -84,13 +84,19 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3OK struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) ToString() string {
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +172,19 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +220,19 @@ type RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/all/clients][%d] retrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type GetGameRecordHandlerV1OK struct {
 }
 
 func (o *GetGameRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGameRecordHandlerV1OK) ToString() string {
+func (o *GetGameRecordHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetGameRecordHandlerV1Unauthorized struct {
 }
 
 func (o *GetGameRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetGameRecordHandlerV1Unauthorized) ToString() string {
+func (o *GetGameRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetGameRecordHandlerV1NotFound struct {
 }
 
 func (o *GetGameRecordHandlerV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetGameRecordHandlerV1NotFound) ToString() string {
+func (o *GetGameRecordHandlerV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *GetGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetGameRecordHandlerV1InternalServerError) ToString() string {
+func (o *GetGameRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

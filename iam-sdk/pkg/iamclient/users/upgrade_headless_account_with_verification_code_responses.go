@@ -84,13 +84,19 @@ type UpgradeHeadlessAccountWithVerificationCodeOK struct {
 }
 
 func (o *UpgradeHeadlessAccountWithVerificationCodeOK) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode][%d] upgradeHeadlessAccountWithVerificationCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpgradeHeadlessAccountWithVerificationCodeOK) ToString() string {
+func (o *UpgradeHeadlessAccountWithVerificationCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

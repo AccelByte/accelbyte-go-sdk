@@ -111,13 +111,19 @@ type AdminRemoveUserRoleV4BadRequest struct {
 }
 
 func (o *AdminRemoveUserRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminRemoveUserRoleV4BadRequest) ToString() string {
+func (o *AdminRemoveUserRoleV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminRemoveUserRoleV4Forbidden struct {
 }
 
 func (o *AdminRemoveUserRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminRemoveUserRoleV4Forbidden) ToString() string {
+func (o *AdminRemoveUserRoleV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminRemoveUserRoleV4NotFound struct {
 }
 
 func (o *AdminRemoveUserRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminRemoveUserRoleV4NotFound) ToString() string {
+func (o *AdminRemoveUserRoleV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminRemoveUserRoleV4UnprocessableEntity struct {
 }
 
 func (o *AdminRemoveUserRoleV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AdminRemoveUserRoleV4UnprocessableEntity) ToString() string {
+func (o *AdminRemoveUserRoleV4UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminRemoveUserRoleV4InternalServerError struct {
 }
 
 func (o *AdminRemoveUserRoleV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminRemoveUserRoleV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminRemoveUserRoleV4InternalServerError) ToString() string {
+func (o *AdminRemoveUserRoleV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

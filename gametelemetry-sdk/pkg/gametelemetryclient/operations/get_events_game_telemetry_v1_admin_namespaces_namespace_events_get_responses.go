@@ -66,13 +66,19 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK struct {
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) ToString() string {
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntit
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) ToString() string {
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

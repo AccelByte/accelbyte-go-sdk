@@ -72,13 +72,19 @@ type UpdatePaymentTaxConfigOK struct {
 }
 
 func (o *UpdatePaymentTaxConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePaymentTaxConfigOK) ToString() string {
+func (o *UpdatePaymentTaxConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type UpdatePaymentTaxConfigBadRequest struct {
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePaymentTaxConfigBadRequest) ToString() string {
+func (o *UpdatePaymentTaxConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type UpdatePaymentTaxConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdatePaymentTaxConfigUnprocessableEntity) ToString() string {
+func (o *UpdatePaymentTaxConfigUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

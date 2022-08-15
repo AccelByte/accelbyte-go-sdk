@@ -66,13 +66,19 @@ type GetDLCItemConfigOK struct {
 }
 
 func (o *GetDLCItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetDLCItemConfigOK) ToString() string {
+func (o *GetDLCItemConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetDLCItemConfigNotFound struct {
 }
 
 func (o *GetDLCItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetDLCItemConfigNotFound) ToString() string {
+func (o *GetDLCItemConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

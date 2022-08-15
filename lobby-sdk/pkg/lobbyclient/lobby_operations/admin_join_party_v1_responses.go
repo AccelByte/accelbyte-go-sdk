@@ -117,13 +117,19 @@ type AdminJoinPartyV1BadRequest struct {
 }
 
 func (o *AdminJoinPartyV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1BadRequest) ToString() string {
+func (o *AdminJoinPartyV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type AdminJoinPartyV1Unauthorized struct {
 }
 
 func (o *AdminJoinPartyV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1Unauthorized) ToString() string {
+func (o *AdminJoinPartyV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type AdminJoinPartyV1Forbidden struct {
 }
 
 func (o *AdminJoinPartyV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1Forbidden) ToString() string {
+func (o *AdminJoinPartyV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type AdminJoinPartyV1NotFound struct {
 }
 
 func (o *AdminJoinPartyV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1NotFound) ToString() string {
+func (o *AdminJoinPartyV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type AdminJoinPartyV1PreconditionFailed struct {
 }
 
 func (o *AdminJoinPartyV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1PreconditionFailed  %+v", 412, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1PreconditionFailed  %+v", 412, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1PreconditionFailed) ToString() string {
+func (o *AdminJoinPartyV1PreconditionFailed) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type AdminJoinPartyV1InternalServerError struct {
 }
 
 func (o *AdminJoinPartyV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}][%d] adminJoinPartyV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminJoinPartyV1InternalServerError) ToString() string {
+func (o *AdminJoinPartyV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

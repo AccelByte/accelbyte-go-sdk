@@ -66,13 +66,19 @@ type UpdateXsollaConfigOK struct {
 }
 
 func (o *UpdateXsollaConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateXsollaConfigOK) ToString() string {
+func (o *UpdateXsollaConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateXsollaConfigNotFound struct {
 }
 
 func (o *UpdateXsollaConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateXsollaConfigNotFound) ToString() string {
+func (o *UpdateXsollaConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

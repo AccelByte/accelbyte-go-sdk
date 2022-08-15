@@ -90,13 +90,19 @@ type AdminGetPlayerSessionAttributeOK struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeOK) ToString() string {
+func (o *AdminGetPlayerSessionAttributeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetPlayerSessionAttributeBadRequest struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeBadRequest) ToString() string {
+func (o *AdminGetPlayerSessionAttributeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetPlayerSessionAttributeUnauthorized struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeUnauthorized) ToString() string {
+func (o *AdminGetPlayerSessionAttributeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetPlayerSessionAttributeForbidden struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeForbidden) ToString() string {
+func (o *AdminGetPlayerSessionAttributeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetPlayerSessionAttributeNotFound struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeNotFound) ToString() string {
+func (o *AdminGetPlayerSessionAttributeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetPlayerSessionAttributeInternalServerError struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetPlayerSessionAttributeInternalServerError) ToString() string {
+func (o *AdminGetPlayerSessionAttributeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

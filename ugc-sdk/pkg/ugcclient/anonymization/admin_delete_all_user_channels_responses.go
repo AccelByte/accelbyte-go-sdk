@@ -99,13 +99,19 @@ type AdminDeleteAllUserChannelsUnauthorized struct {
 }
 
 func (o *AdminDeleteAllUserChannelsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserChannelsUnauthorized) ToString() string {
+func (o *AdminDeleteAllUserChannelsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type AdminDeleteAllUserChannelsNotFound struct {
 }
 
 func (o *AdminDeleteAllUserChannelsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserChannelsNotFound) ToString() string {
+func (o *AdminDeleteAllUserChannelsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type AdminDeleteAllUserChannelsInternalServerError struct {
 }
 
 func (o *AdminDeleteAllUserChannelsInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels][%d] adminDeleteAllUserChannelsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserChannelsInternalServerError) ToString() string {
+func (o *AdminDeleteAllUserChannelsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

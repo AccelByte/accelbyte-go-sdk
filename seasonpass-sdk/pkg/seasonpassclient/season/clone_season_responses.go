@@ -78,13 +78,19 @@ type CloneSeasonOK struct {
 }
 
 func (o *CloneSeasonOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CloneSeasonOK) ToString() string {
+func (o *CloneSeasonOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CloneSeasonBadRequest struct {
 }
 
 func (o *CloneSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CloneSeasonBadRequest) ToString() string {
+func (o *CloneSeasonBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CloneSeasonNotFound struct {
 }
 
 func (o *CloneSeasonNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CloneSeasonNotFound) ToString() string {
+func (o *CloneSeasonNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CloneSeasonUnprocessableEntity struct {
 }
 
 func (o *CloneSeasonUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CloneSeasonUnprocessableEntity) ToString() string {
+func (o *CloneSeasonUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

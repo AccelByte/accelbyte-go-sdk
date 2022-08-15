@@ -78,13 +78,19 @@ type AdminRequestDataRetrievalCreated struct {
 }
 
 func (o *AdminRequestDataRetrievalCreated) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminRequestDataRetrievalCreated) ToString() string {
+func (o *AdminRequestDataRetrievalCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminRequestDataRetrievalBadRequest struct {
 }
 
 func (o *AdminRequestDataRetrievalBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminRequestDataRetrievalBadRequest) ToString() string {
+func (o *AdminRequestDataRetrievalBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminRequestDataRetrievalUnauthorized struct {
 }
 
 func (o *AdminRequestDataRetrievalUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminRequestDataRetrievalUnauthorized) ToString() string {
+func (o *AdminRequestDataRetrievalUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminRequestDataRetrievalInternalServerError struct {
 }
 
 func (o *AdminRequestDataRetrievalInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminRequestDataRetrievalInternalServerError) ToString() string {
+func (o *AdminRequestDataRetrievalInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

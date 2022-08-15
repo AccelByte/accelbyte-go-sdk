@@ -78,13 +78,19 @@ type UpdateUserEntitlementOK struct {
 }
 
 func (o *UpdateUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserEntitlementOK) ToString() string {
+func (o *UpdateUserEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateUserEntitlementNotFound struct {
 }
 
 func (o *UpdateUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserEntitlementNotFound) ToString() string {
+func (o *UpdateUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateUserEntitlementConflict struct {
 }
 
 func (o *UpdateUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateUserEntitlementConflict) ToString() string {
+func (o *UpdateUserEntitlementConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateUserEntitlementUnprocessableEntity struct {
 }
 
 func (o *UpdateUserEntitlementUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateUserEntitlementUnprocessableEntity) ToString() string {
+func (o *UpdateUserEntitlementUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

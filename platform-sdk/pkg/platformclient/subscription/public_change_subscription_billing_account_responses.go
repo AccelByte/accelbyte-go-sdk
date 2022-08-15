@@ -78,13 +78,19 @@ type PublicChangeSubscriptionBillingAccountOK struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicChangeSubscriptionBillingAccountOK) ToString() string {
+func (o *PublicChangeSubscriptionBillingAccountOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicChangeSubscriptionBillingAccountBadRequest struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicChangeSubscriptionBillingAccountBadRequest) ToString() string {
+func (o *PublicChangeSubscriptionBillingAccountBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicChangeSubscriptionBillingAccountNotFound struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicChangeSubscriptionBillingAccountNotFound) ToString() string {
+func (o *PublicChangeSubscriptionBillingAccountNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicChangeSubscriptionBillingAccountConflict struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicChangeSubscriptionBillingAccountConflict) ToString() string {
+func (o *PublicChangeSubscriptionBillingAccountConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

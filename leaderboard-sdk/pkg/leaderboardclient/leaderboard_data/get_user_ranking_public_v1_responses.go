@@ -84,13 +84,19 @@ type GetUserRankingPublicV1OK struct {
 }
 
 func (o *GetUserRankingPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserRankingPublicV1OK) ToString() string {
+func (o *GetUserRankingPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetUserRankingPublicV1Unauthorized struct {
 }
 
 func (o *GetUserRankingPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserRankingPublicV1Unauthorized) ToString() string {
+func (o *GetUserRankingPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetUserRankingPublicV1Forbidden struct {
 }
 
 func (o *GetUserRankingPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserRankingPublicV1Forbidden) ToString() string {
+func (o *GetUserRankingPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetUserRankingPublicV1NotFound struct {
 }
 
 func (o *GetUserRankingPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserRankingPublicV1NotFound) ToString() string {
+func (o *GetUserRankingPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetUserRankingPublicV1InternalServerError struct {
 }
 
 func (o *GetUserRankingPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetUserRankingPublicV1InternalServerError) ToString() string {
+func (o *GetUserRankingPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

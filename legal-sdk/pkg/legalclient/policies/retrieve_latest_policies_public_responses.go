@@ -66,13 +66,19 @@ type RetrieveLatestPoliciesPublicOK struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveLatestPoliciesPublicOK) ToString() string {
+func (o *RetrieveLatestPoliciesPublicOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type RetrieveLatestPoliciesPublicNotFound struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveLatestPoliciesPublicNotFound) ToString() string {
+func (o *RetrieveLatestPoliciesPublicNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

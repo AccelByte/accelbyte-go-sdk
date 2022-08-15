@@ -111,13 +111,19 @@ type AdminRemoveRoleAdminV3BadRequest struct {
 }
 
 func (o *AdminRemoveRoleAdminV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminRemoveRoleAdminV3BadRequest) ToString() string {
+func (o *AdminRemoveRoleAdminV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminRemoveRoleAdminV3Unauthorized struct {
 }
 
 func (o *AdminRemoveRoleAdminV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminRemoveRoleAdminV3Unauthorized) ToString() string {
+func (o *AdminRemoveRoleAdminV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminRemoveRoleAdminV3Forbidden struct {
 }
 
 func (o *AdminRemoveRoleAdminV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminRemoveRoleAdminV3Forbidden) ToString() string {
+func (o *AdminRemoveRoleAdminV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminRemoveRoleAdminV3NotFound struct {
 }
 
 func (o *AdminRemoveRoleAdminV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/roles/{roleId}/admin][%d] adminRemoveRoleAdminV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminRemoveRoleAdminV3NotFound) ToString() string {
+func (o *AdminRemoveRoleAdminV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

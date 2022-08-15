@@ -99,13 +99,19 @@ type CreateNotificationTopicV1AdminBadRequest struct {
 }
 
 func (o *CreateNotificationTopicV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateNotificationTopicV1AdminBadRequest) ToString() string {
+func (o *CreateNotificationTopicV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type CreateNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *CreateNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateNotificationTopicV1AdminUnauthorized) ToString() string {
+func (o *CreateNotificationTopicV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type CreateNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *CreateNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateNotificationTopicV1AdminForbidden) ToString() string {
+func (o *CreateNotificationTopicV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

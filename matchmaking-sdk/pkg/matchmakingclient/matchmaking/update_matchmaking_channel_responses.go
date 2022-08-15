@@ -111,13 +111,19 @@ type UpdateMatchmakingChannelBadRequest struct {
 }
 
 func (o *UpdateMatchmakingChannelBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateMatchmakingChannelBadRequest) ToString() string {
+func (o *UpdateMatchmakingChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type UpdateMatchmakingChannelUnauthorized struct {
 }
 
 func (o *UpdateMatchmakingChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateMatchmakingChannelUnauthorized) ToString() string {
+func (o *UpdateMatchmakingChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type UpdateMatchmakingChannelForbidden struct {
 }
 
 func (o *UpdateMatchmakingChannelForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateMatchmakingChannelForbidden) ToString() string {
+func (o *UpdateMatchmakingChannelForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type UpdateMatchmakingChannelNotFound struct {
 }
 
 func (o *UpdateMatchmakingChannelNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateMatchmakingChannelNotFound) ToString() string {
+func (o *UpdateMatchmakingChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type UpdateMatchmakingChannelInternalServerError struct {
 }
 
 func (o *UpdateMatchmakingChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] updateMatchmakingChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateMatchmakingChannelInternalServerError) ToString() string {
+func (o *UpdateMatchmakingChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

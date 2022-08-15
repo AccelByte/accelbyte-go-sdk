@@ -78,13 +78,19 @@ type AdminUploadContentDirectCreated struct {
 }
 
 func (o *AdminUploadContentDirectCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminUploadContentDirectCreated) ToString() string {
+func (o *AdminUploadContentDirectCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminUploadContentDirectBadRequest struct {
 }
 
 func (o *AdminUploadContentDirectBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUploadContentDirectBadRequest) ToString() string {
+func (o *AdminUploadContentDirectBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminUploadContentDirectUnauthorized struct {
 }
 
 func (o *AdminUploadContentDirectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUploadContentDirectUnauthorized) ToString() string {
+func (o *AdminUploadContentDirectUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminUploadContentDirectInternalServerError struct {
 }
 
 func (o *AdminUploadContentDirectInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUploadContentDirectInternalServerError) ToString() string {
+func (o *AdminUploadContentDirectInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

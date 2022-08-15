@@ -58,13 +58,19 @@ type GetSpecialPaymentProvidersOK struct {
 }
 
 func (o *GetSpecialPaymentProvidersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/special][%d] getSpecialPaymentProvidersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/special][%d] getSpecialPaymentProvidersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSpecialPaymentProvidersOK) ToString() string {
+func (o *GetSpecialPaymentProvidersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

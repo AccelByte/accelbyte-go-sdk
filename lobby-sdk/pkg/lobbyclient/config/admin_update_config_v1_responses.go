@@ -96,13 +96,19 @@ type AdminUpdateConfigV1OK struct {
 }
 
 func (o *AdminUpdateConfigV1OK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1OK) ToString() string {
+func (o *AdminUpdateConfigV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -138,13 +144,19 @@ type AdminUpdateConfigV1BadRequest struct {
 }
 
 func (o *AdminUpdateConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1BadRequest) ToString() string {
+func (o *AdminUpdateConfigV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +192,19 @@ type AdminUpdateConfigV1Unauthorized struct {
 }
 
 func (o *AdminUpdateConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1Unauthorized) ToString() string {
+func (o *AdminUpdateConfigV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +240,19 @@ type AdminUpdateConfigV1Forbidden struct {
 }
 
 func (o *AdminUpdateConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1Forbidden) ToString() string {
+func (o *AdminUpdateConfigV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +288,19 @@ type AdminUpdateConfigV1NotFound struct {
 }
 
 func (o *AdminUpdateConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1NotFound) ToString() string {
+func (o *AdminUpdateConfigV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +336,19 @@ type AdminUpdateConfigV1PreconditionFailed struct {
 }
 
 func (o *AdminUpdateConfigV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1PreconditionFailed  %+v", 412, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1PreconditionFailed  %+v", 412, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1PreconditionFailed) ToString() string {
+func (o *AdminUpdateConfigV1PreconditionFailed) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -348,13 +384,19 @@ type AdminUpdateConfigV1InternalServerError struct {
 }
 
 func (o *AdminUpdateConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateConfigV1InternalServerError) ToString() string {
+func (o *AdminUpdateConfigV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

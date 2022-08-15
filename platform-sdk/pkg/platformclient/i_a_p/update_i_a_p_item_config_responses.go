@@ -66,13 +66,19 @@ type UpdateIAPItemConfigOK struct {
 }
 
 func (o *UpdateIAPItemConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/item][%d] updateIAPItemConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/item][%d] updateIAPItemConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateIAPItemConfigOK) ToString() string {
+func (o *UpdateIAPItemConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateIAPItemConfigUnprocessableEntity struct {
 }
 
 func (o *UpdateIAPItemConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/item][%d] updateIAPItemConfigUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/item][%d] updateIAPItemConfigUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateIAPItemConfigUnprocessableEntity) ToString() string {
+func (o *UpdateIAPItemConfigUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

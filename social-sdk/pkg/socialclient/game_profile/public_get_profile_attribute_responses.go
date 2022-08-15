@@ -66,13 +66,19 @@ type PublicGetProfileAttributeOK struct {
 }
 
 func (o *PublicGetProfileAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetProfileAttributeOK) ToString() string {
+func (o *PublicGetProfileAttributeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetProfileAttributeNotFound struct {
 }
 
 func (o *PublicGetProfileAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetProfileAttributeNotFound) ToString() string {
+func (o *PublicGetProfileAttributeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

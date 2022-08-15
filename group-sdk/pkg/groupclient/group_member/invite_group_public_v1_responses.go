@@ -96,13 +96,19 @@ type InviteGroupPublicV1OK struct {
 }
 
 func (o *InviteGroupPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1OK) ToString() string {
+func (o *InviteGroupPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -138,13 +144,19 @@ type InviteGroupPublicV1BadRequest struct {
 }
 
 func (o *InviteGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1BadRequest) ToString() string {
+func (o *InviteGroupPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +192,19 @@ type InviteGroupPublicV1Unauthorized struct {
 }
 
 func (o *InviteGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1Unauthorized) ToString() string {
+func (o *InviteGroupPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +240,19 @@ type InviteGroupPublicV1Forbidden struct {
 }
 
 func (o *InviteGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1Forbidden) ToString() string {
+func (o *InviteGroupPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +288,19 @@ type InviteGroupPublicV1NotFound struct {
 }
 
 func (o *InviteGroupPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1NotFound) ToString() string {
+func (o *InviteGroupPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +336,19 @@ type InviteGroupPublicV1Conflict struct {
 }
 
 func (o *InviteGroupPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1Conflict) ToString() string {
+func (o *InviteGroupPublicV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -348,13 +384,19 @@ type InviteGroupPublicV1InternalServerError struct {
 }
 
 func (o *InviteGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/invite][%d] inviteGroupPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *InviteGroupPublicV1InternalServerError) ToString() string {
+func (o *InviteGroupPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type PublicUpdateUserNamespaceSlotMetadataOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserNamespaceSlotMetadataOK) ToString() string {
+func (o *PublicUpdateUserNamespaceSlotMetadataOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicUpdateUserNamespaceSlotMetadataNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) ToString() string {
+func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -87,13 +87,19 @@ type DeletePaymentProviderConfigNotFound struct {
 }
 
 func (o *DeletePaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeletePaymentProviderConfigNotFound) ToString() string {
+func (o *DeletePaymentProviderConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

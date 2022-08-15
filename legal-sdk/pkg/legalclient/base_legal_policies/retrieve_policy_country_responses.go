@@ -66,13 +66,19 @@ type RetrievePolicyCountryOK struct {
 }
 
 func (o *RetrievePolicyCountryOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrievePolicyCountryOK) ToString() string {
+func (o *RetrievePolicyCountryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RetrievePolicyCountryNotFound struct {
 }
 
 func (o *RetrievePolicyCountryNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrievePolicyCountryNotFound) ToString() string {
+func (o *RetrievePolicyCountryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

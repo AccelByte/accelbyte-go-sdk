@@ -72,13 +72,19 @@ type GetLanguagesOK struct {
 }
 
 func (o *GetLanguagesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetLanguagesOK) ToString() string {
+func (o *GetLanguagesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -112,13 +118,19 @@ type GetLanguagesBadRequest struct {
 }
 
 func (o *GetLanguagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetLanguagesBadRequest) ToString() string {
+func (o *GetLanguagesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -154,13 +166,19 @@ type GetLanguagesUnauthorized struct {
 }
 
 func (o *GetLanguagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetLanguagesUnauthorized) ToString() string {
+func (o *GetLanguagesUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

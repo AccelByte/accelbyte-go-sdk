@@ -66,13 +66,19 @@ type UpdateFulfillmentScriptOK struct {
 }
 
 func (o *UpdateFulfillmentScriptOK) Error() string {
-	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateFulfillmentScriptOK) ToString() string {
+func (o *UpdateFulfillmentScriptOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateFulfillmentScriptBadRequest struct {
 }
 
 func (o *UpdateFulfillmentScriptBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateFulfillmentScriptBadRequest) ToString() string {
+func (o *UpdateFulfillmentScriptBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

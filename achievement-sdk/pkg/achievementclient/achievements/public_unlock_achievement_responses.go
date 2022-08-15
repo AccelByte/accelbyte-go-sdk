@@ -99,13 +99,19 @@ type PublicUnlockAchievementBadRequest struct {
 }
 
 func (o *PublicUnlockAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUnlockAchievementBadRequest) ToString() string {
+func (o *PublicUnlockAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type PublicUnlockAchievementUnauthorized struct {
 }
 
 func (o *PublicUnlockAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicUnlockAchievementUnauthorized) ToString() string {
+func (o *PublicUnlockAchievementUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type PublicUnlockAchievementInternalServerError struct {
 }
 
 func (o *PublicUnlockAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock][%d] publicUnlockAchievementInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicUnlockAchievementInternalServerError) ToString() string {
+func (o *PublicUnlockAchievementInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

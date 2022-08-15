@@ -78,13 +78,19 @@ type AcquireUserTicketOK struct {
 }
 
 func (o *AcquireUserTicketOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AcquireUserTicketOK) ToString() string {
+func (o *AcquireUserTicketOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AcquireUserTicketNotFound struct {
 }
 
 func (o *AcquireUserTicketNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AcquireUserTicketNotFound) ToString() string {
+func (o *AcquireUserTicketNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AcquireUserTicketConflict struct {
 }
 
 func (o *AcquireUserTicketConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AcquireUserTicketConflict) ToString() string {
+func (o *AcquireUserTicketConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AcquireUserTicketUnprocessableEntity struct {
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AcquireUserTicketUnprocessableEntity) ToString() string {
+func (o *AcquireUserTicketUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

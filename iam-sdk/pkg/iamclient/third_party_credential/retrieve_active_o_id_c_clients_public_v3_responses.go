@@ -84,13 +84,19 @@ type RetrieveActiveOIDCClientsPublicV3OK struct {
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveActiveOIDCClientsPublicV3OK) ToString() string {
+func (o *RetrieveActiveOIDCClientsPublicV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +172,19 @@ type RetrieveActiveOIDCClientsPublicV3NotFound struct {
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveActiveOIDCClientsPublicV3NotFound) ToString() string {
+func (o *RetrieveActiveOIDCClientsPublicV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +220,19 @@ type RetrieveActiveOIDCClientsPublicV3InternalServerError struct {
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/clients/oidc][%d] retrieveActiveOIdCClientsPublicV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RetrieveActiveOIDCClientsPublicV3InternalServerError) ToString() string {
+func (o *RetrieveActiveOIDCClientsPublicV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

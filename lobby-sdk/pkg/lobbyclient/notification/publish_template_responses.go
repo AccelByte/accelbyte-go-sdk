@@ -105,13 +105,19 @@ type PublishTemplateBadRequest struct {
 }
 
 func (o *PublishTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublishTemplateBadRequest) ToString() string {
+func (o *PublishTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PublishTemplateUnauthorized struct {
 }
 
 func (o *PublishTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublishTemplateUnauthorized) ToString() string {
+func (o *PublishTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PublishTemplateForbidden struct {
 }
 
 func (o *PublishTemplateForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublishTemplateForbidden) ToString() string {
+func (o *PublishTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PublishTemplateNotFound struct {
 }
 
 func (o *PublishTemplateNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublishTemplateNotFound) ToString() string {
+func (o *PublishTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

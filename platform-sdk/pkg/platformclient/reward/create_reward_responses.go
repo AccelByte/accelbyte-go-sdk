@@ -78,13 +78,19 @@ type CreateRewardOK struct {
 }
 
 func (o *CreateRewardOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CreateRewardOK) ToString() string {
+func (o *CreateRewardOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CreateRewardNotFound struct {
 }
 
 func (o *CreateRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateRewardNotFound) ToString() string {
+func (o *CreateRewardNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CreateRewardConflict struct {
 }
 
 func (o *CreateRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateRewardConflict) ToString() string {
+func (o *CreateRewardConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CreateRewardUnprocessableEntity struct {
 }
 
 func (o *CreateRewardUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateRewardUnprocessableEntity) ToString() string {
+func (o *CreateRewardUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

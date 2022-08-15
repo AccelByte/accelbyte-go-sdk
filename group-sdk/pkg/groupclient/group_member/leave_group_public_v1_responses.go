@@ -90,13 +90,19 @@ type LeaveGroupPublicV1OK struct {
 }
 
 func (o *LeaveGroupPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1OK) ToString() string {
+func (o *LeaveGroupPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type LeaveGroupPublicV1BadRequest struct {
 }
 
 func (o *LeaveGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1BadRequest) ToString() string {
+func (o *LeaveGroupPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type LeaveGroupPublicV1Unauthorized struct {
 }
 
 func (o *LeaveGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1Unauthorized) ToString() string {
+func (o *LeaveGroupPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type LeaveGroupPublicV1Forbidden struct {
 }
 
 func (o *LeaveGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1Forbidden) ToString() string {
+func (o *LeaveGroupPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type LeaveGroupPublicV1NotFound struct {
 }
 
 func (o *LeaveGroupPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1NotFound) ToString() string {
+func (o *LeaveGroupPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type LeaveGroupPublicV1InternalServerError struct {
 }
 
 func (o *LeaveGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/leave][%d] leaveGroupPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *LeaveGroupPublicV1InternalServerError) ToString() string {
+func (o *LeaveGroupPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

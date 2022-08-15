@@ -72,13 +72,19 @@ type GrantUserEntitlementCreated struct {
 }
 
 func (o *GrantUserEntitlementCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *GrantUserEntitlementCreated) ToString() string {
+func (o *GrantUserEntitlementCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -112,13 +118,19 @@ type GrantUserEntitlementNotFound struct {
 }
 
 func (o *GrantUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GrantUserEntitlementNotFound) ToString() string {
+func (o *GrantUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -154,13 +166,19 @@ type GrantUserEntitlementUnprocessableEntity struct {
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *GrantUserEntitlementUnprocessableEntity) ToString() string {
+func (o *GrantUserEntitlementUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

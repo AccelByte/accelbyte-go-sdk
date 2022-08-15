@@ -78,13 +78,19 @@ type PublicSearchCreatorOK struct {
 }
 
 func (o *PublicSearchCreatorOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicSearchCreatorOK) ToString() string {
+func (o *PublicSearchCreatorOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicSearchCreatorBadRequest struct {
 }
 
 func (o *PublicSearchCreatorBadRequest) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicSearchCreatorBadRequest) ToString() string {
+func (o *PublicSearchCreatorBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicSearchCreatorUnauthorized struct {
 }
 
 func (o *PublicSearchCreatorUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicSearchCreatorUnauthorized) ToString() string {
+func (o *PublicSearchCreatorUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicSearchCreatorInternalServerError struct {
 }
 
 func (o *PublicSearchCreatorInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users][%d] publicSearchCreatorInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicSearchCreatorInternalServerError) ToString() string {
+func (o *PublicSearchCreatorInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type GetGroupContentOK struct {
 }
 
 func (o *GetGroupContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGroupContentOK) ToString() string {
+func (o *GetGroupContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetGroupContentUnauthorized struct {
 }
 
 func (o *GetGroupContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetGroupContentUnauthorized) ToString() string {
+func (o *GetGroupContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetGroupContentNotFound struct {
 }
 
 func (o *GetGroupContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetGroupContentNotFound) ToString() string {
+func (o *GetGroupContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetGroupContentInternalServerError struct {
 }
 
 func (o *GetGroupContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] getGroupContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetGroupContentInternalServerError) ToString() string {
+func (o *GetGroupContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

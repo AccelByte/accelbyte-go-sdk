@@ -84,13 +84,19 @@ type SingleAdminUpdateChannelOK struct {
 }
 
 func (o *SingleAdminUpdateChannelOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateChannelOK) ToString() string {
+func (o *SingleAdminUpdateChannelOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type SingleAdminUpdateChannelBadRequest struct {
 }
 
 func (o *SingleAdminUpdateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateChannelBadRequest) ToString() string {
+func (o *SingleAdminUpdateChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type SingleAdminUpdateChannelUnauthorized struct {
 }
 
 func (o *SingleAdminUpdateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateChannelUnauthorized) ToString() string {
+func (o *SingleAdminUpdateChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type SingleAdminUpdateChannelNotFound struct {
 }
 
 func (o *SingleAdminUpdateChannelNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateChannelNotFound) ToString() string {
+func (o *SingleAdminUpdateChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type SingleAdminUpdateChannelInternalServerError struct {
 }
 
 func (o *SingleAdminUpdateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminUpdateChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateChannelInternalServerError) ToString() string {
+func (o *SingleAdminUpdateChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

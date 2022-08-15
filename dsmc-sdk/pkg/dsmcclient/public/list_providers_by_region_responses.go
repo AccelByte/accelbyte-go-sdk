@@ -60,13 +60,19 @@ type ListProvidersByRegionOK struct {
 }
 
 func (o *ListProvidersByRegionOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/public/providers/regions/{region}][%d] listProvidersByRegionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/public/providers/regions/{region}][%d] listProvidersByRegionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListProvidersByRegionOK) ToString() string {
+func (o *ListProvidersByRegionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

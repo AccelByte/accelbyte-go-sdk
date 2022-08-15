@@ -84,13 +84,19 @@ type GetTopicByTopicNameOK struct {
 }
 
 func (o *GetTopicByTopicNameOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTopicByTopicNameOK) ToString() string {
+func (o *GetTopicByTopicNameOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetTopicByTopicNameUnauthorized struct {
 }
 
 func (o *GetTopicByTopicNameUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetTopicByTopicNameUnauthorized) ToString() string {
+func (o *GetTopicByTopicNameUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetTopicByTopicNameForbidden struct {
 }
 
 func (o *GetTopicByTopicNameForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetTopicByTopicNameForbidden) ToString() string {
+func (o *GetTopicByTopicNameForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetTopicByTopicNameNotFound struct {
 }
 
 func (o *GetTopicByTopicNameNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetTopicByTopicNameNotFound) ToString() string {
+func (o *GetTopicByTopicNameNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetTopicByTopicNameInternalServerError struct {
 }
 
 func (o *GetTopicByTopicNameInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics/{topic}][%d] getTopicByTopicNameInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetTopicByTopicNameInternalServerError) ToString() string {
+func (o *GetTopicByTopicNameInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

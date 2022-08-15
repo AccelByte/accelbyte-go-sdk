@@ -66,13 +66,19 @@ type TestAdyenConfigByIDOK struct {
 }
 
 func (o *TestAdyenConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestAdyenConfigByIDOK) ToString() string {
+func (o *TestAdyenConfigByIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type TestAdyenConfigByIDNotFound struct {
 }
 
 func (o *TestAdyenConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *TestAdyenConfigByIDNotFound) ToString() string {
+func (o *TestAdyenConfigByIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

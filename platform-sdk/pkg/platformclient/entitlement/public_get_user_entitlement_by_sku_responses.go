@@ -66,13 +66,19 @@ type PublicGetUserEntitlementBySkuOK struct {
 }
 
 func (o *PublicGetUserEntitlementBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] publicGetUserEntitlementBySkuOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] publicGetUserEntitlementBySkuOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserEntitlementBySkuOK) ToString() string {
+func (o *PublicGetUserEntitlementBySkuOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetUserEntitlementBySkuNotFound struct {
 }
 
 func (o *PublicGetUserEntitlementBySkuNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] publicGetUserEntitlementBySkuNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku][%d] publicGetUserEntitlementBySkuNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserEntitlementBySkuNotFound) ToString() string {
+func (o *PublicGetUserEntitlementBySkuNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

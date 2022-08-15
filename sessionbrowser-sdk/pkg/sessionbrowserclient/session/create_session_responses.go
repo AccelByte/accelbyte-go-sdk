@@ -84,13 +84,19 @@ type CreateSessionOK struct {
 }
 
 func (o *CreateSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CreateSessionOK) ToString() string {
+func (o *CreateSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreateSessionBadRequest struct {
 }
 
 func (o *CreateSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateSessionBadRequest) ToString() string {
+func (o *CreateSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreateSessionForbidden struct {
 }
 
 func (o *CreateSessionForbidden) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateSessionForbidden) ToString() string {
+func (o *CreateSessionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreateSessionConflict struct {
 }
 
 func (o *CreateSessionConflict) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateSessionConflict) ToString() string {
+func (o *CreateSessionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreateSessionInternalServerError struct {
 }
 
 func (o *CreateSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateSessionInternalServerError) ToString() string {
+func (o *CreateSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type AdminCreateTagCreated struct {
 }
 
 func (o *AdminCreateTagCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateTagCreated) ToString() string {
+func (o *AdminCreateTagCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminCreateTagBadRequest struct {
 }
 
 func (o *AdminCreateTagBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateTagBadRequest) ToString() string {
+func (o *AdminCreateTagBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminCreateTagUnauthorized struct {
 }
 
 func (o *AdminCreateTagUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateTagUnauthorized) ToString() string {
+func (o *AdminCreateTagUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminCreateTagConflict struct {
 }
 
 func (o *AdminCreateTagConflict) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminCreateTagConflict) ToString() string {
+func (o *AdminCreateTagConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminCreateTagInternalServerError struct {
 }
 
 func (o *AdminCreateTagInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminCreateTagInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateTagInternalServerError) ToString() string {
+func (o *AdminCreateTagInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

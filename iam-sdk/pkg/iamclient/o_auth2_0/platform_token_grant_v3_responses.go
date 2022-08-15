@@ -72,13 +72,19 @@ type PlatformTokenGrantV3OK struct {
 }
 
 func (o *PlatformTokenGrantV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PlatformTokenGrantV3OK) ToString() string {
+func (o *PlatformTokenGrantV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PlatformTokenGrantV3BadRequest struct {
 }
 
 func (o *PlatformTokenGrantV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PlatformTokenGrantV3BadRequest) ToString() string {
+func (o *PlatformTokenGrantV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PlatformTokenGrantV3Unauthorized struct {
 }
 
 func (o *PlatformTokenGrantV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/platforms/{platformId}/token][%d] platformTokenGrantV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PlatformTokenGrantV3Unauthorized) ToString() string {
+func (o *PlatformTokenGrantV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

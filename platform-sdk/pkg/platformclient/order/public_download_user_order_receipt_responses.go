@@ -93,13 +93,19 @@ type PublicDownloadUserOrderReceiptNotFound struct {
 }
 
 func (o *PublicDownloadUserOrderReceiptNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDownloadUserOrderReceiptNotFound) ToString() string {
+func (o *PublicDownloadUserOrderReceiptNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type PublicDownloadUserOrderReceiptConflict struct {
 }
 
 func (o *PublicDownloadUserOrderReceiptConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicDownloadUserOrderReceiptConflict) ToString() string {
+func (o *PublicDownloadUserOrderReceiptConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

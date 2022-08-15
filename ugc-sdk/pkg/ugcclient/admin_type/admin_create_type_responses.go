@@ -84,13 +84,19 @@ type AdminCreateTypeCreated struct {
 }
 
 func (o *AdminCreateTypeCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateTypeCreated) ToString() string {
+func (o *AdminCreateTypeCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminCreateTypeBadRequest struct {
 }
 
 func (o *AdminCreateTypeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateTypeBadRequest) ToString() string {
+func (o *AdminCreateTypeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminCreateTypeUnauthorized struct {
 }
 
 func (o *AdminCreateTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateTypeUnauthorized) ToString() string {
+func (o *AdminCreateTypeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminCreateTypeConflict struct {
 }
 
 func (o *AdminCreateTypeConflict) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminCreateTypeConflict) ToString() string {
+func (o *AdminCreateTypeConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminCreateTypeInternalServerError struct {
 }
 
 func (o *AdminCreateTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/types][%d] adminCreateTypeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateTypeInternalServerError) ToString() string {
+func (o *AdminCreateTypeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

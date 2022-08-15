@@ -66,13 +66,19 @@ type ExistsAnyPassByPassCodesOK struct {
 }
 
 func (o *ExistsAnyPassByPassCodesOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ExistsAnyPassByPassCodesOK) ToString() string {
+func (o *ExistsAnyPassByPassCodesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type ExistsAnyPassByPassCodesBadRequest struct {
 }
 
 func (o *ExistsAnyPassByPassCodesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ExistsAnyPassByPassCodesBadRequest) ToString() string {
+func (o *ExistsAnyPassByPassCodesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

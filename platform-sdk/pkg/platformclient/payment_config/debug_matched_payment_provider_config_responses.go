@@ -66,13 +66,19 @@ type DebugMatchedPaymentProviderConfigOK struct {
 }
 
 func (o *DebugMatchedPaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DebugMatchedPaymentProviderConfigOK) ToString() string {
+func (o *DebugMatchedPaymentProviderConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type DebugMatchedPaymentProviderConfigNotFound struct {
 }
 
 func (o *DebugMatchedPaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DebugMatchedPaymentProviderConfigNotFound) ToString() string {
+func (o *DebugMatchedPaymentProviderConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

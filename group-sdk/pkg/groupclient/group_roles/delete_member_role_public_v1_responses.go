@@ -117,13 +117,19 @@ type DeleteMemberRolePublicV1BadRequest struct {
 }
 
 func (o *DeleteMemberRolePublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1BadRequest) ToString() string {
+func (o *DeleteMemberRolePublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type DeleteMemberRolePublicV1Unauthorized struct {
 }
 
 func (o *DeleteMemberRolePublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1Unauthorized) ToString() string {
+func (o *DeleteMemberRolePublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type DeleteMemberRolePublicV1Forbidden struct {
 }
 
 func (o *DeleteMemberRolePublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1Forbidden) ToString() string {
+func (o *DeleteMemberRolePublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type DeleteMemberRolePublicV1NotFound struct {
 }
 
 func (o *DeleteMemberRolePublicV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1NotFound) ToString() string {
+func (o *DeleteMemberRolePublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type DeleteMemberRolePublicV1UnprocessableEntity struct {
 }
 
 func (o *DeleteMemberRolePublicV1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1UnprocessableEntity) ToString() string {
+func (o *DeleteMemberRolePublicV1UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type DeleteMemberRolePublicV1InternalServerError struct {
 }
 
 func (o *DeleteMemberRolePublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteMemberRolePublicV1InternalServerError) ToString() string {
+func (o *DeleteMemberRolePublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

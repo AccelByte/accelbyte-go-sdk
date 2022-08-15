@@ -72,13 +72,19 @@ type PublicBulkClaimUserRewardsOK struct {
 }
 
 func (o *PublicBulkClaimUserRewardsOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicBulkClaimUserRewardsOK) ToString() string {
+func (o *PublicBulkClaimUserRewardsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicBulkClaimUserRewardsBadRequest struct {
 }
 
 func (o *PublicBulkClaimUserRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicBulkClaimUserRewardsBadRequest) ToString() string {
+func (o *PublicBulkClaimUserRewardsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicBulkClaimUserRewardsNotFound struct {
 }
 
 func (o *PublicBulkClaimUserRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicBulkClaimUserRewardsNotFound) ToString() string {
+func (o *PublicBulkClaimUserRewardsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

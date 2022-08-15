@@ -84,13 +84,19 @@ type GetMyProfileInfoOK struct {
 }
 
 func (o *GetMyProfileInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetMyProfileInfoOK) ToString() string {
+func (o *GetMyProfileInfoOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetMyProfileInfoBadRequest struct {
 }
 
 func (o *GetMyProfileInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetMyProfileInfoBadRequest) ToString() string {
+func (o *GetMyProfileInfoBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetMyProfileInfoUnauthorized struct {
 }
 
 func (o *GetMyProfileInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetMyProfileInfoUnauthorized) ToString() string {
+func (o *GetMyProfileInfoUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetMyProfileInfoForbidden struct {
 }
 
 func (o *GetMyProfileInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetMyProfileInfoForbidden) ToString() string {
+func (o *GetMyProfileInfoForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetMyProfileInfoNotFound struct {
 }
 
 func (o *GetMyProfileInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] getMyProfileInfoNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetMyProfileInfoNotFound) ToString() string {
+func (o *GetMyProfileInfoNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

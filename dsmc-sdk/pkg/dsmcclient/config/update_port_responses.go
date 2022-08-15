@@ -84,13 +84,19 @@ type UpdatePortOK struct {
 }
 
 func (o *UpdatePortOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePortOK) ToString() string {
+func (o *UpdatePortOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdatePortBadRequest struct {
 }
 
 func (o *UpdatePortBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePortBadRequest) ToString() string {
+func (o *UpdatePortBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdatePortUnauthorized struct {
 }
 
 func (o *UpdatePortUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdatePortUnauthorized) ToString() string {
+func (o *UpdatePortUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdatePortNotFound struct {
 }
 
 func (o *UpdatePortNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdatePortNotFound) ToString() string {
+func (o *UpdatePortNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdatePortInternalServerError struct {
 }
 
 func (o *UpdatePortInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] updatePortInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdatePortInternalServerError) ToString() string {
+func (o *UpdatePortInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

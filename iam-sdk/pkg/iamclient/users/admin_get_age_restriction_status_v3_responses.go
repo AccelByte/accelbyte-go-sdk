@@ -90,13 +90,19 @@ type AdminGetAgeRestrictionStatusV3OK struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3OK) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetAgeRestrictionStatusV3BadRequest struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3BadRequest) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetAgeRestrictionStatusV3Unauthorized struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3Unauthorized) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetAgeRestrictionStatusV3Forbidden struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3Forbidden) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetAgeRestrictionStatusV3NotFound struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3NotFound) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetAgeRestrictionStatusV3InternalServerError struct {
 }
 
 func (o *AdminGetAgeRestrictionStatusV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/agerestrictions][%d] adminGetAgeRestrictionStatusV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetAgeRestrictionStatusV3InternalServerError) ToString() string {
+func (o *AdminGetAgeRestrictionStatusV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

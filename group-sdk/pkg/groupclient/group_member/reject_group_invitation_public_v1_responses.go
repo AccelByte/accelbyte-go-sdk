@@ -96,13 +96,19 @@ type RejectGroupInvitationPublicV1OK struct {
 }
 
 func (o *RejectGroupInvitationPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1OK) ToString() string {
+func (o *RejectGroupInvitationPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -138,13 +144,19 @@ type RejectGroupInvitationPublicV1BadRequest struct {
 }
 
 func (o *RejectGroupInvitationPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1BadRequest) ToString() string {
+func (o *RejectGroupInvitationPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +192,19 @@ type RejectGroupInvitationPublicV1Unauthorized struct {
 }
 
 func (o *RejectGroupInvitationPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1Unauthorized) ToString() string {
+func (o *RejectGroupInvitationPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +240,19 @@ type RejectGroupInvitationPublicV1Forbidden struct {
 }
 
 func (o *RejectGroupInvitationPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1Forbidden) ToString() string {
+func (o *RejectGroupInvitationPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +288,19 @@ type RejectGroupInvitationPublicV1NotFound struct {
 }
 
 func (o *RejectGroupInvitationPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1NotFound) ToString() string {
+func (o *RejectGroupInvitationPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +336,19 @@ type RejectGroupInvitationPublicV1Conflict struct {
 }
 
 func (o *RejectGroupInvitationPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1Conflict) ToString() string {
+func (o *RejectGroupInvitationPublicV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -348,13 +384,19 @@ type RejectGroupInvitationPublicV1InternalServerError struct {
 }
 
 func (o *RejectGroupInvitationPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject][%d] rejectGroupInvitationPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RejectGroupInvitationPublicV1InternalServerError) ToString() string {
+func (o *RejectGroupInvitationPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

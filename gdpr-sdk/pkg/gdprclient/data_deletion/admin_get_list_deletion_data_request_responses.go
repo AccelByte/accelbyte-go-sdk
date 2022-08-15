@@ -90,13 +90,19 @@ type AdminGetListDeletionDataRequestOK struct {
 }
 
 func (o *AdminGetListDeletionDataRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestOK) ToString() string {
+func (o *AdminGetListDeletionDataRequestOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetListDeletionDataRequestBadRequest struct {
 }
 
 func (o *AdminGetListDeletionDataRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestBadRequest) ToString() string {
+func (o *AdminGetListDeletionDataRequestBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetListDeletionDataRequestUnauthorized struct {
 }
 
 func (o *AdminGetListDeletionDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestUnauthorized) ToString() string {
+func (o *AdminGetListDeletionDataRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetListDeletionDataRequestForbidden struct {
 }
 
 func (o *AdminGetListDeletionDataRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestForbidden) ToString() string {
+func (o *AdminGetListDeletionDataRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetListDeletionDataRequestNotFound struct {
 }
 
 func (o *AdminGetListDeletionDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestNotFound) ToString() string {
+func (o *AdminGetListDeletionDataRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetListDeletionDataRequestInternalServerError struct {
 }
 
 func (o *AdminGetListDeletionDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/deletions][%d] adminGetListDeletionDataRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetListDeletionDataRequestInternalServerError) ToString() string {
+func (o *AdminGetListDeletionDataRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

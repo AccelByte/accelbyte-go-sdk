@@ -84,13 +84,19 @@ type AddThirdPartyLoginPlatformCredentialV3Created struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AddThirdPartyLoginPlatformCredentialV3Created) ToString() string {
+func (o *AddThirdPartyLoginPlatformCredentialV3Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AddThirdPartyLoginPlatformCredentialV3BadRequest struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) ToString() string {
+func (o *AddThirdPartyLoginPlatformCredentialV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +222,19 @@ type AddThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] addThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *AddThirdPartyLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

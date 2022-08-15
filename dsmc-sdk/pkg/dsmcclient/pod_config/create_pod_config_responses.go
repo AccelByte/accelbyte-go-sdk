@@ -84,13 +84,19 @@ type CreatePodConfigCreated struct {
 }
 
 func (o *CreatePodConfigCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreatePodConfigCreated) ToString() string {
+func (o *CreatePodConfigCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreatePodConfigBadRequest struct {
 }
 
 func (o *CreatePodConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreatePodConfigBadRequest) ToString() string {
+func (o *CreatePodConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreatePodConfigUnauthorized struct {
 }
 
 func (o *CreatePodConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreatePodConfigUnauthorized) ToString() string {
+func (o *CreatePodConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreatePodConfigConflict struct {
 }
 
 func (o *CreatePodConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreatePodConfigConflict) ToString() string {
+func (o *CreatePodConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreatePodConfigInternalServerError struct {
 }
 
 func (o *CreatePodConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] createPodConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreatePodConfigInternalServerError) ToString() string {
+func (o *CreatePodConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

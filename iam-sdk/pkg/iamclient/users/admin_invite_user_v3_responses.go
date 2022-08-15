@@ -90,13 +90,19 @@ type AdminInviteUserV3Created struct {
 }
 
 func (o *AdminInviteUserV3Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3Created) ToString() string {
+func (o *AdminInviteUserV3Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminInviteUserV3BadRequest struct {
 }
 
 func (o *AdminInviteUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3BadRequest) ToString() string {
+func (o *AdminInviteUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminInviteUserV3NotFound struct {
 }
 
 func (o *AdminInviteUserV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3NotFound) ToString() string {
+func (o *AdminInviteUserV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminInviteUserV3Conflict struct {
 }
 
 func (o *AdminInviteUserV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3Conflict) ToString() string {
+func (o *AdminInviteUserV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminInviteUserV3UnprocessableEntity struct {
 }
 
 func (o *AdminInviteUserV3UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3UnprocessableEntity) ToString() string {
+func (o *AdminInviteUserV3UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminInviteUserV3InternalServerError struct {
 }
 
 func (o *AdminInviteUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/invite][%d] adminInviteUserV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminInviteUserV3InternalServerError) ToString() string {
+func (o *AdminInviteUserV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

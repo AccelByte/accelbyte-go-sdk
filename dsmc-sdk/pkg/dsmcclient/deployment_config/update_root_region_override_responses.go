@@ -84,13 +84,19 @@ type UpdateRootRegionOverrideOK struct {
 }
 
 func (o *UpdateRootRegionOverrideOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateRootRegionOverrideOK) ToString() string {
+func (o *UpdateRootRegionOverrideOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateRootRegionOverrideBadRequest struct {
 }
 
 func (o *UpdateRootRegionOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateRootRegionOverrideBadRequest) ToString() string {
+func (o *UpdateRootRegionOverrideBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateRootRegionOverrideUnauthorized struct {
 }
 
 func (o *UpdateRootRegionOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateRootRegionOverrideUnauthorized) ToString() string {
+func (o *UpdateRootRegionOverrideUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateRootRegionOverrideNotFound struct {
 }
 
 func (o *UpdateRootRegionOverrideNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateRootRegionOverrideNotFound) ToString() string {
+func (o *UpdateRootRegionOverrideNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateRootRegionOverrideInternalServerError struct {
 }
 
 func (o *UpdateRootRegionOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}][%d] updateRootRegionOverrideInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateRootRegionOverrideInternalServerError) ToString() string {
+func (o *UpdateRootRegionOverrideInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

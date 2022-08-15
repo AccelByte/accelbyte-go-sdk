@@ -78,13 +78,19 @@ type AdminCreateRoleV4Created struct {
 }
 
 func (o *AdminCreateRoleV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateRoleV4Created) ToString() string {
+func (o *AdminCreateRoleV4Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminCreateRoleV4BadRequest struct {
 }
 
 func (o *AdminCreateRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateRoleV4BadRequest) ToString() string {
+func (o *AdminCreateRoleV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminCreateRoleV4Unauthorized struct {
 }
 
 func (o *AdminCreateRoleV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateRoleV4Unauthorized) ToString() string {
+func (o *AdminCreateRoleV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminCreateRoleV4Forbidden struct {
 }
 
 func (o *AdminCreateRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/roles][%d] adminCreateRoleV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminCreateRoleV4Forbidden) ToString() string {
+func (o *AdminCreateRoleV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

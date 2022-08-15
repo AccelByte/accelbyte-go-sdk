@@ -72,13 +72,19 @@ type AdminGetBannedUsersV3OK struct {
 }
 
 func (o *AdminGetBannedUsersV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetBannedUsersV3OK) ToString() string {
+func (o *AdminGetBannedUsersV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type AdminGetBannedUsersV3Unauthorized struct {
 }
 
 func (o *AdminGetBannedUsersV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetBannedUsersV3Unauthorized) ToString() string {
+func (o *AdminGetBannedUsersV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type AdminGetBannedUsersV3Forbidden struct {
 }
 
 func (o *AdminGetBannedUsersV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bans/users][%d] adminGetBannedUsersV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetBannedUsersV3Forbidden) ToString() string {
+func (o *AdminGetBannedUsersV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

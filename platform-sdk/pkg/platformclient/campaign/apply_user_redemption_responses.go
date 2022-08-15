@@ -78,13 +78,19 @@ type ApplyUserRedemptionOK struct {
 }
 
 func (o *ApplyUserRedemptionOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ApplyUserRedemptionOK) ToString() string {
+func (o *ApplyUserRedemptionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ApplyUserRedemptionNotFound struct {
 }
 
 func (o *ApplyUserRedemptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ApplyUserRedemptionNotFound) ToString() string {
+func (o *ApplyUserRedemptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ApplyUserRedemptionConflict struct {
 }
 
 func (o *ApplyUserRedemptionConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *ApplyUserRedemptionConflict) ToString() string {
+func (o *ApplyUserRedemptionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ApplyUserRedemptionUnprocessableEntity struct {
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ApplyUserRedemptionUnprocessableEntity) ToString() string {
+func (o *ApplyUserRedemptionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

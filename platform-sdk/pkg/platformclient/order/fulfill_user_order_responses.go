@@ -78,13 +78,19 @@ type FulfillUserOrderOK struct {
 }
 
 func (o *FulfillUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *FulfillUserOrderOK) ToString() string {
+func (o *FulfillUserOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type FulfillUserOrderBadRequest struct {
 }
 
 func (o *FulfillUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *FulfillUserOrderBadRequest) ToString() string {
+func (o *FulfillUserOrderBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type FulfillUserOrderNotFound struct {
 }
 
 func (o *FulfillUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *FulfillUserOrderNotFound) ToString() string {
+func (o *FulfillUserOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type FulfillUserOrderConflict struct {
 }
 
 func (o *FulfillUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *FulfillUserOrderConflict) ToString() string {
+func (o *FulfillUserOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type PublicDownloadContentByContentIDOK struct {
 }
 
 func (o *PublicDownloadContentByContentIDOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicDownloadContentByContentIDOK) ToString() string {
+func (o *PublicDownloadContentByContentIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicDownloadContentByContentIDUnauthorized struct {
 }
 
 func (o *PublicDownloadContentByContentIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicDownloadContentByContentIDUnauthorized) ToString() string {
+func (o *PublicDownloadContentByContentIDUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicDownloadContentByContentIDNotFound struct {
 }
 
 func (o *PublicDownloadContentByContentIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDownloadContentByContentIDNotFound) ToString() string {
+func (o *PublicDownloadContentByContentIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicDownloadContentByContentIDInternalServerError struct {
 }
 
 func (o *PublicDownloadContentByContentIDInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/{contentId}][%d] publicDownloadContentByContentIdInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicDownloadContentByContentIDInternalServerError) ToString() string {
+func (o *PublicDownloadContentByContentIDInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type PublishAllOK struct {
 }
 
 func (o *PublishAllOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublishAllOK) ToString() string {
+func (o *PublishAllOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublishAllBadRequest struct {
 }
 
 func (o *PublishAllBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublishAllBadRequest) ToString() string {
+func (o *PublishAllBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublishAllNotFound struct {
 }
 
 func (o *PublishAllNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll][%d] publishAllNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublishAllNotFound) ToString() string {
+func (o *PublishAllNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

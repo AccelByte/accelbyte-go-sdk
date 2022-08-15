@@ -96,13 +96,19 @@ type RejectGroupJoinRequestPublicV1OK struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1OK) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -138,13 +144,19 @@ type RejectGroupJoinRequestPublicV1BadRequest struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1BadRequest) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -180,13 +192,19 @@ type RejectGroupJoinRequestPublicV1Unauthorized struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1Unauthorized) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -222,13 +240,19 @@ type RejectGroupJoinRequestPublicV1Forbidden struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1Forbidden) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -264,13 +288,19 @@ type RejectGroupJoinRequestPublicV1NotFound struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1NotFound) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -306,13 +336,19 @@ type RejectGroupJoinRequestPublicV1Conflict struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1Conflict) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -348,13 +384,19 @@ type RejectGroupJoinRequestPublicV1InternalServerError struct {
 }
 
 func (o *RejectGroupJoinRequestPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/join/reject][%d] rejectGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RejectGroupJoinRequestPublicV1InternalServerError) ToString() string {
+func (o *RejectGroupJoinRequestPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

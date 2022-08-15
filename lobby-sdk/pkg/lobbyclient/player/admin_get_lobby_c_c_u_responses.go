@@ -90,13 +90,19 @@ type AdminGetLobbyCCUOK struct {
 }
 
 func (o *AdminGetLobbyCCUOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUOK) ToString() string {
+func (o *AdminGetLobbyCCUOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetLobbyCCUBadRequest struct {
 }
 
 func (o *AdminGetLobbyCCUBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUBadRequest) ToString() string {
+func (o *AdminGetLobbyCCUBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetLobbyCCUUnauthorized struct {
 }
 
 func (o *AdminGetLobbyCCUUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUUnauthorized) ToString() string {
+func (o *AdminGetLobbyCCUUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetLobbyCCUForbidden struct {
 }
 
 func (o *AdminGetLobbyCCUForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUForbidden) ToString() string {
+func (o *AdminGetLobbyCCUForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetLobbyCCUNotFound struct {
 }
 
 func (o *AdminGetLobbyCCUNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUNotFound) ToString() string {
+func (o *AdminGetLobbyCCUNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetLobbyCCUInternalServerError struct {
 }
 
 func (o *AdminGetLobbyCCUInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/ccu][%d] adminGetLobbyCCUInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetLobbyCCUInternalServerError) ToString() string {
+func (o *AdminGetLobbyCCUInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

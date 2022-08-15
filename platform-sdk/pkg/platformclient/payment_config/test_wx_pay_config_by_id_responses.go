@@ -66,13 +66,19 @@ type TestWxPayConfigByIDOK struct {
 }
 
 func (o *TestWxPayConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestWxPayConfigByIDOK) ToString() string {
+func (o *TestWxPayConfigByIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type TestWxPayConfigByIDNotFound struct {
 }
 
 func (o *TestWxPayConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *TestWxPayConfigByIDNotFound) ToString() string {
+func (o *TestWxPayConfigByIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

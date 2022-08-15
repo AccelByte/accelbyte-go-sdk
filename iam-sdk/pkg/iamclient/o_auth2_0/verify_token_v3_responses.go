@@ -66,13 +66,19 @@ type VerifyTokenV3OK struct {
 }
 
 func (o *VerifyTokenV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/verify][%d] verifyTokenV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/verify][%d] verifyTokenV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *VerifyTokenV3OK) ToString() string {
+func (o *VerifyTokenV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

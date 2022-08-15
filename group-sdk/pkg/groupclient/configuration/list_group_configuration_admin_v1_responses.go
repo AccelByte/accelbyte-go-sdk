@@ -90,13 +90,19 @@ type ListGroupConfigurationAdminV1OK struct {
 }
 
 func (o *ListGroupConfigurationAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1OK) ToString() string {
+func (o *ListGroupConfigurationAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type ListGroupConfigurationAdminV1BadRequest struct {
 }
 
 func (o *ListGroupConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1BadRequest) ToString() string {
+func (o *ListGroupConfigurationAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type ListGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *ListGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1Unauthorized) ToString() string {
+func (o *ListGroupConfigurationAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type ListGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *ListGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1Forbidden) ToString() string {
+func (o *ListGroupConfigurationAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type ListGroupConfigurationAdminV1NotFound struct {
 }
 
 func (o *ListGroupConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1NotFound) ToString() string {
+func (o *ListGroupConfigurationAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type ListGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *ListGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListGroupConfigurationAdminV1InternalServerError) ToString() string {
+func (o *ListGroupConfigurationAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

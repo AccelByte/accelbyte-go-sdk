@@ -78,13 +78,19 @@ type UpdateStoreOK struct {
 }
 
 func (o *UpdateStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateStoreOK) ToString() string {
+func (o *UpdateStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateStoreNotFound struct {
 }
 
 func (o *UpdateStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateStoreNotFound) ToString() string {
+func (o *UpdateStoreNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateStoreConflict struct {
 }
 
 func (o *UpdateStoreConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateStoreConflict) ToString() string {
+func (o *UpdateStoreConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateStoreUnprocessableEntity struct {
 }
 
 func (o *UpdateStoreUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateStoreUnprocessableEntity) ToString() string {
+func (o *UpdateStoreUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

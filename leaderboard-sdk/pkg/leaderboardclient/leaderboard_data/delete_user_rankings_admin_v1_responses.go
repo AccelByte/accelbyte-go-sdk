@@ -105,13 +105,19 @@ type DeleteUserRankingsAdminV1Unauthorized struct {
 }
 
 func (o *DeleteUserRankingsAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteUserRankingsAdminV1Unauthorized) ToString() string {
+func (o *DeleteUserRankingsAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteUserRankingsAdminV1Forbidden struct {
 }
 
 func (o *DeleteUserRankingsAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteUserRankingsAdminV1Forbidden) ToString() string {
+func (o *DeleteUserRankingsAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteUserRankingsAdminV1NotFound struct {
 }
 
 func (o *DeleteUserRankingsAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteUserRankingsAdminV1NotFound) ToString() string {
+func (o *DeleteUserRankingsAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteUserRankingsAdminV1InternalServerError struct {
 }
 
 func (o *DeleteUserRankingsAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteUserRankingsAdminV1InternalServerError) ToString() string {
+func (o *DeleteUserRankingsAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -99,13 +99,19 @@ type DeleteAllUserGroupUnauthorized struct {
 }
 
 func (o *DeleteAllUserGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteAllUserGroupUnauthorized) ToString() string {
+func (o *DeleteAllUserGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteAllUserGroupNotFound struct {
 }
 
 func (o *DeleteAllUserGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteAllUserGroupNotFound) ToString() string {
+func (o *DeleteAllUserGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteAllUserGroupInternalServerError struct {
 }
 
 func (o *DeleteAllUserGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] deleteAllUserGroupInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteAllUserGroupInternalServerError) ToString() string {
+func (o *DeleteAllUserGroupInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

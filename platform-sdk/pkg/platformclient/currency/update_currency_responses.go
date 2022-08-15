@@ -72,13 +72,19 @@ type UpdateCurrencyOK struct {
 }
 
 func (o *UpdateCurrencyOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCurrencyOK) ToString() string {
+func (o *UpdateCurrencyOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type UpdateCurrencyNotFound struct {
 }
 
 func (o *UpdateCurrencyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateCurrencyNotFound) ToString() string {
+func (o *UpdateCurrencyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type UpdateCurrencyUnprocessableEntity struct {
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateCurrencyUnprocessableEntity) ToString() string {
+func (o *UpdateCurrencyUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

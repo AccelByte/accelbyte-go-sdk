@@ -66,13 +66,19 @@ type GetPaymentMerchantConfigOK struct {
 }
 
 func (o *GetPaymentMerchantConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPaymentMerchantConfigOK) ToString() string {
+func (o *GetPaymentMerchantConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetPaymentMerchantConfigNotFound struct {
 }
 
 func (o *GetPaymentMerchantConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPaymentMerchantConfigNotFound) ToString() string {
+func (o *GetPaymentMerchantConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

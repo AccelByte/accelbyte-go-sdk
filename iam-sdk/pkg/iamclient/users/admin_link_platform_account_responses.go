@@ -105,13 +105,19 @@ type AdminLinkPlatformAccountBadRequest struct {
 }
 
 func (o *AdminLinkPlatformAccountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminLinkPlatformAccountBadRequest) ToString() string {
+func (o *AdminLinkPlatformAccountBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminLinkPlatformAccountUnauthorized struct {
 }
 
 func (o *AdminLinkPlatformAccountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminLinkPlatformAccountUnauthorized) ToString() string {
+func (o *AdminLinkPlatformAccountUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminLinkPlatformAccountForbidden struct {
 }
 
 func (o *AdminLinkPlatformAccountForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminLinkPlatformAccountForbidden) ToString() string {
+func (o *AdminLinkPlatformAccountForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminLinkPlatformAccountInternalServerError struct {
 }
 
 func (o *AdminLinkPlatformAccountInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link][%d] adminLinkPlatformAccountInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminLinkPlatformAccountInternalServerError) ToString() string {
+func (o *AdminLinkPlatformAccountInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

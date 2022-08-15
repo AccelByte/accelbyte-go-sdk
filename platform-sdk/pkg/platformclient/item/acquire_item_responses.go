@@ -66,13 +66,19 @@ type AcquireItemOK struct {
 }
 
 func (o *AcquireItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AcquireItemOK) ToString() string {
+func (o *AcquireItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type AcquireItemNotFound struct {
 }
 
 func (o *AcquireItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AcquireItemNotFound) ToString() string {
+func (o *AcquireItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

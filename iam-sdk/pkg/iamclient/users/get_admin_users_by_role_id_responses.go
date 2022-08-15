@@ -90,13 +90,19 @@ type GetAdminUsersByRoleIDOK struct {
 }
 
 func (o *GetAdminUsersByRoleIDOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAdminUsersByRoleIDOK) ToString() string {
+func (o *GetAdminUsersByRoleIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetAdminUsersByRoleIDBadRequest struct {
 }
 
 func (o *GetAdminUsersByRoleIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/admin][%d] getAdminUsersByRoleIdBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetAdminUsersByRoleIDBadRequest) ToString() string {
+func (o *GetAdminUsersByRoleIDBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

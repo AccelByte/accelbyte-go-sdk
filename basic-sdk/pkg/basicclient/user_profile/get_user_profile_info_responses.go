@@ -84,13 +84,19 @@ type GetUserProfileInfoOK struct {
 }
 
 func (o *GetUserProfileInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoOK) ToString() string {
+func (o *GetUserProfileInfoOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetUserProfileInfoBadRequest struct {
 }
 
 func (o *GetUserProfileInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoBadRequest) ToString() string {
+func (o *GetUserProfileInfoBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetUserProfileInfoUnauthorized struct {
 }
 
 func (o *GetUserProfileInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoUnauthorized) ToString() string {
+func (o *GetUserProfileInfoUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetUserProfileInfoForbidden struct {
 }
 
 func (o *GetUserProfileInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoForbidden) ToString() string {
+func (o *GetUserProfileInfoForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetUserProfileInfoNotFound struct {
 }
 
 func (o *GetUserProfileInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] getUserProfileInfoNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoNotFound) ToString() string {
+func (o *GetUserProfileInfoNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

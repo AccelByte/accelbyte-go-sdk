@@ -72,13 +72,19 @@ type PublicUpdateProfileOK struct {
 }
 
 func (o *PublicUpdateProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpdateProfileOK) ToString() string {
+func (o *PublicUpdateProfileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicUpdateProfileNotFound struct {
 }
 
 func (o *PublicUpdateProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpdateProfileNotFound) ToString() string {
+func (o *PublicUpdateProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicUpdateProfileUnprocessableEntity struct {
 }
 
 func (o *PublicUpdateProfileUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicUpdateProfileUnprocessableEntity) ToString() string {
+func (o *PublicUpdateProfileUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

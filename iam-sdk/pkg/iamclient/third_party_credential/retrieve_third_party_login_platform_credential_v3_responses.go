@@ -84,13 +84,19 @@ type RetrieveThirdPartyLoginPlatformCredentialV3OK struct {
 }
 
 func (o *RetrieveThirdPartyLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveThirdPartyLoginPlatformCredentialV3OK) ToString() string {
+func (o *RetrieveThirdPartyLoginPlatformCredentialV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +174,19 @@ type RetrieveThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *RetrieveThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *RetrieveThirdPartyLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +222,19 @@ type RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] retrieveThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

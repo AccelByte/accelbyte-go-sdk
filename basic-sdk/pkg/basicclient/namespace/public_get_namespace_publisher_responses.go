@@ -84,13 +84,19 @@ type PublicGetNamespacePublisherOK struct {
 }
 
 func (o *PublicGetNamespacePublisherOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetNamespacePublisherOK) ToString() string {
+func (o *PublicGetNamespacePublisherOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicGetNamespacePublisherBadRequest struct {
 }
 
 func (o *PublicGetNamespacePublisherBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetNamespacePublisherBadRequest) ToString() string {
+func (o *PublicGetNamespacePublisherBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicGetNamespacePublisherUnauthorized struct {
 }
 
 func (o *PublicGetNamespacePublisherUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetNamespacePublisherUnauthorized) ToString() string {
+func (o *PublicGetNamespacePublisherUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicGetNamespacePublisherForbidden struct {
 }
 
 func (o *PublicGetNamespacePublisherForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetNamespacePublisherForbidden) ToString() string {
+func (o *PublicGetNamespacePublisherForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicGetNamespacePublisherNotFound struct {
 }
 
 func (o *PublicGetNamespacePublisherNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/publisher][%d] publicGetNamespacePublisherNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetNamespacePublisherNotFound) ToString() string {
+func (o *PublicGetNamespacePublisherNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

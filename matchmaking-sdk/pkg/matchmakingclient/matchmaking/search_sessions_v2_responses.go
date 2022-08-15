@@ -90,13 +90,19 @@ type SearchSessionsV2OK struct {
 }
 
 func (o *SearchSessionsV2OK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2OK) ToString() string {
+func (o *SearchSessionsV2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type SearchSessionsV2BadRequest struct {
 }
 
 func (o *SearchSessionsV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2BadRequest) ToString() string {
+func (o *SearchSessionsV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type SearchSessionsV2Unauthorized struct {
 }
 
 func (o *SearchSessionsV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2Unauthorized) ToString() string {
+func (o *SearchSessionsV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type SearchSessionsV2Forbidden struct {
 }
 
 func (o *SearchSessionsV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2Forbidden) ToString() string {
+func (o *SearchSessionsV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type SearchSessionsV2NotFound struct {
 }
 
 func (o *SearchSessionsV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2NotFound) ToString() string {
+func (o *SearchSessionsV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type SearchSessionsV2InternalServerError struct {
 }
 
 func (o *SearchSessionsV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search][%d] searchSessionsV2InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SearchSessionsV2InternalServerError) ToString() string {
+func (o *SearchSessionsV2InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type CreatePaymentProviderConfigOK struct {
 }
 
 func (o *CreatePaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CreatePaymentProviderConfigOK) ToString() string {
+func (o *CreatePaymentProviderConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CreatePaymentProviderConfigBadRequest struct {
 }
 
 func (o *CreatePaymentProviderConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreatePaymentProviderConfigBadRequest) ToString() string {
+func (o *CreatePaymentProviderConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CreatePaymentProviderConfigConflict struct {
 }
 
 func (o *CreatePaymentProviderConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreatePaymentProviderConfigConflict) ToString() string {
+func (o *CreatePaymentProviderConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CreatePaymentProviderConfigUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentProviderConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreatePaymentProviderConfigUnprocessableEntity) ToString() string {
+func (o *CreatePaymentProviderConfigUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

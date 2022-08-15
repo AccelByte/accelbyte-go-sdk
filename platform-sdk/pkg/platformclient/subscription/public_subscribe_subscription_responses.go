@@ -111,13 +111,19 @@ type PublicSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PublicSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicSubscribeSubscriptionBadRequest) ToString() string {
+func (o *PublicSubscribeSubscriptionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type PublicSubscribeSubscriptionForbidden struct {
 }
 
 func (o *PublicSubscribeSubscriptionForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicSubscribeSubscriptionForbidden) ToString() string {
+func (o *PublicSubscribeSubscriptionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type PublicSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PublicSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicSubscribeSubscriptionNotFound) ToString() string {
+func (o *PublicSubscribeSubscriptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type PublicSubscribeSubscriptionConflict struct {
 }
 
 func (o *PublicSubscribeSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicSubscribeSubscriptionConflict) ToString() string {
+func (o *PublicSubscribeSubscriptionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type PublicSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PublicSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicSubscribeSubscriptionUnprocessableEntity) ToString() string {
+func (o *PublicSubscribeSubscriptionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

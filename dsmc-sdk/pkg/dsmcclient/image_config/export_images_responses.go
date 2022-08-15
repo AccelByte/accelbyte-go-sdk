@@ -84,13 +84,19 @@ type ExportImagesOK struct {
 }
 
 func (o *ExportImagesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ExportImagesOK) ToString() string {
+func (o *ExportImagesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type ExportImagesUnauthorized struct {
 }
 
 func (o *ExportImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ExportImagesUnauthorized) ToString() string {
+func (o *ExportImagesUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type ExportImagesForbidden struct {
 }
 
 func (o *ExportImagesForbidden) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ExportImagesForbidden) ToString() string {
+func (o *ExportImagesForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type ExportImagesNotFound struct {
 }
 
 func (o *ExportImagesNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ExportImagesNotFound) ToString() string {
+func (o *ExportImagesNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type ExportImagesInternalServerError struct {
 }
 
 func (o *ExportImagesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/export][%d] exportImagesInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ExportImagesInternalServerError) ToString() string {
+func (o *ExportImagesInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

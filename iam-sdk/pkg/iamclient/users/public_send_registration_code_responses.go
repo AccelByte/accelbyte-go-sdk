@@ -93,13 +93,19 @@ type PublicSendRegistrationCodeBadRequest struct {
 }
 
 func (o *PublicSendRegistrationCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicSendRegistrationCodeBadRequest) ToString() string {
+func (o *PublicSendRegistrationCodeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type PublicSendRegistrationCodeConflict struct {
 }
 
 func (o *PublicSendRegistrationCodeConflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/code/request][%d] publicSendRegistrationCodeConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicSendRegistrationCodeConflict) ToString() string {
+func (o *PublicSendRegistrationCodeConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type ExportConfigV1OK struct {
 }
 
 func (o *ExportConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ExportConfigV1OK) ToString() string {
+func (o *ExportConfigV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type ExportConfigV1Unauthorized struct {
 }
 
 func (o *ExportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ExportConfigV1Unauthorized) ToString() string {
+func (o *ExportConfigV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type ExportConfigV1Forbidden struct {
 }
 
 func (o *ExportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ExportConfigV1Forbidden) ToString() string {
+func (o *ExportConfigV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type ExportConfigV1NotFound struct {
 }
 
 func (o *ExportConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ExportConfigV1NotFound) ToString() string {
+func (o *ExportConfigV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type ExportConfigV1InternalServerError struct {
 }
 
 func (o *ExportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ExportConfigV1InternalServerError) ToString() string {
+func (o *ExportConfigV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

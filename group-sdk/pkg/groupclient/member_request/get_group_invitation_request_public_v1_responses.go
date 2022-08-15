@@ -84,13 +84,19 @@ type GetGroupInvitationRequestPublicV1OK struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGroupInvitationRequestPublicV1OK) ToString() string {
+func (o *GetGroupInvitationRequestPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetGroupInvitationRequestPublicV1BadRequest struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetGroupInvitationRequestPublicV1BadRequest) ToString() string {
+func (o *GetGroupInvitationRequestPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetGroupInvitationRequestPublicV1Unauthorized struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetGroupInvitationRequestPublicV1Unauthorized) ToString() string {
+func (o *GetGroupInvitationRequestPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetGroupInvitationRequestPublicV1Forbidden struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetGroupInvitationRequestPublicV1Forbidden) ToString() string {
+func (o *GetGroupInvitationRequestPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetGroupInvitationRequestPublicV1InternalServerError struct {
 }
 
 func (o *GetGroupInvitationRequestPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/users/me/invite/request][%d] getGroupInvitationRequestPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetGroupInvitationRequestPublicV1InternalServerError) ToString() string {
+func (o *GetGroupInvitationRequestPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

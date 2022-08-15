@@ -84,13 +84,19 @@ type RetrieveAllSSOLoginPlatformCredentialV3OK struct {
 }
 
 func (o *RetrieveAllSSOLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveAllSSOLoginPlatformCredentialV3OK) ToString() string {
+func (o *RetrieveAllSSOLoginPlatformCredentialV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +172,19 @@ type RetrieveAllSSOLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *RetrieveAllSSOLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveAllSSOLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *RetrieveAllSSOLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +220,19 @@ type RetrieveAllSSOLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/platforms/sso][%d] retrieveAllSSOLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

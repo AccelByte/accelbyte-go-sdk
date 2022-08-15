@@ -72,13 +72,19 @@ type ResetUserStatItemValue1OK struct {
 }
 
 func (o *ResetUserStatItemValue1OK) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ResetUserStatItemValue1OK) ToString() string {
+func (o *ResetUserStatItemValue1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type ResetUserStatItemValue1BadRequest struct {
 }
 
 func (o *ResetUserStatItemValue1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ResetUserStatItemValue1BadRequest) ToString() string {
+func (o *ResetUserStatItemValue1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type ResetUserStatItemValue1NotFound struct {
 }
 
 func (o *ResetUserStatItemValue1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValue1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ResetUserStatItemValue1NotFound) ToString() string {
+func (o *ResetUserStatItemValue1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

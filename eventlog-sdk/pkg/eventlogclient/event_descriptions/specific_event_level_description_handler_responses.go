@@ -72,13 +72,19 @@ type SpecificEventLevelDescriptionHandlerOK struct {
 }
 
 func (o *SpecificEventLevelDescriptionHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/descriptions/eventLevel/listByEventLevels][%d] specificEventLevelDescriptionHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/descriptions/eventLevel/listByEventLevels][%d] specificEventLevelDescriptionHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SpecificEventLevelDescriptionHandlerOK) ToString() string {
+func (o *SpecificEventLevelDescriptionHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

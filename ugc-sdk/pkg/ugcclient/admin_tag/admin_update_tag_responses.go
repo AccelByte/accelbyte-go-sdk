@@ -90,13 +90,19 @@ type AdminUpdateTagOK struct {
 }
 
 func (o *AdminUpdateTagOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagOK) ToString() string {
+func (o *AdminUpdateTagOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminUpdateTagBadRequest struct {
 }
 
 func (o *AdminUpdateTagBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagBadRequest) ToString() string {
+func (o *AdminUpdateTagBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminUpdateTagUnauthorized struct {
 }
 
 func (o *AdminUpdateTagUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagUnauthorized) ToString() string {
+func (o *AdminUpdateTagUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminUpdateTagNotFound struct {
 }
 
 func (o *AdminUpdateTagNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagNotFound) ToString() string {
+func (o *AdminUpdateTagNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminUpdateTagConflict struct {
 }
 
 func (o *AdminUpdateTagConflict) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagConflict) ToString() string {
+func (o *AdminUpdateTagConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminUpdateTagInternalServerError struct {
 }
 
 func (o *AdminUpdateTagInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminUpdateTagInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateTagInternalServerError) ToString() string {
+func (o *AdminUpdateTagInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

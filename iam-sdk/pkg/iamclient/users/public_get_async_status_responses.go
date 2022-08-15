@@ -78,13 +78,19 @@ type PublicGetAsyncStatusOK struct {
 }
 
 func (o *PublicGetAsyncStatusOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetAsyncStatusOK) ToString() string {
+func (o *PublicGetAsyncStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetAsyncStatusUnauthorized struct {
 }
 
 func (o *PublicGetAsyncStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetAsyncStatusUnauthorized) ToString() string {
+func (o *PublicGetAsyncStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetAsyncStatusForbidden struct {
 }
 
 func (o *PublicGetAsyncStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetAsyncStatusForbidden) ToString() string {
+func (o *PublicGetAsyncStatusForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetAsyncStatusInternalServerError struct {
 }
 
 func (o *PublicGetAsyncStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status][%d] publicGetAsyncStatusInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetAsyncStatusInternalServerError) ToString() string {
+func (o *PublicGetAsyncStatusInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type PublicWebLinkPlatformOK struct {
 }
 
 func (o *PublicWebLinkPlatformOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicWebLinkPlatformOK) ToString() string {
+func (o *PublicWebLinkPlatformOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicWebLinkPlatformBadRequest struct {
 }
 
 func (o *PublicWebLinkPlatformBadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicWebLinkPlatformBadRequest) ToString() string {
+func (o *PublicWebLinkPlatformBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicWebLinkPlatformUnauthorized struct {
 }
 
 func (o *PublicWebLinkPlatformUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicWebLinkPlatformUnauthorized) ToString() string {
+func (o *PublicWebLinkPlatformUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicWebLinkPlatformNotFound struct {
 }
 
 func (o *PublicWebLinkPlatformNotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link][%d] publicWebLinkPlatformNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicWebLinkPlatformNotFound) ToString() string {
+func (o *PublicWebLinkPlatformNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

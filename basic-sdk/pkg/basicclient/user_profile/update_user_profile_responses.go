@@ -84,13 +84,19 @@ type UpdateUserProfileOK struct {
 }
 
 func (o *UpdateUserProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileOK) ToString() string {
+func (o *UpdateUserProfileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateUserProfileBadRequest struct {
 }
 
 func (o *UpdateUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileBadRequest) ToString() string {
+func (o *UpdateUserProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateUserProfileUnauthorized struct {
 }
 
 func (o *UpdateUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileUnauthorized) ToString() string {
+func (o *UpdateUserProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateUserProfileForbidden struct {
 }
 
 func (o *UpdateUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileForbidden) ToString() string {
+func (o *UpdateUserProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateUserProfileNotFound struct {
 }
 
 func (o *UpdateUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileNotFound) ToString() string {
+func (o *UpdateUserProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

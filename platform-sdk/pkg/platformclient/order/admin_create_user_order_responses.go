@@ -90,13 +90,19 @@ type AdminCreateUserOrderCreated struct {
 }
 
 func (o *AdminCreateUserOrderCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderCreated) ToString() string {
+func (o *AdminCreateUserOrderCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminCreateUserOrderBadRequest struct {
 }
 
 func (o *AdminCreateUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderBadRequest) ToString() string {
+func (o *AdminCreateUserOrderBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminCreateUserOrderForbidden struct {
 }
 
 func (o *AdminCreateUserOrderForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderForbidden) ToString() string {
+func (o *AdminCreateUserOrderForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminCreateUserOrderNotFound struct {
 }
 
 func (o *AdminCreateUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderNotFound) ToString() string {
+func (o *AdminCreateUserOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminCreateUserOrderConflict struct {
 }
 
 func (o *AdminCreateUserOrderConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderConflict) ToString() string {
+func (o *AdminCreateUserOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminCreateUserOrderUnprocessableEntity struct {
 }
 
 func (o *AdminCreateUserOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders][%d] adminCreateUserOrderUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AdminCreateUserOrderUnprocessableEntity) ToString() string {
+func (o *AdminCreateUserOrderUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

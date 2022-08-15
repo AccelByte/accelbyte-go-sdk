@@ -84,13 +84,19 @@ type GeneratedUploadURLOK struct {
 }
 
 func (o *GeneratedUploadURLOK) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GeneratedUploadURLOK) ToString() string {
+func (o *GeneratedUploadURLOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GeneratedUploadURLBadRequest struct {
 }
 
 func (o *GeneratedUploadURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GeneratedUploadURLBadRequest) ToString() string {
+func (o *GeneratedUploadURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GeneratedUploadURLUnauthorized struct {
 }
 
 func (o *GeneratedUploadURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GeneratedUploadURLUnauthorized) ToString() string {
+func (o *GeneratedUploadURLUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GeneratedUploadURLForbidden struct {
 }
 
 func (o *GeneratedUploadURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GeneratedUploadURLForbidden) ToString() string {
+func (o *GeneratedUploadURLForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GeneratedUploadURLInternalServerError struct {
 }
 
 func (o *GeneratedUploadURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/folders/{folder}/files][%d] generatedUploadUrlInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GeneratedUploadURLInternalServerError) ToString() string {
+func (o *GeneratedUploadURLInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

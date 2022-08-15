@@ -84,13 +84,19 @@ type AdminGetThirdPartyConfigOK struct {
 }
 
 func (o *AdminGetThirdPartyConfigOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetThirdPartyConfigOK) ToString() string {
+func (o *AdminGetThirdPartyConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminGetThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetThirdPartyConfigBadRequest) ToString() string {
+func (o *AdminGetThirdPartyConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminGetThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetThirdPartyConfigUnauthorized) ToString() string {
+func (o *AdminGetThirdPartyConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminGetThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetThirdPartyConfigForbidden) ToString() string {
+func (o *AdminGetThirdPartyConfigForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminGetThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetThirdPartyConfigInternalServerError) ToString() string {
+func (o *AdminGetThirdPartyConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -111,13 +111,19 @@ type UserUnfriendRequestBadRequest struct {
 }
 
 func (o *UserUnfriendRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UserUnfriendRequestBadRequest) ToString() string {
+func (o *UserUnfriendRequestBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type UserUnfriendRequestUnauthorized struct {
 }
 
 func (o *UserUnfriendRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UserUnfriendRequestUnauthorized) ToString() string {
+func (o *UserUnfriendRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type UserUnfriendRequestForbidden struct {
 }
 
 func (o *UserUnfriendRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UserUnfriendRequestForbidden) ToString() string {
+func (o *UserUnfriendRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type UserUnfriendRequestNotFound struct {
 }
 
 func (o *UserUnfriendRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UserUnfriendRequestNotFound) ToString() string {
+func (o *UserUnfriendRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type UserUnfriendRequestInternalServerError struct {
 }
 
 func (o *UserUnfriendRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/unfriend][%d] userUnfriendRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UserUnfriendRequestInternalServerError) ToString() string {
+func (o *UserUnfriendRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

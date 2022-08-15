@@ -66,13 +66,19 @@ type BulkFetchStatItems1OK struct {
 }
 
 func (o *BulkFetchStatItems1OK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkFetchStatItems1OK) ToString() string {
+func (o *BulkFetchStatItems1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type BulkFetchStatItems1UnprocessableEntity struct {
 }
 
 func (o *BulkFetchStatItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *BulkFetchStatItems1UnprocessableEntity) ToString() string {
+func (o *BulkFetchStatItems1UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -111,13 +111,19 @@ type PublicDownloadMyBackupCodesV4BadRequest struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicDownloadMyBackupCodesV4BadRequest) ToString() string {
+func (o *PublicDownloadMyBackupCodesV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type PublicDownloadMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicDownloadMyBackupCodesV4Unauthorized) ToString() string {
+func (o *PublicDownloadMyBackupCodesV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type PublicDownloadMyBackupCodesV4Forbidden struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicDownloadMyBackupCodesV4Forbidden) ToString() string {
+func (o *PublicDownloadMyBackupCodesV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type PublicDownloadMyBackupCodesV4NotFound struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDownloadMyBackupCodesV4NotFound) ToString() string {
+func (o *PublicDownloadMyBackupCodesV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type PublicDownloadMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *PublicDownloadMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download][%d] publicDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicDownloadMyBackupCodesV4InternalServerError) ToString() string {
+func (o *PublicDownloadMyBackupCodesV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

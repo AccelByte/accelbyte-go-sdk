@@ -90,13 +90,19 @@ type CreateLeaderboardConfigurationPublicV1Created struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Created) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1Created) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateLeaderboardConfigurationPublicV1BadRequest struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1BadRequest) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateLeaderboardConfigurationPublicV1Unauthorized struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateLeaderboardConfigurationPublicV1Forbidden struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1Forbidden) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateLeaderboardConfigurationPublicV1Conflict struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1Conflict) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateLeaderboardConfigurationPublicV1InternalServerError struct {
 }
 
 func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /leaderboard/v1/public/namespaces/{namespace}/leaderboards][%d] createLeaderboardConfigurationPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) ToString() string {
+func (o *CreateLeaderboardConfigurationPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

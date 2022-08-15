@@ -66,13 +66,19 @@ type PublicGetUserOrderOK struct {
 }
 
 func (o *PublicGetUserOrderOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserOrderOK) ToString() string {
+func (o *PublicGetUserOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetUserOrderNotFound struct {
 }
 
 func (o *PublicGetUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] publicGetUserOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserOrderNotFound) ToString() string {
+func (o *PublicGetUserOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

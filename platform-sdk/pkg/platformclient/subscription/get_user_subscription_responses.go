@@ -66,13 +66,19 @@ type GetUserSubscriptionOK struct {
 }
 
 func (o *GetUserSubscriptionOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] getUserSubscriptionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] getUserSubscriptionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserSubscriptionOK) ToString() string {
+func (o *GetUserSubscriptionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetUserSubscriptionNotFound struct {
 }
 
 func (o *GetUserSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] getUserSubscriptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] getUserSubscriptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserSubscriptionNotFound) ToString() string {
+func (o *GetUserSubscriptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

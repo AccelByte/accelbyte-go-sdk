@@ -90,13 +90,19 @@ type UpdatePlayTimeWeightOK struct {
 }
 
 func (o *UpdatePlayTimeWeightOK) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightOK) ToString() string {
+func (o *UpdatePlayTimeWeightOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdatePlayTimeWeightBadRequest struct {
 }
 
 func (o *UpdatePlayTimeWeightBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightBadRequest) ToString() string {
+func (o *UpdatePlayTimeWeightBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdatePlayTimeWeightUnauthorized struct {
 }
 
 func (o *UpdatePlayTimeWeightUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightUnauthorized) ToString() string {
+func (o *UpdatePlayTimeWeightUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdatePlayTimeWeightForbidden struct {
 }
 
 func (o *UpdatePlayTimeWeightForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightForbidden) ToString() string {
+func (o *UpdatePlayTimeWeightForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdatePlayTimeWeightNotFound struct {
 }
 
 func (o *UpdatePlayTimeWeightNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightNotFound) ToString() string {
+func (o *UpdatePlayTimeWeightNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdatePlayTimeWeightInternalServerError struct {
 }
 
 func (o *UpdatePlayTimeWeightInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /matchmaking/social/playtime/namespaces/{namespace}/weight][%d] updatePlayTimeWeightInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdatePlayTimeWeightInternalServerError) ToString() string {
+func (o *UpdatePlayTimeWeightInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -111,13 +111,19 @@ type DeletePodConfigBadRequest struct {
 }
 
 func (o *DeletePodConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeletePodConfigBadRequest) ToString() string {
+func (o *DeletePodConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeletePodConfigUnauthorized struct {
 }
 
 func (o *DeletePodConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeletePodConfigUnauthorized) ToString() string {
+func (o *DeletePodConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeletePodConfigNotFound struct {
 }
 
 func (o *DeletePodConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeletePodConfigNotFound) ToString() string {
+func (o *DeletePodConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeletePodConfigConflict struct {
 }
 
 func (o *DeletePodConfigConflict) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeletePodConfigConflict) ToString() string {
+func (o *DeletePodConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeletePodConfigInternalServerError struct {
 }
 
 func (o *DeletePodConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] deletePodConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeletePodConfigInternalServerError) ToString() string {
+func (o *DeletePodConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

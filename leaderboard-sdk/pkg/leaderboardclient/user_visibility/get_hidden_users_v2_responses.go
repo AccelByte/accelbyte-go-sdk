@@ -90,13 +90,19 @@ type GetHiddenUsersV2OK struct {
 }
 
 func (o *GetHiddenUsersV2OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2OK) ToString() string {
+func (o *GetHiddenUsersV2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetHiddenUsersV2BadRequest struct {
 }
 
 func (o *GetHiddenUsersV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2BadRequest) ToString() string {
+func (o *GetHiddenUsersV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetHiddenUsersV2Unauthorized struct {
 }
 
 func (o *GetHiddenUsersV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2Unauthorized) ToString() string {
+func (o *GetHiddenUsersV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetHiddenUsersV2Forbidden struct {
 }
 
 func (o *GetHiddenUsersV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2Forbidden) ToString() string {
+func (o *GetHiddenUsersV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetHiddenUsersV2NotFound struct {
 }
 
 func (o *GetHiddenUsersV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2NotFound) ToString() string {
+func (o *GetHiddenUsersV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetHiddenUsersV2InternalServerError struct {
 }
 
 func (o *GetHiddenUsersV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV2InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetHiddenUsersV2InternalServerError) ToString() string {
+func (o *GetHiddenUsersV2InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

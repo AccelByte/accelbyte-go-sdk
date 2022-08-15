@@ -78,13 +78,19 @@ type AddPlayerToSessionOK struct {
 }
 
 func (o *AddPlayerToSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AddPlayerToSessionOK) ToString() string {
+func (o *AddPlayerToSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AddPlayerToSessionBadRequest struct {
 }
 
 func (o *AddPlayerToSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddPlayerToSessionBadRequest) ToString() string {
+func (o *AddPlayerToSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AddPlayerToSessionNotFound struct {
 }
 
 func (o *AddPlayerToSessionNotFound) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AddPlayerToSessionNotFound) ToString() string {
+func (o *AddPlayerToSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AddPlayerToSessionInternalServerError struct {
 }
 
 func (o *AddPlayerToSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddPlayerToSessionInternalServerError) ToString() string {
+func (o *AddPlayerToSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

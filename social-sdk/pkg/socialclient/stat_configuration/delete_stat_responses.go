@@ -87,13 +87,19 @@ type DeleteStatNotFound struct {
 }
 
 func (o *DeleteStatNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteStatNotFound) ToString() string {
+func (o *DeleteStatNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

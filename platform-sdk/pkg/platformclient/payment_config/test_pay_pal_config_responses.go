@@ -60,13 +60,19 @@ type TestPayPalConfigOK struct {
 }
 
 func (o *TestPayPalConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/paypalconfig/test][%d] testPayPalConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/paypalconfig/test][%d] testPayPalConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestPayPalConfigOK) ToString() string {
+func (o *TestPayPalConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

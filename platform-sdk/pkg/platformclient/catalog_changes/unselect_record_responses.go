@@ -93,13 +93,19 @@ type UnselectRecordNotFound struct {
 }
 
 func (o *UnselectRecordNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UnselectRecordNotFound) ToString() string {
+func (o *UnselectRecordNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type UnselectRecordConflict struct {
 }
 
 func (o *UnselectRecordConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/{changeId}/unselect][%d] unselectRecordConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UnselectRecordConflict) ToString() string {
+func (o *UnselectRecordConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

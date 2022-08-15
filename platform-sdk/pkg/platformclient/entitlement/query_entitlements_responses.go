@@ -60,13 +60,19 @@ type QueryEntitlementsOK struct {
 }
 
 func (o *QueryEntitlementsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements][%d] queryEntitlementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements][%d] queryEntitlementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryEntitlementsOK) ToString() string {
+func (o *QueryEntitlementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

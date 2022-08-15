@@ -99,13 +99,19 @@ type DeleteGameRecordHandlerV1BadRequest struct {
 }
 
 func (o *DeleteGameRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteGameRecordHandlerV1BadRequest) ToString() string {
+func (o *DeleteGameRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteGameRecordHandlerV1Unauthorized struct {
 }
 
 func (o *DeleteGameRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteGameRecordHandlerV1Unauthorized) ToString() string {
+func (o *DeleteGameRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteGameRecordHandlerV1InternalServerError) ToString() string {
+func (o *DeleteGameRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -87,13 +87,19 @@ type SelectAllRecordsNotFound struct {
 }
 
 func (o *SelectAllRecordsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/selectAll][%d] selectAllRecordsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/selectAll][%d] selectAllRecordsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SelectAllRecordsNotFound) ToString() string {
+func (o *SelectAllRecordsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -90,13 +90,19 @@ type AddPortCreated struct {
 }
 
 func (o *AddPortCreated) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AddPortCreated) ToString() string {
+func (o *AddPortCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AddPortBadRequest struct {
 }
 
 func (o *AddPortBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddPortBadRequest) ToString() string {
+func (o *AddPortBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AddPortUnauthorized struct {
 }
 
 func (o *AddPortUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AddPortUnauthorized) ToString() string {
+func (o *AddPortUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AddPortNotFound struct {
 }
 
 func (o *AddPortNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AddPortNotFound) ToString() string {
+func (o *AddPortNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AddPortConflict struct {
 }
 
 func (o *AddPortConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AddPortConflict) ToString() string {
+func (o *AddPortConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AddPortInternalServerError struct {
 }
 
 func (o *AddPortInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}][%d] addPortInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddPortInternalServerError) ToString() string {
+func (o *AddPortInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

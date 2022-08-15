@@ -105,13 +105,19 @@ type DeleteConfigBadRequest struct {
 }
 
 func (o *DeleteConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteConfigBadRequest) ToString() string {
+func (o *DeleteConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteConfigUnauthorized struct {
 }
 
 func (o *DeleteConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteConfigUnauthorized) ToString() string {
+func (o *DeleteConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteConfigNotFound struct {
 }
 
 func (o *DeleteConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteConfigNotFound) ToString() string {
+func (o *DeleteConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteConfigInternalServerError struct {
 }
 
 func (o *DeleteConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs][%d] deleteConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteConfigInternalServerError) ToString() string {
+func (o *DeleteConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

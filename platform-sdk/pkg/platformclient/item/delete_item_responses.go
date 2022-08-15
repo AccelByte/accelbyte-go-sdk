@@ -87,13 +87,19 @@ type DeleteItemNotFound struct {
 }
 
 func (o *DeleteItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteItemNotFound) ToString() string {
+func (o *DeleteItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type SearchChannelSpecificContentOK struct {
 }
 
 func (o *SearchChannelSpecificContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SearchChannelSpecificContentOK) ToString() string {
+func (o *SearchChannelSpecificContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type SearchChannelSpecificContentUnauthorized struct {
 }
 
 func (o *SearchChannelSpecificContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SearchChannelSpecificContentUnauthorized) ToString() string {
+func (o *SearchChannelSpecificContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type SearchChannelSpecificContentNotFound struct {
 }
 
 func (o *SearchChannelSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SearchChannelSpecificContentNotFound) ToString() string {
+func (o *SearchChannelSpecificContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type SearchChannelSpecificContentInternalServerError struct {
 }
 
 func (o *SearchChannelSpecificContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents][%d] searchChannelSpecificContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SearchChannelSpecificContentInternalServerError) ToString() string {
+func (o *SearchChannelSpecificContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

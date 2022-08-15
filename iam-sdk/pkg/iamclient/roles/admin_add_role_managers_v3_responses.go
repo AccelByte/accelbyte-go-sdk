@@ -111,13 +111,19 @@ type AdminAddRoleManagersV3BadRequest struct {
 }
 
 func (o *AdminAddRoleManagersV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminAddRoleManagersV3BadRequest) ToString() string {
+func (o *AdminAddRoleManagersV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminAddRoleManagersV3Unauthorized struct {
 }
 
 func (o *AdminAddRoleManagersV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminAddRoleManagersV3Unauthorized) ToString() string {
+func (o *AdminAddRoleManagersV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminAddRoleManagersV3Forbidden struct {
 }
 
 func (o *AdminAddRoleManagersV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminAddRoleManagersV3Forbidden) ToString() string {
+func (o *AdminAddRoleManagersV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminAddRoleManagersV3NotFound struct {
 }
 
 func (o *AdminAddRoleManagersV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminAddRoleManagersV3NotFound) ToString() string {
+func (o *AdminAddRoleManagersV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminAddRoleManagersV3Conflict struct {
 }
 
 func (o *AdminAddRoleManagersV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/roles/{roleId}/managers][%d] adminAddRoleManagersV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminAddRoleManagersV3Conflict) ToString() string {
+func (o *AdminAddRoleManagersV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

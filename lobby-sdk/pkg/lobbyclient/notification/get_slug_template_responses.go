@@ -84,13 +84,19 @@ type GetSlugTemplateOK struct {
 }
 
 func (o *GetSlugTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSlugTemplateOK) ToString() string {
+func (o *GetSlugTemplateOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetSlugTemplateBadRequest struct {
 }
 
 func (o *GetSlugTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetSlugTemplateBadRequest) ToString() string {
+func (o *GetSlugTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetSlugTemplateUnauthorized struct {
 }
 
 func (o *GetSlugTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetSlugTemplateUnauthorized) ToString() string {
+func (o *GetSlugTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetSlugTemplateForbidden struct {
 }
 
 func (o *GetSlugTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetSlugTemplateForbidden) ToString() string {
+func (o *GetSlugTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetSlugTemplateNotFound struct {
 }
 
 func (o *GetSlugTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates/{templateSlug}][%d] getSlugTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSlugTemplateNotFound) ToString() string {
+func (o *GetSlugTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

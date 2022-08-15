@@ -66,13 +66,19 @@ type GetPlatformDLCConfigOK struct {
 }
 
 func (o *GetPlatformDLCConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPlatformDLCConfigOK) ToString() string {
+func (o *GetPlatformDLCConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetPlatformDLCConfigNotFound struct {
 }
 
 func (o *GetPlatformDLCConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPlatformDLCConfigNotFound) ToString() string {
+func (o *GetPlatformDLCConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

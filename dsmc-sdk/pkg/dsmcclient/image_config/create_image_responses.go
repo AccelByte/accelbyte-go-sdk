@@ -105,13 +105,19 @@ type CreateImageBadRequest struct {
 }
 
 func (o *CreateImageBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateImageBadRequest) ToString() string {
+func (o *CreateImageBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type CreateImageUnauthorized struct {
 }
 
 func (o *CreateImageUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateImageUnauthorized) ToString() string {
+func (o *CreateImageUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type CreateImageConflict struct {
 }
 
 func (o *CreateImageConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateImageConflict) ToString() string {
+func (o *CreateImageConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type CreateImageInternalServerError struct {
 }
 
 func (o *CreateImageInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateImageInternalServerError) ToString() string {
+func (o *CreateImageInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

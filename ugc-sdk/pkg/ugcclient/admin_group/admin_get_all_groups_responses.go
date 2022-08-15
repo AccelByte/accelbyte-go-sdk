@@ -78,13 +78,19 @@ type AdminGetAllGroupsOK struct {
 }
 
 func (o *AdminGetAllGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetAllGroupsOK) ToString() string {
+func (o *AdminGetAllGroupsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminGetAllGroupsUnauthorized struct {
 }
 
 func (o *AdminGetAllGroupsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetAllGroupsUnauthorized) ToString() string {
+func (o *AdminGetAllGroupsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminGetAllGroupsNotFound struct {
 }
 
 func (o *AdminGetAllGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetAllGroupsNotFound) ToString() string {
+func (o *AdminGetAllGroupsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminGetAllGroupsInternalServerError struct {
 }
 
 func (o *AdminGetAllGroupsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetAllGroupsInternalServerError) ToString() string {
+func (o *AdminGetAllGroupsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

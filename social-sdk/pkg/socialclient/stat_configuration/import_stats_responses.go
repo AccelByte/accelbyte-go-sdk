@@ -66,13 +66,19 @@ type ImportStatsCreated struct {
 }
 
 func (o *ImportStatsCreated) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *ImportStatsCreated) ToString() string {
+func (o *ImportStatsCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type ImportStatsBadRequest struct {
 }
 
 func (o *ImportStatsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ImportStatsBadRequest) ToString() string {
+func (o *ImportStatsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

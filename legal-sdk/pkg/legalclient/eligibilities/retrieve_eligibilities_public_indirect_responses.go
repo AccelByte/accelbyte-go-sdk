@@ -60,13 +60,19 @@ type RetrieveEligibilitiesPublicIndirectOK struct {
 }
 
 func (o *RetrieveEligibilitiesPublicIndirectOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}][%d] retrieveEligibilitiesPublicIndirectOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}][%d] retrieveEligibilitiesPublicIndirectOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveEligibilitiesPublicIndirectOK) ToString() string {
+func (o *RetrieveEligibilitiesPublicIndirectOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

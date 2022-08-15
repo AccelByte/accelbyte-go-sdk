@@ -78,13 +78,19 @@ type AdminImportConfigV1OK struct {
 }
 
 func (o *AdminImportConfigV1OK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminImportConfigV1OK) ToString() string {
+func (o *AdminImportConfigV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminImportConfigV1Unauthorized struct {
 }
 
 func (o *AdminImportConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminImportConfigV1Unauthorized) ToString() string {
+func (o *AdminImportConfigV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminImportConfigV1Forbidden struct {
 }
 
 func (o *AdminImportConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminImportConfigV1Forbidden) ToString() string {
+func (o *AdminImportConfigV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminImportConfigV1InternalServerError struct {
 }
 
 func (o *AdminImportConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/config/namespaces/{namespace}/import][%d] adminImportConfigV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminImportConfigV1InternalServerError) ToString() string {
+func (o *AdminImportConfigV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type GetImagePatchDetailOK struct {
 }
 
 func (o *GetImagePatchDetailOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetImagePatchDetailOK) ToString() string {
+func (o *GetImagePatchDetailOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetImagePatchDetailUnauthorized struct {
 }
 
 func (o *GetImagePatchDetailUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetImagePatchDetailUnauthorized) ToString() string {
+func (o *GetImagePatchDetailUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetImagePatchDetailNotFound struct {
 }
 
 func (o *GetImagePatchDetailNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetImagePatchDetailNotFound) ToString() string {
+func (o *GetImagePatchDetailNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetImagePatchDetailInternalServerError struct {
 }
 
 func (o *GetImagePatchDetailInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}][%d] getImagePatchDetailInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetImagePatchDetailInternalServerError) ToString() string {
+func (o *GetImagePatchDetailInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

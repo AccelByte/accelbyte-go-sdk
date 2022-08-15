@@ -90,13 +90,19 @@ type PublicUpgradeHeadlessAccountV4OK struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpgradeHeadlessAccountV4OK) ToString() string {
+func (o *PublicUpgradeHeadlessAccountV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicUpgradeHeadlessAccountV4BadRequest struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUpgradeHeadlessAccountV4BadRequest) ToString() string {
+func (o *PublicUpgradeHeadlessAccountV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicUpgradeHeadlessAccountV4Unauthorized struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicUpgradeHeadlessAccountV4Unauthorized) ToString() string {
+func (o *PublicUpgradeHeadlessAccountV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicUpgradeHeadlessAccountV4NotFound struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpgradeHeadlessAccountV4NotFound) ToString() string {
+func (o *PublicUpgradeHeadlessAccountV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicUpgradeHeadlessAccountV4Conflict struct {
 }
 
 func (o *PublicUpgradeHeadlessAccountV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/headless/verify][%d] publicUpgradeHeadlessAccountV4Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicUpgradeHeadlessAccountV4Conflict) ToString() string {
+func (o *PublicUpgradeHeadlessAccountV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

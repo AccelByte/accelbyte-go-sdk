@@ -66,13 +66,19 @@ type GetKeyGroupOK struct {
 }
 
 func (o *GetKeyGroupOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetKeyGroupOK) ToString() string {
+func (o *GetKeyGroupOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetKeyGroupNotFound struct {
 }
 
 func (o *GetKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetKeyGroupNotFound) ToString() string {
+func (o *GetKeyGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

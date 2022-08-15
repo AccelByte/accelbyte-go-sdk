@@ -90,13 +90,19 @@ type CreateNewGroupPublicV1Created struct {
 }
 
 func (o *CreateNewGroupPublicV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1Created) ToString() string {
+func (o *CreateNewGroupPublicV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateNewGroupPublicV1BadRequest struct {
 }
 
 func (o *CreateNewGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1BadRequest) ToString() string {
+func (o *CreateNewGroupPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateNewGroupPublicV1Unauthorized struct {
 }
 
 func (o *CreateNewGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1Unauthorized) ToString() string {
+func (o *CreateNewGroupPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateNewGroupPublicV1Forbidden struct {
 }
 
 func (o *CreateNewGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1Forbidden) ToString() string {
+func (o *CreateNewGroupPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateNewGroupPublicV1Conflict struct {
 }
 
 func (o *CreateNewGroupPublicV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1Conflict) ToString() string {
+func (o *CreateNewGroupPublicV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateNewGroupPublicV1InternalServerError struct {
 }
 
 func (o *CreateNewGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/groups][%d] createNewGroupPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateNewGroupPublicV1InternalServerError) ToString() string {
+func (o *CreateNewGroupPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

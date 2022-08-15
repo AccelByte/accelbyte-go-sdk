@@ -78,13 +78,19 @@ type RefundOrderOK struct {
 }
 
 func (o *RefundOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RefundOrderOK) ToString() string {
+func (o *RefundOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type RefundOrderNotFound struct {
 }
 
 func (o *RefundOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RefundOrderNotFound) ToString() string {
+func (o *RefundOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type RefundOrderConflict struct {
 }
 
 func (o *RefundOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *RefundOrderConflict) ToString() string {
+func (o *RefundOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type RefundOrderUnprocessableEntity struct {
 }
 
 func (o *RefundOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *RefundOrderUnprocessableEntity) ToString() string {
+func (o *RefundOrderUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

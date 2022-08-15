@@ -84,13 +84,19 @@ type UpdateUserFollowStatusOK struct {
 }
 
 func (o *UpdateUserFollowStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserFollowStatusOK) ToString() string {
+func (o *UpdateUserFollowStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateUserFollowStatusBadRequest struct {
 }
 
 func (o *UpdateUserFollowStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserFollowStatusBadRequest) ToString() string {
+func (o *UpdateUserFollowStatusBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateUserFollowStatusUnauthorized struct {
 }
 
 func (o *UpdateUserFollowStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateUserFollowStatusUnauthorized) ToString() string {
+func (o *UpdateUserFollowStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateUserFollowStatusNotFound struct {
 }
 
 func (o *UpdateUserFollowStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserFollowStatusNotFound) ToString() string {
+func (o *UpdateUserFollowStatusNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateUserFollowStatusInternalServerError struct {
 }
 
 func (o *UpdateUserFollowStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateUserFollowStatusInternalServerError) ToString() string {
+func (o *UpdateUserFollowStatusInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

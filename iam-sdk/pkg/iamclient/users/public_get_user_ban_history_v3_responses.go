@@ -90,13 +90,19 @@ type PublicGetUserBanHistoryV3OK struct {
 }
 
 func (o *PublicGetUserBanHistoryV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/bans][%d] publicGetUserBanHistoryV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserBanHistoryV3OK) ToString() string {
+func (o *PublicGetUserBanHistoryV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

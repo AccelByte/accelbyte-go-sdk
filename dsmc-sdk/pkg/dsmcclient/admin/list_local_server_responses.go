@@ -72,13 +72,19 @@ type ListLocalServerOK struct {
 }
 
 func (o *ListLocalServerOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListLocalServerOK) ToString() string {
+func (o *ListLocalServerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type ListLocalServerUnauthorized struct {
 }
 
 func (o *ListLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListLocalServerUnauthorized) ToString() string {
+func (o *ListLocalServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type ListLocalServerInternalServerError struct {
 }
 
 func (o *ListLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/local][%d] listLocalServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListLocalServerInternalServerError) ToString() string {
+func (o *ListLocalServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

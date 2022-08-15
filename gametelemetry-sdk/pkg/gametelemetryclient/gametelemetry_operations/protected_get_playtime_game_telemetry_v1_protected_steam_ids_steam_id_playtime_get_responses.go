@@ -66,13 +66,19 @@ type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK st
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) ToString() string {
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnpro
 }
 
 func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /game-telemetry/v1/protected/steamIds/{steamId}/playtime][%d] protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) ToString() string {
+func (o *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

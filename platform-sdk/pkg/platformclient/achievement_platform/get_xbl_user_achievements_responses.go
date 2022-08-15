@@ -66,13 +66,19 @@ type GetXblUserAchievementsOK struct {
 }
 
 func (o *GetXblUserAchievementsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetXblUserAchievementsOK) ToString() string {
+func (o *GetXblUserAchievementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetXblUserAchievementsBadRequest struct {
 }
 
 func (o *GetXblUserAchievementsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] getXblUserAchievementsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetXblUserAchievementsBadRequest) ToString() string {
+func (o *GetXblUserAchievementsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

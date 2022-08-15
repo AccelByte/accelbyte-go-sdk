@@ -78,13 +78,19 @@ type PublicGetUserPersonalDataRequestsOK struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserPersonalDataRequestsOK) ToString() string {
+func (o *PublicGetUserPersonalDataRequestsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetUserPersonalDataRequestsBadRequest struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetUserPersonalDataRequestsBadRequest) ToString() string {
+func (o *PublicGetUserPersonalDataRequestsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetUserPersonalDataRequestsUnauthorized struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetUserPersonalDataRequestsUnauthorized) ToString() string {
+func (o *PublicGetUserPersonalDataRequestsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetUserPersonalDataRequestsInternalServerError struct {
 }
 
 func (o *PublicGetUserPersonalDataRequestsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicGetUserPersonalDataRequestsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetUserPersonalDataRequestsInternalServerError) ToString() string {
+func (o *PublicGetUserPersonalDataRequestsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

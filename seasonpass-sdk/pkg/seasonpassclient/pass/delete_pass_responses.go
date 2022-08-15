@@ -99,13 +99,19 @@ type DeletePassBadRequest struct {
 }
 
 func (o *DeletePassBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeletePassBadRequest) ToString() string {
+func (o *DeletePassBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeletePassNotFound struct {
 }
 
 func (o *DeletePassNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeletePassNotFound) ToString() string {
+func (o *DeletePassNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeletePassConflict struct {
 }
 
 func (o *DeletePassConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] deletePassConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeletePassConflict) ToString() string {
+func (o *DeletePassConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

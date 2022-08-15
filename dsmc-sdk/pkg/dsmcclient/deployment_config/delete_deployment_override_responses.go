@@ -84,13 +84,19 @@ type DeleteDeploymentOverrideOK struct {
 }
 
 func (o *DeleteDeploymentOverrideOK) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentOverrideOK) ToString() string {
+func (o *DeleteDeploymentOverrideOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type DeleteDeploymentOverrideBadRequest struct {
 }
 
 func (o *DeleteDeploymentOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentOverrideBadRequest) ToString() string {
+func (o *DeleteDeploymentOverrideBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type DeleteDeploymentOverrideUnauthorized struct {
 }
 
 func (o *DeleteDeploymentOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentOverrideUnauthorized) ToString() string {
+func (o *DeleteDeploymentOverrideUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type DeleteDeploymentOverrideNotFound struct {
 }
 
 func (o *DeleteDeploymentOverrideNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentOverrideNotFound) ToString() string {
+func (o *DeleteDeploymentOverrideNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type DeleteDeploymentOverrideInternalServerError struct {
 }
 
 func (o *DeleteDeploymentOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] deleteDeploymentOverrideInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentOverrideInternalServerError) ToString() string {
+func (o *DeleteDeploymentOverrideInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

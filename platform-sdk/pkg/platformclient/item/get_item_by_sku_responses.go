@@ -66,13 +66,19 @@ type GetItemBySkuOK struct {
 }
 
 func (o *GetItemBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetItemBySkuOK) ToString() string {
+func (o *GetItemBySkuOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetItemBySkuNotFound struct {
 }
 
 func (o *GetItemBySkuNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetItemBySkuNotFound) ToString() string {
+func (o *GetItemBySkuNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

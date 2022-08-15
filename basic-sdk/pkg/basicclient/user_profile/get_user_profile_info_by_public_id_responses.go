@@ -84,13 +84,19 @@ type GetUserProfileInfoByPublicIDOK struct {
 }
 
 func (o *GetUserProfileInfoByPublicIDOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoByPublicIDOK) ToString() string {
+func (o *GetUserProfileInfoByPublicIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetUserProfileInfoByPublicIDBadRequest struct {
 }
 
 func (o *GetUserProfileInfoByPublicIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoByPublicIDBadRequest) ToString() string {
+func (o *GetUserProfileInfoByPublicIDBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetUserProfileInfoByPublicIDUnauthorized struct {
 }
 
 func (o *GetUserProfileInfoByPublicIDUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoByPublicIDUnauthorized) ToString() string {
+func (o *GetUserProfileInfoByPublicIDUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetUserProfileInfoByPublicIDForbidden struct {
 }
 
 func (o *GetUserProfileInfoByPublicIDForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoByPublicIDForbidden) ToString() string {
+func (o *GetUserProfileInfoByPublicIDForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetUserProfileInfoByPublicIDNotFound struct {
 }
 
 func (o *GetUserProfileInfoByPublicIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/profiles/byPublicId][%d] getUserProfileInfoByPublicIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserProfileInfoByPublicIDNotFound) ToString() string {
+func (o *GetUserProfileInfoByPublicIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

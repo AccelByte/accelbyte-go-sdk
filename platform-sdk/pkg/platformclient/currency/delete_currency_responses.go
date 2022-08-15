@@ -66,13 +66,19 @@ type DeleteCurrencyOK struct {
 }
 
 func (o *DeleteCurrencyOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteCurrencyOK) ToString() string {
+func (o *DeleteCurrencyOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type DeleteCurrencyNotFound struct {
 }
 
 func (o *DeleteCurrencyNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteCurrencyNotFound) ToString() string {
+func (o *DeleteCurrencyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

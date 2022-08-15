@@ -105,13 +105,19 @@ type DeleteNotificationTemplateSlugV1AdminBadRequest struct {
 }
 
 func (o *DeleteNotificationTemplateSlugV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteNotificationTemplateSlugV1AdminBadRequest) ToString() string {
+func (o *DeleteNotificationTemplateSlugV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteNotificationTemplateSlugV1AdminUnauthorized struct {
 }
 
 func (o *DeleteNotificationTemplateSlugV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteNotificationTemplateSlugV1AdminUnauthorized) ToString() string {
+func (o *DeleteNotificationTemplateSlugV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteNotificationTemplateSlugV1AdminForbidden struct {
 }
 
 func (o *DeleteNotificationTemplateSlugV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteNotificationTemplateSlugV1AdminForbidden) ToString() string {
+func (o *DeleteNotificationTemplateSlugV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteNotificationTemplateSlugV1AdminNotFound struct {
 }
 
 func (o *DeleteNotificationTemplateSlugV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteNotificationTemplateSlugV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteNotificationTemplateSlugV1AdminNotFound) ToString() string {
+func (o *DeleteNotificationTemplateSlugV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

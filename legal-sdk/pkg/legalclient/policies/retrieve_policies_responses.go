@@ -60,13 +60,19 @@ type RetrievePoliciesOK struct {
 }
 
 func (o *RetrievePoliciesOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/policies/countries/{countryCode}][%d] retrievePoliciesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/policies/countries/{countryCode}][%d] retrievePoliciesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrievePoliciesOK) ToString() string {
+func (o *RetrievePoliciesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

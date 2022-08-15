@@ -90,13 +90,19 @@ type KickGroupMemberPublicV1OK struct {
 }
 
 func (o *KickGroupMemberPublicV1OK) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1OK) ToString() string {
+func (o *KickGroupMemberPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type KickGroupMemberPublicV1BadRequest struct {
 }
 
 func (o *KickGroupMemberPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1BadRequest) ToString() string {
+func (o *KickGroupMemberPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type KickGroupMemberPublicV1Unauthorized struct {
 }
 
 func (o *KickGroupMemberPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1Unauthorized) ToString() string {
+func (o *KickGroupMemberPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type KickGroupMemberPublicV1Forbidden struct {
 }
 
 func (o *KickGroupMemberPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1Forbidden) ToString() string {
+func (o *KickGroupMemberPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type KickGroupMemberPublicV1NotFound struct {
 }
 
 func (o *KickGroupMemberPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1NotFound) ToString() string {
+func (o *KickGroupMemberPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type KickGroupMemberPublicV1InternalServerError struct {
 }
 
 func (o *KickGroupMemberPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/public/namespaces/{namespace}/users/{userId}/kick][%d] kickGroupMemberPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *KickGroupMemberPublicV1InternalServerError) ToString() string {
+func (o *KickGroupMemberPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

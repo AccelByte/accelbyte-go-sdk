@@ -84,13 +84,19 @@ type GetBannedUsersOK struct {
 }
 
 func (o *GetBannedUsersOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetBannedUsersOK) ToString() string {
+func (o *GetBannedUsersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type GetBannedUsersBadRequest struct {
 }
 
 func (o *GetBannedUsersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetBannedUsersBadRequest) ToString() string {
+func (o *GetBannedUsersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type GetBannedUsersNotFound struct {
 }
 
 func (o *GetBannedUsersNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetBannedUsersNotFound) ToString() string {
+func (o *GetBannedUsersNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type GetBannedUsersUnprocessableEntity struct {
 }
 
 func (o *GetBannedUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *GetBannedUsersUnprocessableEntity) ToString() string {
+func (o *GetBannedUsersUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type GetBannedUsersInternalServerError struct {
 }
 
 func (o *GetBannedUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetBannedUsersInternalServerError) ToString() string {
+func (o *GetBannedUsersInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

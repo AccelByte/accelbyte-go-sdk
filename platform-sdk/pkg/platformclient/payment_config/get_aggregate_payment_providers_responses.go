@@ -58,13 +58,19 @@ type GetAggregatePaymentProvidersOK struct {
 }
 
 func (o *GetAggregatePaymentProvidersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/aggregate][%d] getAggregatePaymentProvidersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/aggregate][%d] getAggregatePaymentProvidersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAggregatePaymentProvidersOK) ToString() string {
+func (o *GetAggregatePaymentProvidersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

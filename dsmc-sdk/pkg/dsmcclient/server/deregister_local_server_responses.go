@@ -99,13 +99,19 @@ type DeregisterLocalServerBadRequest struct {
 }
 
 func (o *DeregisterLocalServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeregisterLocalServerBadRequest) ToString() string {
+func (o *DeregisterLocalServerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeregisterLocalServerUnauthorized struct {
 }
 
 func (o *DeregisterLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeregisterLocalServerUnauthorized) ToString() string {
+func (o *DeregisterLocalServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeregisterLocalServerInternalServerError struct {
 }
 
 func (o *DeregisterLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister][%d] deregisterLocalServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeregisterLocalServerInternalServerError) ToString() string {
+func (o *DeregisterLocalServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

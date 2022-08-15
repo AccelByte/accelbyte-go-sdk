@@ -66,13 +66,19 @@ type PublicGetUserGameProfilesOK struct {
 }
 
 func (o *PublicGetUserGameProfilesOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserGameProfilesOK) ToString() string {
+func (o *PublicGetUserGameProfilesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetUserGameProfilesBadRequest struct {
 }
 
 func (o *PublicGetUserGameProfilesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetUserGameProfilesBadRequest) ToString() string {
+func (o *PublicGetUserGameProfilesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

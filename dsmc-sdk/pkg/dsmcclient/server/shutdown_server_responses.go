@@ -105,13 +105,19 @@ type ShutdownServerBadRequest struct {
 }
 
 func (o *ShutdownServerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ShutdownServerBadRequest) ToString() string {
+func (o *ShutdownServerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type ShutdownServerUnauthorized struct {
 }
 
 func (o *ShutdownServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ShutdownServerUnauthorized) ToString() string {
+func (o *ShutdownServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type ShutdownServerNotFound struct {
 }
 
 func (o *ShutdownServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ShutdownServerNotFound) ToString() string {
+func (o *ShutdownServerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type ShutdownServerInternalServerError struct {
 }
 
 func (o *ShutdownServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/servers/shutdown][%d] shutdownServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ShutdownServerInternalServerError) ToString() string {
+func (o *ShutdownServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

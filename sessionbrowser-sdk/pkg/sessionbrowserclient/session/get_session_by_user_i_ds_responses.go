@@ -72,13 +72,19 @@ type GetSessionByUserIDsOK struct {
 }
 
 func (o *GetSessionByUserIDsOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSessionByUserIDsOK) ToString() string {
+func (o *GetSessionByUserIDsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetSessionByUserIDsBadRequest struct {
 }
 
 func (o *GetSessionByUserIDsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetSessionByUserIDsBadRequest) ToString() string {
+func (o *GetSessionByUserIDsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetSessionByUserIDsInternalServerError struct {
 }
 
 func (o *GetSessionByUserIDsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/bulk][%d] getSessionByUserIDsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetSessionByUserIDsInternalServerError) ToString() string {
+func (o *GetSessionByUserIDsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

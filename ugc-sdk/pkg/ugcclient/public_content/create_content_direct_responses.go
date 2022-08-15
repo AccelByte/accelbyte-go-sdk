@@ -78,13 +78,19 @@ type CreateContentDirectCreated struct {
 }
 
 func (o *CreateContentDirectCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateContentDirectCreated) ToString() string {
+func (o *CreateContentDirectCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CreateContentDirectBadRequest struct {
 }
 
 func (o *CreateContentDirectBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateContentDirectBadRequest) ToString() string {
+func (o *CreateContentDirectBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CreateContentDirectUnauthorized struct {
 }
 
 func (o *CreateContentDirectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateContentDirectUnauthorized) ToString() string {
+func (o *CreateContentDirectUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CreateContentDirectInternalServerError struct {
 }
 
 func (o *CreateContentDirectInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateContentDirectInternalServerError) ToString() string {
+func (o *CreateContentDirectInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

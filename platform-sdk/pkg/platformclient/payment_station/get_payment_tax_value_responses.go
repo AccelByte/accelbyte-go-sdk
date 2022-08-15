@@ -72,13 +72,19 @@ type GetPaymentTaxValueOK struct {
 }
 
 func (o *GetPaymentTaxValueOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPaymentTaxValueOK) ToString() string {
+func (o *GetPaymentTaxValueOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetPaymentTaxValueBadRequest struct {
 }
 
 func (o *GetPaymentTaxValueBadRequest) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetPaymentTaxValueBadRequest) ToString() string {
+func (o *GetPaymentTaxValueBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetPaymentTaxValueNotFound struct {
 }
 
 func (o *GetPaymentTaxValueNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPaymentTaxValueNotFound) ToString() string {
+func (o *GetPaymentTaxValueNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

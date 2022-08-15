@@ -72,13 +72,19 @@ type DisableUserEntitlementOK struct {
 }
 
 func (o *DisableUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DisableUserEntitlementOK) ToString() string {
+func (o *DisableUserEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type DisableUserEntitlementNotFound struct {
 }
 
 func (o *DisableUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DisableUserEntitlementNotFound) ToString() string {
+func (o *DisableUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type DisableUserEntitlementConflict struct {
 }
 
 func (o *DisableUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable][%d] disableUserEntitlementConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DisableUserEntitlementConflict) ToString() string {
+func (o *DisableUserEntitlementConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

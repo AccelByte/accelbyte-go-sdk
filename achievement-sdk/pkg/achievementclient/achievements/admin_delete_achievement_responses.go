@@ -105,13 +105,19 @@ type AdminDeleteAchievementBadRequest struct {
 }
 
 func (o *AdminDeleteAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDeleteAchievementBadRequest) ToString() string {
+func (o *AdminDeleteAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminDeleteAchievementUnauthorized struct {
 }
 
 func (o *AdminDeleteAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteAchievementUnauthorized) ToString() string {
+func (o *AdminDeleteAchievementUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminDeleteAchievementNotFound struct {
 }
 
 func (o *AdminDeleteAchievementNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteAchievementNotFound) ToString() string {
+func (o *AdminDeleteAchievementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminDeleteAchievementInternalServerError struct {
 }
 
 func (o *AdminDeleteAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminDeleteAchievementInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteAchievementInternalServerError) ToString() string {
+func (o *AdminDeleteAchievementInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

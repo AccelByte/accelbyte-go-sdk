@@ -87,13 +87,19 @@ type DeleteServerInternalServerError struct {
 }
 
 func (o *DeleteServerInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /qosm/admin/servers/{region}][%d] deleteServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /qosm/admin/servers/{region}][%d] deleteServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteServerInternalServerError) ToString() string {
+func (o *DeleteServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

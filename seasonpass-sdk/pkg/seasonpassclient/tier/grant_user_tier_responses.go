@@ -72,13 +72,19 @@ type GrantUserTierOK struct {
 }
 
 func (o *GrantUserTierOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GrantUserTierOK) ToString() string {
+func (o *GrantUserTierOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GrantUserTierBadRequest struct {
 }
 
 func (o *GrantUserTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GrantUserTierBadRequest) ToString() string {
+func (o *GrantUserTierBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GrantUserTierNotFound struct {
 }
 
 func (o *GrantUserTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GrantUserTierNotFound) ToString() string {
+func (o *GrantUserTierNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

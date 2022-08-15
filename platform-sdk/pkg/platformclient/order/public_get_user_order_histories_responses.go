@@ -60,13 +60,19 @@ type PublicGetUserOrderHistoriesOK struct {
 }
 
 func (o *PublicGetUserOrderHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserOrderHistoriesOK) ToString() string {
+func (o *PublicGetUserOrderHistoriesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

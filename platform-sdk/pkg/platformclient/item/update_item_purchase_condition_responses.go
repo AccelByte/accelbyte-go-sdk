@@ -84,13 +84,19 @@ type UpdateItemPurchaseConditionOK struct {
 }
 
 func (o *UpdateItemPurchaseConditionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateItemPurchaseConditionOK) ToString() string {
+func (o *UpdateItemPurchaseConditionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateItemPurchaseConditionBadRequest struct {
 }
 
 func (o *UpdateItemPurchaseConditionBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateItemPurchaseConditionBadRequest) ToString() string {
+func (o *UpdateItemPurchaseConditionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateItemPurchaseConditionNotFound struct {
 }
 
 func (o *UpdateItemPurchaseConditionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateItemPurchaseConditionNotFound) ToString() string {
+func (o *UpdateItemPurchaseConditionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateItemPurchaseConditionConflict struct {
 }
 
 func (o *UpdateItemPurchaseConditionConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateItemPurchaseConditionConflict) ToString() string {
+func (o *UpdateItemPurchaseConditionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateItemPurchaseConditionUnprocessableEntity struct {
 }
 
 func (o *UpdateItemPurchaseConditionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/purchase/condition][%d] updateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateItemPurchaseConditionUnprocessableEntity) ToString() string {
+func (o *UpdateItemPurchaseConditionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

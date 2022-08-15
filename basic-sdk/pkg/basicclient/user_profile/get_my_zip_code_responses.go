@@ -72,13 +72,19 @@ type GetMyZipCodeOK struct {
 }
 
 func (o *GetMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetMyZipCodeOK) ToString() string {
+func (o *GetMyZipCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetMyZipCodeUnauthorized struct {
 }
 
 func (o *GetMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetMyZipCodeUnauthorized) ToString() string {
+func (o *GetMyZipCodeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetMyZipCodeForbidden struct {
 }
 
 func (o *GetMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetMyZipCodeForbidden) ToString() string {
+func (o *GetMyZipCodeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

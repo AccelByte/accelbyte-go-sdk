@@ -84,13 +84,19 @@ type AdminGetAchievementOK struct {
 }
 
 func (o *AdminGetAchievementOK) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetAchievementOK) ToString() string {
+func (o *AdminGetAchievementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetAchievementBadRequest struct {
 }
 
 func (o *AdminGetAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetAchievementBadRequest) ToString() string {
+func (o *AdminGetAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetAchievementUnauthorized struct {
 }
 
 func (o *AdminGetAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetAchievementUnauthorized) ToString() string {
+func (o *AdminGetAchievementUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetAchievementNotFound struct {
 }
 
 func (o *AdminGetAchievementNotFound) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetAchievementNotFound) ToString() string {
+func (o *AdminGetAchievementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetAchievementInternalServerError struct {
 }
 
 func (o *AdminGetAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminGetAchievementInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetAchievementInternalServerError) ToString() string {
+func (o *AdminGetAchievementInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

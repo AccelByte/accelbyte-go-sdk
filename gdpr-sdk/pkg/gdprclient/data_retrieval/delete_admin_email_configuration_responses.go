@@ -111,13 +111,19 @@ type DeleteAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *DeleteAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteAdminEmailConfigurationBadRequest) ToString() string {
+func (o *DeleteAdminEmailConfigurationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *DeleteAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteAdminEmailConfigurationUnauthorized) ToString() string {
+func (o *DeleteAdminEmailConfigurationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteAdminEmailConfigurationForbidden struct {
 }
 
 func (o *DeleteAdminEmailConfigurationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteAdminEmailConfigurationForbidden) ToString() string {
+func (o *DeleteAdminEmailConfigurationForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteAdminEmailConfigurationNotFound struct {
 }
 
 func (o *DeleteAdminEmailConfigurationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteAdminEmailConfigurationNotFound) ToString() string {
+func (o *DeleteAdminEmailConfigurationNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *DeleteAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] deleteAdminEmailConfigurationInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteAdminEmailConfigurationInternalServerError) ToString() string {
+func (o *DeleteAdminEmailConfigurationInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

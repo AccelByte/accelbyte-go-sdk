@@ -78,13 +78,19 @@ type UpdateContentLikeStatusOK struct {
 }
 
 func (o *UpdateContentLikeStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateContentLikeStatusOK) ToString() string {
+func (o *UpdateContentLikeStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateContentLikeStatusBadRequest struct {
 }
 
 func (o *UpdateContentLikeStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateContentLikeStatusBadRequest) ToString() string {
+func (o *UpdateContentLikeStatusBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateContentLikeStatusUnauthorized struct {
 }
 
 func (o *UpdateContentLikeStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateContentLikeStatusUnauthorized) ToString() string {
+func (o *UpdateContentLikeStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateContentLikeStatusInternalServerError struct {
 }
 
 func (o *UpdateContentLikeStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateContentLikeStatusInternalServerError) ToString() string {
+func (o *UpdateContentLikeStatusInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

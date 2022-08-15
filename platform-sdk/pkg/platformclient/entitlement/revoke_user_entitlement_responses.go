@@ -66,13 +66,19 @@ type RevokeUserEntitlementOK struct {
 }
 
 func (o *RevokeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RevokeUserEntitlementOK) ToString() string {
+func (o *RevokeUserEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RevokeUserEntitlementNotFound struct {
 }
 
 func (o *RevokeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RevokeUserEntitlementNotFound) ToString() string {
+func (o *RevokeUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type RetrieveSingleLocalizedPolicyVersion1OK struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1OK) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersion1OK) ToString() string {
+func (o *RetrieveSingleLocalizedPolicyVersion1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RetrieveSingleLocalizedPolicyVersion1NotFound struct {
 }
 
 func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) ToString() string {
+func (o *RetrieveSingleLocalizedPolicyVersion1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

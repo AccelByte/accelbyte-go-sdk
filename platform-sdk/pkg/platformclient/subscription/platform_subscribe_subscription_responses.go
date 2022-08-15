@@ -84,13 +84,19 @@ type PlatformSubscribeSubscriptionOK struct {
 }
 
 func (o *PlatformSubscribeSubscriptionOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PlatformSubscribeSubscriptionOK) ToString() string {
+func (o *PlatformSubscribeSubscriptionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PlatformSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PlatformSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PlatformSubscribeSubscriptionBadRequest) ToString() string {
+func (o *PlatformSubscribeSubscriptionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PlatformSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PlatformSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PlatformSubscribeSubscriptionNotFound) ToString() string {
+func (o *PlatformSubscribeSubscriptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PlatformSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PlatformSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PlatformSubscribeSubscriptionUnprocessableEntity) ToString() string {
+func (o *PlatformSubscribeSubscriptionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

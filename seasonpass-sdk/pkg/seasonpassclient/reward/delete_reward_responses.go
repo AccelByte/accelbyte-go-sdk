@@ -99,13 +99,19 @@ type DeleteRewardBadRequest struct {
 }
 
 func (o *DeleteRewardBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteRewardBadRequest) ToString() string {
+func (o *DeleteRewardBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteRewardNotFound struct {
 }
 
 func (o *DeleteRewardNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteRewardNotFound) ToString() string {
+func (o *DeleteRewardNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteRewardConflict struct {
 }
 
 func (o *DeleteRewardConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}][%d] deleteRewardConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeleteRewardConflict) ToString() string {
+func (o *DeleteRewardConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

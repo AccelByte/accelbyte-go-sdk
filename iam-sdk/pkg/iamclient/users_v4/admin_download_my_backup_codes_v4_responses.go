@@ -111,13 +111,19 @@ type AdminDownloadMyBackupCodesV4BadRequest struct {
 }
 
 func (o *AdminDownloadMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDownloadMyBackupCodesV4BadRequest) ToString() string {
+func (o *AdminDownloadMyBackupCodesV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminDownloadMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *AdminDownloadMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDownloadMyBackupCodesV4Unauthorized) ToString() string {
+func (o *AdminDownloadMyBackupCodesV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminDownloadMyBackupCodesV4Forbidden struct {
 }
 
 func (o *AdminDownloadMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminDownloadMyBackupCodesV4Forbidden) ToString() string {
+func (o *AdminDownloadMyBackupCodesV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminDownloadMyBackupCodesV4NotFound struct {
 }
 
 func (o *AdminDownloadMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDownloadMyBackupCodesV4NotFound) ToString() string {
+func (o *AdminDownloadMyBackupCodesV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminDownloadMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *AdminDownloadMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode/download][%d] adminDownloadMyBackupCodesV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDownloadMyBackupCodesV4InternalServerError) ToString() string {
+func (o *AdminDownloadMyBackupCodesV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

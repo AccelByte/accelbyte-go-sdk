@@ -84,13 +84,19 @@ type PublicCreateUserProfileCreated struct {
 }
 
 func (o *PublicCreateUserProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateUserProfileCreated) ToString() string {
+func (o *PublicCreateUserProfileCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicCreateUserProfileBadRequest struct {
 }
 
 func (o *PublicCreateUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateUserProfileBadRequest) ToString() string {
+func (o *PublicCreateUserProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicCreateUserProfileUnauthorized struct {
 }
 
 func (o *PublicCreateUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicCreateUserProfileUnauthorized) ToString() string {
+func (o *PublicCreateUserProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicCreateUserProfileForbidden struct {
 }
 
 func (o *PublicCreateUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicCreateUserProfileForbidden) ToString() string {
+func (o *PublicCreateUserProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicCreateUserProfileConflict struct {
 }
 
 func (o *PublicCreateUserProfileConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCreateUserProfileConflict) ToString() string {
+func (o *PublicCreateUserProfileConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

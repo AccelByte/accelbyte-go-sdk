@@ -90,13 +90,19 @@ type AdminGetUserByEmailAddressV3OK struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3OK) ToString() string {
+func (o *AdminGetUserByEmailAddressV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetUserByEmailAddressV3BadRequest struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3BadRequest) ToString() string {
+func (o *AdminGetUserByEmailAddressV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetUserByEmailAddressV3Unauthorized struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3Unauthorized) ToString() string {
+func (o *AdminGetUserByEmailAddressV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetUserByEmailAddressV3Forbidden struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3Forbidden) ToString() string {
+func (o *AdminGetUserByEmailAddressV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetUserByEmailAddressV3NotFound struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3NotFound) ToString() string {
+func (o *AdminGetUserByEmailAddressV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetUserByEmailAddressV3InternalServerError struct {
 }
 
 func (o *AdminGetUserByEmailAddressV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users][%d] adminGetUserByEmailAddressV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetUserByEmailAddressV3InternalServerError) ToString() string {
+func (o *AdminGetUserByEmailAddressV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

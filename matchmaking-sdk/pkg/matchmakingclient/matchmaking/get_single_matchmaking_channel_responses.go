@@ -90,13 +90,19 @@ type GetSingleMatchmakingChannelOK struct {
 }
 
 func (o *GetSingleMatchmakingChannelOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelOK) ToString() string {
+func (o *GetSingleMatchmakingChannelOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetSingleMatchmakingChannelBadRequest struct {
 }
 
 func (o *GetSingleMatchmakingChannelBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelBadRequest) ToString() string {
+func (o *GetSingleMatchmakingChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetSingleMatchmakingChannelUnauthorized struct {
 }
 
 func (o *GetSingleMatchmakingChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelUnauthorized) ToString() string {
+func (o *GetSingleMatchmakingChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetSingleMatchmakingChannelForbidden struct {
 }
 
 func (o *GetSingleMatchmakingChannelForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelForbidden) ToString() string {
+func (o *GetSingleMatchmakingChannelForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetSingleMatchmakingChannelNotFound struct {
 }
 
 func (o *GetSingleMatchmakingChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelNotFound) ToString() string {
+func (o *GetSingleMatchmakingChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetSingleMatchmakingChannelInternalServerError struct {
 }
 
 func (o *GetSingleMatchmakingChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}][%d] getSingleMatchmakingChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetSingleMatchmakingChannelInternalServerError) ToString() string {
+func (o *GetSingleMatchmakingChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

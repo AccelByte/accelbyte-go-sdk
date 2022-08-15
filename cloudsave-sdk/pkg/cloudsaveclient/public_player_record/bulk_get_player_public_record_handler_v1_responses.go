@@ -84,13 +84,19 @@ type BulkGetPlayerPublicRecordHandlerV1OK struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkGetPlayerPublicRecordHandlerV1OK) ToString() string {
+func (o *BulkGetPlayerPublicRecordHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type BulkGetPlayerPublicRecordHandlerV1BadRequest struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) ToString() string {
+func (o *BulkGetPlayerPublicRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type BulkGetPlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+func (o *BulkGetPlayerPublicRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type BulkGetPlayerPublicRecordHandlerV1Forbidden struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) ToString() string {
+func (o *BulkGetPlayerPublicRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type BulkGetPlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public][%d] bulkGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+func (o *BulkGetPlayerPublicRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

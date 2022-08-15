@@ -99,13 +99,19 @@ type AdminDeleteTypeUnauthorized struct {
 }
 
 func (o *AdminDeleteTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteTypeUnauthorized) ToString() string {
+func (o *AdminDeleteTypeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type AdminDeleteTypeNotFound struct {
 }
 
 func (o *AdminDeleteTypeNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteTypeNotFound) ToString() string {
+func (o *AdminDeleteTypeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type AdminDeleteTypeInternalServerError struct {
 }
 
 func (o *AdminDeleteTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteTypeInternalServerError) ToString() string {
+func (o *AdminDeleteTypeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

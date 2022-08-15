@@ -78,13 +78,19 @@ type FulfillItemOK struct {
 }
 
 func (o *FulfillItemOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *FulfillItemOK) ToString() string {
+func (o *FulfillItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type FulfillItemBadRequest struct {
 }
 
 func (o *FulfillItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *FulfillItemBadRequest) ToString() string {
+func (o *FulfillItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type FulfillItemNotFound struct {
 }
 
 func (o *FulfillItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *FulfillItemNotFound) ToString() string {
+func (o *FulfillItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type FulfillItemConflict struct {
 }
 
 func (o *FulfillItemConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment][%d] fulfillItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *FulfillItemConflict) ToString() string {
+func (o *FulfillItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type CreateItemCreated struct {
 }
 
 func (o *CreateItemCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateItemCreated) ToString() string {
+func (o *CreateItemCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type CreateItemBadRequest struct {
 }
 
 func (o *CreateItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateItemBadRequest) ToString() string {
+func (o *CreateItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type CreateItemNotFound struct {
 }
 
 func (o *CreateItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateItemNotFound) ToString() string {
+func (o *CreateItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type CreateItemConflict struct {
 }
 
 func (o *CreateItemConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateItemConflict) ToString() string {
+func (o *CreateItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type CreateItemUnprocessableEntity struct {
 }
 
 func (o *CreateItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateItemUnprocessableEntity) ToString() string {
+func (o *CreateItemUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

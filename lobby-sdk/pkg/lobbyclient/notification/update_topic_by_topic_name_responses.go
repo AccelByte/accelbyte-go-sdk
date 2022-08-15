@@ -105,13 +105,19 @@ type UpdateTopicByTopicNameUnauthorized struct {
 }
 
 func (o *UpdateTopicByTopicNameUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateTopicByTopicNameUnauthorized) ToString() string {
+func (o *UpdateTopicByTopicNameUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type UpdateTopicByTopicNameForbidden struct {
 }
 
 func (o *UpdateTopicByTopicNameForbidden) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateTopicByTopicNameForbidden) ToString() string {
+func (o *UpdateTopicByTopicNameForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type UpdateTopicByTopicNameNotFound struct {
 }
 
 func (o *UpdateTopicByTopicNameNotFound) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateTopicByTopicNameNotFound) ToString() string {
+func (o *UpdateTopicByTopicNameNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type UpdateTopicByTopicNameInternalServerError struct {
 }
 
 func (o *UpdateTopicByTopicNameInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/topics/{topic}][%d] updateTopicByTopicNameInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateTopicByTopicNameInternalServerError) ToString() string {
+func (o *UpdateTopicByTopicNameInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

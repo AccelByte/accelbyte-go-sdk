@@ -105,13 +105,19 @@ type PutGameRecordConcurrentHandlerV1BadRequest struct {
 }
 
 func (o *PutGameRecordConcurrentHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PutGameRecordConcurrentHandlerV1BadRequest) ToString() string {
+func (o *PutGameRecordConcurrentHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PutGameRecordConcurrentHandlerV1Unauthorized struct {
 }
 
 func (o *PutGameRecordConcurrentHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PutGameRecordConcurrentHandlerV1Unauthorized) ToString() string {
+func (o *PutGameRecordConcurrentHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PutGameRecordConcurrentHandlerV1PreconditionFailed struct {
 }
 
 func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1PreconditionFailed  %+v", 412, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1PreconditionFailed  %+v", 412, o.ToJSONString())
 }
 
-func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) ToString() string {
+func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PutGameRecordConcurrentHandlerV1InternalServerError struct {
 }
 
 func (o *PutGameRecordConcurrentHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PutGameRecordConcurrentHandlerV1InternalServerError) ToString() string {
+func (o *PutGameRecordConcurrentHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

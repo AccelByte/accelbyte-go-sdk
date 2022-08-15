@@ -84,13 +84,19 @@ type GetUserStatusOK struct {
 }
 
 func (o *GetUserStatusOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserStatusOK) ToString() string {
+func (o *GetUserStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetUserStatusBadRequest struct {
 }
 
 func (o *GetUserStatusBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetUserStatusBadRequest) ToString() string {
+func (o *GetUserStatusBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetUserStatusNotFound struct {
 }
 
 func (o *GetUserStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserStatusNotFound) ToString() string {
+func (o *GetUserStatusNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetUserStatusUnprocessableEntity struct {
 }
 
 func (o *GetUserStatusUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *GetUserStatusUnprocessableEntity) ToString() string {
+func (o *GetUserStatusUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetUserStatusInternalServerError struct {
 }
 
 func (o *GetUserStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetUserStatusInternalServerError) ToString() string {
+func (o *GetUserStatusInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

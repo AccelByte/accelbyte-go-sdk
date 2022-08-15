@@ -66,13 +66,19 @@ type UpdateLocalizedPolicyVersionOK struct {
 }
 
 func (o *UpdateLocalizedPolicyVersionOK) Error() string {
-	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateLocalizedPolicyVersionOK) ToString() string {
+func (o *UpdateLocalizedPolicyVersionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *UpdateLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateLocalizedPolicyVersionBadRequest) ToString() string {
+func (o *UpdateLocalizedPolicyVersionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

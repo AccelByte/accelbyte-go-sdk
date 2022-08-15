@@ -84,13 +84,19 @@ type PublicListUserIDByPlatformUserIDsV3OK struct {
 }
 
 func (o *PublicListUserIDByPlatformUserIDsV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicListUserIDByPlatformUserIDsV3OK) ToString() string {
+func (o *PublicListUserIDByPlatformUserIDsV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicListUserIDByPlatformUserIDsV3BadRequest struct {
 }
 
 func (o *PublicListUserIDByPlatformUserIDsV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicListUserIDByPlatformUserIDsV3BadRequest) ToString() string {
+func (o *PublicListUserIDByPlatformUserIDsV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicListUserIDByPlatformUserIDsV3Unauthorized struct {
 }
 
 func (o *PublicListUserIDByPlatformUserIDsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicListUserIDByPlatformUserIDsV3Unauthorized) ToString() string {
+func (o *PublicListUserIDByPlatformUserIDsV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicListUserIDByPlatformUserIDsV3Forbidden struct {
 }
 
 func (o *PublicListUserIDByPlatformUserIDsV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicListUserIDByPlatformUserIDsV3Forbidden) ToString() string {
+func (o *PublicListUserIDByPlatformUserIDsV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicListUserIDByPlatformUserIDsV3InternalServerError struct {
 }
 
 func (o *PublicListUserIDByPlatformUserIDsV3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users][%d] publicListUserIdByPlatformUserIDsV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicListUserIDByPlatformUserIDsV3InternalServerError) ToString() string {
+func (o *PublicListUserIDByPlatformUserIDsV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

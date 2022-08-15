@@ -84,13 +84,19 @@ type AdminGetUserPlatformAccountsV3OK struct {
 }
 
 func (o *AdminGetUserPlatformAccountsV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserPlatformAccountsV3OK) ToString() string {
+func (o *AdminGetUserPlatformAccountsV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetUserPlatformAccountsV3BadRequest struct {
 }
 
 func (o *AdminGetUserPlatformAccountsV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetUserPlatformAccountsV3BadRequest) ToString() string {
+func (o *AdminGetUserPlatformAccountsV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetUserPlatformAccountsV3Unauthorized struct {
 }
 
 func (o *AdminGetUserPlatformAccountsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserPlatformAccountsV3Unauthorized) ToString() string {
+func (o *AdminGetUserPlatformAccountsV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetUserPlatformAccountsV3Forbidden struct {
 }
 
 func (o *AdminGetUserPlatformAccountsV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetUserPlatformAccountsV3Forbidden) ToString() string {
+func (o *AdminGetUserPlatformAccountsV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetUserPlatformAccountsV3NotFound struct {
 }
 
 func (o *AdminGetUserPlatformAccountsV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms][%d] adminGetUserPlatformAccountsV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserPlatformAccountsV3NotFound) ToString() string {
+func (o *AdminGetUserPlatformAccountsV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

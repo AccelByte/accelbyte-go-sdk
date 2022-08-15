@@ -78,13 +78,19 @@ type GetImageLimitOK struct {
 }
 
 func (o *GetImageLimitOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetImageLimitOK) ToString() string {
+func (o *GetImageLimitOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetImageLimitBadRequest struct {
 }
 
 func (o *GetImageLimitBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetImageLimitBadRequest) ToString() string {
+func (o *GetImageLimitBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetImageLimitUnauthorized struct {
 }
 
 func (o *GetImageLimitUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetImageLimitUnauthorized) ToString() string {
+func (o *GetImageLimitUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetImageLimitInternalServerError struct {
 }
 
 func (o *GetImageLimitInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/limit][%d] getImageLimitInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetImageLimitInternalServerError) ToString() string {
+func (o *GetImageLimitInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

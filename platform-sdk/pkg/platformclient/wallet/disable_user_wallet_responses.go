@@ -93,13 +93,19 @@ type DisableUserWalletNotFound struct {
 }
 
 func (o *DisableUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DisableUserWalletNotFound) ToString() string {
+func (o *DisableUserWalletNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type DisableUserWalletConflict struct {
 }
 
 func (o *DisableUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DisableUserWalletConflict) ToString() string {
+func (o *DisableUserWalletConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

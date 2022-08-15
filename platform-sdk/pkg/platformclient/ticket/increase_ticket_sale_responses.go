@@ -72,13 +72,19 @@ type IncreaseTicketSaleOK struct {
 }
 
 func (o *IncreaseTicketSaleOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *IncreaseTicketSaleOK) ToString() string {
+func (o *IncreaseTicketSaleOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type IncreaseTicketSaleNotFound struct {
 }
 
 func (o *IncreaseTicketSaleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *IncreaseTicketSaleNotFound) ToString() string {
+func (o *IncreaseTicketSaleNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type IncreaseTicketSaleUnprocessableEntity struct {
 }
 
 func (o *IncreaseTicketSaleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *IncreaseTicketSaleUnprocessableEntity) ToString() string {
+func (o *IncreaseTicketSaleUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

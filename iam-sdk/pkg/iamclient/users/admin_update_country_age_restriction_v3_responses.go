@@ -90,13 +90,19 @@ type AdminUpdateCountryAgeRestrictionV3OK struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3OK) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminUpdateCountryAgeRestrictionV3BadRequest struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminUpdateCountryAgeRestrictionV3Unauthorized struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminUpdateCountryAgeRestrictionV3Forbidden struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminUpdateCountryAgeRestrictionV3NotFound struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3NotFound) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminUpdateCountryAgeRestrictionV3InternalServerError struct {
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}][%d] adminUpdateCountryAgeRestrictionV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) ToString() string {
+func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

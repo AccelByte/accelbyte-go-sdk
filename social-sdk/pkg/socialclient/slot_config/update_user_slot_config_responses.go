@@ -60,13 +60,19 @@ type UpdateUserSlotConfigOK struct {
 }
 
 func (o *UpdateUserSlotConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /social/admin/namespaces/{namespace}/users/{userId}/config][%d] updateUserSlotConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/admin/namespaces/{namespace}/users/{userId}/config][%d] updateUserSlotConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserSlotConfigOK) ToString() string {
+func (o *UpdateUserSlotConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

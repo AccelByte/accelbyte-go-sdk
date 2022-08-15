@@ -78,13 +78,19 @@ type GetFollowedContentOK struct {
 }
 
 func (o *GetFollowedContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetFollowedContentOK) ToString() string {
+func (o *GetFollowedContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetFollowedContentUnauthorized struct {
 }
 
 func (o *GetFollowedContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetFollowedContentUnauthorized) ToString() string {
+func (o *GetFollowedContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetFollowedContentNotFound struct {
 }
 
 func (o *GetFollowedContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetFollowedContentNotFound) ToString() string {
+func (o *GetFollowedContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetFollowedContentInternalServerError struct {
 }
 
 func (o *GetFollowedContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetFollowedContentInternalServerError) ToString() string {
+func (o *GetFollowedContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

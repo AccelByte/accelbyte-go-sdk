@@ -111,13 +111,19 @@ type UpdateNotificationTopicV1AdminBadRequest struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateNotificationTopicV1AdminBadRequest) ToString() string {
+func (o *UpdateNotificationTopicV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type UpdateNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateNotificationTopicV1AdminUnauthorized) ToString() string {
+func (o *UpdateNotificationTopicV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type UpdateNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateNotificationTopicV1AdminForbidden) ToString() string {
+func (o *UpdateNotificationTopicV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type UpdateNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateNotificationTopicV1AdminNotFound) ToString() string {
+func (o *UpdateNotificationTopicV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type UpdateNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateNotificationTopicV1AdminInternalServerError) ToString() string {
+func (o *UpdateNotificationTopicV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

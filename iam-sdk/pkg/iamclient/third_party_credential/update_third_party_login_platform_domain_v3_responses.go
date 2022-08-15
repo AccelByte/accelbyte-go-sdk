@@ -90,13 +90,19 @@ type UpdateThirdPartyLoginPlatformDomainV3OK struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformDomainV3OK) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformDomainV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateThirdPartyLoginPlatformDomainV3BadRequest struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformDomainV3BadRequest) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformDomainV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +228,19 @@ type UpdateThirdPartyLoginPlatformDomainV3NotFound struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformDomainV3NotFound) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformDomainV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +276,19 @@ type UpdateThirdPartyLoginPlatformDomainV3InternalServerError struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformDomainV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain][%d] updateThirdPartyLoginPlatformDomainV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformDomainV3InternalServerError) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformDomainV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

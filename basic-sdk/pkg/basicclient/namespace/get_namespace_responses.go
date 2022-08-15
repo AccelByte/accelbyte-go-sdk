@@ -84,13 +84,19 @@ type GetNamespaceOK struct {
 }
 
 func (o *GetNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetNamespaceOK) ToString() string {
+func (o *GetNamespaceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetNamespaceBadRequest struct {
 }
 
 func (o *GetNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetNamespaceBadRequest) ToString() string {
+func (o *GetNamespaceBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetNamespaceUnauthorized struct {
 }
 
 func (o *GetNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetNamespaceUnauthorized) ToString() string {
+func (o *GetNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetNamespaceForbidden struct {
 }
 
 func (o *GetNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetNamespaceForbidden) ToString() string {
+func (o *GetNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetNamespaceNotFound struct {
 }
 
 func (o *GetNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetNamespaceNotFound) ToString() string {
+func (o *GetNamespaceNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

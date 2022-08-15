@@ -66,13 +66,19 @@ type GetKeyGroupDynamicOK struct {
 }
 
 func (o *GetKeyGroupDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetKeyGroupDynamicOK) ToString() string {
+func (o *GetKeyGroupDynamicOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetKeyGroupDynamicNotFound struct {
 }
 
 func (o *GetKeyGroupDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetKeyGroupDynamicNotFound) ToString() string {
+func (o *GetKeyGroupDynamicNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

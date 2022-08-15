@@ -99,13 +99,19 @@ type SingleAdminDeleteChannelUnauthorized struct {
 }
 
 func (o *SingleAdminDeleteChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteChannelUnauthorized) ToString() string {
+func (o *SingleAdminDeleteChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type SingleAdminDeleteChannelNotFound struct {
 }
 
 func (o *SingleAdminDeleteChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteChannelNotFound) ToString() string {
+func (o *SingleAdminDeleteChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type SingleAdminDeleteChannelInternalServerError struct {
 }
 
 func (o *SingleAdminDeleteChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteChannelInternalServerError) ToString() string {
+func (o *SingleAdminDeleteChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

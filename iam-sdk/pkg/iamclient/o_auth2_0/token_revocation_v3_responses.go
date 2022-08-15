@@ -93,13 +93,19 @@ type TokenRevocationV3BadRequest struct {
 }
 
 func (o *TokenRevocationV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/revoke][%d] tokenRevocationV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/revoke][%d] tokenRevocationV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *TokenRevocationV3BadRequest) ToString() string {
+func (o *TokenRevocationV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type TokenRevocationV3Unauthorized struct {
 }
 
 func (o *TokenRevocationV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/revoke][%d] tokenRevocationV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/revoke][%d] tokenRevocationV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *TokenRevocationV3Unauthorized) ToString() string {
+func (o *TokenRevocationV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

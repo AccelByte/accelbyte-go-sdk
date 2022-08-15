@@ -90,13 +90,19 @@ type AdminUpdateTypeOK struct {
 }
 
 func (o *AdminUpdateTypeOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeOK) ToString() string {
+func (o *AdminUpdateTypeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminUpdateTypeBadRequest struct {
 }
 
 func (o *AdminUpdateTypeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeBadRequest) ToString() string {
+func (o *AdminUpdateTypeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminUpdateTypeUnauthorized struct {
 }
 
 func (o *AdminUpdateTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeUnauthorized) ToString() string {
+func (o *AdminUpdateTypeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminUpdateTypeNotFound struct {
 }
 
 func (o *AdminUpdateTypeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeNotFound) ToString() string {
+func (o *AdminUpdateTypeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminUpdateTypeConflict struct {
 }
 
 func (o *AdminUpdateTypeConflict) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeConflict) ToString() string {
+func (o *AdminUpdateTypeConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminUpdateTypeInternalServerError struct {
 }
 
 func (o *AdminUpdateTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminUpdateTypeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateTypeInternalServerError) ToString() string {
+func (o *AdminUpdateTypeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

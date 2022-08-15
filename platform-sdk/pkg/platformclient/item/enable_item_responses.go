@@ -72,13 +72,19 @@ type EnableItemOK struct {
 }
 
 func (o *EnableItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *EnableItemOK) ToString() string {
+func (o *EnableItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type EnableItemNotFound struct {
 }
 
 func (o *EnableItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *EnableItemNotFound) ToString() string {
+func (o *EnableItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type EnableItemConflict struct {
 }
 
 func (o *EnableItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *EnableItemConflict) ToString() string {
+func (o *EnableItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

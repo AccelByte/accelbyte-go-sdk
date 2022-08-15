@@ -105,13 +105,19 @@ type UnBanUsersBadRequest struct {
 }
 
 func (o *UnBanUsersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UnBanUsersBadRequest) ToString() string {
+func (o *UnBanUsersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type UnBanUsersNotFound struct {
 }
 
 func (o *UnBanUsersNotFound) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UnBanUsersNotFound) ToString() string {
+func (o *UnBanUsersNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type UnBanUsersUnprocessableEntity struct {
 }
 
 func (o *UnBanUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UnBanUsersUnprocessableEntity) ToString() string {
+func (o *UnBanUsersUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type UnBanUsersInternalServerError struct {
 }
 
 func (o *UnBanUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UnBanUsersInternalServerError) ToString() string {
+func (o *UnBanUsersInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

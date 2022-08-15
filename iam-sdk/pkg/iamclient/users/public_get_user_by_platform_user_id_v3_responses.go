@@ -84,13 +84,19 @@ type PublicGetUserByPlatformUserIDV3OK struct {
 }
 
 func (o *PublicGetUserByPlatformUserIDV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserByPlatformUserIDV3OK) ToString() string {
+func (o *PublicGetUserByPlatformUserIDV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicGetUserByPlatformUserIDV3Unauthorized struct {
 }
 
 func (o *PublicGetUserByPlatformUserIDV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetUserByPlatformUserIDV3Unauthorized) ToString() string {
+func (o *PublicGetUserByPlatformUserIDV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicGetUserByPlatformUserIDV3Forbidden struct {
 }
 
 func (o *PublicGetUserByPlatformUserIDV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetUserByPlatformUserIDV3Forbidden) ToString() string {
+func (o *PublicGetUserByPlatformUserIDV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicGetUserByPlatformUserIDV3NotFound struct {
 }
 
 func (o *PublicGetUserByPlatformUserIDV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserByPlatformUserIDV3NotFound) ToString() string {
+func (o *PublicGetUserByPlatformUserIDV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicGetUserByPlatformUserIDV3InternalServerError struct {
 }
 
 func (o *PublicGetUserByPlatformUserIDV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}][%d] publicGetUserByPlatformUserIdV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetUserByPlatformUserIDV3InternalServerError) ToString() string {
+func (o *PublicGetUserByPlatformUserIDV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

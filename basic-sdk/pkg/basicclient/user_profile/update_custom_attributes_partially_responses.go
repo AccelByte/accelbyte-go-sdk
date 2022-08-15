@@ -84,13 +84,19 @@ type UpdateCustomAttributesPartiallyOK struct {
 }
 
 func (o *UpdateCustomAttributesPartiallyOK) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCustomAttributesPartiallyOK) ToString() string {
+func (o *UpdateCustomAttributesPartiallyOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type UpdateCustomAttributesPartiallyBadRequest struct {
 }
 
 func (o *UpdateCustomAttributesPartiallyBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateCustomAttributesPartiallyBadRequest) ToString() string {
+func (o *UpdateCustomAttributesPartiallyBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type UpdateCustomAttributesPartiallyUnauthorized struct {
 }
 
 func (o *UpdateCustomAttributesPartiallyUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateCustomAttributesPartiallyUnauthorized) ToString() string {
+func (o *UpdateCustomAttributesPartiallyUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type UpdateCustomAttributesPartiallyForbidden struct {
 }
 
 func (o *UpdateCustomAttributesPartiallyForbidden) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateCustomAttributesPartiallyForbidden) ToString() string {
+func (o *UpdateCustomAttributesPartiallyForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type UpdateCustomAttributesPartiallyNotFound struct {
 }
 
 func (o *UpdateCustomAttributesPartiallyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] updateCustomAttributesPartiallyNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateCustomAttributesPartiallyNotFound) ToString() string {
+func (o *UpdateCustomAttributesPartiallyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

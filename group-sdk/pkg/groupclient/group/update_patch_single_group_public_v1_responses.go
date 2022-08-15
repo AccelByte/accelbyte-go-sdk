@@ -90,13 +90,19 @@ type UpdatePatchSingleGroupPublicV1OK struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1OK) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1OK) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdatePatchSingleGroupPublicV1BadRequest struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1BadRequest) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdatePatchSingleGroupPublicV1Unauthorized struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1Unauthorized) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdatePatchSingleGroupPublicV1Forbidden struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1Forbidden) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdatePatchSingleGroupPublicV1NotFound struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1NotFound) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdatePatchSingleGroupPublicV1InternalServerError struct {
 }
 
 func (o *UpdatePatchSingleGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updatePatchSingleGroupPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdatePatchSingleGroupPublicV1InternalServerError) ToString() string {
+func (o *UpdatePatchSingleGroupPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

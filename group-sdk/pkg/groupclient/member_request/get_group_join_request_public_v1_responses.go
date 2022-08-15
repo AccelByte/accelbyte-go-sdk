@@ -84,13 +84,19 @@ type GetGroupJoinRequestPublicV1OK struct {
 }
 
 func (o *GetGroupJoinRequestPublicV1OK) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGroupJoinRequestPublicV1OK) ToString() string {
+func (o *GetGroupJoinRequestPublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetGroupJoinRequestPublicV1BadRequest struct {
 }
 
 func (o *GetGroupJoinRequestPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetGroupJoinRequestPublicV1BadRequest) ToString() string {
+func (o *GetGroupJoinRequestPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetGroupJoinRequestPublicV1Unauthorized struct {
 }
 
 func (o *GetGroupJoinRequestPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetGroupJoinRequestPublicV1Unauthorized) ToString() string {
+func (o *GetGroupJoinRequestPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetGroupJoinRequestPublicV1Forbidden struct {
 }
 
 func (o *GetGroupJoinRequestPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetGroupJoinRequestPublicV1Forbidden) ToString() string {
+func (o *GetGroupJoinRequestPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetGroupJoinRequestPublicV1InternalServerError struct {
 }
 
 func (o *GetGroupJoinRequestPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request][%d] getGroupJoinRequestPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetGroupJoinRequestPublicV1InternalServerError) ToString() string {
+func (o *GetGroupJoinRequestPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

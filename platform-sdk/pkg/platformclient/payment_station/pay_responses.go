@@ -78,13 +78,19 @@ type PayOK struct {
 }
 
 func (o *PayOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PayOK) ToString() string {
+func (o *PayOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PayBadRequest struct {
 }
 
 func (o *PayBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PayBadRequest) ToString() string {
+func (o *PayBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PayNotFound struct {
 }
 
 func (o *PayNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PayNotFound) ToString() string {
+func (o *PayNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PayConflict struct {
 }
 
 func (o *PayConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PayConflict) ToString() string {
+func (o *PayConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

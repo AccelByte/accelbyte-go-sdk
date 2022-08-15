@@ -90,13 +90,19 @@ type AdminGetProfanityListsOK struct {
 }
 
 func (o *AdminGetProfanityListsOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsOK) ToString() string {
+func (o *AdminGetProfanityListsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type AdminGetProfanityListsBadRequest struct {
 }
 
 func (o *AdminGetProfanityListsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsBadRequest) ToString() string {
+func (o *AdminGetProfanityListsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type AdminGetProfanityListsUnauthorized struct {
 }
 
 func (o *AdminGetProfanityListsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsUnauthorized) ToString() string {
+func (o *AdminGetProfanityListsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type AdminGetProfanityListsForbidden struct {
 }
 
 func (o *AdminGetProfanityListsForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsForbidden) ToString() string {
+func (o *AdminGetProfanityListsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type AdminGetProfanityListsNotFound struct {
 }
 
 func (o *AdminGetProfanityListsNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsNotFound) ToString() string {
+func (o *AdminGetProfanityListsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type AdminGetProfanityListsInternalServerError struct {
 }
 
 func (o *AdminGetProfanityListsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminGetProfanityListsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetProfanityListsInternalServerError) ToString() string {
+func (o *AdminGetProfanityListsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

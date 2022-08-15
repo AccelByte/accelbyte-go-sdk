@@ -72,13 +72,19 @@ type PublicCancelUserOrderOK struct {
 }
 
 func (o *PublicCancelUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicCancelUserOrderOK) ToString() string {
+func (o *PublicCancelUserOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicCancelUserOrderNotFound struct {
 }
 
 func (o *PublicCancelUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCancelUserOrderNotFound) ToString() string {
+func (o *PublicCancelUserOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicCancelUserOrderConflict struct {
 }
 
 func (o *PublicCancelUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCancelUserOrderConflict) ToString() string {
+func (o *PublicCancelUserOrderConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type GetPlayerRecordHandlerV1OK struct {
 }
 
 func (o *GetPlayerRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPlayerRecordHandlerV1OK) ToString() string {
+func (o *GetPlayerRecordHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *GetPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetPlayerRecordHandlerV1Unauthorized) ToString() string {
+func (o *GetPlayerRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetPlayerRecordHandlerV1Forbidden struct {
 }
 
 func (o *GetPlayerRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetPlayerRecordHandlerV1Forbidden) ToString() string {
+func (o *GetPlayerRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetPlayerRecordHandlerV1NotFound struct {
 }
 
 func (o *GetPlayerRecordHandlerV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPlayerRecordHandlerV1NotFound) ToString() string {
+func (o *GetPlayerRecordHandlerV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *GetPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetPlayerRecordHandlerV1InternalServerError) ToString() string {
+func (o *GetPlayerRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

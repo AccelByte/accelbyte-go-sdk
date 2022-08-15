@@ -66,13 +66,19 @@ type GetCampaignDynamicOK struct {
 }
 
 func (o *GetCampaignDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCampaignDynamicOK) ToString() string {
+func (o *GetCampaignDynamicOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetCampaignDynamicNotFound struct {
 }
 
 func (o *GetCampaignDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCampaignDynamicNotFound) ToString() string {
+func (o *GetCampaignDynamicNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

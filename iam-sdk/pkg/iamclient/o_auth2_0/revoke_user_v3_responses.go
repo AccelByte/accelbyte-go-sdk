@@ -99,13 +99,19 @@ type RevokeUserV3BadRequest struct {
 }
 
 func (o *RevokeUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RevokeUserV3BadRequest) ToString() string {
+func (o *RevokeUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type RevokeUserV3Unauthorized struct {
 }
 
 func (o *RevokeUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *RevokeUserV3Unauthorized) ToString() string {
+func (o *RevokeUserV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type RevokeUserV3Forbidden struct {
 }
 
 func (o *RevokeUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke][%d] revokeUserV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *RevokeUserV3Forbidden) ToString() string {
+func (o *RevokeUserV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

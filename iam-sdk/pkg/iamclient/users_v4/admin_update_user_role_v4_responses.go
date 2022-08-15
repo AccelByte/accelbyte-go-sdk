@@ -90,13 +90,19 @@ type AdminUpdateUserRoleV4OK struct {
 }
 
 func (o *AdminUpdateUserRoleV4OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4OK) ToString() string {
+func (o *AdminUpdateUserRoleV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminUpdateUserRoleV4BadRequest struct {
 }
 
 func (o *AdminUpdateUserRoleV4BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4BadRequest) ToString() string {
+func (o *AdminUpdateUserRoleV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminUpdateUserRoleV4Forbidden struct {
 }
 
 func (o *AdminUpdateUserRoleV4Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4Forbidden) ToString() string {
+func (o *AdminUpdateUserRoleV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminUpdateUserRoleV4NotFound struct {
 }
 
 func (o *AdminUpdateUserRoleV4NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4NotFound) ToString() string {
+func (o *AdminUpdateUserRoleV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminUpdateUserRoleV4UnprocessableEntity struct {
 }
 
 func (o *AdminUpdateUserRoleV4UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4UnprocessableEntity) ToString() string {
+func (o *AdminUpdateUserRoleV4UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminUpdateUserRoleV4InternalServerError struct {
 }
 
 func (o *AdminUpdateUserRoleV4InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v4/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminUpdateUserRoleV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserRoleV4InternalServerError) ToString() string {
+func (o *AdminUpdateUserRoleV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

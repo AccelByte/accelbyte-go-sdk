@@ -66,13 +66,19 @@ type UpdateStatOK struct {
 }
 
 func (o *UpdateStatOK) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateStatOK) ToString() string {
+func (o *UpdateStatOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateStatNotFound struct {
 }
 
 func (o *UpdateStatNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateStatNotFound) ToString() string {
+func (o *UpdateStatNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

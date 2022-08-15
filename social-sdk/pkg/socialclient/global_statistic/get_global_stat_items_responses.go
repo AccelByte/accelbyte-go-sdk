@@ -60,13 +60,19 @@ type GetGlobalStatItemsOK struct {
 }
 
 func (o *GetGlobalStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGlobalStatItemsOK) ToString() string {
+func (o *GetGlobalStatItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type ImportImagesOK struct {
 }
 
 func (o *ImportImagesOK) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ImportImagesOK) ToString() string {
+func (o *ImportImagesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type ImportImagesBadRequest struct {
 }
 
 func (o *ImportImagesBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ImportImagesBadRequest) ToString() string {
+func (o *ImportImagesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type ImportImagesUnauthorized struct {
 }
 
 func (o *ImportImagesUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ImportImagesUnauthorized) ToString() string {
+func (o *ImportImagesUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type ImportImagesForbidden struct {
 }
 
 func (o *ImportImagesForbidden) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ImportImagesForbidden) ToString() string {
+func (o *ImportImagesForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type ImportImagesInternalServerError struct {
 }
 
 func (o *ImportImagesInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images/import][%d] importImagesInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ImportImagesInternalServerError) ToString() string {
+func (o *ImportImagesInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

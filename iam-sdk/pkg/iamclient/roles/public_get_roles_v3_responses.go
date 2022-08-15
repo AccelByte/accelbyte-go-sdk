@@ -66,13 +66,19 @@ type PublicGetRolesV3OK struct {
 }
 
 func (o *PublicGetRolesV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetRolesV3OK) ToString() string {
+func (o *PublicGetRolesV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetRolesV3BadRequest struct {
 }
 
 func (o *PublicGetRolesV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/roles][%d] publicGetRolesV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetRolesV3BadRequest) ToString() string {
+func (o *PublicGetRolesV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -93,13 +93,19 @@ type DownloadServerLogsNotFound struct {
 }
 
 func (o *DownloadServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DownloadServerLogsNotFound) ToString() string {
+func (o *DownloadServerLogsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type DownloadServerLogsInternalServerError struct {
 }
 
 func (o *DownloadServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download][%d] downloadServerLogsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DownloadServerLogsInternalServerError) ToString() string {
+func (o *DownloadServerLogsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

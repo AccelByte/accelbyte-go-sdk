@@ -99,13 +99,19 @@ type DeleteSeasonBadRequest struct {
 }
 
 func (o *DeleteSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteSeasonBadRequest) ToString() string {
+func (o *DeleteSeasonBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteSeasonNotFound struct {
 }
 
 func (o *DeleteSeasonNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteSeasonNotFound) ToString() string {
+func (o *DeleteSeasonNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteSeasonConflict struct {
 }
 
 func (o *DeleteSeasonConflict) Error() string {
-	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeleteSeasonConflict) ToString() string {
+func (o *DeleteSeasonConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type DeleteCategoryOK struct {
 }
 
 func (o *DeleteCategoryOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteCategoryOK) ToString() string {
+func (o *DeleteCategoryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type DeleteCategoryNotFound struct {
 }
 
 func (o *DeleteCategoryNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteCategoryNotFound) ToString() string {
+func (o *DeleteCategoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type DeleteCategoryConflict struct {
 }
 
 func (o *DeleteCategoryConflict) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DeleteCategoryConflict) ToString() string {
+func (o *DeleteCategoryConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

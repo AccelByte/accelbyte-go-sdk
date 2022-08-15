@@ -93,13 +93,19 @@ type BatchDownloadServerLogsBadRequest struct {
 }
 
 func (o *BatchDownloadServerLogsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *BatchDownloadServerLogsBadRequest) ToString() string {
+func (o *BatchDownloadServerLogsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type BatchDownloadServerLogsInternalServerError struct {
 }
 
 func (o *BatchDownloadServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dslogmanager/servers/logs/download][%d] batchDownloadServerLogsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *BatchDownloadServerLogsInternalServerError) ToString() string {
+func (o *BatchDownloadServerLogsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

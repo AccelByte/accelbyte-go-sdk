@@ -84,13 +84,19 @@ type GetUserRankingAdminV1OK struct {
 }
 
 func (o *GetUserRankingAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserRankingAdminV1OK) ToString() string {
+func (o *GetUserRankingAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetUserRankingAdminV1Unauthorized struct {
 }
 
 func (o *GetUserRankingAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserRankingAdminV1Unauthorized) ToString() string {
+func (o *GetUserRankingAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetUserRankingAdminV1Forbidden struct {
 }
 
 func (o *GetUserRankingAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserRankingAdminV1Forbidden) ToString() string {
+func (o *GetUserRankingAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetUserRankingAdminV1NotFound struct {
 }
 
 func (o *GetUserRankingAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserRankingAdminV1NotFound) ToString() string {
+func (o *GetUserRankingAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetUserRankingAdminV1InternalServerError struct {
 }
 
 func (o *GetUserRankingAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetUserRankingAdminV1InternalServerError) ToString() string {
+func (o *GetUserRankingAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type UpdateChannelOK struct {
 }
 
 func (o *UpdateChannelOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateChannelOK) ToString() string {
+func (o *UpdateChannelOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateChannelBadRequest struct {
 }
 
 func (o *UpdateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateChannelBadRequest) ToString() string {
+func (o *UpdateChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateChannelUnauthorized struct {
 }
 
 func (o *UpdateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateChannelUnauthorized) ToString() string {
+func (o *UpdateChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateChannelNotFound struct {
 }
 
 func (o *UpdateChannelNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateChannelNotFound) ToString() string {
+func (o *UpdateChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateChannelInternalServerError struct {
 }
 
 func (o *UpdateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] updateChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateChannelInternalServerError) ToString() string {
+func (o *UpdateChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

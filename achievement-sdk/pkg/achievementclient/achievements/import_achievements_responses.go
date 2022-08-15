@@ -78,13 +78,19 @@ type ImportAchievementsOK struct {
 }
 
 func (o *ImportAchievementsOK) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ImportAchievementsOK) ToString() string {
+func (o *ImportAchievementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ImportAchievementsUnauthorized struct {
 }
 
 func (o *ImportAchievementsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ImportAchievementsUnauthorized) ToString() string {
+func (o *ImportAchievementsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ImportAchievementsForbidden struct {
 }
 
 func (o *ImportAchievementsForbidden) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ImportAchievementsForbidden) ToString() string {
+func (o *ImportAchievementsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ImportAchievementsInternalServerError struct {
 }
 
 func (o *ImportAchievementsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements/import][%d] importAchievementsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ImportAchievementsInternalServerError) ToString() string {
+func (o *ImportAchievementsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

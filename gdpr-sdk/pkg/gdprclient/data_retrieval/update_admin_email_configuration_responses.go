@@ -99,13 +99,19 @@ type UpdateAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *UpdateAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateAdminEmailConfigurationBadRequest) ToString() string {
+func (o *UpdateAdminEmailConfigurationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type UpdateAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *UpdateAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateAdminEmailConfigurationUnauthorized) ToString() string {
+func (o *UpdateAdminEmailConfigurationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type UpdateAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *UpdateAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] updateAdminEmailConfigurationInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateAdminEmailConfigurationInternalServerError) ToString() string {
+func (o *UpdateAdminEmailConfigurationInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

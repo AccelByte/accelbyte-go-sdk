@@ -72,13 +72,19 @@ type GetCurrentUserSeasonProgressionOK struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCurrentUserSeasonProgressionOK) ToString() string {
+func (o *GetCurrentUserSeasonProgressionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetCurrentUserSeasonProgressionBadRequest struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetCurrentUserSeasonProgressionBadRequest) ToString() string {
+func (o *GetCurrentUserSeasonProgressionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetCurrentUserSeasonProgressionNotFound struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCurrentUserSeasonProgressionNotFound) ToString() string {
+func (o *GetCurrentUserSeasonProgressionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

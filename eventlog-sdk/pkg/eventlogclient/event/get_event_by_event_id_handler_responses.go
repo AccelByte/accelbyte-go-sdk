@@ -90,13 +90,19 @@ type GetEventByEventIDHandlerOK struct {
 }
 
 func (o *GetEventByEventIDHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/namespaces/{namespace}/eventId/{eventId}][%d] getEventByEventIdHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/namespaces/{namespace}/eventId/{eventId}][%d] getEventByEventIdHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetEventByEventIDHandlerOK) ToString() string {
+func (o *GetEventByEventIDHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

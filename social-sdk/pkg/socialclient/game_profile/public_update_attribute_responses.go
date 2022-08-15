@@ -72,13 +72,19 @@ type PublicUpdateAttributeOK struct {
 }
 
 func (o *PublicUpdateAttributeOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpdateAttributeOK) ToString() string {
+func (o *PublicUpdateAttributeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicUpdateAttributeBadRequest struct {
 }
 
 func (o *PublicUpdateAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUpdateAttributeBadRequest) ToString() string {
+func (o *PublicUpdateAttributeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicUpdateAttributeNotFound struct {
 }
 
 func (o *PublicUpdateAttributeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpdateAttributeNotFound) ToString() string {
+func (o *PublicUpdateAttributeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

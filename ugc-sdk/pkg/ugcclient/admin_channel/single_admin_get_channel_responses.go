@@ -78,13 +78,19 @@ type SingleAdminGetChannelOK struct {
 }
 
 func (o *SingleAdminGetChannelOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SingleAdminGetChannelOK) ToString() string {
+func (o *SingleAdminGetChannelOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type SingleAdminGetChannelUnauthorized struct {
 }
 
 func (o *SingleAdminGetChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminGetChannelUnauthorized) ToString() string {
+func (o *SingleAdminGetChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type SingleAdminGetChannelNotFound struct {
 }
 
 func (o *SingleAdminGetChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminGetChannelNotFound) ToString() string {
+func (o *SingleAdminGetChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type SingleAdminGetChannelInternalServerError struct {
 }
 
 func (o *SingleAdminGetChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminGetChannelInternalServerError) ToString() string {
+func (o *SingleAdminGetChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

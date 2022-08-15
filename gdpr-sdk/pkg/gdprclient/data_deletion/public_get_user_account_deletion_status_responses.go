@@ -78,13 +78,19 @@ type PublicGetUserAccountDeletionStatusOK struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserAccountDeletionStatusOK) ToString() string {
+func (o *PublicGetUserAccountDeletionStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetUserAccountDeletionStatusUnauthorized struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetUserAccountDeletionStatusUnauthorized) ToString() string {
+func (o *PublicGetUserAccountDeletionStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetUserAccountDeletionStatusForbidden struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetUserAccountDeletionStatusForbidden) ToString() string {
+func (o *PublicGetUserAccountDeletionStatusForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetUserAccountDeletionStatusInternalServerError struct {
 }
 
 func (o *PublicGetUserAccountDeletionStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status][%d] publicGetUserAccountDeletionStatusInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetUserAccountDeletionStatusInternalServerError) ToString() string {
+func (o *PublicGetUserAccountDeletionStatusInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

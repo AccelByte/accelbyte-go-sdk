@@ -90,13 +90,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1OK struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1OK) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1BadRequest struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1BadRequest) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1Unauthorized struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1Unauthorized) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1Forbidden struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1Forbidden) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1NotFound struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1NotFound) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetCurrentSeasonLeaderboardRankingAdminV1InternalServerError struct {
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetCurrentSeasonLeaderboardRankingAdminV1InternalServerError) ToString() string {
+func (o *GetCurrentSeasonLeaderboardRankingAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

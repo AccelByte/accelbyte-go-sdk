@@ -78,13 +78,19 @@ type ImageDetailClientOK struct {
 }
 
 func (o *ImageDetailClientOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ImageDetailClientOK) ToString() string {
+func (o *ImageDetailClientOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ImageDetailClientUnauthorized struct {
 }
 
 func (o *ImageDetailClientUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ImageDetailClientUnauthorized) ToString() string {
+func (o *ImageDetailClientUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ImageDetailClientNotFound struct {
 }
 
 func (o *ImageDetailClientNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ImageDetailClientNotFound) ToString() string {
+func (o *ImageDetailClientNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ImageDetailClientInternalServerError struct {
 }
 
 func (o *ImageDetailClientInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/images/versions/{version}][%d] imageDetailClientInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ImageDetailClientInternalServerError) ToString() string {
+func (o *ImageDetailClientInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

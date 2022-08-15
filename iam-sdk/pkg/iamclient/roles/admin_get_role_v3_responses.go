@@ -84,13 +84,19 @@ type AdminGetRoleV3OK struct {
 }
 
 func (o *AdminGetRoleV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetRoleV3OK) ToString() string {
+func (o *AdminGetRoleV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetRoleV3BadRequest struct {
 }
 
 func (o *AdminGetRoleV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetRoleV3BadRequest) ToString() string {
+func (o *AdminGetRoleV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetRoleV3Unauthorized struct {
 }
 
 func (o *AdminGetRoleV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetRoleV3Unauthorized) ToString() string {
+func (o *AdminGetRoleV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetRoleV3Forbidden struct {
 }
 
 func (o *AdminGetRoleV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetRoleV3Forbidden) ToString() string {
+func (o *AdminGetRoleV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetRoleV3NotFound struct {
 }
 
 func (o *AdminGetRoleV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/roles/{roleId}][%d] adminGetRoleV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetRoleV3NotFound) ToString() string {
+func (o *AdminGetRoleV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

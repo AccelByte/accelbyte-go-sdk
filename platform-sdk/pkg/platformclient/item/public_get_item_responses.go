@@ -66,13 +66,19 @@ type PublicGetItemOK struct {
 }
 
 func (o *PublicGetItemOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetItemOK) ToString() string {
+func (o *PublicGetItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetItemNotFound struct {
 }
 
 func (o *PublicGetItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetItemNotFound) ToString() string {
+func (o *PublicGetItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

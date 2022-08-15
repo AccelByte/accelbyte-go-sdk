@@ -111,13 +111,19 @@ type DeleteMemberRoleAdminV1BadRequest struct {
 }
 
 func (o *DeleteMemberRoleAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteMemberRoleAdminV1BadRequest) ToString() string {
+func (o *DeleteMemberRoleAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteMemberRoleAdminV1Unauthorized struct {
 }
 
 func (o *DeleteMemberRoleAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteMemberRoleAdminV1Unauthorized) ToString() string {
+func (o *DeleteMemberRoleAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteMemberRoleAdminV1Forbidden struct {
 }
 
 func (o *DeleteMemberRoleAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteMemberRoleAdminV1Forbidden) ToString() string {
+func (o *DeleteMemberRoleAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteMemberRoleAdminV1NotFound struct {
 }
 
 func (o *DeleteMemberRoleAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteMemberRoleAdminV1NotFound) ToString() string {
+func (o *DeleteMemberRoleAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteMemberRoleAdminV1InternalServerError struct {
 }
 
 func (o *DeleteMemberRoleAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}][%d] deleteMemberRoleAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteMemberRoleAdminV1InternalServerError) ToString() string {
+func (o *DeleteMemberRoleAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

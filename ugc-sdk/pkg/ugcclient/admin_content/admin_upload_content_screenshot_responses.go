@@ -84,13 +84,19 @@ type AdminUploadContentScreenshotCreated struct {
 }
 
 func (o *AdminUploadContentScreenshotCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminUploadContentScreenshotCreated) ToString() string {
+func (o *AdminUploadContentScreenshotCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUploadContentScreenshotBadRequest struct {
 }
 
 func (o *AdminUploadContentScreenshotBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUploadContentScreenshotBadRequest) ToString() string {
+func (o *AdminUploadContentScreenshotBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUploadContentScreenshotUnauthorized struct {
 }
 
 func (o *AdminUploadContentScreenshotUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUploadContentScreenshotUnauthorized) ToString() string {
+func (o *AdminUploadContentScreenshotUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUploadContentScreenshotNotFound struct {
 }
 
 func (o *AdminUploadContentScreenshotNotFound) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUploadContentScreenshotNotFound) ToString() string {
+func (o *AdminUploadContentScreenshotNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUploadContentScreenshotInternalServerError struct {
 }
 
 func (o *AdminUploadContentScreenshotInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUploadContentScreenshotInternalServerError) ToString() string {
+func (o *AdminUploadContentScreenshotInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

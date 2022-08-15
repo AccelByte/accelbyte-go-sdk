@@ -87,13 +87,19 @@ type PublicDeleteProfileNotFound struct {
 }
 
 func (o *PublicDeleteProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDeleteProfileNotFound) ToString() string {
+func (o *PublicDeleteProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

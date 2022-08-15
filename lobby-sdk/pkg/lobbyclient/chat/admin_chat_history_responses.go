@@ -90,13 +90,19 @@ type AdminChatHistoryOK struct {
 }
 
 func (o *AdminChatHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryOK) ToString() string {
+func (o *AdminChatHistoryOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type AdminChatHistoryBadRequest struct {
 }
 
 func (o *AdminChatHistoryBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryBadRequest) ToString() string {
+func (o *AdminChatHistoryBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type AdminChatHistoryUnauthorized struct {
 }
 
 func (o *AdminChatHistoryUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryUnauthorized) ToString() string {
+func (o *AdminChatHistoryUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type AdminChatHistoryForbidden struct {
 }
 
 func (o *AdminChatHistoryForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryForbidden) ToString() string {
+func (o *AdminChatHistoryForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type AdminChatHistoryNotFound struct {
 }
 
 func (o *AdminChatHistoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryNotFound) ToString() string {
+func (o *AdminChatHistoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type AdminChatHistoryInternalServerError struct {
 }
 
 func (o *AdminChatHistoryInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminChatHistoryInternalServerError) ToString() string {
+func (o *AdminChatHistoryInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

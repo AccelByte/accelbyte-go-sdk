@@ -87,13 +87,19 @@ type UpdateXblUserAchievementBadRequest struct {
 }
 
 func (o *UpdateXblUserAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] updateXblUserAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/xbl][%d] updateXblUserAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateXblUserAchievementBadRequest) ToString() string {
+func (o *UpdateXblUserAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

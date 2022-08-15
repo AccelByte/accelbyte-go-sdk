@@ -78,13 +78,19 @@ type PublicIncUserStatItemOK struct {
 }
 
 func (o *PublicIncUserStatItemOK) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicIncUserStatItemOK) ToString() string {
+func (o *PublicIncUserStatItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicIncUserStatItemBadRequest struct {
 }
 
 func (o *PublicIncUserStatItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicIncUserStatItemBadRequest) ToString() string {
+func (o *PublicIncUserStatItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicIncUserStatItemNotFound struct {
 }
 
 func (o *PublicIncUserStatItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicIncUserStatItemNotFound) ToString() string {
+func (o *PublicIncUserStatItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicIncUserStatItemConflict struct {
 }
 
 func (o *PublicIncUserStatItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicIncUserStatItemConflict) ToString() string {
+func (o *PublicIncUserStatItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

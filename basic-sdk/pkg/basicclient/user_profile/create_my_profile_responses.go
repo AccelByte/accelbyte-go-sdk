@@ -90,13 +90,19 @@ type CreateMyProfileCreated struct {
 }
 
 func (o *CreateMyProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateMyProfileCreated) ToString() string {
+func (o *CreateMyProfileCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateMyProfileBadRequest struct {
 }
 
 func (o *CreateMyProfileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateMyProfileBadRequest) ToString() string {
+func (o *CreateMyProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateMyProfileUnauthorized struct {
 }
 
 func (o *CreateMyProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateMyProfileUnauthorized) ToString() string {
+func (o *CreateMyProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateMyProfileForbidden struct {
 }
 
 func (o *CreateMyProfileForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateMyProfileForbidden) ToString() string {
+func (o *CreateMyProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateMyProfileNotFound struct {
 }
 
 func (o *CreateMyProfileNotFound) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateMyProfileNotFound) ToString() string {
+func (o *CreateMyProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateMyProfileConflict struct {
 }
 
 func (o *CreateMyProfileConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/me/profiles][%d] createMyProfileConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateMyProfileConflict) ToString() string {
+func (o *CreateMyProfileConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

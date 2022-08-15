@@ -90,13 +90,19 @@ type AdminUpdateUserBanV3OK struct {
 }
 
 func (o *AdminUpdateUserBanV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3OK) ToString() string {
+func (o *AdminUpdateUserBanV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminUpdateUserBanV3BadRequest struct {
 }
 
 func (o *AdminUpdateUserBanV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3BadRequest) ToString() string {
+func (o *AdminUpdateUserBanV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminUpdateUserBanV3Unauthorized struct {
 }
 
 func (o *AdminUpdateUserBanV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3Unauthorized) ToString() string {
+func (o *AdminUpdateUserBanV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminUpdateUserBanV3Forbidden struct {
 }
 
 func (o *AdminUpdateUserBanV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3Forbidden) ToString() string {
+func (o *AdminUpdateUserBanV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminUpdateUserBanV3NotFound struct {
 }
 
 func (o *AdminUpdateUserBanV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3NotFound) ToString() string {
+func (o *AdminUpdateUserBanV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminUpdateUserBanV3InternalServerError struct {
 }
 
 func (o *AdminUpdateUserBanV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}][%d] adminUpdateUserBanV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserBanV3InternalServerError) ToString() string {
+func (o *AdminUpdateUserBanV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

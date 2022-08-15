@@ -78,13 +78,19 @@ type PublicQueryUserStatItems1OK struct {
 }
 
 func (o *PublicQueryUserStatItems1OK) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicQueryUserStatItems1OK) ToString() string {
+func (o *PublicQueryUserStatItems1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -118,13 +124,19 @@ type PublicQueryUserStatItems1BadRequest struct {
 }
 
 func (o *PublicQueryUserStatItems1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicQueryUserStatItems1BadRequest) ToString() string {
+func (o *PublicQueryUserStatItems1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -160,13 +172,19 @@ type PublicQueryUserStatItems1NotFound struct {
 }
 
 func (o *PublicQueryUserStatItems1NotFound) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicQueryUserStatItems1NotFound) ToString() string {
+func (o *PublicQueryUserStatItems1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -202,13 +220,19 @@ type PublicQueryUserStatItems1UnprocessableEntity struct {
 }
 
 func (o *PublicQueryUserStatItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicQueryUserStatItems1UnprocessableEntity) ToString() string {
+func (o *PublicQueryUserStatItems1UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

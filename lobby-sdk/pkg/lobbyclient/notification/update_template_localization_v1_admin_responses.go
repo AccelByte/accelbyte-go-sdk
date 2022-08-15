@@ -111,13 +111,19 @@ type UpdateTemplateLocalizationV1AdminBadRequest struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateTemplateLocalizationV1AdminBadRequest) ToString() string {
+func (o *UpdateTemplateLocalizationV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type UpdateTemplateLocalizationV1AdminUnauthorized struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateTemplateLocalizationV1AdminUnauthorized) ToString() string {
+func (o *UpdateTemplateLocalizationV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type UpdateTemplateLocalizationV1AdminForbidden struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateTemplateLocalizationV1AdminForbidden) ToString() string {
+func (o *UpdateTemplateLocalizationV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type UpdateTemplateLocalizationV1AdminNotFound struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateTemplateLocalizationV1AdminNotFound) ToString() string {
+func (o *UpdateTemplateLocalizationV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type UpdateTemplateLocalizationV1AdminInternalServerError struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateTemplateLocalizationV1AdminInternalServerError) ToString() string {
+func (o *UpdateTemplateLocalizationV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

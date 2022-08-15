@@ -66,13 +66,19 @@ type BulkIncUserStatItemValue1OK struct {
 }
 
 func (o *BulkIncUserStatItemValue1OK) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkIncUserStatItemValue1OK) ToString() string {
+func (o *BulkIncUserStatItemValue1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type BulkIncUserStatItemValue1UnprocessableEntity struct {
 }
 
 func (o *BulkIncUserStatItemValue1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue1UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue1UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *BulkIncUserStatItemValue1UnprocessableEntity) ToString() string {
+func (o *BulkIncUserStatItemValue1UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

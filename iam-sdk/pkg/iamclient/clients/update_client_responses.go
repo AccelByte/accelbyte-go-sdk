@@ -84,13 +84,19 @@ type UpdateClientOK struct {
 }
 
 func (o *UpdateClientOK) Error() string {
-	return fmt.Sprintf("[PUT /iam/clients/{clientId}][%d] updateClientOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /iam/clients/{clientId}][%d] updateClientOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateClientOK) ToString() string {
+func (o *UpdateClientOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

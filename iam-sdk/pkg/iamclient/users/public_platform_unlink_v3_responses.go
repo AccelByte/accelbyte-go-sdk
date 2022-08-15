@@ -105,13 +105,19 @@ type PublicPlatformUnlinkV3BadRequest struct {
 }
 
 func (o *PublicPlatformUnlinkV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicPlatformUnlinkV3BadRequest) ToString() string {
+func (o *PublicPlatformUnlinkV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PublicPlatformUnlinkV3Unauthorized struct {
 }
 
 func (o *PublicPlatformUnlinkV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicPlatformUnlinkV3Unauthorized) ToString() string {
+func (o *PublicPlatformUnlinkV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PublicPlatformUnlinkV3NotFound struct {
 }
 
 func (o *PublicPlatformUnlinkV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicPlatformUnlinkV3NotFound) ToString() string {
+func (o *PublicPlatformUnlinkV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PublicPlatformUnlinkV3InternalServerError struct {
 }
 
 func (o *PublicPlatformUnlinkV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}][%d] publicPlatformUnlinkV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicPlatformUnlinkV3InternalServerError) ToString() string {
+func (o *PublicPlatformUnlinkV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

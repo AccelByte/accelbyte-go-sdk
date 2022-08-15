@@ -60,13 +60,19 @@ type BulkEnableCodesOK struct {
 }
 
 func (o *BulkEnableCodesOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkEnableCodesOK) ToString() string {
+func (o *BulkEnableCodesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -99,13 +99,19 @@ type SaveAdminEmailConfigurationBadRequest struct {
 }
 
 func (o *SaveAdminEmailConfigurationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SaveAdminEmailConfigurationBadRequest) ToString() string {
+func (o *SaveAdminEmailConfigurationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type SaveAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *SaveAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SaveAdminEmailConfigurationUnauthorized) ToString() string {
+func (o *SaveAdminEmailConfigurationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type SaveAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *SaveAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] saveAdminEmailConfigurationInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SaveAdminEmailConfigurationInternalServerError) ToString() string {
+func (o *SaveAdminEmailConfigurationInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

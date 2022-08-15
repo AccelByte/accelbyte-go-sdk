@@ -111,13 +111,19 @@ type UserCancelFriendRequestBadRequest struct {
 }
 
 func (o *UserCancelFriendRequestBadRequest) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UserCancelFriendRequestBadRequest) ToString() string {
+func (o *UserCancelFriendRequestBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type UserCancelFriendRequestUnauthorized struct {
 }
 
 func (o *UserCancelFriendRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UserCancelFriendRequestUnauthorized) ToString() string {
+func (o *UserCancelFriendRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type UserCancelFriendRequestForbidden struct {
 }
 
 func (o *UserCancelFriendRequestForbidden) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UserCancelFriendRequestForbidden) ToString() string {
+func (o *UserCancelFriendRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type UserCancelFriendRequestNotFound struct {
 }
 
 func (o *UserCancelFriendRequestNotFound) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UserCancelFriendRequestNotFound) ToString() string {
+func (o *UserCancelFriendRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type UserCancelFriendRequestInternalServerError struct {
 }
 
 func (o *UserCancelFriendRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /friends/namespaces/{namespace}/me/request/cancel][%d] userCancelFriendRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UserCancelFriendRequestInternalServerError) ToString() string {
+func (o *UserCancelFriendRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

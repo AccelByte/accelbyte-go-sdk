@@ -99,13 +99,19 @@ type PublicUpdatePasswordV3BadRequest struct {
 }
 
 func (o *PublicUpdatePasswordV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUpdatePasswordV3BadRequest) ToString() string {
+func (o *PublicUpdatePasswordV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type PublicUpdatePasswordV3Unauthorized struct {
 }
 
 func (o *PublicUpdatePasswordV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicUpdatePasswordV3Unauthorized) ToString() string {
+func (o *PublicUpdatePasswordV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type PublicUpdatePasswordV3InternalServerError struct {
 }
 
 func (o *PublicUpdatePasswordV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me/password][%d] publicUpdatePasswordV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicUpdatePasswordV3InternalServerError) ToString() string {
+func (o *PublicUpdatePasswordV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

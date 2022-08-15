@@ -78,13 +78,19 @@ type PublicRedeemCodeOK struct {
 }
 
 func (o *PublicRedeemCodeOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicRedeemCodeOK) ToString() string {
+func (o *PublicRedeemCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicRedeemCodeBadRequest struct {
 }
 
 func (o *PublicRedeemCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicRedeemCodeBadRequest) ToString() string {
+func (o *PublicRedeemCodeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicRedeemCodeNotFound struct {
 }
 
 func (o *PublicRedeemCodeNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicRedeemCodeNotFound) ToString() string {
+func (o *PublicRedeemCodeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicRedeemCodeConflict struct {
 }
 
 func (o *PublicRedeemCodeConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicRedeemCodeConflict) ToString() string {
+func (o *PublicRedeemCodeConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

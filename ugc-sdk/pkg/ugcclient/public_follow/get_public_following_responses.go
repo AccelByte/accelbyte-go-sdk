@@ -78,13 +78,19 @@ type GetPublicFollowingOK struct {
 }
 
 func (o *GetPublicFollowingOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPublicFollowingOK) ToString() string {
+func (o *GetPublicFollowingOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type GetPublicFollowingUnauthorized struct {
 }
 
 func (o *GetPublicFollowingUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetPublicFollowingUnauthorized) ToString() string {
+func (o *GetPublicFollowingUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type GetPublicFollowingNotFound struct {
 }
 
 func (o *GetPublicFollowingNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPublicFollowingNotFound) ToString() string {
+func (o *GetPublicFollowingNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type GetPublicFollowingInternalServerError struct {
 }
 
 func (o *GetPublicFollowingInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetPublicFollowingInternalServerError) ToString() string {
+func (o *GetPublicFollowingInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

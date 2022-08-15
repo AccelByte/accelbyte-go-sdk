@@ -72,13 +72,19 @@ type PublicCancelSubscriptionOK struct {
 }
 
 func (o *PublicCancelSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicCancelSubscriptionOK) ToString() string {
+func (o *PublicCancelSubscriptionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicCancelSubscriptionNotFound struct {
 }
 
 func (o *PublicCancelSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCancelSubscriptionNotFound) ToString() string {
+func (o *PublicCancelSubscriptionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicCancelSubscriptionConflict struct {
 }
 
 func (o *PublicCancelSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCancelSubscriptionConflict) ToString() string {
+func (o *PublicCancelSubscriptionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

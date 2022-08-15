@@ -84,13 +84,19 @@ type DebitUserWalletOK struct {
 }
 
 func (o *DebitUserWalletOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DebitUserWalletOK) ToString() string {
+func (o *DebitUserWalletOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type DebitUserWalletBadRequest struct {
 }
 
 func (o *DebitUserWalletBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DebitUserWalletBadRequest) ToString() string {
+func (o *DebitUserWalletBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type DebitUserWalletNotFound struct {
 }
 
 func (o *DebitUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DebitUserWalletNotFound) ToString() string {
+func (o *DebitUserWalletNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type DebitUserWalletConflict struct {
 }
 
 func (o *DebitUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DebitUserWalletConflict) ToString() string {
+func (o *DebitUserWalletConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type DebitUserWalletUnprocessableEntity struct {
 }
 
 func (o *DebitUserWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *DebitUserWalletUnprocessableEntity) ToString() string {
+func (o *DebitUserWalletUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

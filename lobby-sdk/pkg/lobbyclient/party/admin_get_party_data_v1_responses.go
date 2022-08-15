@@ -90,13 +90,19 @@ type AdminGetPartyDataV1OK struct {
 }
 
 func (o *AdminGetPartyDataV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1OK) ToString() string {
+func (o *AdminGetPartyDataV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetPartyDataV1BadRequest struct {
 }
 
 func (o *AdminGetPartyDataV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1BadRequest) ToString() string {
+func (o *AdminGetPartyDataV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetPartyDataV1Unauthorized struct {
 }
 
 func (o *AdminGetPartyDataV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1Unauthorized) ToString() string {
+func (o *AdminGetPartyDataV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetPartyDataV1Forbidden struct {
 }
 
 func (o *AdminGetPartyDataV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1Forbidden) ToString() string {
+func (o *AdminGetPartyDataV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetPartyDataV1NotFound struct {
 }
 
 func (o *AdminGetPartyDataV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1NotFound) ToString() string {
+func (o *AdminGetPartyDataV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetPartyDataV1InternalServerError struct {
 }
 
 func (o *AdminGetPartyDataV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}][%d] adminGetPartyDataV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetPartyDataV1InternalServerError) ToString() string {
+func (o *AdminGetPartyDataV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

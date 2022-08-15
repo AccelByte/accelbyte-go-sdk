@@ -60,13 +60,19 @@ type PublicGetUserAppEntitlementOwnershipByAppIDOK struct {
 }
 
 func (o *PublicGetUserAppEntitlementOwnershipByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId][%d] publicGetUserAppEntitlementOwnershipByAppIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId][%d] publicGetUserAppEntitlementOwnershipByAppIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserAppEntitlementOwnershipByAppIDOK) ToString() string {
+func (o *PublicGetUserAppEntitlementOwnershipByAppIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type CheckServerLogsOK struct {
 }
 
 func (o *CheckServerLogsOK) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CheckServerLogsOK) ToString() string {
+func (o *CheckServerLogsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CheckServerLogsNotFound struct {
 }
 
 func (o *CheckServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CheckServerLogsNotFound) ToString() string {
+func (o *CheckServerLogsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CheckServerLogsInternalServerError struct {
 }
 
 func (o *CheckServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists][%d] checkServerLogsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CheckServerLogsInternalServerError) ToString() string {
+func (o *CheckServerLogsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

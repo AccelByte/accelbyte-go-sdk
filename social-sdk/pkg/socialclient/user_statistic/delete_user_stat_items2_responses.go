@@ -99,13 +99,19 @@ type DeleteUserStatItems2Unauthorized struct {
 }
 
 func (o *DeleteUserStatItems2Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteUserStatItems2Unauthorized) ToString() string {
+func (o *DeleteUserStatItems2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteUserStatItems2Forbidden struct {
 }
 
 func (o *DeleteUserStatItems2Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteUserStatItems2Forbidden) ToString() string {
+func (o *DeleteUserStatItems2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteUserStatItems2NotFound struct {
 }
 
 func (o *DeleteUserStatItems2NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItems2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteUserStatItems2NotFound) ToString() string {
+func (o *DeleteUserStatItems2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

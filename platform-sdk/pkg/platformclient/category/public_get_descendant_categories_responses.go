@@ -60,13 +60,19 @@ type PublicGetDescendantCategoriesOK struct {
 }
 
 func (o *PublicGetDescendantCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetDescendantCategoriesOK) ToString() string {
+func (o *PublicGetDescendantCategoriesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

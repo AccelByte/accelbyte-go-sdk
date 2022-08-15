@@ -117,13 +117,19 @@ type AdminEnableMyAuthenticatorV4BadRequest struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4BadRequest) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type AdminEnableMyAuthenticatorV4Unauthorized struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4Unauthorized) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type AdminEnableMyAuthenticatorV4Forbidden struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4Forbidden) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type AdminEnableMyAuthenticatorV4NotFound struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4NotFound) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type AdminEnableMyAuthenticatorV4Conflict struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4Conflict) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type AdminEnableMyAuthenticatorV4InternalServerError struct {
 }
 
 func (o *AdminEnableMyAuthenticatorV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/authenticator/enable][%d] adminEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminEnableMyAuthenticatorV4InternalServerError) ToString() string {
+func (o *AdminEnableMyAuthenticatorV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type UpdateCountryGroupOK struct {
 }
 
 func (o *UpdateCountryGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCountryGroupOK) ToString() string {
+func (o *UpdateCountryGroupOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateCountryGroupBadRequest struct {
 }
 
 func (o *UpdateCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateCountryGroupBadRequest) ToString() string {
+func (o *UpdateCountryGroupBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateCountryGroupUnauthorized struct {
 }
 
 func (o *UpdateCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateCountryGroupUnauthorized) ToString() string {
+func (o *UpdateCountryGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateCountryGroupForbidden struct {
 }
 
 func (o *UpdateCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateCountryGroupForbidden) ToString() string {
+func (o *UpdateCountryGroupForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateCountryGroupNotFound struct {
 }
 
 func (o *UpdateCountryGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateCountryGroupNotFound) ToString() string {
+func (o *UpdateCountryGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

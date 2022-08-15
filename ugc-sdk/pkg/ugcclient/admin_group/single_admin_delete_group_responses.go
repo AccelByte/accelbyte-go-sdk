@@ -99,13 +99,19 @@ type SingleAdminDeleteGroupUnauthorized struct {
 }
 
 func (o *SingleAdminDeleteGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteGroupUnauthorized) ToString() string {
+func (o *SingleAdminDeleteGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type SingleAdminDeleteGroupNotFound struct {
 }
 
 func (o *SingleAdminDeleteGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteGroupNotFound) ToString() string {
+func (o *SingleAdminDeleteGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type SingleAdminDeleteGroupInternalServerError struct {
 }
 
 func (o *SingleAdminDeleteGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminDeleteGroupInternalServerError) ToString() string {
+func (o *SingleAdminDeleteGroupInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type AdminUpdateRoleV3OK struct {
 }
 
 func (o *AdminUpdateRoleV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateRoleV3OK) ToString() string {
+func (o *AdminUpdateRoleV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUpdateRoleV3BadRequest struct {
 }
 
 func (o *AdminUpdateRoleV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateRoleV3BadRequest) ToString() string {
+func (o *AdminUpdateRoleV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUpdateRoleV3Unauthorized struct {
 }
 
 func (o *AdminUpdateRoleV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateRoleV3Unauthorized) ToString() string {
+func (o *AdminUpdateRoleV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUpdateRoleV3Forbidden struct {
 }
 
 func (o *AdminUpdateRoleV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateRoleV3Forbidden) ToString() string {
+func (o *AdminUpdateRoleV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUpdateRoleV3NotFound struct {
 }
 
 func (o *AdminUpdateRoleV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/roles/{roleId}][%d] adminUpdateRoleV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateRoleV3NotFound) ToString() string {
+func (o *AdminUpdateRoleV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

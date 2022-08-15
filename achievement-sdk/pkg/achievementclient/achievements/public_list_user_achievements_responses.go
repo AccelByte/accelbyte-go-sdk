@@ -84,13 +84,19 @@ type PublicListUserAchievementsOK struct {
 }
 
 func (o *PublicListUserAchievementsOK) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicListUserAchievementsOK) ToString() string {
+func (o *PublicListUserAchievementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicListUserAchievementsBadRequest struct {
 }
 
 func (o *PublicListUserAchievementsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicListUserAchievementsBadRequest) ToString() string {
+func (o *PublicListUserAchievementsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicListUserAchievementsUnauthorized struct {
 }
 
 func (o *PublicListUserAchievementsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicListUserAchievementsUnauthorized) ToString() string {
+func (o *PublicListUserAchievementsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicListUserAchievementsNotFound struct {
 }
 
 func (o *PublicListUserAchievementsNotFound) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicListUserAchievementsNotFound) ToString() string {
+func (o *PublicListUserAchievementsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicListUserAchievementsInternalServerError struct {
 }
 
 func (o *PublicListUserAchievementsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements][%d] publicListUserAchievementsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicListUserAchievementsInternalServerError) ToString() string {
+func (o *PublicListUserAchievementsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

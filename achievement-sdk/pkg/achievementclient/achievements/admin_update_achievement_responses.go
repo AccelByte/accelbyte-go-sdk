@@ -84,13 +84,19 @@ type AdminUpdateAchievementOK struct {
 }
 
 func (o *AdminUpdateAchievementOK) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementOK) ToString() string {
+func (o *AdminUpdateAchievementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUpdateAchievementBadRequest struct {
 }
 
 func (o *AdminUpdateAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementBadRequest) ToString() string {
+func (o *AdminUpdateAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUpdateAchievementUnauthorized struct {
 }
 
 func (o *AdminUpdateAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementUnauthorized) ToString() string {
+func (o *AdminUpdateAchievementUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUpdateAchievementNotFound struct {
 }
 
 func (o *AdminUpdateAchievementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementNotFound) ToString() string {
+func (o *AdminUpdateAchievementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUpdateAchievementInternalServerError struct {
 }
 
 func (o *AdminUpdateAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}][%d] adminUpdateAchievementInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateAchievementInternalServerError) ToString() string {
+func (o *AdminUpdateAchievementInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -105,13 +105,19 @@ type SendUsersTemplatedNotificationV1AdminBadRequest struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SendUsersTemplatedNotificationV1AdminBadRequest) ToString() string {
+func (o *SendUsersTemplatedNotificationV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type SendUsersTemplatedNotificationV1AdminUnauthorized struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SendUsersTemplatedNotificationV1AdminUnauthorized) ToString() string {
+func (o *SendUsersTemplatedNotificationV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type SendUsersTemplatedNotificationV1AdminForbidden struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *SendUsersTemplatedNotificationV1AdminForbidden) ToString() string {
+func (o *SendUsersTemplatedNotificationV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type SendUsersTemplatedNotificationV1AdminNotFound struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SendUsersTemplatedNotificationV1AdminNotFound) ToString() string {
+func (o *SendUsersTemplatedNotificationV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

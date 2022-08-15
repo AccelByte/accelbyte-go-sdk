@@ -111,13 +111,19 @@ type AdminDisableMyAuthenticatorV4BadRequest struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDisableMyAuthenticatorV4BadRequest) ToString() string {
+func (o *AdminDisableMyAuthenticatorV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminDisableMyAuthenticatorV4Unauthorized struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDisableMyAuthenticatorV4Unauthorized) ToString() string {
+func (o *AdminDisableMyAuthenticatorV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminDisableMyAuthenticatorV4Forbidden struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminDisableMyAuthenticatorV4Forbidden) ToString() string {
+func (o *AdminDisableMyAuthenticatorV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminDisableMyAuthenticatorV4NotFound struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDisableMyAuthenticatorV4NotFound) ToString() string {
+func (o *AdminDisableMyAuthenticatorV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminDisableMyAuthenticatorV4InternalServerError struct {
 }
 
 func (o *AdminDisableMyAuthenticatorV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/admin/users/me/mfa/authenticator/disable][%d] adminDisableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDisableMyAuthenticatorV4InternalServerError) ToString() string {
+func (o *AdminDisableMyAuthenticatorV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

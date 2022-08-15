@@ -72,13 +72,19 @@ type GetActiveMatchmakingGameSessionsOK struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetActiveMatchmakingGameSessionsOK) ToString() string {
+func (o *GetActiveMatchmakingGameSessionsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetActiveMatchmakingGameSessionsBadRequest struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetActiveMatchmakingGameSessionsBadRequest) ToString() string {
+func (o *GetActiveMatchmakingGameSessionsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetActiveMatchmakingGameSessionsInternalServerError struct {
 }
 
 func (o *GetActiveMatchmakingGameSessionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetActiveMatchmakingGameSessionsInternalServerError) ToString() string {
+func (o *GetActiveMatchmakingGameSessionsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

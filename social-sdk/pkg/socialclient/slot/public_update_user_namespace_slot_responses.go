@@ -72,13 +72,19 @@ type PublicUpdateUserNamespaceSlotOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserNamespaceSlotOK) ToString() string {
+func (o *PublicUpdateUserNamespaceSlotOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicUpdateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserNamespaceSlotBadRequest) ToString() string {
+func (o *PublicUpdateUserNamespaceSlotBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicUpdateUserNamespaceSlotNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserNamespaceSlotNotFound) ToString() string {
+func (o *PublicUpdateUserNamespaceSlotNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

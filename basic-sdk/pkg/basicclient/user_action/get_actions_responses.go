@@ -78,13 +78,19 @@ type GetActionsOK struct {
 }
 
 func (o *GetActionsOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetActionsOK) ToString() string {
+func (o *GetActionsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -118,13 +124,19 @@ type GetActionsBadRequest struct {
 }
 
 func (o *GetActionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetActionsBadRequest) ToString() string {
+func (o *GetActionsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -160,13 +172,19 @@ type GetActionsNotFound struct {
 }
 
 func (o *GetActionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetActionsNotFound) ToString() string {
+func (o *GetActionsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -202,13 +220,19 @@ type GetActionsInternalServerError struct {
 }
 
 func (o *GetActionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetActionsInternalServerError) ToString() string {
+func (o *GetActionsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

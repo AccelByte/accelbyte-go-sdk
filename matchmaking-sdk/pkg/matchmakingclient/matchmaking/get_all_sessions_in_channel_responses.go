@@ -90,13 +90,19 @@ type GetAllSessionsInChannelOK struct {
 }
 
 func (o *GetAllSessionsInChannelOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelOK) ToString() string {
+func (o *GetAllSessionsInChannelOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type GetAllSessionsInChannelBadRequest struct {
 }
 
 func (o *GetAllSessionsInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelBadRequest) ToString() string {
+func (o *GetAllSessionsInChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type GetAllSessionsInChannelUnauthorized struct {
 }
 
 func (o *GetAllSessionsInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelUnauthorized) ToString() string {
+func (o *GetAllSessionsInChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type GetAllSessionsInChannelForbidden struct {
 }
 
 func (o *GetAllSessionsInChannelForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelForbidden) ToString() string {
+func (o *GetAllSessionsInChannelForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type GetAllSessionsInChannelNotFound struct {
 }
 
 func (o *GetAllSessionsInChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelNotFound) ToString() string {
+func (o *GetAllSessionsInChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type GetAllSessionsInChannelInternalServerError struct {
 }
 
 func (o *GetAllSessionsInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions][%d] getAllSessionsInChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAllSessionsInChannelInternalServerError) ToString() string {
+func (o *GetAllSessionsInChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

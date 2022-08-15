@@ -90,13 +90,19 @@ type UpdateGroupConfigurationAdminV1OK struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1OK) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1OK) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateGroupConfigurationAdminV1BadRequest struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1BadRequest) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdateGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1Unauthorized) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdateGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1Forbidden) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdateGroupConfigurationAdminV1NotFound struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1NotFound) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdateGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *UpdateGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] updateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateGroupConfigurationAdminV1InternalServerError) ToString() string {
+func (o *UpdateGroupConfigurationAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

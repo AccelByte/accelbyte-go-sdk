@@ -99,13 +99,19 @@ type PublicFulfillAppleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicFulfillAppleIAPItemBadRequest) ToString() string {
+func (o *PublicFulfillAppleIAPItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type PublicFulfillAppleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicFulfillAppleIAPItemNotFound) ToString() string {
+func (o *PublicFulfillAppleIAPItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type PublicFulfillAppleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicFulfillAppleIAPItemConflict) ToString() string {
+func (o *PublicFulfillAppleIAPItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

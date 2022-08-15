@@ -78,13 +78,19 @@ type PublicClaimUserRewardOK struct {
 }
 
 func (o *PublicClaimUserRewardOK) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicClaimUserRewardOK) ToString() string {
+func (o *PublicClaimUserRewardOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicClaimUserRewardBadRequest struct {
 }
 
 func (o *PublicClaimUserRewardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicClaimUserRewardBadRequest) ToString() string {
+func (o *PublicClaimUserRewardBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicClaimUserRewardNotFound struct {
 }
 
 func (o *PublicClaimUserRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicClaimUserRewardNotFound) ToString() string {
+func (o *PublicClaimUserRewardNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicClaimUserRewardConflict struct {
 }
 
 func (o *PublicClaimUserRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicClaimUserRewardConflict) ToString() string {
+func (o *PublicClaimUserRewardConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

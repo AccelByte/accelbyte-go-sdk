@@ -72,13 +72,19 @@ type DefeatureItemOK struct {
 }
 
 func (o *DefeatureItemOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DefeatureItemOK) ToString() string {
+func (o *DefeatureItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type DefeatureItemNotFound struct {
 }
 
 func (o *DefeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DefeatureItemNotFound) ToString() string {
+func (o *DefeatureItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type DefeatureItemConflict struct {
 }
 
 func (o *DefeatureItemConflict) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *DefeatureItemConflict) ToString() string {
+func (o *DefeatureItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

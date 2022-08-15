@@ -90,13 +90,19 @@ type AdminGetAllConfigV1OK struct {
 }
 
 func (o *AdminGetAllConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1OK) ToString() string {
+func (o *AdminGetAllConfigV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetAllConfigV1BadRequest struct {
 }
 
 func (o *AdminGetAllConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1BadRequest) ToString() string {
+func (o *AdminGetAllConfigV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetAllConfigV1Unauthorized struct {
 }
 
 func (o *AdminGetAllConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1Unauthorized) ToString() string {
+func (o *AdminGetAllConfigV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetAllConfigV1Forbidden struct {
 }
 
 func (o *AdminGetAllConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1Forbidden) ToString() string {
+func (o *AdminGetAllConfigV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetAllConfigV1NotFound struct {
 }
 
 func (o *AdminGetAllConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1NotFound) ToString() string {
+func (o *AdminGetAllConfigV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetAllConfigV1InternalServerError struct {
 }
 
 func (o *AdminGetAllConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetAllConfigV1InternalServerError) ToString() string {
+func (o *AdminGetAllConfigV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

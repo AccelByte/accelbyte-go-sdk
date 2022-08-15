@@ -84,13 +84,19 @@ type PublicListUserAllPlatformAccountsDistinctV3OK struct {
 }
 
 func (o *PublicListUserAllPlatformAccountsDistinctV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicListUserAllPlatformAccountsDistinctV3OK) ToString() string {
+func (o *PublicListUserAllPlatformAccountsDistinctV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicListUserAllPlatformAccountsDistinctV3BadRequest struct {
 }
 
 func (o *PublicListUserAllPlatformAccountsDistinctV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicListUserAllPlatformAccountsDistinctV3BadRequest) ToString() string {
+func (o *PublicListUserAllPlatformAccountsDistinctV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicListUserAllPlatformAccountsDistinctV3Unauthorized struct {
 }
 
 func (o *PublicListUserAllPlatformAccountsDistinctV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicListUserAllPlatformAccountsDistinctV3Unauthorized) ToString() string {
+func (o *PublicListUserAllPlatformAccountsDistinctV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicListUserAllPlatformAccountsDistinctV3Forbidden struct {
 }
 
 func (o *PublicListUserAllPlatformAccountsDistinctV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicListUserAllPlatformAccountsDistinctV3Forbidden) ToString() string {
+func (o *PublicListUserAllPlatformAccountsDistinctV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicListUserAllPlatformAccountsDistinctV3NotFound struct {
 }
 
 func (o *PublicListUserAllPlatformAccountsDistinctV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/distinctPlatforms][%d] publicListUserAllPlatformAccountsDistinctV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicListUserAllPlatformAccountsDistinctV3NotFound) ToString() string {
+func (o *PublicListUserAllPlatformAccountsDistinctV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

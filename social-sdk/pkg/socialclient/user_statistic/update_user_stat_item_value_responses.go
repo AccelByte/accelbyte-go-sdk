@@ -84,13 +84,19 @@ type UpdateUserStatItemValueOK struct {
 }
 
 func (o *UpdateUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserStatItemValueOK) ToString() string {
+func (o *UpdateUserStatItemValueOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateUserStatItemValueBadRequest struct {
 }
 
 func (o *UpdateUserStatItemValueBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserStatItemValueBadRequest) ToString() string {
+func (o *UpdateUserStatItemValueBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateUserStatItemValueNotFound struct {
 }
 
 func (o *UpdateUserStatItemValueNotFound) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserStatItemValueNotFound) ToString() string {
+func (o *UpdateUserStatItemValueNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateUserStatItemValueConflict struct {
 }
 
 func (o *UpdateUserStatItemValueConflict) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateUserStatItemValueConflict) ToString() string {
+func (o *UpdateUserStatItemValueConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateUserStatItemValueUnprocessableEntity struct {
 }
 
 func (o *UpdateUserStatItemValueUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateUserStatItemValueUnprocessableEntity) ToString() string {
+func (o *UpdateUserStatItemValueUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

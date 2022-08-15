@@ -84,13 +84,19 @@ type AdminSearchUserV3OK struct {
 }
 
 func (o *AdminSearchUserV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminSearchUserV3OK) ToString() string {
+func (o *AdminSearchUserV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminSearchUserV3BadRequest struct {
 }
 
 func (o *AdminSearchUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminSearchUserV3BadRequest) ToString() string {
+func (o *AdminSearchUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminSearchUserV3Unauthorized struct {
 }
 
 func (o *AdminSearchUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminSearchUserV3Unauthorized) ToString() string {
+func (o *AdminSearchUserV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminSearchUserV3Forbidden struct {
 }
 
 func (o *AdminSearchUserV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminSearchUserV3Forbidden) ToString() string {
+func (o *AdminSearchUserV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

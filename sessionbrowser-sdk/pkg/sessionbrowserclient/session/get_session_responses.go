@@ -72,13 +72,19 @@ type GetSessionOK struct {
 }
 
 func (o *GetSessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSessionOK) ToString() string {
+func (o *GetSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetSessionNotFound struct {
 }
 
 func (o *GetSessionNotFound) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetSessionNotFound) ToString() string {
+func (o *GetSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetSessionInternalServerError struct {
 }
 
 func (o *GetSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] getSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetSessionInternalServerError) ToString() string {
+func (o *GetSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

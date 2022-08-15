@@ -72,13 +72,19 @@ type CreateCodesCreated struct {
 }
 
 func (o *CreateCodesCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateCodesCreated) ToString() string {
+func (o *CreateCodesCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CreateCodesNotFound struct {
 }
 
 func (o *CreateCodesNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateCodesNotFound) ToString() string {
+func (o *CreateCodesNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CreateCodesUnprocessableEntity struct {
 }
 
 func (o *CreateCodesUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateCodesUnprocessableEntity) ToString() string {
+func (o *CreateCodesUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

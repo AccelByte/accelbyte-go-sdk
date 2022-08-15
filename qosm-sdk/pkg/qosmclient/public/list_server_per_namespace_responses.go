@@ -66,13 +66,19 @@ type ListServerPerNamespaceOK struct {
 }
 
 func (o *ListServerPerNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListServerPerNamespaceOK) ToString() string {
+func (o *ListServerPerNamespaceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type ListServerPerNamespaceInternalServerError struct {
 }
 
 func (o *ListServerPerNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /qosm/public/namespaces/{namespace}/qos][%d] listServerPerNamespaceInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListServerPerNamespaceInternalServerError) ToString() string {
+func (o *ListServerPerNamespaceInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

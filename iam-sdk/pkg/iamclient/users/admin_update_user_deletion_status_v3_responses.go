@@ -111,13 +111,19 @@ type AdminUpdateUserDeletionStatusV3BadRequest struct {
 }
 
 func (o *AdminUpdateUserDeletionStatusV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserDeletionStatusV3BadRequest) ToString() string {
+func (o *AdminUpdateUserDeletionStatusV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminUpdateUserDeletionStatusV3Unauthorized struct {
 }
 
 func (o *AdminUpdateUserDeletionStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserDeletionStatusV3Unauthorized) ToString() string {
+func (o *AdminUpdateUserDeletionStatusV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminUpdateUserDeletionStatusV3Forbidden struct {
 }
 
 func (o *AdminUpdateUserDeletionStatusV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserDeletionStatusV3Forbidden) ToString() string {
+func (o *AdminUpdateUserDeletionStatusV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminUpdateUserDeletionStatusV3NotFound struct {
 }
 
 func (o *AdminUpdateUserDeletionStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserDeletionStatusV3NotFound) ToString() string {
+func (o *AdminUpdateUserDeletionStatusV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminUpdateUserDeletionStatusV3InternalServerError struct {
 }
 
 func (o *AdminUpdateUserDeletionStatusV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminUpdateUserDeletionStatusV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserDeletionStatusV3InternalServerError) ToString() string {
+func (o *AdminUpdateUserDeletionStatusV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

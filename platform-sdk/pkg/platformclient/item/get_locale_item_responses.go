@@ -66,13 +66,19 @@ type GetLocaleItemOK struct {
 }
 
 func (o *GetLocaleItemOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetLocaleItemOK) ToString() string {
+func (o *GetLocaleItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetLocaleItemNotFound struct {
 }
 
 func (o *GetLocaleItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetLocaleItemNotFound) ToString() string {
+func (o *GetLocaleItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

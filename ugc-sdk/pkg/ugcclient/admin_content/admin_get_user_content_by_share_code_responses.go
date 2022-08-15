@@ -78,13 +78,19 @@ type AdminGetUserContentByShareCodeOK struct {
 }
 
 func (o *AdminGetUserContentByShareCodeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserContentByShareCodeOK) ToString() string {
+func (o *AdminGetUserContentByShareCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminGetUserContentByShareCodeUnauthorized struct {
 }
 
 func (o *AdminGetUserContentByShareCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserContentByShareCodeUnauthorized) ToString() string {
+func (o *AdminGetUserContentByShareCodeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminGetUserContentByShareCodeNotFound struct {
 }
 
 func (o *AdminGetUserContentByShareCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserContentByShareCodeNotFound) ToString() string {
+func (o *AdminGetUserContentByShareCodeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminGetUserContentByShareCodeInternalServerError struct {
 }
 
 func (o *AdminGetUserContentByShareCodeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}][%d] adminGetUserContentByShareCodeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetUserContentByShareCodeInternalServerError) ToString() string {
+func (o *AdminGetUserContentByShareCodeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

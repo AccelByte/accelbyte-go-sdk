@@ -84,13 +84,19 @@ type AdminGetUserAccountDeletionRequestOK struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserAccountDeletionRequestOK) ToString() string {
+func (o *AdminGetUserAccountDeletionRequestOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetUserAccountDeletionRequestUnauthorized struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserAccountDeletionRequestUnauthorized) ToString() string {
+func (o *AdminGetUserAccountDeletionRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetUserAccountDeletionRequestForbidden struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetUserAccountDeletionRequestForbidden) ToString() string {
+func (o *AdminGetUserAccountDeletionRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetUserAccountDeletionRequestNotFound struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserAccountDeletionRequestNotFound) ToString() string {
+func (o *AdminGetUserAccountDeletionRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetUserAccountDeletionRequestInternalServerError struct {
 }
 
 func (o *AdminGetUserAccountDeletionRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/deletions][%d] adminGetUserAccountDeletionRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetUserAccountDeletionRequestInternalServerError) ToString() string {
+func (o *AdminGetUserAccountDeletionRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

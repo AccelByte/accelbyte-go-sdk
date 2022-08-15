@@ -90,13 +90,19 @@ type PublicGetMyEnabledFactorsV4OK struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4OK) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicGetMyEnabledFactorsV4BadRequest struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4BadRequest) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicGetMyEnabledFactorsV4Unauthorized struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4Unauthorized) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicGetMyEnabledFactorsV4Forbidden struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4Forbidden) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicGetMyEnabledFactorsV4NotFound struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4NotFound) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicGetMyEnabledFactorsV4InternalServerError struct {
 }
 
 func (o *PublicGetMyEnabledFactorsV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/public/namespaces/{namespace}/users/me/mfa/factor][%d] publicGetMyEnabledFactorsV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetMyEnabledFactorsV4InternalServerError) ToString() string {
+func (o *PublicGetMyEnabledFactorsV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

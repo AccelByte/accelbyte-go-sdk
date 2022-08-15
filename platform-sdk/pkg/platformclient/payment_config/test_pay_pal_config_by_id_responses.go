@@ -66,13 +66,19 @@ type TestPayPalConfigByIDOK struct {
 }
 
 func (o *TestPayPalConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestPayPalConfigByIDOK) ToString() string {
+func (o *TestPayPalConfigByIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type TestPayPalConfigByIDNotFound struct {
 }
 
 func (o *TestPayPalConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/paypalconfig/test][%d] testPayPalConfigByIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *TestPayPalConfigByIDNotFound) ToString() string {
+func (o *TestPayPalConfigByIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

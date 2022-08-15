@@ -84,13 +84,19 @@ type GetTopicByNamespaceOK struct {
 }
 
 func (o *GetTopicByNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTopicByNamespaceOK) ToString() string {
+func (o *GetTopicByNamespaceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetTopicByNamespaceUnauthorized struct {
 }
 
 func (o *GetTopicByNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetTopicByNamespaceUnauthorized) ToString() string {
+func (o *GetTopicByNamespaceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetTopicByNamespaceForbidden struct {
 }
 
 func (o *GetTopicByNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetTopicByNamespaceForbidden) ToString() string {
+func (o *GetTopicByNamespaceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetTopicByNamespaceNotFound struct {
 }
 
 func (o *GetTopicByNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetTopicByNamespaceNotFound) ToString() string {
+func (o *GetTopicByNamespaceNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetTopicByNamespaceInternalServerError struct {
 }
 
 func (o *GetTopicByNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/topics][%d] getTopicByNamespaceInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetTopicByNamespaceInternalServerError) ToString() string {
+func (o *GetTopicByNamespaceInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

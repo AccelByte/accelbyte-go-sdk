@@ -72,13 +72,19 @@ type GetActiveCustomGameSessionsOK struct {
 }
 
 func (o *GetActiveCustomGameSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetActiveCustomGameSessionsOK) ToString() string {
+func (o *GetActiveCustomGameSessionsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetActiveCustomGameSessionsBadRequest struct {
 }
 
 func (o *GetActiveCustomGameSessionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetActiveCustomGameSessionsBadRequest) ToString() string {
+func (o *GetActiveCustomGameSessionsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetActiveCustomGameSessionsInternalServerError struct {
 }
 
 func (o *GetActiveCustomGameSessionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetActiveCustomGameSessionsInternalServerError) ToString() string {
+func (o *GetActiveCustomGameSessionsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

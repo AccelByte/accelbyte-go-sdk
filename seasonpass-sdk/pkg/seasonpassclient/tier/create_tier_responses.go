@@ -84,13 +84,19 @@ type CreateTierCreated struct {
 }
 
 func (o *CreateTierCreated) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateTierCreated) ToString() string {
+func (o *CreateTierCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type CreateTierBadRequest struct {
 }
 
 func (o *CreateTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateTierBadRequest) ToString() string {
+func (o *CreateTierBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type CreateTierNotFound struct {
 }
 
 func (o *CreateTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateTierNotFound) ToString() string {
+func (o *CreateTierNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type CreateTierConflict struct {
 }
 
 func (o *CreateTierConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateTierConflict) ToString() string {
+func (o *CreateTierConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type CreateTierUnprocessableEntity struct {
 }
 
 func (o *CreateTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateTierUnprocessableEntity) ToString() string {
+func (o *CreateTierUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

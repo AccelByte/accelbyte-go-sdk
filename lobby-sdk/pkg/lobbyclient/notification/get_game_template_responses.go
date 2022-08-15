@@ -84,13 +84,19 @@ type GetGameTemplateOK struct {
 }
 
 func (o *GetGameTemplateOK) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetGameTemplateOK) ToString() string {
+func (o *GetGameTemplateOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type GetGameTemplateBadRequest struct {
 }
 
 func (o *GetGameTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetGameTemplateBadRequest) ToString() string {
+func (o *GetGameTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type GetGameTemplateUnauthorized struct {
 }
 
 func (o *GetGameTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetGameTemplateUnauthorized) ToString() string {
+func (o *GetGameTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type GetGameTemplateForbidden struct {
 }
 
 func (o *GetGameTemplateForbidden) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetGameTemplateForbidden) ToString() string {
+func (o *GetGameTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type GetGameTemplateNotFound struct {
 }
 
 func (o *GetGameTemplateNotFound) Error() string {
-	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /notification/namespaces/{namespace}/templates][%d] getGameTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetGameTemplateNotFound) ToString() string {
+func (o *GetGameTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

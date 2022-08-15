@@ -84,13 +84,19 @@ type StoreMatchResultsOK struct {
 }
 
 func (o *StoreMatchResultsOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *StoreMatchResultsOK) ToString() string {
+func (o *StoreMatchResultsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type StoreMatchResultsBadRequest struct {
 }
 
 func (o *StoreMatchResultsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *StoreMatchResultsBadRequest) ToString() string {
+func (o *StoreMatchResultsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type StoreMatchResultsUnauthorized struct {
 }
 
 func (o *StoreMatchResultsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *StoreMatchResultsUnauthorized) ToString() string {
+func (o *StoreMatchResultsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type StoreMatchResultsForbidden struct {
 }
 
 func (o *StoreMatchResultsForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *StoreMatchResultsForbidden) ToString() string {
+func (o *StoreMatchResultsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type StoreMatchResultsInternalServerError struct {
 }
 
 func (o *StoreMatchResultsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/matchresult][%d] storeMatchResultsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *StoreMatchResultsInternalServerError) ToString() string {
+func (o *StoreMatchResultsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

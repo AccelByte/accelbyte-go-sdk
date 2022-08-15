@@ -84,13 +84,19 @@ type AdminGetUserDeletionStatusV3OK struct {
 }
 
 func (o *AdminGetUserDeletionStatusV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserDeletionStatusV3OK) ToString() string {
+func (o *AdminGetUserDeletionStatusV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetUserDeletionStatusV3Unauthorized struct {
 }
 
 func (o *AdminGetUserDeletionStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserDeletionStatusV3Unauthorized) ToString() string {
+func (o *AdminGetUserDeletionStatusV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetUserDeletionStatusV3Forbidden struct {
 }
 
 func (o *AdminGetUserDeletionStatusV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetUserDeletionStatusV3Forbidden) ToString() string {
+func (o *AdminGetUserDeletionStatusV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetUserDeletionStatusV3NotFound struct {
 }
 
 func (o *AdminGetUserDeletionStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserDeletionStatusV3NotFound) ToString() string {
+func (o *AdminGetUserDeletionStatusV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetUserDeletionStatusV3InternalServerError struct {
 }
 
 func (o *AdminGetUserDeletionStatusV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status][%d] adminGetUserDeletionStatusV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetUserDeletionStatusV3InternalServerError) ToString() string {
+func (o *AdminGetUserDeletionStatusV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

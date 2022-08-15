@@ -105,13 +105,19 @@ type DeleteTemplateLocalizationBadRequest struct {
 }
 
 func (o *DeleteTemplateLocalizationBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteTemplateLocalizationBadRequest) ToString() string {
+func (o *DeleteTemplateLocalizationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteTemplateLocalizationUnauthorized struct {
 }
 
 func (o *DeleteTemplateLocalizationUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteTemplateLocalizationUnauthorized) ToString() string {
+func (o *DeleteTemplateLocalizationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteTemplateLocalizationForbidden struct {
 }
 
 func (o *DeleteTemplateLocalizationForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteTemplateLocalizationForbidden) ToString() string {
+func (o *DeleteTemplateLocalizationForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteTemplateLocalizationNotFound struct {
 }
 
 func (o *DeleteTemplateLocalizationNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] deleteTemplateLocalizationNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteTemplateLocalizationNotFound) ToString() string {
+func (o *DeleteTemplateLocalizationNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

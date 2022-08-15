@@ -84,13 +84,19 @@ type PublicUpdateUserProfileStatusOK struct {
 }
 
 func (o *PublicUpdateUserProfileStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserProfileStatusOK) ToString() string {
+func (o *PublicUpdateUserProfileStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicUpdateUserProfileStatusBadRequest struct {
 }
 
 func (o *PublicUpdateUserProfileStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserProfileStatusBadRequest) ToString() string {
+func (o *PublicUpdateUserProfileStatusBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicUpdateUserProfileStatusUnauthorized struct {
 }
 
 func (o *PublicUpdateUserProfileStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserProfileStatusUnauthorized) ToString() string {
+func (o *PublicUpdateUserProfileStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicUpdateUserProfileStatusForbidden struct {
 }
 
 func (o *PublicUpdateUserProfileStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserProfileStatusForbidden) ToString() string {
+func (o *PublicUpdateUserProfileStatusForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicUpdateUserProfileStatusNotFound struct {
 }
 
 func (o *PublicUpdateUserProfileStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status][%d] publicUpdateUserProfileStatusNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicUpdateUserProfileStatusNotFound) ToString() string {
+func (o *PublicUpdateUserProfileStatusNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

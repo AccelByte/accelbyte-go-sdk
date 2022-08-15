@@ -78,13 +78,19 @@ type DeleteSessionOK struct {
 }
 
 func (o *DeleteSessionOK) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteSessionOK) ToString() string {
+func (o *DeleteSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type DeleteSessionBadRequest struct {
 }
 
 func (o *DeleteSessionBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteSessionBadRequest) ToString() string {
+func (o *DeleteSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type DeleteSessionNotFound struct {
 }
 
 func (o *DeleteSessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteSessionNotFound) ToString() string {
+func (o *DeleteSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type DeleteSessionInternalServerError struct {
 }
 
 func (o *DeleteSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}][%d] deleteSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteSessionInternalServerError) ToString() string {
+func (o *DeleteSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

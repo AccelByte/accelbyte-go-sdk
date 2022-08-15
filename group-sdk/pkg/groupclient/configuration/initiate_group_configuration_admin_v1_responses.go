@@ -84,13 +84,19 @@ type InitiateGroupConfigurationAdminV1Created struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *InitiateGroupConfigurationAdminV1Created) ToString() string {
+func (o *InitiateGroupConfigurationAdminV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type InitiateGroupConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *InitiateGroupConfigurationAdminV1Unauthorized) ToString() string {
+func (o *InitiateGroupConfigurationAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type InitiateGroupConfigurationAdminV1Forbidden struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *InitiateGroupConfigurationAdminV1Forbidden) ToString() string {
+func (o *InitiateGroupConfigurationAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type InitiateGroupConfigurationAdminV1Conflict struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1Conflict) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *InitiateGroupConfigurationAdminV1Conflict) ToString() string {
+func (o *InitiateGroupConfigurationAdminV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type InitiateGroupConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *InitiateGroupConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /group/v1/admin/namespaces/{namespace}/configuration/initiate][%d] initiateGroupConfigurationAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *InitiateGroupConfigurationAdminV1InternalServerError) ToString() string {
+func (o *InitiateGroupConfigurationAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

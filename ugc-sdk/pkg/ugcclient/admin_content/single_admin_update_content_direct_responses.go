@@ -84,13 +84,19 @@ type SingleAdminUpdateContentDirectOK struct {
 }
 
 func (o *SingleAdminUpdateContentDirectOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateContentDirectOK) ToString() string {
+func (o *SingleAdminUpdateContentDirectOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type SingleAdminUpdateContentDirectBadRequest struct {
 }
 
 func (o *SingleAdminUpdateContentDirectBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateContentDirectBadRequest) ToString() string {
+func (o *SingleAdminUpdateContentDirectBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type SingleAdminUpdateContentDirectUnauthorized struct {
 }
 
 func (o *SingleAdminUpdateContentDirectUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateContentDirectUnauthorized) ToString() string {
+func (o *SingleAdminUpdateContentDirectUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type SingleAdminUpdateContentDirectNotFound struct {
 }
 
 func (o *SingleAdminUpdateContentDirectNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateContentDirectNotFound) ToString() string {
+func (o *SingleAdminUpdateContentDirectNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type SingleAdminUpdateContentDirectInternalServerError struct {
 }
 
 func (o *SingleAdminUpdateContentDirectInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminUpdateContentDirectInternalServerError) ToString() string {
+func (o *SingleAdminUpdateContentDirectInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type GetCustomAttributesInfoOK struct {
 }
 
 func (o *GetCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCustomAttributesInfoOK) ToString() string {
+func (o *GetCustomAttributesInfoOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -118,13 +124,19 @@ type GetCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *GetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetCustomAttributesInfoUnauthorized) ToString() string {
+func (o *GetCustomAttributesInfoUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -160,13 +172,19 @@ type GetCustomAttributesInfoForbidden struct {
 }
 
 func (o *GetCustomAttributesInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetCustomAttributesInfoForbidden) ToString() string {
+func (o *GetCustomAttributesInfoForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -202,13 +220,19 @@ type GetCustomAttributesInfoNotFound struct {
 }
 
 func (o *GetCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] getCustomAttributesInfoNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCustomAttributesInfoNotFound) ToString() string {
+func (o *GetCustomAttributesInfoNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

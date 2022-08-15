@@ -66,13 +66,19 @@ type PublicGetTimeZonesOK struct {
 }
 
 func (o *PublicGetTimeZonesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetTimeZonesOK) ToString() string {
+func (o *PublicGetTimeZonesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetTimeZonesBadRequest struct {
 }
 
 func (o *PublicGetTimeZonesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetTimeZonesBadRequest) ToString() string {
+func (o *PublicGetTimeZonesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

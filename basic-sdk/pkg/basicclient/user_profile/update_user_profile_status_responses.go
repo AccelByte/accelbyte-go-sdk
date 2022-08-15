@@ -84,13 +84,19 @@ type UpdateUserProfileStatusOK struct {
 }
 
 func (o *UpdateUserProfileStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileStatusOK) ToString() string {
+func (o *UpdateUserProfileStatusOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateUserProfileStatusBadRequest struct {
 }
 
 func (o *UpdateUserProfileStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileStatusBadRequest) ToString() string {
+func (o *UpdateUserProfileStatusBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateUserProfileStatusUnauthorized struct {
 }
 
 func (o *UpdateUserProfileStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileStatusUnauthorized) ToString() string {
+func (o *UpdateUserProfileStatusUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateUserProfileStatusForbidden struct {
 }
 
 func (o *UpdateUserProfileStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileStatusForbidden) ToString() string {
+func (o *UpdateUserProfileStatusForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateUserProfileStatusNotFound struct {
 }
 
 func (o *UpdateUserProfileStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserProfileStatusNotFound) ToString() string {
+func (o *UpdateUserProfileStatusNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

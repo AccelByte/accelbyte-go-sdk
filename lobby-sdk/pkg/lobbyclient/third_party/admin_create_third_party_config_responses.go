@@ -90,13 +90,19 @@ type AdminCreateThirdPartyConfigCreated struct {
 }
 
 func (o *AdminCreateThirdPartyConfigCreated) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigCreated) ToString() string {
+func (o *AdminCreateThirdPartyConfigCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminCreateThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminCreateThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigBadRequest) ToString() string {
+func (o *AdminCreateThirdPartyConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminCreateThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminCreateThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigUnauthorized) ToString() string {
+func (o *AdminCreateThirdPartyConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminCreateThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminCreateThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigForbidden) ToString() string {
+func (o *AdminCreateThirdPartyConfigForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminCreateThirdPartyConfigConflict struct {
 }
 
 func (o *AdminCreateThirdPartyConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigConflict) ToString() string {
+func (o *AdminCreateThirdPartyConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminCreateThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminCreateThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateThirdPartyConfigInternalServerError) ToString() string {
+func (o *AdminCreateThirdPartyConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

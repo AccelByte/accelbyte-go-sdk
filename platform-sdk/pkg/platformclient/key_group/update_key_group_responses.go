@@ -78,13 +78,19 @@ type UpdateKeyGroupOK struct {
 }
 
 func (o *UpdateKeyGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateKeyGroupOK) ToString() string {
+func (o *UpdateKeyGroupOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateKeyGroupNotFound struct {
 }
 
 func (o *UpdateKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateKeyGroupNotFound) ToString() string {
+func (o *UpdateKeyGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateKeyGroupConflict struct {
 }
 
 func (o *UpdateKeyGroupConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdateKeyGroupConflict) ToString() string {
+func (o *UpdateKeyGroupConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateKeyGroupUnprocessableEntity struct {
 }
 
 func (o *UpdateKeyGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdateKeyGroupUnprocessableEntity) ToString() string {
+func (o *UpdateKeyGroupUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

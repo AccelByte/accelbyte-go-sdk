@@ -60,13 +60,19 @@ type ListKeysOK struct {
 }
 
 func (o *ListKeysOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] listKeysOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] listKeysOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListKeysOK) ToString() string {
+func (o *ListKeysOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

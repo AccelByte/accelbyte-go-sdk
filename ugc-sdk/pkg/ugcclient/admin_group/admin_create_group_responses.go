@@ -78,13 +78,19 @@ type AdminCreateGroupCreated struct {
 }
 
 func (o *AdminCreateGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateGroupCreated) ToString() string {
+func (o *AdminCreateGroupCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminCreateGroupBadRequest struct {
 }
 
 func (o *AdminCreateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateGroupBadRequest) ToString() string {
+func (o *AdminCreateGroupBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminCreateGroupUnauthorized struct {
 }
 
 func (o *AdminCreateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateGroupUnauthorized) ToString() string {
+func (o *AdminCreateGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminCreateGroupInternalServerError struct {
 }
 
 func (o *AdminCreateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/groups][%d] adminCreateGroupInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateGroupInternalServerError) ToString() string {
+func (o *AdminCreateGroupInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

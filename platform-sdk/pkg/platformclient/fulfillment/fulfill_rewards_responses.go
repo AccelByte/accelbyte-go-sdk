@@ -99,13 +99,19 @@ type FulfillRewardsBadRequest struct {
 }
 
 func (o *FulfillRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *FulfillRewardsBadRequest) ToString() string {
+func (o *FulfillRewardsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type FulfillRewardsNotFound struct {
 }
 
 func (o *FulfillRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *FulfillRewardsNotFound) ToString() string {
+func (o *FulfillRewardsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type FulfillRewardsConflict struct {
 }
 
 func (o *FulfillRewardsConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *FulfillRewardsConflict) ToString() string {
+func (o *FulfillRewardsConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

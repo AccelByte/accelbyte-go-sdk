@@ -78,13 +78,19 @@ type UpgradeHeadlessAccountOK struct {
 }
 
 func (o *UpgradeHeadlessAccountOK) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount][%d] upgradeHeadlessAccountOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpgradeHeadlessAccountOK) ToString() string {
+func (o *UpgradeHeadlessAccountOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

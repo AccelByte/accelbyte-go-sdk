@@ -66,13 +66,19 @@ type PublicGetLanguagesOK struct {
 }
 
 func (o *PublicGetLanguagesOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetLanguagesOK) ToString() string {
+func (o *PublicGetLanguagesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicGetLanguagesBadRequest struct {
 }
 
 func (o *PublicGetLanguagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetLanguagesBadRequest) ToString() string {
+func (o *PublicGetLanguagesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

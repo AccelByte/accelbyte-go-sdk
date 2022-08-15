@@ -96,13 +96,19 @@ type GetUserEventsV2PublicOK struct {
 }
 
 func (o *GetUserEventsV2PublicOK) Error() string {
-	return fmt.Sprintf("[GET /event/v2/public/namespaces/{namespace}/users/{userId}/event][%d] getUserEventsV2PublicOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/v2/public/namespaces/{namespace}/users/{userId}/event][%d] getUserEventsV2PublicOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserEventsV2PublicOK) ToString() string {
+func (o *GetUserEventsV2PublicOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

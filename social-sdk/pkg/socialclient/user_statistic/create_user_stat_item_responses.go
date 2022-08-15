@@ -93,13 +93,19 @@ type CreateUserStatItemNotFound struct {
 }
 
 func (o *CreateUserStatItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateUserStatItemNotFound) ToString() string {
+func (o *CreateUserStatItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type CreateUserStatItemConflict struct {
 }
 
 func (o *CreateUserStatItemConflict) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateUserStatItemConflict) ToString() string {
+func (o *CreateUserStatItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type AdminPostGameRecordHandlerV1Created struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminPostGameRecordHandlerV1Created) ToString() string {
+func (o *AdminPostGameRecordHandlerV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type AdminPostGameRecordHandlerV1Unauthorized struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminPostGameRecordHandlerV1Unauthorized) ToString() string {
+func (o *AdminPostGameRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type AdminPostGameRecordHandlerV1InternalServerError struct {
 }
 
 func (o *AdminPostGameRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/records/{key}][%d] adminPostGameRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminPostGameRecordHandlerV1InternalServerError) ToString() string {
+func (o *AdminPostGameRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type RetrieveSinglePolicyOK struct {
 }
 
 func (o *RetrieveSinglePolicyOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveSinglePolicyOK) ToString() string {
+func (o *RetrieveSinglePolicyOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type RetrieveSinglePolicyNotFound struct {
 }
 
 func (o *RetrieveSinglePolicyNotFound) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RetrieveSinglePolicyNotFound) ToString() string {
+func (o *RetrieveSinglePolicyNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

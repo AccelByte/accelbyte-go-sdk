@@ -66,13 +66,19 @@ type PublicGetItemDynamicDataOK struct {
 }
 
 func (o *PublicGetItemDynamicDataOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetItemDynamicDataOK) ToString() string {
+func (o *PublicGetItemDynamicDataOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetItemDynamicDataNotFound struct {
 }
 
 func (o *PublicGetItemDynamicDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetItemDynamicDataNotFound) ToString() string {
+func (o *PublicGetItemDynamicDataNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

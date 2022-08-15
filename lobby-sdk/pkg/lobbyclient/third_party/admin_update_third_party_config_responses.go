@@ -84,13 +84,19 @@ type AdminUpdateThirdPartyConfigOK struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateThirdPartyConfigOK) ToString() string {
+func (o *AdminUpdateThirdPartyConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUpdateThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateThirdPartyConfigBadRequest) ToString() string {
+func (o *AdminUpdateThirdPartyConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUpdateThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateThirdPartyConfigUnauthorized) ToString() string {
+func (o *AdminUpdateThirdPartyConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUpdateThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateThirdPartyConfigForbidden) ToString() string {
+func (o *AdminUpdateThirdPartyConfigForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUpdateThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateThirdPartyConfigInternalServerError) ToString() string {
+func (o *AdminUpdateThirdPartyConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

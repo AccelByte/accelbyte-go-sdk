@@ -111,13 +111,19 @@ type AdminAddProfanityFiltersBadRequest struct {
 }
 
 func (o *AdminAddProfanityFiltersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminAddProfanityFiltersBadRequest) ToString() string {
+func (o *AdminAddProfanityFiltersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminAddProfanityFiltersUnauthorized struct {
 }
 
 func (o *AdminAddProfanityFiltersUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminAddProfanityFiltersUnauthorized) ToString() string {
+func (o *AdminAddProfanityFiltersUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminAddProfanityFiltersForbidden struct {
 }
 
 func (o *AdminAddProfanityFiltersForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminAddProfanityFiltersForbidden) ToString() string {
+func (o *AdminAddProfanityFiltersForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminAddProfanityFiltersNotFound struct {
 }
 
 func (o *AdminAddProfanityFiltersNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminAddProfanityFiltersNotFound) ToString() string {
+func (o *AdminAddProfanityFiltersNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminAddProfanityFiltersInternalServerError struct {
 }
 
 func (o *AdminAddProfanityFiltersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk][%d] adminAddProfanityFiltersInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminAddProfanityFiltersInternalServerError) ToString() string {
+func (o *AdminAddProfanityFiltersInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

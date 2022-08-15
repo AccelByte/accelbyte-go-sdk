@@ -66,13 +66,19 @@ type ValidateItemPurchaseConditionOK struct {
 }
 
 func (o *ValidateItemPurchaseConditionOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items/purchase/conditions/validate][%d] validateItemPurchaseConditionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items/purchase/conditions/validate][%d] validateItemPurchaseConditionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ValidateItemPurchaseConditionOK) ToString() string {
+func (o *ValidateItemPurchaseConditionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type ValidateItemPurchaseConditionUnprocessableEntity struct {
 }
 
 func (o *ValidateItemPurchaseConditionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items/purchase/conditions/validate][%d] validateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items/purchase/conditions/validate][%d] validateItemPurchaseConditionUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ValidateItemPurchaseConditionUnprocessableEntity) ToString() string {
+func (o *ValidateItemPurchaseConditionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type GetRewardByCodeOK struct {
 }
 
 func (o *GetRewardByCodeOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetRewardByCodeOK) ToString() string {
+func (o *GetRewardByCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetRewardByCodeNotFound struct {
 }
 
 func (o *GetRewardByCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetRewardByCodeNotFound) ToString() string {
+func (o *GetRewardByCodeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

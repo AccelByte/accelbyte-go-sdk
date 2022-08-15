@@ -90,13 +90,19 @@ type UpdateSSOPlatformCredentialOK struct {
 }
 
 func (o *UpdateSSOPlatformCredentialOK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateSSOPlatformCredentialOK) ToString() string {
+func (o *UpdateSSOPlatformCredentialOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateSSOPlatformCredentialBadRequest struct {
 }
 
 func (o *UpdateSSOPlatformCredentialBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateSSOPlatformCredentialBadRequest) ToString() string {
+func (o *UpdateSSOPlatformCredentialBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +228,19 @@ type UpdateSSOPlatformCredentialNotFound struct {
 }
 
 func (o *UpdateSSOPlatformCredentialNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateSSOPlatformCredentialNotFound) ToString() string {
+func (o *UpdateSSOPlatformCredentialNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +276,19 @@ type UpdateSSOPlatformCredentialInternalServerError struct {
 }
 
 func (o *UpdateSSOPlatformCredentialInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso][%d] updateSSOPlatformCredentialInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateSSOPlatformCredentialInternalServerError) ToString() string {
+func (o *UpdateSSOPlatformCredentialInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

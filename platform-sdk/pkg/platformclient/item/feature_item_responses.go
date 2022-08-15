@@ -72,13 +72,19 @@ type FeatureItemOK struct {
 }
 
 func (o *FeatureItemOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *FeatureItemOK) ToString() string {
+func (o *FeatureItemOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type FeatureItemNotFound struct {
 }
 
 func (o *FeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *FeatureItemNotFound) ToString() string {
+func (o *FeatureItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type FeatureItemConflict struct {
 }
 
 func (o *FeatureItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *FeatureItemConflict) ToString() string {
+func (o *FeatureItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -60,13 +60,19 @@ type UpdateGoogleP12FileOK struct {
 }
 
 func (o *UpdateGoogleP12FileOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/google/cert][%d] updateGoogleP12FileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/google/cert][%d] updateGoogleP12FileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateGoogleP12FileOK) ToString() string {
+func (o *UpdateGoogleP12FileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type GetCodeOK struct {
 }
 
 func (o *GetCodeOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetCodeOK) ToString() string {
+func (o *GetCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetCodeNotFound struct {
 }
 
 func (o *GetCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetCodeNotFound) ToString() string {
+func (o *GetCodeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetCodeConflict struct {
 }
 
 func (o *GetCodeConflict) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *GetCodeConflict) ToString() string {
+func (o *GetCodeConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type AdminCreateChannelCreated struct {
 }
 
 func (o *AdminCreateChannelCreated) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateChannelCreated) ToString() string {
+func (o *AdminCreateChannelCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminCreateChannelBadRequest struct {
 }
 
 func (o *AdminCreateChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateChannelBadRequest) ToString() string {
+func (o *AdminCreateChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminCreateChannelUnauthorized struct {
 }
 
 func (o *AdminCreateChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateChannelUnauthorized) ToString() string {
+func (o *AdminCreateChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminCreateChannelInternalServerError struct {
 }
 
 func (o *AdminCreateChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels][%d] adminCreateChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateChannelInternalServerError) ToString() string {
+func (o *AdminCreateChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type PublicConsumeUserEntitlementOK struct {
 }
 
 func (o *PublicConsumeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicConsumeUserEntitlementOK) ToString() string {
+func (o *PublicConsumeUserEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicConsumeUserEntitlementBadRequest struct {
 }
 
 func (o *PublicConsumeUserEntitlementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicConsumeUserEntitlementBadRequest) ToString() string {
+func (o *PublicConsumeUserEntitlementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicConsumeUserEntitlementNotFound struct {
 }
 
 func (o *PublicConsumeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicConsumeUserEntitlementNotFound) ToString() string {
+func (o *PublicConsumeUserEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicConsumeUserEntitlementConflict struct {
 }
 
 func (o *PublicConsumeUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicConsumeUserEntitlementConflict) ToString() string {
+func (o *PublicConsumeUserEntitlementConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

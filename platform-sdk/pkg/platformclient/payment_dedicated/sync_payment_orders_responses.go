@@ -60,13 +60,19 @@ type SyncPaymentOrdersOK struct {
 }
 
 func (o *SyncPaymentOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/orders][%d] syncPaymentOrdersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/orders][%d] syncPaymentOrdersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SyncPaymentOrdersOK) ToString() string {
+func (o *SyncPaymentOrdersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

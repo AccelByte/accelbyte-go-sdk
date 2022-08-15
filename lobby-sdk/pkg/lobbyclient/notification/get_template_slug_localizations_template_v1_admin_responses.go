@@ -84,13 +84,19 @@ type GetTemplateSlugLocalizationsTemplateV1AdminOK struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) ToString() string {
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetTemplateSlugLocalizationsTemplateV1AdminBadRequest struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) ToString() string {
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) ToString() string {
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetTemplateSlugLocalizationsTemplateV1AdminForbidden struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) ToString() string {
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetTemplateSlugLocalizationsTemplateV1AdminNotFound struct {
 }
 
 func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}][%d] getTemplateSlugLocalizationsTemplateV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) ToString() string {
+func (o *GetTemplateSlugLocalizationsTemplateV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

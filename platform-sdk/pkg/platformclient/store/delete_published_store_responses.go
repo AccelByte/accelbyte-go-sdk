@@ -66,13 +66,19 @@ type DeletePublishedStoreOK struct {
 }
 
 func (o *DeletePublishedStoreOK) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeletePublishedStoreOK) ToString() string {
+func (o *DeletePublishedStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type DeletePublishedStoreNotFound struct {
 }
 
 func (o *DeletePublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeletePublishedStoreNotFound) ToString() string {
+func (o *DeletePublishedStoreNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

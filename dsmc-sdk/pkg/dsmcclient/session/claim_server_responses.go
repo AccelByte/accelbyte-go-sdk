@@ -117,13 +117,19 @@ type ClaimServerUnauthorized struct {
 }
 
 func (o *ClaimServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ClaimServerUnauthorized) ToString() string {
+func (o *ClaimServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type ClaimServerNotFound struct {
 }
 
 func (o *ClaimServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ClaimServerNotFound) ToString() string {
+func (o *ClaimServerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type ClaimServerConflict struct {
 }
 
 func (o *ClaimServerConflict) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *ClaimServerConflict) ToString() string {
+func (o *ClaimServerConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type ClaimServerStatus425 struct {
 }
 
 func (o *ClaimServerStatus425) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerStatus425  %+v", 425, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerStatus425  %+v", 425, o.ToJSONString())
 }
 
-func (o *ClaimServerStatus425) ToString() string {
+func (o *ClaimServerStatus425) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type ClaimServerInternalServerError struct {
 }
 
 func (o *ClaimServerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ClaimServerInternalServerError) ToString() string {
+func (o *ClaimServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type ClaimServerServiceUnavailable struct {
 }
 
 func (o *ClaimServerServiceUnavailable) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerServiceUnavailable  %+v", 503, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/namespaces/{namespace}/sessions/claim][%d] claimServerServiceUnavailable  %+v", 503, o.ToJSONString())
 }
 
-func (o *ClaimServerServiceUnavailable) ToString() string {
+func (o *ClaimServerServiceUnavailable) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

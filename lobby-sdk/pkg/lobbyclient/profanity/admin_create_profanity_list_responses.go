@@ -111,13 +111,19 @@ type AdminCreateProfanityListBadRequest struct {
 }
 
 func (o *AdminCreateProfanityListBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateProfanityListBadRequest) ToString() string {
+func (o *AdminCreateProfanityListBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminCreateProfanityListUnauthorized struct {
 }
 
 func (o *AdminCreateProfanityListUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateProfanityListUnauthorized) ToString() string {
+func (o *AdminCreateProfanityListUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminCreateProfanityListForbidden struct {
 }
 
 func (o *AdminCreateProfanityListForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminCreateProfanityListForbidden) ToString() string {
+func (o *AdminCreateProfanityListForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminCreateProfanityListNotFound struct {
 }
 
 func (o *AdminCreateProfanityListNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminCreateProfanityListNotFound) ToString() string {
+func (o *AdminCreateProfanityListNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminCreateProfanityListInternalServerError struct {
 }
 
 func (o *AdminCreateProfanityListInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateProfanityListInternalServerError) ToString() string {
+func (o *AdminCreateProfanityListInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

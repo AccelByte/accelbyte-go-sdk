@@ -60,13 +60,19 @@ type RevokeUserEntitlementsOK struct {
 }
 
 func (o *RevokeUserEntitlementsOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds][%d] revokeUserEntitlementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds][%d] revokeUserEntitlementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RevokeUserEntitlementsOK) ToString() string {
+func (o *RevokeUserEntitlementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type SimulatePaymentOrderNotificationOK struct {
 }
 
 func (o *SimulatePaymentOrderNotificationOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SimulatePaymentOrderNotificationOK) ToString() string {
+func (o *SimulatePaymentOrderNotificationOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type SimulatePaymentOrderNotificationBadRequest struct {
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SimulatePaymentOrderNotificationBadRequest) ToString() string {
+func (o *SimulatePaymentOrderNotificationBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type SimulatePaymentOrderNotificationNotFound struct {
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SimulatePaymentOrderNotificationNotFound) ToString() string {
+func (o *SimulatePaymentOrderNotificationNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

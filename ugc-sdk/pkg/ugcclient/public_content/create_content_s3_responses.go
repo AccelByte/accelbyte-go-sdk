@@ -78,13 +78,19 @@ type CreateContentS3Created struct {
 }
 
 func (o *CreateContentS3Created) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateContentS3Created) ToString() string {
+func (o *CreateContentS3Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CreateContentS3BadRequest struct {
 }
 
 func (o *CreateContentS3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateContentS3BadRequest) ToString() string {
+func (o *CreateContentS3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CreateContentS3Unauthorized struct {
 }
 
 func (o *CreateContentS3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateContentS3Unauthorized) ToString() string {
+func (o *CreateContentS3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CreateContentS3InternalServerError struct {
 }
 
 func (o *CreateContentS3InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateContentS3InternalServerError) ToString() string {
+func (o *CreateContentS3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

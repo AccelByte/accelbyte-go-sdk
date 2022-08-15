@@ -60,13 +60,19 @@ type QueryKeyGroupsOK struct {
 }
 
 func (o *QueryKeyGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups][%d] queryKeyGroupsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups][%d] queryKeyGroupsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryKeyGroupsOK) ToString() string {
+func (o *QueryKeyGroupsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

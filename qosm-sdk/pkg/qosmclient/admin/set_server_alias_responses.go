@@ -99,13 +99,19 @@ type SetServerAliasBadRequest struct {
 }
 
 func (o *SetServerAliasBadRequest) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SetServerAliasBadRequest) ToString() string {
+func (o *SetServerAliasBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type SetServerAliasNotFound struct {
 }
 
 func (o *SetServerAliasNotFound) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SetServerAliasNotFound) ToString() string {
+func (o *SetServerAliasNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type SetServerAliasInternalServerError struct {
 }
 
 func (o *SetServerAliasInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /qosm/admin/servers/{region}/alias][%d] setServerAliasInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SetServerAliasInternalServerError) ToString() string {
+func (o *SetServerAliasInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

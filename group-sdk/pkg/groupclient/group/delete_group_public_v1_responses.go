@@ -111,13 +111,19 @@ type DeleteGroupPublicV1BadRequest struct {
 }
 
 func (o *DeleteGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteGroupPublicV1BadRequest) ToString() string {
+func (o *DeleteGroupPublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteGroupPublicV1Unauthorized struct {
 }
 
 func (o *DeleteGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteGroupPublicV1Unauthorized) ToString() string {
+func (o *DeleteGroupPublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteGroupPublicV1Forbidden struct {
 }
 
 func (o *DeleteGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteGroupPublicV1Forbidden) ToString() string {
+func (o *DeleteGroupPublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteGroupPublicV1NotFound struct {
 }
 
 func (o *DeleteGroupPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteGroupPublicV1NotFound) ToString() string {
+func (o *DeleteGroupPublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteGroupPublicV1InternalServerError struct {
 }
 
 func (o *DeleteGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupPublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteGroupPublicV1InternalServerError) ToString() string {
+func (o *DeleteGroupPublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

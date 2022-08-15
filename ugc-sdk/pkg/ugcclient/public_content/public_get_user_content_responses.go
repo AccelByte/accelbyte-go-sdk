@@ -78,13 +78,19 @@ type PublicGetUserContentOK struct {
 }
 
 func (o *PublicGetUserContentOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserContentOK) ToString() string {
+func (o *PublicGetUserContentOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetUserContentUnauthorized struct {
 }
 
 func (o *PublicGetUserContentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetUserContentUnauthorized) ToString() string {
+func (o *PublicGetUserContentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetUserContentNotFound struct {
 }
 
 func (o *PublicGetUserContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserContentNotFound) ToString() string {
+func (o *PublicGetUserContentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetUserContentInternalServerError struct {
 }
 
 func (o *PublicGetUserContentInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetUserContentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetUserContentInternalServerError) ToString() string {
+func (o *PublicGetUserContentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

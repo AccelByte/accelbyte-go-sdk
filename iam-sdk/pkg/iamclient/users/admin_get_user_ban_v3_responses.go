@@ -84,13 +84,19 @@ type AdminGetUserBanV3OK struct {
 }
 
 func (o *AdminGetUserBanV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetUserBanV3OK) ToString() string {
+func (o *AdminGetUserBanV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminGetUserBanV3BadRequest struct {
 }
 
 func (o *AdminGetUserBanV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetUserBanV3BadRequest) ToString() string {
+func (o *AdminGetUserBanV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminGetUserBanV3Unauthorized struct {
 }
 
 func (o *AdminGetUserBanV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetUserBanV3Unauthorized) ToString() string {
+func (o *AdminGetUserBanV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminGetUserBanV3Forbidden struct {
 }
 
 func (o *AdminGetUserBanV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetUserBanV3Forbidden) ToString() string {
+func (o *AdminGetUserBanV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminGetUserBanV3NotFound struct {
 }
 
 func (o *AdminGetUserBanV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/{userId}/bans][%d] adminGetUserBanV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetUserBanV3NotFound) ToString() string {
+func (o *AdminGetUserBanV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

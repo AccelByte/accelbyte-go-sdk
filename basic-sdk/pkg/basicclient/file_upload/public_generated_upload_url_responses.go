@@ -84,13 +84,19 @@ type PublicGeneratedUploadURLOK struct {
 }
 
 func (o *PublicGeneratedUploadURLOK) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUploadURLOK) ToString() string {
+func (o *PublicGeneratedUploadURLOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicGeneratedUploadURLBadRequest struct {
 }
 
 func (o *PublicGeneratedUploadURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUploadURLBadRequest) ToString() string {
+func (o *PublicGeneratedUploadURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicGeneratedUploadURLUnauthorized struct {
 }
 
 func (o *PublicGeneratedUploadURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUploadURLUnauthorized) ToString() string {
+func (o *PublicGeneratedUploadURLUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicGeneratedUploadURLForbidden struct {
 }
 
 func (o *PublicGeneratedUploadURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUploadURLForbidden) ToString() string {
+func (o *PublicGeneratedUploadURLForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicGeneratedUploadURLInternalServerError struct {
 }
 
 func (o *PublicGeneratedUploadURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/folders/{folder}/files][%d] publicGeneratedUploadUrlInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUploadURLInternalServerError) ToString() string {
+func (o *PublicGeneratedUploadURLInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

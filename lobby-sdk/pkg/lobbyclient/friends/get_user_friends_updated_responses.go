@@ -90,13 +90,19 @@ type GetUserFriendsUpdatedOK struct {
 }
 
 func (o *GetUserFriendsUpdatedOK) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedOK) ToString() string {
+func (o *GetUserFriendsUpdatedOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type GetUserFriendsUpdatedBadRequest struct {
 }
 
 func (o *GetUserFriendsUpdatedBadRequest) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedBadRequest) ToString() string {
+func (o *GetUserFriendsUpdatedBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type GetUserFriendsUpdatedUnauthorized struct {
 }
 
 func (o *GetUserFriendsUpdatedUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedUnauthorized) ToString() string {
+func (o *GetUserFriendsUpdatedUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type GetUserFriendsUpdatedForbidden struct {
 }
 
 func (o *GetUserFriendsUpdatedForbidden) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedForbidden) ToString() string {
+func (o *GetUserFriendsUpdatedForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type GetUserFriendsUpdatedNotFound struct {
 }
 
 func (o *GetUserFriendsUpdatedNotFound) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedNotFound) ToString() string {
+func (o *GetUserFriendsUpdatedNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type GetUserFriendsUpdatedInternalServerError struct {
 }
 
 func (o *GetUserFriendsUpdatedInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /friends/namespaces/{namespace}/me][%d] getUserFriendsUpdatedInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetUserFriendsUpdatedInternalServerError) ToString() string {
+func (o *GetUserFriendsUpdatedInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

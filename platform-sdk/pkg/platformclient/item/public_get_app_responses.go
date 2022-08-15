@@ -66,13 +66,19 @@ type PublicGetAppOK struct {
 }
 
 func (o *PublicGetAppOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetAppOK) ToString() string {
+func (o *PublicGetAppOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetAppNotFound struct {
 }
 
 func (o *PublicGetAppNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetAppNotFound) ToString() string {
+func (o *PublicGetAppNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

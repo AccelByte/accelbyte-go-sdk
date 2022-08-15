@@ -84,13 +84,19 @@ type UpdateCountryAgeRestrictionOK struct {
 }
 
 func (o *UpdateCountryAgeRestrictionOK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v2/admin/namespaces/{namespace}/countries/{countryCode}][%d] updateCountryAgeRestrictionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCountryAgeRestrictionOK) ToString() string {
+func (o *UpdateCountryAgeRestrictionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type PublicGetUserAppEntitlementByAppIDOK struct {
 }
 
 func (o *PublicGetUserAppEntitlementByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] publicGetUserAppEntitlementByAppIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] publicGetUserAppEntitlementByAppIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserAppEntitlementByAppIDOK) ToString() string {
+func (o *PublicGetUserAppEntitlementByAppIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetUserAppEntitlementByAppIDNotFound struct {
 }
 
 func (o *PublicGetUserAppEntitlementByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] publicGetUserAppEntitlementByAppIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] publicGetUserAppEntitlementByAppIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserAppEntitlementByAppIDNotFound) ToString() string {
+func (o *PublicGetUserAppEntitlementByAppIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

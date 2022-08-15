@@ -105,13 +105,19 @@ type CreateTopicBadRequest struct {
 }
 
 func (o *CreateTopicBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateTopicBadRequest) ToString() string {
+func (o *CreateTopicBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type CreateTopicUnauthorized struct {
 }
 
 func (o *CreateTopicUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateTopicUnauthorized) ToString() string {
+func (o *CreateTopicUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type CreateTopicForbidden struct {
 }
 
 func (o *CreateTopicForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateTopicForbidden) ToString() string {
+func (o *CreateTopicForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type CreateTopicConflict struct {
 }
 
 func (o *CreateTopicConflict) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/topics][%d] createTopicConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateTopicConflict) ToString() string {
+func (o *CreateTopicConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

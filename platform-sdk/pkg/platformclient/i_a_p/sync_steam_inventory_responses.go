@@ -87,13 +87,19 @@ type SyncSteamInventoryBadRequest struct {
 }
 
 func (o *SyncSteamInventoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync][%d] syncSteamInventoryBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync][%d] syncSteamInventoryBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SyncSteamInventoryBadRequest) ToString() string {
+func (o *SyncSteamInventoryBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

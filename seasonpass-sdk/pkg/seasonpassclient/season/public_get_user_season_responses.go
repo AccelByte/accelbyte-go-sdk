@@ -72,13 +72,19 @@ type PublicGetUserSeasonOK struct {
 }
 
 func (o *PublicGetUserSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserSeasonOK) ToString() string {
+func (o *PublicGetUserSeasonOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicGetUserSeasonBadRequest struct {
 }
 
 func (o *PublicGetUserSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetUserSeasonBadRequest) ToString() string {
+func (o *PublicGetUserSeasonBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicGetUserSeasonNotFound struct {
 }
 
 func (o *PublicGetUserSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserSeasonNotFound) ToString() string {
+func (o *PublicGetUserSeasonNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

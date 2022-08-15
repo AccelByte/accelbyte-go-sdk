@@ -90,13 +90,19 @@ type PublicGeneratedUserUploadContentURLOK struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLOK) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLOK) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicGeneratedUserUploadContentURLBadRequest struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLBadRequest) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicGeneratedUserUploadContentURLUnauthorized struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLUnauthorized) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicGeneratedUserUploadContentURLForbidden struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLForbidden) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicGeneratedUserUploadContentURLConflict struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLConflict) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLConflict) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicGeneratedUserUploadContentURLInternalServerError struct {
 }
 
 func (o *PublicGeneratedUserUploadContentURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/files][%d] publicGeneratedUserUploadContentUrlInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGeneratedUserUploadContentURLInternalServerError) ToString() string {
+func (o *PublicGeneratedUserUploadContentURLInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

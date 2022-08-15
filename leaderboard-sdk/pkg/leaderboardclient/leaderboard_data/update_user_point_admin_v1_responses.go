@@ -90,13 +90,19 @@ type UpdateUserPointAdminV1OK struct {
 }
 
 func (o *UpdateUserPointAdminV1OK) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1OK) ToString() string {
+func (o *UpdateUserPointAdminV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateUserPointAdminV1BadRequest struct {
 }
 
 func (o *UpdateUserPointAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1BadRequest) ToString() string {
+func (o *UpdateUserPointAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdateUserPointAdminV1Unauthorized struct {
 }
 
 func (o *UpdateUserPointAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1Unauthorized) ToString() string {
+func (o *UpdateUserPointAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdateUserPointAdminV1Forbidden struct {
 }
 
 func (o *UpdateUserPointAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1Forbidden) ToString() string {
+func (o *UpdateUserPointAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdateUserPointAdminV1NotFound struct {
 }
 
 func (o *UpdateUserPointAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1NotFound) ToString() string {
+func (o *UpdateUserPointAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdateUserPointAdminV1InternalServerError struct {
 }
 
 func (o *UpdateUserPointAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] updateUserPointAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateUserPointAdminV1InternalServerError) ToString() string {
+func (o *UpdateUserPointAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

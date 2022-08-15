@@ -84,13 +84,19 @@ type UpdateDeploymentOverrideOK struct {
 }
 
 func (o *UpdateDeploymentOverrideOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateDeploymentOverrideOK) ToString() string {
+func (o *UpdateDeploymentOverrideOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateDeploymentOverrideBadRequest struct {
 }
 
 func (o *UpdateDeploymentOverrideBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateDeploymentOverrideBadRequest) ToString() string {
+func (o *UpdateDeploymentOverrideBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateDeploymentOverrideUnauthorized struct {
 }
 
 func (o *UpdateDeploymentOverrideUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateDeploymentOverrideUnauthorized) ToString() string {
+func (o *UpdateDeploymentOverrideUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateDeploymentOverrideNotFound struct {
 }
 
 func (o *UpdateDeploymentOverrideNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateDeploymentOverrideNotFound) ToString() string {
+func (o *UpdateDeploymentOverrideNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateDeploymentOverrideInternalServerError struct {
 }
 
 func (o *UpdateDeploymentOverrideInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}][%d] updateDeploymentOverrideInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateDeploymentOverrideInternalServerError) ToString() string {
+func (o *UpdateDeploymentOverrideInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

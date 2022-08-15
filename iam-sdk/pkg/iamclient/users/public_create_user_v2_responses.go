@@ -84,13 +84,19 @@ type PublicCreateUserV2Created struct {
 }
 
 func (o *PublicCreateUserV2Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users][%d] publicCreateUserV2Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v2/public/namespaces/{namespace}/users][%d] publicCreateUserV2Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateUserV2Created) ToString() string {
+func (o *PublicCreateUserV2Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

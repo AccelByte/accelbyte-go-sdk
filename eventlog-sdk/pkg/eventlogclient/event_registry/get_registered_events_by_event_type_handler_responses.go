@@ -90,13 +90,19 @@ type GetRegisteredEventsByEventTypeHandlerOK struct {
 }
 
 func (o *GetRegisteredEventsByEventTypeHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/registry/eventTypes/{eventType}][%d] getRegisteredEventsByEventTypeHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/registry/eventTypes/{eventType}][%d] getRegisteredEventsByEventTypeHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetRegisteredEventsByEventTypeHandlerOK) ToString() string {
+func (o *GetRegisteredEventsByEventTypeHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

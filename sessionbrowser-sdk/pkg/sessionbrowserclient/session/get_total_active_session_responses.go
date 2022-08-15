@@ -72,13 +72,19 @@ type GetTotalActiveSessionOK struct {
 }
 
 func (o *GetTotalActiveSessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTotalActiveSessionOK) ToString() string {
+func (o *GetTotalActiveSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetTotalActiveSessionBadRequest struct {
 }
 
 func (o *GetTotalActiveSessionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetTotalActiveSessionBadRequest) ToString() string {
+func (o *GetTotalActiveSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetTotalActiveSessionInternalServerError struct {
 }
 
 func (o *GetTotalActiveSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetTotalActiveSessionInternalServerError) ToString() string {
+func (o *GetTotalActiveSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

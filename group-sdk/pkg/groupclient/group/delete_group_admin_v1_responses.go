@@ -111,13 +111,19 @@ type DeleteGroupAdminV1BadRequest struct {
 }
 
 func (o *DeleteGroupAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteGroupAdminV1BadRequest) ToString() string {
+func (o *DeleteGroupAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteGroupAdminV1Unauthorized struct {
 }
 
 func (o *DeleteGroupAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteGroupAdminV1Unauthorized) ToString() string {
+func (o *DeleteGroupAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteGroupAdminV1Forbidden struct {
 }
 
 func (o *DeleteGroupAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteGroupAdminV1Forbidden) ToString() string {
+func (o *DeleteGroupAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteGroupAdminV1NotFound struct {
 }
 
 func (o *DeleteGroupAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteGroupAdminV1NotFound) ToString() string {
+func (o *DeleteGroupAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteGroupAdminV1InternalServerError struct {
 }
 
 func (o *DeleteGroupAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /group/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] deleteGroupAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteGroupAdminV1InternalServerError) ToString() string {
+func (o *DeleteGroupAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

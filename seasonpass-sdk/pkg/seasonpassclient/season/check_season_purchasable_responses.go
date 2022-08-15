@@ -99,13 +99,19 @@ type CheckSeasonPurchasableBadRequest struct {
 }
 
 func (o *CheckSeasonPurchasableBadRequest) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CheckSeasonPurchasableBadRequest) ToString() string {
+func (o *CheckSeasonPurchasableBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type CheckSeasonPurchasableNotFound struct {
 }
 
 func (o *CheckSeasonPurchasableNotFound) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CheckSeasonPurchasableNotFound) ToString() string {
+func (o *CheckSeasonPurchasableNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type CheckSeasonPurchasableConflict struct {
 }
 
 func (o *CheckSeasonPurchasableConflict) Error() string {
-	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CheckSeasonPurchasableConflict) ToString() string {
+func (o *CheckSeasonPurchasableConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

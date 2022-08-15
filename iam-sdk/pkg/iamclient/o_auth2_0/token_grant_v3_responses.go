@@ -78,13 +78,19 @@ type TokenGrantV3OK struct {
 }
 
 func (o *TokenGrantV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TokenGrantV3OK) ToString() string {
+func (o *TokenGrantV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type TokenGrantV3BadRequest struct {
 }
 
 func (o *TokenGrantV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *TokenGrantV3BadRequest) ToString() string {
+func (o *TokenGrantV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type TokenGrantV3Unauthorized struct {
 }
 
 func (o *TokenGrantV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *TokenGrantV3Unauthorized) ToString() string {
+func (o *TokenGrantV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type TokenGrantV3Forbidden struct {
 }
 
 func (o *TokenGrantV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/oauth/token][%d] tokenGrantV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *TokenGrantV3Forbidden) ToString() string {
+func (o *TokenGrantV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

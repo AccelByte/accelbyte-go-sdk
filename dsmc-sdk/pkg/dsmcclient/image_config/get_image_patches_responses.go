@@ -72,13 +72,19 @@ type GetImagePatchesOK struct {
 }
 
 func (o *GetImagePatchesOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetImagePatchesOK) ToString() string {
+func (o *GetImagePatchesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetImagePatchesUnauthorized struct {
 }
 
 func (o *GetImagePatchesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetImagePatchesUnauthorized) ToString() string {
+func (o *GetImagePatchesUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetImagePatchesInternalServerError struct {
 }
 
 func (o *GetImagePatchesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches][%d] getImagePatchesInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetImagePatchesInternalServerError) ToString() string {
+func (o *GetImagePatchesInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

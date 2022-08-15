@@ -66,13 +66,19 @@ type GetPublishedStoreBackupOK struct {
 }
 
 func (o *GetPublishedStoreBackupOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPublishedStoreBackupOK) ToString() string {
+func (o *GetPublishedStoreBackupOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetPublishedStoreBackupNotFound struct {
 }
 
 func (o *GetPublishedStoreBackupNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPublishedStoreBackupNotFound) ToString() string {
+func (o *GetPublishedStoreBackupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

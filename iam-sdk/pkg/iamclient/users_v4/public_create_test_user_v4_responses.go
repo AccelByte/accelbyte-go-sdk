@@ -84,13 +84,19 @@ type PublicCreateTestUserV4Created struct {
 }
 
 func (o *PublicCreateTestUserV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateTestUserV4Created) ToString() string {
+func (o *PublicCreateTestUserV4Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicCreateTestUserV4BadRequest struct {
 }
 
 func (o *PublicCreateTestUserV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateTestUserV4BadRequest) ToString() string {
+func (o *PublicCreateTestUserV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PublicCreateTestUserV4NotFound struct {
 }
 
 func (o *PublicCreateTestUserV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCreateTestUserV4NotFound) ToString() string {
+func (o *PublicCreateTestUserV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PublicCreateTestUserV4Conflict struct {
 }
 
 func (o *PublicCreateTestUserV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicCreateTestUserV4Conflict) ToString() string {
+func (o *PublicCreateTestUserV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PublicCreateTestUserV4InternalServerError struct {
 }
 
 func (o *PublicCreateTestUserV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/test_users][%d] publicCreateTestUserV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicCreateTestUserV4InternalServerError) ToString() string {
+func (o *PublicCreateTestUserV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

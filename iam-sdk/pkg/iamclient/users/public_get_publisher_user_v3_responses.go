@@ -84,13 +84,19 @@ type PublicGetPublisherUserV3OK struct {
 }
 
 func (o *PublicGetPublisherUserV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetPublisherUserV3OK) ToString() string {
+func (o *PublicGetPublisherUserV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PublicGetPublisherUserV3BadRequest struct {
 }
 
 func (o *PublicGetPublisherUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/{userId}/publisher][%d] publicGetPublisherUserV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetPublisherUserV3BadRequest) ToString() string {
+func (o *PublicGetPublisherUserV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type GetAdminEmailConfigurationOK struct {
 }
 
 func (o *GetAdminEmailConfigurationOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAdminEmailConfigurationOK) ToString() string {
+func (o *GetAdminEmailConfigurationOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -112,13 +118,19 @@ type GetAdminEmailConfigurationUnauthorized struct {
 }
 
 func (o *GetAdminEmailConfigurationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetAdminEmailConfigurationUnauthorized) ToString() string {
+func (o *GetAdminEmailConfigurationUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -154,13 +166,19 @@ type GetAdminEmailConfigurationInternalServerError struct {
 }
 
 func (o *GetAdminEmailConfigurationInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/emails/configurations][%d] getAdminEmailConfigurationInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAdminEmailConfigurationInternalServerError) ToString() string {
+func (o *GetAdminEmailConfigurationInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

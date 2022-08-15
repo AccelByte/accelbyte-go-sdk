@@ -84,13 +84,19 @@ type UpdateConfigOK struct {
 }
 
 func (o *UpdateConfigOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateConfigOK) ToString() string {
+func (o *UpdateConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdateConfigBadRequest struct {
 }
 
 func (o *UpdateConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateConfigBadRequest) ToString() string {
+func (o *UpdateConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdateConfigUnauthorized struct {
 }
 
 func (o *UpdateConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateConfigUnauthorized) ToString() string {
+func (o *UpdateConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdateConfigNotFound struct {
 }
 
 func (o *UpdateConfigNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateConfigNotFound) ToString() string {
+func (o *UpdateConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdateConfigInternalServerError struct {
 }
 
 func (o *UpdateConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs][%d] updateConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateConfigInternalServerError) ToString() string {
+func (o *UpdateConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

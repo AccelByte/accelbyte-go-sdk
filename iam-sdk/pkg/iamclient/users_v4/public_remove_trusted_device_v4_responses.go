@@ -111,13 +111,19 @@ type PublicRemoveTrustedDeviceV4BadRequest struct {
 }
 
 func (o *PublicRemoveTrustedDeviceV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicRemoveTrustedDeviceV4BadRequest) ToString() string {
+func (o *PublicRemoveTrustedDeviceV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type PublicRemoveTrustedDeviceV4Unauthorized struct {
 }
 
 func (o *PublicRemoveTrustedDeviceV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicRemoveTrustedDeviceV4Unauthorized) ToString() string {
+func (o *PublicRemoveTrustedDeviceV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type PublicRemoveTrustedDeviceV4Forbidden struct {
 }
 
 func (o *PublicRemoveTrustedDeviceV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicRemoveTrustedDeviceV4Forbidden) ToString() string {
+func (o *PublicRemoveTrustedDeviceV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type PublicRemoveTrustedDeviceV4NotFound struct {
 }
 
 func (o *PublicRemoveTrustedDeviceV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicRemoveTrustedDeviceV4NotFound) ToString() string {
+func (o *PublicRemoveTrustedDeviceV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type PublicRemoveTrustedDeviceV4InternalServerError struct {
 }
 
 func (o *PublicRemoveTrustedDeviceV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/device][%d] publicRemoveTrustedDeviceV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicRemoveTrustedDeviceV4InternalServerError) ToString() string {
+func (o *PublicRemoveTrustedDeviceV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

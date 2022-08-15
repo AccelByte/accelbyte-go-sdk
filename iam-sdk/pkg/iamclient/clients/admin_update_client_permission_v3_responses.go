@@ -105,13 +105,19 @@ type AdminUpdateClientPermissionV3BadRequest struct {
 }
 
 func (o *AdminUpdateClientPermissionV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateClientPermissionV3BadRequest) ToString() string {
+func (o *AdminUpdateClientPermissionV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminUpdateClientPermissionV3Unauthorized struct {
 }
 
 func (o *AdminUpdateClientPermissionV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateClientPermissionV3Unauthorized) ToString() string {
+func (o *AdminUpdateClientPermissionV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminUpdateClientPermissionV3Forbidden struct {
 }
 
 func (o *AdminUpdateClientPermissionV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminUpdateClientPermissionV3Forbidden) ToString() string {
+func (o *AdminUpdateClientPermissionV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminUpdateClientPermissionV3NotFound struct {
 }
 
 func (o *AdminUpdateClientPermissionV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions][%d] adminUpdateClientPermissionV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateClientPermissionV3NotFound) ToString() string {
+func (o *AdminUpdateClientPermissionV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

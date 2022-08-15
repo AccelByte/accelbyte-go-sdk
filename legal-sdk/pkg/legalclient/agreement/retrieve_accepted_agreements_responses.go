@@ -60,13 +60,19 @@ type RetrieveAcceptedAgreementsOK struct {
 }
 
 func (o *RetrieveAcceptedAgreementsOK) Error() string {
-	return fmt.Sprintf("[GET /agreement/admin/agreements/policies/users/{userId}][%d] retrieveAcceptedAgreementsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policies/users/{userId}][%d] retrieveAcceptedAgreementsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RetrieveAcceptedAgreementsOK) ToString() string {
+func (o *RetrieveAcceptedAgreementsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -99,13 +99,19 @@ type MockFulfillIAPItemBadRequest struct {
 }
 
 func (o *MockFulfillIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *MockFulfillIAPItemBadRequest) ToString() string {
+func (o *MockFulfillIAPItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type MockFulfillIAPItemNotFound struct {
 }
 
 func (o *MockFulfillIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *MockFulfillIAPItemNotFound) ToString() string {
+func (o *MockFulfillIAPItemNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type MockFulfillIAPItemConflict struct {
 }
 
 func (o *MockFulfillIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *MockFulfillIAPItemConflict) ToString() string {
+func (o *MockFulfillIAPItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

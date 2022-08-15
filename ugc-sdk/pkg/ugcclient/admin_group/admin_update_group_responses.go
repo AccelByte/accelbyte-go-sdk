@@ -84,13 +84,19 @@ type AdminUpdateGroupOK struct {
 }
 
 func (o *AdminUpdateGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminUpdateGroupOK) ToString() string {
+func (o *AdminUpdateGroupOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminUpdateGroupBadRequest struct {
 }
 
 func (o *AdminUpdateGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateGroupBadRequest) ToString() string {
+func (o *AdminUpdateGroupBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminUpdateGroupUnauthorized struct {
 }
 
 func (o *AdminUpdateGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateGroupUnauthorized) ToString() string {
+func (o *AdminUpdateGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminUpdateGroupNotFound struct {
 }
 
 func (o *AdminUpdateGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateGroupNotFound) ToString() string {
+func (o *AdminUpdateGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminUpdateGroupInternalServerError struct {
 }
 
 func (o *AdminUpdateGroupInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] adminUpdateGroupInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminUpdateGroupInternalServerError) ToString() string {
+func (o *AdminUpdateGroupInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

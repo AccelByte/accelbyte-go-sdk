@@ -60,13 +60,19 @@ type TestAdyenConfigOK struct {
 }
 
 func (o *TestAdyenConfigOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/adyenconfig/test][%d] testAdyenConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/adyenconfig/test][%d] testAdyenConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestAdyenConfigOK) ToString() string {
+func (o *TestAdyenConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

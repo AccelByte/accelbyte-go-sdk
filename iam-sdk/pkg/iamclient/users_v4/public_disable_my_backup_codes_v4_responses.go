@@ -111,13 +111,19 @@ type PublicDisableMyBackupCodesV4BadRequest struct {
 }
 
 func (o *PublicDisableMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicDisableMyBackupCodesV4BadRequest) ToString() string {
+func (o *PublicDisableMyBackupCodesV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type PublicDisableMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *PublicDisableMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicDisableMyBackupCodesV4Unauthorized) ToString() string {
+func (o *PublicDisableMyBackupCodesV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type PublicDisableMyBackupCodesV4Forbidden struct {
 }
 
 func (o *PublicDisableMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicDisableMyBackupCodesV4Forbidden) ToString() string {
+func (o *PublicDisableMyBackupCodesV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type PublicDisableMyBackupCodesV4NotFound struct {
 }
 
 func (o *PublicDisableMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDisableMyBackupCodesV4NotFound) ToString() string {
+func (o *PublicDisableMyBackupCodesV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type PublicDisableMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *PublicDisableMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable][%d] publicDisableMyBackupCodesV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicDisableMyBackupCodesV4InternalServerError) ToString() string {
+func (o *PublicDisableMyBackupCodesV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

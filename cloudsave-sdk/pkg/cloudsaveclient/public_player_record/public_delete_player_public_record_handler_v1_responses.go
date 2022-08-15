@@ -105,13 +105,19 @@ type PublicDeletePlayerPublicRecordHandlerV1BadRequest struct {
 }
 
 func (o *PublicDeletePlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicDeletePlayerPublicRecordHandlerV1BadRequest) ToString() string {
+func (o *PublicDeletePlayerPublicRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PublicDeletePlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *PublicDeletePlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicDeletePlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+func (o *PublicDeletePlayerPublicRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PublicDeletePlayerPublicRecordHandlerV1NotFound struct {
 }
 
 func (o *PublicDeletePlayerPublicRecordHandlerV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicDeletePlayerPublicRecordHandlerV1NotFound) ToString() string {
+func (o *PublicDeletePlayerPublicRecordHandlerV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PublicDeletePlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PublicDeletePlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public][%d] publicDeletePlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicDeletePlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+func (o *PublicDeletePlayerPublicRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

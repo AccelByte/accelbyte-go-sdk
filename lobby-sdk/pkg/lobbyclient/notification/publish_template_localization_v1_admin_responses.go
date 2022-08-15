@@ -105,13 +105,19 @@ type PublishTemplateLocalizationV1AdminUnauthorized struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublishTemplateLocalizationV1AdminUnauthorized) ToString() string {
+func (o *PublishTemplateLocalizationV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type PublishTemplateLocalizationV1AdminForbidden struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublishTemplateLocalizationV1AdminForbidden) ToString() string {
+func (o *PublishTemplateLocalizationV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type PublishTemplateLocalizationV1AdminNotFound struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublishTemplateLocalizationV1AdminNotFound) ToString() string {
+func (o *PublishTemplateLocalizationV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type PublishTemplateLocalizationV1AdminInternalServerError struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublishTemplateLocalizationV1AdminInternalServerError) ToString() string {
+func (o *PublishTemplateLocalizationV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

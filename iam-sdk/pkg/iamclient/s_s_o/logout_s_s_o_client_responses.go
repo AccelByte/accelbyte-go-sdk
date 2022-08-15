@@ -99,13 +99,19 @@ type LogoutSSOClientNotFound struct {
 }
 
 func (o *LogoutSSOClientNotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *LogoutSSOClientNotFound) ToString() string {
+func (o *LogoutSSOClientNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type LogoutSSOClientUnprocessableEntity struct {
 }
 
 func (o *LogoutSSOClientUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *LogoutSSOClientUnprocessableEntity) ToString() string {
+func (o *LogoutSSOClientUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type LogoutSSOClientInternalServerError struct {
 }
 
 func (o *LogoutSSOClientInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/sso/{platformId}/logout][%d] logoutSSOClientInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *LogoutSSOClientInternalServerError) ToString() string {
+func (o *LogoutSSOClientInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

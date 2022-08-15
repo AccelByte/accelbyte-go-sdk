@@ -66,13 +66,19 @@ type TestStripeConfigByIDOK struct {
 }
 
 func (o *TestStripeConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestStripeConfigByIDOK) ToString() string {
+func (o *TestStripeConfigByIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type TestStripeConfigByIDNotFound struct {
 }
 
 func (o *TestStripeConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *TestStripeConfigByIDNotFound) ToString() string {
+func (o *TestStripeConfigByIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

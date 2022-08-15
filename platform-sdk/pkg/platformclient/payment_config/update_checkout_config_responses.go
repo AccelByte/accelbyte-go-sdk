@@ -66,13 +66,19 @@ type UpdateCheckoutConfigOK struct {
 }
 
 func (o *UpdateCheckoutConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateCheckoutConfigOK) ToString() string {
+func (o *UpdateCheckoutConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateCheckoutConfigNotFound struct {
 }
 
 func (o *UpdateCheckoutConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateCheckoutConfigNotFound) ToString() string {
+func (o *UpdateCheckoutConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type GetRevocationListV3OK struct {
 }
 
 func (o *GetRevocationListV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetRevocationListV3OK) ToString() string {
+func (o *GetRevocationListV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetRevocationListV3Unauthorized struct {
 }
 
 func (o *GetRevocationListV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/oauth/revocationlist][%d] getRevocationListV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetRevocationListV3Unauthorized) ToString() string {
+func (o *GetRevocationListV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

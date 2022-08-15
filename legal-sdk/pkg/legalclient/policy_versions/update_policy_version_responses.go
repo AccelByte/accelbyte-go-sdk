@@ -66,13 +66,19 @@ type UpdatePolicyVersionOK struct {
 }
 
 func (o *UpdatePolicyVersionOK) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePolicyVersionOK) ToString() string {
+func (o *UpdatePolicyVersionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdatePolicyVersionBadRequest struct {
 }
 
 func (o *UpdatePolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePolicyVersionBadRequest) ToString() string {
+func (o *UpdatePolicyVersionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type PublicGetInputValidationsOK struct {
 }
 
 func (o *PublicGetInputValidationsOK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/inputValidations][%d] publicGetInputValidationsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/inputValidations][%d] publicGetInputValidationsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetInputValidationsOK) ToString() string {
+func (o *PublicGetInputValidationsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

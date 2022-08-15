@@ -111,13 +111,19 @@ type AdminPlatformUnlinkV3BadRequest struct {
 }
 
 func (o *AdminPlatformUnlinkV3BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminPlatformUnlinkV3BadRequest) ToString() string {
+func (o *AdminPlatformUnlinkV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminPlatformUnlinkV3Unauthorized struct {
 }
 
 func (o *AdminPlatformUnlinkV3Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminPlatformUnlinkV3Unauthorized) ToString() string {
+func (o *AdminPlatformUnlinkV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminPlatformUnlinkV3Forbidden struct {
 }
 
 func (o *AdminPlatformUnlinkV3Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminPlatformUnlinkV3Forbidden) ToString() string {
+func (o *AdminPlatformUnlinkV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminPlatformUnlinkV3NotFound struct {
 }
 
 func (o *AdminPlatformUnlinkV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}][%d] adminPlatformUnlinkV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminPlatformUnlinkV3NotFound) ToString() string {
+func (o *AdminPlatformUnlinkV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

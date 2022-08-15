@@ -90,13 +90,19 @@ type PublicCreateJusticeUserCreated struct {
 }
 
 func (o *PublicCreateJusticeUserCreated) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserCreated) ToString() string {
+func (o *PublicCreateJusticeUserCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type PublicCreateJusticeUserBadRequest struct {
 }
 
 func (o *PublicCreateJusticeUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserBadRequest) ToString() string {
+func (o *PublicCreateJusticeUserBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type PublicCreateJusticeUserUnauthorized struct {
 }
 
 func (o *PublicCreateJusticeUserUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserUnauthorized) ToString() string {
+func (o *PublicCreateJusticeUserUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type PublicCreateJusticeUserForbidden struct {
 }
 
 func (o *PublicCreateJusticeUserForbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserForbidden) ToString() string {
+func (o *PublicCreateJusticeUserForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type PublicCreateJusticeUserNotFound struct {
 }
 
 func (o *PublicCreateJusticeUserNotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserNotFound) ToString() string {
+func (o *PublicCreateJusticeUserNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type PublicCreateJusticeUserInternalServerError struct {
 }
 
 func (o *PublicCreateJusticeUserInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}][%d] publicCreateJusticeUserInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicCreateJusticeUserInternalServerError) ToString() string {
+func (o *PublicCreateJusticeUserInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

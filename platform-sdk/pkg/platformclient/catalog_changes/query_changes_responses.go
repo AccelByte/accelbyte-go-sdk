@@ -60,13 +60,19 @@ type QueryChangesOK struct {
 }
 
 func (o *QueryChangesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria][%d] queryChangesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria][%d] queryChangesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryChangesOK) ToString() string {
+func (o *QueryChangesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

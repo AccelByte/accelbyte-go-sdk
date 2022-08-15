@@ -84,13 +84,19 @@ type AdminBulkCheckValidUserIDV4OK struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminBulkCheckValidUserIDV4OK) ToString() string {
+func (o *AdminBulkCheckValidUserIDV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AdminBulkCheckValidUserIDV4BadRequest struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminBulkCheckValidUserIDV4BadRequest) ToString() string {
+func (o *AdminBulkCheckValidUserIDV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AdminBulkCheckValidUserIDV4Unauthorized struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminBulkCheckValidUserIDV4Unauthorized) ToString() string {
+func (o *AdminBulkCheckValidUserIDV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AdminBulkCheckValidUserIDV4Forbidden struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminBulkCheckValidUserIDV4Forbidden) ToString() string {
+func (o *AdminBulkCheckValidUserIDV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AdminBulkCheckValidUserIDV4InternalServerError struct {
 }
 
 func (o *AdminBulkCheckValidUserIDV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/users/bulk/validate][%d] adminBulkCheckValidUserIdV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminBulkCheckValidUserIDV4InternalServerError) ToString() string {
+func (o *AdminBulkCheckValidUserIDV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

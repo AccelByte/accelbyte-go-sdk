@@ -78,13 +78,19 @@ type CreateUserFromInvitationV4Created struct {
 }
 
 func (o *CreateUserFromInvitationV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateUserFromInvitationV4Created) ToString() string {
+func (o *CreateUserFromInvitationV4Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type CreateUserFromInvitationV4BadRequest struct {
 }
 
 func (o *CreateUserFromInvitationV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateUserFromInvitationV4BadRequest) ToString() string {
+func (o *CreateUserFromInvitationV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type CreateUserFromInvitationV4NotFound struct {
 }
 
 func (o *CreateUserFromInvitationV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateUserFromInvitationV4NotFound) ToString() string {
+func (o *CreateUserFromInvitationV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type CreateUserFromInvitationV4InternalServerError struct {
 }
 
 func (o *CreateUserFromInvitationV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateUserFromInvitationV4InternalServerError) ToString() string {
+func (o *CreateUserFromInvitationV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

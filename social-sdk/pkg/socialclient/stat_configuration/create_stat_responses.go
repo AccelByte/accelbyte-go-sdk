@@ -66,13 +66,19 @@ type CreateStatCreated struct {
 }
 
 func (o *CreateStatCreated) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats][%d] createStatCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats][%d] createStatCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateStatCreated) ToString() string {
+func (o *CreateStatCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type CreateStatConflict struct {
 }
 
 func (o *CreateStatConflict) Error() string {
-	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats][%d] createStatConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats][%d] createStatConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateStatConflict) ToString() string {
+func (o *CreateStatConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -78,13 +78,19 @@ type UnpublishSeasonOK struct {
 }
 
 func (o *UnpublishSeasonOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UnpublishSeasonOK) ToString() string {
+func (o *UnpublishSeasonOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UnpublishSeasonBadRequest struct {
 }
 
 func (o *UnpublishSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UnpublishSeasonBadRequest) ToString() string {
+func (o *UnpublishSeasonBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UnpublishSeasonNotFound struct {
 }
 
 func (o *UnpublishSeasonNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UnpublishSeasonNotFound) ToString() string {
+func (o *UnpublishSeasonNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UnpublishSeasonConflict struct {
 }
 
 func (o *UnpublishSeasonConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish][%d] unpublishSeasonConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UnpublishSeasonConflict) ToString() string {
+func (o *UnpublishSeasonConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

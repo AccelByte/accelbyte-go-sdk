@@ -90,13 +90,19 @@ type AdminGetMyBackupCodesV4OK struct {
 }
 
 func (o *AdminGetMyBackupCodesV4OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4OK) ToString() string {
+func (o *AdminGetMyBackupCodesV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetMyBackupCodesV4BadRequest struct {
 }
 
 func (o *AdminGetMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4BadRequest) ToString() string {
+func (o *AdminGetMyBackupCodesV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *AdminGetMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4Unauthorized) ToString() string {
+func (o *AdminGetMyBackupCodesV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetMyBackupCodesV4Forbidden struct {
 }
 
 func (o *AdminGetMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4Forbidden) ToString() string {
+func (o *AdminGetMyBackupCodesV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetMyBackupCodesV4NotFound struct {
 }
 
 func (o *AdminGetMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4NotFound) ToString() string {
+func (o *AdminGetMyBackupCodesV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *AdminGetMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v4/admin/users/me/mfa/backupCode][%d] adminGetMyBackupCodesV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetMyBackupCodesV4InternalServerError) ToString() string {
+func (o *AdminGetMyBackupCodesV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

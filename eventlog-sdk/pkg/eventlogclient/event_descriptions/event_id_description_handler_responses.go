@@ -60,13 +60,19 @@ type EventIDDescriptionHandlerOK struct {
 }
 
 func (o *EventIDDescriptionHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /event/descriptions/eventId][%d] eventIdDescriptionHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /event/descriptions/eventId][%d] eventIdDescriptionHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *EventIDDescriptionHandlerOK) ToString() string {
+func (o *EventIDDescriptionHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

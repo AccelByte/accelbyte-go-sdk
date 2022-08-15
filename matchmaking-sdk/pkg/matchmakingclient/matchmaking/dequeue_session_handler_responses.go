@@ -111,13 +111,19 @@ type DequeueSessionHandlerBadRequest struct {
 }
 
 func (o *DequeueSessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DequeueSessionHandlerBadRequest) ToString() string {
+func (o *DequeueSessionHandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DequeueSessionHandlerUnauthorized struct {
 }
 
 func (o *DequeueSessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DequeueSessionHandlerUnauthorized) ToString() string {
+func (o *DequeueSessionHandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DequeueSessionHandlerForbidden struct {
 }
 
 func (o *DequeueSessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DequeueSessionHandlerForbidden) ToString() string {
+func (o *DequeueSessionHandlerForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DequeueSessionHandlerNotFound struct {
 }
 
 func (o *DequeueSessionHandlerNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DequeueSessionHandlerNotFound) ToString() string {
+func (o *DequeueSessionHandlerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DequeueSessionHandlerInternalServerError struct {
 }
 
 func (o *DequeueSessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions/dequeue][%d] dequeueSessionHandlerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DequeueSessionHandlerInternalServerError) ToString() string {
+func (o *DequeueSessionHandlerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

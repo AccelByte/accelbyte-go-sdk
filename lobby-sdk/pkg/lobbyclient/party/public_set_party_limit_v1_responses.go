@@ -111,13 +111,19 @@ type PublicSetPartyLimitV1BadRequest struct {
 }
 
 func (o *PublicSetPartyLimitV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicSetPartyLimitV1BadRequest) ToString() string {
+func (o *PublicSetPartyLimitV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type PublicSetPartyLimitV1Unauthorized struct {
 }
 
 func (o *PublicSetPartyLimitV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicSetPartyLimitV1Unauthorized) ToString() string {
+func (o *PublicSetPartyLimitV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type PublicSetPartyLimitV1Forbidden struct {
 }
 
 func (o *PublicSetPartyLimitV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicSetPartyLimitV1Forbidden) ToString() string {
+func (o *PublicSetPartyLimitV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type PublicSetPartyLimitV1NotFound struct {
 }
 
 func (o *PublicSetPartyLimitV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicSetPartyLimitV1NotFound) ToString() string {
+func (o *PublicSetPartyLimitV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type PublicSetPartyLimitV1InternalServerError struct {
 }
 
 func (o *PublicSetPartyLimitV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit][%d] publicSetPartyLimitV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicSetPartyLimitV1InternalServerError) ToString() string {
+func (o *PublicSetPartyLimitV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

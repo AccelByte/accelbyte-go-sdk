@@ -78,13 +78,19 @@ type PostPlayerPublicRecordHandlerV1Created struct {
 }
 
 func (o *PostPlayerPublicRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PostPlayerPublicRecordHandlerV1Created) ToString() string {
+func (o *PostPlayerPublicRecordHandlerV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PostPlayerPublicRecordHandlerV1BadRequest struct {
 }
 
 func (o *PostPlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PostPlayerPublicRecordHandlerV1BadRequest) ToString() string {
+func (o *PostPlayerPublicRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PostPlayerPublicRecordHandlerV1Unauthorized struct {
 }
 
 func (o *PostPlayerPublicRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PostPlayerPublicRecordHandlerV1Unauthorized) ToString() string {
+func (o *PostPlayerPublicRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PostPlayerPublicRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PostPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PostPlayerPublicRecordHandlerV1InternalServerError) ToString() string {
+func (o *PostPlayerPublicRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

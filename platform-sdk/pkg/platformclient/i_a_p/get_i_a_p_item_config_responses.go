@@ -66,13 +66,19 @@ type GetIAPItemConfigOK struct {
 }
 
 func (o *GetIAPItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetIAPItemConfigOK) ToString() string {
+func (o *GetIAPItemConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetIAPItemConfigNotFound struct {
 }
 
 func (o *GetIAPItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetIAPItemConfigNotFound) ToString() string {
+func (o *GetIAPItemConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

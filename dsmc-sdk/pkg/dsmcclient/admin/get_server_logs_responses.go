@@ -84,13 +84,19 @@ type GetServerLogsOK struct {
 }
 
 func (o *GetServerLogsOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetServerLogsOK) ToString() string {
+func (o *GetServerLogsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetServerLogsBadRequest struct {
 }
 
 func (o *GetServerLogsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetServerLogsBadRequest) ToString() string {
+func (o *GetServerLogsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetServerLogsUnauthorized struct {
 }
 
 func (o *GetServerLogsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetServerLogsUnauthorized) ToString() string {
+func (o *GetServerLogsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetServerLogsNotFound struct {
 }
 
 func (o *GetServerLogsNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetServerLogsNotFound) ToString() string {
+func (o *GetServerLogsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetServerLogsInternalServerError struct {
 }
 
 func (o *GetServerLogsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs][%d] getServerLogsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetServerLogsInternalServerError) ToString() string {
+func (o *GetServerLogsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

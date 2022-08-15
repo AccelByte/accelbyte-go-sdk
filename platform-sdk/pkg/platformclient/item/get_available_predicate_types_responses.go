@@ -66,13 +66,19 @@ type GetAvailablePredicateTypesOK struct {
 }
 
 func (o *GetAvailablePredicateTypesOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAvailablePredicateTypesOK) ToString() string {
+func (o *GetAvailablePredicateTypesOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type GetAvailablePredicateTypesNotFound struct {
 }
 
 func (o *GetAvailablePredicateTypesNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/predicate/types][%d] getAvailablePredicateTypesNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetAvailablePredicateTypesNotFound) ToString() string {
+func (o *GetAvailablePredicateTypesNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

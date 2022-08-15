@@ -105,13 +105,19 @@ type AdminDeleteContentScreenshotBadRequest struct {
 }
 
 func (o *AdminDeleteContentScreenshotBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDeleteContentScreenshotBadRequest) ToString() string {
+func (o *AdminDeleteContentScreenshotBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminDeleteContentScreenshotUnauthorized struct {
 }
 
 func (o *AdminDeleteContentScreenshotUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteContentScreenshotUnauthorized) ToString() string {
+func (o *AdminDeleteContentScreenshotUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminDeleteContentScreenshotNotFound struct {
 }
 
 func (o *AdminDeleteContentScreenshotNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDeleteContentScreenshotNotFound) ToString() string {
+func (o *AdminDeleteContentScreenshotNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminDeleteContentScreenshotInternalServerError struct {
 }
 
 func (o *AdminDeleteContentScreenshotInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}][%d] adminDeleteContentScreenshotInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteContentScreenshotInternalServerError) ToString() string {
+func (o *AdminDeleteContentScreenshotInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

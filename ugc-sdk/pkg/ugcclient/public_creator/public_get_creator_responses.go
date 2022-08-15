@@ -78,13 +78,19 @@ type PublicGetCreatorOK struct {
 }
 
 func (o *PublicGetCreatorOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetCreatorOK) ToString() string {
+func (o *PublicGetCreatorOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetCreatorUnauthorized struct {
 }
 
 func (o *PublicGetCreatorUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicGetCreatorUnauthorized) ToString() string {
+func (o *PublicGetCreatorUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetCreatorNotFound struct {
 }
 
 func (o *PublicGetCreatorNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetCreatorNotFound) ToString() string {
+func (o *PublicGetCreatorNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetCreatorInternalServerError struct {
 }
 
 func (o *PublicGetCreatorInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}][%d] publicGetCreatorInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicGetCreatorInternalServerError) ToString() string {
+func (o *PublicGetCreatorInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

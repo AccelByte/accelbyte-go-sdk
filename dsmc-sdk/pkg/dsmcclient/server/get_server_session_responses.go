@@ -84,13 +84,19 @@ type GetServerSessionOK struct {
 }
 
 func (o *GetServerSessionOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetServerSessionOK) ToString() string {
+func (o *GetServerSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type GetServerSessionBadRequest struct {
 }
 
 func (o *GetServerSessionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetServerSessionBadRequest) ToString() string {
+func (o *GetServerSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type GetServerSessionUnauthorized struct {
 }
 
 func (o *GetServerSessionUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetServerSessionUnauthorized) ToString() string {
+func (o *GetServerSessionUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type GetServerSessionNotFound struct {
 }
 
 func (o *GetServerSessionNotFound) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetServerSessionNotFound) ToString() string {
+func (o *GetServerSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type GetServerSessionInternalServerError struct {
 }
 
 func (o *GetServerSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/namespaces/{namespace}/servers/{podName}/session][%d] getServerSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetServerSessionInternalServerError) ToString() string {
+func (o *GetServerSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

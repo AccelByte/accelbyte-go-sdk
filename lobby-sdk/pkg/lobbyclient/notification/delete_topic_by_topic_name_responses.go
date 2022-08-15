@@ -105,13 +105,19 @@ type DeleteTopicByTopicNameUnauthorized struct {
 }
 
 func (o *DeleteTopicByTopicNameUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteTopicByTopicNameUnauthorized) ToString() string {
+func (o *DeleteTopicByTopicNameUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteTopicByTopicNameForbidden struct {
 }
 
 func (o *DeleteTopicByTopicNameForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteTopicByTopicNameForbidden) ToString() string {
+func (o *DeleteTopicByTopicNameForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteTopicByTopicNameNotFound struct {
 }
 
 func (o *DeleteTopicByTopicNameNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteTopicByTopicNameNotFound) ToString() string {
+func (o *DeleteTopicByTopicNameNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteTopicByTopicNameInternalServerError struct {
 }
 
 func (o *DeleteTopicByTopicNameInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/topics/{topic}][%d] deleteTopicByTopicNameInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteTopicByTopicNameInternalServerError) ToString() string {
+func (o *DeleteTopicByTopicNameInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

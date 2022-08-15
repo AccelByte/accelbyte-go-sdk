@@ -66,13 +66,19 @@ type PublicGetProfileOK struct {
 }
 
 func (o *PublicGetProfileOK) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetProfileOK) ToString() string {
+func (o *PublicGetProfileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetProfileNotFound struct {
 }
 
 func (o *PublicGetProfileNotFound) Error() string {
-	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicGetProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetProfileNotFound) ToString() string {
+func (o *PublicGetProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

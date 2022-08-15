@@ -99,13 +99,19 @@ type SaveConfigBadRequest struct {
 }
 
 func (o *SaveConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *SaveConfigBadRequest) ToString() string {
+func (o *SaveConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type SaveConfigUnauthorized struct {
 }
 
 func (o *SaveConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SaveConfigUnauthorized) ToString() string {
+func (o *SaveConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type SaveConfigInternalServerError struct {
 }
 
 func (o *SaveConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /dsmcontroller/admin/configs][%d] saveConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SaveConfigInternalServerError) ToString() string {
+func (o *SaveConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type QueryRewardsOK struct {
 }
 
 func (o *QueryRewardsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryRewardsOK) ToString() string {
+func (o *QueryRewardsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type QueryRewardsUnprocessableEntity struct {
 }
 
 func (o *QueryRewardsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/byCriteria][%d] queryRewardsUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *QueryRewardsUnprocessableEntity) ToString() string {
+func (o *QueryRewardsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

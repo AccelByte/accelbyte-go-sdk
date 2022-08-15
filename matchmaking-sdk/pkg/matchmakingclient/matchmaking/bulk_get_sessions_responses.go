@@ -90,13 +90,19 @@ type BulkGetSessionsOK struct {
 }
 
 func (o *BulkGetSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsOK) ToString() string {
+func (o *BulkGetSessionsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type BulkGetSessionsBadRequest struct {
 }
 
 func (o *BulkGetSessionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsBadRequest) ToString() string {
+func (o *BulkGetSessionsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type BulkGetSessionsUnauthorized struct {
 }
 
 func (o *BulkGetSessionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsUnauthorized) ToString() string {
+func (o *BulkGetSessionsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type BulkGetSessionsForbidden struct {
 }
 
 func (o *BulkGetSessionsForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsForbidden) ToString() string {
+func (o *BulkGetSessionsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type BulkGetSessionsNotFound struct {
 }
 
 func (o *BulkGetSessionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsNotFound) ToString() string {
+func (o *BulkGetSessionsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type BulkGetSessionsInternalServerError struct {
 }
 
 func (o *BulkGetSessionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk][%d] bulkGetSessionsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *BulkGetSessionsInternalServerError) ToString() string {
+func (o *BulkGetSessionsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

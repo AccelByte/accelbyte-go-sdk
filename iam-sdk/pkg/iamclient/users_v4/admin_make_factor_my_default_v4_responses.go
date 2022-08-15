@@ -111,13 +111,19 @@ type AdminMakeFactorMyDefaultV4BadRequest struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminMakeFactorMyDefaultV4BadRequest) ToString() string {
+func (o *AdminMakeFactorMyDefaultV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminMakeFactorMyDefaultV4Unauthorized struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminMakeFactorMyDefaultV4Unauthorized) ToString() string {
+func (o *AdminMakeFactorMyDefaultV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminMakeFactorMyDefaultV4Forbidden struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminMakeFactorMyDefaultV4Forbidden) ToString() string {
+func (o *AdminMakeFactorMyDefaultV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminMakeFactorMyDefaultV4NotFound struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminMakeFactorMyDefaultV4NotFound) ToString() string {
+func (o *AdminMakeFactorMyDefaultV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminMakeFactorMyDefaultV4InternalServerError struct {
 }
 
 func (o *AdminMakeFactorMyDefaultV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/factor][%d] adminMakeFactorMyDefaultV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminMakeFactorMyDefaultV4InternalServerError) ToString() string {
+func (o *AdminMakeFactorMyDefaultV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

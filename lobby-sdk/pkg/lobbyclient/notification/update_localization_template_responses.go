@@ -105,13 +105,19 @@ type UpdateLocalizationTemplateBadRequest struct {
 }
 
 func (o *UpdateLocalizationTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateLocalizationTemplateBadRequest) ToString() string {
+func (o *UpdateLocalizationTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type UpdateLocalizationTemplateUnauthorized struct {
 }
 
 func (o *UpdateLocalizationTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateLocalizationTemplateUnauthorized) ToString() string {
+func (o *UpdateLocalizationTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type UpdateLocalizationTemplateForbidden struct {
 }
 
 func (o *UpdateLocalizationTemplateForbidden) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateLocalizationTemplateForbidden) ToString() string {
+func (o *UpdateLocalizationTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type UpdateLocalizationTemplateNotFound struct {
 }
 
 func (o *UpdateLocalizationTemplateNotFound) Error() string {
-	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateLocalizationTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateLocalizationTemplateNotFound) ToString() string {
+func (o *UpdateLocalizationTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

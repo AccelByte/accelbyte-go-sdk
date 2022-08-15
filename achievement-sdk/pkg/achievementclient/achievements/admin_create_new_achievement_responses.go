@@ -78,13 +78,19 @@ type AdminCreateNewAchievementCreated struct {
 }
 
 func (o *AdminCreateNewAchievementCreated) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateNewAchievementCreated) ToString() string {
+func (o *AdminCreateNewAchievementCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminCreateNewAchievementBadRequest struct {
 }
 
 func (o *AdminCreateNewAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateNewAchievementBadRequest) ToString() string {
+func (o *AdminCreateNewAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminCreateNewAchievementUnauthorized struct {
 }
 
 func (o *AdminCreateNewAchievementUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminCreateNewAchievementUnauthorized) ToString() string {
+func (o *AdminCreateNewAchievementUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminCreateNewAchievementInternalServerError struct {
 }
 
 func (o *AdminCreateNewAchievementInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /achievement/v1/admin/namespaces/{namespace}/achievements][%d] adminCreateNewAchievementInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateNewAchievementInternalServerError) ToString() string {
+func (o *AdminCreateNewAchievementInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -111,13 +111,19 @@ type AddUserIntoSessionInChannelBadRequest struct {
 }
 
 func (o *AddUserIntoSessionInChannelBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddUserIntoSessionInChannelBadRequest) ToString() string {
+func (o *AddUserIntoSessionInChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AddUserIntoSessionInChannelUnauthorized struct {
 }
 
 func (o *AddUserIntoSessionInChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AddUserIntoSessionInChannelUnauthorized) ToString() string {
+func (o *AddUserIntoSessionInChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AddUserIntoSessionInChannelForbidden struct {
 }
 
 func (o *AddUserIntoSessionInChannelForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AddUserIntoSessionInChannelForbidden) ToString() string {
+func (o *AddUserIntoSessionInChannelForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AddUserIntoSessionInChannelNotFound struct {
 }
 
 func (o *AddUserIntoSessionInChannelNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AddUserIntoSessionInChannelNotFound) ToString() string {
+func (o *AddUserIntoSessionInChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AddUserIntoSessionInChannelInternalServerError struct {
 }
 
 func (o *AddUserIntoSessionInChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}][%d] addUserIntoSessionInChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddUserIntoSessionInChannelInternalServerError) ToString() string {
+func (o *AddUserIntoSessionInChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

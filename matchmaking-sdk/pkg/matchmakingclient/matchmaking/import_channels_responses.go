@@ -84,13 +84,19 @@ type ImportChannelsOK struct {
 }
 
 func (o *ImportChannelsOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ImportChannelsOK) ToString() string {
+func (o *ImportChannelsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type ImportChannelsBadRequest struct {
 }
 
 func (o *ImportChannelsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ImportChannelsBadRequest) ToString() string {
+func (o *ImportChannelsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type ImportChannelsUnauthorized struct {
 }
 
 func (o *ImportChannelsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ImportChannelsUnauthorized) ToString() string {
+func (o *ImportChannelsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type ImportChannelsForbidden struct {
 }
 
 func (o *ImportChannelsForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ImportChannelsForbidden) ToString() string {
+func (o *ImportChannelsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type ImportChannelsInternalServerError struct {
 }
 
 func (o *ImportChannelsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/v1/admin/namespaces/{namespace}/channels/import][%d] importChannelsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ImportChannelsInternalServerError) ToString() string {
+func (o *ImportChannelsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

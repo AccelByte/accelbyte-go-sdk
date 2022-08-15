@@ -105,13 +105,19 @@ type DeleteCountryGroupBadRequest struct {
 }
 
 func (o *DeleteCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteCountryGroupBadRequest) ToString() string {
+func (o *DeleteCountryGroupBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteCountryGroupUnauthorized struct {
 }
 
 func (o *DeleteCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteCountryGroupUnauthorized) ToString() string {
+func (o *DeleteCountryGroupUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteCountryGroupForbidden struct {
 }
 
 func (o *DeleteCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteCountryGroupForbidden) ToString() string {
+func (o *DeleteCountryGroupForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteCountryGroupNotFound struct {
 }
 
 func (o *DeleteCountryGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteCountryGroupNotFound) ToString() string {
+func (o *DeleteCountryGroupNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -93,13 +93,19 @@ type UnlockSteamUserAchievementBadRequest struct {
 }
 
 func (o *UnlockSteamUserAchievementBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UnlockSteamUserAchievementBadRequest) ToString() string {
+func (o *UnlockSteamUserAchievementBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type UnlockSteamUserAchievementNotFound struct {
 }
 
 func (o *UnlockSteamUserAchievementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam][%d] unlockSteamUserAchievementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UnlockSteamUserAchievementNotFound) ToString() string {
+func (o *UnlockSteamUserAchievementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

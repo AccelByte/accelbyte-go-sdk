@@ -90,13 +90,19 @@ type AdminGetListPersonalDataRequestOK struct {
 }
 
 func (o *AdminGetListPersonalDataRequestOK) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestOK) ToString() string {
+func (o *AdminGetListPersonalDataRequestOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGetListPersonalDataRequestBadRequest struct {
 }
 
 func (o *AdminGetListPersonalDataRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestBadRequest) ToString() string {
+func (o *AdminGetListPersonalDataRequestBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGetListPersonalDataRequestUnauthorized struct {
 }
 
 func (o *AdminGetListPersonalDataRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestUnauthorized) ToString() string {
+func (o *AdminGetListPersonalDataRequestUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGetListPersonalDataRequestForbidden struct {
 }
 
 func (o *AdminGetListPersonalDataRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestForbidden) ToString() string {
+func (o *AdminGetListPersonalDataRequestForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGetListPersonalDataRequestNotFound struct {
 }
 
 func (o *AdminGetListPersonalDataRequestNotFound) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestNotFound) ToString() string {
+func (o *AdminGetListPersonalDataRequestNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGetListPersonalDataRequestInternalServerError struct {
 }
 
 func (o *AdminGetListPersonalDataRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/requests][%d] adminGetListPersonalDataRequestInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetListPersonalDataRequestInternalServerError) ToString() string {
+func (o *AdminGetListPersonalDataRequestInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

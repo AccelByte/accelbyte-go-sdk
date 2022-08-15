@@ -90,13 +90,19 @@ type GetUserVisibilityStatusV2OK struct {
 }
 
 func (o *GetUserVisibilityStatusV2OK) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2OK) ToString() string {
+func (o *GetUserVisibilityStatusV2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type GetUserVisibilityStatusV2BadRequest struct {
 }
 
 func (o *GetUserVisibilityStatusV2BadRequest) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2BadRequest) ToString() string {
+func (o *GetUserVisibilityStatusV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type GetUserVisibilityStatusV2Unauthorized struct {
 }
 
 func (o *GetUserVisibilityStatusV2Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2Unauthorized) ToString() string {
+func (o *GetUserVisibilityStatusV2Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type GetUserVisibilityStatusV2Forbidden struct {
 }
 
 func (o *GetUserVisibilityStatusV2Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2Forbidden) ToString() string {
+func (o *GetUserVisibilityStatusV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type GetUserVisibilityStatusV2NotFound struct {
 }
 
 func (o *GetUserVisibilityStatusV2NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2NotFound) ToString() string {
+func (o *GetUserVisibilityStatusV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type GetUserVisibilityStatusV2InternalServerError struct {
 }
 
 func (o *GetUserVisibilityStatusV2InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility][%d] getUserVisibilityStatusV2InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetUserVisibilityStatusV2InternalServerError) ToString() string {
+func (o *GetUserVisibilityStatusV2InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

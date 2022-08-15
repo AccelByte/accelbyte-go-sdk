@@ -90,13 +90,19 @@ type GetAllNotificationTemplatesV1AdminOK struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminOK) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -130,13 +136,19 @@ type GetAllNotificationTemplatesV1AdminBadRequest struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminBadRequest) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -172,13 +184,19 @@ type GetAllNotificationTemplatesV1AdminUnauthorized struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminUnauthorized) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -214,13 +232,19 @@ type GetAllNotificationTemplatesV1AdminForbidden struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminForbidden) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -256,13 +280,19 @@ type GetAllNotificationTemplatesV1AdminNotFound struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminNotFound) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -298,13 +328,19 @@ type GetAllNotificationTemplatesV1AdminInternalServerError struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAllNotificationTemplatesV1AdminInternalServerError) ToString() string {
+func (o *GetAllNotificationTemplatesV1AdminInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -84,13 +84,19 @@ type AddDownloadCountOK struct {
 }
 
 func (o *AddDownloadCountOK) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AddDownloadCountOK) ToString() string {
+func (o *AddDownloadCountOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type AddDownloadCountBadRequest struct {
 }
 
 func (o *AddDownloadCountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AddDownloadCountBadRequest) ToString() string {
+func (o *AddDownloadCountBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type AddDownloadCountUnauthorized struct {
 }
 
 func (o *AddDownloadCountUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AddDownloadCountUnauthorized) ToString() string {
+func (o *AddDownloadCountUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type AddDownloadCountNotFound struct {
 }
 
 func (o *AddDownloadCountNotFound) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AddDownloadCountNotFound) ToString() string {
+func (o *AddDownloadCountNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type AddDownloadCountInternalServerError struct {
 }
 
 func (o *AddDownloadCountInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AddDownloadCountInternalServerError) ToString() string {
+func (o *AddDownloadCountInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

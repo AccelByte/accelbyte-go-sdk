@@ -72,13 +72,19 @@ type AdminGetBansTypeWithNamespaceV3OK struct {
 }
 
 func (o *AdminGetBansTypeWithNamespaceV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeWithNamespaceV3OK) ToString() string {
+func (o *AdminGetBansTypeWithNamespaceV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type AdminGetBansTypeWithNamespaceV3Unauthorized struct {
 }
 
 func (o *AdminGetBansTypeWithNamespaceV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeWithNamespaceV3Unauthorized) ToString() string {
+func (o *AdminGetBansTypeWithNamespaceV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type AdminGetBansTypeWithNamespaceV3Forbidden struct {
 }
 
 func (o *AdminGetBansTypeWithNamespaceV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/bantypes][%d] adminGetBansTypeWithNamespaceV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGetBansTypeWithNamespaceV3Forbidden) ToString() string {
+func (o *AdminGetBansTypeWithNamespaceV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

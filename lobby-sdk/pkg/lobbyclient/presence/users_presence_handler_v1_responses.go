@@ -78,13 +78,19 @@ type UsersPresenceHandlerV1OK struct {
 }
 
 func (o *UsersPresenceHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UsersPresenceHandlerV1OK) ToString() string {
+func (o *UsersPresenceHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UsersPresenceHandlerV1BadRequest struct {
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UsersPresenceHandlerV1BadRequest) ToString() string {
+func (o *UsersPresenceHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UsersPresenceHandlerV1Unauthorized struct {
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UsersPresenceHandlerV1Unauthorized) ToString() string {
+func (o *UsersPresenceHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UsersPresenceHandlerV1InternalServerError struct {
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UsersPresenceHandlerV1InternalServerError) ToString() string {
+func (o *UsersPresenceHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

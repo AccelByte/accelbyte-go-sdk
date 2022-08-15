@@ -147,13 +147,19 @@ type DeleteThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *DeleteThirdPartyLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +195,19 @@ type DeleteThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] deleteThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

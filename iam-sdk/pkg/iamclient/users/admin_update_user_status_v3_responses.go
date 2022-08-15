@@ -105,13 +105,19 @@ type AdminUpdateUserStatusV3BadRequest struct {
 }
 
 func (o *AdminUpdateUserStatusV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserStatusV3BadRequest) ToString() string {
+func (o *AdminUpdateUserStatusV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminUpdateUserStatusV3Unauthorized struct {
 }
 
 func (o *AdminUpdateUserStatusV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserStatusV3Unauthorized) ToString() string {
+func (o *AdminUpdateUserStatusV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +222,19 @@ type AdminUpdateUserStatusV3NotFound struct {
 }
 
 func (o *AdminUpdateUserStatusV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/status][%d] adminUpdateUserStatusV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminUpdateUserStatusV3NotFound) ToString() string {
+func (o *AdminUpdateUserStatusV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type PublicQueryItemsOK struct {
 }
 
 func (o *PublicQueryItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicQueryItemsOK) ToString() string {
+func (o *PublicQueryItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicQueryItemsNotFound struct {
 }
 
 func (o *PublicQueryItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicQueryItemsNotFound) ToString() string {
+func (o *PublicQueryItemsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicQueryItemsUnprocessableEntity struct {
 }
 
 func (o *PublicQueryItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byCriteria][%d] publicQueryItemsUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *PublicQueryItemsUnprocessableEntity) ToString() string {
+func (o *PublicQueryItemsUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

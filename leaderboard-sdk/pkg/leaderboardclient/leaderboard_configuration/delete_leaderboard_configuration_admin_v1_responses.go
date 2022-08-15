@@ -111,13 +111,19 @@ type DeleteLeaderboardConfigurationAdminV1BadRequest struct {
 }
 
 func (o *DeleteLeaderboardConfigurationAdminV1BadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteLeaderboardConfigurationAdminV1BadRequest) ToString() string {
+func (o *DeleteLeaderboardConfigurationAdminV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteLeaderboardConfigurationAdminV1Unauthorized struct {
 }
 
 func (o *DeleteLeaderboardConfigurationAdminV1Unauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteLeaderboardConfigurationAdminV1Unauthorized) ToString() string {
+func (o *DeleteLeaderboardConfigurationAdminV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteLeaderboardConfigurationAdminV1Forbidden struct {
 }
 
 func (o *DeleteLeaderboardConfigurationAdminV1Forbidden) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteLeaderboardConfigurationAdminV1Forbidden) ToString() string {
+func (o *DeleteLeaderboardConfigurationAdminV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteLeaderboardConfigurationAdminV1NotFound struct {
 }
 
 func (o *DeleteLeaderboardConfigurationAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteLeaderboardConfigurationAdminV1NotFound) ToString() string {
+func (o *DeleteLeaderboardConfigurationAdminV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteLeaderboardConfigurationAdminV1InternalServerError struct {
 }
 
 func (o *DeleteLeaderboardConfigurationAdminV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] deleteLeaderboardConfigurationAdminV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteLeaderboardConfigurationAdminV1InternalServerError) ToString() string {
+func (o *DeleteLeaderboardConfigurationAdminV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

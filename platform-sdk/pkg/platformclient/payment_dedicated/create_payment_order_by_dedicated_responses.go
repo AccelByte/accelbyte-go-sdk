@@ -90,13 +90,19 @@ type CreatePaymentOrderByDedicatedCreated struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedCreated) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedCreated) ToString() string {
+func (o *CreatePaymentOrderByDedicatedCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreatePaymentOrderByDedicatedBadRequest struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedBadRequest) ToString() string {
+func (o *CreatePaymentOrderByDedicatedBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreatePaymentOrderByDedicatedForbidden struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedForbidden) ToString() string {
+func (o *CreatePaymentOrderByDedicatedForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreatePaymentOrderByDedicatedNotFound struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedNotFound) ToString() string {
+func (o *CreatePaymentOrderByDedicatedNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreatePaymentOrderByDedicatedConflict struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedConflict) ToString() string {
+func (o *CreatePaymentOrderByDedicatedConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreatePaymentOrderByDedicatedUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) ToString() string {
+func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

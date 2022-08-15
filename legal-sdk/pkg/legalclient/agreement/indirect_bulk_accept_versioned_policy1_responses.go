@@ -60,13 +60,19 @@ type IndirectBulkAcceptVersionedPolicy1Created struct {
 }
 
 func (o *IndirectBulkAcceptVersionedPolicy1Created) Error() string {
-	return fmt.Sprintf("[POST /agreement/public/agreements/policies/users/{userId}][%d] indirectBulkAcceptVersionedPolicy1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /agreement/public/agreements/policies/users/{userId}][%d] indirectBulkAcceptVersionedPolicy1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *IndirectBulkAcceptVersionedPolicy1Created) ToString() string {
+func (o *IndirectBulkAcceptVersionedPolicy1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type CountServerDetailedOK struct {
 }
 
 func (o *CountServerDetailedOK) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CountServerDetailedOK) ToString() string {
+func (o *CountServerDetailedOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CountServerDetailedUnauthorized struct {
 }
 
 func (o *CountServerDetailedUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CountServerDetailedUnauthorized) ToString() string {
+func (o *CountServerDetailedUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CountServerDetailedInternalServerError struct {
 }
 
 func (o *CountServerDetailedInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed][%d] countServerDetailedInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CountServerDetailedInternalServerError) ToString() string {
+func (o *CountServerDetailedInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

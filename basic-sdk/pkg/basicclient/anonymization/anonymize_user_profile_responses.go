@@ -99,13 +99,19 @@ type AnonymizeUserProfileBadRequest struct {
 }
 
 func (o *AnonymizeUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AnonymizeUserProfileBadRequest) ToString() string {
+func (o *AnonymizeUserProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type AnonymizeUserProfileUnauthorized struct {
 }
 
 func (o *AnonymizeUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AnonymizeUserProfileUnauthorized) ToString() string {
+func (o *AnonymizeUserProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type AnonymizeUserProfileForbidden struct {
 }
 
 func (o *AnonymizeUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AnonymizeUserProfileForbidden) ToString() string {
+func (o *AnonymizeUserProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

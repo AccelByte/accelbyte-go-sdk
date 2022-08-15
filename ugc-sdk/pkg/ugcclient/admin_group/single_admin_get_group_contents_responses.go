@@ -78,13 +78,19 @@ type SingleAdminGetGroupContentsOK struct {
 }
 
 func (o *SingleAdminGetGroupContentsOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SingleAdminGetGroupContentsOK) ToString() string {
+func (o *SingleAdminGetGroupContentsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type SingleAdminGetGroupContentsUnauthorized struct {
 }
 
 func (o *SingleAdminGetGroupContentsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *SingleAdminGetGroupContentsUnauthorized) ToString() string {
+func (o *SingleAdminGetGroupContentsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type SingleAdminGetGroupContentsNotFound struct {
 }
 
 func (o *SingleAdminGetGroupContentsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *SingleAdminGetGroupContentsNotFound) ToString() string {
+func (o *SingleAdminGetGroupContentsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type SingleAdminGetGroupContentsInternalServerError struct {
 }
 
 func (o *SingleAdminGetGroupContentsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents][%d] singleAdminGetGroupContentsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *SingleAdminGetGroupContentsInternalServerError) ToString() string {
+func (o *SingleAdminGetGroupContentsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

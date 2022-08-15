@@ -78,13 +78,19 @@ type ListPlayerRecordHandlerV1OK struct {
 }
 
 func (o *ListPlayerRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListPlayerRecordHandlerV1OK) ToString() string {
+func (o *ListPlayerRecordHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ListPlayerRecordHandlerV1BadRequest struct {
 }
 
 func (o *ListPlayerRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ListPlayerRecordHandlerV1BadRequest) ToString() string {
+func (o *ListPlayerRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ListPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *ListPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListPlayerRecordHandlerV1Unauthorized) ToString() string {
+func (o *ListPlayerRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ListPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *ListPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListPlayerRecordHandlerV1InternalServerError) ToString() string {
+func (o *ListPlayerRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

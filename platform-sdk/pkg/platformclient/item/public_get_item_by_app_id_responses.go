@@ -66,13 +66,19 @@ type PublicGetItemByAppIDOK struct {
 }
 
 func (o *PublicGetItemByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetItemByAppIDOK) ToString() string {
+func (o *PublicGetItemByAppIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type PublicGetItemByAppIDNotFound struct {
 }
 
 func (o *PublicGetItemByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetItemByAppIDNotFound) ToString() string {
+func (o *PublicGetItemByAppIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

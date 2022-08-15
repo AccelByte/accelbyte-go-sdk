@@ -72,13 +72,19 @@ type PublicBulkGetUsersOK struct {
 }
 
 func (o *PublicBulkGetUsersOK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicBulkGetUsersOK) ToString() string {
+func (o *PublicBulkGetUsersOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicBulkGetUsersBadRequest struct {
 }
 
 func (o *PublicBulkGetUsersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicBulkGetUsersBadRequest) ToString() string {
+func (o *PublicBulkGetUsersBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicBulkGetUsersInternalServerError struct {
 }
 
 func (o *PublicBulkGetUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicBulkGetUsersInternalServerError) ToString() string {
+func (o *PublicBulkGetUsersInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

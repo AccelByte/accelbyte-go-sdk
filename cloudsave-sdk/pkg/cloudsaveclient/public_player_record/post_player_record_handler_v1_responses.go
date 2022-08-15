@@ -84,13 +84,19 @@ type PostPlayerRecordHandlerV1Created struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Created) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *PostPlayerRecordHandlerV1Created) ToString() string {
+func (o *PostPlayerRecordHandlerV1Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type PostPlayerRecordHandlerV1BadRequest struct {
 }
 
 func (o *PostPlayerRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PostPlayerRecordHandlerV1BadRequest) ToString() string {
+func (o *PostPlayerRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type PostPlayerRecordHandlerV1Unauthorized struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PostPlayerRecordHandlerV1Unauthorized) ToString() string {
+func (o *PostPlayerRecordHandlerV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type PostPlayerRecordHandlerV1Forbidden struct {
 }
 
 func (o *PostPlayerRecordHandlerV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PostPlayerRecordHandlerV1Forbidden) ToString() string {
+func (o *PostPlayerRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type PostPlayerRecordHandlerV1InternalServerError struct {
 }
 
 func (o *PostPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PostPlayerRecordHandlerV1InternalServerError) ToString() string {
+func (o *PostPlayerRecordHandlerV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

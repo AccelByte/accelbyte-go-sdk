@@ -93,13 +93,19 @@ type DeleteLocalServerUnauthorized struct {
 }
 
 func (o *DeleteLocalServerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}][%d] deleteLocalServerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}][%d] deleteLocalServerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteLocalServerUnauthorized) ToString() string {
+func (o *DeleteLocalServerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -135,13 +141,19 @@ type DeleteLocalServerInternalServerError struct {
 }
 
 func (o *DeleteLocalServerInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}][%d] deleteLocalServerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}][%d] deleteLocalServerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteLocalServerInternalServerError) ToString() string {
+func (o *DeleteLocalServerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

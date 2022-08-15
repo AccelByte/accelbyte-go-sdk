@@ -117,13 +117,19 @@ type PublicEnableMyAuthenticatorV4BadRequest struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4BadRequest) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type PublicEnableMyAuthenticatorV4Unauthorized struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4Unauthorized) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type PublicEnableMyAuthenticatorV4Forbidden struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4Forbidden) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type PublicEnableMyAuthenticatorV4NotFound struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4NotFound) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type PublicEnableMyAuthenticatorV4Conflict struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4Conflict) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type PublicEnableMyAuthenticatorV4InternalServerError struct {
 }
 
 func (o *PublicEnableMyAuthenticatorV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable][%d] publicEnableMyAuthenticatorV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *PublicEnableMyAuthenticatorV4InternalServerError) ToString() string {
+func (o *PublicEnableMyAuthenticatorV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

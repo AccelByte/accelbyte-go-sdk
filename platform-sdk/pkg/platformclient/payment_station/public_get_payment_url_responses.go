@@ -78,13 +78,19 @@ type PublicGetPaymentURLOK struct {
 }
 
 func (o *PublicGetPaymentURLOK) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentURLOK) ToString() string {
+func (o *PublicGetPaymentURLOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type PublicGetPaymentURLBadRequest struct {
 }
 
 func (o *PublicGetPaymentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentURLBadRequest) ToString() string {
+func (o *PublicGetPaymentURLBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type PublicGetPaymentURLForbidden struct {
 }
 
 func (o *PublicGetPaymentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentURLForbidden) ToString() string {
+func (o *PublicGetPaymentURLForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type PublicGetPaymentURLNotFound struct {
 }
 
 func (o *PublicGetPaymentURLNotFound) Error() string {
-	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentURLNotFound) ToString() string {
+func (o *PublicGetPaymentURLNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

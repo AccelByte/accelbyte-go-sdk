@@ -117,13 +117,19 @@ type AdminSendVerificationCodeV3BadRequest struct {
 }
 
 func (o *AdminSendVerificationCodeV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3BadRequest) ToString() string {
+func (o *AdminSendVerificationCodeV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -159,13 +165,19 @@ type AdminSendVerificationCodeV3Unauthorized struct {
 }
 
 func (o *AdminSendVerificationCodeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3Unauthorized) ToString() string {
+func (o *AdminSendVerificationCodeV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -201,13 +213,19 @@ type AdminSendVerificationCodeV3Forbidden struct {
 }
 
 func (o *AdminSendVerificationCodeV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3Forbidden) ToString() string {
+func (o *AdminSendVerificationCodeV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -243,13 +261,19 @@ type AdminSendVerificationCodeV3NotFound struct {
 }
 
 func (o *AdminSendVerificationCodeV3NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3NotFound) ToString() string {
+func (o *AdminSendVerificationCodeV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -285,13 +309,19 @@ type AdminSendVerificationCodeV3Conflict struct {
 }
 
 func (o *AdminSendVerificationCodeV3Conflict) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3Conflict) ToString() string {
+func (o *AdminSendVerificationCodeV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -327,13 +357,19 @@ type AdminSendVerificationCodeV3TooManyRequests struct {
 }
 
 func (o *AdminSendVerificationCodeV3TooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3TooManyRequests  %+v", 429, o.ToString())
+	return fmt.Sprintf("[POST /iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request][%d] adminSendVerificationCodeV3TooManyRequests  %+v", 429, o.ToJSONString())
 }
 
-func (o *AdminSendVerificationCodeV3TooManyRequests) ToString() string {
+func (o *AdminSendVerificationCodeV3TooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

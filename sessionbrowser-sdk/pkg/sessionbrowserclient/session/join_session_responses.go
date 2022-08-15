@@ -84,13 +84,19 @@ type JoinSessionOK struct {
 }
 
 func (o *JoinSessionOK) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *JoinSessionOK) ToString() string {
+func (o *JoinSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type JoinSessionBadRequest struct {
 }
 
 func (o *JoinSessionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *JoinSessionBadRequest) ToString() string {
+func (o *JoinSessionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type JoinSessionForbidden struct {
 }
 
 func (o *JoinSessionForbidden) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *JoinSessionForbidden) ToString() string {
+func (o *JoinSessionForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type JoinSessionNotFound struct {
 }
 
 func (o *JoinSessionNotFound) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *JoinSessionNotFound) ToString() string {
+func (o *JoinSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type JoinSessionInternalServerError struct {
 }
 
 func (o *JoinSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *JoinSessionInternalServerError) ToString() string {
+func (o *JoinSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

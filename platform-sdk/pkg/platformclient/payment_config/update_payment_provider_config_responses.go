@@ -84,13 +84,19 @@ type UpdatePaymentProviderConfigOK struct {
 }
 
 func (o *UpdatePaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePaymentProviderConfigOK) ToString() string {
+func (o *UpdatePaymentProviderConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type UpdatePaymentProviderConfigBadRequest struct {
 }
 
 func (o *UpdatePaymentProviderConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePaymentProviderConfigBadRequest) ToString() string {
+func (o *UpdatePaymentProviderConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type UpdatePaymentProviderConfigNotFound struct {
 }
 
 func (o *UpdatePaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdatePaymentProviderConfigNotFound) ToString() string {
+func (o *UpdatePaymentProviderConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type UpdatePaymentProviderConfigConflict struct {
 }
 
 func (o *UpdatePaymentProviderConfigConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdatePaymentProviderConfigConflict) ToString() string {
+func (o *UpdatePaymentProviderConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type UpdatePaymentProviderConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePaymentProviderConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *UpdatePaymentProviderConfigUnprocessableEntity) ToString() string {
+func (o *UpdatePaymentProviderConfigUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

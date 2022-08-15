@@ -99,13 +99,19 @@ type AdminDeleteAllUserStatesBadRequest struct {
 }
 
 func (o *AdminDeleteAllUserStatesBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserStatesBadRequest) ToString() string {
+func (o *AdminDeleteAllUserStatesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type AdminDeleteAllUserStatesUnauthorized struct {
 }
 
 func (o *AdminDeleteAllUserStatesUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserStatesUnauthorized) ToString() string {
+func (o *AdminDeleteAllUserStatesUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type AdminDeleteAllUserStatesInternalServerError struct {
 }
 
 func (o *AdminDeleteAllUserStatesInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteAllUserStatesInternalServerError) ToString() string {
+func (o *AdminDeleteAllUserStatesInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

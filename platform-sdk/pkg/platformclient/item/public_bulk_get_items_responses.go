@@ -66,13 +66,19 @@ type PublicBulkGetItemsOK struct {
 }
 
 func (o *PublicBulkGetItemsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicBulkGetItemsOK) ToString() string {
+func (o *PublicBulkGetItemsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type PublicBulkGetItemsNotFound struct {
 }
 
 func (o *PublicBulkGetItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicBulkGetItemsNotFound) ToString() string {
+func (o *PublicBulkGetItemsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

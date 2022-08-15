@@ -90,13 +90,19 @@ type UpdateGroupPredefinedRulePublicV1OK struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1OK) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateGroupPredefinedRulePublicV1BadRequest struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1BadRequest) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdateGroupPredefinedRulePublicV1Unauthorized struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1Unauthorized) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdateGroupPredefinedRulePublicV1Forbidden struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1Forbidden) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdateGroupPredefinedRulePublicV1NotFound struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1NotFound) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdateGroupPredefinedRulePublicV1InternalServerError struct {
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}][%d] updateGroupPredefinedRulePublicV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateGroupPredefinedRulePublicV1InternalServerError) ToString() string {
+func (o *UpdateGroupPredefinedRulePublicV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

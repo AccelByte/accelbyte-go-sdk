@@ -111,13 +111,19 @@ type AdminSaveUserRoleV3BadRequest struct {
 }
 
 func (o *AdminSaveUserRoleV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminSaveUserRoleV3BadRequest) ToString() string {
+func (o *AdminSaveUserRoleV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminSaveUserRoleV3Forbidden struct {
 }
 
 func (o *AdminSaveUserRoleV3Forbidden) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminSaveUserRoleV3Forbidden) ToString() string {
+func (o *AdminSaveUserRoleV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminSaveUserRoleV3NotFound struct {
 }
 
 func (o *AdminSaveUserRoleV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminSaveUserRoleV3NotFound) ToString() string {
+func (o *AdminSaveUserRoleV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminSaveUserRoleV3UnprocessableEntity struct {
 }
 
 func (o *AdminSaveUserRoleV3UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *AdminSaveUserRoleV3UnprocessableEntity) ToString() string {
+func (o *AdminSaveUserRoleV3UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminSaveUserRoleV3InternalServerError struct {
 }
 
 func (o *AdminSaveUserRoleV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/users/{userId}/roles][%d] adminSaveUserRoleV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminSaveUserRoleV3InternalServerError) ToString() string {
+func (o *AdminSaveUserRoleV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

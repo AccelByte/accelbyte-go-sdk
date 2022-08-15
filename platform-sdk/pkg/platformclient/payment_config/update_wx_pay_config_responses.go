@@ -66,13 +66,19 @@ type UpdateWxPayConfigOK struct {
 }
 
 func (o *UpdateWxPayConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateWxPayConfigOK) ToString() string {
+func (o *UpdateWxPayConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type UpdateWxPayConfigNotFound struct {
 }
 
 func (o *UpdateWxPayConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig][%d] updateWxPayConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateWxPayConfigNotFound) ToString() string {
+func (o *UpdateWxPayConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

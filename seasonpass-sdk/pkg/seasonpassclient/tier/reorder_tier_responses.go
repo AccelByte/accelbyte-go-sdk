@@ -84,13 +84,19 @@ type ReorderTierOK struct {
 }
 
 func (o *ReorderTierOK) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ReorderTierOK) ToString() string {
+func (o *ReorderTierOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type ReorderTierBadRequest struct {
 }
 
 func (o *ReorderTierBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *ReorderTierBadRequest) ToString() string {
+func (o *ReorderTierBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type ReorderTierNotFound struct {
 }
 
 func (o *ReorderTierNotFound) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ReorderTierNotFound) ToString() string {
+func (o *ReorderTierNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type ReorderTierConflict struct {
 }
 
 func (o *ReorderTierConflict) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *ReorderTierConflict) ToString() string {
+func (o *ReorderTierConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type ReorderTierUnprocessableEntity struct {
 }
 
 func (o *ReorderTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder][%d] reorderTierUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *ReorderTierUnprocessableEntity) ToString() string {
+func (o *ReorderTierUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

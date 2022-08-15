@@ -111,13 +111,19 @@ type AdminVerifyUserWithoutVerificationCodeV3BadRequest struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) ToString() string {
+func (o *AdminVerifyUserWithoutVerificationCodeV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type AdminVerifyUserWithoutVerificationCodeV3Unauthorized struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) ToString() string {
+func (o *AdminVerifyUserWithoutVerificationCodeV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type AdminVerifyUserWithoutVerificationCodeV3Forbidden struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) ToString() string {
+func (o *AdminVerifyUserWithoutVerificationCodeV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type AdminVerifyUserWithoutVerificationCodeV3NotFound struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) ToString() string {
+func (o *AdminVerifyUserWithoutVerificationCodeV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type AdminVerifyUserWithoutVerificationCodeV3Conflict struct {
 }
 
 func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Conflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/users/{userId}/verify][%d] adminVerifyUserWithoutVerificationCodeV3Conflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) ToString() string {
+func (o *AdminVerifyUserWithoutVerificationCodeV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

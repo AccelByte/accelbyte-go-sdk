@@ -105,13 +105,19 @@ type CreateTemplateBadRequest struct {
 }
 
 func (o *CreateTemplateBadRequest) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateTemplateBadRequest) ToString() string {
+func (o *CreateTemplateBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type CreateTemplateUnauthorized struct {
 }
 
 func (o *CreateTemplateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateTemplateUnauthorized) ToString() string {
+func (o *CreateTemplateUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type CreateTemplateForbidden struct {
 }
 
 func (o *CreateTemplateForbidden) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateTemplateForbidden) ToString() string {
+func (o *CreateTemplateForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type CreateTemplateNotFound struct {
 }
 
 func (o *CreateTemplateNotFound) Error() string {
-	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /notification/namespaces/{namespace}/templates][%d] createTemplateNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *CreateTemplateNotFound) ToString() string {
+func (o *CreateTemplateNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -60,13 +60,19 @@ type GetAppleIAPConfigOK struct {
 }
 
 func (o *GetAppleIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/apple][%d] getAppleIAPConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/apple][%d] getAppleIAPConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAppleIAPConfigOK) ToString() string {
+func (o *GetAppleIAPConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

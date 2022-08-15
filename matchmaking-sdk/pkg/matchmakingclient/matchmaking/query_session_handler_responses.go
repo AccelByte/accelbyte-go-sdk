@@ -90,13 +90,19 @@ type QuerySessionHandlerOK struct {
 }
 
 func (o *QuerySessionHandlerOK) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerOK) ToString() string {
+func (o *QuerySessionHandlerOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type QuerySessionHandlerBadRequest struct {
 }
 
 func (o *QuerySessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerBadRequest) ToString() string {
+func (o *QuerySessionHandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type QuerySessionHandlerUnauthorized struct {
 }
 
 func (o *QuerySessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerUnauthorized) ToString() string {
+func (o *QuerySessionHandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type QuerySessionHandlerForbidden struct {
 }
 
 func (o *QuerySessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerForbidden) ToString() string {
+func (o *QuerySessionHandlerForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type QuerySessionHandlerNotFound struct {
 }
 
 func (o *QuerySessionHandlerNotFound) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerNotFound) ToString() string {
+func (o *QuerySessionHandlerNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type QuerySessionHandlerInternalServerError struct {
 }
 
 func (o *QuerySessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /matchmaking/namespaces/{namespace}/sessions/{matchID}/status][%d] querySessionHandlerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *QuerySessionHandlerInternalServerError) ToString() string {
+func (o *QuerySessionHandlerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

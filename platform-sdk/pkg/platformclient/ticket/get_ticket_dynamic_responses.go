@@ -66,13 +66,19 @@ type GetTicketDynamicOK struct {
 }
 
 func (o *GetTicketDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetTicketDynamicOK) ToString() string {
+func (o *GetTicketDynamicOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetTicketDynamicNotFound struct {
 }
 
 func (o *GetTicketDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetTicketDynamicNotFound) ToString() string {
+func (o *GetTicketDynamicNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

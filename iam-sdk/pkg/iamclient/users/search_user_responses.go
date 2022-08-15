@@ -78,13 +78,19 @@ type SearchUserOK struct {
 }
 
 func (o *SearchUserOK) Error() string {
-	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/namespaces/{namespace}/users/search][%d] searchUserOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *SearchUserOK) ToString() string {
+func (o *SearchUserOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

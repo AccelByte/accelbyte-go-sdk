@@ -60,13 +60,19 @@ type PublicReconcilePlayStationStoreOK struct {
 }
 
 func (o *PublicReconcilePlayStationStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicReconcilePlayStationStoreOK) ToString() string {
+func (o *PublicReconcilePlayStationStoreOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

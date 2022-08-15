@@ -72,13 +72,19 @@ type PublicGetUserProfileInfoByPublicIDOK struct {
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDOK) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoByPublicIDOK) ToString() string {
+func (o *PublicGetUserProfileInfoByPublicIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type PublicGetUserProfileInfoByPublicIDBadRequest struct {
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDBadRequest) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoByPublicIDBadRequest) ToString() string {
+func (o *PublicGetUserProfileInfoByPublicIDBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type PublicGetUserProfileInfoByPublicIDNotFound struct {
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId][%d] publicGetUserProfileInfoByPublicIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *PublicGetUserProfileInfoByPublicIDNotFound) ToString() string {
+func (o *PublicGetUserProfileInfoByPublicIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

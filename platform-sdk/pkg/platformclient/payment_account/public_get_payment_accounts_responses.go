@@ -60,13 +60,19 @@ type PublicGetPaymentAccountsOK struct {
 }
 
 func (o *PublicGetPaymentAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts][%d] publicGetPaymentAccountsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts][%d] publicGetPaymentAccountsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicGetPaymentAccountsOK) ToString() string {
+func (o *PublicGetPaymentAccountsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

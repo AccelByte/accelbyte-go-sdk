@@ -66,13 +66,19 @@ type GetEntitlementOK struct {
 }
 
 func (o *GetEntitlementOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetEntitlementOK) ToString() string {
+func (o *GetEntitlementOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetEntitlementNotFound struct {
 }
 
 func (o *GetEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetEntitlementNotFound) ToString() string {
+func (o *GetEntitlementNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

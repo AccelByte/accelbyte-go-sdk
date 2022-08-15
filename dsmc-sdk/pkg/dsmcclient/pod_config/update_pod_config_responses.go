@@ -90,13 +90,19 @@ type UpdatePodConfigOK struct {
 }
 
 func (o *UpdatePodConfigOK) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigOK) ToString() string {
+func (o *UpdatePodConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdatePodConfigBadRequest struct {
 }
 
 func (o *UpdatePodConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigBadRequest) ToString() string {
+func (o *UpdatePodConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type UpdatePodConfigUnauthorized struct {
 }
 
 func (o *UpdatePodConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigUnauthorized) ToString() string {
+func (o *UpdatePodConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type UpdatePodConfigNotFound struct {
 }
 
 func (o *UpdatePodConfigNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigNotFound) ToString() string {
+func (o *UpdatePodConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type UpdatePodConfigConflict struct {
 }
 
 func (o *UpdatePodConfigConflict) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigConflict) ToString() string {
+func (o *UpdatePodConfigConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type UpdatePodConfigInternalServerError struct {
 }
 
 func (o *UpdatePodConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}][%d] updatePodConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdatePodConfigInternalServerError) ToString() string {
+func (o *UpdatePodConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

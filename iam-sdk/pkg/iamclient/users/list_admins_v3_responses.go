@@ -78,13 +78,19 @@ type ListAdminsV3OK struct {
 }
 
 func (o *ListAdminsV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListAdminsV3OK) ToString() string {
+func (o *ListAdminsV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type ListAdminsV3Unauthorized struct {
 }
 
 func (o *ListAdminsV3Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *ListAdminsV3Unauthorized) ToString() string {
+func (o *ListAdminsV3Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type ListAdminsV3Forbidden struct {
 }
 
 func (o *ListAdminsV3Forbidden) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *ListAdminsV3Forbidden) ToString() string {
+func (o *ListAdminsV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type ListAdminsV3InternalServerError struct {
 }
 
 func (o *ListAdminsV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/admins][%d] listAdminsV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *ListAdminsV3InternalServerError) ToString() string {
+func (o *ListAdminsV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

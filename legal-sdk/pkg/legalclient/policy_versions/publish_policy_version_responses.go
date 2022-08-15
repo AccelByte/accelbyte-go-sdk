@@ -87,13 +87,19 @@ type PublishPolicyVersionBadRequest struct {
 }
 
 func (o *PublishPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}/latest][%d] publishPolicyVersionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}/latest][%d] publishPolicyVersionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *PublishPolicyVersionBadRequest) ToString() string {
+func (o *PublishPolicyVersionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

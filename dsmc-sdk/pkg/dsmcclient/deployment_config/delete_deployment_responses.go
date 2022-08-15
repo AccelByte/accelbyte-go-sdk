@@ -105,13 +105,19 @@ type DeleteDeploymentBadRequest struct {
 }
 
 func (o *DeleteDeploymentBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentBadRequest) ToString() string {
+func (o *DeleteDeploymentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteDeploymentUnauthorized struct {
 }
 
 func (o *DeleteDeploymentUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentUnauthorized) ToString() string {
+func (o *DeleteDeploymentUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteDeploymentNotFound struct {
 }
 
 func (o *DeleteDeploymentNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentNotFound) ToString() string {
+func (o *DeleteDeploymentNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteDeploymentInternalServerError struct {
 }
 
 func (o *DeleteDeploymentInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}][%d] deleteDeploymentInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteDeploymentInternalServerError) ToString() string {
+func (o *DeleteDeploymentInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

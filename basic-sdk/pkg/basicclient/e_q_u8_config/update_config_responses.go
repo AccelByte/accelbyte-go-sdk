@@ -72,13 +72,19 @@ type UpdateConfigOK struct {
 }
 
 func (o *UpdateConfigOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateConfigOK) ToString() string {
+func (o *UpdateConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type UpdateConfigBadRequest struct {
 }
 
 func (o *UpdateConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateConfigBadRequest) ToString() string {
+func (o *UpdateConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type UpdateConfigInternalServerError struct {
 }
 
 func (o *UpdateConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateConfigInternalServerError) ToString() string {
+func (o *UpdateConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

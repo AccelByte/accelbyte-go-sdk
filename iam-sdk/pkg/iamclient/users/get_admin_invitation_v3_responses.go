@@ -72,13 +72,19 @@ type GetAdminInvitationV3OK struct {
 }
 
 func (o *GetAdminInvitationV3OK) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetAdminInvitationV3OK) ToString() string {
+func (o *GetAdminInvitationV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type GetAdminInvitationV3NotFound struct {
 }
 
 func (o *GetAdminInvitationV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetAdminInvitationV3NotFound) ToString() string {
+func (o *GetAdminInvitationV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type GetAdminInvitationV3InternalServerError struct {
 }
 
 func (o *GetAdminInvitationV3InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *GetAdminInvitationV3InternalServerError) ToString() string {
+func (o *GetAdminInvitationV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

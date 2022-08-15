@@ -78,13 +78,19 @@ type AdminGetTypeOK struct {
 }
 
 func (o *AdminGetTypeOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetTypeOK) ToString() string {
+func (o *AdminGetTypeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminGetTypeUnauthorized struct {
 }
 
 func (o *AdminGetTypeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGetTypeUnauthorized) ToString() string {
+func (o *AdminGetTypeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminGetTypeNotFound struct {
 }
 
 func (o *AdminGetTypeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetTypeNotFound) ToString() string {
+func (o *AdminGetTypeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminGetTypeInternalServerError struct {
 }
 
 func (o *AdminGetTypeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetTypeInternalServerError) ToString() string {
+func (o *AdminGetTypeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

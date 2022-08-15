@@ -66,13 +66,19 @@ type TestCheckoutConfigByIDOK struct {
 }
 
 func (o *TestCheckoutConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TestCheckoutConfigByIDOK) ToString() string {
+func (o *TestCheckoutConfigByIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type TestCheckoutConfigByIDNotFound struct {
 }
 
 func (o *TestCheckoutConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *TestCheckoutConfigByIDNotFound) ToString() string {
+func (o *TestCheckoutConfigByIDNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

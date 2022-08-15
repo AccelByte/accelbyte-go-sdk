@@ -78,13 +78,19 @@ type AdminCreateTestUsersV4Created struct {
 }
 
 func (o *AdminCreateTestUsersV4Created) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4Created  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4Created  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminCreateTestUsersV4Created) ToString() string {
+func (o *AdminCreateTestUsersV4Created) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminCreateTestUsersV4BadRequest struct {
 }
 
 func (o *AdminCreateTestUsersV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminCreateTestUsersV4BadRequest) ToString() string {
+func (o *AdminCreateTestUsersV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminCreateTestUsersV4InternalServerError struct {
 }
 
 func (o *AdminCreateTestUsersV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminCreateTestUsersV4InternalServerError) ToString() string {
+func (o *AdminCreateTestUsersV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminCreateTestUsersV4NotImplemented struct {
 }
 
 func (o *AdminCreateTestUsersV4NotImplemented) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4NotImplemented  %+v", 501, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/namespaces/{namespace}/test_users][%d] adminCreateTestUsersV4NotImplemented  %+v", 501, o.ToJSONString())
 }
 
-func (o *AdminCreateTestUsersV4NotImplemented) ToString() string {
+func (o *AdminCreateTestUsersV4NotImplemented) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

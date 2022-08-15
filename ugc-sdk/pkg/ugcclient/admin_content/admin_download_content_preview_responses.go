@@ -78,13 +78,19 @@ type AdminDownloadContentPreviewOK struct {
 }
 
 func (o *AdminDownloadContentPreviewOK) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminDownloadContentPreviewOK) ToString() string {
+func (o *AdminDownloadContentPreviewOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type AdminDownloadContentPreviewUnauthorized struct {
 }
 
 func (o *AdminDownloadContentPreviewUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDownloadContentPreviewUnauthorized) ToString() string {
+func (o *AdminDownloadContentPreviewUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type AdminDownloadContentPreviewNotFound struct {
 }
 
 func (o *AdminDownloadContentPreviewNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminDownloadContentPreviewNotFound) ToString() string {
+func (o *AdminDownloadContentPreviewNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type AdminDownloadContentPreviewInternalServerError struct {
 }
 
 func (o *AdminDownloadContentPreviewInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview][%d] adminDownloadContentPreviewInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDownloadContentPreviewInternalServerError) ToString() string {
+func (o *AdminDownloadContentPreviewInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

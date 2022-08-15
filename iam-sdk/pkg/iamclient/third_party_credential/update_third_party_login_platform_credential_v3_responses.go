@@ -90,13 +90,19 @@ type UpdateThirdPartyLoginPlatformCredentialV3OK struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformCredentialV3OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type UpdateThirdPartyLoginPlatformCredentialV3BadRequest struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformCredentialV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +228,19 @@ type UpdateThirdPartyLoginPlatformCredentialV3NotFound struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformCredentialV3NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +276,19 @@ type UpdateThirdPartyLoginPlatformCredentialV3InternalServerError struct {
 }
 
 func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PATCH /iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients][%d] updateThirdPartyLoginPlatformCredentialV3InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) ToString() string {
+func (o *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

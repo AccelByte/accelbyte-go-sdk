@@ -66,13 +66,19 @@ type BulkResetUserStatItem2OK struct {
 }
 
 func (o *BulkResetUserStatItem2OK) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk][%d] bulkResetUserStatItem2OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk][%d] bulkResetUserStatItem2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *BulkResetUserStatItem2OK) ToString() string {
+func (o *BulkResetUserStatItem2OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -106,13 +112,19 @@ type BulkResetUserStatItem2UnprocessableEntity struct {
 }
 
 func (o *BulkResetUserStatItem2UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk][%d] bulkResetUserStatItem2UnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[PUT /social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk][%d] bulkResetUserStatItem2UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *BulkResetUserStatItem2UnprocessableEntity) ToString() string {
+func (o *BulkResetUserStatItem2UnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

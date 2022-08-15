@@ -78,13 +78,19 @@ type UpdateMyZipCodeOK struct {
 }
 
 func (o *UpdateMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateMyZipCodeOK) ToString() string {
+func (o *UpdateMyZipCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateMyZipCodeBadRequest struct {
 }
 
 func (o *UpdateMyZipCodeBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateMyZipCodeBadRequest) ToString() string {
+func (o *UpdateMyZipCodeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateMyZipCodeUnauthorized struct {
 }
 
 func (o *UpdateMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *UpdateMyZipCodeUnauthorized) ToString() string {
+func (o *UpdateMyZipCodeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateMyZipCodeForbidden struct {
 }
 
 func (o *UpdateMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *UpdateMyZipCodeForbidden) ToString() string {
+func (o *UpdateMyZipCodeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

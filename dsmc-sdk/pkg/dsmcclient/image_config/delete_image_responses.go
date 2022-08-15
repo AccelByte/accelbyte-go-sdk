@@ -111,13 +111,19 @@ type DeleteImageBadRequest struct {
 }
 
 func (o *DeleteImageBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteImageBadRequest) ToString() string {
+func (o *DeleteImageBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -153,13 +159,19 @@ type DeleteImageUnauthorized struct {
 }
 
 func (o *DeleteImageUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteImageUnauthorized) ToString() string {
+func (o *DeleteImageUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -195,13 +207,19 @@ type DeleteImageNotFound struct {
 }
 
 func (o *DeleteImageNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteImageNotFound) ToString() string {
+func (o *DeleteImageNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -237,13 +255,19 @@ type DeleteImageUnprocessableEntity struct {
 }
 
 func (o *DeleteImageUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *DeleteImageUnprocessableEntity) ToString() string {
+func (o *DeleteImageUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -279,13 +303,19 @@ type DeleteImageInternalServerError struct {
 }
 
 func (o *DeleteImageInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /dsmcontroller/admin/namespaces/{namespace}/images][%d] deleteImageInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteImageInternalServerError) ToString() string {
+func (o *DeleteImageInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

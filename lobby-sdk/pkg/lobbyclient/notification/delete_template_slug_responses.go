@@ -105,13 +105,19 @@ type DeleteTemplateSlugBadRequest struct {
 }
 
 func (o *DeleteTemplateSlugBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteTemplateSlugBadRequest) ToString() string {
+func (o *DeleteTemplateSlugBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type DeleteTemplateSlugUnauthorized struct {
 }
 
 func (o *DeleteTemplateSlugUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteTemplateSlugUnauthorized) ToString() string {
+func (o *DeleteTemplateSlugUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type DeleteTemplateSlugForbidden struct {
 }
 
 func (o *DeleteTemplateSlugForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteTemplateSlugForbidden) ToString() string {
+func (o *DeleteTemplateSlugForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type DeleteTemplateSlugNotFound struct {
 }
 
 func (o *DeleteTemplateSlugNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /notification/namespaces/{namespace}/templates/{templateSlug}][%d] deleteTemplateSlugNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteTemplateSlugNotFound) ToString() string {
+func (o *DeleteTemplateSlugNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

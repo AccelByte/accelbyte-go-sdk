@@ -72,13 +72,19 @@ type CreateLocalizedPolicyVersionCreated struct {
 }
 
 func (o *CreateLocalizedPolicyVersionCreated) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateLocalizedPolicyVersionCreated) ToString() string {
+func (o *CreateLocalizedPolicyVersionCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CreateLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *CreateLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateLocalizedPolicyVersionBadRequest) ToString() string {
+func (o *CreateLocalizedPolicyVersionBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CreateLocalizedPolicyVersionConflict struct {
 }
 
 func (o *CreateLocalizedPolicyVersionConflict) Error() string {
-	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateLocalizedPolicyVersionConflict) ToString() string {
+func (o *CreateLocalizedPolicyVersionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

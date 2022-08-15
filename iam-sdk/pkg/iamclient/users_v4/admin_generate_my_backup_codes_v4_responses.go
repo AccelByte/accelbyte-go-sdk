@@ -90,13 +90,19 @@ type AdminGenerateMyBackupCodesV4OK struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4OK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4OK) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type AdminGenerateMyBackupCodesV4BadRequest struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4BadRequest) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type AdminGenerateMyBackupCodesV4Unauthorized struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4Unauthorized) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type AdminGenerateMyBackupCodesV4Forbidden struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4Forbidden) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type AdminGenerateMyBackupCodesV4NotFound struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4NotFound) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4NotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4NotFound) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type AdminGenerateMyBackupCodesV4InternalServerError struct {
 }
 
 func (o *AdminGenerateMyBackupCodesV4InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /iam/v4/admin/users/me/mfa/backupCode][%d] adminGenerateMyBackupCodesV4InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGenerateMyBackupCodesV4InternalServerError) ToString() string {
+func (o *AdminGenerateMyBackupCodesV4InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

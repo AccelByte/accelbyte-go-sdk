@@ -99,13 +99,19 @@ type DeleteAllUserChannelUnauthorized struct {
 }
 
 func (o *DeleteAllUserChannelUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteAllUserChannelUnauthorized) ToString() string {
+func (o *DeleteAllUserChannelUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -141,13 +147,19 @@ type DeleteAllUserChannelNotFound struct {
 }
 
 func (o *DeleteAllUserChannelNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteAllUserChannelNotFound) ToString() string {
+func (o *DeleteAllUserChannelNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -183,13 +195,19 @@ type DeleteAllUserChannelInternalServerError struct {
 }
 
 func (o *DeleteAllUserChannelInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] deleteAllUserChannelInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *DeleteAllUserChannelInternalServerError) ToString() string {
+func (o *DeleteAllUserChannelInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

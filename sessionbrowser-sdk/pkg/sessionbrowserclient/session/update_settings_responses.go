@@ -78,13 +78,19 @@ type UpdateSettingsOK struct {
 }
 
 func (o *UpdateSettingsOK) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateSettingsOK) ToString() string {
+func (o *UpdateSettingsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -120,13 +126,19 @@ type UpdateSettingsBadRequest struct {
 }
 
 func (o *UpdateSettingsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *UpdateSettingsBadRequest) ToString() string {
+func (o *UpdateSettingsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -162,13 +174,19 @@ type UpdateSettingsNotFound struct {
 }
 
 func (o *UpdateSettingsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *UpdateSettingsNotFound) ToString() string {
+func (o *UpdateSettingsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -204,13 +222,19 @@ type UpdateSettingsInternalServerError struct {
 }
 
 func (o *UpdateSettingsInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[PUT /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings][%d] updateSettingsInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *UpdateSettingsInternalServerError) ToString() string {
+func (o *UpdateSettingsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

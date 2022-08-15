@@ -105,13 +105,19 @@ type AdminBulkBlockPlayersV1BadRequest struct {
 }
 
 func (o *AdminBulkBlockPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1BadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1BadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminBulkBlockPlayersV1BadRequest) ToString() string {
+func (o *AdminBulkBlockPlayersV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type AdminBulkBlockPlayersV1Unauthorized struct {
 }
 
 func (o *AdminBulkBlockPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Unauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Unauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminBulkBlockPlayersV1Unauthorized) ToString() string {
+func (o *AdminBulkBlockPlayersV1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type AdminBulkBlockPlayersV1Forbidden struct {
 }
 
 func (o *AdminBulkBlockPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Forbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Forbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminBulkBlockPlayersV1Forbidden) ToString() string {
+func (o *AdminBulkBlockPlayersV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type AdminBulkBlockPlayersV1InternalServerError struct {
 }
 
 func (o *AdminBulkBlockPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1InternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1InternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminBulkBlockPlayersV1InternalServerError) ToString() string {
+func (o *AdminBulkBlockPlayersV1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -72,13 +72,19 @@ type CreateCurrencyOK struct {
 }
 
 func (o *CreateCurrencyOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *CreateCurrencyOK) ToString() string {
+func (o *CreateCurrencyOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type CreateCurrencyConflict struct {
 }
 
 func (o *CreateCurrencyConflict) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateCurrencyConflict) ToString() string {
+func (o *CreateCurrencyConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type CreateCurrencyUnprocessableEntity struct {
 }
 
 func (o *CreateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.ToString())
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *CreateCurrencyUnprocessableEntity) ToString() string {
+func (o *CreateCurrencyUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

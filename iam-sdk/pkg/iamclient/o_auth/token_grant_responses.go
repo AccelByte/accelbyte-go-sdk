@@ -72,13 +72,19 @@ type TokenGrantOK struct {
 }
 
 func (o *TokenGrantOK) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *TokenGrantOK) ToString() string {
+func (o *TokenGrantOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type TokenGrantBadRequest struct {
 }
 
 func (o *TokenGrantBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *TokenGrantBadRequest) ToString() string {
+func (o *TokenGrantBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type TokenGrantUnauthorized struct {
 }
 
 func (o *TokenGrantUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /iam/oauth/token][%d] tokenGrantUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *TokenGrantUnauthorized) ToString() string {
+func (o *TokenGrantUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type ListUserWalletTransactionsOK struct {
 }
 
 func (o *ListUserWalletTransactionsOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *ListUserWalletTransactionsOK) ToString() string {
+func (o *ListUserWalletTransactionsOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type ListUserWalletTransactionsNotFound struct {
 }
 
 func (o *ListUserWalletTransactionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *ListUserWalletTransactionsNotFound) ToString() string {
+func (o *ListUserWalletTransactionsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

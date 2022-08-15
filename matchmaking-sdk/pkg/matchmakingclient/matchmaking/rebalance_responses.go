@@ -90,13 +90,19 @@ type RebalanceOK struct {
 }
 
 func (o *RebalanceOK) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *RebalanceOK) ToString() string {
+func (o *RebalanceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type RebalanceBadRequest struct {
 }
 
 func (o *RebalanceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *RebalanceBadRequest) ToString() string {
+func (o *RebalanceBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type RebalanceUnauthorized struct {
 }
 
 func (o *RebalanceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *RebalanceUnauthorized) ToString() string {
+func (o *RebalanceUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type RebalanceForbidden struct {
 }
 
 func (o *RebalanceForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *RebalanceForbidden) ToString() string {
+func (o *RebalanceForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type RebalanceNotFound struct {
 }
 
 func (o *RebalanceNotFound) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *RebalanceNotFound) ToString() string {
+func (o *RebalanceNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type RebalanceInternalServerError struct {
 }
 
 func (o *RebalanceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/rebalance][%d] rebalanceInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *RebalanceInternalServerError) ToString() string {
+func (o *RebalanceInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

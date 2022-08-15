@@ -60,13 +60,19 @@ type GetSteamIAPConfigOK struct {
 }
 
 func (o *GetSteamIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/steam][%d] getSteamIAPConfigOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/steam][%d] getSteamIAPConfigOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetSteamIAPConfigOK) ToString() string {
+func (o *GetSteamIAPConfigOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

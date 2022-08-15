@@ -84,13 +84,19 @@ type DeleteUserProfileOK struct {
 }
 
 func (o *DeleteUserProfileOK) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DeleteUserProfileOK) ToString() string {
+func (o *DeleteUserProfileOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -126,13 +132,19 @@ type DeleteUserProfileBadRequest struct {
 }
 
 func (o *DeleteUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *DeleteUserProfileBadRequest) ToString() string {
+func (o *DeleteUserProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -168,13 +180,19 @@ type DeleteUserProfileUnauthorized struct {
 }
 
 func (o *DeleteUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *DeleteUserProfileUnauthorized) ToString() string {
+func (o *DeleteUserProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -210,13 +228,19 @@ type DeleteUserProfileForbidden struct {
 }
 
 func (o *DeleteUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *DeleteUserProfileForbidden) ToString() string {
+func (o *DeleteUserProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -252,13 +276,19 @@ type DeleteUserProfileNotFound struct {
 }
 
 func (o *DeleteUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DeleteUserProfileNotFound) ToString() string {
+func (o *DeleteUserProfileNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

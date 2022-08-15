@@ -90,13 +90,19 @@ type CreateChannelHandlerCreated struct {
 }
 
 func (o *CreateChannelHandlerCreated) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerCreated  %+v", 201, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerCreated) ToString() string {
+func (o *CreateChannelHandlerCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -132,13 +138,19 @@ type CreateChannelHandlerBadRequest struct {
 }
 
 func (o *CreateChannelHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerBadRequest) ToString() string {
+func (o *CreateChannelHandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -174,13 +186,19 @@ type CreateChannelHandlerUnauthorized struct {
 }
 
 func (o *CreateChannelHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerUnauthorized) ToString() string {
+func (o *CreateChannelHandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -216,13 +234,19 @@ type CreateChannelHandlerForbidden struct {
 }
 
 func (o *CreateChannelHandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerForbidden) ToString() string {
+func (o *CreateChannelHandlerForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -258,13 +282,19 @@ type CreateChannelHandlerConflict struct {
 }
 
 func (o *CreateChannelHandlerConflict) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerConflict  %+v", 409, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerConflict  %+v", 409, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerConflict) ToString() string {
+func (o *CreateChannelHandlerConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -300,13 +330,19 @@ type CreateChannelHandlerInternalServerError struct {
 }
 
 func (o *CreateChannelHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/channels][%d] createChannelHandlerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *CreateChannelHandlerInternalServerError) ToString() string {
+func (o *CreateChannelHandlerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type GetPaymentOrderOK struct {
 }
 
 func (o *GetPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *GetPaymentOrderOK) ToString() string {
+func (o *GetPaymentOrderOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type GetPaymentOrderNotFound struct {
 }
 
 func (o *GetPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *GetPaymentOrderNotFound) ToString() string {
+func (o *GetPaymentOrderNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

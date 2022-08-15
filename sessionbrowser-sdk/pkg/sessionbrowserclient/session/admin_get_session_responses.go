@@ -72,13 +72,19 @@ type AdminGetSessionOK struct {
 }
 
 func (o *AdminGetSessionOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AdminGetSessionOK) ToString() string {
+func (o *AdminGetSessionOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -114,13 +120,19 @@ type AdminGetSessionNotFound struct {
 }
 
 func (o *AdminGetSessionNotFound) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AdminGetSessionNotFound) ToString() string {
+func (o *AdminGetSessionNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -156,13 +168,19 @@ type AdminGetSessionInternalServerError struct {
 }
 
 func (o *AdminGetSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminGetSessionInternalServerError) ToString() string {
+func (o *AdminGetSessionInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

@@ -66,13 +66,19 @@ type DisableCodeOK struct {
 }
 
 func (o *DisableCodeOK) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *DisableCodeOK) ToString() string {
+func (o *DisableCodeOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -108,13 +114,19 @@ type DisableCodeNotFound struct {
 }
 
 func (o *DisableCodeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeNotFound  %+v", 404, o.ToString())
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *DisableCodeNotFound) ToString() string {
+func (o *DisableCodeNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

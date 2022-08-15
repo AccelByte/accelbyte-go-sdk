@@ -105,13 +105,19 @@ type QueueSessionHandlerBadRequest struct {
 }
 
 func (o *QueueSessionHandlerBadRequest) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *QueueSessionHandlerBadRequest) ToString() string {
+func (o *QueueSessionHandlerBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -147,13 +153,19 @@ type QueueSessionHandlerUnauthorized struct {
 }
 
 func (o *QueueSessionHandlerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *QueueSessionHandlerUnauthorized) ToString() string {
+func (o *QueueSessionHandlerUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -189,13 +201,19 @@ type QueueSessionHandlerForbidden struct {
 }
 
 func (o *QueueSessionHandlerForbidden) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *QueueSessionHandlerForbidden) ToString() string {
+func (o *QueueSessionHandlerForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -231,13 +249,19 @@ type QueueSessionHandlerInternalServerError struct {
 }
 
 func (o *QueueSessionHandlerInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[POST /matchmaking/namespaces/{namespace}/sessions][%d] queueSessionHandlerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *QueueSessionHandlerInternalServerError) ToString() string {
+func (o *QueueSessionHandlerInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

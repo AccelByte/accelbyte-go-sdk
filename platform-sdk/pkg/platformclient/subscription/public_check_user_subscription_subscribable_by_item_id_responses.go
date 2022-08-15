@@ -60,13 +60,19 @@ type PublicCheckUserSubscriptionSubscribableByItemIDOK struct {
 }
 
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) Error() string {
-	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.ToString())
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) ToString() string {
+func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))

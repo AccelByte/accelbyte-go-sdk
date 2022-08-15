@@ -84,13 +84,19 @@ type AdminDeleteThirdPartyConfigNoContent struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigNoContent  %+v", 204, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigNoContent  %+v", 204, o.ToJSONString())
 }
 
-func (o *AdminDeleteThirdPartyConfigNoContent) ToString() string {
+func (o *AdminDeleteThirdPartyConfigNoContent) ToJSONString() string {
+	if o.Payload == "" {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -124,13 +130,19 @@ type AdminDeleteThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigBadRequest  %+v", 400, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigBadRequest  %+v", 400, o.ToJSONString())
 }
 
-func (o *AdminDeleteThirdPartyConfigBadRequest) ToString() string {
+func (o *AdminDeleteThirdPartyConfigBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -166,13 +178,19 @@ type AdminDeleteThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigUnauthorized  %+v", 401, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminDeleteThirdPartyConfigUnauthorized) ToString() string {
+func (o *AdminDeleteThirdPartyConfigUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -208,13 +226,19 @@ type AdminDeleteThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigForbidden  %+v", 403, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminDeleteThirdPartyConfigForbidden) ToString() string {
+func (o *AdminDeleteThirdPartyConfigForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
@@ -250,13 +274,19 @@ type AdminDeleteThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigInternalServerError  %+v", 500, o.ToString())
+	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminDeleteThirdPartyConfigInternalServerError) ToString() string {
+func (o *AdminDeleteThirdPartyConfigInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
 	b, err := json.Marshal(o.Payload)
 	if err != nil {
 		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
 	}
 
 	return fmt.Sprintf("%+v", string(b))
